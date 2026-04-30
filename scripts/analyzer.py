@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import json
+import os
 from typing import Any
+
+from openai import OpenAI
 
 from config import APPROVED_TECHNOLOGY_TAGS
 
@@ -16,6 +20,10 @@ SYSTEM_PROMPT = (
 )
 ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
 MAX_ONE_LINE_WORDS = 15
+MODEL_NAME = "gpt-4o"
+ANALYZER_TEMPERATURE = 0.7
+MAX_ANALYSIS_RETRIES = 3
+SCHEMA_NAME = "resurrection_analysis"
 
 
 def build_user_prompt(issue: dict[str, Any]) -> str:
@@ -111,3 +119,147 @@ def validate_analysis(data: dict[str, Any]) -> bool:
     if not isinstance(data["death_year"], int):
         return False
     return True
+
+
+def _json_schema() -> dict[str, Any]:
+    return {
+        "name": SCHEMA_NAME,
+        "strict": True,
+        "schema": {
+            "type": "object",
+            "additionalProperties": False,
+            "properties": {
+                "why_it_died": {"type": "string"},
+                "why_2026_changes_it": {"type": "string"},
+                "modern_design": {"type": "string"},
+                "proof_of_concept_code": {"type": "string"},
+                "poc_language": {"type": "string", "enum": sorted(ALLOWED_POC_LANGUAGES)},
+                "rfc_needed": {"type": "boolean"},
+                "rfc_content": {"type": ["string", "null"]},
+                "effort_hours": {"type": "integer"},
+                "impact_score": {"type": "integer"},
+                "technology_tags": {"type": "array", "items": {"type": "string"}},
+                "one_line_summary": {"type": "string"},
+                "one_line_why": {"type": "string"},
+                "abandoned_date": {"type": "string"},
+                "has_poc": {"type": "boolean"},
+                "death_year": {"type": "integer"},
+            },
+            "required": [
+                "why_it_died",
+                "why_2026_changes_it",
+                "modern_design",
+                "proof_of_concept_code",
+                "poc_language",
+                "rfc_needed",
+                "rfc_content",
+                "effort_hours",
+                "impact_score",
+                "technology_tags",
+                "one_line_summary",
+                "one_line_why",
+                "abandoned_date",
+                "has_poc",
+                "death_year",
+            ],
+        },
+    }
+
+
+def _strip_markdown_fences(raw: str) -> str:
+    text = raw.strip()
+    if text.startswith("```"):
+        text = text.split("```")[1]
+        if text.startswith("json"):
+            text = text[4:]
+    return text.strip()
+
+
+def _issue_year(issue: dict[str, Any]) -> int:
+    candidates = [str(issue.get("created_at", "")), str(issue.get("updated_at", ""))]
+    for candidate in candidates:
+        if not candidate:
+            continue
+        try:
+            return int(candidate[:4])
+        except ValueError:
+            continue
+    raise ValueError("Issue is missing valid created_at/updated_at year.")
+
+
+def _extract_raw_response(completion: Any) -> str:
+    choice = completion.choices[0]
+    content = getattr(choice.message, "content", "")
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        segments: list[str] = []
+        for item in content:
+            if isinstance(item, dict) and isinstance(item.get("text"), str):
+                segments.append(item["text"])
+            elif hasattr(item, "text") and isinstance(item.text, str):
+                segments.append(item.text)
+        return "".join(segments).strip()
+    return str(content or "")
+
+
+def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise EnvironmentError("OPENAI_API_KEY not set in .env")
+    client = OpenAI(api_key=api_key)
+
+    user_prompt = build_user_prompt(issue)
+    errors: list[str] = []
+
+    for attempt in range(1, MAX_ANALYSIS_RETRIES + 1):
+        completion = client.chat.completions.create(
+            model=MODEL_NAME,
+            temperature=ANALYZER_TEMPERATURE,
+            response_format={"type": "json_schema", "json_schema": _json_schema()},
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_prompt},
+            ],
+        )
+        raw_response = _extract_raw_response(completion)
+        cleaned = _strip_markdown_fences(raw_response)
+
+        try:
+            parsed = json.loads(cleaned)
+        except json.JSONDecodeError as error:
+            errors.append(f"Attempt {attempt}: invalid JSON ({error})")
+            if attempt == MAX_ANALYSIS_RETRIES:
+                raise ValueError("; ".join(errors)) from error
+            continue
+
+        if not isinstance(parsed, dict):
+            errors.append(f"Attempt {attempt}: parsed payload is not an object.")
+            if attempt == MAX_ANALYSIS_RETRIES:
+                raise ValueError("; ".join(errors))
+            continue
+
+        parsed["abandoned_date"] = str(issue.get("updated_at", ""))
+        parsed["has_poc"] = bool(str(parsed.get("proof_of_concept_code", "")).strip())
+        parsed["technology_tags"] = [
+            tag
+            for tag in parsed.get("technology_tags", [])
+            if isinstance(tag, str) and tag in APPROVED_TECHNOLOGY_TAGS
+        ]
+
+        try:
+            parsed["death_year"] = int(parsed.get("death_year"))
+        except (TypeError, ValueError):
+            parsed["death_year"] = _issue_year(issue)
+
+        if validate_analysis(parsed):
+            return {"raw_response": raw_response, "analysis": parsed}
+
+        errors.append(f"Attempt {attempt}: schema validation failed.")
+        if attempt == MAX_ANALYSIS_RETRIES:
+            raise ValueError("; ".join(errors))
+
+    raise ValueError("Analysis failed after retries.")
