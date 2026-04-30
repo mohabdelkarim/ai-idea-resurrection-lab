@@ -12,7 +12,9 @@ from typing import Any
 import requests
 
 from config import (
+    ABANDONED_LABELS,
     GRAVEYARD_FOLDER,
+    HIGH_DEMAND_UPVOTES_OVERRIDE,
     MAX_ISSUES_PER_REPO,
     MIN_UPVOTES,
     MONTHS_STALE_THRESHOLD,
@@ -26,27 +28,8 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 LOGGER = logging.getLogger(__name__)
-ABANDONED_LABELS = {"wontfix", "stale", "someday", "help wanted", "enhancement"}
-HIGH_DEMAND_OVERRIDE_UPVOTES = 100
 MAX_BODY_LENGTH = 3000
 SECONDS_BETWEEN_REPOS = 2
-
-
-@dataclass(slots=True)
-class Issue:
-    repo: str
-    issue_number: int
-    title: str
-    body: str
-    reactions: int
-    created_at: str
-    updated_at: str
-    labels: list[str]
-    url: str
-    html_url: str
-    author_login: str
-    author_profile: str
-    already_resurrected: bool = False
 
 
 @dataclass(slots=True)
@@ -236,7 +219,7 @@ def is_abandoned(issue: dict[str, Any]) -> bool:
         if isinstance(label, dict)
     }
     has_matching_label = any(label in ABANDONED_LABELS for label in label_names)
-    return reactions >= HIGH_DEMAND_OVERRIDE_UPVOTES or has_matching_label
+    return reactions >= HIGH_DEMAND_UPVOTES_OVERRIDE or has_matching_label
 
 
 def _entry_from_issue(repo: str, issue: dict[str, Any]) -> GraveyardEntry:
