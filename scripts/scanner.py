@@ -10,7 +10,12 @@ from typing import Any
 
 import requests
 
-from config import GRAVEYARD_FOLDER, MAX_ISSUES_PER_REPO
+from config import (
+    GRAVEYARD_FOLDER,
+    MAX_ISSUES_PER_REPO,
+    MIN_UPVOTES,
+    MONTHS_STALE_THRESHOLD,
+)
 
 
 logging.basicConfig(
@@ -19,6 +24,9 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 LOGGER = logging.getLogger(__name__)
+ABANDONED_LABELS = {"wontfix", "stale", "someday", "help wanted", "enhancement"}
+HIGH_DEMAND_OVERRIDE_UPVOTES = 100
+MAX_BODY_LENGTH = 3000
 
 
 @dataclass(slots=True)
@@ -198,3 +206,88 @@ def get_repo_issues(repo: str, token: str) -> list[dict[str, Any]]:
         page += 1
 
     return all_issues[:MAX_ISSUES_PER_REPO]
+
+
+def is_abandoned(issue: dict[str, Any]) -> bool:
+    if "pull_request" in issue:
+        return False
+
+    reactions = int(issue.get("reactions", {}).get("+1", 0))
+    if reactions < MIN_UPVOTES:
+        return False
+
+    updated_at = str(issue.get("updated_at", ""))
+    is_closed = str(issue.get("state", "")).lower() == "closed"
+    try:
+        stale_enough = months_since(updated_at) >= MONTHS_STALE_THRESHOLD if updated_at else False
+    except ValueError:
+        LOGGER.warning("Invalid updated_at on issue #%s; skipping.", issue.get("number"))
+        return False
+    if not (is_closed or stale_enough):
+        return False
+
+    labels = issue.get("labels", [])
+    label_names = {
+        str(label.get("name", "")).strip().lower()
+        for label in labels
+        if isinstance(label, dict)
+    }
+    has_matching_label = any(label in ABANDONED_LABELS for label in label_names)
+    return reactions >= HIGH_DEMAND_OVERRIDE_UPVOTES or has_matching_label
+
+
+def _entry_from_issue(repo: str, issue: dict[str, Any]) -> GraveyardEntry:
+    author_login = str(issue.get("user", {}).get("login", "unknown"))
+    body = str(issue.get("body") or "")[:MAX_BODY_LENGTH]
+    labels = [
+        str(label.get("name", ""))
+        for label in issue.get("labels", [])
+        if isinstance(label, dict)
+    ]
+    return GraveyardEntry(
+        repo=repo,
+        issue_number=int(issue.get("number", 0)),
+        title=str(issue.get("title", "")),
+        body=body,
+        reactions=int(issue.get("reactions", {}).get("+1", 0)),
+        created_at=str(issue.get("created_at", "")),
+        updated_at=str(issue.get("updated_at", "")),
+        labels=labels,
+        url=str(issue.get("url", "")),
+        html_url=str(issue.get("html_url", "")),
+        author_login=author_login,
+        author_profile=f"https://github.com/{author_login}",
+        already_resurrected=False,
+    )
+
+
+def scan_repo(repo: str, token: str) -> int:
+    LOGGER.info("Scanning %s...", repo)
+    existing = load_graveyard(repo)
+    existing_issue_numbers = {
+        int(item.get("issue_number", 0))
+        for item in existing
+        if isinstance(item, dict) and "issue_number" in item
+    }
+
+    raw_issues = get_repo_issues(repo, token)
+    new_entries: list[dict[str, Any]] = []
+
+    for raw_issue in raw_issues:
+        issue_number = int(raw_issue.get("number", 0))
+        if issue_number in existing_issue_numbers:
+            continue
+        if not is_abandoned(raw_issue):
+            continue
+
+        entry = _entry_from_issue(repo, raw_issue)
+        new_entries.append(asdict(entry))
+        LOGGER.info("Qualified issue found: %s#%d", repo, issue_number)
+
+    if new_entries:
+        save_graveyard(repo, existing + new_entries)
+    else:
+        LOGGER.info("No new qualifying issues for %s.", repo)
+
+    LOGGER.info("%s: %d new issues added to graveyard", repo, len(new_entries))
+    return len(new_entries)
