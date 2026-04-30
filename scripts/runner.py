@@ -21,7 +21,7 @@ LOGGER = logging.getLogger(__name__)
 
 REQUIRED_ENV_VARS = (
     "GITHUB_TOKEN",
-    "OPENAI_API_KEY",
+    "GROQ_API_KEY",
     "DIGEST_FROM_EMAIL",
     "DIGEST_TO_EMAIL",
     "DIGEST_SMTP_HOST",
