@@ -263,3 +263,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
             raise ValueError("; ".join(errors))
 
     raise ValueError("Analysis failed after retries.")
+
+# Alias για runner.py
+analyze = analyze_issue

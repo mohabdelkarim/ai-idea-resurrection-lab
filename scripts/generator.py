@@ -241,3 +241,6 @@ def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Pa
     LOGGER.info("Templates folder configured: %s", Path(TEMPLATES_FOLDER))
     LOGGER.info("Resurrection folder ready: %s", folder)
     return folder
+
+# Alias για runner.py
+generate = generate_resurrection
