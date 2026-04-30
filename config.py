@@ -45,3 +45,6 @@ TEMPLATES_FOLDER = "templates"
 
 BOT_NAME = "Resurrection Bot 🧬"
 BOT_EMAIL = "bot@resurrection-lab.dev"
+
+ABANDONED_LABELS = {"wontfix", "stale", "someday", "help wanted", "enhancement"}
+HIGH_DEMAND_UPVOTES_OVERRIDE = 100
