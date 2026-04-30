@@ -311,3 +311,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+# Alias για runner.py
+scan_issues = scan_repo
