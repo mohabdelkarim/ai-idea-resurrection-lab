@@ -106,3 +106,66 @@ def export_commit_vars(meta: dict[str, Any]) -> None:
     export_to_github_env("HAS_POC", "true" if meta.get("has_poc") else "false")
     export_to_github_env("ABANDONED_DATE", str(meta.get("abandoned_date", "unknown")))
     export_to_github_env("ONE_LINE_WHY", str(meta.get("one_line_why", "")))
+
+
+def run_pipeline() -> None:
+    results: list[bool] = []
+
+    def _scanner_step() -> None:
+        from scanner import scan_issues
+
+        scan_issues()
+
+    def _analyzer_step() -> None:
+        from analyzer import analyze
+
+        analyze()
+
+    def _generator_step() -> None:
+        from generator import generate
+
+        generate()
+
+    def _stats_step() -> None:
+        from stats import update_stats
+
+        update_stats()
+
+    def _readme_step() -> None:
+        from readme_generator import update_readme
+
+        update_readme()
+
+    def _vote_step() -> None:
+        from vote_manager import run_vote
+        from stats import load_progress
+
+        progress = load_progress()
+        last = progress.get("last_resurrection") or {}
+        token = os.environ.get("GITHUB_TOKEN", "")
+        if last:
+            run_vote(last, token)
+        else:
+            LOGGER.warning("No resurrection found for vote.")
+
+    results.append(run_step("GitHub Issue Scanner", _scanner_step))
+    results.append(run_step("AI Analyzer", _analyzer_step))
+    results.append(run_step("File Generator", _generator_step))
+    results.append(run_step("Stats Engine", _stats_step))
+    results.append(run_step("README Generator", _readme_step))
+    results.append(run_step("Community Vote", _vote_step))
+
+    meta = load_latest_meta()
+    export_commit_vars(meta)
+    LOGGER.info("Pipeline complete.")
+
+    if not all(results):
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    validate_env()
+    run_pipeline()
