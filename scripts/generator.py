@@ -193,7 +193,6 @@ def write_poc_files(folder: Path, analysis: dict[str, Any], issue_title: str) ->
         f"**Language:** {language}\n"
         "**Estimated run time:** < 5 minutes\n\n"
         "## Prerequisites\n\n"
-        "List the required tools/packages based on poc_language:\n"
         f"{_poc_prerequisites(language)}\n\n"
         "## How to Run\n\n"
         "```bash\n"
