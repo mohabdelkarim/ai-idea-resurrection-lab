@@ -4,7 +4,7 @@ import json
 import os
 from typing import Any
 
-from openai import OpenAI
+from groq import Groq
 
 from config import APPROVED_TECHNOLOGY_TAGS
 
@@ -20,7 +20,7 @@ SYSTEM_PROMPT = (
 )
 ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
 MAX_ONE_LINE_WORDS = 15
-MODEL_NAME = "gpt-4o"
+MODEL_NAME = "llama-3.3-70b-versatile"
 ANALYZER_TEMPERATURE = 0.7
 MAX_ANALYSIS_RETRIES = 3
 SCHEMA_NAME = "resurrection_analysis"
@@ -207,10 +207,10 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
     from dotenv import load_dotenv
 
     load_dotenv()
-    api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
-        raise EnvironmentError("OPENAI_API_KEY not set in .env")
-    client = OpenAI(api_key=api_key)
+        raise EnvironmentError("GROQ_API_KEY not set in .env")
+    client = Groq(api_key=api_key)
 
     user_prompt = build_user_prompt(issue)
     errors: list[str] = []
