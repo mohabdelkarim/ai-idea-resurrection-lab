@@ -4,6 +4,7 @@ import logging
 import os
 import sys
 from pathlib import Path
+from typing import Any, Callable
 
 from config import RESURRECTION_BASE_FOLDER, STATS_FILE, VOTES_FILE
 
@@ -56,3 +57,52 @@ def export_to_github_env(key: str, value: str) -> None:
     with path.open("a", encoding="utf-8") as handle:
         handle.write(f"{key}={safe_value}\n")
 
+
+def run_step(step_name: str, fn: Callable[[], None]) -> bool:
+    LOGGER.info("▶ Running: %s", step_name)
+    try:
+        fn()
+    except Exception as error:
+        LOGGER.error("❌ %s failed: %s", step_name, error)
+        return False
+    LOGGER.info("✅ %s completed.", step_name)
+    return True
+
+
+def load_latest_meta() -> dict[str, Any]:
+    base = Path(RESURRECTION_BASE_FOLDER)
+    try:
+        candidates = sorted(base.glob("day-*/meta.json"), reverse=True)
+    except Exception as error:
+        LOGGER.error("Failed searching for latest meta.json: %s", error)
+        return {}
+
+    if not candidates:
+        LOGGER.warning("No resurrection meta.json files found under %s", base)
+        return {}
+
+    latest = candidates[0]
+    try:
+        import json
+
+        with latest.open("r", encoding="utf-8") as handle:
+            parsed = json.load(handle)
+        if isinstance(parsed, dict):
+            return parsed
+        LOGGER.warning("Latest meta file is not a JSON object: %s", latest)
+        return {}
+    except Exception as error:
+        LOGGER.error("Failed reading latest meta.json %s: %s", latest, error)
+        return {}
+
+
+def export_commit_vars(meta: dict[str, Any]) -> None:
+    export_to_github_env("ISSUE_TITLE", str(meta.get("title", "Unknown")))
+    export_to_github_env("ISSUE_REPO", str(meta.get("repo", "unknown/unknown")))
+    export_to_github_env("ISSUE_NUMBER", str(meta.get("issue_number", "0")))
+    export_to_github_env("ISSUE_URL", str(meta.get("original_url", "")))
+    export_to_github_env("IMPACT_SCORE", str(meta.get("impact_score", 0)))
+    export_to_github_env("EFFORT_HOURS", str(meta.get("effort_hours", 0)))
+    export_to_github_env("HAS_POC", "true" if meta.get("has_poc") else "false")
+    export_to_github_env("ABANDONED_DATE", str(meta.get("abandoned_date", "unknown")))
+    export_to_github_env("ONE_LINE_WHY", str(meta.get("one_line_why", "")))
