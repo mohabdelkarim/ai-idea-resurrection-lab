@@ -2,8 +2,11 @@ from __future__ import annotations
 
 import json
 import logging
+from datetime import datetime
 from pathlib import Path
 from typing import Any
+
+import requests
 
 from config import STATS_FILE, VOTES_FILE
 
@@ -55,3 +58,194 @@ def build_vote_body(meta: dict[str, Any]) -> str:
         f"- **Impact score:** {impact_score}/10\n\n"
         "👍 React with +1 to vote FOR | 👎 React with -1 to vote AGAINST"
     )
+
+
+def create_github_discussion(token: str, repo: str, title: str, body: str) -> dict[str, str]:
+    if not token.strip():
+        LOGGER.error("Missing GitHub token; cannot create discussion.")
+        return {"id": "", "url": ""}
+
+    try:
+        owner, name = repo.split("/", maxsplit=1)
+    except ValueError:
+        LOGGER.error("Invalid repository format: %s", repo)
+        return {"id": "", "url": ""}
+
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    }
+    endpoint = "https://api.github.com/graphql"
+
+    repo_query = """
+    query GetRepoInfo($owner: String!, $name: String!) {
+      repository(owner: $owner, name: $name) {
+        id
+        discussionCategories(first: 10) {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+    """
+
+    try:
+        repo_response = requests.post(
+            endpoint,
+            headers=headers,
+            json={"query": repo_query, "variables": {"owner": owner, "name": name}},
+            timeout=30,
+        )
+        repo_response.raise_for_status()
+        repo_payload = repo_response.json()
+    except (requests.RequestException, ValueError) as error:
+        LOGGER.error("Failed fetching repo discussion info: %s", error)
+        return {"id": "", "url": ""}
+
+    if repo_payload.get("errors"):
+        LOGGER.error("GraphQL repo query errors: %s", repo_payload["errors"])
+        return {"id": "", "url": ""}
+
+    repository = repo_payload.get("data", {}).get("repository", {})
+    repository_id = repository.get("id")
+    categories = repository.get("discussionCategories", {}).get("nodes", [])
+    first_category = categories[0] if isinstance(categories, list) and categories else {}
+    category_id = first_category.get("id")
+
+    if not repository_id or not category_id:
+        LOGGER.error("Missing repository/category IDs for repo %s", repo)
+        return {"id": "", "url": ""}
+
+    create_mutation = """
+    mutation CreateDiscussion(
+      $repositoryId: ID!,
+      $categoryId: ID!,
+      $title: String!,
+      $body: String!
+    ) {
+      createDiscussion(input: {
+        repositoryId: $repositoryId,
+        categoryId: $categoryId,
+        title: $title,
+        body: $body
+      }) {
+        discussion {
+          id
+          url
+        }
+      }
+    }
+    """
+
+    variables = {
+        "repositoryId": repository_id,
+        "categoryId": category_id,
+        "title": title,
+        "body": body,
+    }
+    try:
+        create_response = requests.post(
+            endpoint,
+            headers=headers,
+            json={"query": create_mutation, "variables": variables},
+            timeout=30,
+        )
+        create_response.raise_for_status()
+        create_payload = create_response.json()
+    except (requests.RequestException, ValueError) as error:
+        LOGGER.error("Failed creating GitHub discussion: %s", error)
+        return {"id": "", "url": ""}
+
+    if create_payload.get("errors"):
+        LOGGER.error("GraphQL discussion mutation errors: %s", create_payload["errors"])
+        return {"id": "", "url": ""}
+
+    discussion = create_payload.get("data", {}).get("createDiscussion", {}).get("discussion", {})
+    discussion_id = str(discussion.get("id", ""))
+    discussion_url = str(discussion.get("url", ""))
+    if not discussion_id or not discussion_url:
+        LOGGER.error("Missing discussion id/url in GraphQL response.")
+        return {"id": "", "url": ""}
+
+    return {"id": discussion_id, "url": discussion_url}
+
+
+def update_readme_vote_section(votes: dict[str, Any]) -> None:
+    try:
+        from scripts.readme_generator import replace_section
+    except ImportError:
+        import sys
+        from pathlib import Path as _Path
+
+        sys.path.insert(0, str(_Path(__file__).parent))
+        from readme_generator import replace_section
+
+    if votes and str(votes.get("discussion_url", "")).strip():
+        discussion_url = str(votes.get("discussion_url", ""))
+        current_issue_title = str(votes.get("current_issue_title", ""))
+        section_body = (
+            "## 🗳️ Community Vote\n\n"
+            "Should we implement this?\n"
+            f"**[{current_issue_title}]({discussion_url})**\n"
+            f"> Vote on GitHub Discussions → [{discussion_url}]({discussion_url})"
+        )
+    else:
+        section_body = (
+            "## 🗳️ Community Vote\n"
+            "> *Vote opens daily after the resurrection is published.*"
+        )
+
+    section = (
+        "<!-- SECTION:community-vote -->\n"
+        f"{section_body}\n"
+        "<!-- END:community-vote -->"
+    )
+
+    readme_path = Path(STATS_FILE).parent.parent / "README.md"
+    current_content = readme_path.read_text(encoding="utf-8") if readme_path.exists() else ""
+    updated_content = replace_section(current_content, "community-vote", section)
+    readme_path.write_text(updated_content, encoding="utf-8")
+    LOGGER.info("Written: %s", readme_path)
+
+
+def run_vote(meta: dict[str, Any], token: str) -> None:
+    discussion_title = f"🗳️ Should we implement: {meta['title']}?"
+    discussion_body = build_vote_body(meta)
+    repo = str(meta.get("repo", ""))
+    discussion = create_github_discussion(token, repo, discussion_title, discussion_body)
+
+    votes_data = {
+        "current_issue_title": str(meta.get("title", "")),
+        "current_issue_url": str(meta.get("original_url", "")),
+        "discussion_url": str(discussion.get("url", "")),
+        "discussion_id": str(discussion.get("id", "")),
+        "vote_date": datetime.now().strftime("%Y-%m-%d"),
+        "votes_for": 0,
+        "votes_against": 0,
+        "status": "open",
+    }
+    save_votes(votes_data)
+    update_readme_vote_section(votes_data)
+    LOGGER.info("Vote created: %s", votes_data["discussion_url"])
+
+
+if __name__ == "__main__":
+    import os
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    token = os.environ.get("GITHUB_TOKEN", "")
+    import json
+
+    meta_path = Path(STATS_FILE).parent.parent / "resurrections"
+    # Load most recent meta.json for testing
+    candidates = sorted(meta_path.glob("day-*/meta.json"), reverse=True)
+    if candidates:
+        with candidates[0].open(encoding="utf-8") as handle:
+            meta = json.load(handle)
+        run_vote(meta, token)
+    else:
+        print("No resurrection found to vote on.")
