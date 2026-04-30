@@ -116,7 +116,7 @@ def build_subscribe_section() -> str:
         "> Every week: one fresh AI tool tested honestly, a real workflow\n"
         "> under 30 minutes, a straight verdict.\n"
         "> **Free. No paywalls. No affiliate links.**\n\n"
-        "`https://mohaabdelkarim.gumroad.com/l/ai-tool-drop`"
+        " `https://mohaabdelkarim.gumroad.com/l/ai-tool-drop` "
     )
     return _wrap_section("subscribe", body)
 
