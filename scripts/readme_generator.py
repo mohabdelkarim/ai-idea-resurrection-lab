@@ -111,12 +111,12 @@ def build_last_section(progress: dict[str, Any]) -> str:
 def build_subscribe_section() -> str:
     body = (
         "## 📬 Stay Ahead of the Curve\n\n"
-        "> ** `https://mohaabdelkarim.gumroad.com/l/ai-tool-drop` ** —\n"
+        "> **[AI Tool Drop](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)** —\n"
         "> The free weekly newsletter that cuts through the AI noise.\n"
         "> Every week: one fresh AI tool tested honestly, a real workflow\n"
         "> under 30 minutes, a straight verdict.\n"
         "> **Free. No paywalls. No affiliate links.**\n\n"
-        " `https://mohaabdelkarim.gumroad.com/l/ai-tool-drop` "
+        "[Subscribe Free →](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)"
     )
     return _wrap_section("subscribe", body)
 
