@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 import logging
 import os
 import sys
@@ -7,9 +10,6 @@ from pathlib import Path
 from typing import Any, Callable
 
 from config import RESURRECTION_BASE_FOLDER, STATS_FILE, VOTES_FILE
-
-
-sys.path.insert(0, str(Path(__file__).parent))
 
 
 logging.basicConfig(
@@ -22,7 +22,8 @@ LOGGER = logging.getLogger(__name__)
 
 REQUIRED_ENV_VARS = (
     "GITHUB_TOKEN",
-    "OPENAI_API_KEY",
+    "GROQ_API_KEY",
+
 )
 
 

@@ -1,0 +1,51 @@
+name: Daily Resurrection
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  discussions: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+
+jobs:
+  resurrect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run daily pipeline
+        run: python scripts/runner.py
+        working-directory: ${{ github.workspace }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "resurrection-bot"
+          git config user.email "bot@resurrection-lab.dev"
+          git add -A
+          git diff --cached --quiet || git commit -m \
+            "🧬 Day ${{ github.run_number }}: ${{ env.ISSUE_TITLE }} \
+            [${{ env.ISSUE_REPO }}#${{ env.ISSUE_NUMBER }}] \
+            Impact: ${{ env.IMPACT_SCORE }}/10 | \
+            Effort: ~${{ env.EFFORT_HOURS }}h | \
+            PoC: ${{ env.HAS_POC }}"
+          git push
