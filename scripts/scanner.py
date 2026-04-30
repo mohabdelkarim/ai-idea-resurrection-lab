@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import time
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
@@ -15,6 +16,7 @@ from config import (
     MAX_ISSUES_PER_REPO,
     MIN_UPVOTES,
     MONTHS_STALE_THRESHOLD,
+    REPOS_TO_SCAN,
 )
 
 
@@ -27,6 +29,7 @@ LOGGER = logging.getLogger(__name__)
 ABANDONED_LABELS = {"wontfix", "stale", "someday", "help wanted", "enhancement"}
 HIGH_DEMAND_OVERRIDE_UPVOTES = 100
 MAX_BODY_LENGTH = 3000
+SECONDS_BETWEEN_REPOS = 2
 
 
 @dataclass(slots=True)
@@ -291,3 +294,37 @@ def scan_repo(repo: str, token: str) -> int:
 
     LOGGER.info("%s: %d new issues added to graveyard", repo, len(new_entries))
     return len(new_entries)
+
+
+def _timestamp() -> str:
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def main() -> None:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        raise EnvironmentError("GITHUB_TOKEN not set in .env")
+
+    total_new_issues = 0
+    for index, repo in enumerate(REPOS_TO_SCAN):
+        print(f"[{_timestamp()}] Scanning {repo}...")
+        try:
+            added = scan_repo(repo, token)
+        except Exception as error:  # Defensive fallback to keep batch scan running.
+            LOGGER.error("Unexpected error while scanning %s: %s", repo, error)
+            added = 0
+
+        total_new_issues += added
+        print(f"[{_timestamp()}] {repo}: {added} new issues added to graveyard")
+
+        if index < len(REPOS_TO_SCAN) - 1:
+            time.sleep(SECONDS_BETWEEN_REPOS)
+
+    print(f"✅ Scan complete. Total new issues found: {total_new_issues}")
+
+
+if __name__ == "__main__":
+    main()
