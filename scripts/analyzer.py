@@ -135,7 +135,7 @@ def _json_schema() -> dict[str, Any]:
                 "proof_of_concept_code": {"type": "string"},
                 "poc_language": {"type": "string", "enum": sorted(ALLOWED_POC_LANGUAGES)},
                 "rfc_needed": {"type": "boolean"},
-                "rfc_content": {"type": ["string", "null"]},
+                "rfc_content": {"anyOf": [{"type": "string"}, {"type": "null"}]},
                 "effort_hours": {"type": "integer"},
                 "impact_score": {"type": "integer"},
                 "technology_tags": {"type": "array", "items": {"type": "string"}},
