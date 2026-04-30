@@ -5,10 +5,9 @@ import os
 import sys
 from pathlib import Path
 
-from config import RESURRECTION_BASE_FOLDER, STATS_FILE, VOTES_FILE
-
-
 sys.path.insert(0, str(Path(__file__).parent))
+
+from config import RESURRECTION_BASE_FOLDER, STATS_FILE, VOTES_FILE
 
 
 logging.basicConfig(
