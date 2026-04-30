@@ -2,7 +2,7 @@ name: Daily Resurrection
 
 on:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "0 13 * * *"
   workflow_dispatch:
 
 permissions:
@@ -34,8 +34,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run daily pipeline
-        run: python scripts/runner.py
-        working-directory: ${{ github.workspace }}
+        run: python runner.py
+        working-directory: ${{ github.workspace }}/scripts
 
       - name: Commit and push changes
         run: |
