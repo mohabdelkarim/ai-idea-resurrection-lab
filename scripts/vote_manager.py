@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -170,3 +171,81 @@ def create_github_discussion(token: str, repo: str, title: str, body: str) -> di
         return {"id": "", "url": ""}
 
     return {"id": discussion_id, "url": discussion_url}
+
+
+def update_readme_vote_section(votes: dict[str, Any]) -> None:
+    try:
+        from scripts.readme_generator import replace_section
+    except ImportError:
+        import sys
+        from pathlib import Path as _Path
+
+        sys.path.insert(0, str(_Path(__file__).parent))
+        from readme_generator import replace_section
+
+    if votes and str(votes.get("discussion_url", "")).strip():
+        discussion_url = str(votes.get("discussion_url", ""))
+        current_issue_title = str(votes.get("current_issue_title", ""))
+        section_body = (
+            "## 🗳️ Community Vote\n\n"
+            "Should we implement this?\n"
+            f"**[{current_issue_title}]({discussion_url})**\n"
+            f"> Vote on GitHub Discussions → [{discussion_url}]({discussion_url})"
+        )
+    else:
+        section_body = (
+            "## 🗳️ Community Vote\n"
+            "> *Vote opens daily after the resurrection is published.*"
+        )
+
+    section = (
+        "<!-- SECTION:community-vote -->\n"
+        f"{section_body}\n"
+        "<!-- END:community-vote -->"
+    )
+
+    readme_path = Path(STATS_FILE).parent.parent / "README.md"
+    current_content = readme_path.read_text(encoding="utf-8") if readme_path.exists() else ""
+    updated_content = replace_section(current_content, "community-vote", section)
+    readme_path.write_text(updated_content, encoding="utf-8")
+    LOGGER.info("Written: %s", readme_path)
+
+
+def run_vote(meta: dict[str, Any], token: str) -> None:
+    discussion_title = f"🗳️ Should we implement: {meta['title']}?"
+    discussion_body = build_vote_body(meta)
+    repo = str(meta.get("repo", ""))
+    discussion = create_github_discussion(token, repo, discussion_title, discussion_body)
+
+    votes_data = {
+        "current_issue_title": str(meta.get("title", "")),
+        "current_issue_url": str(meta.get("original_url", "")),
+        "discussion_url": str(discussion.get("url", "")),
+        "discussion_id": str(discussion.get("id", "")),
+        "vote_date": datetime.now().strftime("%Y-%m-%d"),
+        "votes_for": 0,
+        "votes_against": 0,
+        "status": "open",
+    }
+    save_votes(votes_data)
+    update_readme_vote_section(votes_data)
+    LOGGER.info("Vote created: %s", votes_data["discussion_url"])
+
+
+if __name__ == "__main__":
+    import os
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    token = os.environ.get("GITHUB_TOKEN", "")
+    import json
+
+    meta_path = Path(STATS_FILE).parent.parent / "resurrections"
+    # Load most recent meta.json for testing
+    candidates = sorted(meta_path.glob("day-*/meta.json"), reverse=True)
+    if candidates:
+        with candidates[0].open(encoding="utf-8") as handle:
+            meta = json.load(handle)
+        run_vote(meta, token)
+    else:
+        print("No resurrection found to vote on.")
