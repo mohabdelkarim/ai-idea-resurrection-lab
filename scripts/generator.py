@@ -242,5 +242,16 @@ def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Pa
     LOGGER.info("Resurrection folder ready: %s", folder)
     return folder
 
-# Alias για runner.py
-generate = generate_resurrection
+def generate() -> None:
+    import json
+    from pathlib import Path
+
+    from config import GRAVEYARD_FOLDER
+
+    for graveyard_file in Path(GRAVEYARD_FOLDER).glob("*.json"):
+        with graveyard_file.open() as f:
+            issues = json.load(f)
+        for issue in issues:
+            if not issue.get("already_resurrected"):
+                generate_resurrection(issue, {})
+                return  # 1 Ξ±Ξ½Ξ¬ run

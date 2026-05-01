@@ -312,5 +312,9 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
-# Alias για runner.py
-scan_issues = scan_repo
+def scan_issues() -> None:
+    import os
+
+    token = os.environ.get("GITHUB_TOKEN", "")
+    for repo in REPOS_TO_SCAN:
+        scan_repo(repo, token)
