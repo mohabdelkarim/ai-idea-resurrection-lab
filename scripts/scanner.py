@@ -151,7 +151,13 @@ def get_repo_issues(repo: str, token: str) -> list[dict[str, Any]]:
     per_page = min(100, MAX_ISSUES_PER_REPO)
 
     while len(all_issues) < MAX_ISSUES_PER_REPO:
-        params = {"state": "all", "per_page": per_page, "page": page}
+        params = {
+            "state": "all",
+            "per_page": per_page,
+            "page": page,
+            "sort": "updated",
+            "direction": "asc",
+        }
         response = _request_with_backoff(url, headers=headers, params=params)
         if response is None:
             break
