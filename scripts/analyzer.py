@@ -16,7 +16,15 @@ SYSTEM_PROMPT = (
     "modern ecosystem to make them feasible today, and how to implement "
     "them with current tools. You write precise, honest, technical assessments "
     "— no hype, no fluff. Every analysis must include working proof-of-concept "
-    "code that a developer could run today."
+    "code that a developer could run today. "
+    "You must respond with a valid JSON object containing EXACTLY these keys: "
+    "why_it_died, why_2026_changes_it, modern_design, proof_of_concept_code, "
+    "poc_language, rfc_needed, rfc_content, effort_hours, impact_score, "
+    "technology_tags, one_line_summary, one_line_why, abandoned_date, "
+    "has_poc, death_year. "
+    "effort_hours must be an integer, impact_score must be an integer 1-10, "
+    "technology_tags must be a list of strings, rfc_needed and has_poc must be booleans. "
+    "No markdown, no explanation, only the JSON object."
 )
 ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
 MAX_ONE_LINE_WORDS = 15
