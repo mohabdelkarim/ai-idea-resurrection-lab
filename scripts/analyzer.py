@@ -28,7 +28,16 @@ SYSTEM_PROMPT = (
     "has_poc, death_year. "
     "effort_hours must be an integer, impact_score must be an integer 1-10, "
     "technology_tags must be a list of strings, rfc_needed and has_poc must be booleans. "
-    "No markdown, no explanation, only the JSON object."
+    "No markdown, no explanation, only the JSON object. "
+    "You must fill every required field with substantive content. "
+    "Never return empty strings for why_it_died, why_2026_changes_it, modern_design, one_line_summary, one_line_why, abandoned_date, or rfc_content. "
+    "Use abandoned_date as a concrete YYYY-MM-DD date or a close estimate if exact is unavailable. "
+    "Set impact_score to an integer from 1 to 10 based on real technical feasibility and relevance. "
+    "Set effort_hours to a realistic integer greater than 0. "
+    "Set technology_tags to 3 to 6 short lowercase tags. "
+    "Set has_poc to false only if a runnable proof of concept would not add value. "
+    "If has_poc is false, poc_language must be \"python\" and proof_of_concept_code must be an empty string. "
+    "If has_poc is true, proof_of_concept_code must be runnable and poc_language must be one of python, typescript, rust, or go."
 )
 ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
 MAX_ONE_LINE_WORDS = 15
