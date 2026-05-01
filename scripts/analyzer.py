@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 from typing import Any
 
 from groq import Groq
 
 from config import APPROVED_TECHNOLOGY_TAGS
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 SYSTEM_PROMPT = (
@@ -238,6 +242,7 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
         try:
             parsed = json.loads(cleaned)
+            LOGGER.info("GROQ_KEYS: %s", list(parsed.keys()))
         except json.JSONDecodeError as error:
             errors.append(f"Attempt {attempt}: invalid JSON ({error})")
             if attempt == MAX_ANALYSIS_RETRIES:
