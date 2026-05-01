@@ -264,5 +264,17 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
     raise ValueError("Analysis failed after retries.")
 
-# Alias για runner.py
-analyze = analyze_issue
+def analyze() -> None:
+    import json
+    from pathlib import Path
+
+    from config import GRAVEYARD_FOLDER
+
+    token = None
+    for graveyard_file in Path(GRAVEYARD_FOLDER).glob("*.json"):
+        with graveyard_file.open() as f:
+            issues = json.load(f)
+        for issue in issues:
+            if not issue.get("already_resurrected"):
+                analyze_issue(issue)
+                return  # 1 Ξ±Ξ½Ξ¬ run
