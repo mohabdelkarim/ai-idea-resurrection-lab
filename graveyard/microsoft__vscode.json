@@ -1,0 +1,248 @@
+[
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 178,
+    "title": "Git status in File Explorer",
+    "body": "Similar to what atom provides in the project explorer:\n1. New files are displayed green.\n2. Modified are displayed yellow/orange.\n3. Ignored files are displayed transparent-ish.\n\nThanks\n",
+    "reactions": 2286,
+    "created_at": "2015-11-19T09:24:13Z",
+    "updated_at": "2017-11-09T09:23:06Z",
+    "labels": [
+      "feature-request",
+      "git",
+      "file-explorer",
+      "file-decorations"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/178",
+    "html_url": "https://github.com/microsoft/vscode/issues/178",
+    "author_login": "ozsay",
+    "author_profile": "https://github.com/ozsay",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 224,
+    "title": "Proper tabs for open files",
+    "body": "I _really_ miss proper tabs for open files (like VS proper), and the ability to rip a tab out into its own window.\n",
+    "reactions": 596,
+    "created_at": "2015-11-19T13:49:36Z",
+    "updated_at": "2016-06-27T06:44:35Z",
+    "labels": [
+      "feature-request",
+      "workbench-tabs"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/224",
+    "html_url": "https://github.com/microsoft/vscode/issues/224",
+    "author_login": "TurkeyMan",
+    "author_profile": "https://github.com/TurkeyMan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 1884,
+    "title": "Status bar background color",
+    "body": "The blue color is very distracting.. a way to change the color of that would be great!\n\n<img src=\"http://content.screencast.com/users/joe-watkins-emerge/folders/Snagit/media/412cd601-ba5d-4ccf-a0b5-25bc36237ff0/2016-01-08_10-14-31.png\">\n",
+    "reactions": 427,
+    "created_at": "2016-01-08T18:15:27Z",
+    "updated_at": "2017-09-28T15:55:48Z",
+    "labels": [
+      "feature-request",
+      "themes"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/1884",
+    "html_url": "https://github.com/microsoft/vscode/issues/1884",
+    "author_login": "joe-watkins",
+    "author_profile": "https://github.com/joe-watkins",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 101,
+    "title": "Unsaved files should be preserved on quit (hot exit)",
+    "body": "Mac OSX 10.10.5 Yosemite, VS Code 0.10.1\n\nModern apps have a convention of not losing changes when the application quits and files haven't been explicitly saved. Sublime Text is particularly nice in this regard, where newly created or unsaved files are silently preserved on quit and restored when it is launched again. This would be nice for VS Code to support as well.\n\n**To Reproduce**\n1. Make changes to a file, or create a brand new unsaved file\n2. Quit VS Code\n\n**Desired Behavior**\n\nVS Code immediately quits with no prompt. After relaunching the changed file is restored with changes intact and an unsaved indicator.\n\n**Actual Behavior**\n\nVS Code prompts you to save the file or discard your changes.\n",
+    "reactions": 368,
+    "created_at": "2015-11-18T20:54:45Z",
+    "updated_at": "2017-11-17T01:05:00Z",
+    "labels": [
+      "feature-request",
+      "plan-item",
+      "workbench-hot-exit"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/101",
+    "html_url": "https://github.com/microsoft/vscode/issues/101",
+    "author_login": "dgileadi",
+    "author_profile": "https://github.com/dgileadi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 1749,
+    "title": "Support to split editors horizontally",
+    "body": "It's hard to read code having more than one editing panel opened when they are split horizontally:\n<br/>\n![code](https://cloud.githubusercontent.com/assets/9283914/12076622/52eb33a6-b1b3-11e5-90bd-ecb6405d9246.png)\n<br/>\nIs it possible to have Code split editor panels vertically?\n<br/>\n",
+    "reactions": 350,
+    "created_at": "2016-01-02T23:48:01Z",
+    "updated_at": "2017-11-17T01:03:51Z",
+    "labels": [
+      "feature-request",
+      "plan-item",
+      "ux"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/1749",
+    "html_url": "https://github.com/microsoft/vscode/issues/1749",
+    "author_login": "SetTrend",
+    "author_profile": "https://github.com/SetTrend",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 78,
+    "title": "use .gitignore to ignore search inside files and folders",
+    "body": "use .gitignore to know which files and folders not to search into (think `node_modules` or `packages`)\n",
+    "reactions": 251,
+    "created_at": "2015-11-18T18:11:47Z",
+    "updated_at": "2017-11-01T17:20:49Z",
+    "labels": [
+      "feature-request",
+      "search"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/78",
+    "html_url": "https://github.com/microsoft/vscode/issues/78",
+    "author_login": "luisrudge",
+    "author_profile": "https://github.com/luisrudge",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 14653,
+    "title": "[macOS] Add support for the touch bar in the new macbook ",
+    "body": "Hello :),\n\nI think many people are using visual studio code with macbooks, Adding shortcuts and features to the new touch bar in the upcoming macbooks pro can be useful and more productive for future owners :).\n\n![Image of touchbar](http://image.noelshack.com/fichiers/2016/43/1477650925-touch-bar.png)\n",
+    "reactions": 201,
+    "created_at": "2016-10-28T10:36:28Z",
+    "updated_at": "2017-11-17T00:27:49Z",
+    "labels": [
+      "feature-request",
+      "upstream",
+      "on-testplan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/14653",
+    "html_url": "https://github.com/microsoft/vscode/issues/14653",
+    "author_login": "wicktus",
+    "author_profile": "https://github.com/wicktus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 12146,
+    "title": "[folding] fold regions",
+    "body": "Use markers such as //#region and //#endregion to mark folding regions\r\n",
+    "reactions": 179,
+    "created_at": "2016-09-16T12:48:40Z",
+    "updated_at": "2017-11-17T01:04:42Z",
+    "labels": [
+      "feature-request",
+      "languages-basic",
+      "editor-folding",
+      "on-testplan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/12146",
+    "html_url": "https://github.com/microsoft/vscode/issues/12146",
+    "author_login": "mbeckenbach",
+    "author_profile": "https://github.com/mbeckenbach",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 3518,
+    "title": "Add ability to copy formatted code to clipboard",
+    "body": "I'd like to request adding the ability to copy selected code to the clipboard with syntax highlighting. This is useful for pasting formatted code into another application (e.g., Word document, e-mail).\r\nRegular Visual Studio does this by default (it puts both text and RTF formats on the clipboard).\r\nRTF works well for me, but maybe HTML would be okay too, as long as it is 'pastable' (dependency-free).\r\n",
+    "reactions": 171,
+    "created_at": "2016-02-26T22:23:39Z",
+    "updated_at": "2017-11-17T00:28:05Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/3518",
+    "html_url": "https://github.com/microsoft/vscode/issues/3518",
+    "author_login": "thomas-taylor",
+    "author_profile": "https://github.com/thomas-taylor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 3112,
+    "title": "Support to theme the entire workbench",
+    "body": "Currently, color themes are not getting applied to the toolbar on the left:\n\n![code theme](https://cloud.githubusercontent.com/assets/9283914/13143860/1b82be62-d647-11e5-99e3-12cb81ed6d53.png)\n\nI tend to believe this is not intentional as it inhibits accessibility, e.g. with high-contrast themes.\n\nSo I propose to have themes apply to the VS Code toolbar, too.\n",
+    "reactions": 139,
+    "created_at": "2016-02-18T12:57:18Z",
+    "updated_at": "2017-05-05T11:45:06Z",
+    "labels": [
+      "feature-request",
+      "plan-item",
+      "themes"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/3112",
+    "html_url": "https://github.com/microsoft/vscode/issues/3112",
+    "author_login": "SetTrend",
+    "author_profile": "https://github.com/SetTrend",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 143,
+    "title": "Request feature \"Integrated terminal\"",
+    "body": "It would be great if vscode has integrated terminal feature refer vim or atom https://atom.io/packages/term3  \n\nI saw this suggestion pending in uservoice(https://visualstudio.uservoice.com/forums/293070-visual-studio-code/suggestions/7752357-integrated-terminal) and repost here since it has specific repo \n",
+    "reactions": 105,
+    "created_at": "2015-11-19T03:52:12Z",
+    "updated_at": "2016-06-27T21:12:09Z",
+    "labels": [
+      "feature-request",
+      "terminal"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/143",
+    "html_url": "https://github.com/microsoft/vscode/issues/143",
+    "author_login": "kkdai",
+    "author_profile": "https://github.com/kkdai",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 5065,
+    "title": "Add support for signing commits with GPG",
+    "body": "VS Code should optionally be able to sign git commits with a given GPG key, as it is a good practice for authorization nowadays.\n",
+    "reactions": 30,
+    "created_at": "2016-04-07T04:32:27Z",
+    "updated_at": "2017-11-17T01:03:57Z",
+    "labels": [
+      "help wanted",
+      "feature-request",
+      "verified",
+      "git",
+      "verification-needed"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/5065",
+    "html_url": "https://github.com/microsoft/vscode/issues/5065",
+    "author_login": "kripod",
+    "author_profile": "https://github.com/kripod",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 10023,
+    "title": "Integrated Terminal : Allow Renaming sessions",
+    "body": "Please add a feature to rename sessions in the integrated terminal.\nUsually one opens multiple terminal sessions using the same command like ssh. Then all these sessions are called ssh in the dropdown. Please allow to rename the session, so that its easy to choose.\n",
+    "reactions": 26,
+    "created_at": "2016-08-01T14:48:17Z",
+    "updated_at": "2017-11-17T01:05:08Z",
+    "labels": [
+      "help wanted",
+      "feature-request",
+      "terminal",
+      "on-testplan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/10023",
+    "html_url": "https://github.com/microsoft/vscode/issues/10023",
+    "author_login": "geevi",
+    "author_profile": "https://github.com/geevi",
+    "already_resurrected": false
+  }
+]
