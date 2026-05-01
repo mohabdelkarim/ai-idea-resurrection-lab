@@ -106,9 +106,14 @@ def validate_analysis(data: dict[str, Any]) -> bool:
         return False
     if data["rfc_needed"] and not isinstance(data["rfc_content"], str):
         return False
-    if not isinstance(data["effort_hours"], int) or data["effort_hours"] <= 0:
+    try:
+        effort_hours = int(data["effort_hours"])
+        impact_score = int(data["impact_score"])
+    except (ValueError, TypeError):
         return False
-    if not isinstance(data["impact_score"], int) or not (1 <= data["impact_score"] <= 10):
+    if effort_hours <= 0:
+        return False
+    if not (1 <= impact_score <= 10):
         return False
     if not isinstance(data["technology_tags"], list):
         return False
