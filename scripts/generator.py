@@ -45,7 +45,7 @@ def build_meta(issue: dict[str, Any], analysis: dict[str, Any], today: str) -> d
         "abandoned_date": str(analysis.get("abandoned_date", "")),
         "one_line_why": str(analysis.get("one_line_why", "")),
         "impact_score": int(analysis.get("impact_score", 0)),
-        "effort_hours": int(analysis.get("effort_hours", 0)),
+        "effort_hours": float(analysis.get("effort_hours", 0)),
         "has_poc": bool(analysis.get("has_poc", False)),
         "has_rfc": bool(analysis.get("rfc_needed", False)),
         "poc_language": str(analysis.get("poc_language", "")),
