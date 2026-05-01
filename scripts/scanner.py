@@ -19,6 +19,7 @@ from config import (
     MIN_UPVOTES,
     MONTHS_STALE_THRESHOLD,
     REPOS_TO_SCAN,
+    SCAN_PAGES_PER_REPO,
 )
 
 
@@ -150,7 +151,7 @@ def get_repo_issues(repo: str, token: str) -> list[dict[str, Any]]:
     all_issues: list[dict[str, Any]] = []
     per_page = min(100, MAX_ISSUES_PER_REPO)
 
-    while len(all_issues) < MAX_ISSUES_PER_REPO:
+    while page <= SCAN_PAGES_PER_REPO and len(all_issues) < MAX_ISSUES_PER_REPO:
         params = {
             "state": "all",
             "per_page": per_page,
