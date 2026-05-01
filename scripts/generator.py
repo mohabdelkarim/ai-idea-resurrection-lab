@@ -27,9 +27,7 @@ POC_FILE_MAP = {
 
 def get_poc_extension(language: str) -> str:
     key = str(language).strip().lower()
-    if key not in POC_FILE_MAP:
-        raise ValueError(f"Unsupported PoC language: {language}")
-    return POC_FILE_MAP[key]
+    return POC_FILE_MAP.get(key, "main.py")
 
 
 def get_today_folder(base: Path) -> Path:
@@ -157,9 +155,7 @@ def _poc_prerequisites(language: str) -> str:
         "rust": "- Rust 1.75+, cargo",
         "go": "- Go 1.22+",
     }
-    if key not in prerequisites:
-        raise ValueError(f"Unsupported PoC language: {language}")
-    return prerequisites[key]
+    return prerequisites.get(key, prerequisites["python"])
 
 
 def _poc_run_commands(language: str, file_name: str) -> str:
@@ -170,13 +166,13 @@ def _poc_run_commands(language: str, file_name: str) -> str:
         "rust": f"rustc {file_name} -o main\n./main",
         "go": f"go run {file_name}",
     }
-    if key not in commands:
-        raise ValueError(f"Unsupported PoC language: {language}")
-    return commands[key]
+    return commands.get(key, commands["python"])
 
 
 def write_poc_files(folder: Path, analysis: dict[str, Any], issue_title: str) -> None:
-    language = str(analysis.get("poc_language", "")).strip().lower()
+    if not analysis.get("has_poc"):
+        return
+    language = str(analysis.get("poc_language", "python")).strip().lower() or "python"
     poc_code = str(analysis.get("proof_of_concept_code", ""))
     one_line_summary = str(analysis.get("one_line_summary", ""))
     file_name = get_poc_extension(language)
