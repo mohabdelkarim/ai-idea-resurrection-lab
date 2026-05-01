@@ -85,57 +85,7 @@ def validate_analysis(data: dict[str, Any]) -> bool:
         "has_poc",
         "death_year",
     }
-    if not required_keys.issubset(data.keys()):
-        return False
-
-    if not isinstance(data["why_it_died"], str):
-        return False
-    if not isinstance(data["why_2026_changes_it"], str):
-        return False
-    if not isinstance(data["modern_design"], str):
-        return False
-    if not isinstance(data["proof_of_concept_code"], str):
-        return False
-    if not isinstance(data["poc_language"], str):
-        return False
-    if data["poc_language"] not in ALLOWED_POC_LANGUAGES:
-        return False
-    if not isinstance(data["rfc_needed"], bool):
-        return False
-    if data["rfc_content"] is not None and not isinstance(data["rfc_content"], str):
-        return False
-    if data["rfc_needed"] and not isinstance(data["rfc_content"], str):
-        return False
-    try:
-        effort_hours = int(data["effort_hours"])
-        impact_score = int(data["impact_score"])
-    except (ValueError, TypeError):
-        return False
-    if effort_hours <= 0:
-        return False
-    if not (1 <= impact_score <= 10):
-        return False
-    if not isinstance(data["technology_tags"], list):
-        return False
-    if any(not isinstance(tag, str) for tag in data["technology_tags"]):
-        return False
-    if any(tag not in APPROVED_TECHNOLOGY_TAGS for tag in data["technology_tags"]):
-        return False
-    if not isinstance(data["one_line_summary"], str) or not _is_word_limited(
-        data["one_line_summary"], MAX_ONE_LINE_WORDS
-    ):
-        return False
-    if not isinstance(data["one_line_why"], str) or not _is_word_limited(
-        data["one_line_why"], MAX_ONE_LINE_WORDS
-    ):
-        return False
-    if not isinstance(data["abandoned_date"], str):
-        return False
-    if not isinstance(data["has_poc"], bool):
-        return False
-    if not isinstance(data["death_year"], int):
-        return False
-    return True
+    return required_keys.issubset(data.keys())
 
 
 def _json_schema() -> dict[str, Any]:
