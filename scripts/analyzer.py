@@ -219,7 +219,7 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
         completion = client.chat.completions.create(
             model=MODEL_NAME,
             temperature=ANALYZER_TEMPERATURE,
-            response_format={"type": "json_schema", "json_schema": _json_schema()},
+            response_format={"type": "json_object"},
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
