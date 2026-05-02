@@ -32,7 +32,7 @@ def _deep_sanitize(value: Any) -> Any:
 
 
 # ---------------------------------------------------------------------------
-# The full README template -- static parts never touched by the bot
+# Full README template -- static parts are NEVER touched by the bot
 # ---------------------------------------------------------------------------
 
 README_TEMPLATE = '''\
@@ -41,8 +41,7 @@ README_TEMPLATE = '''\
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=AI%20Idea%20Resurrection%20Lab&fontSize=36&fontColor=ffffff&fontAlignY=38&desc=Abandoned%20issues%20brought%20back%20to%20life%20by%20AI&descAlignY=58&descSize=16&animation=fadeIn" />
 
 <!-- SECTION:header -->
-{header}
-<!-- END:header -->
+{header}<!-- END:header -->
 
 </div>
 
@@ -69,22 +68,19 @@ and turning forgotten ideas into actionable engineering.
 <div align="center">
 
 <!-- SECTION:stats -->
-{stats}
-<!-- END:stats -->
+{stats}<!-- END:stats -->
 
 </div>
 
 ---
 
 <!-- SECTION:last -->
-{last}
-<!-- END:last -->
+{last}<!-- END:last -->
 
 ---
 
 <!-- SECTION:hall-of-fame -->
-{hof}
-<!-- END:hall-of-fame -->
+{hof}<!-- END:hall-of-fame -->
 
 ---
 
@@ -92,44 +88,81 @@ and turning forgotten ideas into actionable engineering.
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq_AI-FF6B35?style=for-the-badge&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq_LPU-FF6B35?style=for-the-badge&logoColor=white)
+![OpenAI](https://img.shields.io/badge/LLM_API-412991?style=for-the-badge&logo=openai&logoColor=white)
 ![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
 
 </div>
 
-| Layer | Technology |
-|-------|------------|
-| \U0001f916 AI Engine | [Groq](https://groq.com) -- blazing fast LLM inference |
-| \U0001f50e Data Source | GitHub Issues API |
-| \U0001f504 Automation | GitHub Actions (daily cron) |
-| \U0001f4dd Output | Structured Markdown + PoC code snippets |
-| \U0001f40d Language | Python |
+<br/>
+
+<table>
+  <tr>
+    <th>Layer</th>
+    <th>Technology</th>
+    <th>Why</th>
+  </tr>
+  <tr>
+    <td>\U0001f916 AI Engine</td>
+    <td><a href="https://groq.com">Groq LPU</a></td>
+    <td>Fastest inference available -- sub-second responses at scale</td>
+  </tr>
+  <tr>
+    <td>\U0001f50e Data Source</td>
+    <td>GitHub Issues API</td>
+    <td>Scans thousands of repos for stale, high-upvote abandoned issues</td>
+  </tr>
+  <tr>
+    <td>\U0001f504 Automation</td>
+    <td>GitHub Actions</td>
+    <td>Daily cron job -- zero manual intervention required</td>
+  </tr>
+  <tr>
+    <td>\U0001f4dd Output</td>
+    <td>Structured Markdown</td>
+    <td>Technical analysis + working PoC code + impact score per issue</td>
+  </tr>
+  <tr>
+    <td>\U0001f40d Language</td>
+    <td>Python 3.11</td>
+    <td>Clean pipeline: scanner, analyzer, generator, publisher</td>
+  </tr>
+</table>
 
 ---
 
-## \U0001f4e8 AI Tool Drop Newsletter
+## \U0001f4e8 AI Tool Drop -- Weekly Newsletter
 
 <div align="center">
 
-> **Free. Weekly. No fluff.**
+<img src="https://img.shields.io/badge/Free-Weekly-00D9A5?style=for-the-badge&logoColor=white" />
+<img src="https://img.shields.io/badge/No_Paywalls-No_Affiliates-6C63FF?style=for-the-badge&logoColor=white" />
+<img src="https://img.shields.io/badge/Honest-Verdicts_Only-FF6B35?style=for-the-badge&logoColor=white" />
 
-| What you get | Details |
+<br/><br/>
+
+| \U0001f6e0\ufe0f What you get | \U0001f4c4 Details |
 |---|---|
-| \U0001f6e0\ufe0f One AI tool | Tested honestly, every week |
-| \u26a1 One workflow | Under 30 minutes to implement |
-| \U0001f3af One verdict | Straight talk, no affiliate links |
+| **One AI tool** | Picked, installed and tested -- so you don\'t waste your time |
+| **One real workflow** | Step-by-step, under 30 minutes to implement |
+| **One honest verdict** | What works, what doesn\'t, no hype |
+| **Zero noise** | No affiliate links, no paywalls, no fluff |
+| **Every week** | Lands in your inbox, free forever |
+
+<br/>
 
 **[Subscribe Free](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+
+<sub>Join developers who want to stay sharp without the noise.</sub>
 
 </div>
 
 ---
 
 <!-- SECTION:community-vote -->
-{vote}
-<!-- END:community-vote -->
+{vote}<!-- END:community-vote -->
 
 ---
 
@@ -141,20 +174,17 @@ and turning forgotten ideas into actionable engineering.
 
 *Building AI-powered tools that solve real engineering problems.*
 
-[![GitHub](https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github)](https://github.com/mohabdelkarim)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
-
 <br/>
 
-[![Mo\'s GitHub stats](https://github-readme-stats.vercel.app/api?username=mohabdelkarim&show_icons=true&theme=tokyonight&hide_border=true&count_private=true)](https://github.com/mohabdelkarim)
+[![GitHub](https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github)](https://github.com/mohabdelkarim)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
 
 </div>
 
 ---
 
 <!-- SECTION:footer -->
-{footer}
-<!-- END:footer -->
+{footer}<!-- END:footer -->
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" />
 '''
@@ -182,7 +212,6 @@ def build_stats_section(progress: dict[str, Any]) -> str:
     average_impact_score = float(progress.get("average_impact_score", 0.0))
     average_effort_hours = float(progress.get("average_effort_hours", 0.0))
     last_updated = _sanitize(progress.get("last_updated", ""))
-
     return (
         "## \U0001f4ca Live Stats\n\n"
         "<table>\n"
@@ -209,7 +238,6 @@ def build_hall_of_fame_section(progress: dict[str, Any]) -> str:
     if not isinstance(hall, list) or not hall:
         lines.append("> *No resurrections yet. Check back tomorrow.*")
         return "\n".join(lines)
-
     medals = ["\U0001f947", "\U0001f948", "\U0001f949"]
     lines.append("| Rank | Title | Repo | Impact | Why It Matters |")
     lines.append("|:----:|-------|------|:------:|----------------|")
@@ -258,22 +286,39 @@ def build_last_section(progress: dict[str, Any]) -> str:
 
 def build_vote_section(progress: dict[str, Any]) -> str:
     last = progress.get("last_resurrection")
-    lines: list[str] = [
-        "## \U0001f5f3\ufe0f Community Vote",
-        "",
-        "**Should we implement the latest resurrection?**",
-        "",
-    ]
+    discussion_url = _sanitize(progress.get("latest_discussion_url", ""))
+    if not discussion_url:
+        discussion_url = "https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions"
+
+    title_line = ""
+    meta_line = ""
     if isinstance(last, dict):
         title = _sanitize(last.get("title", "Untitled"))
         original_url = _sanitize(last.get("original_url", ""))
-        lines.append(f"> [{title}]({original_url})")
-        lines.append("")
-    discussion_url = _sanitize(progress.get("latest_discussion_url", ""))
-    if discussion_url:
-        lines.append(f"\U0001f449 **[Cast your vote on GitHub Discussions]({discussion_url})**")
-    else:
-        lines.append("\U0001f449 **[View GitHub Discussions](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions)**")
+        repo = _sanitize(last.get("repo", ""))
+        impact_score = int(last.get("impact_score", 0))
+        title_line = f"> **Latest:** [{title}]({original_url})"
+        meta_line = f"> `{repo}` &nbsp;&#183;&nbsp; Impact **{impact_score}/10**"
+
+    lines = [
+        "## \U0001f5f3\ufe0f Community Vote",
+        "",
+        "<div align=\"center\">",
+        "",
+        "**What should we resurrect next?**",
+        "",
+        "<br/>",
+        "",
+        f"[![Vote Yes](https://img.shields.io/badge/\U0001f44d%20Yes%2C_implement_it!-2ea44f?style=for-the-badge)]({discussion_url})",
+        f"[![Vote No](https://img.shields.io/badge/\U0001f914%20Needs_more_work-d93f0b?style=for-the-badge)]({discussion_url})",
+        f"[![Discuss](https://img.shields.io/badge/\U0001f4ac%20Join_the_discussion-0A66C2?style=for-the-badge)]({discussion_url})",
+        "",
+        "<br/>",
+        "",
+    ]
+    if title_line:
+        lines += [title_line, meta_line, ""]
+    lines.append("</div>")
     return "\n".join(lines)
 
 
@@ -289,7 +334,7 @@ def build_footer_section(progress: dict[str, Any]) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Main generator -- builds from template, fills in dynamic sections
+# Main generator
 # ---------------------------------------------------------------------------
 
 def generate_readme(progress: dict[str, Any]) -> str:
