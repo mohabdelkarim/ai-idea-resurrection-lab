@@ -103,6 +103,26 @@ technical breakdown, working code, and an impact score.*
 
 ---
 
+<!-- SECTION:subscribe -->
+## 📡 Stay Ahead of the Curve
+
+```
+ ┌─────────────────────────────────────────────────────┐
+ │  📨  AI TOOL DROP — free weekly newsletter      │
+ │                                                   │
+ │  ✔  One fresh AI tool, tested honestly            │
+ │  ✔  One real workflow under 30 minutes            │
+ │  ✔  One straight verdict — no fluff               │
+ │                                                   │
+ │  Free. No paywalls. No affiliate links.           │
+ └─────────────────────────────────────────────────────┘
+```
+
+**[→ Subscribe Free](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+<!-- END:subscribe -->
+
+---
+
 <!-- SECTION:stack -->
 ## 🛠️ Tech Stack
 
