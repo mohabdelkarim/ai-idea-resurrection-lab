@@ -107,7 +107,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/12780",
     "author_login": "dmrzzz",
     "author_profile": "https://github.com/dmrzzz",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",

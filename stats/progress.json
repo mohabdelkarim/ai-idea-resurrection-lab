@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-02T19:41:11",
-  "total_resurrections": 4,
+  "last_updated": "2026-05-02T19:50:53",
+  "total_resurrections": 3,
   "total_repos_covered": 1,
-  "average_impact_score": 7.5,
+  "average_impact_score": 6.67,
   "average_effort_hours": 120.0,
   "top_tags": [
     "terraform",
-    "infrastructure-as-code",
     "infrastructure as code",
     "dependency management",
-    "digitalocean"
+    "digitalocean",
+    "ansible"
   ],
   "hall_of_fame": [
     {
@@ -24,20 +24,20 @@
     {
       "date": "2026-05-02",
       "repo": "hashicorp/terraform",
-      "issue_number": 4084,
-      "title": "Intermediate variables (OR: add interpolation support to input variables)",
-      "impact_score": 8,
-      "one_line_why": "The proposed feature will succeed because it addresses a long-standing limitation in the Terraform configuration language, providing a more robust and flexible variable system that...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/4084"
+      "issue_number": 1439,
+      "title": "terraform get: can't use variable in module source parameter?",
+      "impact_score": 6,
+      "one_line_why": "This feature will succeed now because it addresses a long-standing issue in Terraform's module management system, and provides users with a way to dynamically configure...",
+      "original_url": "https://github.com/hashicorp/terraform/issues/1439"
     },
     {
       "date": "2026-05-02",
       "repo": "hashicorp/terraform",
-      "issue_number": 1552,
-      "title": "aws: Allow rolling updates for ASGs",
-      "impact_score": 8,
-      "one_line_why": "The introduction of Terraform 1.0 and the revamped AWS provider, combined with the growing demand for more sophisticated deployment strategies and the increased adoption of...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/1552"
+      "issue_number": 12780,
+      "title": "offer to create missing bucket and lock_table for s3 backend",
+      "impact_score": 6,
+      "one_line_why": "Improve user experience and reduce errors by automating the creation of S3 buckets and lock tables, which is a common pain point for Terraform users...",
+      "original_url": "https://github.com/hashicorp/terraform/issues/12780"
     }
   ],
   "last_resurrection": {
