@@ -1,0 +1,238 @@
+[
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 12453,
+    "title": "Feature request: Allow using lists and maps with conditionals",
+    "body": "I found out today that if you try to use a list or a map with a conditional, you get the error:\r\n\r\n```\r\n* At column 3, line 1: conditional operator cannot be used with list values in:\r\n```\r\n\r\nIt turns out this is an explicit check built into the [TypeCheck method](https://github.com/hashicorp/terraform/blob/1bae160796461066a07ca1721c4688db0d5ce567/vendor/github.com/hashicorp/hil/check_types.go#L426). \r\n\r\nThe comment above the code says \"for now this is simply prohibited because it doesn't seem to be a common enough case to be worth the complexity.\" I thought I'd toss out at least one use case where this would be handy:\r\n\r\n* I'm creating a module that creates a number of resources, including an ELB. \r\n* One of the inputs to the module is a variable called `is_internal_elb`, which is used to set the `internal` parameter of the ELB to true for internal ELBs and false for public ELBs. \r\n* The ELB takes in a `subnets` parameter, which is a list of subnet IDs to attach to the ELB. When `is_internal_elb` is set to true, I'd like to set this to a list of private subnet IDs. When `is_internal_elb` is false, I'd like to set it to a list of public subnet IDs.\r\n\r\nRough pseudo code:\r\n\r\n```hcl\r\nresource \"aws_elb\" \"elb\" {\r\n  name = \"${var.elb_name}\"\r\n  internal = \"${var.is_internal_elb}\"\r\n\r\n  subnets = [\"${var.is_internal_elb ? var.private_subnet_ids : var.public_subnet_ids}\"]\r\n}\r\n```\r\n\r\nThis seems like a fairly straightforward use case, but with the current `TypeCheck` method, it won't work.",
+    "reactions": 177,
+    "created_at": "2017-03-05T23:38:44Z",
+    "updated_at": "2019-07-24T01:51:39Z",
+    "labels": [
+      "enhancement",
+      "config"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/12453",
+    "html_url": "https://github.com/hashicorp/terraform/issues/12453",
+    "author_login": "brikis98",
+    "author_profile": "https://github.com/brikis98",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 1178,
+    "title": "Depends_on for module",
+    "body": "#### Possible workarounds\n\nFor module to module dependencies, [this workaround](https://github.com/hashicorp/terraform/issues/1178#issuecomment-105613781) by @phinze may help.\n#### Original problem\n\nThis issue was promoted by [this](https://groups.google.com/forum/#!topic/terraform-tool/aQd-MJAcE6A) question on Google Groups.\n\nTerraform version: `Terraform v0.3.7`\n\nI have two terraform modules for creating a digital ocean VM and DNS records that are kept purposely modular so they can be reused by others in my organisation.\n\nI want to add a series of provisioners using local_exec after a VM has been created and DNS records made.\n#### Attempted solution\n\nI tried adding a provisioner directly to my terraform file (i.e. not in a resource) which gave an error.\n\nI then tried using the `null_resource` which worked but was executed at the wrong time as it didn't know to wait for the other modules to execute first.\n\nI then tried adding a `depends_on` attribute to the null resource using a reference to a module but this doesn't seem to be supported using this syntax:\n\n```\ndepends_on = [\"module.module_name\"]\n```\n#### Expected result\n\nEither a way for a resource to depend on a module as a dependency or a way to \"inject\" (for lack of a better word) some provisioners for a resource into a module without having to make a custom version of that module (I realise that might be a separate issue but it would solve my original problem).\n#### Terraform config used\n\n```\n# Terraform definition file - this file is used to describe the required infrastructure for this project.\n\n# Digital Ocean provider configuration\n\nprovider \"digitalocean\" {\n    token = \"${var.digital_ocean_token}\"\n}\n\n\n# Resources\n\n# 'whoosh-dev-web1' resource\n\n# VM\n\nmodule \"whoosh-dev-web1-droplet\" {\n    source = \"github.com/antarctica/terraform-module-digital-ocean-droplet?ref=v1.0.0\"\n    hostname = \"whoosh-dev-web1\"\n    ssh_fingerprint = \"${var.ssh_fingerprint}\"\n}\n\n# DNS records (public, private and default [which is an APEX record and points to public])\n\nmodule \"whoosh-dev-web1-records\" {\n    source = \"github.com/antarctica/terraform-module-digital-ocean-records?ref=v0.1.1\"\n    hostname = \"whoosh-dev-web1\"\n    machine_interface_ipv4_public = \"${module.whoosh-dev-web1-droplet.ip_v4_address_public}\"\n    machine_interface_ipv4_private = \"${module.whoosh-dev-web1-droplet.ip_v4_address_private}\"\n}\n\n\n# Provisioning (using a fake resource as provisioners can't be first class objects)\n\n# Note: The \"null_resource\" is an undocumented feature and should not be relied upon.\n# See https://github.com/hashicorp/terraform/issues/580 for more information.\n\nresource \"null_resource\" \"provisioning\" {\n\n    depends_on = [\"module.whoosh-dev-web1-records\"]\n\n    # This replicates the provisioning steps performed by Vagrant\n    provisioner \"local-exec\" {\n        command = \"ansible-playbook -i provisioning/development provisioning/bootstrap-digitalocean.yml\"\n    }\n}\n```\n",
+    "reactions": 136,
+    "created_at": "2015-03-11T09:39:55Z",
+    "updated_at": "2019-07-24T01:57:09Z",
+    "labels": [
+      "enhancement",
+      "core",
+      "thinking"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/1178",
+    "html_url": "https://github.com/hashicorp/terraform/issues/1178",
+    "author_login": "felnne",
+    "author_profile": "https://github.com/felnne",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 4084,
+    "title": "Intermediate variables (OR: add interpolation support to input variables)",
+    "body": "Not quite sure how to express this properly.\n\nInput variables today cannot contain interpolations referring to other variables. I find myself bumping up against this now and then where I'd prefer to define a \"default\" value for an input variable based upon a composition of another input variable and some fixed string. \n\nIf we could interpolate values inside default properties of input variables OR, terraform supported some kind of internal transitive intermediate variable which only exists in order to act as a binding point between inputs and other interpolation expressions I could accomplish what I want without having a lot of redundancy in inputs.\n\nSlightly related, but I also long for the ability to reference the input values of a module (not just the outputs) because this is often where I tend to create such bindings. Of course, I can propagate the input to the module all the way through the module and emit as an output but that gets quite repetitive and clunky after a while.\n",
+    "reactions": 122,
+    "created_at": "2015-11-27T02:15:15Z",
+    "updated_at": "2017-08-21T22:33:45Z",
+    "labels": [
+      "enhancement",
+      "config"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/4084",
+    "html_url": "https://github.com/hashicorp/terraform/issues/4084",
+    "author_login": "mrwilby",
+    "author_profile": "https://github.com/mrwilby",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 1552,
+    "title": "aws: Allow rolling updates for ASGs",
+    "body": "Once #1109 is fixed, I'd like to be able to use Terraform to actually roll out the updated launch configuration and do it carefully.\n\nWhoever decides to not roll out the update and change the LC association only should still be allowed to do so.\n\nHere's an example from CloudFormation:\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html\n\nHow about something like this?\n\n``` ruby\nresource \"aws_autoscaling_group\" \"test\" {\n  rolling_update_policy {\n    max_batch_size = 1\n    min_instances_in_service = 2\n    pause_time = \"PT0S\"\n    suspend_processes = [\"launch\", \"terminate\"]\n    wait_on_resource_signals = true\n  }\n}\n```\n\nthen if there's such policy defined, TF can use autoscaling API and shut down each EC2 instance separately and let ASG spin up a new one with an updated LC.\n",
+    "reactions": 70,
+    "created_at": "2015-04-16T09:24:18Z",
+    "updated_at": "2017-03-30T06:39:41Z",
+    "labels": [
+      "enhancement",
+      "provider/aws"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/1552",
+    "html_url": "https://github.com/hashicorp/terraform/issues/1552",
+    "author_login": "radeksimko",
+    "author_profile": "https://github.com/radeksimko",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 1439,
+    "title": "terraform get: can't use variable in module source parameter?",
+    "body": "I'm trying to avoid hard-coding module sources; the simplest approach would be:\n\n```\nvariable \"foo_module_source\" {\n  default = \"github.com/thisisme/terraform-foo-module\"\n}\n\nmodule \"foo\" {\n  source = \"${var.foo_module_source}\"\n}\n```\n\nThe result I get while attempting to run `terraform get -update` is\n\n```\nError loading Terraform: Error downloading modules: error downloading module 'file:///home/thisisme/terraform-env/${var.foo_module_source}': source path error: stat /home/thisisme/terraform-env/${var.foo_module_source}: no such file or directory\n```\n",
+    "reactions": 67,
+    "created_at": "2015-04-09T08:15:28Z",
+    "updated_at": "2019-07-24T01:51:51Z",
+    "labels": [
+      "enhancement",
+      "thinking",
+      "config"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/1439",
+    "html_url": "https://github.com/hashicorp/terraform/issues/1439",
+    "author_login": "amaczuga",
+    "author_profile": "https://github.com/amaczuga",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 12780,
+    "title": "offer to create missing bucket and lock_table for s3 backend",
+    "body": "### Terraform Version\r\nTerraform v0.9.0\r\n\r\n### Affected Resource(s)\r\n- s3 backend\r\n\r\n### Terraform Configuration Files\r\n```hcl\r\nterraform {\r\n  required_version = \">= 0.9\"\r\n\r\n  backend \"s3\" {\r\n    region = \"us-east-2\"\r\n    lock_table = \"table-xi0s3p59prd9mubqsinc\"\r\n    encrypt = \"true\"\r\n    bucket = \"bucket-xi0s3p59prd9mubqsinc\"\r\n    key = \"test/terraform.tfstate\" \r\n  }\r\n}\r\n\r\nprovider \"aws\" {\r\n  region = \"us-east-2\"\r\n}\r\n\r\nresource \"aws_sns_topic\" \"foo\" {\r\n    name = \"foo-topic\"\r\n}\r\n```\r\n\r\n### Feature Request\r\n\r\nI'm very excited about the new backend configuration in Terraform 0.9, but it's inconvenient that I have to manually create both an S3 bucket and a DynamoDB table before I can get started.  (If I enjoyed manually creating resources, I wouldn't need Terraform!)\r\n\r\n*Terragrunt* (with Terraform <= 0.8.x) handles this extremely conveniently by:\r\n1. Prompting the user to automatically create the S3 bucket if it doesn't exist.\r\n2. If user says yes, creating the bucket **and enabling versioning**.\r\n3. Automatically creating the DynamoDB lock table if it doesn't exist.\r\n\r\nI would love to see Terraform 0.9+ do the same (perhaps during `terraform init`?)\r\n\r\nHere's how the equivalent configuration behaves using Terragrunt, starting from a blank slate:\r\n```\r\n$ terragrunt apply\r\n[terragrunt] 2017/03/16 14:57:20 Reading Terragrunt config file at /home/dmrz/aws/dmrz-test/bar/terraform.tfvars\r\n[terragrunt] 2017/03/16 14:57:20 Initializing remote state for the s3 backend\r\n[terragrunt]  Remote state S3 bucket bucket-xi0s3p59prd9mubqsinc does not exist or you don't have permissions to access it. Would you like Terragrunt to create it? (y/n) y\r\n[terragrunt] 2017/03/16 14:57:22 Creating S3 bucket bucket-xi0s3p59prd9mubqsinc\r\n[terragrunt] 2017/03/16 14:57:22 S3 bucket bucket-xi0s3p59prd9mubqsinc created.\r\n[terragrunt] 2017/03/16 14:57:22 Enabling versioning on S3 bucket bucket-xi0s3p59prd9mubqsinc\r\n[terragrunt] 2017/03/16 14:57:23 Configuring remote state for the s3 backend\r\n[terragrunt] 2017/03/16 14:57:23 Running command: /usr/local/libexec/terraform-0.8.7 remote config -backend s3 -backend-config=encrypt=true -backend-config=bucket=bucket-xi0s3p59prd9mubqsinc -backend-config=key=test/terraform.tfstate -backend-config=region=us-east-2\r\nInitialized blank state with remote state enabled!\r\nRemote state configured and pulled.\r\n[terragrunt] 2017/03/16 14:57:24 Attempting to acquire lock for state file state in DynamoDB\r\n[terragrunt] 2017/03/16 14:57:25 Lock table table-xi0s3p59prd9mubqsinc does not exist in DynamoDB. Will need to create it just this first time.\r\n[terragrunt] 2017/03/16 14:57:25 Creating table table-xi0s3p59prd9mubqsinc in DynamoDB\r\n[terragrunt] 2017/03/16 14:57:25 Table table-xi0s3p59prd9mubqsinc is not yet in active state. Will check again after 10s.\r\n[terragrunt] 2017/03/16 14:57:35 Success! Table table-xi0s3p59prd9mubqsinc is now in active state.\r\n[terragrunt] 2017/03/16 14:57:35 Attempting to create lock item for state file state in DynamoDB ta",
+    "reactions": 59,
+    "created_at": "2017-03-16T20:34:54Z",
+    "updated_at": "2018-12-27T06:32:57Z",
+    "labels": [
+      "enhancement",
+      "backend/s3"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/12780",
+    "html_url": "https://github.com/hashicorp/terraform/issues/12780",
+    "author_login": "dmrzzz",
+    "author_profile": "https://github.com/dmrzzz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 6632,
+    "title": "Ignore changes for a single AWS Resource Tag",
+    "body": "Is there a way to limit the @ignore_changes to just a single tag e.g. VERSION tag. As apposed to every single tag for a particular resource? I have a VERSION tag which is updated regularly by Jenkins and I would like a way to just ignore_changes for that tag.\n\nThanks\n",
+    "reactions": 57,
+    "created_at": "2016-05-12T09:57:52Z",
+    "updated_at": "2019-07-24T01:54:17Z",
+    "labels": [
+      "enhancement",
+      "config"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/6632",
+    "html_url": "https://github.com/hashicorp/terraform/issues/6632",
+    "author_login": "emoshaya",
+    "author_profile": "https://github.com/emoshaya",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 19509,
+    "title": "Remote-Exec capturing output from Inline Commands",
+    "body": "Hello I have been trying to figure out a way to capture the output of a command that I run inline so that I can use it as input to another provider.  So being able to put output into a variable.  Can this be done?\r\n\r\nThanks,\r\nTony",
+    "reactions": 39,
+    "created_at": "2018-11-29T13:46:21Z",
+    "updated_at": "2019-07-11T19:12:07Z",
+    "labels": [
+      "enhancement",
+      "provisioner/local-exec"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/19509",
+    "html_url": "https://github.com/hashicorp/terraform/issues/19509",
+    "author_login": "afurlani24",
+    "author_profile": "https://github.com/afurlani24",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 15180,
+    "title": "Improving perception of changes when showing diff",
+    "body": "When I make a change to a large list of values (for example), the plan that Terraform shows is not as helpful as it could be. Here is what I see:\r\n\r\n<img width=\"655\" alt=\"screenshot of terminal 8-06-17 3-16-32 pm\" src=\"https://user-images.githubusercontent.com/811954/26910840-7ba93d92-4c5d-11e7-998f-f3533d169ef0.png\">\r\n\r\nThere are three important pieces of information here, but only one is clear:\r\n\r\n1. The resource `google_project_services.project` is changing (this is clear from colouring)\r\n2. The number of services in the list is changing from 21 -> 20\r\n3. The service that is being removed is \"container.googleapis.com\"\r\n\r\nThere is so much going on in the output that it is hard to easily see the relevant information. I have thought of some possible ways the output could be improved:\r\n\r\n* Highlighting lines that are changing with their related change colour (green, yellow, red for add, change, destroy respectively)\r\n* Aligning all of the `=>` so it is easier to scan for changes\r\n* De-emphasising the hash (133405307) with a lighter colour as it's specific value is usually not very important (I think?)\r\n* Sorting attributes that are changing to the top\r\n* Removing unchanged attributes from the diff\r\n\r\nI haven't really considered how default and computed values would be handled here, but it seems highly relevant and important.\r\n\r\nSome mockups:\r\n\r\n**Highlighting changed lines and deemphasising hash**\r\n\r\n<img width=\"652\" alt=\"screenshot of terminal 8-06-17 3-17-41 pm\" src=\"https://user-images.githubusercontent.com/811954/26910871-ae8f5804-4c5d-11e7-9302-1c2f3d3aa658.png\">\r\n\r\n\r\n**Align =>**\r\n\r\n```\r\n~ google_project_services.project\r\n    services.#:          \"21\" => \"20\"\r\n    services.133405307:  \"storage-component.googleapis.com\"    => \"storage-component.googleapis.com\"\r\n    services.1560437671: \"iam.googleapis.com\"                  => \"iam.googleapis.com\"\r\n    services.1712537408: \"containerregistry.googleapis.com\"    => \"containerregistry.googleapis.com\"\r\n    services.2117420113: \"pubsub.googleapis.com\"               => \"pubsub.googleapis.com\"\r\n    services.238136042:  \"cloudapis.googleapis.com\"            => \"cloudapis.googleapis.com\"\r\n    services.2471815660: \"servicemanagement.googleapis.com\"    => \"servicemanagement.googleapis.com\"\r\n    services.2631575801: \"sqladmin.googleapis.com\"             => \"sqladmin.googleapis.com\"\r\n    services.2928564140: \"dns.googleapis.com\"                  => \"dns.googleapis.com\"\r\n    services.2966512281: \"deploymentmanager.googleapis.com\"    => \"deploymentmanager.googleapis.com\"\r\n    services.3010261123: \"replicapool.googleapis.com\"          => \"replicapool.googleapis.com\"\r\n    services.3075019877: \"replicapoolupdater.googleapis.com\"   => \"replicapoolupdater.googleapis.com\"\r\n    services.3077910291: \"resourceviews.googleapis.com\"        => \"resourceviews.googleapis.com\"\r\n    services.323125032:  \"cloudtrace.googleapis.com\"           => \"cloudtrace.googleapis.com\"\r\n    services.3237295688: \"monitoring.googleapis.com\"",
+    "reactions": 36,
+    "created_at": "2017-06-08T02:47:53Z",
+    "updated_at": "2019-02-20T02:18:18Z",
+    "labels": [
+      "enhancement",
+      "cli"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/15180",
+    "html_url": "https://github.com/hashicorp/terraform/issues/15180",
+    "author_login": "danielcompton",
+    "author_profile": "https://github.com/danielcompton",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 18467,
+    "title": "feature request: add quiet flag to init command",
+    "body": "\r\nWhen using TF in automation, It will be useful if you could add a --quiet option for the init command.\r\ncurrently the verbosity of this command is less relevant when running TF in our CI server IMHO.\r\n\r\nfor example, I'd be happy to get rid of the following output for the init command - \r\n```\r\n\r\nInitializing modules...\r\n- module.get_base_ami\r\n- module.worker_d_spotinst_group\r\n- module.worker_m_spotinst_group\r\n- module.worker_s_spotinst_group\r\n- module.worker_i_spotinst_group\r\n- module.worker_g_spotinst_group\r\n- module.mng_spotinst_group\r\n- module.core-op_spotinst_group\r\n- module.core-sc_spotinst_group\r\n- module.core-vr_spotinst_group\r\n- module.worker_d_spotinst_group.get_role_group_config\r\n- module.worker_m_spotinst_group.get_role_group_config\r\n- module.worker_s_spotinst_group.get_role_group_config\r\n- module.worker_g_spotinst_group.get_role_group_config\r\n- module.core-op_spotinst_group.get_role_group_config\r\n- module.core-sc_spotinst_group.get_role_group_config\r\n- module.worker_i_spotinst_group.get_role_group_config\r\n- module.mng_spotinst_group.get_role_group_config\r\n- module.core-vr_spotinst_group.get_role_group_config\r\n\r\nInitializing the backend...\r\n\r\nSuccessfully configured the backend \"s3\"! Terraform will automatically\r\nuse this backend unless the backend configuration changes.\r\n\r\nInitializing provider plugins...\r\n\r\n````\r\n\r\n\r\n\r\n\r\n",
+    "reactions": 31,
+    "created_at": "2018-07-16T10:51:20Z",
+    "updated_at": "2019-04-20T08:51:35Z",
+    "labels": [
+      "enhancement",
+      "cli"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/18467",
+    "html_url": "https://github.com/hashicorp/terraform/issues/18467",
+    "author_login": "giladsh1",
+    "author_profile": "https://github.com/giladsh1",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 7414,
+    "title": "Resource Tagging",
+    "body": "This is a feature request for meta data that's usable by -target and -exclude (and thus an endorsement of #2253)\n### User Story\n\nAs a cluster administrator\nI'd like to apply tagging metadata to resources\nSo that I can easily deploy or destroy parts of my infrastructure \n### Use Cases\n\nEven when scorching the earth of my cloud deployment with terraform destroy, there are a few resources that should stay in place, Eg AWS Route53 Hosted Zones, an S3 bucket for backups. Currently these are managed without TF at all and referenced through variables.\n\nSometimes I'd like to blast all the way down to just the Hosted Zones. I see it working like this:\n\n```\nterraform apply -target=essential   # Deploys the Zones only\nterraform apply -target=backup      # Deploys the backup infrastructure (and dependancies)\nterraform apply                     # Deploys everything else\nterraform destroy -exclude=backup    # Destroys everything, except resources tagged \"backup\" and things they depend on\nterraform destroy -exclude=essential # Destroys everything, except resources tagged \"essential\"\nterraform destroy -target=backup    # Destroys resources tagged \"backup\" and things that depend on it\n```\n### Acceptance Criteria\n\n**Given** resources tagged X\n**And** resources that depend on tag:X\n**And** resources that tag:X depends on\n**And** resources with no relation to tag:X\n**When** running terraform apply -target=X\n**Then** The resources with tag:X are deployed\n**And** resources that tag:X depends on are deployed\n**And** resources that depend on tag:X are NOT deployed\n**And** resources with no relation to tag:X are NOT deployed\n\n**Given** resources tagged X\n**And** resources that depend on tag:X\n**And** resources that tag:X depends on\n**And** resources with no relation to tag:X\n**When** running terraform apply -exclude=X\n**Then** The resources with tag:X are deployed\n**And** resources that tag:X depends on are deployed\n**And** resources that depend on tag:X are NOT deployed\n**And** resources with no relation to tag:X are NOT deployed\n\n**Given** resources tagged X\n**And** resources that depend on tag:X\n**And** resources that tag:X depends on\n**And** resources with no relation to tag:X\n**When** running terraform destroy -exclude=X\n**Then** The resources with tag:X are NOT destroyed\n**And** resources that tag:X depends on are NOT destroyed\n**And** resources that depend on tag:X are destroyed\n**And** resources with no relation to tag:X are destroyed\n\n**Given** resources tagged X\n**And** resources that depend on tag:X\n**And** resources that tag:X depends on\n**And** resources with no relation to tag:X\n**When** running terraform destroy -target=X\n**Then** The resources with tag:X are destroyed\n**And** resources that tag:X depends on are NOT destroyed\n**And** resources that depend on tag:X are destroyed\n**And** resources with no relation to tag:X are NOT destroyed\n### References\n#3874 prevent_destroy should let you succeed\n#3366 adding exclude flag to plan and apply to exclude spec",
+    "reactions": 26,
+    "created_at": "2016-06-29T14:28:08Z",
+    "updated_at": "2018-11-07T02:29:09Z",
+    "labels": [
+      "enhancement",
+      "cli"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/7414",
+    "html_url": "https://github.com/hashicorp/terraform/issues/7414",
+    "author_login": "aarcro",
+    "author_profile": "https://github.com/aarcro",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 2611,
+    "title": "Vultr Provider",
+    "body": "Vultr is somethink like DigitalOcean.\nIt would be nice to have a provider for Vultr. \nAPI is described here : https://www.vultr.com/api/\n",
+    "reactions": 25,
+    "created_at": "2015-07-02T12:09:57Z",
+    "updated_at": "2019-07-24T01:52:52Z",
+    "labels": [
+      "enhancement",
+      "new-provider"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/2611",
+    "html_url": "https://github.com/hashicorp/terraform/issues/2611",
+    "author_login": "smougenot",
+    "author_profile": "https://github.com/smougenot",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 4077,
+    "title": "Support AWS Data Pipeline",
+    "body": "It would be nice to be able to use AWS Data Pipeline with Terraform, especially for things like updating the AMI id when Packer builds a new one.\n\nhttp://docs.aws.amazon.com/datapipeline/latest/APIReference/Welcome.html\n",
+    "reactions": 22,
+    "created_at": "2015-11-26T19:22:04Z",
+    "updated_at": "2017-10-23T10:29:37Z",
+    "labels": [
+      "enhancement",
+      "provider/aws"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/4077",
+    "html_url": "https://github.com/hashicorp/terraform/issues/4077",
+    "author_login": "danielcompton",
+    "author_profile": "https://github.com/danielcompton",
+    "already_resurrected": false
+  }
+]
