@@ -1,19 +1,19 @@
-# Proof of Concept: 求不要更新了，老子学不动了
+# Proof of Concept: 请勿在 Issues 页面无意义灌水，此类行为属于对 Issues 区的滥用。
 
-**Language:** python
+**Language:** typescript
 **Estimated run time:** < 5 minutes
 
 ## Prerequisites
 
-- Python 3.12+, pip install requirements
+- Node.js 20+, npm install
 
 ## How to Run
 
 ```bash
-pip install -r requirements.txt
-python main.py
+npm install
+npx ts-node main.ts
 ```
 
 ## What This Demonstrates
 
-This feature allows the community to submit requests and track the progress of the requests using a combination of natural language processing and machine learning...
+The proposed system develops a comprehensive community guidelines system for the Deno repository, utilizing customizable issue templates, automated moderation bots, and AI-powered issue filtering to...
