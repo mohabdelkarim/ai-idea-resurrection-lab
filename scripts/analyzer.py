@@ -55,8 +55,18 @@ Guidelines for each field:
 
 - one_line_summary: One sentence (max 20 words) that captures what the feature does.
 - one_line_why: One sentence (max 20 words) explaining WHY it will succeed now.
-- impact_score: Integer 1-10. Be honest. If it's niche, give it a 4. Reserve 9-10 for things
-  that affect millions of developers. Base it on: audience size, technical novelty, effort ratio.
+
+- impact_score: Integer 1-10. STRICT SCORING RULES — read carefully:
+  * 1-3: Very niche, affects < 1,000 developers, minimal ecosystem impact.
+  * 4-5: Moderate interest, useful for a specific framework/language community.
+  * 6-7: Solid improvement, affects tens of thousands of developers.
+  * 8: HIGH bar — only if it affects hundreds of thousands of active developers AND
+       solves a painful daily workflow problem. DO NOT default to 8.
+  * 9-10: Reserved ONLY for issues that would affect millions of developers across
+          multiple ecosystems (e.g. fixing a core Git workflow, improving npm resolution).
+  Be HONEST. Most issues score 4-7. Scoring everything 8 is a calibration failure.
+  Base it on: audience size, technical novelty, effort-to-impact ratio, and uniqueness.
+
 - effort_hours: Realistic integer. A weekend hack = 8-16h. A production feature = 40-200h.
 - technology_tags: 4-6 lowercase tags directly relevant to the implementation stack.
 - poc_language: Must be one of: python, typescript, rust, go.
@@ -66,7 +76,7 @@ Guidelines for each field:
 - abandoned_date: Best estimate of when activity stopped, format YYYY-MM-DD.
 
 CRITICAL RULES:
-1. impact_score MUST be an integer between 1 and 10. Never 0. Never null.
+1. impact_score MUST be an integer between 1 and 10. DO NOT default to 8 for everything.
 2. effort_hours MUST be a positive integer. Never 0. Never null.
 3. Every text field must have real, substantive content. No empty strings.
 4. proof_of_concept_code must be runnable code, NOT pseudocode or a description.
@@ -79,7 +89,7 @@ MIN_ANALYSIS_TEXT_LENGTH = 80   # chars — fields shorter than this are flagged
 MIN_POC_CODE_LENGTH = 400       # chars — PoC shorter than this is rejected
 MIN_RFC_LENGTH = 300            # chars — RFC shorter than this is rejected
 MODEL_NAME = "llama-3.3-70b-versatile"
-ANALYZER_TEMPERATURE = 0.35     # lower = more focused, consistent JSON output
+ANALYZER_TEMPERATURE = 0.55     # raised slightly for more varied impact scores
 MAX_ANALYSIS_RETRIES = 4
 
 
@@ -97,14 +107,15 @@ def build_user_prompt(issue: dict[str, Any]) -> str:
         f"ABANDONED GITHUB ISSUE TO RESURRECT:\n"
         f"Repository: {repo}\n"
         f"Title: {title}\n"
-        f"Community upvotes (reactions): {reactions} 👍 — this idea has STRONG community demand.\n"
+        f"Community upvotes (reactions): {reactions} \U0001f44d\n"
         f"Originally filed: {created_at}\n"
         f"Last activity: {updated_at}\n"
         f"Labels: {labels_text}\n\n"
         f"Original description from the issue author:\n"
         f"\"\"\"{body}\"\"\"\n\n"
         "Produce a FULL, DETAILED resurrection analysis following your system instructions.\n"
-        "This issue has significant community interest — your analysis should reflect that importance.\n"
+        "IMPORTANT: Set impact_score honestly based on the real audience size of this specific issue.\n"
+        "Most issues score between 4-7. Only truly massive ecosystem changes score 8+.\n"
         "Return ONLY the JSON object. No markdown. No explanation outside the JSON."
     )
 
@@ -162,10 +173,8 @@ def _ensure_rfc_sections(rfc_text: str) -> str:
 
 def _strip_markdown_fences(raw: str) -> str:
     text = raw.strip()
-    # Handle ```json ... ``` or ``` ... ```
     if text.startswith("```"):
         lines = text.split("\n")
-        # remove first line (```json or ```) and last line (```)
         inner = lines[1:] if lines[-1].strip() == "```" else lines[1:]
         if inner and inner[-1].strip() == "```":
             inner = inner[:-1]
@@ -209,6 +218,34 @@ def _extract_raw_response(completion: Any) -> str:
     return str(content or "")
 
 
+def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int]]:
+    """
+    Scan the resurrections/ folder and return a set of (repo, issue_number) tuples
+    for every issue that already has a folder (even if already_resurrected flag
+    was not yet written back to the graveyard JSON).
+    This prevents running the same issue twice on the same day.
+    """
+    base = Path(resurrection_base)
+    resurrected: set[tuple[str, int]] = set()
+    if not base.exists():
+        return resurrected
+    for child in base.iterdir():
+        if not child.is_dir():
+            continue
+        meta_path = child / "meta.json"
+        if not meta_path.exists():
+            continue
+        try:
+            meta = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
+            repo = str(meta.get("repo", ""))
+            issue_number = int(meta.get("issue_number", 0))
+            if repo and issue_number:
+                resurrected.add((repo, issue_number))
+        except (json.JSONDecodeError, OSError, ValueError):
+            continue
+    return resurrected
+
+
 # ---------------------------------------------------------------------------
 # Validation
 # ---------------------------------------------------------------------------
@@ -236,13 +273,11 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
     """Returns (is_valid, list_of_error_messages)."""
     errors: list[str] = []
 
-    # 1. Required keys present
     missing = REQUIRED_KEYS - data.keys()
     if missing:
         errors.append(f"Missing keys: {missing}")
         return False, errors
 
-    # 2. Numeric fields valid
     impact = data.get("impact_score")
     if not isinstance(impact, int) or not (1 <= impact <= 10):
         errors.append(f"impact_score must be int 1-10, got: {impact!r}")
@@ -251,7 +286,6 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
     if not isinstance(effort, int) or effort <= 0:
         errors.append(f"effort_hours must be positive int, got: {effort!r}")
 
-    # 3. Text fields have real content
     for field in ("why_it_died", "why_2026_changes_it", "modern_design",
                   "one_line_summary", "one_line_why"):
         value = str(data.get(field, "")).strip()
@@ -260,7 +294,6 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
                 f"{field} too short ({len(value)} chars, min {MIN_ANALYSIS_TEXT_LENGTH})"
             )
 
-    # 4. PoC code has real content if has_poc=True
     if data.get("has_poc"):
         poc = str(data.get("proof_of_concept_code", "")).strip()
         if len(poc) < MIN_POC_CODE_LENGTH:
@@ -271,7 +304,6 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
         if lang not in ALLOWED_POC_LANGUAGES:
             errors.append(f"poc_language '{lang}' not in {ALLOWED_POC_LANGUAGES}")
 
-    # 5. RFC has real content if rfc_needed=True
     if data.get("rfc_needed"):
         rfc = str(data.get("rfc_content", "")).strip()
         if len(rfc) < MIN_RFC_LENGTH:
@@ -279,7 +311,6 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
                 f"rfc_content too short ({len(rfc)} chars, min {MIN_RFC_LENGTH})"
             )
 
-    # 6. technology_tags is a non-empty list
     tags = data.get("technology_tags", [])
     if not isinstance(tags, list) or len(tags) == 0:
         errors.append("technology_tags must be a non-empty list")
@@ -293,44 +324,25 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
 
 def _coerce_fields(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]:
     """Coerce and sanitize all fields after parsing. Never raises."""
-
-    # impact_score: int 1-10, never 0
     parsed["impact_score"] = _safe_int(parsed.get("impact_score"), 1, 10, 5)
-
-    # effort_hours: positive int
     parsed["effort_hours"] = _safe_int(parsed.get("effort_hours"), 1, 10000, 40)
-
-    # death_year
     parsed["death_year"] = _safe_int(
         parsed.get("death_year"), 2010, 2026, _issue_year(issue)
     )
-
-    # booleans
     parsed["has_poc"] = bool(str(parsed.get("proof_of_concept_code", "")).strip())
     parsed["rfc_needed"] = bool(parsed.get("rfc_needed", False))
-
-    # abandoned_date — use issue updated_at as authoritative source
     parsed["abandoned_date"] = str(issue.get("updated_at", ""))
-
-    # technology_tags
     parsed["technology_tags"] = _normalize_tags(parsed.get("technology_tags", []))
     if not parsed["technology_tags"]:
         parsed["technology_tags"] = ["open-source"]
-
-    # poc_language
     lang = str(parsed.get("poc_language", "")).strip().lower()
     parsed["poc_language"] = lang if lang in ALLOWED_POC_LANGUAGES else "python"
-
-    # Ensure RFC has all required sections
     rfc = str(parsed.get("rfc_content", "")).strip()
     parsed["rfc_content"] = _ensure_rfc_sections(rfc) if rfc else ""
-
-    # Truncate one-liners if AI went way over
     for field in ("one_line_summary", "one_line_why"):
         value = str(parsed.get(field, "")).strip()
         if len(value.split()) > 30:
             parsed[field] = " ".join(value.split()[:25]) + "..."
-
     return parsed
 
 
@@ -350,7 +362,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
         LOGGER.info("[Analyzer] Attempt %d/%d for issue #%s",
                     attempt, MAX_ANALYSIS_RETRIES, issue.get("issue_number"))
 
-        # On later retries, nudge the model with a reminder
         messages: list[dict[str, str]] = [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_prompt},
@@ -361,7 +372,8 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
                 "content": (
                     f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
                     "Fix them and return only the corrected JSON object with ALL fields populated "
-                    "with substantive content. impact_score must be 1-10. "
+                    "with substantive content. impact_score must be 1-10 based on REAL audience size — "
+                    "most issues score 4-7, not 8. "
                     "proof_of_concept_code must be at least 80 lines of real runnable code."
                 ),
             })
@@ -381,7 +393,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
             continue
 
         raw_response = _extract_raw_response(completion)
-        # Try fence-stripping first, then raw JSON extraction as fallback
         cleaned = _strip_markdown_fences(raw_response)
         if not cleaned.startswith("{"):
             cleaned = _extract_json_block(raw_response)
@@ -403,11 +414,7 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
             continue
 
         LOGGER.info("[Analyzer] Keys returned: %s", list(parsed.keys()))
-
-        # Coerce all fields (never raises)
         parsed = _coerce_fields(parsed, issue)
-
-        # Validate
         is_valid, field_errors = validate_analysis(parsed)
         if is_valid:
             LOGGER.info(
@@ -421,7 +428,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
         attempt_errors.extend(field_errors)
 
         if attempt == MAX_ANALYSIS_RETRIES:
-            # Last resort: return the best we have rather than crash the pipeline
             LOGGER.error(
                 "[Analyzer] ⚠️ Returning best-effort analysis after %d attempts.",
                 MAX_ANALYSIS_RETRIES,
@@ -436,7 +442,12 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 def analyze() -> None:
-    from config import GRAVEYARD_FOLDER
+    from config import GRAVEYARD_FOLDER, RESURRECTION_BASE_FOLDER
+
+    # Build a set of (repo, issue_number) already saved in resurrections/
+    # This is the ground-truth duplicate check — more reliable than the graveyard flag
+    already_resurrected = _load_already_resurrected_keys(RESURRECTION_BASE_FOLDER)
+    LOGGER.info("[Analyzer] %d issues already resurrected (from folders).", len(already_resurrected))
 
     for graveyard_file in sorted(Path(GRAVEYARD_FOLDER).glob("*.json")):
         if graveyard_file.name == ".gitkeep":
@@ -454,7 +465,17 @@ def analyze() -> None:
         for issue in issues:
             if not isinstance(issue, dict):
                 continue
+
+            # Check graveyard flag AND resurrection folders — both must be clear
             if issue.get("already_resurrected"):
+                continue
+            repo = str(issue.get("repo", ""))
+            issue_number = int(issue.get("issue_number", 0))
+            if (repo, issue_number) in already_resurrected:
+                LOGGER.info(
+                    "[Analyzer] Skipping #%d (%s) — resurrection folder already exists.",
+                    issue_number, repo,
+                )
                 continue
 
             LOGGER.info(

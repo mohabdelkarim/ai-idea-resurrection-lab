@@ -49,7 +49,6 @@ def load_progress() -> dict[str, Any]:
         return _default_progress()
 
     try:
-        # FIX: read with errors=ignore to survive surrogate bytes on disk
         raw = path.read_text(encoding="utf-8", errors="ignore")
         data = json.loads(raw)
     except (json.JSONDecodeError, OSError) as error:
@@ -62,14 +61,12 @@ def load_progress() -> dict[str, Any]:
 
     default = _default_progress()
     default.update({key: value for key, value in data.items() if key in default})
-    # FIX: _sanitize() the entire result before returning
     return _sanitize(default)
 
 
 def save_progress(data: dict[str, Any]) -> None:
     path = Path(STATS_FILE)
     path.parent.mkdir(parents=True, exist_ok=True)
-    # FIX: always _sanitize before json.dumps — not just some fields
     safe_data = _sanitize(data)
     path.write_text(json.dumps(safe_data, indent=2, ensure_ascii=True), encoding="utf-8")
     LOGGER.info("Written: %s", path)
@@ -82,7 +79,10 @@ def load_all_metas() -> list[dict[str, Any]]:
         return []
 
     metas: list[dict[str, Any]] = []
-    for child in sorted(base.iterdir()):
+    seen_keys: set[tuple[str, int]] = set()  # deduplicate by (repo, issue_number)
+
+    # Sort folders by name descending so the NEWEST folder wins on dedup
+    for child in sorted(base.iterdir(), reverse=True):
         if not child.is_dir():
             continue
 
@@ -92,7 +92,6 @@ def load_all_metas() -> list[dict[str, Any]]:
             continue
 
         try:
-            # FIX: read with errors=ignore to survive surrogate bytes
             raw = meta_path.read_text(encoding="utf-8", errors="ignore")
             parsed = _sanitize(json.loads(raw))
         except (json.JSONDecodeError, OSError) as error:
@@ -103,10 +102,19 @@ def load_all_metas() -> list[dict[str, Any]]:
             LOGGER.warning("Skipping malformed meta.json object at %s", meta_path)
             continue
 
+        # Deduplicate: if same (repo, issue_number) was saved twice, keep only the newest
+        repo = str(parsed.get("repo", ""))
+        issue_number = int(parsed.get("issue_number", 0))
+        key = (repo, issue_number)
+        if key in seen_keys:
+            LOGGER.info("Dedup: skipping older duplicate for %s#%d", repo, issue_number)
+            continue
+        seen_keys.add(key)
         metas.append(parsed)
 
+    # Sort ascending by date for hall-of-fame / chronological display
     metas.sort(key=lambda item: str(item.get("date", "")))
-    LOGGER.info("Loaded %d valid resurrection meta files.", len(metas))
+    LOGGER.info("Loaded %d unique resurrection meta files.", len(metas))
     LOGGER.info("Votes file configured: %s", Path(VOTES_FILE))
     return metas
 
@@ -145,6 +153,43 @@ def compute_hall_of_fame(metas: list[dict[str, Any]], top_n: int = 3) -> list[di
     ]
 
 
+def _pick_last_resurrection(metas: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """
+    Pick the most recent resurrection.
+    Primary sort: date (YYYY-MM-DD) descending.
+    Tie-break: folder sort order (repo slug + issue number) — highest wins.
+    This is robust to multiple runs on the same day producing different issues.
+    """
+    if not metas:
+        return None
+
+    # Re-read folder names to get a reliable sort key (folder name = date_repo_number)
+    base = Path(RESURRECTION_BASE_FOLDER)
+    folder_order: dict[tuple[str, int], str] = {}
+    if base.exists():
+        for child in base.iterdir():
+            if not child.is_dir():
+                continue
+            meta_path = child / "meta.json"
+            if not meta_path.exists():
+                continue
+            try:
+                meta = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
+                repo = str(meta.get("repo", ""))
+                issue_number = int(meta.get("issue_number", 0))
+                folder_order[(repo, issue_number)] = child.name
+            except (json.JSONDecodeError, OSError, ValueError):
+                continue
+
+    def sort_key(meta: dict[str, Any]) -> str:
+        repo = str(meta.get("repo", ""))
+        issue_number = int(meta.get("issue_number", 0))
+        # Falls back to date string if folder not found
+        return folder_order.get((repo, issue_number), str(meta.get("date", "")))
+
+    return max(metas, key=sort_key)
+
+
 def update_stats() -> dict[str, Any]:
     existing_progress = load_progress()
     metas = load_all_metas()
@@ -171,7 +216,7 @@ def update_stats() -> dict[str, Any]:
 
         average_impact_score = round(sum(impact_values) / len(impact_values), 2)
         average_effort_hours = round(sum(effort_values) / len(effort_values), 2)
-        last_resurrection = max(metas, key=lambda item: str(item.get("date", "")))
+        last_resurrection = _pick_last_resurrection(metas)
     else:
         average_impact_score = 0.0
         average_effort_hours = 0.0
@@ -185,7 +230,6 @@ def update_stats() -> dict[str, Any]:
         "average_effort_hours": average_effort_hours,
         "top_tags": compute_top_tags(metas, top_n=5),
         "hall_of_fame": compute_hall_of_fame(metas, top_n=3),
-        # FIX: _sanitize last_resurrection before storing — catches surrogates from LLM output
         "last_resurrection": _sanitize(last_resurrection) if last_resurrection is not None else None,
     }
     save_progress(new_progress)
