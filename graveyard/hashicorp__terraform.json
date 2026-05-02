@@ -70,7 +70,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/1552",
     "author_login": "radeksimko",
     "author_profile": "https://github.com/radeksimko",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",
