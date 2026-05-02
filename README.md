@@ -1,68 +1,129 @@
 <!-- SECTION:header -->
+<div align="center">
+
+```
+██████╗ ███████╗███████╗██╗   ██╗██████╗ ██████╗ ███████╗ ██████╗████████╗
+██╔══██╗██╔════╝██╔════╝██║   ██║██╔══██╗██╔══██╗██╔════╝██╔════╝╚══██╔══╝
+██████╔╝█████╗  ███████╗██║   ██║██████╔╝██████╔╝█████╗  ██║        ██║
+██╔══██╗██╔══╝  ╚════██║██║   ██║██╔══██╗██╔══██╗██╔══╝  ██║        ██║
+██║  ██║███████╗███████║╚██████╔╝██║  ██║██║  ██║███████╗╚██████╗   ██║
+╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ ╚═════╝   ╚═╝
+```
+
 # 🧬 AI Idea Resurrection Lab
 
-> Abandoned GitHub issues, brought back to life by AI.
-> Every day: one forgotten idea gets a full technical analysis,
-> working proof-of-concept code, and an impact score.
+**Dead GitHub issues don't stay dead here.**
 
-![updates daily](https://img.shields.io/badge/updates-daily-brightgreen)
-![powered by GPT-4o](https://img.shields.io/badge/powered%20by-GPT--4o-blue)
-![license MIT](https://img.shields.io/badge/license-MIT-orange)
+*Every day, this bot crawls the graveyard of abandoned feature requests,
+picks the most upvoted ones, and brings them back with a full AI-powered
+technical breakdown, working code, and an impact score.*
+
+[![updates daily](https://img.shields.io/badge/updates-daily-00d4aa?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/actions)
+[![powered by AI](https://img.shields.io/badge/powered%20by-Groq%20%2B%20LLaMA-7c3aed?style=for-the-badge&logo=meta&logoColor=white)](https://groq.com)
+[![license MIT](https://img.shields.io/badge/license-MIT-f59e0b?style=for-the-badge)](./LICENSE)
+[![built by engineer](https://img.shields.io/badge/built%20by-Mo%20Abdelkarim-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mohabdelkarim)
+
+</div>
+
+---
 <!-- END:header -->
+
+<!-- SECTION:how-it-works -->
+## ⚙️ How It Works
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    RESURRECTION PIPELINE                        │
+├──────────────┬──────────────┬──────────────┬───────────────────┤
+│  🔍 SCANNER  │  🧠 ANALYZER │  ⚒️ GENERATOR │  📢 PUBLISHER     │
+│              │              │              │                   │
+│  Crawls top  │  AI analyzes │  Writes PoC  │  Pushes files,    │
+│  GitHub repos│  why it died │  code + RFC  │  updates README,  │
+│  for closed  │  + why 2026  │  + full docs │  opens community  │
+│  issues with │  changes the │              │  vote Discussion  │
+│  high 👍     │  game        │              │                   │
+└──────────────┴──────────────┴──────────────┴───────────────────┘
+```
+
+> Built with Python · GitHub Actions · Groq API · LLaMA 3
+<!-- END:how-it-works -->
+
+---
 
 <!-- SECTION:stats -->
 ## 📊 Live Stats
 
-| Metric | Value |
-|--------|-------|
-| 🧬 Total Resurrections | 2 |
-| 🗂️ Repos Covered | 1 |
-| 💥 Avg Impact Score | 4.0/10 |
-| ⏱️ Avg Effort | ~60.0h |
-| 📬 Subscribers | 0 |
-| 🕐 Last Updated | 2026-05-02T10:59:32 |
+<div align="center">
+
+| 🧬 Resurrections | 🗂️ Repos Scanned | 💥 Avg Impact | ⏱️ Avg Effort | 🕐 Last Run |
+|:---:|:---:|:---:|:---:|:---:|
+| **2** | **1** | **4.0 / 10** | **~60.0 hrs** | **2026-05-02T10:59:32** |
+
+</div>
 <!-- END:stats -->
+
+---
 
 <!-- SECTION:hall-of-fame -->
 ## 🏆 Hall of Fame
 
-### 1. Git status in File Explorer
-**Repo:** microsoft/vscode | **Impact:** 8/10
-> Enhancing the VS Code user experience with visual Git status indicators in the file explorer.
-[View Original Issue](https://github.com/microsoft/vscode/issues/178)
+> The issues that refused to stay buried.
 
-### 2. Git status in File Explorer
-**Repo:** microsoft/vscode | **Impact:** 0/10
-> 
-[View Original Issue](https://github.com/microsoft/vscode/issues/178)
+| # | Issue | Repo | Impact | Link |
+|---|-------|------|:------:|------|
+| 1 | 🥇 **Git status in File Explorer** | `microsoft/vscode` | `8/10` | [→ Original](https://github.com/microsoft/vscode/issues/178) |
+| 2 | 🥈 **Git status in File Explorer** | `microsoft/vscode` | `0/10` | [→ Original](https://github.com/microsoft/vscode/issues/178) |
 <!-- END:hall-of-fame -->
+
+---
 
 <!-- SECTION:last -->
 ## 🔬 Latest Resurrection
 
-**[Git status in File Explorer](https://github.com/microsoft/vscode/issues/178)**
-📦 `microsoft/vscode` · 💥 Impact: `8/10` · 🗓️ `2026-05-02`
-> Enhancing the VS Code user experience with visual Git status indicators in the file explorer.
+```diff
++ RESURRECTED: Git status in File Explorer
++ REPO:        microsoft/vscode
++ IMPACT:      8/10
++ DATE:        2026-05-02
++ STATUS:      Analysis complete • PoC generated
+```
+
+> *Enhancing the VS Code user experience with visual Git status indicators in the file explorer.*
+
+[🔗 View Original Issue](https://github.com/microsoft/vscode/issues/178) · [📁 Browse Resurrection Files](./resurrections/)
 <!-- END:last -->
 
-<!-- SECTION:subscribe -->
-## 📬 Stay Ahead of the Curve
-
-> **[AI Tool Drop](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)** —
-> The free weekly newsletter that cuts through the AI noise.
-> Every week: one fresh AI tool tested honestly, a real workflow
-> under 30 minutes, a straight verdict.
-> **Free. No paywalls. No affiliate links.**
-
-[Subscribe Free →](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)
-<!-- END:subscribe -->
-
-<!-- SECTION:footer -->
 ---
-*Auto-generated by Resurrection Bot 🧬 · Last run: 2026-05-02T10:59:32*
-<!-- END:footer -->
 
 <!-- SECTION:community-vote -->
 ## 🗳️ Community Vote
+
 > *Vote opens daily after the resurrection is published.*
 <!-- END:community-vote -->
+
+---
+
+<!-- SECTION:stack -->
+## 🛠️ Tech Stack
+
+```yaml
+language:    Python 3.12
+ai_engine:   Groq API  →  LLaMA 3.3 70B
+automation:  GitHub Actions  (daily cron)
+storage:     GitHub repo  (flat-file JSON)
+output:      Markdown + Python/TS/Rust PoC
+voting:      GitHub Discussions
+```
+<!-- END:stack -->
+
+---
+
+<!-- SECTION:footer -->
+<div align="center">
+
+*Auto-generated by Resurrection Bot 🧬 · Last run: 2026-05-02T10:59:32*
+
+**[⭐ Star this repo](https://github.com/mohabdelkarim/ai-idea-resurrection-lab)** if you find it useful.
+
+</div>
+<!-- END:footer -->
