@@ -161,7 +161,7 @@ graph LR
         <img src="https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github" />
       </a>
       &nbsp;
-      <a href="https://linkedin.com/in/mohabdelkarim">
+      <a href="https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/">
         <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white" />
       </a>
     </td>
