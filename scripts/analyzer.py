@@ -56,16 +56,22 @@ Guidelines for each field:
 - one_line_summary: One sentence (max 20 words) that captures what the feature does.
 - one_line_why: One sentence (max 20 words) explaining WHY it will succeed now.
 
-- impact_score: Integer 1-10. STRICT SCORING RULES — read carefully:
-  * 1-3: Very niche, affects < 1,000 developers, minimal ecosystem impact.
-  * 4-5: Moderate interest, useful for a specific framework/language community.
-  * 6-7: Solid improvement, affects tens of thousands of developers.
-  * 8: HIGH bar — only if it affects hundreds of thousands of active developers AND
-       solves a painful daily workflow problem. DO NOT default to 8.
-  * 9-10: Reserved ONLY for issues that would affect millions of developers across
-          multiple ecosystems (e.g. fixing a core Git workflow, improving npm resolution).
-  Be HONEST. Most issues score 4-7. Scoring everything 8 is a calibration failure.
-  Base it on: audience size, technical novelty, effort-to-impact ratio, and uniqueness.
+- impact_score: Integer 1-10. STRICT SCORING — community popularity does NOT determine
+  this score. Base it ONLY on: how many developers would benefit, and how significantly.
+  Use these CALIBRATED ANCHORS:
+    1  → Affects < 100 devs (niche internal tooling, obscure plugin)
+    2  → Affects ~500 devs (small library, single-company framework)
+    3  → Affects ~1,000 devs (minor DX improvement in a niche tool)
+    4  → Affects ~5,000 devs (useful addition to a mid-size ecosystem)
+    5  → Affects ~20,000 devs (solid QoL improvement in a popular tool)
+    6  → Affects ~100,000 devs (meaningful feature in a major framework)
+    7  → Affects ~500,000 devs (significant improvement to a widely-used tool)
+    8  → Affects 1M+ devs AND solves a DAILY painful problem (very rare)
+    9  → Affects 5M+ devs across multiple ecosystems (extremely rare)
+    10 → Changes how an entire industry writes software (once-per-decade)
+  CALIBRATION CHECK: The average issue in any open-source repo scores 4-6.
+  If you give 8+, you must be able to name 1 million specific developers affected.
+  DO NOT let issue popularity, reaction count, or repo stars inflate the score.
 
 - effort_hours: Realistic integer. A weekend hack = 8-16h. A production feature = 40-200h.
 - technology_tags: 4-6 lowercase tags directly relevant to the implementation stack.
@@ -76,7 +82,7 @@ Guidelines for each field:
 - abandoned_date: Best estimate of when activity stopped, format YYYY-MM-DD.
 
 CRITICAL RULES:
-1. impact_score MUST be an integer between 1 and 10. DO NOT default to 8 for everything.
+1. impact_score MUST be an integer between 1 and 10. Use the calibrated anchors above.
 2. effort_hours MUST be a positive integer. Never 0. Never null.
 3. Every text field must have real, substantive content. No empty strings.
 4. proof_of_concept_code must be runnable code, NOT pseudocode or a description.
@@ -89,33 +95,35 @@ MIN_ANALYSIS_TEXT_LENGTH = 80   # chars — fields shorter than this are flagged
 MIN_POC_CODE_LENGTH = 400       # chars — PoC shorter than this is rejected
 MIN_RFC_LENGTH = 300            # chars — RFC shorter than this is rejected
 MODEL_NAME = "llama-3.3-70b-versatile"
-ANALYZER_TEMPERATURE = 0.55     # raised slightly for more varied impact scores
+ANALYZER_TEMPERATURE = 0.55
 MAX_ANALYSIS_RETRIES = 4
 
 
 def build_user_prompt(issue: dict[str, Any]) -> str:
     repo = str(issue.get("repo", ""))
     title = str(issue.get("title", ""))
-    reactions = int(issue.get("reactions", 0))
     created_at = str(issue.get("created_at", ""))
     updated_at = str(issue.get("updated_at", ""))
     labels = issue.get("labels", [])
     labels_text = ", ".join(str(label) for label in labels) if isinstance(labels, list) else str(labels)
     body = str(issue.get("body", ""))
 
+    # NOTE: reaction count is intentionally excluded from the prompt.
+    # High reaction counts bias the model toward inflated impact scores (8+).
+    # impact_score must be derived from technical audience size, not popularity.
     return (
         f"ABANDONED GITHUB ISSUE TO RESURRECT:\n"
         f"Repository: {repo}\n"
         f"Title: {title}\n"
-        f"Community upvotes (reactions): {reactions} \U0001f44d\n"
         f"Originally filed: {created_at}\n"
         f"Last activity: {updated_at}\n"
         f"Labels: {labels_text}\n\n"
         f"Original description from the issue author:\n"
         f"\"\"\"{body}\"\"\"\n\n"
         "Produce a FULL, DETAILED resurrection analysis following your system instructions.\n"
-        "IMPORTANT: Set impact_score honestly based on the real audience size of this specific issue.\n"
-        "Most issues score between 4-7. Only truly massive ecosystem changes score 8+.\n"
+        "For impact_score: use the calibrated anchors in your instructions. "
+        "The AVERAGE open-source issue scores 4-6. Only give 7+ if you can justify "
+        "that over 500,000 active developers would directly benefit from this specific feature.\n"
         "Return ONLY the JSON object. No markdown. No explanation outside the JSON."
     )
 
@@ -223,7 +231,6 @@ def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int
     Scan the resurrections/ folder and return a set of (repo, issue_number) tuples
     for every issue that already has a folder (even if already_resurrected flag
     was not yet written back to the graveyard JSON).
-    This prevents running the same issue twice on the same day.
     """
     base = Path(resurrection_base)
     resurrected: set[tuple[str, int]] = set()
@@ -371,9 +378,8 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
                 "role": "user",
                 "content": (
                     f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
-                    "Fix them and return only the corrected JSON object with ALL fields populated "
-                    "with substantive content. impact_score must be 1-10 based on REAL audience size — "
-                    "most issues score 4-7, not 8. "
+                    "Fix them and return only the corrected JSON object. "
+                    "Remember: impact_score uses calibrated anchors (average issue = 4-6). "
                     "proof_of_concept_code must be at least 80 lines of real runnable code."
                 ),
             })
@@ -444,8 +450,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 def analyze() -> None:
     from config import GRAVEYARD_FOLDER, RESURRECTION_BASE_FOLDER
 
-    # Build a set of (repo, issue_number) already saved in resurrections/
-    # This is the ground-truth duplicate check — more reliable than the graveyard flag
     already_resurrected = _load_already_resurrected_keys(RESURRECTION_BASE_FOLDER)
     LOGGER.info("[Analyzer] %d issues already resurrected (from folders).", len(already_resurrected))
 
@@ -466,7 +470,6 @@ def analyze() -> None:
             if not isinstance(issue, dict):
                 continue
 
-            # Check graveyard flag AND resurrection folders — both must be clear
             if issue.get("already_resurrected"):
                 continue
             repo = str(issue.get("repo", ""))
@@ -492,6 +495,6 @@ def analyze() -> None:
                 encoding="utf-8",
             )
             LOGGER.info("[Analyzer] Analysis saved to %s", ANALYSIS_TEMP_FILE)
-            return  # One resurrection per run
+            return
 
     LOGGER.warning("[Analyzer] No unresurrected issues found in graveyard.")
