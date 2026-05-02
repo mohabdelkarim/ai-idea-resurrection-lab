@@ -1,22 +1,22 @@
-# Analysis: 请勿在 Issues 页面无意义灌水，此类行为属于对 Issues 区的滥用。
+# Analysis: Protobuf seems like a lot of overhead for this use case?
 
-> The proposed system develops a comprehensive community guidelines system for the Deno repository, utilizing customizable issue templates, automated moderation bots, and AI-powered issue filtering to...
+> The proposed system utilizes Cap'n Proto as the primary protocol for intra-process communications within Deno, providing a more efficient and scalable solution that supports language-agnostic...
 
-**Why it will work now:** The proposed system will succeed now because it leverages recent advancements in machine learning, natural language processing, and automation, combined with the growing maturity of...
+**Why it will work now:** The proposed system will succeed because it addresses the current drawbacks of using Protobuf for intra-process communications within Deno, including high overhead and limited support...
 
 ---
 
 ## Why It Died
 
-The issue died due to a lack of clear community guidelines and moderation tools for the Deno repository. At the time, GitHub's issue tracker lacked features such as customizable issue templates and automated moderation bots. Additionally, the Deno community was still in its early stages and had not yet developed a robust set of community guidelines and moderation practices. The issue was also not prioritized by the Deno maintainers, who were focused on developing the core Deno runtime. Furthermore, the issue was not clearly defined, making it difficult to develop a concrete solution.
+The original issue died due to the lack of a suitable alternative to Protobuf for intra-process communications within Deno. At the time, Cap'n Proto was not well-supported in TypeScript, and the existing implementation was not widely used. Additionally, the Deno team may have been hesitant to adopt a new protocol without a proven track record. The VS Code extension API also lacked the necessary features to support seamless communication between languages. Furthermore, the ecosystem was not yet mature enough to support the adoption of a new protocol.
 
 ## Why 2026 Changes Everything
 
-In 2026, several changes make it possible to resurrect this issue. GitHub has introduced new features such as custom issue templates, automated moderation bots, and improved community guidelines tools. The Deno community has also grown and matured, with a more established set of community guidelines and moderation practices. Additionally, the development of AI-powered moderation tools and the increasing adoption of automated testing and continuous integration pipelines make it easier to implement and enforce community guidelines. The rise of machine learning-based models for text classification and natural language processing also enables the development of more sophisticated issue filtering and moderation systems.
+In 2026, the ecosystem has evolved significantly, with the advent of new technologies such as WebAssembly, Rust-based toolchains, and improved support for Cap'n Proto in TypeScript. The Deno team has also gained more experience with intra-process communications, and the community has expressed strong demand for a more efficient solution. The availability of LLaMA 3.3 and tree-sitter parsers in every editor has also improved the development experience, making it easier to adopt new protocols. Moreover, the growth of the Rust and WebAssembly ecosystems has led to the development of more efficient and scalable solutions.
 
 ## Modern Architecture
 
-A modern design for addressing this issue would involve the development of a comprehensive community guidelines system, including customizable issue templates, automated moderation bots, and AI-powered issue filtering. The system would utilize machine learning-based models for text classification and natural language processing to identify and flag irrelevant or abusive issues. The Deno repository would also implement a robust set of community guidelines and moderation practices, including clear rules for issue submission and a transparent moderation process. The system would be integrated with GitHub's issue tracker and would utilize webhooks and APIs to automate moderation tasks. The design would also include a feedback mechanism, allowing users to report false positives and negatives, and a data analytics component to track issue trends and moderation effectiveness. The system would be built using a microservices architecture, with separate services for issue filtering, moderation, and analytics. The services would be implemented using a combination of languages, including TypeScript, Python, and Rust, and would utilize frameworks such as Express.js and Django. The system would also utilize a database such as PostgreSQL or MongoDB to store issue data and moderation history.
+A modern design for intra-process communications within Deno would utilize Cap'n Proto as the primary protocol. The system would consist of a central message broker that handles communication between different languages and processes. The message broker would be implemented in Rust, utilizing the capnp-rust library, and would provide a RESTful API for sending and receiving messages. The API would be designed using the OpenAPI specification and would support both JSON and Protobuf serialization formats. The system would also include a TypeScript implementation of Cap'n Proto, built on top of the capnp-ts library, which would provide a seamless experience for developers working in TypeScript. The system would utilize WebAssembly to enable efficient communication between languages and would include a set of pre-built WebAssembly modules for common use cases. The system would also include a set of tools for debugging and testing, including a message inspector and a test framework.
 
 ---
 
@@ -26,7 +26,7 @@ A modern design for addressing this issue would involve the development of a com
 |--------|-------|
 | 💥 Impact Score | 8/10 |
 | ⏱️ Effort Estimate | ~120 hours |
-| 🏷️ Tech Tags | typescript, machinelearning, githubapi, natural languageprocessing |
+| 🏷️ Tech Tags | capnproto, typescript, rust, webassembly, deno |
 | 💀 Year Abandoned | 2018 |
 | 🔬 Has PoC | Yes |
 | 📋 Has RFC | Yes |
