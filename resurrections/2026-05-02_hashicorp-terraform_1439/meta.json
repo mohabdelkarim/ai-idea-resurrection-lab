@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-02",
+  "repo": "hashicorp/terraform",
+  "issue_number": 1439,
+  "title": "terraform get: can't use variable in module source parameter?",
+  "reactions": 67,
+  "abandoned_date": "2019-07-24T01:51:51Z",
+  "one_line_why": "This feature will succeed now because it addresses a long-standing issue in Terraform's module management system, and provides users with a way to dynamically configure...",
+  "impact_score": 6,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "terraform",
+    "infrastructure",
+    "modules",
+    "variables",
+    "dynamic"
+  ],
+  "original_url": "https://github.com/hashicorp/terraform/issues/1439"
+}
