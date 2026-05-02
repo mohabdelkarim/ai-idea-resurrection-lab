@@ -1,19 +1,19 @@
-# Proof of Concept: Protobuf seems like a lot of overhead for this use case?
+# Proof of Concept: Feature request: Allow using lists and maps with conditionals
 
-**Language:** typescript
+**Language:** python
 **Estimated run time:** < 5 minutes
 
 ## Prerequisites
 
-- Node.js 20+, npm install
+- Python 3.12+, pip install requirements
 
 ## How to Run
 
 ```bash
-npm install
-npx ts-node main.ts
+pip install -r requirements.txt
+python main.py
 ```
 
 ## What This Demonstrates
 
-The proposed system utilizes Cap'n Proto as the primary protocol for intra-process communications within Deno, providing a more efficient and scalable solution that supports language-agnostic...
+This feature request proposes adding support for using lists and maps with conditionals in Terraform configurations, allowing users to write more expressive and dynamic configurations,...

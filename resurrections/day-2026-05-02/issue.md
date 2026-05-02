@@ -1,25 +1,42 @@
-# Protobuf seems like a lot of overhead for this use case?
+# Feature request: Allow using lists and maps with conditionals
 
-**Repository:** [denoland/deno](https://github.com/denoland/deno)
-**Issue:** [denoland/deno#269](https://github.com/denoland/deno/issues/269)
-**Reactions:** 113 👍
-**Created:** 2018-06-19T04:26:53Z
-**Last Activity:** 2018-08-03T02:00:23Z
-**Labels:** 
+**Repository:** [hashicorp/terraform](https://github.com/hashicorp/terraform)
+**Issue:** [hashicorp/terraform#12453](https://github.com/hashicorp/terraform/issues/12453)
+**Reactions:** 177 👍
+**Created:** 2017-03-05T23:38:44Z
+**Last Activity:** 2019-07-24T01:51:39Z
+**Labels:** enhancement, config
 
 ---
 
 ## Original Description
 
-Hello. I'm the guy who wrote Protobuf v2 and open sourced it at Google. (I also, just in the last year, built Cloudflare Workers, a non-Node JavaScript server runtime embedding V8, with a focus on secure sandboxing and high multi-tenancy.)
+I found out today that if you try to use a list or a map with a conditional, you get the error:
 
-I was surprised by the choice of Protobuf for intra-process communications within Deno. Protobuf's backwards compatibility guarantees and compact wire representation offer no benefit here, while the serialize/parse round-trip on every I/O seems like it would be pretty expensive.
+```
+* At column 3, line 1: conditional operator cannot be used with list values in:
+```
 
-I suppose the main motivation for using Protobuf here is to get convenient code for transmitting data that is compatible across languages?
+It turns out this is an explicit check built into the [TypeCheck method](https://github.com/hashicorp/terraform/blob/1bae160796461066a07ca1721c4688db0d5ce567/vendor/github.com/hashicorp/hil/check_types.go#L426). 
 
-Have you considered Cap'n Proto for this? I created Cap'n Proto shortly after leaving Google. It works a lot like Protobuf, except that the generated getters and setters operate directly on a backing byte array (e.g. ArrayBuffer in JavaScript), using a C-struct-like layout. Since you can directly share that byte array between code in different languages, you can construct a message in one language and then consume it in another without even making a copy in between, much less a serialize/parse round trip. Communication between a sandbox and a supervisor was in fact a motivating use case for Cap'n Proto.
+The comment above the code says "for now this is simply prohibited because it doesn't seem to be a common enough case to be worth the complexity." I thought I'd toss out at least one use case where this would be handy:
 
-Cap'n Proto is well-supported in C++, Rust, and Go. There is also [a mostly-complete TypeScript implementation](https://github.com/jdiaz5513/capnp-ts). Admittedly the TypeScript implementation has not received a whole lot of real-world usage, but there's interest I may be willing to directly adopt and support it for you. (I expect to need it in my own work soon anyway.)
+* I'm creating a module that creates a number of resources, including an ELB. 
+* One of the inputs to the module is a variable called `is_internal_elb`, which is used to set the `internal` parameter of the ELB to true for internal ELBs and false for public ELBs. 
+* The ELB takes in a `subnets` parameter, which is a list of subnet IDs to attach to the ELB. When `is_internal_elb` is set to true, I'd like to set this to a list of private subnet IDs. When `is_internal_elb` is false, I'd like to set it to a list of public subnet IDs.
+
+Rough pseudo code:
+
+```hcl
+resource "aws_elb" "elb" {
+  name = "${var.elb_name}"
+  internal = "${var.is_internal_elb}"
+
+  subnets = ["${var.is_internal_elb ? var.private_subnet_ids : var.public_subnet_ids}"]
+}
+```
+
+This seems like a fairly straightforward use case, but with the current `TypeCheck` method, it won't work.
 
 ---
 

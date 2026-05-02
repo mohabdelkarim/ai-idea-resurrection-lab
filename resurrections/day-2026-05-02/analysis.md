@@ -1,22 +1,22 @@
-# Analysis: Protobuf seems like a lot of overhead for this use case?
+# Analysis: Feature request: Allow using lists and maps with conditionals
 
-> The proposed system utilizes Cap'n Proto as the primary protocol for intra-process communications within Deno, providing a more efficient and scalable solution that supports language-agnostic...
+> This feature request proposes adding support for using lists and maps with conditionals in Terraform configurations, allowing users to write more expressive and dynamic configurations,...
 
-**Why it will work now:** The proposed system will succeed because it addresses the current drawbacks of using Protobuf for intra-process communications within Deno, including high overhead and limited support...
+**Why it will work now:** The Terraform ecosystem has evolved significantly since 2019, with advancements in HCL support, improved tooling, and growing demand for more expressive configuration languages, making this...
 
 ---
 
 ## Why It Died
 
-The original issue died due to the lack of a suitable alternative to Protobuf for intra-process communications within Deno. At the time, Cap'n Proto was not well-supported in TypeScript, and the existing implementation was not widely used. Additionally, the Deno team may have been hesitant to adopt a new protocol without a proven track record. The VS Code extension API also lacked the necessary features to support seamless communication between languages. Furthermore, the ecosystem was not yet mature enough to support the adoption of a new protocol.
+The feature request to allow using lists and maps with conditionals in Terraform died due to the explicit check built into the TypeCheck method, which prohibited this functionality due to perceived complexity. The Terraform team at the time did not consider this use case common enough to warrant the added complexity. Additionally, the HCL (HashiCorp Configuration Language) parser and evaluator lacked the necessary features to support conditional expressions with lists and maps. The VS Code Terraform extension also lacked the necessary tooling support for this feature.
 
 ## Why 2026 Changes Everything
 
-In 2026, the ecosystem has evolved significantly, with the advent of new technologies such as WebAssembly, Rust-based toolchains, and improved support for Cap'n Proto in TypeScript. The Deno team has also gained more experience with intra-process communications, and the community has expressed strong demand for a more efficient solution. The availability of LLaMA 3.3 and tree-sitter parsers in every editor has also improved the development experience, making it easier to adopt new protocols. Moreover, the growth of the Rust and WebAssembly ecosystems has led to the development of more efficient and scalable solutions.
+The Terraform ecosystem has evolved significantly since 2019, with the introduction of Terraform 1.0, improved HCL support, and enhanced tooling. The recent advancements in Terraform's conditional expression support, combined with the growing adoption of Terraform and the increasing demand for more expressive configuration languages, make this feature more viable. The availability of modern tools like Terraform CDK, Terraform Cloud, and improved integrations with other HashiCorp products also facilitate the implementation of this feature.
 
 ## Modern Architecture
 
-A modern design for intra-process communications within Deno would utilize Cap'n Proto as the primary protocol. The system would consist of a central message broker that handles communication between different languages and processes. The message broker would be implemented in Rust, utilizing the capnp-rust library, and would provide a RESTful API for sending and receiving messages. The API would be designed using the OpenAPI specification and would support both JSON and Protobuf serialization formats. The system would also include a TypeScript implementation of Cap'n Proto, built on top of the capnp-ts library, which would provide a seamless experience for developers working in TypeScript. The system would utilize WebAssembly to enable efficient communication between languages and would include a set of pre-built WebAssembly modules for common use cases. The system would also include a set of tools for debugging and testing, including a message inspector and a test framework.
+The modern design for this feature would involve extending the Terraform HCL parser and evaluator to support conditional expressions with lists and maps. This would require updates to the TypeCheck method to remove the explicit prohibition on using conditionals with lists and maps. Additionally, the Terraform core would need to be modified to handle the new syntax and semantics. The design would also involve creating new APIs and data structures to represent the conditional expressions and their evaluated results. The Terraform VS Code extension would also need to be updated to provide tooling support for this feature, including syntax highlighting, code completion, and debugging. The design would follow a modular and extensible approach, allowing for easy integration with other Terraform features and plugins.
 
 ---
 
@@ -26,8 +26,8 @@ A modern design for intra-process communications within Deno would utilize Cap'n
 |--------|-------|
 | 💥 Impact Score | 8/10 |
 | ⏱️ Effort Estimate | ~120 hours |
-| 🏷️ Tech Tags | capnproto, typescript, rust, webassembly, deno |
-| 💀 Year Abandoned | 2018 |
+| 🏷️ Tech Tags | terraform, hcl, conditionals, lists, maps |
+| 💀 Year Abandoned | 2019 |
 | 🔬 Has PoC | Yes |
 | 📋 Has RFC | Yes |
 

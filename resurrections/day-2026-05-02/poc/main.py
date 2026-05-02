@@ -1,79 +1,76 @@
 
-   #!/usr/bin/env python3
-   import os
-   import sys
-   import json
-   from typing import Dict, List
-   import requests
+# proof_of_concept_code
+import json
+from typing import List, Dict, Any
 
-   class CommunityRequest:
-       def __init__(self, title: str, description: str):
-           self.title = title
-           self.description = description
+class TerraformConfig:
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
 
-       def to_dict(self) -> Dict:
-           return {'title': self.title, 'description': self.description}
+    def evaluate_conditionals(self) -> Dict[str, Any]:
+        evaluated_config = {}
+        for key, value in self.config.items():
+            if isinstance(value, list):
+                evaluated_config[key] = self.evaluate_list(value)
+            elif isinstance(value, dict):
+                evaluated_config[key] = self.evaluate_map(value)
+            else:
+                evaluated_config[key] = value
+        return evaluated_config
 
-   class RequestAnalyzer:
-       def __init__(self, model: str):
-           self.model = model
+    def evaluate_list(self, value: List[Any]) -> List[Any]:
+        evaluated_list = []
+        for item in value:
+            if isinstance(item, str) and item.startswith("${") and item.endswith("}"):
+                # Evaluate the conditional expression
+                conditional_expression = item[2:-1]
+                evaluated_item = self.evaluate_conditional(conditional_expression)
+                evaluated_list.append(evaluated_item)
+            else:
+                evaluated_list.append(item)
+        return evaluated_list
 
-       def analyze(self, request: CommunityRequest) -> Dict:
-           # Use the LLaMA 3.3 model to analyze the request
-           response = requests.post('https://api.example.com/analyze', json=request.to_dict())
-           return response.json()
+    def evaluate_map(self, value: Dict[str, Any]) -> Dict[str, Any]:
+        evaluated_map = {}
+        for key, item in value.items():
+            if isinstance(item, str) and item.startswith("${") and item.endswith("}"):
+                # Evaluate the conditional expression
+                conditional_expression = item[2:-1]
+                evaluated_item = self.evaluate_conditional(conditional_expression)
+                evaluated_map[key] = evaluated_item
+            else:
+                evaluated_map[key] = item
+        return evaluated_map
 
-   class CodeParser:
-       def __init__(self, parser: str):
-           self.parser = parser
+    def evaluate_conditional(self, expression: str) -> Any:
+        # Simplified example of evaluating a conditional expression
+        if "?" in expression:
+            condition, true_value, false_value = expression.split("?")[0], expression.split("?")[1].split(":")[0], expression.split(":")[1]
+            if self.evaluate_condition(condition):
+                return true_value
+            else:
+                return false_value
+        else:
+            return expression
 
-       def parse(self, code: str) -> Dict:
-           # Use the tree-sitter parser to parse the code
-           response = requests.post('https://api.example.com/parse', json={'code': code})
-           return response.json()
+    def evaluate_condition(self, condition: str) -> bool:
+        # Simplified example of evaluating a condition
+        if condition == "true":
+            return True
+        elif condition == "false":
+            return False
+        else:
+            raise ValueError("Invalid condition")
 
-   class RequestTracker:
-       def __init__(self):
-           self.requests = []
+# Example usage
+config = {
+    "elb_name": "my_elb",
+    "is_internal_elb": "true",
+    "private_subnet_ids": ["subnet-1", "subnet-2"],
+    "public_subnet_ids": ["subnet-3", "subnet-4"],
+    "subnets": ["${is_internal_elb ? private_subnet_ids : public_subnet_ids}"]
+}
 
-       def add_request(self, request: CommunityRequest):
-           self.requests.append(request)
-
-       def get_requests(self) -> List[CommunityRequest]:
-           return self.requests
-
-   def main():
-       # Create a request analyzer
-       analyzer = RequestAnalyzer('llama-3.3')
-
-       # Create a code parser
-       parser = CodeParser('tree-sitter')
-
-       # Create a request tracker
-       tracker = RequestTracker()
-
-       # Add a request to the tracker
-       request = CommunityRequest('Test Request', 'This is a test request')
-       tracker.add_request(request)
-
-       # Analyze the request
-       analysis = analyzer.analyze(request)
-
-       # Parse the code
-       code = 'print("Hello World")'
-       parsing = parser.parse(code)
-
-       # Print the results
-       print('Analysis:', analysis)
-       print('Parsing:', parsing)
-
-       # Get the requests from the tracker
-       requests = tracker.get_requests()
-
-       # Print the requests
-       for request in requests:
-           print('Request:', request.to_dict())
-
-   if __name__ == '__main__':
-       main()
-   
+terraform_config = TerraformConfig(config)
+evaluated_config = terraform_config.evaluate_conditionals()
+print(json.dumps(evaluated_config, indent=4))
