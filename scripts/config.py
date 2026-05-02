@@ -4,50 +4,50 @@
 # ---------------------------------------------------------------------------
 REPOS_TO_SCAN = [
     # 🔵 Tier 1 — Massive communities, highest viral potential
-    "microsoft/vscode",          # 160k+ issues, huge dev audience
-    "nodejs/node",               # 40k+ issues, Node.js ecosystem
-    "python/cpython",            # 90k+ issues, Python core
-    "rust-lang/rust",            # 50k+ issues, systems programming
-    "golang/go",                 # 30k+ issues, Go language
-    "microsoft/TypeScript",      # 30k+ issues, TS ecosystem
-    "facebook/react",            # 12k+ issues, frontend
-    "vuejs/vue",                 # 10k+ issues, frontend
-    "torvalds/linux",            # kernel — legendary issues
-    "llvm/llvm-project",         # compiler infrastructure
+    "microsoft/vscode",
+    "nodejs/node",
+    "python/cpython",
+    "rust-lang/rust",
+    "golang/go",
+    "microsoft/TypeScript",
+    "facebook/react",
+    "vuejs/vue",
+    "torvalds/linux",
+    "llvm/llvm-project",
 
     # 🟡 Tier 2 — Strong communities, great technical depth
-    "vercel/next.js",            # 20k+ issues, React framework
-    "denoland/deno",             # 3k+ issues, modern JS runtime
-    "sveltejs/svelte",           # 4k+ issues, rising frontend
-    "django/django",             # Python web framework
-    "pallets/flask",             # Python micro-framework
-    "rails/rails",               # Ruby on Rails
-    "docker/compose",            # container tooling
-    "kubernetes/kubernetes",     # k8s orchestration
-    "neovim/neovim",             # editor — passionate community
-    "JetBrains/intellij-community",  # IDE tooling
+    "vercel/next.js",
+    "denoland/deno",
+    "sveltejs/svelte",
+    "django/django",
+    "pallets/flask",
+    "rails/rails",
+    "docker/compose",
+    "kubernetes/kubernetes",
+    "neovim/neovim",
+    "JetBrains/intellij-community",
 
     # 🟢 Tier 3 — Focused communities, niche but high engagement
-    "huggingface/transformers",  # AI/ML ecosystem
-    "pytorch/pytorch",           # deep learning
-    "psf/requests",              # Python HTTP
-    "expressjs/express",         # Node.js web framework
-    "babel/babel",               # JS transpiler
-    "webpack/webpack",           # bundler
-    "vitejs/vite",               # modern build tool
-    "prettier/prettier",         # code formatter
-    "eslint/eslint",             # JS linter
-    "ohmyzsh/ohmyzsh",           # shell tooling
-    "ansible/ansible",           # DevOps automation
-    "hashicorp/terraform",       # infrastructure as code
-    "grafana/grafana",           # observability
-    "prometheus/prometheus",     # metrics
-    "redis/redis",               # in-memory DB
-    "postgres/postgres",         # relational DB
-    "supabase/supabase",         # Firebase alternative
-    "astro-build/astro",         # modern web framework
-    "remix-run/remix",           # full-stack React
-    "tauri-apps/tauri",          # desktop apps with Rust
+    "huggingface/transformers",
+    "pytorch/pytorch",
+    "psf/requests",
+    "expressjs/express",
+    "babel/babel",
+    "webpack/webpack",
+    "vitejs/vite",
+    "prettier/prettier",
+    "eslint/eslint",
+    "ohmyzsh/ohmyzsh",
+    "ansible/ansible",
+    "hashicorp/terraform",
+    "grafana/grafana",
+    "prometheus/prometheus",
+    "redis/redis",
+    "postgres/postgres",
+    "supabase/supabase",
+    "withastro/astro",       # fixed: was astro-build/astro
+    "remix-run/remix",
+    "tauri-apps/tauri",
 ]
 
 MIN_UPVOTES = 20
@@ -57,7 +57,6 @@ MAX_ISSUES_PER_REPO = 500
 MAX_DAILY_RESURRECTIONS = 1
 SCAN_INTERVAL_DAYS = 3
 
-# These are the canonical display names for tech tags.
 APPROVED_TECHNOLOGY_TAGS = [
     "WebAssembly",
     "Rust async",
@@ -132,8 +131,5 @@ BOT_EMAIL = "bot@resurrection-lab.dev"
 ABANDONED_LABELS = {"wontfix", "stale", "someday", "help wanted", "enhancement"}
 HIGH_DEMAND_UPVOTES_OVERRIDE = 100
 
-# ---------------------------------------------------------------------------
-# Issue commenter settings
-# ---------------------------------------------------------------------------
 POST_ORIGINAL_ISSUE_COMMENT = True
 SCORE_CARD_FILENAME = "score_card.svg"

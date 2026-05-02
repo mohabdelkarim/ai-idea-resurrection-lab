@@ -18,21 +18,25 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
-# Always create discussions in this repo — NOT in the analyzed issue's repo
 OWN_REPO = "mohabdelkarim/ai-idea-resurrection-lab"
+
+
+def _safe_str(value: Any) -> str:
+    """Convert value to string and strip surrogate characters that break UTF-8 encoding."""
+    text = str(value) if not isinstance(value, str) else value
+    # Remove surrogate characters (U+D800 to U+DFFF) which cannot be encoded in UTF-8
+    return text.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
 
 
 def load_votes() -> dict[str, Any]:
     path = Path(VOTES_FILE)
     if not path.exists():
         return {}
-
     try:
         parsed = json.loads(path.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError) as error:
         LOGGER.warning("Failed to load votes file %s: %s", path, error)
         return {}
-
     if isinstance(parsed, dict):
         return parsed
     LOGGER.warning("Votes file %s does not contain a JSON object.", path)
@@ -42,15 +46,20 @@ def load_votes() -> dict[str, Any]:
 def save_votes(data: dict[str, Any]) -> None:
     path = Path(VOTES_FILE)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    # Sanitize all string values before serializing
+    safe_data = {
+        k: _safe_str(v) if isinstance(v, str) else v
+        for k, v in data.items()
+    }
+    path.write_text(json.dumps(safe_data, indent=2, ensure_ascii=False), encoding="utf-8")
     LOGGER.info("Written: %s", path)
 
 
 def build_vote_body(meta: dict[str, Any]) -> str:
-    title = str(meta.get("title", ""))
-    repo = str(meta.get("repo", ""))
-    one_line_why = str(meta.get("one_line_why", ""))
-    original_url = str(meta.get("original_url", ""))
+    title = _safe_str(meta.get("title", ""))
+    repo = _safe_str(meta.get("repo", ""))
+    one_line_why = _safe_str(meta.get("one_line_why", ""))
+    original_url = _safe_str(meta.get("original_url", ""))
     impact_score = int(meta.get("impact_score", 0))
 
     return (
@@ -117,7 +126,6 @@ def create_github_discussion(token: str, repo: str, title: str, body: str) -> di
     repository_id = repository.get("id")
     categories = repository.get("discussionCategories", {}).get("nodes", [])
 
-    # Prefer a category named 'General' or 'Ideas', else fallback to first available
     preferred_names = {"general", "ideas", "polls", "community"}
     category_id = None
     for cat in categories:
@@ -159,8 +167,8 @@ def create_github_discussion(token: str, repo: str, title: str, body: str) -> di
     variables = {
         "repositoryId": repository_id,
         "categoryId": category_id,
-        "title": title,
-        "body": body,
+        "title": _safe_str(title),
+        "body": _safe_str(body),
     }
     try:
         create_response = requests.post(
@@ -195,13 +203,12 @@ def update_readme_vote_section(votes: dict[str, Any]) -> None:
     except ImportError:
         import sys
         from pathlib import Path as _Path
-
         sys.path.insert(0, str(_Path(__file__).parent))
         from readme_generator import replace_section
 
-    if votes and str(votes.get("discussion_url", "")).strip():
-        discussion_url = str(votes.get("discussion_url", ""))
-        current_issue_title = str(votes.get("current_issue_title", ""))
+    if votes and _safe_str(votes.get("discussion_url", "")).strip():
+        discussion_url = _safe_str(votes.get("discussion_url", ""))
+        current_issue_title = _safe_str(votes.get("current_issue_title", ""))
         section_body = (
             "## \ud83d\uddf3\ufe0f Community Vote\n\n"
             "Should we implement this?\n"
@@ -228,16 +235,15 @@ def update_readme_vote_section(votes: dict[str, Any]) -> None:
 
 
 def run_vote(meta: dict[str, Any], token: str) -> None:
-    # ALWAYS create discussion in OWN repo, not in the analyzed issue's repo
-    discussion_title = f"\ud83d\uddf3\ufe0f Should we implement: {meta['title']}?"
+    discussion_title = _safe_str(f"\ud83d\uddf3\ufe0f Should we implement: {meta.get('title', '')}?")
     discussion_body = build_vote_body(meta)
     discussion = create_github_discussion(token, OWN_REPO, discussion_title, discussion_body)
 
     votes_data = {
-        "current_issue_title": str(meta.get("title", "")),
-        "current_issue_url": str(meta.get("original_url", "")),
-        "discussion_url": str(discussion.get("url", "")),
-        "discussion_id": str(discussion.get("id", "")),
+        "current_issue_title": _safe_str(meta.get("title", "")),
+        "current_issue_url": _safe_str(meta.get("original_url", "")),
+        "discussion_url": _safe_str(discussion.get("url", "")),
+        "discussion_id": _safe_str(discussion.get("id", "")),
         "vote_date": datetime.now().strftime("%Y-%m-%d"),
         "votes_for": 0,
         "votes_against": 0,
