@@ -18,6 +18,17 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 
+def _sanitize(value: Any) -> Any:
+    """Recursively strip surrogate characters from all strings in a structure."""
+    if isinstance(value, str):
+        return value.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
+    if isinstance(value, dict):
+        return {k: _sanitize(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_sanitize(item) for item in value]
+    return value
+
+
 def _default_progress() -> dict[str, Any]:
     return {
         "last_updated": "",
@@ -27,7 +38,6 @@ def _default_progress() -> dict[str, Any]:
         "average_effort_hours": 0.0,
         "top_tags": [],
         "hall_of_fame": [],
-        "subscriber_count": 0,
         "last_resurrection": None,
     }
 
@@ -56,7 +66,9 @@ def load_progress() -> dict[str, Any]:
 def save_progress(data: dict[str, Any]) -> None:
     path = Path(STATS_FILE)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    # Sanitize before writing to prevent surrogate characters breaking UTF-8
+    safe_data = _sanitize(data)
+    path.write_text(json.dumps(safe_data, indent=2, ensure_ascii=True), encoding="utf-8")
     LOGGER.info("Written: %s", path)
 
 
@@ -77,7 +89,8 @@ def load_all_metas() -> list[dict[str, Any]]:
             continue
 
         try:
-            parsed = json.loads(meta_path.read_text(encoding="utf-8"))
+            raw = meta_path.read_text(encoding="utf-8")
+            parsed = _sanitize(json.loads(raw))
         except (json.JSONDecodeError, OSError) as error:
             LOGGER.warning("Skipping invalid meta.json %s (%s)", meta_path, error)
             continue
@@ -168,9 +181,7 @@ def update_stats() -> dict[str, Any]:
         "average_effort_hours": average_effort_hours,
         "top_tags": compute_top_tags(metas, top_n=5),
         "hall_of_fame": compute_hall_of_fame(metas, top_n=3),
-        "subscriber_count": 0,
         "last_resurrection": last_resurrection,
     }
-    new_progress["subscriber_count"] = existing_progress.get("subscriber_count", 0)
     save_progress(new_progress)
     return new_progress
