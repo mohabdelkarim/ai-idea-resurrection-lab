@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from config import BOT_NAME, RESURRECTION_BASE_FOLDER, TEMPLATES_FOLDER
+from analyzer import ANALYSIS_TEMP_FILE
 
 
 logging.basicConfig(
@@ -233,21 +234,27 @@ def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Pa
     meta = build_meta(issue, analysis, today)
     write_meta_json(folder, meta)
 
-    # Keeps config-driven template root visible in logs for future template migration.
     LOGGER.info("Templates folder configured: %s", Path(TEMPLATES_FOLDER))
     LOGGER.info("Resurrection folder ready: %s", folder)
     return folder
 
+
 def generate() -> None:
-    import json
-    from pathlib import Path
+    temp_path = Path(ANALYSIS_TEMP_FILE)
+    if not temp_path.exists():
+        raise FileNotFoundError(
+            f"Analysis temp file not found: {ANALYSIS_TEMP_FILE}. "
+            "Make sure the analyzer step ran successfully first."
+        )
 
-    from config import GRAVEYARD_FOLDER
+    with temp_path.open(encoding="utf-8") as f:
+        temp_data = json.load(f)
 
-    for graveyard_file in Path(GRAVEYARD_FOLDER).glob("*.json"):
-        with graveyard_file.open() as f:
-            issues = json.load(f)
-        for issue in issues:
-            if not issue.get("already_resurrected"):
-                generate_resurrection(issue, {})
-                return  # 1 ανά run
+    issue = temp_data["issue"]
+    analysis = temp_data["analysis"]
+
+    generate_resurrection(issue, analysis)
+
+    # Clean up temp file after successful generation
+    temp_path.unlink(missing_ok=True)
+    LOGGER.info("Temp analysis file cleaned up.")
