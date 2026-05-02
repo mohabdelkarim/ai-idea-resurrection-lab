@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -17,8 +18,12 @@ LOGGER = logging.getLogger(__name__)
 
 
 def _sanitize(text: Any) -> str:
+    """UTF-8 clean + escape markdown pipe characters to prevent table breakage."""
     s = str(text) if not isinstance(text, str) else text
-    return s.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
+    s = s.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
+    # Escape pipe chars that would break Markdown table rows
+    s = s.replace("|", "\\|")
+    return s
 
 
 def _deep_sanitize(value: Any) -> Any:
@@ -31,7 +36,30 @@ def _deep_sanitize(value: Any) -> Any:
     return value
 
 
-README_TEMPLATE = '''\
+def replace_section(content: str, section_name: str, new_section: str) -> str:
+    """
+    Replace a <!-- SECTION:name --> ... <!-- END:name --> block in content.
+    If the block is not found, appends the new section at the end.
+    This function is used by vote_manager.py and other scripts.
+    """
+    start_tag = f"<!-- SECTION:{section_name} -->"
+    end_tag = f"<!-- END:{section_name} -->"
+    pattern = re.compile(
+        re.escape(start_tag) + r".*?" + re.escape(end_tag),
+        re.DOTALL,
+    )
+    replacement = f"{start_tag}\n{new_section}\n{end_tag}"
+    if pattern.search(content):
+        return pattern.sub(replacement, content)
+    # Block not found — append at end
+    return content.rstrip() + "\n\n" + replacement + "\n"
+
+
+# ---------------------------------------------------------------------------
+# README template — {{ and }} are literal braces; {name} are format slots
+# ---------------------------------------------------------------------------
+
+README_TEMPLATE = """\
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=AI%20Idea%20Resurrection%20Lab&fontSize=36&fontColor=ffffff&fontAlignY=38&desc=Abandoned%20issues%20brought%20back%20to%20life%20by%20AI&descAlignY=58&descSize=16&animation=fadeIn" />
@@ -47,12 +75,12 @@ README_TEMPLATE = '''\
 
 ```python
 def resurrect(issue):
-    """
+    \"\"\"
     SCAN   -> find forgotten, stale & abandoned GitHub issues
     FEED   -> run them through Groq-powered AI analysis
     GET    -> technical breakdown + PoC code + impact score
     SHIP   -> auto-publish results daily via GitHub Actions
-    """
+    \"\"\"
     return Revival(issue).analyze().score().publish()  # every single day
 ```
 
@@ -129,9 +157,9 @@ and turning forgotten ideas into actionable engineering.
 
 | | |
 |:---:|:---|
-| \U0001f6e0\ufe0f **Tested AI tool** | Picked & tried so you don\'t waste your time |
+| \U0001f6e0\ufe0f **Tested AI tool** | Picked & tried so you don't waste your time |
 | \u26a1 **Ready workflow** | Step-by-step, under 30 minutes to ship |
-| \U0001f3af **Honest verdict** | What works, what doesn\'t &mdash; no hype, no affiliates |
+| \U0001f3af **Honest verdict** | What works, what doesn't &mdash; no hype, no affiliates |
 | \U0001f4e5 **In your inbox** | Free, every week, no paywalls ever |
 
 <br/>
@@ -157,7 +185,8 @@ and turning forgotten ideas into actionable engineering.
 <br/>
 
 [![GitHub](https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github)](https://github.com/mohabdelkarim)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)\n
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
+
 </div>
 
 ---
@@ -166,8 +195,12 @@ and turning forgotten ideas into actionable engineering.
 {footer}<!-- END:footer -->
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" />
-'''
+"""
 
+
+# ---------------------------------------------------------------------------
+# Section builders
+# ---------------------------------------------------------------------------
 
 def build_header_section() -> str:
     return (
@@ -270,15 +303,28 @@ def build_footer_section(progress: dict[str, Any]) -> str:
     )
 
 
+# ---------------------------------------------------------------------------
+# Main generator
+# ---------------------------------------------------------------------------
+
 def generate_readme(progress: dict[str, Any]) -> str:
+    """Generate the full README string from progress data."""
     progress = _deep_sanitize(progress)
-    content = README_TEMPLATE.format(
-        header=build_header_section(),
-        stats=build_stats_section(progress),
-        hof=build_hall_of_fame_section(progress),
-        last=build_last_section(progress),
-        footer=build_footer_section(progress),
-    )
+
+    # Build each dynamic section first, then do a simple string replacement
+    # to avoid str.format() crashing on { } chars inside issue titles.
+    sections = {
+        "header": build_header_section(),
+        "stats": build_stats_section(progress),
+        "hof": build_hall_of_fame_section(progress),
+        "last": build_last_section(progress),
+        "footer": build_footer_section(progress),
+    }
+
+    content = README_TEMPLATE
+    for key, value in sections.items():
+        content = content.replace("{" + key + "}", value)
+
     return content.rstrip() + "\n"
 
 
