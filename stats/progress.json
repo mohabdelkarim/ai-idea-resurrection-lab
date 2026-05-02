@@ -1,47 +1,47 @@
 {
-  "last_updated": "2026-05-02T14:15:25",
+  "last_updated": "2026-05-02T18:24:39",
   "total_resurrections": 1,
   "total_repos_covered": 1,
   "average_impact_score": 8.0,
   "average_effort_hours": 120.0,
   "top_tags": [
-    "capnproto",
-    "typescript",
-    "rust",
-    "webassembly",
-    "deno"
+    "terraform",
+    "hcl",
+    "conditionals",
+    "lists",
+    "maps"
   ],
   "hall_of_fame": [
     {
       "date": "2026-05-02",
-      "repo": "denoland/deno",
-      "issue_number": 269,
-      "title": "Protobuf seems like a lot of overhead for this use case?",
+      "repo": "hashicorp/terraform",
+      "issue_number": 12453,
+      "title": "Feature request: Allow using lists and maps with conditionals",
       "impact_score": 8,
-      "one_line_why": "The proposed system will succeed because it addresses the current drawbacks of using Protobuf for intra-process communications within Deno, including high overhead and limited support...",
-      "original_url": "https://github.com/denoland/deno/issues/269"
+      "one_line_why": "The Terraform ecosystem has evolved significantly since 2019, with advancements in HCL support, improved tooling, and growing demand for more expressive configuration languages, making this...",
+      "original_url": "https://github.com/hashicorp/terraform/issues/12453"
     }
   ],
   "last_resurrection": {
     "date": "2026-05-02",
-    "repo": "denoland/deno",
-    "issue_number": 269,
-    "title": "Protobuf seems like a lot of overhead for this use case?",
-    "reactions": 113,
-    "abandoned_date": "2018-08-03T02:00:23Z",
-    "one_line_why": "The proposed system will succeed because it addresses the current drawbacks of using Protobuf for intra-process communications within Deno, including high overhead and limited support...",
+    "repo": "hashicorp/terraform",
+    "issue_number": 12453,
+    "title": "Feature request: Allow using lists and maps with conditionals",
+    "reactions": 177,
+    "abandoned_date": "2019-07-24T01:51:39Z",
+    "one_line_why": "The Terraform ecosystem has evolved significantly since 2019, with advancements in HCL support, improved tooling, and growing demand for more expressive configuration languages, making this...",
     "impact_score": 8,
     "effort_hours": 120.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "capnproto",
-      "typescript",
-      "rust",
-      "webassembly",
-      "deno"
+      "terraform",
+      "hcl",
+      "conditionals",
+      "lists",
+      "maps"
     ],
-    "original_url": "https://github.com/denoland/deno/issues/269"
+    "original_url": "https://github.com/hashicorp/terraform/issues/12453"
   }
 }

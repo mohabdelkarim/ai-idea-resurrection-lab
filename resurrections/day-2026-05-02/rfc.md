@@ -1,22 +1,22 @@
-# RFC: Protobuf seems like a lot of overhead for this use case?
+# RFC: Feature request: Allow using lists and maps with conditionals
 
 ## Summary
-This RFC proposes the adoption of Cap'n Proto as the primary protocol for intra-process communications within Deno. The proposal includes a design for a central message broker that handles communication between different languages and processes.
+This RFC proposes the addition of support for using lists and maps with conditionals in Terraform configurations. The proposed feature would allow users to write more expressive and dynamic configurations, making it easier to manage complex infrastructure deployments.
 
 ## Motivation
-The current use of Protobuf for intra-process communications within Deno has several drawbacks, including high overhead and limited support for language-agnostic communication. Cap'n Proto offers a more efficient and scalable solution that is well-supported in multiple languages, including TypeScript.
+The motivation behind this proposal is to address the long-standing community request for more flexible and powerful configuration syntax. The current limitations of the Terraform configuration language make it difficult for users to express complex logic and conditional statements, leading to workarounds and hacks. By adding support for lists and maps with conditionals, we can provide a more intuitive and expressive way for users to define their infrastructure configurations.
 
 ## Detailed Design
-The proposed system would consist of a central message broker that handles communication between different languages and processes. The message broker would be implemented in Rust, utilizing the capnp-rust library, and would provide a RESTful API for sending and receiving messages. The API would be designed using the OpenAPI specification and would support both JSON and Protobuf serialization formats.
+The proposed design involves extending the Terraform HCL parser and evaluator to support conditional expressions with lists and maps. This would require updates to the TypeCheck method to remove the explicit prohibition on using conditionals with lists and maps. Additionally, the Terraform core would need to be modified to handle the new syntax and semantics. The design would also involve creating new APIs and data structures to represent the conditional expressions and their evaluated results.
 
 ## Drawbacks
-One potential drawback of the proposed system is the need to adopt a new protocol, which may require significant changes to existing code. Additionally, the use of WebAssembly may introduce additional complexity and overhead.
+One potential drawback of this proposal is the added complexity to the Terraform configuration language and the potential for users to write more complex and harder-to-debug configurations. However, we believe that the benefits of this feature outweigh the drawbacks, and that the added complexity can be managed through proper documentation, testing, and tooling support.
 
 ## Alternatives
-Alternative solutions to the proposed system include the continued use of Protobuf or the adoption of a different protocol, such as gRPC. However, these alternatives do not offer the same level of efficiency and scalability as Cap'n Proto.
+One alternative to this proposal is to continue using the current workarounds and hacks to achieve the desired functionality. However, this approach is not scalable and can lead to maintenance and debugging issues. Another alternative is to use external tools and scripts to generate the desired configurations, but this approach can be cumbersome and error-prone.
 
 ## Unresolved Questions
-One unresolved question is the potential impact of the proposed system on the performance and scalability of Deno. Additional testing and evaluation will be necessary to fully understand the effects of the proposed system.
+One unresolved question is how to handle errors and edge cases when evaluating conditional expressions with lists and maps. Another question is how to provide proper tooling support for this feature, including syntax highlighting, code completion, and debugging. These questions would need to be addressed through further discussion and experimentation.
 
 ---
 

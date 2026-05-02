@@ -15,7 +15,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/12453",
     "author_login": "brikis98",
     "author_profile": "https://github.com/brikis98",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",
