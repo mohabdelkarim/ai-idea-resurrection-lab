@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-import sys, os
+import sys
+import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import json
 import logging
-import os
-import sys
 from pathlib import Path
 from typing import Any, Callable
 
-from config import RESURRECTION_BASE_FOLDER, STATS_FILE, VOTES_FILE
+from config import RESURRECTION_BASE_FOLDER, STATS_FILE
 
 
 logging.basicConfig(
@@ -23,7 +23,6 @@ LOGGER = logging.getLogger(__name__)
 REQUIRED_ENV_VARS = (
     "GITHUB_TOKEN",
     "GROQ_API_KEY",
-
 )
 
 
@@ -32,10 +31,8 @@ def validate_env() -> None:
     for var_name in REQUIRED_ENV_VARS:
         if not os.environ.get(var_name, "").strip():
             missing.append(var_name)
-
     if not missing:
         return
-
     for var_name in missing:
         LOGGER.error("Missing required environment variable: %s", var_name)
     sys.exit(1)
@@ -44,9 +41,7 @@ def validate_env() -> None:
 def export_to_github_env(key: str, value: str) -> None:
     env_file = os.environ.get("GITHUB_ENV", "")
     if not env_file:
-        LOGGER.debug("GITHUB_ENV is not set. Skipping export for %s.", key)
         return
-
     safe_value = value.replace("\r", " ").replace("\n", " ").strip()
     path = Path(env_file)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -72,20 +67,15 @@ def load_latest_meta() -> dict[str, Any]:
     except Exception as error:
         LOGGER.error("Failed searching for latest meta.json: %s", error)
         return {}
-
     if not candidates:
         LOGGER.warning("No resurrection meta.json files found under %s", base)
         return {}
-
     latest = candidates[0]
     try:
-        import json
-
         with latest.open("r", encoding="utf-8") as handle:
             parsed = json.load(handle)
         if isinstance(parsed, dict):
             return parsed
-        LOGGER.warning("Latest meta file is not a JSON object: %s", latest)
         return {}
     except Exception as error:
         LOGGER.error("Failed reading latest meta.json %s: %s", latest, error)
@@ -109,40 +99,35 @@ def run_pipeline() -> None:
 
     def _scanner_step() -> None:
         from scanner import scan_issues
-
         scan_issues()
 
     def _analyzer_step() -> None:
         from analyzer import analyze
-
         analyze()
 
     def _generator_step() -> None:
         from generator import generate
-
         generate()
 
     def _stats_step() -> None:
         from stats import update_stats
-
         update_stats()
 
     def _readme_step() -> None:
         from readme_generator import update_readme
-
         update_readme()
 
     def _vote_step() -> None:
         from vote_manager import run_vote
-        from stats import load_progress
 
-        progress = load_progress()
-        last = progress.get("last_resurrection") or {}
+        # Load the freshest meta.json directly — do NOT use load_progress()
+        # because progress.last_resurrection is nested and may not have all fields.
+        meta = load_latest_meta()
         token = os.environ.get("GITHUB_TOKEN", "")
-        if last:
-            run_vote(last, token)
+        if meta:
+            run_vote(meta, token)
         else:
-            LOGGER.warning("No resurrection found for vote.")
+            LOGGER.warning("No resurrection found for vote step.")
 
     results.append(run_step("GitHub Issue Scanner", _scanner_step))
     results.append(run_step("AI Analyzer", _analyzer_step))
@@ -161,7 +146,6 @@ def run_pipeline() -> None:
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
-
     load_dotenv()
     validate_env()
     run_pipeline()
