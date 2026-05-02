@@ -1,22 +1,17 @@
-# RFC: 求不要更新了，老子学不动了
+# RFC: 请勿在 Issues 页面无意义灌水，此类行为属于对 Issues 区的滥用。
 
 ## Summary
-   This RFC proposes a new feature that allows the community to submit requests and track the progress of the requests. The feature would use a combination of natural language processing (NLP) and machine learning (ML) to analyze and understand the community requests.
-
-   ## Motivation
-   The motivation behind this feature is to provide a way for the community to submit requests and track the progress of the requests. This would allow the community to have a more active role in the development of the project and would provide a way for the developers to prioritize the requests based on the community demand.
-
-   ## Detailed Design
-   The detailed design for this feature would involve creating a user interface that allows the community to submit requests and track the progress of the requests. The interface would be built using modern web technologies such as React and TypeScript. The backend would be built using Deno and Rust, and would involve creating a RESTful API that allows the frontend to interact with the backend.
-
-   ## Drawbacks
-   One of the drawbacks of this feature is that it would require a significant amount of development time and resources. Additionally, the feature would require a large amount of data to train the ML models, which could be a challenge.
-
-   ## Alternatives
-   One of the alternatives to this feature is to use a existing issue tracking system such as GitHub Issues. However, this would not provide the same level of customization and flexibility as a custom-built solution.
-
-   ## Unresolved Questions
-   One of the unresolved questions is how to prioritize the requests based on the community demand. This would require a way to measure the demand and prioritize the requests accordingly. Additionally, there is a question of how to handle the requests that are not feasible or are not aligned with the project goals.
+The proposed system aims to develop a comprehensive community guidelines system for the Deno repository, including customizable issue templates, automated moderation bots, and AI-powered issue filtering.
+## Motivation
+The Deno community has grown significantly since the issue was originally filed, and the need for a robust community guidelines system has become increasingly important. The proposed system would help to reduce the noise in the issue tracker, improve the overall quality of issues, and enhance the community's experience.
+## Detailed Design
+The system would consist of three main components: issue filtering, moderation, and analytics. The issue filtering component would utilize machine learning-based models to identify and flag irrelevant or abusive issues. The moderation component would utilize automated moderation bots to close or label issues based on the filtering results. The analytics component would track issue trends and moderation effectiveness.
+## Drawbacks
+One potential drawback of the proposed system is the risk of false positives or negatives, where legitimate issues are flagged as irrelevant or abusive, or vice versa. To mitigate this risk, the system would include a feedback mechanism, allowing users to report false positives and negatives, and a data analytics component to track issue trends and moderation effectiveness.
+## Alternatives
+One alternative approach would be to utilize a purely manual moderation process, where human moderators review and close or label issues. However, this approach would be time-consuming and labor-intensive, and may not be scalable for large repositories like Deno.
+## Unresolved Questions
+One unresolved question is how to balance the trade-off between false positives and false negatives, and how to determine the optimal threshold for the issue filtering model. Additionally, there may be concerns around bias in the machine learning models, and how to ensure that the system is fair and transparent.
 
 ---
 
