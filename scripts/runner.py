@@ -122,15 +122,6 @@ def run_pipeline() -> None:
         from readme_generator import update_readme
         update_readme()
 
-    def _vote_step() -> None:
-        from vote_manager import run_vote
-        meta = load_latest_meta()
-        token = os.environ.get("GITHUB_TOKEN", "")
-        if meta:
-            run_vote(meta, token)
-        else:
-            LOGGER.warning("No resurrection found for vote step.")
-
     def _commenter_step() -> None:
         from issue_commenter import post_resurrection_comment
         meta = load_latest_meta()
@@ -146,7 +137,6 @@ def run_pipeline() -> None:
     results.append(run_step("Score Card Generator", _score_card_step))
     results.append(run_step("Stats Engine", _stats_step))
     results.append(run_step("README Generator", _readme_step))
-    results.append(run_step("Community Vote", _vote_step))
     results.append(run_step("Original Issue Commenter", _commenter_step))
 
     meta = load_latest_meta()
