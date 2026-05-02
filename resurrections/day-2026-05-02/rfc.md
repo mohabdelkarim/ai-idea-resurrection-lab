@@ -1,17 +1,22 @@
-# RFC: 请勿在 Issues 页面无意义灌水，此类行为属于对 Issues 区的滥用。
+# RFC: Protobuf seems like a lot of overhead for this use case?
 
 ## Summary
-The proposed system aims to develop a comprehensive community guidelines system for the Deno repository, including customizable issue templates, automated moderation bots, and AI-powered issue filtering.
+This RFC proposes the adoption of Cap'n Proto as the primary protocol for intra-process communications within Deno. The proposal includes a design for a central message broker that handles communication between different languages and processes.
+
 ## Motivation
-The Deno community has grown significantly since the issue was originally filed, and the need for a robust community guidelines system has become increasingly important. The proposed system would help to reduce the noise in the issue tracker, improve the overall quality of issues, and enhance the community's experience.
+The current use of Protobuf for intra-process communications within Deno has several drawbacks, including high overhead and limited support for language-agnostic communication. Cap'n Proto offers a more efficient and scalable solution that is well-supported in multiple languages, including TypeScript.
+
 ## Detailed Design
-The system would consist of three main components: issue filtering, moderation, and analytics. The issue filtering component would utilize machine learning-based models to identify and flag irrelevant or abusive issues. The moderation component would utilize automated moderation bots to close or label issues based on the filtering results. The analytics component would track issue trends and moderation effectiveness.
+The proposed system would consist of a central message broker that handles communication between different languages and processes. The message broker would be implemented in Rust, utilizing the capnp-rust library, and would provide a RESTful API for sending and receiving messages. The API would be designed using the OpenAPI specification and would support both JSON and Protobuf serialization formats.
+
 ## Drawbacks
-One potential drawback of the proposed system is the risk of false positives or negatives, where legitimate issues are flagged as irrelevant or abusive, or vice versa. To mitigate this risk, the system would include a feedback mechanism, allowing users to report false positives and negatives, and a data analytics component to track issue trends and moderation effectiveness.
+One potential drawback of the proposed system is the need to adopt a new protocol, which may require significant changes to existing code. Additionally, the use of WebAssembly may introduce additional complexity and overhead.
+
 ## Alternatives
-One alternative approach would be to utilize a purely manual moderation process, where human moderators review and close or label issues. However, this approach would be time-consuming and labor-intensive, and may not be scalable for large repositories like Deno.
+Alternative solutions to the proposed system include the continued use of Protobuf or the adoption of a different protocol, such as gRPC. However, these alternatives do not offer the same level of efficiency and scalability as Cap'n Proto.
+
 ## Unresolved Questions
-One unresolved question is how to balance the trade-off between false positives and false negatives, and how to determine the optimal threshold for the issue filtering model. Additionally, there may be concerns around bias in the machine learning models, and how to ensure that the system is fair and transparent.
+One unresolved question is the potential impact of the proposed system on the performance and scalability of Deno. Additional testing and evaluation will be necessary to fully understand the effects of the proposed system.
 
 ---
 
