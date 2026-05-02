@@ -1,17 +1,26 @@
 {
-  "last_updated": "2026-05-02T19:16:03",
-  "total_resurrections": 2,
+  "last_updated": "2026-05-02T19:23:04",
+  "total_resurrections": 3,
   "total_repos_covered": 1,
   "average_impact_score": 8.0,
   "average_effort_hours": 120.0,
   "top_tags": [
     "terraform",
     "infrastructure-as-code",
-    "variable-management",
-    "configuration-language",
-    "infrastructure as code"
+    "aws",
+    "autoscaling",
+    "variable-management"
   ],
   "hall_of_fame": [
+    {
+      "date": "2026-05-02",
+      "repo": "hashicorp/terraform",
+      "issue_number": 1552,
+      "title": "aws: Allow rolling updates for ASGs",
+      "impact_score": 8,
+      "one_line_why": "The introduction of Terraform 1.0 and the revamped AWS provider, combined with the growing demand for more sophisticated deployment strategies and the increased adoption of...",
+      "original_url": "https://github.com/hashicorp/terraform/issues/1552"
+    },
     {
       "date": "2026-05-02",
       "repo": "hashicorp/terraform",
@@ -34,11 +43,11 @@
   "last_resurrection": {
     "date": "2026-05-02",
     "repo": "hashicorp/terraform",
-    "issue_number": 4084,
-    "title": "Intermediate variables (OR: add interpolation support to input variables)",
-    "reactions": 122,
-    "abandoned_date": "2017-08-21T22:33:45Z",
-    "one_line_why": "The proposed feature will succeed because it addresses a long-standing limitation in the Terraform configuration language, providing a more robust and flexible variable system that...",
+    "issue_number": 1552,
+    "title": "aws: Allow rolling updates for ASGs",
+    "reactions": 70,
+    "abandoned_date": "2017-03-30T06:39:41Z",
+    "one_line_why": "The introduction of Terraform 1.0 and the revamped AWS provider, combined with the growing demand for more sophisticated deployment strategies and the increased adoption of...",
     "impact_score": 8,
     "effort_hours": 120.0,
     "has_poc": true,
@@ -46,10 +55,10 @@
     "poc_language": "python",
     "technology_tags": [
       "terraform",
-      "infrastructure-as-code",
-      "variable-management",
-      "configuration-language"
+      "aws",
+      "autoscaling",
+      "infrastructure-as-code"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/4084"
+    "original_url": "https://github.com/hashicorp/terraform/issues/1552"
   }
 }
