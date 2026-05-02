@@ -52,7 +52,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/4084",
     "author_login": "mrwilby",
     "author_profile": "https://github.com/mrwilby",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",
