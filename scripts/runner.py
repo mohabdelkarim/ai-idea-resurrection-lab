@@ -9,8 +9,7 @@ import logging
 from pathlib import Path
 from typing import Any, Callable
 
-from config import RESURRECTION_BASE_FOLDER, STATS_FILE
-
+from config import RESURRECTION_BASE_FOLDER
 
 logging.basicConfig(
     level=logging.INFO,
@@ -18,7 +17,6 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 LOGGER = logging.getLogger(__name__)
-
 
 REQUIRED_ENV_VARS = (
     "GITHUB_TOKEN",
@@ -62,11 +60,7 @@ def run_step(step_name: str, fn: Callable[[], None]) -> bool:
 
 def load_latest_meta() -> dict[str, Any]:
     base = Path(RESURRECTION_BASE_FOLDER)
-    try:
-        candidates = sorted(base.glob("day-*/meta.json"), reverse=True)
-    except Exception as error:
-        LOGGER.error("Failed searching for latest meta.json: %s", error)
-        return {}
+    candidates = sorted(base.glob("day-*/meta.json"), reverse=True)
     if not candidates:
         LOGGER.warning("No resurrection meta.json files found under %s", base)
         return {}
@@ -74,9 +68,7 @@ def load_latest_meta() -> dict[str, Any]:
     try:
         with latest.open("r", encoding="utf-8") as handle:
             parsed = json.load(handle)
-        if isinstance(parsed, dict):
-            return parsed
-        return {}
+        return parsed if isinstance(parsed, dict) else {}
     except Exception as error:
         LOGGER.error("Failed reading latest meta.json %s: %s", latest, error)
         return {}
@@ -109,6 +101,19 @@ def run_pipeline() -> None:
         from generator import generate
         generate()
 
+    def _score_card_step() -> None:
+        meta = load_latest_meta()
+        if not meta:
+            LOGGER.warning("[ScoreCard] No meta found. Skipping score card.")
+            return
+        from score_card import generate_for_resurrection
+        date = str(meta.get("date", ""))
+        folder = Path(RESURRECTION_BASE_FOLDER) / f"day-{date}" if date else None
+        if folder and folder.exists():
+            generate_for_resurrection(folder, meta)
+        else:
+            LOGGER.warning("[ScoreCard] Could not find folder for date %s.", date)
+
     def _stats_step() -> None:
         from stats import update_stats
         update_stats()
@@ -119,9 +124,6 @@ def run_pipeline() -> None:
 
     def _vote_step() -> None:
         from vote_manager import run_vote
-
-        # Load the freshest meta.json directly — do NOT use load_progress()
-        # because progress.last_resurrection is nested and may not have all fields.
         meta = load_latest_meta()
         token = os.environ.get("GITHUB_TOKEN", "")
         if meta:
@@ -129,16 +131,27 @@ def run_pipeline() -> None:
         else:
             LOGGER.warning("No resurrection found for vote step.")
 
+    def _commenter_step() -> None:
+        from issue_commenter import post_resurrection_comment
+        meta = load_latest_meta()
+        token = os.environ.get("GITHUB_TOKEN", "")
+        if meta and token:
+            post_resurrection_comment(meta, token)
+        else:
+            LOGGER.warning("[Commenter] Missing meta or token. Skipping.")
+
     results.append(run_step("GitHub Issue Scanner", _scanner_step))
     results.append(run_step("AI Analyzer", _analyzer_step))
     results.append(run_step("File Generator", _generator_step))
+    results.append(run_step("Score Card Generator", _score_card_step))
     results.append(run_step("Stats Engine", _stats_step))
     results.append(run_step("README Generator", _readme_step))
     results.append(run_step("Community Vote", _vote_step))
+    results.append(run_step("Original Issue Commenter", _commenter_step))
 
     meta = load_latest_meta()
     export_commit_vars(meta)
-    LOGGER.info("Pipeline complete.")
+    LOGGER.info("Pipeline complete. Steps: %d/%d passed.", sum(results), len(results))
 
     if not all(results):
         sys.exit(1)
