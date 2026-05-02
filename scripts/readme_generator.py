@@ -32,7 +32,7 @@ def _deep_sanitize(value: Any) -> Any:
 
 
 # ---------------------------------------------------------------------------
-# Full README template -- static parts are NEVER touched by the bot
+# Full README template
 # ---------------------------------------------------------------------------
 
 README_TEMPLATE = '''\
@@ -86,18 +86,6 @@ and turning forgotten ideas into actionable engineering.
 
 ## \u2699\ufe0f Tech Stack
 
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq_LPU-FF6B35?style=for-the-badge&logoColor=white)
-![OpenAI](https://img.shields.io/badge/LLM_API-412991?style=for-the-badge&logo=openai&logoColor=white)
-![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
-
-</div>
-
-<br/>
-
 <table>
   <tr>
     <th>Layer</th>
@@ -107,7 +95,7 @@ and turning forgotten ideas into actionable engineering.
   <tr>
     <td>\U0001f916 AI Engine</td>
     <td><a href="https://groq.com">Groq LPU</a></td>
-    <td>Fastest inference available -- sub-second responses at scale</td>
+    <td>Fastest inference available &mdash; sub-second responses at scale</td>
   </tr>
   <tr>
     <td>\U0001f50e Data Source</td>
@@ -117,7 +105,7 @@ and turning forgotten ideas into actionable engineering.
   <tr>
     <td>\U0001f504 Automation</td>
     <td>GitHub Actions</td>
-    <td>Daily cron job -- zero manual intervention required</td>
+    <td>Daily cron job &mdash; zero manual intervention required</td>
   </tr>
   <tr>
     <td>\U0001f4dd Output</td>
@@ -127,31 +115,27 @@ and turning forgotten ideas into actionable engineering.
   <tr>
     <td>\U0001f40d Language</td>
     <td>Python 3.11</td>
-    <td>Clean pipeline: scanner, analyzer, generator, publisher</td>
+    <td>Clean pipeline: scanner \u2192 analyzer \u2192 generator \u2192 publisher</td>
   </tr>
 </table>
 
 ---
 
-## \U0001f4e8 AI Tool Drop -- Weekly Newsletter
+## \U0001f4e8 AI Tool Drop &mdash; Weekly Newsletter
 
 <div align="center">
 
-<img src="https://img.shields.io/badge/Free-Weekly-00D9A5?style=for-the-badge&logoColor=white" />
-<img src="https://img.shields.io/badge/No_Paywalls-No_Affiliates-6C63FF?style=for-the-badge&logoColor=white" />
-<img src="https://img.shields.io/badge/Honest-Verdicts_Only-FF6B35?style=for-the-badge&logoColor=white" />
-
-<br/><br/>
-
-| \U0001f6e0\ufe0f What you get | \U0001f4c4 Details |
-|---|---|
-| **One AI tool** | Picked, installed and tested -- so you don\'t waste your time |
-| **One real workflow** | Step-by-step, under 30 minutes to implement |
-| **One honest verdict** | What works, what doesn\'t, no hype |
-| **Zero noise** | No affiliate links, no paywalls, no fluff |
-| **Every week** | Lands in your inbox, free forever |
-
-<br/>
+```
+\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510
+\u2502  \U0001f4e5  FREE  \u00b7  WEEKLY  \u00b7  NO FLUFF              \u2502
+\u2502                                           \u2502
+\u2502  One AI tool    \u2192  tested for you         \u2502
+\u2502  One workflow   \u2192  under 30 min           \u2502
+\u2502  One verdict    \u2192  honest, no hype        \u2502
+\u2502  Zero noise     \u2192  no affiliates ever     \u2502
+\u2502  Every week     \u2192  in your inbox, free    \u2502
+\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518
+```
 
 **[Subscribe Free](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
 
@@ -161,16 +145,11 @@ and turning forgotten ideas into actionable engineering.
 
 ---
 
-<!-- SECTION:community-vote -->
-{vote}<!-- END:community-vote -->
-
----
-
 ## \U0001f468\u200d\U0001f4bb About the Builder
 
 <div align="center">
 
-**Mo Abdelkarim** -- Software Engineer
+**Mo Abdelkarim** &mdash; Software Engineer
 
 *Building AI-powered tools that solve real engineering problems.*
 
@@ -284,50 +263,12 @@ def build_last_section(progress: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def build_vote_section(progress: dict[str, Any]) -> str:
-    last = progress.get("last_resurrection")
-    discussion_url = _sanitize(progress.get("latest_discussion_url", ""))
-    if not discussion_url:
-        discussion_url = "https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions"
-
-    title_line = ""
-    meta_line = ""
-    if isinstance(last, dict):
-        title = _sanitize(last.get("title", "Untitled"))
-        original_url = _sanitize(last.get("original_url", ""))
-        repo = _sanitize(last.get("repo", ""))
-        impact_score = int(last.get("impact_score", 0))
-        title_line = f"> **Latest:** [{title}]({original_url})"
-        meta_line = f"> `{repo}` &nbsp;&#183;&nbsp; Impact **{impact_score}/10**"
-
-    lines = [
-        "## \U0001f5f3\ufe0f Community Vote",
-        "",
-        "<div align=\"center\">",
-        "",
-        "**What should we resurrect next?**",
-        "",
-        "<br/>",
-        "",
-        f"[![Vote Yes](https://img.shields.io/badge/\U0001f44d%20Yes%2C_implement_it!-2ea44f?style=for-the-badge)]({discussion_url})",
-        f"[![Vote No](https://img.shields.io/badge/\U0001f914%20Needs_more_work-d93f0b?style=for-the-badge)]({discussion_url})",
-        f"[![Discuss](https://img.shields.io/badge/\U0001f4ac%20Join_the_discussion-0A66C2?style=for-the-badge)]({discussion_url})",
-        "",
-        "<br/>",
-        "",
-    ]
-    if title_line:
-        lines += [title_line, meta_line, ""]
-    lines.append("</div>")
-    return "\n".join(lines)
-
-
 def build_footer_section(progress: dict[str, Any]) -> str:
     last_updated = _sanitize(progress.get("last_updated", ""))
     return (
         "<div align=\"center\">\n"
-        f"<sub>\U0001f9ec Auto-generated by <b>{BOT_NAME}</b> "
-        f"Last run: {last_updated} "
+        f"<sub>\U0001f9ec Auto-generated by <b>{BOT_NAME}</b> &nbsp;\u00b7&nbsp; "
+        f"Last run: {last_updated} &nbsp;\u00b7&nbsp; "
         "<a href=\"LICENSE\">MIT License</a></sub>\n"
         "</div>\n"
     )
@@ -344,7 +285,6 @@ def generate_readme(progress: dict[str, Any]) -> str:
         stats=build_stats_section(progress),
         hof=build_hall_of_fame_section(progress),
         last=build_last_section(progress),
-        vote=build_vote_section(progress),
         footer=build_footer_section(progress),
     )
     return content.rstrip() + "\n"
