@@ -140,21 +140,26 @@ and turning forgotten ideas into actionable engineering.
 
 <div align="center">
 
-```
-┌───────────────────────────────────────────┐
-│  📥  FREE  ·  WEEKLY  ·  NO FLUFF              │
-│                                           │
-│  One AI tool    →  tested for you         │
-│  One workflow   →  under 30 min           │
-│  One verdict    →  honest, no hype        │
-│  Zero noise     →  no affiliates ever     │
-│  Every week     →  in your inbox, free    │
-└───────────────────────────────────────────┘
-```
+<br/>
 
-**[Subscribe Free](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+> *One AI tool. One workflow. One honest verdict. Every week. Free.*
 
-<sub>Join developers who want to stay sharp without the noise.</sub>
+<br/>
+
+| | |
+|:---:|:---|
+| 🛠️ **Tested AI tool** | Picked & tried so you don't waste your time |
+| ⚡ **Ready workflow** | Step-by-step, under 30 minutes to ship |
+| 🎯 **Honest verdict** | What works, what doesn't &mdash; no hype, no affiliates |
+| 📥 **In your inbox** | Free, every week, no paywalls ever |
+
+<br/>
+
+**[Subscribe Free &rarr;](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+
+<sub>Built for developers who want to stay sharp without the noise.</sub>
+
+<br/>
 
 </div>
 

@@ -31,10 +31,6 @@ def _deep_sanitize(value: Any) -> Any:
     return value
 
 
-# ---------------------------------------------------------------------------
-# Full README template
-# ---------------------------------------------------------------------------
-
 README_TEMPLATE = '''\
 <div align="center">
 
@@ -60,7 +56,7 @@ def resurrect(issue):
     return Revival(issue).analyze().score().publish()  # every single day
 ```
 
-Think of it as **a robot archaeologist for open source** -- unearthing buried potential
+Think of it as **a robot archaeologist for open source**, unearthing buried potential
 and turning forgotten ideas into actionable engineering.
 
 ---
@@ -95,7 +91,7 @@ and turning forgotten ideas into actionable engineering.
   <tr>
     <td>\U0001f916 AI Engine</td>
     <td><a href="https://groq.com">Groq LPU</a></td>
-    <td>Fastest inference available &mdash; sub-second responses at scale</td>
+    <td>Fastest inference available, sub-second responses at scale</td>
   </tr>
   <tr>
     <td>\U0001f50e Data Source</td>
@@ -105,7 +101,7 @@ and turning forgotten ideas into actionable engineering.
   <tr>
     <td>\U0001f504 Automation</td>
     <td>GitHub Actions</td>
-    <td>Daily cron job &mdash; zero manual intervention required</td>
+    <td>Daily cron job, zero manual intervention required</td>
   </tr>
   <tr>
     <td>\U0001f4dd Output</td>
@@ -125,21 +121,26 @@ and turning forgotten ideas into actionable engineering.
 
 <div align="center">
 
-```
-\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510
-\u2502  \U0001f4e5  FREE  \u00b7  WEEKLY  \u00b7  NO FLUFF              \u2502
-\u2502                                           \u2502
-\u2502  One AI tool    \u2192  tested for you         \u2502
-\u2502  One workflow   \u2192  under 30 min           \u2502
-\u2502  One verdict    \u2192  honest, no hype        \u2502
-\u2502  Zero noise     \u2192  no affiliates ever     \u2502
-\u2502  Every week     \u2192  in your inbox, free    \u2502
-\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518
-```
+<br/>
 
-**[Subscribe Free](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+> *One AI tool. One workflow. One honest verdict. Every week. Free.*
 
-<sub>Join developers who want to stay sharp without the noise.</sub>
+<br/>
+
+| | |
+|:---:|:---|
+| \U0001f6e0\ufe0f **Tested AI tool** | Picked & tried so you don\'t waste your time |
+| \u26a1 **Ready workflow** | Step-by-step, under 30 minutes to ship |
+| \U0001f3af **Honest verdict** | What works, what doesn\'t &mdash; no hype, no affiliates |
+| \U0001f4e5 **In your inbox** | Free, every week, no paywalls ever |
+
+<br/>
+
+**[Subscribe Free &rarr;](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+
+<sub>Built for developers who want to stay sharp without the noise.</sub>
+
+<br/>
 
 </div>
 
@@ -156,8 +157,7 @@ and turning forgotten ideas into actionable engineering.
 <br/>
 
 [![GitHub](https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github)](https://github.com/mohabdelkarim)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
-
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)\n
 </div>
 
 ---
@@ -168,10 +168,6 @@ and turning forgotten ideas into actionable engineering.
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" />
 '''
 
-
-# ---------------------------------------------------------------------------
-# Section builders
-# ---------------------------------------------------------------------------
 
 def build_header_section() -> str:
     return (
@@ -273,10 +269,6 @@ def build_footer_section(progress: dict[str, Any]) -> str:
         "</div>\n"
     )
 
-
-# ---------------------------------------------------------------------------
-# Main generator
-# ---------------------------------------------------------------------------
 
 def generate_readme(progress: dict[str, Any]) -> str:
     progress = _deep_sanitize(progress)
