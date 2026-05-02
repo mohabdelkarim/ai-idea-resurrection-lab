@@ -17,13 +17,11 @@ LOGGER = logging.getLogger(__name__)
 
 
 def _sanitize(text: Any) -> str:
-    """Strip surrogate characters that break UTF-8 encoding."""
     s = str(text) if not isinstance(text, str) else text
     return s.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
 
 
 def _deep_sanitize(value: Any) -> Any:
-    """Recursively strip surrogate characters from an entire data structure."""
     if isinstance(value, str):
         return value.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
     if isinstance(value, dict):
@@ -33,138 +31,133 @@ def _deep_sanitize(value: Any) -> Any:
     return value
 
 
-def _wrap_section(section_name: str, body: str) -> str:
-    return f"<!-- SECTION:{section_name} -->\n{body}\n<!-- END:{section_name} -->"
-
-
 # ---------------------------------------------------------------------------
-# Static sections (written once into README_TEMPLATE, never overwritten by bot)
+# The full README template -- static parts never touched by the bot
 # ---------------------------------------------------------------------------
 
-README_TEMPLATE = """<div align="center">
+README_TEMPLATE = '''\
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=AI%20Idea%20Resurrection%20Lab&fontSize=36&fontColor=ffffff&fontAlignY=38&desc=Abandoned%20issues%20brought%20back%20to%20life%20by%20AI&descAlignY=58&descSize=16&animation=fadeIn" />
 
 <!-- SECTION:header -->
-PLACEHOLDER_HEADER
+{header}
 <!-- END:header -->
 
-<br/>
+</div>
 
 ---
 
 ## \U0001f4a1 What Is This?
 
-```
-+------------------------------------------------------------------+
-|                                                                  |
-|  SCAN    GitHub for forgotten, stale and abandoned issues        |
-|  FEED    them to an AI model (Groq-powered)                      |
-|  GET     technical analysis + PoC code + impact score           |
-|  SHIP    results automatically via GitHub Actions               |
-|                                                                  |
-+------------------------------------------------------------------+
+```python
+def resurrect(issue):
+    """
+    SCAN   -> find forgotten, stale & abandoned GitHub issues
+    FEED   -> run them through Groq-powered AI analysis
+    GET    -> technical breakdown + PoC code + impact score
+    SHIP   -> auto-publish results daily via GitHub Actions
+    """
+    return Revival(issue).analyze().score().publish()  # every single day
 ```
 
-Think of it as **a robot archaeologist for open source ideas** -- unearthing
-buried potential and turning it into actionable engineering.
-
-<br/>
+Think of it as **a robot archaeologist for open source** -- unearthing buried potential
+and turning forgotten ideas into actionable engineering.
 
 ---
 
+<div align="center">
+
 <!-- SECTION:stats -->
-PLACEHOLDER_STATS
+{stats}
 <!-- END:stats -->
 
-<br/>
+</div>
 
 ---
 
 <!-- SECTION:last -->
-PLACEHOLDER_LAST
+{last}
 <!-- END:last -->
-
-<br/>
 
 ---
 
 <!-- SECTION:hall-of-fame -->
-PLACEHOLDER_HOF
+{hof}
 <!-- END:hall-of-fame -->
-
-<br/>
 
 ---
 
-## \U0001f6e0\ufe0f Tech Stack
+## \u2699\ufe0f Tech Stack
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq_AI-FF6B35?style=for-the-badge&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+
+</div>
 
 | Layer | Technology |
 |-------|------------|
 | \U0001f916 AI Engine | [Groq](https://groq.com) -- blazing fast LLM inference |
 | \U0001f50e Data Source | GitHub Issues API |
 | \U0001f504 Automation | GitHub Actions (daily cron) |
-| \U0001f4dd Output | Structured Markdown + code snippets |
+| \U0001f4dd Output | Structured Markdown + PoC code snippets |
 | \U0001f40d Language | Python |
-
-<br/>
 
 ---
 
 ## \U0001f4e8 AI Tool Drop Newsletter
 
-```
-+-----------------------------------------------------+
-|  AI TOOL DROP -- free weekly newsletter             |
-|                                                     |
-|  One fresh AI tool, tested honestly                 |
-|  One real workflow under 30 minutes                 |
-|  One straight verdict -- no fluff                   |
-|                                                     |
-|  Free. No paywalls. No affiliate links.             |
-+-----------------------------------------------------+
-```
+<div align="center">
 
-**[Subscribe Free on Gumroad](https://mohabdelkarim.gumroad.com)**
+> **Free. Weekly. No fluff.**
 
-<br/>
+| What you get | Details |
+|---|---|
+| \U0001f6e0\ufe0f One AI tool | Tested honestly, every week |
+| \u26a1 One workflow | Under 30 minutes to implement |
+| \U0001f3af One verdict | Straight talk, no affiliate links |
+
+**[Subscribe Free](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+
+</div>
 
 ---
 
 <!-- SECTION:community-vote -->
-PLACEHOLDER_VOTE
+{vote}
 <!-- END:community-vote -->
-
-<br/>
 
 ---
 
 ## \U0001f468\u200d\U0001f4bb About the Builder
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <b>Mo Abdelkarim</b> -- Software Engineer<br/>
-      <sub>Building AI-powered tools that solve real engineering problems.</sub><br/><br/>
-      <a href="https://github.com/mohabdelkarim">
-        <img src="https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github" />
-      </a>
-      &nbsp;
-      <a href="https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/">
-        <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white" />
-      </a>
-    </td>
-  </tr>
-</table>
+<div align="center">
+
+**Mo Abdelkarim** -- Software Engineer
+
+*Building AI-powered tools that solve real engineering problems.*
+
+[![GitHub](https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github)](https://github.com/mohabdelkarim)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
 
 <br/>
+
+[![Mo\'s GitHub stats](https://github-readme-stats.vercel.app/api?username=mohabdelkarim&show_icons=true&theme=tokyonight&hide_border=true&count_private=true)](https://github.com/mohabdelkarim)
+
+</div>
 
 ---
 
 <!-- SECTION:footer -->
-PLACEHOLDER_FOOTER
+{footer}
 <!-- END:footer -->
 
-</div>
-"""
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" />
+'''
 
 
 # ---------------------------------------------------------------------------
@@ -172,17 +165,15 @@ PLACEHOLDER_FOOTER
 # ---------------------------------------------------------------------------
 
 def build_header_section() -> str:
-    body = (
-        "<br/>\n\n"
-        "> **Every abandoned GitHub issue is a spark that never ignited.**\n"
+    return (
+        "\n> **Every abandoned GitHub issue is a spark that never ignited.**\n"
         "> This lab finds them, analyses them with AI, and ships a proof-of-concept daily.\n\n"
         "<br/>\n\n"
-        "![updates daily](https://img.shields.io/badge/updates-daily-00D9A5?style=for-the-badge&logo=github-actions&logoColor=white)\n"
-        "![powered by Groq](https://img.shields.io/badge/Powered%20by-Groq-FF6B35?style=for-the-badge&logoColor=white)\n"
-        "![license MIT](https://img.shields.io/badge/License-MIT-6C63FF?style=for-the-badge)\n"
-        "![built by Mo](https://img.shields.io/badge/Built%20by-Mo%20Abdelkarim-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)"
+        "[![updates daily](https://img.shields.io/badge/updates-daily-00D9A5?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/actions)\n"
+        "[![powered by Groq](https://img.shields.io/badge/Powered%20by-Groq-FF6B35?style=for-the-badge&logoColor=white)](https://groq.com)\n"
+        "[![license MIT](https://img.shields.io/badge/License-MIT-6C63FF?style=for-the-badge)](LICENSE)\n"
+        "[![built by Mo](https://img.shields.io/badge/Built%20by-Mo%20Abdelkarim-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)\n"
     )
-    return body
 
 
 def build_stats_section(progress: dict[str, Any]) -> str:
@@ -192,9 +183,9 @@ def build_stats_section(progress: dict[str, Any]) -> str:
     average_effort_hours = float(progress.get("average_effort_hours", 0.0))
     last_updated = _sanitize(progress.get("last_updated", ""))
 
-    body = (
+    return (
         "## \U0001f4ca Live Stats\n\n"
-        "<table align=\"center\">\n"
+        "<table>\n"
         "  <tr>\n"
         "    <td align=\"center\"><b>\U0001f9ec Resurrections</b></td>\n"
         "    <td align=\"center\"><b>\U0001f5c2\ufe0f Repos Covered</b></td>\n"
@@ -208,9 +199,8 @@ def build_stats_section(progress: dict[str, Any]) -> str:
         f"    <td align=\"center\"><code>~{average_effort_hours}h</code></td>\n"
         "  </tr>\n"
         "</table>\n\n"
-        f"<sub>\U0001f550 Last updated: {last_updated}</sub>"
+        f"<sub>\U0001f550 Last updated: {last_updated}</sub>\n"
     )
-    return body
 
 
 def build_hall_of_fame_section(progress: dict[str, Any]) -> str:
@@ -235,14 +225,12 @@ def build_hall_of_fame_section(progress: dict[str, Any]) -> str:
         lines.append(
             f"| {medal} | [{title}]({original_url}) | `{repo}` | **{impact_score}/10** | {one_line_why} |"
         )
-
     return "\n".join(lines).strip()
 
 
 def build_last_section(progress: dict[str, Any]) -> str:
     last = progress.get("last_resurrection")
     lines: list[str] = ["## \U0001f52c Latest Resurrection", ""]
-
     if isinstance(last, dict):
         title = _sanitize(last.get("title", "Untitled"))
         original_url = _sanitize(last.get("original_url", ""))
@@ -250,88 +238,70 @@ def build_last_section(progress: dict[str, Any]) -> str:
         impact_score = int(last.get("impact_score", 0))
         date = _sanitize(last.get("date", ""))
         one_line_why = _sanitize(last.get("one_line_why", ""))
-        lines.extend(
-            [
-                "<table align=\"center\">",
-                "  <tr>",
-                "    <td>",
-                f"      <b><a href=\"{original_url}\">{title}</a></b><br/>",
-                f"      <sub>\U0001f4e6 <code>{repo}</code> &nbsp;&#183;&nbsp; "
-                f"\U0001f4a5 Impact: <b>{impact_score}/10</b> &nbsp;&#183;&nbsp; "
-                f"\U0001f5d3\ufe0f {date}</sub><br/><br/>",
-                f"      <i>{one_line_why}</i>",
-                "    </td>",
-                "  </tr>",
-                "</table>",
-            ]
-        )
+        lines += [
+            "<table>",
+            "  <tr>",
+            "    <td>",
+            f"      <b><a href=\"{original_url}\">{title}</a></b><br/>",
+            f"      <sub>\U0001f4e6 <code>{repo}</code> &nbsp;&#183;&nbsp; "
+            f"\U0001f4a5 Impact: <b>{impact_score}/10</b> &nbsp;&#183;&nbsp; "
+            f"\U0001f5d3\ufe0f {date}</sub><br/><br/>",
+            f"      <i>{one_line_why}</i>",
+            "    </td>",
+            "  </tr>",
+            "</table>",
+        ]
     else:
         lines.append("> *The first resurrection is coming soon.*")
-
     return "\n".join(lines)
 
 
 def build_vote_section(progress: dict[str, Any]) -> str:
     last = progress.get("last_resurrection")
-    lines: list[str] = ["## \U0001f5f3\ufe0f Community Vote", "", "**Should we implement the latest resurrection?**", ""]
-
+    lines: list[str] = [
+        "## \U0001f5f3\ufe0f Community Vote",
+        "",
+        "**Should we implement the latest resurrection?**",
+        "",
+    ]
     if isinstance(last, dict):
         title = _sanitize(last.get("title", "Untitled"))
         original_url = _sanitize(last.get("original_url", ""))
         lines.append(f"> [{title}]({original_url})")
         lines.append("")
-
     discussion_url = _sanitize(progress.get("latest_discussion_url", ""))
     if discussion_url:
         lines.append(f"\U0001f449 **[Cast your vote on GitHub Discussions]({discussion_url})**")
     else:
         lines.append("\U0001f449 **[View GitHub Discussions](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions)**")
-
     return "\n".join(lines)
 
 
 def build_footer_section(progress: dict[str, Any]) -> str:
     last_updated = _sanitize(progress.get("last_updated", ""))
-    return f"<sub>\U0001f9ec Auto-generated by <b>{BOT_NAME}</b> Last run: {last_updated} <a href=\"LICENSE\">MIT License</a></sub>"
+    return (
+        "<div align=\"center\">\n"
+        f"<sub>\U0001f9ec Auto-generated by <b>{BOT_NAME}</b> "
+        f"Last run: {last_updated} "
+        "<a href=\"LICENSE\">MIT License</a></sub>\n"
+        "</div>\n"
+    )
 
 
 # ---------------------------------------------------------------------------
-# Section replacement helpers
-# ---------------------------------------------------------------------------
-
-def replace_section(content: str, section_name: str, new_body: str) -> str:
-    """Replace the content between SECTION markers, preserving the markers."""
-    start_marker = f"<!-- SECTION:{section_name} -->"
-    end_marker = f"<!-- END:{section_name} -->"
-    start = content.find(start_marker)
-    end = content.find(end_marker)
-
-    if start == -1 or end == -1 or end < start:
-        return content
-
-    before = content[:start + len(start_marker)]
-    after = content[end:]
-    return f"{before}\n{new_body}\n{after}"
-
-
-# ---------------------------------------------------------------------------
-# Main generator
+# Main generator -- builds from template, fills in dynamic sections
 # ---------------------------------------------------------------------------
 
 def generate_readme(progress: dict[str, Any]) -> str:
     progress = _deep_sanitize(progress)
-
-    # Start from the full creative template
-    content = README_TEMPLATE
-
-    # Replace each dynamic section body (markers stay in place)
-    content = replace_section(content, "header", build_header_section())
-    content = replace_section(content, "stats", build_stats_section(progress))
-    content = replace_section(content, "hall-of-fame", build_hall_of_fame_section(progress))
-    content = replace_section(content, "last", build_last_section(progress))
-    content = replace_section(content, "community-vote", build_vote_section(progress))
-    content = replace_section(content, "footer", build_footer_section(progress))
-
+    content = README_TEMPLATE.format(
+        header=build_header_section(),
+        stats=build_stats_section(progress),
+        hof=build_hall_of_fame_section(progress),
+        last=build_last_section(progress),
+        vote=build_vote_section(progress),
+        footer=build_footer_section(progress),
+    )
     return content.rstrip() + "\n"
 
 
@@ -345,7 +315,6 @@ def update_readme() -> None:
 
     progress = load_progress()
     readme_content = generate_readme(progress)
-
     repo_root = Path(STATS_FILE).parent.parent
     readme_path = repo_root / "README.md"
     safe_content = readme_content.encode("utf-8", errors="ignore").decode("utf-8")
