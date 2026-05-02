@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -42,7 +43,40 @@ def get_poc_extension(language: str) -> str:
     return POC_FILE_MAP.get(key, "main.py")
 
 
-def get_today_folder(base: Path) -> Path:
+def _slugify(text: str) -> str:
+    """Turn an arbitrary string into a safe lowercase slug (max 40 chars)."""
+    text = text.lower().strip()
+    # Replace slashes (repo names like owner/repo) with dashes
+    text = text.replace("/", "-")
+    # Keep only alphanumeric and hyphens
+    text = re.sub(r"[^a-z0-9-]+", "-", text)
+    # Collapse multiple dashes
+    text = re.sub(r"-{2,}", "-", text)
+    return text[:40].strip("-")
+
+
+def get_issue_folder(base: Path, issue: dict[str, Any]) -> Path:
+    """
+    Build a unique, human-readable folder name per issue:
+      resurrections/<date>_<repo-slug>_<issue-number>
+
+    Example:
+      resurrections/2026-05-02_hashicorp-terraform_4084
+
+    This means:
+    - Multiple runs on the same day each keep their own folder.
+    - The same issue is never written twice (same folder = idempotent update).
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    repo_slug = _slugify(str(issue.get("repo", "unknown")))
+    issue_number = int(issue.get("issue_number", 0))
+    folder_name = f"{today}_{repo_slug}_{issue_number}"
+    return base / folder_name
+
+
+# Keep the old helper around so any external script that imported it doesn't break
+def get_today_folder(base: Path) -> Path:  # noqa: D401
+    """Deprecated — use get_issue_folder() instead."""
     today = datetime.now().strftime("%Y-%m-%d")
     return base / f"day-{today}"
 
@@ -239,7 +273,7 @@ def write_rfc_md(folder: Path, analysis: dict[str, Any], issue_title: str) -> No
 
 def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Path:
     base_folder = Path(RESURRECTION_BASE_FOLDER)
-    folder = get_today_folder(base_folder)
+    folder = get_issue_folder(base_folder, issue)
     folder.mkdir(parents=True, exist_ok=True)
 
     today = datetime.now().strftime("%Y-%m-%d")
