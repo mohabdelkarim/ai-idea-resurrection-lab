@@ -35,7 +35,7 @@ def resurrect(issue):
     return Revival(issue).analyze().score().publish()  # every single day
 ```
 
-Think of it as **a robot archaeologist for open source** -- unearthing buried potential
+Think of it as **a robot archaeologist for open source**, unearthing buried potential
 and turning forgotten ideas into actionable engineering.
 
 ---
@@ -110,7 +110,7 @@ and turning forgotten ideas into actionable engineering.
   <tr>
     <td>🤖 AI Engine</td>
     <td><a href="https://groq.com">Groq LPU</a></td>
-    <td>Fastest inference available &mdash; sub-second responses at scale</td>
+    <td>Fastest inference available, sub-second responses at scale</td>
   </tr>
   <tr>
     <td>🔎 Data Source</td>
@@ -120,7 +120,7 @@ and turning forgotten ideas into actionable engineering.
   <tr>
     <td>🔄 Automation</td>
     <td>GitHub Actions</td>
-    <td>Daily cron job &mdash; zero manual intervention required</td>
+    <td>Daily cron job, zero manual intervention required</td>
   </tr>
   <tr>
     <td>📝 Output</td>
