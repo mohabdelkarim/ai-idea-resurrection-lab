@@ -206,7 +206,6 @@ def write_poc_files(folder: Path, analysis: dict[str, Any], issue_title: str) ->
 def write_rfc_md(folder: Path, analysis: dict[str, Any], issue_title: str) -> None:
     if not bool(analysis.get("rfc_needed", False)):
         return
-
     rfc_content = str(analysis.get("rfc_content", ""))
     content = (
         f"# RFC: {issue_title}\n\n"
@@ -254,6 +253,14 @@ def generate() -> None:
     analysis = temp_data["analysis"]
 
     generate_resurrection(issue, analysis)
+
+    # ✅ Mark the issue as resurrected in the graveyard so it won't be picked again
+    repo = str(issue.get("repo", ""))
+    issue_number = int(issue.get("issue_number", 0))
+    if repo and issue_number:
+        from scanner import mark_resurrected
+        mark_resurrected(repo, issue_number)
+        LOGGER.info("Graveyard updated: issue #%d marked as resurrected.", issue_number)
 
     # Clean up temp file after successful generation
     temp_path.unlink(missing_ok=True)
