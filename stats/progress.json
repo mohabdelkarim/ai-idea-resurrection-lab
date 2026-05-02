@@ -1,25 +1,25 @@
 {
-  "last_updated": "2026-05-02T19:23:04",
-  "total_resurrections": 3,
+  "last_updated": "2026-05-02T19:41:11",
+  "total_resurrections": 4,
   "total_repos_covered": 1,
-  "average_impact_score": 8.0,
+  "average_impact_score": 7.5,
   "average_effort_hours": 120.0,
   "top_tags": [
     "terraform",
     "infrastructure-as-code",
-    "aws",
-    "autoscaling",
-    "variable-management"
+    "infrastructure as code",
+    "dependency management",
+    "digitalocean"
   ],
   "hall_of_fame": [
     {
       "date": "2026-05-02",
       "repo": "hashicorp/terraform",
-      "issue_number": 1552,
-      "title": "aws: Allow rolling updates for ASGs",
+      "issue_number": 1178,
+      "title": "Depends_on for module",
       "impact_score": 8,
-      "one_line_why": "The introduction of Terraform 1.0 and the revamped AWS provider, combined with the growing demand for more sophisticated deployment strategies and the increased adoption of...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/1552"
+      "one_line_why": "The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure...",
+      "original_url": "https://github.com/hashicorp/terraform/issues/1178"
     },
     {
       "date": "2026-05-02",
@@ -33,21 +33,21 @@
     {
       "date": "2026-05-02",
       "repo": "hashicorp/terraform",
-      "issue_number": 1178,
-      "title": "Depends_on for module",
+      "issue_number": 1552,
+      "title": "aws: Allow rolling updates for ASGs",
       "impact_score": 8,
-      "one_line_why": "The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/1178"
+      "one_line_why": "The introduction of Terraform 1.0 and the revamped AWS provider, combined with the growing demand for more sophisticated deployment strategies and the increased adoption of...",
+      "original_url": "https://github.com/hashicorp/terraform/issues/1552"
     }
   ],
   "last_resurrection": {
     "date": "2026-05-02",
     "repo": "hashicorp/terraform",
-    "issue_number": 1552,
-    "title": "aws: Allow rolling updates for ASGs",
-    "reactions": 70,
-    "abandoned_date": "2017-03-30T06:39:41Z",
-    "one_line_why": "The introduction of Terraform 1.0 and the revamped AWS provider, combined with the growing demand for more sophisticated deployment strategies and the increased adoption of...",
+    "issue_number": 1178,
+    "title": "Depends_on for module",
+    "reactions": 136,
+    "abandoned_date": "2019-07-24T01:57:09Z",
+    "one_line_why": "The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure...",
     "impact_score": 8,
     "effort_hours": 120.0,
     "has_poc": true,
@@ -55,10 +55,11 @@
     "poc_language": "python",
     "technology_tags": [
       "terraform",
-      "aws",
-      "autoscaling",
-      "infrastructure-as-code"
+      "infrastructure as code",
+      "dependency management",
+      "digitalocean",
+      "ansible"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/1552"
+    "original_url": "https://github.com/hashicorp/terraform/issues/1178"
   }
 }

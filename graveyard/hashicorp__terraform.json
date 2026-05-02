@@ -89,7 +89,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/1439",
     "author_login": "amaczuga",
     "author_profile": "https://github.com/amaczuga",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",
