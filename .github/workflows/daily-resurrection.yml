@@ -48,4 +48,5 @@ jobs:
             Impact: ${{ env.IMPACT_SCORE }}/10 | \
             Effort: ~${{ env.EFFORT_HOURS }}h | \
             PoC: ${{ env.HAS_POC }}"
-          git push
+          git pull --rebase origin main
+          git push origin main
