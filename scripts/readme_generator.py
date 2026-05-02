@@ -22,6 +22,17 @@ def _sanitize(text: Any) -> str:
     return s.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
 
 
+def _deep_sanitize(value: Any) -> Any:
+    """Recursively strip surrogate characters from an entire data structure."""
+    if isinstance(value, str):
+        return value.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
+    if isinstance(value, dict):
+        return {k: _deep_sanitize(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_deep_sanitize(item) for item in value]
+    return value
+
+
 def _wrap_section(section_name: str, body: str) -> str:
     return f"<!-- SECTION:{section_name} -->\n{body}\n<!-- END:{section_name} -->"
 
@@ -140,6 +151,9 @@ def replace_section(content: str, section_name: str, new_section: str) -> str:
 
 
 def generate_readme(progress: dict[str, Any]) -> str:
+    # FIX: deep-sanitize the entire progress dict before touching any string
+    progress = _deep_sanitize(progress)
+
     content = ""
     content = replace_section(content, "header", build_header_section())
     content = replace_section(content, "stats", build_stats_section(progress))
@@ -162,5 +176,7 @@ def update_readme() -> None:
 
     repo_root = Path(STATS_FILE).parent.parent
     readme_path = repo_root / "README.md"
-    readme_path.write_text(readme_content, encoding="utf-8")
+    # FIX: final encode/decode guard — strip any surviving surrogates before write
+    safe_content = readme_content.encode("utf-8", errors="ignore").decode("utf-8")
+    readme_path.write_text(safe_content, encoding="utf-8")
     LOGGER.info("README.md updated successfully")
