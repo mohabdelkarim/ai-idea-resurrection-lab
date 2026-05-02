@@ -181,12 +181,5 @@ and turning forgotten ideas into actionable engineering.
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" />
 
-<!-- SECTION:community-vote -->
-<!-- SECTION:community-vote -->
-## 🗳️ Community Vote
-
-Should we implement this?
-**[Depends_on for module](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/32)**
-> Vote on GitHub Discussions → [https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/32](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/32)
 <!-- END:community-vote -->
 <!-- END:community-vote -->
