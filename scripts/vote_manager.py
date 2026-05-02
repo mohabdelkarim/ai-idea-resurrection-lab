@@ -24,7 +24,6 @@ OWN_REPO = "mohabdelkarim/ai-idea-resurrection-lab"
 def _safe_str(value: Any) -> str:
     """Convert value to string and strip surrogate characters that break UTF-8 encoding."""
     text = str(value) if not isinstance(value, str) else value
-    # Remove surrogate characters (U+D800 to U+DFFF) which cannot be encoded in UTF-8
     return text.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
 
 
@@ -46,12 +45,14 @@ def load_votes() -> dict[str, Any]:
 def save_votes(data: dict[str, Any]) -> None:
     path = Path(VOTES_FILE)
     path.parent.mkdir(parents=True, exist_ok=True)
-    # Sanitize all string values before serializing
     safe_data = {
         k: _safe_str(v) if isinstance(v, str) else v
         for k, v in data.items()
     }
-    path.write_text(json.dumps(safe_data, indent=2, ensure_ascii=False), encoding="utf-8")
+    path.write_text(
+        json.dumps(safe_data, indent=2, ensure_ascii=True),
+        encoding="utf-8",
+    )
     LOGGER.info("Written: %s", path)
 
 
@@ -68,7 +69,7 @@ def build_vote_body(meta: dict[str, Any]) -> str:
         f"- **Why this matters:** {one_line_why}\n"
         f"- **Original issue:** {original_url}\n"
         f"- **Impact score:** {impact_score}/10\n\n"
-        "\ud83d\udc4d React with +1 to vote FOR | \ud83d\udc4e React with -1 to vote AGAINST"
+        "+1 to vote FOR | -1 to vote AGAINST"
     )
 
 
@@ -210,14 +211,14 @@ def update_readme_vote_section(votes: dict[str, Any]) -> None:
         discussion_url = _safe_str(votes.get("discussion_url", ""))
         current_issue_title = _safe_str(votes.get("current_issue_title", ""))
         section_body = (
-            "## \ud83d\uddf3\ufe0f Community Vote\n\n"
+            "## \U0001f5f3\ufe0f Community Vote\n\n"
             "Should we implement this?\n"
             f"**[{current_issue_title}]({discussion_url})**\n"
             f"> Vote on GitHub Discussions \u2192 [{discussion_url}]({discussion_url})"
         )
     else:
         section_body = (
-            "## \ud83d\uddf3\ufe0f Community Vote\n"
+            "## \U0001f5f3\ufe0f Community Vote\n"
             "> *Vote opens daily after the resurrection is published.*"
         )
 
@@ -235,7 +236,7 @@ def update_readme_vote_section(votes: dict[str, Any]) -> None:
 
 
 def run_vote(meta: dict[str, Any], token: str) -> None:
-    discussion_title = _safe_str(f"\ud83d\uddf3\ufe0f Should we implement: {meta.get('title', '')}?")
+    discussion_title = _safe_str(f"Should we implement: {meta.get('title', '')}?")
     discussion_body = build_vote_body(meta)
     discussion = create_github_discussion(token, OWN_REPO, discussion_title, discussion_body)
 
