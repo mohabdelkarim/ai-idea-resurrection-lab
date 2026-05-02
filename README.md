@@ -11,9 +11,6 @@
   <img src="https://img.shields.io/badge/built%20by-Mo%20Abdelkarim-0ea5e9?style=for-the-badge&logo=github&logoColor=white" />
 </p>
 
-<!-- Typing animation -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=800&color=00D4AA&center=true&vCenter=true&width=600&lines=Resurrecting+forgotten+GitHub+ideas+🧬;Daily+AI-powered+technical+analysis+🤖;Turning+dust+into+working+code+✨;One+dead+issue+at+a+time+💀➡️🚀" alt="Typing SVG" />
-
 </div>
 
 ---
@@ -109,26 +106,6 @@ Cast your vote on GitHub Discussions → [https://github.com/mohabdelkarim/ai-id
 
 ---
 
-## 🛠️ How It Works
-
-```mermaid
-graph LR
-    A[🔍 Scan GitHub Issues] --> B[🤖 Groq AI Analysis]
-    B --> C[🔬 Generate PoC Code]
-    C --> D[💥 Compute Impact Score]
-    D --> E[📝 Update README]
-    E --> F[🗳️ Open Discussion]
-    F --> A
-    style A fill:#0f0c29,color:#fff,stroke:#00d4aa
-    style B fill:#302b63,color:#fff,stroke:#00d4aa
-    style C fill:#24243e,color:#fff,stroke:#f97316
-    style D fill:#0f0c29,color:#fff,stroke:#f97316
-    style E fill:#302b63,color:#fff,stroke:#6366f1
-    style F fill:#24243e,color:#fff,stroke:#6366f1
-```
-
----
-
 ## 🚀 Built With
 
 <div align="center">
@@ -138,7 +115,6 @@ graph LR
 ![Groq](https://img.shields.io/badge/Groq-F97316?style=for-the-badge&logo=lightning&logoColor=white)
 ![GitHub API](https://img.shields.io/badge/GitHub_API-181717?style=for-the-badge&logo=github&logoColor=white)
 
-</td>
 </div>
 
 ---
