@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+from pathlib import Path
 from typing import Any
 
 from groq import Groq
@@ -12,6 +13,7 @@ from config import APPROVED_TECHNOLOGY_TAGS
 
 LOGGER = logging.getLogger(__name__)
 
+ANALYSIS_TEMP_FILE = ".analysis_temp.json"
 
 SYSTEM_PROMPT = (
     "You are a senior software architect with 15 years of experience "
@@ -241,17 +243,25 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
     raise ValueError("Analysis failed after retries.")
 
-def analyze() -> None:
-    import json
-    from pathlib import Path
 
+def analyze() -> None:
+    from pathlib import Path
     from config import GRAVEYARD_FOLDER
 
-    token = None
     for graveyard_file in Path(GRAVEYARD_FOLDER).glob("*.json"):
         with graveyard_file.open() as f:
             issues = json.load(f)
         for issue in issues:
             if not issue.get("already_resurrected"):
-                analyze_issue(issue)
+                result = analyze_issue(issue)
+                # Save both issue and analysis to temp file for generator to consume
+                temp_data = {
+                    "issue": issue,
+                    "analysis": result["analysis"],
+                }
+                Path(ANALYSIS_TEMP_FILE).write_text(
+                    json.dumps(temp_data, indent=2, ensure_ascii=False),
+                    encoding="utf-8",
+                )
+                LOGGER.info("Analysis saved to %s", ANALYSIS_TEMP_FILE)
                 return  # 1 ανά run
