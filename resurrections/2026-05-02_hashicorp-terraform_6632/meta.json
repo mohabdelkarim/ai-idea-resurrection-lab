@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-02",
+  "repo": "hashicorp/terraform",
+  "issue_number": 6632,
+  "title": "Ignore changes for a single AWS Resource Tag",
+  "reactions": 57,
+  "abandoned_date": "2019-07-24T01:54:17Z",
+  "one_line_why": "The proposed feature is necessary because it addresses a significant limitation in the current implementation of the ignore_changes argument in Terraform, which only allows users...",
+  "impact_score": 5,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "terraform",
+    "aws",
+    "hcl",
+    "go"
+  ],
+  "original_url": "https://github.com/hashicorp/terraform/issues/6632"
+}

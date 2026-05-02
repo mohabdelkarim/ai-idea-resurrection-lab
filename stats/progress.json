@@ -1,26 +1,17 @@
 {
-  "last_updated": "2026-05-02T19:50:53",
+  "last_updated": "2026-05-02T19:59:38",
   "total_resurrections": 3,
   "total_repos_covered": 1,
-  "average_impact_score": 6.67,
+  "average_impact_score": 5.67,
   "average_effort_hours": 120.0,
   "top_tags": [
     "terraform",
-    "infrastructure as code",
-    "dependency management",
-    "digitalocean",
-    "ansible"
+    "aws",
+    "hcl",
+    "go",
+    "infrastructure"
   ],
   "hall_of_fame": [
-    {
-      "date": "2026-05-02",
-      "repo": "hashicorp/terraform",
-      "issue_number": 1178,
-      "title": "Depends_on for module",
-      "impact_score": 8,
-      "one_line_why": "The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/1178"
-    },
     {
       "date": "2026-05-02",
       "repo": "hashicorp/terraform",
@@ -38,28 +29,36 @@
       "impact_score": 6,
       "one_line_why": "Improve user experience and reduce errors by automating the creation of S3 buckets and lock tables, which is a common pain point for Terraform users...",
       "original_url": "https://github.com/hashicorp/terraform/issues/12780"
+    },
+    {
+      "date": "2026-05-02",
+      "repo": "hashicorp/terraform",
+      "issue_number": 6632,
+      "title": "Ignore changes for a single AWS Resource Tag",
+      "impact_score": 5,
+      "one_line_why": "The proposed feature is necessary because it addresses a significant limitation in the current implementation of the ignore_changes argument in Terraform, which only allows users...",
+      "original_url": "https://github.com/hashicorp/terraform/issues/6632"
     }
   ],
   "last_resurrection": {
     "date": "2026-05-02",
     "repo": "hashicorp/terraform",
-    "issue_number": 1178,
-    "title": "Depends_on for module",
-    "reactions": 136,
-    "abandoned_date": "2019-07-24T01:57:09Z",
-    "one_line_why": "The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure...",
-    "impact_score": 8,
+    "issue_number": 6632,
+    "title": "Ignore changes for a single AWS Resource Tag",
+    "reactions": 57,
+    "abandoned_date": "2019-07-24T01:54:17Z",
+    "one_line_why": "The proposed feature is necessary because it addresses a significant limitation in the current implementation of the ignore_changes argument in Terraform, which only allows users...",
+    "impact_score": 5,
     "effort_hours": 120.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
       "terraform",
-      "infrastructure as code",
-      "dependency management",
-      "digitalocean",
-      "ansible"
+      "aws",
+      "hcl",
+      "go"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/1178"
+    "original_url": "https://github.com/hashicorp/terraform/issues/6632"
   }
 }

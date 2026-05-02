@@ -125,7 +125,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/6632",
     "author_login": "emoshaya",
     "author_profile": "https://github.com/emoshaya",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",
