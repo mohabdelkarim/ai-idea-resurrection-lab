@@ -1,11 +1,11 @@
 {
   "date": "2026-05-02",
   "repo": "hashicorp/terraform",
-  "issue_number": 12453,
-  "title": "Feature request: Allow using lists and maps with conditionals",
-  "reactions": 177,
-  "abandoned_date": "2019-07-24T01:51:39Z",
-  "one_line_why": "The Terraform ecosystem has evolved significantly since 2019, with advancements in HCL support, improved tooling, and growing demand for more expressive configuration languages, making this...",
+  "issue_number": 1178,
+  "title": "Depends_on for module",
+  "reactions": 136,
+  "abandoned_date": "2019-07-24T01:57:09Z",
+  "one_line_why": "The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure...",
   "impact_score": 8,
   "effort_hours": 120.0,
   "has_poc": true,
@@ -13,10 +13,10 @@
   "poc_language": "python",
   "technology_tags": [
     "terraform",
-    "hcl",
-    "conditionals",
-    "lists",
-    "maps"
+    "infrastructure as code",
+    "dependency management",
+    "digitalocean",
+    "ansible"
   ],
-  "original_url": "https://github.com/hashicorp/terraform/issues/12453"
+  "original_url": "https://github.com/hashicorp/terraform/issues/1178"
 }

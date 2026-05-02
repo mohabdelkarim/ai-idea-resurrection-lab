@@ -1,22 +1,22 @@
-# Analysis: Feature request: Allow using lists and maps with conditionals
+# Analysis: Depends_on for module
 
-> This feature request proposes adding support for using lists and maps with conditionals in Terraform configurations, allowing users to write more expressive and dynamic configurations,...
+> This feature provides a robust and reliable way to manage dependencies between Terraform modules using the depends_on attribute, allowing users to explicitly declare dependencies and...
 
-**Why it will work now:** The Terraform ecosystem has evolved significantly since 2019, with advancements in HCL support, improved tooling, and growing demand for more expressive configuration languages, making this...
+**Why it will work now:** The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure...
 
 ---
 
 ## Why It Died
 
-The feature request to allow using lists and maps with conditionals in Terraform died due to the explicit check built into the TypeCheck method, which prohibited this functionality due to perceived complexity. The Terraform team at the time did not consider this use case common enough to warrant the added complexity. Additionally, the HCL (HashiCorp Configuration Language) parser and evaluator lacked the necessary features to support conditional expressions with lists and maps. The VS Code Terraform extension also lacked the necessary tooling support for this feature.
+The Terraform module system lacked a robust dependency management mechanism, making it difficult for users to manage complex dependencies between modules. The `depends_on` attribute was not supported for modules, and the `null_resource` workaround was not reliable. Additionally, the Terraform configuration language was still evolving, and the community was still exploring best practices for module development. The lack of a clear solution and the limitations of the Terraform module system at the time led to the issue being closed without a satisfactory resolution. Furthermore, the Terraform version 0.3.7 used by the issue author had several limitations and bugs that were later addressed in subsequent versions.
 
 ## Why 2026 Changes Everything
 
-The Terraform ecosystem has evolved significantly since 2019, with the introduction of Terraform 1.0, improved HCL support, and enhanced tooling. The recent advancements in Terraform's conditional expression support, combined with the growing adoption of Terraform and the increasing demand for more expressive configuration languages, make this feature more viable. The availability of modern tools like Terraform CDK, Terraform Cloud, and improved integrations with other HashiCorp products also facilitate the implementation of this feature.
+The introduction of Terraform 1.0 and later versions has significantly improved the module system, including the addition of the `depends_on` attribute for modules. The Terraform Registry and the Terraform Module system have also matured, providing a more robust and reliable way to manage dependencies between modules. Furthermore, the development of new tools and features, such as Terraform CDK and Terraform Cloud, has expanded the Terraform ecosystem and provided new opportunities for managing complex infrastructure deployments. The growth of the Terraform community and the increasing adoption of Terraform in enterprise environments have also driven the development of new best practices and solutions for managing dependencies between modules.
 
 ## Modern Architecture
 
-The modern design for this feature would involve extending the Terraform HCL parser and evaluator to support conditional expressions with lists and maps. This would require updates to the TypeCheck method to remove the explicit prohibition on using conditionals with lists and maps. Additionally, the Terraform core would need to be modified to handle the new syntax and semantics. The design would also involve creating new APIs and data structures to represent the conditional expressions and their evaluated results. The Terraform VS Code extension would also need to be updated to provide tooling support for this feature, including syntax highlighting, code completion, and debugging. The design would follow a modular and extensible approach, allowing for easy integration with other Terraform features and plugins.
+A modern design for solving this issue would involve using the `depends_on` attribute for modules, which is now supported in Terraform 1.0 and later versions. This would allow users to explicitly declare dependencies between modules and ensure that resources are created in the correct order. Additionally, the use of Terraform CDK and Terraform Cloud would provide a more robust and scalable way to manage complex infrastructure deployments. The design would also involve using a modular architecture, with separate modules for each component of the infrastructure, and using the Terraform Registry to manage dependencies between modules. The `null_resource` workaround would no longer be necessary, and users would be able to use the `local-exec` provisioner to run Ansible playbooks or other scripts as needed. The design would also involve using Terraform's built-in support for dependency management, such as the `depends_on` attribute, to ensure that resources are created in the correct order.
 
 ---
 
@@ -26,7 +26,7 @@ The modern design for this feature would involve extending the Terraform HCL par
 |--------|-------|
 | 💥 Impact Score | 8/10 |
 | ⏱️ Effort Estimate | ~120 hours |
-| 🏷️ Tech Tags | terraform, hcl, conditionals, lists, maps |
+| 🏷️ Tech Tags | terraform, infrastructure as code, dependency management, digitalocean, ansible |
 | 💀 Year Abandoned | 2019 |
 | 🔬 Has PoC | Yes |
 | 📋 Has RFC | Yes |
