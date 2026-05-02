@@ -103,36 +103,74 @@ and turning forgotten ideas into actionable engineering.
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq_AI-FF6B35?style=for-the-badge&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq_LPU-FF6B35?style=for-the-badge&logoColor=white)
+![OpenAI](https://img.shields.io/badge/LLM_API-412991?style=for-the-badge&logo=openai&logoColor=white)
 ![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
 
 </div>
 
-| Layer | Technology |
-|-------|------------|
-| 🤖 AI Engine | [Groq](https://groq.com) -- blazing fast LLM inference |
-| 🔎 Data Source | GitHub Issues API |
-| 🔄 Automation | GitHub Actions (daily cron) |
-| 📝 Output | Structured Markdown + PoC code snippets |
-| 🐍 Language | Python |
+<br/>
+
+<table>
+  <tr>
+    <th>Layer</th>
+    <th>Technology</th>
+    <th>Why</th>
+  </tr>
+  <tr>
+    <td>🤖 AI Engine</td>
+    <td><a href="https://groq.com">Groq LPU</a></td>
+    <td>Fastest inference available -- sub-second responses at scale</td>
+  </tr>
+  <tr>
+    <td>🔎 Data Source</td>
+    <td>GitHub Issues API</td>
+    <td>Scans thousands of repos for stale, high-upvote abandoned issues</td>
+  </tr>
+  <tr>
+    <td>🔄 Automation</td>
+    <td>GitHub Actions</td>
+    <td>Daily cron job -- zero manual intervention required</td>
+  </tr>
+  <tr>
+    <td>📝 Output</td>
+    <td>Structured Markdown</td>
+    <td>Technical analysis + working PoC code + impact score per issue</td>
+  </tr>
+  <tr>
+    <td>🐍 Language</td>
+    <td>Python 3.11</td>
+    <td>Clean pipeline: scanner, analyzer, generator, publisher</td>
+  </tr>
+</table>
 
 ---
 
-## 📨 AI Tool Drop Newsletter
+## 📨 AI Tool Drop -- Weekly Newsletter
 
 <div align="center">
 
-> **Free. Weekly. No fluff.**
+<img src="https://img.shields.io/badge/Free-Weekly-00D9A5?style=for-the-badge&logoColor=white" />
+<img src="https://img.shields.io/badge/No_Paywalls-No_Affiliates-6C63FF?style=for-the-badge&logoColor=white" />
+<img src="https://img.shields.io/badge/Honest-Verdicts_Only-FF6B35?style=for-the-badge&logoColor=white" />
 
-| What you get | Details |
+<br/><br/>
+
+| 🛠️ What you get | 📄 Details |
 |---|---|
-| 🛠️ One AI tool | Tested honestly, every week |
-| ⚡ One workflow | Under 30 minutes to implement |
-| 🎯 One verdict | Straight talk, no affiliate links |
+| **One AI tool** | Picked, installed and tested -- so you don't waste your time |
+| **One real workflow** | Step-by-step, under 30 minutes to implement |
+| **One honest verdict** | What works, what doesn't, no hype |
+| **Zero noise** | No affiliate links, no paywalls, no fluff |
+| **Every week** | Lands in your inbox, free forever |
+
+<br/>
 
 **[Subscribe Free](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+
+<sub>Join developers who want to stay sharp without the noise.</sub>
 
 </div>
 
@@ -142,11 +180,22 @@ and turning forgotten ideas into actionable engineering.
 
 ## 🗳️ Community Vote
 
-**Should we implement the latest resurrection?**
+<div align="center">
 
-> [Feature request: Allow using lists and maps with conditionals](https://github.com/hashicorp/terraform/issues/12453)
+**What should we resurrect next?**
 
-👉 **[Cast your vote on GitHub Discussions](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/28)**
+<br/>
+
+[![Vote Yes](https://img.shields.io/badge/%F0%9F%91%8D%20Yes%2C_implement_it!-2ea44f?style=for-the-badge)](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/28)
+[![Vote No](https://img.shields.io/badge/%F0%9F%A4%94%20Needs_more_work-d93f0b?style=for-the-badge)](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/28)
+[![Discuss](https://img.shields.io/badge/%F0%9F%92%AC%20Join_the_discussion-0A66C2?style=for-the-badge)](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/28)
+
+<br/>
+
+> **Latest:** [Feature request: Allow using lists and maps with conditionals](https://github.com/hashicorp/terraform/issues/12453)
+> `hashicorp/terraform` &nbsp;&#183;&nbsp; Impact **8/10**
+
+</div>
 
 <!-- END:community-vote -->
 
@@ -160,12 +209,10 @@ and turning forgotten ideas into actionable engineering.
 
 *Building AI-powered tools that solve real engineering problems.*
 
-[![GitHub](https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github)](https://github.com/mohabdelkarim)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
-
 <br/>
 
-[![Mo's GitHub stats](https://github-readme-stats.vercel.app/api?username=mohabdelkarim&show_icons=true&theme=tokyonight&hide_border=true&count_private=true)](https://github.com/mohabdelkarim)
+[![GitHub](https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github)](https://github.com/mohabdelkarim)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
 
 </div>
 
