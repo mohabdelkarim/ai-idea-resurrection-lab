@@ -1,22 +1,22 @@
-# RFC: Feature request: Allow using lists and maps with conditionals
+# RFC: Depends_on for module
 
 ## Summary
-This RFC proposes the addition of support for using lists and maps with conditionals in Terraform configurations. The proposed feature would allow users to write more expressive and dynamic configurations, making it easier to manage complex infrastructure deployments.
+This RFC proposes a solution to the issue of managing dependencies between Terraform modules. The proposed solution involves using the `depends_on` attribute for modules, which is now supported in Terraform 1.0 and later versions.
 
 ## Motivation
-The motivation behind this proposal is to address the long-standing community request for more flexible and powerful configuration syntax. The current limitations of the Terraform configuration language make it difficult for users to express complex logic and conditional statements, leading to workarounds and hacks. By adding support for lists and maps with conditionals, we can provide a more intuitive and expressive way for users to define their infrastructure configurations.
+The motivation for this RFC is to provide a robust and reliable way to manage dependencies between Terraform modules. The current workaround using `null_resource` is not reliable and can lead to errors. The proposed solution will provide a more robust and scalable way to manage complex infrastructure deployments.
 
 ## Detailed Design
-The proposed design involves extending the Terraform HCL parser and evaluator to support conditional expressions with lists and maps. This would require updates to the TypeCheck method to remove the explicit prohibition on using conditionals with lists and maps. Additionally, the Terraform core would need to be modified to handle the new syntax and semantics. The design would also involve creating new APIs and data structures to represent the conditional expressions and their evaluated results.
+The proposed solution involves using the `depends_on` attribute for modules, which is now supported in Terraform 1.0 and later versions. This will allow users to explicitly declare dependencies between modules and ensure that resources are created in the correct order. The design will also involve using a modular architecture, with separate modules for each component of the infrastructure, and using the Terraform Registry to manage dependencies between modules.
 
 ## Drawbacks
-One potential drawback of this proposal is the added complexity to the Terraform configuration language and the potential for users to write more complex and harder-to-debug configurations. However, we believe that the benefits of this feature outweigh the drawbacks, and that the added complexity can be managed through proper documentation, testing, and tooling support.
+One potential drawback of the proposed solution is that it may require significant changes to existing Terraform configurations. However, the benefits of a more robust and reliable way to manage dependencies between modules outweigh the potential drawbacks.
 
 ## Alternatives
-One alternative to this proposal is to continue using the current workarounds and hacks to achieve the desired functionality. However, this approach is not scalable and can lead to maintenance and debugging issues. Another alternative is to use external tools and scripts to generate the desired configurations, but this approach can be cumbersome and error-prone.
+One alternative to the proposed solution is to continue using the `null_resource` workaround. However, this workaround is not reliable and can lead to errors. Another alternative is to use a different infrastructure as code tool that provides a more robust way to manage dependencies between modules.
 
 ## Unresolved Questions
-One unresolved question is how to handle errors and edge cases when evaluating conditional expressions with lists and maps. Another question is how to provide proper tooling support for this feature, including syntax highlighting, code completion, and debugging. These questions would need to be addressed through further discussion and experimentation.
+One unresolved question is how to handle cases where dependencies between modules are circular. Another unresolved question is how to handle cases where dependencies between modules are not explicitly declared.
 
 ---
 

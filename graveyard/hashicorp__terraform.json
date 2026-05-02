@@ -34,7 +34,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/1178",
     "author_login": "felnne",
     "author_profile": "https://github.com/felnne",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",

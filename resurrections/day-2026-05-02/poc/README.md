@@ -1,4 +1,4 @@
-# Proof of Concept: Feature request: Allow using lists and maps with conditionals
+# Proof of Concept: Depends_on for module
 
 **Language:** python
 **Estimated run time:** < 5 minutes
@@ -16,4 +16,4 @@ python main.py
 
 ## What This Demonstrates
 
-This feature request proposes adding support for using lists and maps with conditionals in Terraform configurations, allowing users to write more expressive and dynamic configurations,...
+This feature provides a robust and reliable way to manage dependencies between Terraform modules using the depends_on attribute, allowing users to explicitly declare dependencies and...
