@@ -207,14 +207,16 @@ def update_readme_vote_section(votes: dict[str, Any]) -> None:
         sys.path.insert(0, str(_Path(__file__).parent))
         from readme_generator import replace_section
 
+    # Build ONLY the inner content — replace_section adds the SECTION tags itself
     if votes and _safe_str(votes.get("discussion_url", "")).strip():
         discussion_url = _safe_str(votes.get("discussion_url", ""))
         current_issue_title = _safe_str(votes.get("current_issue_title", ""))
+        discussion_number = discussion_url.rstrip("/").split("/")[-1]
         section_body = (
             "## \U0001f5f3\ufe0f Community Vote\n\n"
-            "Should we implement this?\n"
-            f"**[{current_issue_title}]({discussion_url})**\n"
-            f"> Vote on GitHub Discussions \u2192 [{discussion_url}]({discussion_url})"
+            "Should we implement this? "
+            f"[{current_issue_title}]({discussion_url})\n"
+            f"Vote on GitHub Discussions \u2192 [#{discussion_number}]({discussion_url})"
         )
     else:
         section_body = (
@@ -222,15 +224,9 @@ def update_readme_vote_section(votes: dict[str, Any]) -> None:
             "> *Vote opens daily after the resurrection is published.*"
         )
 
-    section = (
-        "<!-- SECTION:community-vote -->\n"
-        f"{section_body}\n"
-        "<!-- END:community-vote -->"
-    )
-
     readme_path = Path(STATS_FILE).parent.parent / "README.md"
     current_content = readme_path.read_text(encoding="utf-8") if readme_path.exists() else ""
-    updated_content = replace_section(current_content, "community-vote", section)
+    updated_content = replace_section(current_content, "community-vote", section_body)
     readme_path.write_text(updated_content, encoding="utf-8")
     LOGGER.info("Written: %s", readme_path)
 
