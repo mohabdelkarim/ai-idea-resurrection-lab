@@ -18,6 +18,9 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
+# Always create discussions in this repo — NOT in the analyzed issue's repo
+OWN_REPO = "mohabdelkarim/ai-idea-resurrection-lab"
+
 
 def load_votes() -> dict[str, Any]:
     path = Path(VOTES_FILE)
@@ -56,11 +59,12 @@ def build_vote_body(meta: dict[str, Any]) -> str:
         f"- **Why this matters:** {one_line_why}\n"
         f"- **Original issue:** {original_url}\n"
         f"- **Impact score:** {impact_score}/10\n\n"
-        "👍 React with +1 to vote FOR | 👎 React with -1 to vote AGAINST"
+        "\ud83d\udc4d React with +1 to vote FOR | \ud83d\udc4e React with -1 to vote AGAINST"
     )
 
 
 def create_github_discussion(token: str, repo: str, title: str, body: str) -> dict[str, str]:
+    """Creates a GitHub Discussion in the given repo (always OWN_REPO)."""
     if not token.strip():
         LOGGER.error("Missing GitHub token; cannot create discussion.")
         return {"id": "", "url": ""}
@@ -112,11 +116,23 @@ def create_github_discussion(token: str, repo: str, title: str, body: str) -> di
     repository = repo_payload.get("data", {}).get("repository", {})
     repository_id = repository.get("id")
     categories = repository.get("discussionCategories", {}).get("nodes", [])
-    first_category = categories[0] if isinstance(categories, list) and categories else {}
-    category_id = first_category.get("id")
+
+    # Prefer a category named 'General' or 'Ideas', else fallback to first available
+    preferred_names = {"general", "ideas", "polls", "community"}
+    category_id = None
+    for cat in categories:
+        if str(cat.get("name", "")).lower() in preferred_names:
+            category_id = cat.get("id")
+            break
+    if not category_id and categories:
+        category_id = categories[0].get("id")
 
     if not repository_id or not category_id:
-        LOGGER.error("Missing repository/category IDs for repo %s", repo)
+        LOGGER.error(
+            "Missing repository/category IDs for repo %s. "
+            "Make sure GitHub Discussions are ENABLED on the repo.",
+            repo,
+        )
         return {"id": "", "url": ""}
 
     create_mutation = """
@@ -187,14 +203,14 @@ def update_readme_vote_section(votes: dict[str, Any]) -> None:
         discussion_url = str(votes.get("discussion_url", ""))
         current_issue_title = str(votes.get("current_issue_title", ""))
         section_body = (
-            "## 🗳️ Community Vote\n\n"
+            "## \ud83d\uddf3\ufe0f Community Vote\n\n"
             "Should we implement this?\n"
             f"**[{current_issue_title}]({discussion_url})**\n"
-            f"> Vote on GitHub Discussions → [{discussion_url}]({discussion_url})"
+            f"> Vote on GitHub Discussions \u2192 [{discussion_url}]({discussion_url})"
         )
     else:
         section_body = (
-            "## 🗳️ Community Vote\n"
+            "## \ud83d\uddf3\ufe0f Community Vote\n"
             "> *Vote opens daily after the resurrection is published.*"
         )
 
@@ -212,10 +228,10 @@ def update_readme_vote_section(votes: dict[str, Any]) -> None:
 
 
 def run_vote(meta: dict[str, Any], token: str) -> None:
-    discussion_title = f"🗳️ Should we implement: {meta['title']}?"
+    # ALWAYS create discussion in OWN repo, not in the analyzed issue's repo
+    discussion_title = f"\ud83d\uddf3\ufe0f Should we implement: {meta['title']}?"
     discussion_body = build_vote_body(meta)
-    repo = str(meta.get("repo", ""))
-    discussion = create_github_discussion(token, repo, discussion_title, discussion_body)
+    discussion = create_github_discussion(token, OWN_REPO, discussion_title, discussion_body)
 
     votes_data = {
         "current_issue_title": str(meta.get("title", "")),
@@ -238,10 +254,8 @@ if __name__ == "__main__":
 
     load_dotenv()
     token = os.environ.get("GITHUB_TOKEN", "")
-    import json
 
     meta_path = Path(STATS_FILE).parent.parent / "resurrections"
-    # Load most recent meta.json for testing
     candidates = sorted(meta_path.glob("day-*/meta.json"), reverse=True)
     if candidates:
         with candidates[0].open(encoding="utf-8") as handle:
