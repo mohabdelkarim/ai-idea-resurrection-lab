@@ -1,6 +1,9 @@
 <div align="center">
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=AI%20Idea%20Resurrection%20Lab&fontSize=36&fontColor=ffffff&fontAlignY=38&desc=Abandoned%20issues%20brought%20back%20to%20life%20by%20AI&descAlignY=58&descSize=16&animation=fadeIn" />
+
 <!-- SECTION:header -->
+
 <br/>
 
 > **Every abandoned GitHub issue is a spark that never ignited.**
@@ -8,40 +11,42 @@
 
 <br/>
 
-![updates daily](https://img.shields.io/badge/updates-daily-00D9A5?style=for-the-badge&logo=github-actions&logoColor=white)
-![powered by Groq](https://img.shields.io/badge/Powered%20by-Groq-FF6B35?style=for-the-badge&logoColor=white)
-![license MIT](https://img.shields.io/badge/License-MIT-6C63FF?style=for-the-badge)
-![built by Mo](https://img.shields.io/badge/Built%20by-Mo%20Abdelkarim-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)
+[![updates daily](https://img.shields.io/badge/updates-daily-00D9A5?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/actions)
+[![powered by Groq](https://img.shields.io/badge/Powered%20by-Groq-FF6B35?style=for-the-badge&logoColor=white)](https://groq.com)
+[![license MIT](https://img.shields.io/badge/License-MIT-6C63FF?style=for-the-badge)](LICENSE)
+[![built by Mo](https://img.shields.io/badge/Built%20by-Mo%20Abdelkarim-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
+
 <!-- END:header -->
 
-<br/>
+</div>
 
 ---
 
 ## 💡 What Is This?
 
-```
-+------------------------------------------------------------------+
-|                                                                  |
-|  SCAN    GitHub for forgotten, stale and abandoned issues        |
-|  FEED    them to an AI model (Groq-powered)                      |
-|  GET     technical analysis + PoC code + impact score           |
-|  SHIP    results automatically via GitHub Actions               |
-|                                                                  |
-+------------------------------------------------------------------+
+```python
+def resurrect(issue):
+    """
+    SCAN   -> find forgotten, stale & abandoned GitHub issues
+    FEED   -> run them through Groq-powered AI analysis
+    GET    -> technical breakdown + PoC code + impact score
+    SHIP   -> auto-publish results daily via GitHub Actions
+    """
+    return Revival(issue).analyze().score().publish()  # every single day
 ```
 
-Think of it as **a robot archaeologist for open source ideas** -- unearthing
-buried potential and turning it into actionable engineering.
-
-<br/>
+Think of it as **a robot archaeologist for open source** -- unearthing buried potential
+and turning forgotten ideas into actionable engineering.
 
 ---
 
+<div align="center">
+
 <!-- SECTION:stats -->
+
 ## 📊 Live Stats
 
-<table align="center">
+<table>
   <tr>
     <td align="center"><b>🧬 Resurrections</b></td>
     <td align="center"><b>🗂️ Repos Covered</b></td>
@@ -56,115 +61,122 @@ buried potential and turning it into actionable engineering.
   </tr>
 </table>
 
-<sub>🕐 Last updated: 2026-05-02T18:39:13</sub>
+<sub>🕐 Last updated: 2026-05-02T18:24:39</sub>
+
 <!-- END:stats -->
 
-<br/>
+</div>
 
 ---
 
 <!-- SECTION:last -->
+
 ## 🔬 Latest Resurrection
 
-<table align="center">
+<table>
   <tr>
     <td>
-      <b><a href="https://github.com/hashicorp/terraform/issues/1178">Depends_on for module</a></b><br/>
+      <b><a href="https://github.com/hashicorp/terraform/issues/12453">Feature request: Allow using lists and maps with conditionals</a></b><br/>
       <sub>📦 <code>hashicorp/terraform</code> &nbsp;&#183;&nbsp; 💥 Impact: <b>8/10</b> &nbsp;&#183;&nbsp; 🗓️ 2026-05-02</sub><br/><br/>
-      <i>The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure...</i>
+      <i>The Terraform ecosystem has evolved significantly since 2019, with advancements in HCL support, improved tooling, and growing demand for more expressive configuration languages, making this...</i>
     </td>
   </tr>
 </table>
-<!-- END:last -->
 
-<br/>
+<!-- END:last -->
 
 ---
 
 <!-- SECTION:hall-of-fame -->
+
 ## 🏆 Hall of Fame
 
 | Rank | Title | Repo | Impact | Why It Matters |
 |:----:|-------|------|:------:|----------------|
-| 🥇 | [Depends_on for module](https://github.com/hashicorp/terraform/issues/1178) | `hashicorp/terraform` | **8/10** | The depends_on attribute for modules is now supported in Terraform 1.0 and later versions, providing a more robust and scalable way to manage complex infrastructure... |
-<!-- END:hall-of-fame -->
+| 🥇 | [Feature request: Allow using lists and maps with conditionals](https://github.com/hashicorp/terraform/issues/12453) | `hashicorp/terraform` | **8/10** | The Terraform ecosystem has evolved significantly since 2019, with advancements in HCL support and growing demand for more expressive configuration languages. |
 
-<br/>
+<!-- END:hall-of-fame -->
 
 ---
 
-## 🛠️ Tech Stack
+## ⚙️ Tech Stack
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq_AI-FF6B35?style=for-the-badge&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+
+</div>
 
 | Layer | Technology |
 |-------|------------|
 | 🤖 AI Engine | [Groq](https://groq.com) -- blazing fast LLM inference |
 | 🔎 Data Source | GitHub Issues API |
 | 🔄 Automation | GitHub Actions (daily cron) |
-| 📝 Output | Structured Markdown + code snippets |
+| 📝 Output | Structured Markdown + PoC code snippets |
 | 🐍 Language | Python |
-
-<br/>
 
 ---
 
 ## 📨 AI Tool Drop Newsletter
 
-```
-+-----------------------------------------------------+
-|  AI TOOL DROP -- free weekly newsletter             |
-|                                                     |
-|  One fresh AI tool, tested honestly                 |
-|  One real workflow under 30 minutes                 |
-|  One straight verdict -- no fluff                   |
-|                                                     |
-|  Free. No paywalls. No affiliate links.             |
-+-----------------------------------------------------+
-```
+<div align="center">
 
-**[Subscribe Free on Gumroad](https://mohabdelkarim.gumroad.com)**
+> **Free. Weekly. No fluff.**
 
-<br/>
+| What you get | Details |
+|---|---|
+| 🛠️ One AI tool | Tested honestly, every week |
+| ⚡ One workflow | Under 30 minutes to implement |
+| 🎯 One verdict | Straight talk, no affiliate links |
+
+**[Subscribe Free](https://mohaabdelkarim.gumroad.com/l/ai-tool-drop)**
+
+</div>
 
 ---
 
 <!-- SECTION:community-vote -->
-<!-- SECTION:community-vote -->
+
 ## 🗳️ Community Vote
 
-Should we implement this?
-**[Depends_on for module](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/29)**
-> Vote on GitHub Discussions → [https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/29](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/29)
-<!-- END:community-vote -->
-<!-- END:community-vote -->
+**Should we implement the latest resurrection?**
 
-<br/>
+> [Feature request: Allow using lists and maps with conditionals](https://github.com/hashicorp/terraform/issues/12453)
+
+👉 **[Cast your vote on GitHub Discussions](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/discussions/28)**
+
+<!-- END:community-vote -->
 
 ---
 
 ## 👨‍💻 About the Builder
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <b>Mo Abdelkarim</b> -- Software Engineer<br/>
-      <sub>Building AI-powered tools that solve real engineering problems.</sub><br/><br/>
-      <a href="https://github.com/mohabdelkarim">
-        <img src="https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github" />
-      </a>
-      &nbsp;
-      <a href="https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/">
-        <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white" />
-      </a>
-    </td>
-  </tr>
-</table>
+<div align="center">
+
+**Mo Abdelkarim** -- Software Engineer
+
+*Building AI-powered tools that solve real engineering problems.*
+
+[![GitHub](https://img.shields.io/badge/GitHub-mohabdelkarim-181717?style=flat-square&logo=github)](https://github.com/mohabdelkarim)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohamed-abdelkarim-56771b316/)
 
 <br/>
+
+[![Mo's GitHub stats](https://github-readme-stats.vercel.app/api?username=mohabdelkarim&show_icons=true&theme=tokyonight&hide_border=true&count_private=true)](https://github.com/mohabdelkarim)
+
+</div>
 
 ---
 
 <!-- SECTION:footer -->
-<sub>🧬 Auto-generated by <b>Resurrection Bot 🧬</b> Last run: 2026-05-02T18:39:13 <a href="LICENSE">MIT License</a></sub>
+
+<div align="center">
+<sub>🧬 Auto-generated by <b>Resurrection Bot</b> Last run: 2026-05-02T18:24:39 <a href="LICENSE">MIT License</a></sub>
+</div>
+
 <!-- END:footer -->
 
-</div>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" />
