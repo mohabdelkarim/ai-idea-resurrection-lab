@@ -49,7 +49,9 @@ def load_progress() -> dict[str, Any]:
         return _default_progress()
 
     try:
-        data = json.loads(path.read_text(encoding="utf-8"))
+        # FIX: read with errors=ignore to survive surrogate bytes on disk
+        raw = path.read_text(encoding="utf-8", errors="ignore")
+        data = json.loads(raw)
     except (json.JSONDecodeError, OSError) as error:
         LOGGER.warning("Invalid progress file %s (%s). Using defaults.", path, error)
         return _default_progress()
@@ -60,13 +62,14 @@ def load_progress() -> dict[str, Any]:
 
     default = _default_progress()
     default.update({key: value for key, value in data.items() if key in default})
-    return default
+    # FIX: _sanitize() the entire result before returning
+    return _sanitize(default)
 
 
 def save_progress(data: dict[str, Any]) -> None:
     path = Path(STATS_FILE)
     path.parent.mkdir(parents=True, exist_ok=True)
-    # Sanitize before writing to prevent surrogate characters breaking UTF-8
+    # FIX: always _sanitize before json.dumps — not just some fields
     safe_data = _sanitize(data)
     path.write_text(json.dumps(safe_data, indent=2, ensure_ascii=True), encoding="utf-8")
     LOGGER.info("Written: %s", path)
@@ -89,7 +92,8 @@ def load_all_metas() -> list[dict[str, Any]]:
             continue
 
         try:
-            raw = meta_path.read_text(encoding="utf-8")
+            # FIX: read with errors=ignore to survive surrogate bytes
+            raw = meta_path.read_text(encoding="utf-8", errors="ignore")
             parsed = _sanitize(json.loads(raw))
         except (json.JSONDecodeError, OSError) as error:
             LOGGER.warning("Skipping invalid meta.json %s (%s)", meta_path, error)
@@ -181,7 +185,8 @@ def update_stats() -> dict[str, Any]:
         "average_effort_hours": average_effort_hours,
         "top_tags": compute_top_tags(metas, top_n=5),
         "hall_of_fame": compute_hall_of_fame(metas, top_n=3),
-        "last_resurrection": last_resurrection,
+        # FIX: _sanitize last_resurrection before storing — catches surrogates from LLM output
+        "last_resurrection": _sanitize(last_resurrection) if last_resurrection is not None else None,
     }
     save_progress(new_progress)
     return new_progress
