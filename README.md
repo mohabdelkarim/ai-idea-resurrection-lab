@@ -150,7 +150,7 @@ and turning forgotten ideas into actionable engineering.
 |:---:|:---|
 | 🛠️ **Tested AI tool** | Picked & tried so you don't waste your time |
 | ⚡ **Ready workflow** | Step-by-step, under 30 minutes to ship |
-| 🎯 **Honest verdict** | What works, what doesn't &mdash; no hype, no affiliates |
+| 🎯 **Honest verdict** | What works, what doesn't, no hype, no affiliates |
 | 📥 **In your inbox** | Free, every week, no paywalls ever |
 
 <br/>
