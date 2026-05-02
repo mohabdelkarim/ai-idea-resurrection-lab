@@ -12,11 +12,11 @@ The feature was not prioritized due to performance concerns and the complexity o
 
 ## Why 2026 Changes Everything
 
-Advances in VS Code's extension API, improved Git integration, and modern UI components make it feasible to implement this feature with minimal performance impact and a more streamlined user experience.
+Advances in VS Code’s extension API, improved Git integration, and modern UI components make it feasible to implement this feature with minimal performance impact and a more streamlined user experience.
 
 ## Modern Architecture
 
-Implement the feature as an extension using the VS Code API, leveraging Tree Data Providers for dynamic file decorations and Git Status APIs for accurate file status information.
+Implement the feature as an extension using the VS Code API, leveraging `FileDecorationProvider` for dynamic file decorations and `git status --porcelain` for accurate file status information. The provider watches the filesystem for changes and refreshes decorations automatically, propagating status up to parent folders.
 
 ---
 
@@ -26,7 +26,7 @@ Implement the feature as an extension using the VS Code API, leveraging Tree Dat
 |--------|-------|
 | 💥 Impact Score | 8/10 |
 | ⏱️ Effort Estimate | ~120 hours |
-| 🏷️ Tech Tags |  |
+| 🏷️ Tech Tags | typescript, vscode-api, git, extension, ui |
 | 💀 Year Abandoned | 2017 |
 | 🔬 Has PoC | Yes |
 | 📋 Has RFC | Yes |

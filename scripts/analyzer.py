@@ -15,6 +15,9 @@ LOGGER = logging.getLogger(__name__)
 
 ANALYSIS_TEMP_FILE = ".analysis_temp.json"
 
+# Lookup for fast case-insensitive matching
+_TAGS_LOWER = {tag.lower(): tag for tag in APPROVED_TECHNOLOGY_TAGS}
+
 SYSTEM_PROMPT = (
     "You are a senior software architect with 15 years of experience "
     "who specializes in resurrecting abandoned technical ideas from GitHub. "
@@ -36,7 +39,7 @@ SYSTEM_PROMPT = (
     "Use abandoned_date as a concrete YYYY-MM-DD date or a close estimate if exact is unavailable. "
     "Set impact_score to an integer from 1 to 10 based on real technical feasibility and relevance. "
     "Set effort_hours to a realistic integer greater than 0. "
-    "Set technology_tags to 3 to 6 short lowercase tags. "
+    "Set technology_tags to 3 to 6 short lowercase tags relevant to the implementation. "
     "Set has_poc to false only if a runnable proof of concept would not add value. "
     "If has_poc is false, poc_language must be \"python\" and proof_of_concept_code must be an empty string. "
     "If has_poc is true, proof_of_concept_code must be runnable and poc_language must be one of python, typescript, rust, or go."
@@ -74,8 +77,28 @@ def build_user_prompt(issue: dict[str, Any]) -> str:
     )
 
 
-def _is_word_limited(text: str, max_words: int) -> bool:
-    return len([word for word in text.strip().split() if word]) <= max_words
+def _normalize_tags(raw_tags: list[Any]) -> list[str]:
+    """Accept any tag that case-insensitively matches an approved tag.
+    Falls back to keeping the raw lowercase tag if it is alphanumeric/hyphenated.
+    """
+    result: list[str] = []
+    for raw in raw_tags:
+        if not isinstance(raw, str):
+            continue
+        key = raw.strip().lower()
+        if not key:
+            continue
+        # Prefer the canonical form from APPROVED_TECHNOLOGY_TAGS
+        if key in _TAGS_LOWER:
+            canonical = _TAGS_LOWER[key]
+            if canonical not in result:
+                result.append(canonical)
+        else:
+            # Keep raw lowercase tag if it looks reasonable (letters, digits, hyphen, slash, dot)
+            import re
+            if re.match(r'^[a-z0-9][a-z0-9 ./_-]{0,30}$', key) and key not in result:
+                result.append(key)
+    return result[:6]  # cap at 6
 
 
 def validate_analysis(data: dict[str, Any]) -> bool:
@@ -97,51 +120,6 @@ def validate_analysis(data: dict[str, Any]) -> bool:
         "death_year",
     }
     return required_keys.issubset(data.keys())
-
-
-def _json_schema() -> dict[str, Any]:
-    return {
-        "name": SCHEMA_NAME,
-        "strict": True,
-        "schema": {
-            "type": "object",
-            "additionalProperties": False,
-            "properties": {
-                "why_it_died": {"type": "string"},
-                "why_2026_changes_it": {"type": "string"},
-                "modern_design": {"type": "string"},
-                "proof_of_concept_code": {"type": "string"},
-                "poc_language": {"type": "string", "enum": sorted(ALLOWED_POC_LANGUAGES)},
-                "rfc_needed": {"type": "boolean"},
-                "rfc_content": {"type": ["string", "null"]},
-                "effort_hours": {"type": "integer"},
-                "impact_score": {"type": "integer"},
-                "technology_tags": {"type": "array", "items": {"type": "string"}},
-                "one_line_summary": {"type": "string"},
-                "one_line_why": {"type": "string"},
-                "abandoned_date": {"type": "string"},
-                "has_poc": {"type": "boolean"},
-                "death_year": {"type": "integer"},
-            },
-            "required": [
-                "why_it_died",
-                "why_2026_changes_it",
-                "modern_design",
-                "proof_of_concept_code",
-                "poc_language",
-                "rfc_needed",
-                "rfc_content",
-                "effort_hours",
-                "impact_score",
-                "technology_tags",
-                "one_line_summary",
-                "one_line_why",
-                "abandoned_date",
-                "has_poc",
-                "death_year",
-            ],
-        },
-    }
 
 
 def _strip_markdown_fences(raw: str) -> str:
@@ -223,11 +201,8 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
         parsed["abandoned_date"] = str(issue.get("updated_at", ""))
         parsed["has_poc"] = bool(str(parsed.get("proof_of_concept_code", "")).strip())
-        parsed["technology_tags"] = [
-            tag
-            for tag in parsed.get("technology_tags", [])
-            if isinstance(tag, str) and tag in APPROVED_TECHNOLOGY_TAGS
-        ]
+        # Use flexible normalization instead of strict whitelist
+        parsed["technology_tags"] = _normalize_tags(parsed.get("technology_tags", []))
 
         try:
             parsed["death_year"] = int(parsed.get("death_year"))
@@ -245,7 +220,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
 
 def analyze() -> None:
-    from pathlib import Path
     from config import GRAVEYARD_FOLDER
 
     for graveyard_file in Path(GRAVEYARD_FOLDER).glob("*.json"):
@@ -254,7 +228,6 @@ def analyze() -> None:
         for issue in issues:
             if not issue.get("already_resurrected"):
                 result = analyze_issue(issue)
-                # Save both issue and analysis to temp file for generator to consume
                 temp_data = {
                     "issue": issue,
                     "analysis": result["analysis"],

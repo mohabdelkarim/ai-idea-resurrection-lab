@@ -21,6 +21,8 @@ MAX_ISSUES_PER_REPO = 500
 MAX_DAILY_RESURRECTIONS = 1
 SCAN_INTERVAL_DAYS = 3
 
+# These are the canonical display names for tech tags.
+# The analyzer normalizes Groq output to match these (case-insensitive).
 APPROVED_TECHNOLOGY_TAGS = [
     "WebAssembly",
     "Rust async",
@@ -33,6 +35,33 @@ APPROVED_TECHNOLOGY_TAGS = [
     "WASM components",
     "AI/LLM integration",
     "Edge Runtime",
+    # Generic tags that Groq commonly returns
+    "typescript",
+    "python",
+    "rust",
+    "go",
+    "javascript",
+    "react",
+    "node",
+    "vscode-api",
+    "vscode",
+    "git",
+    "extension",
+    "cli",
+    "api",
+    "llm",
+    "wasm",
+    "webassembly",
+    "async",
+    "generics",
+    "testing",
+    "performance",
+    "compiler",
+    "lsp",
+    "tree-sitter",
+    "ui",
+    "ux",
+    "dx",
 ]
 
 RESURRECTION_BASE_FOLDER = "resurrections"
