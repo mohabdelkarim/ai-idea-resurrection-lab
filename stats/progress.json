@@ -1,45 +1,48 @@
 {
-  "last_updated": "2026-05-02T10:59:32",
-  "total_resurrections": 2,
+  "last_updated": "2026-05-02T13:18:22",
+  "total_resurrections": 1,
   "total_repos_covered": 1,
-  "average_impact_score": 4.0,
-  "average_effort_hours": 60.0,
-  "top_tags": [],
+  "average_impact_score": 8.0,
+  "average_effort_hours": 120.0,
+  "top_tags": [
+    "deno",
+    "rust",
+    "typescript",
+    "react",
+    "llama-3.3"
+  ],
   "hall_of_fame": [
     {
       "date": "2026-05-02",
-      "repo": "microsoft/vscode",
-      "issue_number": 178,
-      "title": "Git status in File Explorer",
+      "repo": "denoland/deno",
+      "issue_number": 25,
+      "title": "\u6c42\u4e0d\u8981\u66f4\u65b0\u4e86\uff0c\u8001\u5b50\u5b66\u4e0d\u52a8\u4e86",
       "impact_score": 8,
-      "one_line_why": "Enhancing the VS Code user experience with visual Git status indicators in the file explorer.",
-      "original_url": "https://github.com/microsoft/vscode/issues/178"
-    },
-    {
-      "date": "2026-05-01",
-      "repo": "microsoft/vscode",
-      "issue_number": 178,
-      "title": "Git status in File Explorer",
-      "impact_score": 0,
-      "one_line_why": "",
-      "original_url": "https://github.com/microsoft/vscode/issues/178"
+      "one_line_why": "This feature will succeed now because the current ecosystem has changed significantly since 2018, with the introduction of new tools, APIs, and frameworks that can...",
+      "original_url": "https://github.com/denoland/deno/issues/25"
     }
   ],
-  "subscriber_count": 0,
   "last_resurrection": {
     "date": "2026-05-02",
-    "repo": "microsoft/vscode",
-    "issue_number": 178,
-    "title": "Git status in File Explorer",
-    "reactions": 2286,
-    "abandoned_date": "2017-11-09T09:23:06Z",
-    "one_line_why": "Enhancing the VS Code user experience with visual Git status indicators in the file explorer.",
+    "repo": "denoland/deno",
+    "issue_number": 25,
+    "title": "\u6c42\u4e0d\u8981\u66f4\u65b0\u4e86\uff0c\u8001\u5b50\u5b66\u4e0d\u52a8\u4e86",
+    "reactions": 736,
+    "abandoned_date": "2018-08-03T02:00:14Z",
+    "one_line_why": "This feature will succeed now because the current ecosystem has changed significantly since 2018, with the introduction of new tools, APIs, and frameworks that can...",
     "impact_score": 8,
     "effort_hours": 120.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
-    "technology_tags": [],
-    "original_url": "https://github.com/microsoft/vscode/issues/178"
+    "poc_language": "python",
+    "technology_tags": [
+      "deno",
+      "rust",
+      "typescript",
+      "react",
+      "llama-3.3",
+      "tree-sitter"
+    ],
+    "original_url": "https://github.com/denoland/deno/issues/25"
   }
 }

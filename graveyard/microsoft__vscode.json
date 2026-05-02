@@ -206,6 +206,214 @@
   },
   {
     "repo": "microsoft/vscode",
+    "issue_number": 981,
+    "title": "Cannot define multiple commands in tasks.json",
+    "body": "Hi,\n\nI cannot find a way to define multiple tasks which executes different commands in the `.vscode/tasks.json` file of my project directory.\n\nFrom what I understood, I can only declare a single TaskConfiguration within this file. Am I wrong?\n\nTo make my problem more understandable, let's say I would like to define 3 tasks with their own set of arguments:\n- foo: `foo --arg`\n- bar1: `bar --arg 1`\n- bar2: `bar --arg 2`\n\nHow can I make `tasks.json` reflect this need?\n",
+    "reactions": 91,
+    "created_at": "2015-12-03T18:19:08Z",
+    "updated_at": "2017-11-17T00:28:47Z",
+    "labels": [
+      "feature-request",
+      "tasks"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/981",
+    "html_url": "https://github.com/microsoft/vscode/issues/981",
+    "author_login": "bbenoist",
+    "author_profile": "https://github.com/bbenoist",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 507,
+    "title": "64bit version for Windows?",
+    "body": "Is there a reason why there is no 64bit version of Code for Windows? I get that Electron 64bit was only released after Code was already out but is that the only reason? :)\n",
+    "reactions": 79,
+    "created_at": "2015-11-23T17:16:20Z",
+    "updated_at": "2017-11-17T01:04:22Z",
+    "labels": [
+      "feature-request",
+      "install-update",
+      "windows",
+      "on-testplan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/507",
+    "html_url": "https://github.com/microsoft/vscode/issues/507",
+    "author_login": "Stanzilla",
+    "author_profile": "https://github.com/Stanzilla",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 313,
+    "title": "Find does not match multi-line regex strings",
+    "body": "The Find dialog (Ctrl+F) does not allow multi-line finds using the `\\n` character as it currently considers each line individually. See [`TextModel._doFindMatches`](https://github.com/Microsoft/vscode/blob/master/src/vs/editor/common/model/textModel.ts)\n\n_Created out of a discussion in https://github.com/Microsoft/vscode/issues/278_\n",
+    "reactions": 63,
+    "created_at": "2015-11-20T06:35:57Z",
+    "updated_at": "2017-11-17T06:04:29Z",
+    "labels": [
+      "feature-request",
+      "editor-find"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/313",
+    "html_url": "https://github.com/microsoft/vscode/issues/313",
+    "author_login": "Tyriar",
+    "author_profile": "https://github.com/Tyriar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 2577,
+    "title": "Add option to turn off anti-aliasing for editor font.",
+    "body": "Thanks for the great product!\n\nSublime Text allows you to turn off anti-aliasing, which looks great for some fonts:\n\n``` javascript\n{\n    \"font_face\": \"MS Gothic\",\n    \"font_options\":\n    [\n        \"no_antialias\"\n    ],\n    \"font_size\": 18,\n}\n```\n\nI've looked around, but there doesn't seem to be an easy way to do this. Is there a way for me to do this in VSCode?\n",
+    "reactions": 58,
+    "created_at": "2016-01-31T05:56:03Z",
+    "updated_at": "2017-11-17T00:27:22Z",
+    "labels": [
+      "feature-request",
+      "verified",
+      "verification-needed",
+      "editor-core"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/2577",
+    "html_url": "https://github.com/microsoft/vscode/issues/2577",
+    "author_login": "globalchubby",
+    "author_profile": "https://github.com/globalchubby",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 2908,
+    "title": "Keep undo history even when file changes outside Code",
+    "body": "When a file is being modified in Code, then an external process modifies something in the file, for example a code formatter, the modification is loaded instantly in Code, but all the history is lost.\nExpected behavior would be to have the external modification, as one entry in the history.\n### Steps to reproduce:\n\n1 - Start a new file in `VS Code` and start typing in the file, then save the file. Keep the file and `VS Code` open.\n2 - Open the same file in another editor. Modify some thing and save.\n3 - Go back to `VS Code` , there is not 'Undo' available. \n",
+    "reactions": 51,
+    "created_at": "2016-02-10T21:50:14Z",
+    "updated_at": "2017-11-17T00:27:09Z",
+    "labels": [
+      "feature-request",
+      "file-explorer",
+      "on-testplan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/2908",
+    "html_url": "https://github.com/microsoft/vscode/issues/2908",
+    "author_login": "majidfn",
+    "author_profile": "https://github.com/majidfn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 2973,
+    "title": "Distribute VS Code via a signed apt repository",
+    "body": "This would make auto-updating possible on Debian-based OS's.",
+    "reactions": 43,
+    "created_at": "2016-02-12T17:33:49Z",
+    "updated_at": "2017-11-17T07:03:34Z",
+    "labels": [
+      "feature-request",
+      "install-update",
+      "linux"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/2973",
+    "html_url": "https://github.com/microsoft/vscode/issues/2973",
+    "author_login": "Tyriar",
+    "author_profile": "https://github.com/Tyriar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 9093,
+    "title": "Debug toolbar custom positioning",
+    "body": "- VSCode Version: 1.3.0\n- OS Version: Windows 10\n\nHappy that I can now move the debug toolbar in the the 1.3 update! However, I think it is better suited for the sidebar, as it is often/constantly in the way.\n\n![image](https://cloud.githubusercontent.com/assets/4859660/16744322/919c5236-477e-11e6-8e6e-876e0234dee9.png)\n\nAlternately, it could be attached to the debug console.\n\n![image](https://cloud.githubusercontent.com/assets/4859660/16744360/c09c6fda-477e-11e6-9fce-e6f766b0749b.png)\n",
+    "reactions": 37,
+    "created_at": "2016-07-11T19:47:32Z",
+    "updated_at": "2017-11-17T01:05:15Z",
+    "labels": [
+      "feature-request",
+      "debug",
+      "ux",
+      "*duplicate"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/9093",
+    "html_url": "https://github.com/microsoft/vscode/issues/9093",
+    "author_login": "JoshMcCullough",
+    "author_profile": "https://github.com/JoshMcCullough",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 6392,
+    "title": "Copy/Cut then Paste doesn't preserve or fix indentation",
+    "body": "- VSCode Version: 1.1.0\n- OS Version: Windows 10 Enterprise\n\nSteps to Reproduce:\n1. Copy some divs code in html (with any method \"Ctrl + C || Right Click\")\n2. Then paste inside other divs\n\nAlways have to fix intentation after pasting some code.\n\nExperiencing the same behaviour for css and js.\n",
+    "reactions": 36,
+    "created_at": "2016-05-16T08:41:51Z",
+    "updated_at": "2017-11-17T00:27:35Z",
+    "labels": [
+      "feature-request",
+      "editor-autoindent",
+      "on-testplan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/6392",
+    "html_url": "https://github.com/microsoft/vscode/issues/6392",
+    "author_login": "alx-so",
+    "author_profile": "https://github.com/alx-so",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 6607,
+    "title": "Update icon",
+    "body": "I use [this](http://santiagorpan.deviantart.com/art/Visual-Studio-Code-Yosemite-ICON-530012586) customized icon by Santiago Ramos Panalés, and would like to petition for to be made the official Visual Studio Code icon on Mac OS X. I have not asked the artists permission before submitting this feature request.\n\nIt looks fantastic and follows [Apples OS X Human Interface Guidelines], while the current icon looks out of place in both the dock and the application launcher.\n\nImages for comparison:\n\n![skarmavbild 2016-05-21 kl 11 57 47](https://cloud.githubusercontent.com/assets/10105611/15447740/2556726e-1f4c-11e6-9df8-0136f6ba0895.png)\n![skarmavbild 2016-05-21 kl 11 58 32](https://cloud.githubusercontent.com/assets/10105611/15447749/6030957c-1f4c-11e6-8632-48b790bff187.png)\n\n![skarmavbild 2016-05-21 kl 11 55 43](https://cloud.githubusercontent.com/assets/10105611/15447752/75618ea6-1f4c-11e6-890e-e5fcfadd15af.png)\n![skarmavbild 2016-05-21 kl 11 59 29](https://cloud.githubusercontent.com/assets/10105611/15447750/649442d0-1f4c-11e6-861c-0f50ca33c395.png)\n",
+    "reactions": 35,
+    "created_at": "2016-05-21T10:08:30Z",
+    "updated_at": "2017-11-17T00:26:44Z",
+    "labels": [
+      "feature-request",
+      "on-testplan",
+      "icon-brand"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/6607",
+    "html_url": "https://github.com/microsoft/vscode/issues/6607",
+    "author_login": "lyret",
+    "author_profile": "https://github.com/lyret",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 2204,
+    "title": "[html] attribute on separate line formatting",
+    "body": "HTML Formatting ideally should have a feature to separate attributes on new lines when using `format code`.\n\ne.g.\n\n``` html\n<my-hero-list [heroes]=\"heroes\" (selectHero)=\"onSelect($event)\" class=\"nav\"></my-hero-list>\n```\n\nWhen using format code should be formatted as:\n\n``` html\n<my-hero-list [heroes]=\"heroes\" \n    (selectHero)=\"onSelect($event)\"\n    class=\"nav\">\n</my-hero-list>\n```\n",
+    "reactions": 34,
+    "created_at": "2016-01-23T22:59:47Z",
+    "updated_at": "2017-11-17T02:04:11Z",
+    "labels": [
+      "feature-request",
+      "html"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/2204",
+    "html_url": "https://github.com/microsoft/vscode/issues/2204",
+    "author_login": "stephenlautier",
+    "author_profile": "https://github.com/stephenlautier",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 14907,
+    "title": "Support custom root directory alias for imports",
+    "body": "VSCode depends on being able to resolve `import`ed references for intellisense. So when using something that rewrites import paths -- specifically: [babel-plugin-module-resolver](https://github.com/tleunen/babel-plugin-module-resolver) -- we lose intellisense.\r\n\r\nThis is very useful for large projects, because it avoids deeply nested path resolutions, e.g. \r\n\r\n`import 'thing-to-test' from '../../../../../src/feature/subfeature/helper/thing`\r\n\r\nThese are a big nuisance because apart from being ugly & it's hard to locate the file in the first place, anytime you move a code block, you have to refactor them. The aforementioned module lets you define an alias like \"~=/src\" and then just:\r\n\r\n`import 'thing-to-test' from '~/feature/subfeature/helper/thing`\r\n\r\nAtom and Webstorm are both capable of being configured with information about such aliases to enable them to resolve the paths correctly.\r\n\r\nIs there any way this capability can be added to VS Code? I really want to be able to continue to use these, but the loss of intellisense is tough to swallow.\r\n\r\n",
+    "reactions": 33,
+    "created_at": "2016-11-03T13:12:55Z",
+    "updated_at": "2017-10-13T18:40:59Z",
+    "labels": [
+      "feature-request",
+      "javascript"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/14907",
+    "html_url": "https://github.com/microsoft/vscode/issues/14907",
+    "author_login": "jamietre",
+    "author_profile": "https://github.com/jamietre",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
     "issue_number": 5065,
     "title": "Add support for signing commits with GPG",
     "body": "VS Code should optionally be able to sign git commits with a given GPG key, as it is a good practice for authorization nowadays.\n",
@@ -227,6 +435,42 @@
   },
   {
     "repo": "microsoft/vscode",
+    "issue_number": 3592,
+    "title": "Provide a command to restart VS Code",
+    "body": "I would have naturally expected there to be a \"restart\" command for Visual Studio Code, out of the box. Any chance of adding this in?\n\n<img width=\"241\" alt=\"screen shot 2016-03-01 at 9 34 43 am\" src=\"https://cloud.githubusercontent.com/assets/466713/13433868/ffe65d78-df90-11e5-908c-9ceeb102fb08.png\">\n\nThe current command name is \"reload window,\" which is probably technically precise, but on the other hand, isn't really user-friendly. Could we add an alias for \"restart Visual Studio Code\" (or similar) for the \"reload window\" function?\n\nCheers,\nTrevor Sullivan\nMicrosoft MVP: PowerShell\n",
+    "reactions": 29,
+    "created_at": "2016-03-01T16:36:04Z",
+    "updated_at": "2017-11-17T02:04:38Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/3592",
+    "html_url": "https://github.com/microsoft/vscode/issues/3592",
+    "author_login": "pcgeek86",
+    "author_profile": "https://github.com/pcgeek86",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 19750,
+    "title": "process.stdout.write calls don't show in the console from node2 debug sessions",
+    "body": "- VSCode Version: 1.9.0\r\n- OS Version: Windows 10\r\n\r\nSteps to Reproduce:\r\n\r\n1. Launch debug task\r\n2. Watch debug console\r\n\r\nThe new update appears to have broken the debug output.  Previously we would get the following when launching the debug task:\r\n\r\n```\r\nnode --inspect=30770 --debug-brk --nolazy debugall.js \r\nDebugger listening on port 30770.\r\nWarning: This is an experimental feature and could change at any time.\r\n```\r\n\r\nThis would then be followed by the normal debug output from our project. Now when we run the debug task, the above is the only thing showing in the debug console. The application functions normally so it is running, but no output is shown.\r\n\r\n`launch.json`:\r\n```json\r\n{\r\n  \"version\": \"0.1.0\",\r\n  \"configurations\": [\r\n    {\r\n      \"name\": \"Debug All\",\r\n      \"type\": \"node2\",\r\n      \"program\": \"${workspaceRoot}/debugall.js\",\r\n      \"stopOnEntry\": false,\r\n      \"args\": [],\r\n      \"cwd\": \"${workspaceRoot}/\",\r\n      \"runtimeExecutable\": null,\r\n      \"runtimeArgs\": [\r\n        \"--nolazy\"\r\n      ],\r\n      \"env\": {\r\n        \"NODE_ENV\": \"development\",\r\n        \"LOGSQL\": \"false\",\r\n        \"USE_COMPRESSION\": \"false\",\r\n      },\r\n      \"sourceMaps\": false,\r\n      \"outDir\": null,\r\n      \"console\": \"internalConsole\"\r\n    }\r\n  ]\r\n}\r\n```",
+    "reactions": 27,
+    "created_at": "2017-02-02T21:20:06Z",
+    "updated_at": "2017-11-13T20:00:38Z",
+    "labels": [
+      "feature-request",
+      "debug",
+      "verified"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/19750",
+    "html_url": "https://github.com/microsoft/vscode/issues/19750",
+    "author_login": "jdforsythe",
+    "author_profile": "https://github.com/jdforsythe",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
     "issue_number": 10023,
     "title": "Integrated Terminal : Allow Renaming sessions",
     "body": "Please add a feature to rename sessions in the integrated terminal.\nUsually one opens multiple terminal sessions using the same command like ssh. Then all these sessions are called ssh in the dropdown. Please allow to rename the session, so that its easy to choose.\n",
@@ -243,6 +487,25 @@
     "html_url": "https://github.com/microsoft/vscode/issues/10023",
     "author_login": "geevi",
     "author_profile": "https://github.com/geevi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 4891,
+    "title": "Manage encoding files by extension of filenames",
+    "body": "Hello \"VS Code\" team,\n- I do a language extension for \"VS Code\", \n  (https://github.com/FrancisFaure/vfp_tmlanguage_generator)\n  (Visual FoxPro)\n- I search a setting for the \"codepage\" on file extensions files (.PRG) on \"Windows 1252\" and not \"UTF-8\" by default\n- I try (without succes to add \"files.encoding\": \"windows1252\" in \"package.json\"\n- \"VS Code\" website say  : \n  users can change all codepage \"globally\" or codepage on \"workspace\"\n  (https://code.visualstudio.com/docs/editor/codebasics#_file-encoding-support) \n\nBut in the same directory we can have files in utf8 and others in \"Western\" (Windows 1252) codepage\n\nI tried to add \"files.encoding\": \"windows1252\" in my language pack (package.json) without success..\n\nI googled without solutions\n\nsorry for my bad english\n\nWith best regards \nFrancis\n",
+    "reactions": 26,
+    "created_at": "2016-04-03T20:14:54Z",
+    "updated_at": "2017-11-17T06:03:55Z",
+    "labels": [
+      "feature-request",
+      "file-explorer",
+      "on-testplan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/4891",
+    "html_url": "https://github.com/microsoft/vscode/issues/4891",
+    "author_login": "FrancisFaure",
+    "author_profile": "https://github.com/FrancisFaure",
     "already_resurrected": false
   }
 ]
