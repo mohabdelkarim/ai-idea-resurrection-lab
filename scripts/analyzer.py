@@ -18,6 +18,34 @@ ANALYSIS_TEMP_FILE = ".analysis_temp.json"
 
 _TAGS_LOWER = {tag.lower(): tag for tag in APPROVED_TECHNOLOGY_TAGS}
 
+# Maps repo slug → the language its codebase is written in.
+# Used to steer the LLM toward the correct PoC language and to override
+# any hallucinated poc_language value in _coerce_fields().
+REPO_POC_LANGUAGE: dict[str, str] = {
+    "hashicorp/terraform": "go",
+    "hashicorp/vault": "go",
+    "hashicorp/packer": "go",
+    "BurntSushi/ripgrep": "rust",
+    "sharkdp/bat": "rust",
+    "sharkdp/fd": "rust",
+    "ajeetdsouza/zoxide": "rust",
+    "starship/starship": "rust",
+    "alacritty/alacritty": "rust",
+    "zellij-org/zellij": "rust",
+    "cli/cli": "go",
+    "charmbracelet/bubbletea": "go",
+    "ollama/ollama": "go",
+    "openai/openai-python": "python",
+    "langchain-ai/langchain": "python",
+    "gradio-app/gradio": "python",
+    "streamlit/streamlit": "python",
+    "microsoft/semantic-kernel": "python",
+    "run-llama/llama_index": "python",
+    "ggerganov/llama.cpp": "python",
+    "comfyanonymous/ComfyUI": "python",
+    "open-webui/open-webui": "typescript",
+}
+
 # ---------------------------------------------------------------------------
 # Prompts
 # ---------------------------------------------------------------------------
@@ -47,14 +75,17 @@ Guidelines for each field:
 - proof_of_concept_code: Full, runnable, production-quality code (not pseudocode).
   Must be at least 80 lines. Include imports, error handling, comments.
   The code must directly demonstrate the core idea from the issue.
-  Use the language best suited to the original tech stack.
+  Use the preferred poc_language specified in the user message.
 
 - rfc_content: A structured RFC with these EXACT sections:
   ## Summary\n## Motivation\n## Detailed Design\n## Drawbacks\n## Alternatives\n## Unresolved Questions
   Each section must have at least 3 sentences of real content.
 
-- one_line_summary: One sentence (max 20 words) that captures what the feature does.
-- one_line_why: One sentence (max 20 words) explaining WHY it will succeed now.
+- one_line_summary: One complete sentence (10-20 words) that captures what the feature does.
+  Must be a full, meaningful sentence — no trailing ellipsis, no cut-off mid-thought.
+
+- one_line_why: One complete sentence (10-20 words) explaining WHY it will succeed now.
+  Must be a full, meaningful sentence — no trailing ellipsis, no cut-off mid-thought.
 
 - impact_score: Integer 1-10 based SOLELY on the number of developers who would
   directly benefit from this specific feature being implemented. Scale:
@@ -74,9 +105,19 @@ Guidelines for each field:
   Derive it purely from: (audience size of the affected tool) × (how central
   this feature is to daily workflow).
 
-- effort_hours: Realistic integer. A weekend hack = 8-16h. A production feature = 40-200h.
+- effort_hours: Realistic integer estimate. Do NOT default to 120 for every issue.
+  Choose based on actual complexity:
+    8-16h  → packaging, config tweaks, docs, or small CLI changes
+    24-40h → focused single-feature work with tests
+    60-80h → parser / provider / protocol changes
+    100-160h → core engine, state management, planner changes, or cross-provider work
+    200h+  → fundamental architecture changes or major new subsystems
+  Justify your number mentally against the scope. Two issues of different sizes
+  must NOT have the same effort_hours.
+
 - technology_tags: 4-6 lowercase tags directly relevant to the implementation stack.
-- poc_language: Must be one of: python, typescript, rust, go.
+- poc_language: Must be one of: python, typescript, rust, go. Use the preferred language
+  provided in the user message — it reflects the repo's real implementation stack.
 - death_year: The 4-digit year the issue was last active.
 - has_poc: true if you wrote real runnable code, false otherwise.
 - rfc_needed: true if the feature requires design discussion before implementation.
@@ -84,8 +125,8 @@ Guidelines for each field:
 
 CRITICAL RULES:
 1. impact_score MUST be an integer between 1 and 10. Use the full range — do not cluster.
-2. effort_hours MUST be a positive integer. Never 0. Never null.
-3. Every text field must have real, substantive content. No empty strings.
+2. effort_hours MUST be a positive integer. Never 0. Never null. Never the same for all issues.
+3. one_line_summary and one_line_why MUST be complete sentences of 10-20 words, no ellipsis.
 4. proof_of_concept_code must be runnable code, NOT pseudocode or a description.
 5. rfc_content MUST contain all 6 sections listed above.
 6. Respond with ONLY a valid JSON object. No markdown fences. No explanation outside JSON."""
@@ -95,9 +136,16 @@ ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
 MIN_ANALYSIS_TEXT_LENGTH = 80   # chars — fields shorter than this are flagged
 MIN_POC_CODE_LENGTH = 400       # chars — PoC shorter than this is rejected
 MIN_RFC_LENGTH = 300            # chars — RFC shorter than this is rejected
+ONE_LINE_MIN_WORDS = 10
+ONE_LINE_MAX_WORDS = 20
 MODEL_NAME = "llama-3.3-70b-versatile"
 ANALYZER_TEMPERATURE = 0.55
 MAX_ANALYSIS_RETRIES = 4
+
+
+def _preferred_poc_language(repo: str) -> str:
+    """Return the canonical PoC language for a given repo, defaulting to 'python'."""
+    return REPO_POC_LANGUAGE.get(repo, "python")
 
 
 def build_user_prompt(issue: dict[str, Any]) -> str:
@@ -108,6 +156,7 @@ def build_user_prompt(issue: dict[str, Any]) -> str:
     labels = issue.get("labels", [])
     labels_text = ", ".join(str(label) for label in labels) if isinstance(labels, list) else str(labels)
     body = str(issue.get("body", ""))
+    preferred_language = _preferred_poc_language(repo)
 
     # NOTE: reaction count is intentionally excluded from the prompt.
     # High reaction counts bias the model toward inflated impact scores.
@@ -120,13 +169,17 @@ def build_user_prompt(issue: dict[str, Any]) -> str:
         f"Last activity: {updated_at}\n"
         f"Labels: {labels_text}\n\n"
         f"Original description from the issue author:\n"
-        f"\"\"\"{body}\"\"\"\n\n"
+        f'"""{{body}}"""\n\n'
         "Produce a FULL, DETAILED resurrection analysis following your system instructions.\n"
         "For impact_score: estimate the number of developers directly affected by this "
         "specific feature, then map that to the 1-10 scale in your instructions. "
         "Use the full range — small ecosystem = low score, widely-used daily tool = high score.\n"
+        f"Preferred poc_language for this repository: {preferred_language}. "
+        "Use this language for proof_of_concept_code — it matches the repo's real implementation stack.\n"
+        "For effort_hours: give a REALISTIC estimate specific to this issue's complexity. "
+        "Do not use 120 as a default — justify the number based on scope.\n"
         "Return ONLY the JSON object. No markdown. No explanation outside the JSON."
-    )
+    ).replace("{body}", body)
 
 
 # ---------------------------------------------------------------------------
@@ -294,13 +347,22 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
     if not isinstance(effort, int) or effort <= 0:
         errors.append(f"effort_hours must be positive int, got: {effort!r}")
 
-    for field in ("why_it_died", "why_2026_changes_it", "modern_design",
-                  "one_line_summary", "one_line_why"):
+    for field in ("why_it_died", "why_2026_changes_it", "modern_design"):
         value = str(data.get(field, "")).strip()
         if len(value) < MIN_ANALYSIS_TEXT_LENGTH:
             errors.append(
                 f"{field} too short ({len(value)} chars, min {MIN_ANALYSIS_TEXT_LENGTH})"
             )
+
+    for field in ("one_line_summary", "one_line_why"):
+        value = re.sub(r"\s+", " ", str(data.get(field, "")).strip())
+        words = value.split()
+        if len(words) < ONE_LINE_MIN_WORDS:
+            errors.append(f"{field} too short ({len(words)} words, min {ONE_LINE_MIN_WORDS})")
+        if len(words) > ONE_LINE_MAX_WORDS:
+            errors.append(f"{field} too long ({len(words)} words, max {ONE_LINE_MAX_WORDS})")
+        if value.endswith("..."):
+            errors.append(f"{field} must not end with ellipsis — write a complete sentence")
 
     if data.get("has_poc"):
         poc = str(data.get("proof_of_concept_code", "")).strip()
@@ -343,14 +405,32 @@ def _coerce_fields(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str, A
     parsed["technology_tags"] = _normalize_tags(parsed.get("technology_tags", []))
     if not parsed["technology_tags"]:
         parsed["technology_tags"] = ["open-source"]
-    lang = str(parsed.get("poc_language", "")).strip().lower()
-    parsed["poc_language"] = lang if lang in ALLOWED_POC_LANGUAGES else "python"
+
+    # Always enforce the repo's known language — overrides any hallucinated value
+    repo = str(issue.get("repo", ""))
+    preferred_lang = _preferred_poc_language(repo)
+    if preferred_lang in ALLOWED_POC_LANGUAGES:
+        parsed["poc_language"] = preferred_lang
+    else:
+        lang = str(parsed.get("poc_language", "")).strip().lower()
+        parsed["poc_language"] = lang if lang in ALLOWED_POC_LANGUAGES else "python"
+
     rfc = str(parsed.get("rfc_content", "")).strip()
     parsed["rfc_content"] = _ensure_rfc_sections(rfc) if rfc else ""
+
+    # Clean one-liners: strip trailing ellipsis, enforce word limit without mid-sentence cut
     for field in ("one_line_summary", "one_line_why"):
-        value = str(parsed.get(field, "")).strip()
-        if len(value.split()) > 30:
-            parsed[field] = " ".join(value.split()[:25]) + "..."
+        value = re.sub(r"\s+", " ", str(parsed.get(field, "")).strip())
+        # Remove trailing ellipsis if present
+        value = re.sub(r"\.{2,}$", ".", value).strip()
+        words = value.split()
+        if len(words) > ONE_LINE_MAX_WORDS:
+            truncated = " ".join(words[:ONE_LINE_MAX_WORDS])
+            if not truncated.endswith("."):
+                truncated += "."
+            value = truncated
+        parsed[field] = value
+
     return parsed
 
 
@@ -380,7 +460,9 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
                 "content": (
                     f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
                     "Fix them and return only the corrected JSON object. "
-                    "proof_of_concept_code must be at least 80 lines of real runnable code."
+                    "proof_of_concept_code must be at least 80 lines of real runnable code. "
+                    "one_line_summary and one_line_why must be complete sentences with no trailing ellipsis. "
+                    "effort_hours must reflect the actual complexity of this specific issue."
                 ),
             })
 
