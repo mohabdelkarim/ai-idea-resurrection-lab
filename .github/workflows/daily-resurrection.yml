@@ -39,8 +39,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config user.name "resurrection-bot"
-          git config user.email "bot@resurrection-lab.dev"
+          git config user.name "mohabdelkarim"
+          git config user.email "mohaabdelkarim2@gmail.com"
           git add -A
           git diff --cached --quiet || git commit -m \
             "feat(resurrection): resurrect ${{ env.ISSUE_REPO }}#${{ env.ISSUE_NUMBER }}
