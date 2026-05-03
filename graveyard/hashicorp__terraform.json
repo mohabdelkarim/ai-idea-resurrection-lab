@@ -143,7 +143,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/19509",
     "author_login": "afurlani24",
     "author_profile": "https://github.com/afurlani24",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",
