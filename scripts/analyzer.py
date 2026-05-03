@@ -56,22 +56,23 @@ Guidelines for each field:
 - one_line_summary: One sentence (max 20 words) that captures what the feature does.
 - one_line_why: One sentence (max 20 words) explaining WHY it will succeed now.
 
-- impact_score: Integer 1-10. STRICT SCORING — community popularity does NOT determine
-  this score. Base it ONLY on: how many developers would benefit, and how significantly.
-  Use these CALIBRATED ANCHORS:
-    1  → Affects < 100 devs (niche internal tooling, obscure plugin)
-    2  → Affects ~500 devs (small library, single-company framework)
-    3  → Affects ~1,000 devs (minor DX improvement in a niche tool)
-    4  → Affects ~5,000 devs (useful addition to a mid-size ecosystem)
-    5  → Affects ~20,000 devs (solid QoL improvement in a popular tool)
-    6  → Affects ~100,000 devs (meaningful feature in a major framework)
-    7  → Affects ~500,000 devs (significant improvement to a widely-used tool)
-    8  → Affects 1M+ devs AND solves a DAILY painful problem (very rare)
-    9  → Affects 5M+ devs across multiple ecosystems (extremely rare)
-    10 → Changes how an entire industry writes software (once-per-decade)
-  CALIBRATION CHECK: The average issue in any open-source repo scores 4-6.
-  If you give 8+, you must be able to name 1 million specific developers affected.
-  DO NOT let issue popularity, reaction count, or repo stars inflate the score.
+- impact_score: Integer 1-10 based SOLELY on the number of developers who would
+  directly benefit from this specific feature being implemented. Scale:
+    1  → < 100 developers  (niche internal tooling)
+    2  → ~500 developers
+    3  → ~1,000 developers
+    4  → ~5,000 developers
+    5  → ~20,000 developers
+    6  → ~100,000 developers
+    7  → ~500,000 developers
+    8  → 1M+ developers, solves a daily painful problem
+    9  → 5M+ developers across multiple ecosystems
+    10 → Changes how an entire industry writes software
+  Use the full range honestly. A niche Rust macro helper is a 2. A core
+  Python stdlib improvement touching every Python developer is an 8.
+  Do NOT let issue popularity, reaction count, or repo stars influence the score.
+  Derive it purely from: (audience size of the affected tool) × (how central
+  this feature is to daily workflow).
 
 - effort_hours: Realistic integer. A weekend hack = 8-16h. A production feature = 40-200h.
 - technology_tags: 4-6 lowercase tags directly relevant to the implementation stack.
@@ -82,7 +83,7 @@ Guidelines for each field:
 - abandoned_date: Best estimate of when activity stopped, format YYYY-MM-DD.
 
 CRITICAL RULES:
-1. impact_score MUST be an integer between 1 and 10. Use the calibrated anchors above.
+1. impact_score MUST be an integer between 1 and 10. Use the full range — do not cluster.
 2. effort_hours MUST be a positive integer. Never 0. Never null.
 3. Every text field must have real, substantive content. No empty strings.
 4. proof_of_concept_code must be runnable code, NOT pseudocode or a description.
@@ -109,7 +110,7 @@ def build_user_prompt(issue: dict[str, Any]) -> str:
     body = str(issue.get("body", ""))
 
     # NOTE: reaction count is intentionally excluded from the prompt.
-    # High reaction counts bias the model toward inflated impact scores (8+).
+    # High reaction counts bias the model toward inflated impact scores.
     # impact_score must be derived from technical audience size, not popularity.
     return (
         f"ABANDONED GITHUB ISSUE TO RESURRECT:\n"
@@ -121,9 +122,9 @@ def build_user_prompt(issue: dict[str, Any]) -> str:
         f"Original description from the issue author:\n"
         f"\"\"\"{body}\"\"\"\n\n"
         "Produce a FULL, DETAILED resurrection analysis following your system instructions.\n"
-        "For impact_score: use the calibrated anchors in your instructions. "
-        "The AVERAGE open-source issue scores 4-6. Only give 7+ if you can justify "
-        "that over 500,000 active developers would directly benefit from this specific feature.\n"
+        "For impact_score: estimate the number of developers directly affected by this "
+        "specific feature, then map that to the 1-10 scale in your instructions. "
+        "Use the full range — small ecosystem = low score, widely-used daily tool = high score.\n"
         "Return ONLY the JSON object. No markdown. No explanation outside the JSON."
     )
 
@@ -379,7 +380,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
                 "content": (
                     f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
                     "Fix them and return only the corrected JSON object. "
-                    "Remember: impact_score uses calibrated anchors (average issue = 4-6). "
                     "proof_of_concept_code must be at least 80 lines of real runnable code."
                 ),
             })
