@@ -43,10 +43,10 @@ jobs:
           git config user.email "bot@resurrection-lab.dev"
           git add -A
           git diff --cached --quiet || git commit -m \
-            "🧬 Day ${{ github.run_number }}: ${{ env.ISSUE_TITLE }} \
-            [${{ env.ISSUE_REPO }}#${{ env.ISSUE_NUMBER }}] \
-            Impact: ${{ env.IMPACT_SCORE }}/10 | \
-            Effort: ~${{ env.EFFORT_HOURS }}h | \
-            PoC: ${{ env.HAS_POC }}"
+            "feat(resurrection): resurrect ${{ env.ISSUE_REPO }}#${{ env.ISSUE_NUMBER }}
+
+            Issue: ${{ env.ISSUE_TITLE }}
+            Impact: ${{ env.IMPACT_SCORE }}/10  Effort: ~${{ env.EFFORT_HOURS }}h  PoC: ${{ env.HAS_POC }}
+            Ref: ${{ env.ISSUE_URL }}"
           git pull --rebase origin main
           git push origin main
