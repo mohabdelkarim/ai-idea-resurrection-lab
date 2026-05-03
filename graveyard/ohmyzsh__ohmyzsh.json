@@ -1,0 +1,536 @@
+[
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 2537,
+    "title": "No, I dont want share history.",
+    "body": "------\r\n### SOLUTION\r\n\r\n~~The solution to this is appending the command `unsetopt share_history` to your zshrc file (make sure to put it at the bottom of the file; that is, _after_ OMZ has been loaded).~~\r\n\r\n~~2376022 removed `share_history `from OMZ. Just `omz update`.~~ I reverted the change. You can still fix this by putting `unsetopt share_history` in your zshrc file, after OMZ is loaded.\r\n\r\n-- @mcornella\r\n\r\n------\r\nyou have \r\n\r\n> setopt share_history\r\n\r\non libs/history.szh.\r\n\r\nThe thing is that once enable there no seems to be a way to disable it. On my .zshrc I tried appending at the end of file:\r\n\r\n> setopt share_history Off\r\n> setopt share_history 0\r\n\r\nIt doesnt work, the only way is disabling it on the history.zsh file but.. that means i wont get updates for it =)\r\n\r\nSo what is the correct way? are you sure users expect this to be enabled by default?? It's very anoying for me\r\n",
+    "reactions": 190,
+    "created_at": "2014-02-16T15:08:44Z",
+    "updated_at": "2024-11-22T08:21:55Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/2537",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/2537",
+    "author_login": "neohunter",
+    "author_profile": "https://github.com/neohunter",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 5327,
+    "title": "oh-my-zsh very slow :(",
+    "body": "Hello,\n\nI'm new to zsh/oh-my-zsh and installed it the first time on Mac OS X today. My Terminal (iTerm2 and default Mac-Terminal) starts very slow now - I have a real \"waiting\" time after opening App. Inside the Terminal it's better but also compared to \"default bash\" - slow. For example, if I only push the enter-key it just takes 1-2 seconds before terminal \"responds\", or if I press \"CMD+V\" for paste, I have to wait some seconds.\n\nUsed software:\n- Mac OS X - 10.11.6 (El Capitan)\n- ZSH v5.2\n- oh-my-zsh - latest (installed today)\n\nBenchmark (with plugins - see .zshrc - loaded):\n\n> /usr/bin/time /usr/local/bin/zsh -i -c exit\n>         4.63 real         0.47 user         0.29 sys\n\nBenachmark (without plugins loaded):\n\n> /usr/bin/time /usr/local/bin/zsh -i -c exit\n>         1.38 real         0.24 user         0.13 sys\n\nHere also my \".zshrc\"-file:\n\n``` zsh\n# Path to your oh-my-zsh installation.\nexport ZSH=/Users/username/.oh-my-zsh\n\n# Set name of the theme to load.\nZSH_THEME=\"agnoster\"\n\n# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)\nplugins=(git command-not-found copydir copyfile cp history sublime vagrant composer symfony brew osx)\n\nsource $ZSH/oh-my-zsh.sh\n\n# Set default-user to remove \"user@hostname\" from agnoster\nDEFAULT_USER=\"username\"\n\n# Load zsh-syntax-highlighting\nsource /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\n\n# Set correct path for php-5.6\nexport PATH=/usr/local/php5-5.6.23-20160626-132038/bin:~/.composer/vendor/bin/:$PATH\n```\n\nIs this normal or can it be fixed?\n",
+    "reactions": 139,
+    "created_at": "2016-08-20T18:48:54Z",
+    "updated_at": "2024-07-08T03:46:48Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/5327",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/5327",
+    "author_login": "SebTM",
+    "author_profile": "https://github.com/SebTM",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 7688,
+    "title": "Warning: plugin zsh-syntax-highlighting not found",
+    "body": "### mac 10.14.3\r\n\r\nJust updated to the latest oh-my-zsh by pulling master and am getting the following warning now when starting a new shell.\r\n```\r\n     Warning: plugin zsh-syntax-highlighting not found\r\n     Warning: plugin zsh-autosuggestions not found",
+    "reactions": 94,
+    "created_at": "2019-03-22T15:15:43Z",
+    "updated_at": "2025-03-13T17:55:42Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/7688",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7688",
+    "author_login": "pfdiy",
+    "author_profile": "https://github.com/pfdiy",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 4390,
+    "title": "Please, oh please, ask, or at least warn, about overwriting ~/.zshrc on installation",
+    "body": "Today is a little worse than it was before installing oh-my-zsh.\n",
+    "reactions": 75,
+    "created_at": "2015-09-23T14:53:16Z",
+    "updated_at": "2025-01-28T10:14:11Z",
+    "labels": [
+      "Area: installer"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/4390",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/4390",
+    "author_login": "ahills",
+    "author_profile": "https://github.com/ahills",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 9015,
+    "title": "Rename OMZ's master branch",
+    "body": "We are going rename our primary/main branch and discontinue using `master`.\r\n\r\nProposal to move from `main` (or `stable` as we're also exploring a `beta` branch naming convention for community-driven testing).  @mcornella can help make a call there.\r\n\r\nGiven that our install and update process is reliant on branch names, this will not be a quick nor simple change. ...but it will (and needs to) happen. Thanks in advance for your contributions and patience as we figure out a strategy.\r\n\r\n* * * *\r\n\r\n```[tasklist]\r\n### Tasks\r\n- [ ] Add logic to `upgrade.sh` to locally rename the branch\r\n- [ ] Test branch rename on external fork\r\n- [ ] Test branch rename against zsh plugin managers:\r\n\t- [ ] https://github.com/zsh-users/antigen\r\n\t- [ ] https://github.com/getantibody/antibody\r\n\t- [ ] https://getantidote.github.io/\r\n\t- [ ] https://github.com/tarjoilija/zgen\r\n\t- [ ] https://github.com/zdharma-continuum/zinit\r\n\t- [ ] https://github.com/zplug/zplug\r\n\t- [ ] https://github.com/zpm-zsh/zpm\r\n- [ ] Test branch rename against a fork\r\n- [ ] Rename in GitHub UI\r\n```\r\n",
+    "reactions": 34,
+    "created_at": "2020-06-08T17:45:28Z",
+    "updated_at": "2026-01-18T20:45:02Z",
+    "labels": [
+      "Feature",
+      "Area: meta"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/9015",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9015",
+    "author_login": "robbyrussell",
+    "author_profile": "https://github.com/robbyrussell",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 10644,
+    "title": "RFC: Add option to disable ohmyzsh aliases",
+    "body": "Hi everyone!\r\n\r\nIt's a common sentiment to feel that omz adds too many aliases in different areas, such as `git` ones (discussed in #5721), default omz ones (#9414) or others. There's a pull request actually (#10510) that fix this issue, but it uses environment variables (not recommended actually, as it pollutes the global variable namespace) and is not granular, as you only can disable all default omz aliases and all plugin aliases.\r\n\r\nI would like to ask you what do you think about this solution, as I think that is cleaner:\r\n\r\nPlugin aliases would be disabled by setting the following snippet in your `.zshrc`:\r\n\r\n```zsh\r\nzstyle ':omz:plugins:<nameofplugin>' alias off\r\n```\r\n\r\nFor instance:\r\n\r\n```zsh\r\nzstyle ':omz:plugins:yarn' alias off\r\n```\r\n\r\nThey can also be disabled all at once, using wildcards:\r\n\r\n```zsh\r\nzstyle ':omz:plugins:*' alias off\r\n```\r\n\r\nAnd enable only a few plugins:\r\n\r\n```zsh\r\nzstyle ':omz:plugins:*' alias off\r\nzstyle ':omz:plugins:yarn' alias on\r\nzstyle ':omz:plugins:git' alias on\r\n```\r\n\r\nFor default ohmyzsh aliases we could use a similar way of doing it, and disabling the whole set of aliases would be something similar to:\r\n\r\n```zsh\r\nzstyle ':omz:*:*' alias off\r\n```\r\n\r\nWhat do you think about this idea? Let's discuss it here!",
+    "reactions": 30,
+    "created_at": "2022-02-02T09:51:26Z",
+    "updated_at": "2023-04-04T20:24:00Z",
+    "labels": [
+      "Feature",
+      "Area: core",
+      "Discussion"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/10644",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/10644",
+    "author_login": "carlosala",
+    "author_profile": "https://github.com/carlosala",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 5642,
+    "title": "How about removing 'r' command ?",
+    "body": "Hi,\r\n\r\nI just typed `r` and my zsh re-played the last command I typed - I use oh-my-zsh ofc. I didn't knew that command and my last command was a critical one. *I find this very dangerous*.\r\n\r\nWhat do you think about removing that alias/command ? I think that the up-arrow is sufficient, don't you ?\r\n\r\nCheers",
+    "reactions": 26,
+    "created_at": "2016-11-15T11:46:03Z",
+    "updated_at": "2020-02-24T07:50:31Z",
+    "labels": [
+      "Feature",
+      "Area: core"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/5642",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/5642",
+    "author_login": "elieteyssedou",
+    "author_profile": "https://github.com/elieteyssedou",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 8847,
+    "title": "Support for Azure cli",
+    "body": "\r\n**Is your feature request related to a problem? Please describe.**\r\nohmyzsh is missing support for the tool azure-cli\r\nhttps://docs.microsoft.com/en-us/cli/azure/\r\n\r\n**Describe the solution you'd like**\r\nA plugin like the one in https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws with similar utilities (profiles --> subscriptions)\r\n\r\n**Describe alternatives you've considered**\r\nIt looks like people have been living without a plugin for azure for a while, but is that fun ?\r\n\r\n\r\n",
+    "reactions": 23,
+    "created_at": "2020-04-21T06:42:52Z",
+    "updated_at": "2023-02-07T11:34:01Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/8847",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/8847",
+    "author_login": "jrottenberg",
+    "author_profile": "https://github.com/jrottenberg",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 9726,
+    "title": "Install via homebrew",
+    "body": "I'd love it if were possible to install ohmyzsh via homebrew.",
+    "reactions": 20,
+    "created_at": "2021-03-11T22:03:23Z",
+    "updated_at": "2024-07-24T12:31:34Z",
+    "labels": [
+      "Feature",
+      "Resolution: duplicate"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/9726",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9726",
+    "author_login": "reggi",
+    "author_profile": "https://github.com/reggi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 7332,
+    "title": "Allow creation of zcompdump in a custom directory",
+    "body": "Hey all 👋\r\n\r\nI tried clearing my home directory of all things ZSH\r\n(bar the `.zshrc` of course, and a new `.all-zsh-config` directory)\r\nbut a `.zcompdump-James’s MacBook Pro-5.3` file was always present\r\n(and if deleted would be recreated on opening of a new terminal)\r\n\r\nAs everything else ZSH-related - including the `.oh-my.zsh/` directory - was successfully moved to the `.all-zsh-config` directory by setting `$ZSH` to `~/.all-zsh-config/.oh-my-zsh`, this was confusing.\r\n\r\nAfter a look at the `oh-my-zsh.sh` file it looks like this is because regardless of the set `$ZSH` directory the `ZSH_COMPDUMP` file is always set to point to the `$HOME` directory.\r\n\r\nhttps://github.com/robbyrussell/oh-my-zsh/blob/745b6550a6a8415e2c6df0006aad40549c3bc56a/oh-my-zsh.sh#L65-L68\r\n\r\nIf this could be changed to reference `$ZSH` it would allow a custom config folder to be created (to de-clutter the home directory) without affecting completion.\r\n\r\n``` sh\r\n# Save the location of the current completion dump file.\r\nif [ -z \"$ZSH_COMPDUMP\" ]; then\r\n  ZSH_COMPDUMP=\"${ZDOTDIR:-${ZSH}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}\"\r\nfi\r\n```\r\n\r\nThings seem to be working for me having replaced it, I'm just not sure whether all plugins will respect the `$ZSH_COMPDUMP` and use the new zcompdump file (or just revert to one in the home directory).\r\n\r\nIs this something that would be helpful / worth including?",
+    "reactions": 20,
+    "created_at": "2018-10-24T20:49:15Z",
+    "updated_at": "2025-09-03T11:16:09Z",
+    "labels": [
+      "Feature",
+      "Area: core",
+      "Topic: completion"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/7332",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7332",
+    "author_login": "JamesPeiris",
+    "author_profile": "https://github.com/JamesPeiris",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 9414,
+    "title": "Add option to disable ohmyzsh's aliases",
+    "body": "\r\n**Is your feature request related to a problem? Please describe.**\r\nYes. I don't want aliases i never asked for. When I do `alias` i see that there are aliases like `egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'`, which I have no idea about.\r\n\r\n**Describe the solution you'd like**\r\nIt would be nice if I could set a variable like OMZ_ALIASES=false, so that i can disable aliases, or a even better solution would be to maintain the list of aliases in a separate file, so that I can comment out the ones if don't want//\r\n\r\n**Describe alternatives you've considered**\r\nI have tried to manually comment out the aliases i don't want by grep-ing, but that is tiresome\r\n\r\n**Additional context**\r\nI am not talking about the git aliases, which are rather helpful. I am talking about the aliases that are sourced even when `plugins=()`\r\n\r\n**Related Issues**\r\nUnwanted aliases can lead to people wondering what they are doing wrong when they aren't doing anything wrong, and its the alias they never knew they had causing the problem.\r\n",
+    "reactions": 19,
+    "created_at": "2020-11-03T05:32:47Z",
+    "updated_at": "2023-04-03T21:14:38Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/9414",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9414",
+    "author_login": "ghost",
+    "author_profile": "https://github.com/ghost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 5286,
+    "title": "Alternative to auto-update prompt",
+    "body": "Sometimes I start typing right after I open a new terminal. If oh-my-zsh decides to ask for an auto upgrade, it eats my input or worse it could possibly trigger a Y or N by mistake.\n\nWhat I propose is an alternative way of handling automatic checks for updates by simply notifying the user of their availability.\n\neg:\n- Check for updates every now and then **in the background** and persist the result.\n- Every time a new session is started, iff there were pending updates, **notify the user with a non-interactive prompt** - something like _\"There are pending oh-my-zsh updates. Use `upgrade_oh_my_zsh` to upgrade.\"_\n- When `upgrade_oh_my_zsh` is run, clear the persisted \"updates available\" state.\n\nThis should be an option configurable along with `DISABLE_AUTO_UPDATE` on `.zshrc`. Maybe setting a) `DISABLE_UPDATE_PROMPT=notify` or b) `DISABLE_AUTO_UPDATE=true` and `ENABLE_UPDATE_CHECK=true`?\n",
+    "reactions": 19,
+    "created_at": "2016-08-07T11:17:16Z",
+    "updated_at": "2020-06-09T17:38:09Z",
+    "labels": [
+      "Feature",
+      "Area: updater"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/5286",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/5286",
+    "author_login": "larvanitis",
+    "author_profile": "https://github.com/larvanitis",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 6330,
+    "title": "Add zsh-docker-aliases to the plugins",
+    "body": "I'd like to propose that [zsh-docker-aliases](https://github.com/akarzim/zsh-docker-aliases) by @akarzim be added to the list of plugins, as this is the most comprehensive list of aliases I found for docker and the docker-related tooling.",
+    "reactions": 18,
+    "created_at": "2017-10-04T13:58:20Z",
+    "updated_at": "2019-04-07T21:24:30Z",
+    "labels": [
+      "Feature",
+      "Area: plugin",
+      "Topic: alias"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/6330",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6330",
+    "author_login": "AlexVPopov",
+    "author_profile": "https://github.com/AlexVPopov",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 10912,
+    "title": "Completion support for docker compose (new Go implementation)",
+    "body": "### If the feature request is for a plugin or theme, specify it here.\n\nDocker plugin\n\n### If the feature solves a problem you have, specify it here.\n\nThere is a new go implementation of docker-compose that is included with base docker.\r\nThis runs as a sub command of docker (`docker compose` vs `docker-compose`).\r\n\r\nCompletion works up to `docker compose` then it stops\n\n### Describe the proposed feature.\n\nIt would be great if completion worked as it does with the docker-compose plugin but for the new subcommand implementation.\n\n### Describe alternatives you've considered\n\nI could continue using docker-compose but it looks like that is now [deprecated](https://www.docker.com/blog/announcing-compose-v2-general-availability/).\n\n### Additional context\n\n_No response_\n\n### Related Issues\n\n_No response_",
+    "reactions": 16,
+    "created_at": "2022-05-04T16:33:40Z",
+    "updated_at": "2023-06-15T09:17:45Z",
+    "labels": [
+      "Feature",
+      "Area: plugin"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/10912",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/10912",
+    "author_login": "jasonthomasgray",
+    "author_profile": "https://github.com/jasonthomasgray",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 9367,
+    "title": "Feedback request: WORDCHARS change makes usability REALLY BAD",
+    "body": "**Is your feature request related to a particular plugin or theme? If so, specify it.**\r\nno\r\n\r\n**Is your feature request related to a problem? Please describe.**\r\nIntroduced by this commit: https://github.com/ohmyzsh/ohmyzsh/commit/50dc4ab3574f4e265dff816d8d9a0195cd260152\r\nThe usability is really bad when jumping between words. I found it extremely useful to jump between dashes (`-`) and underscores (`_`), and this commit just eliminates this capability which was crucial for fast work with the terminal.\r\n\r\n**Describe the solution you'd like**\r\nOf course I could set my own `WORDCHARS`, but I don't think this behaviour is something the majority would enjoy using.\r\n",
+    "reactions": 15,
+    "created_at": "2020-10-21T09:56:22Z",
+    "updated_at": "2020-10-21T14:07:23Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/9367",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9367",
+    "author_login": "mosheavni",
+    "author_profile": "https://github.com/mosheavni",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 3885,
+    "title": "Don't autocomplete variables",
+    "body": "Using OSX here. How do I disable autocompletion for environment variables?\nFor instance, if I type `zsh` to get to `zshconfig` this is the result:\n\n```\n[~]$ zsh                                                                       \nZSH                            ZSH_THEME_GIT_PROMPT_SUFFIX  \nZSH_CACHE_DIR                  ZSH_THEME_RVM_PROMPT_PREFIX  \nZSH_COMPDUMP                   ZSH_THEME_RVM_PROMPT_SUFFIX  \nZSH_CUSTOM                     ZSH_THEME_TERM_TAB_TITLE_IDLE\nZSH_NAME                       ZSH_THEME_TERM_TITLE_IDLE    \nZSH_PATCHLEVEL                 ZSH_VERSION                  \nZSH_SPECTRUM_TEXT              zsh                          \nZSH_THEME                      zsh_scheduled_events         \nZSH_THEME_GIT_PROMPT_CLEAN     zsh_stats                    \nZSH_THEME_GIT_PROMPT_DIRTY     zshconfig                    \nZSH_THEME_GIT_PROMPT_PREFIX           \n```\n\nIt's especially bad with the awesome case-insensitive option.\nAnother example: If I type `wo` to get to virtualenv's `workon` command, I instead get this:\n\n```\n[~]$ wor                                                                       \nWORDCHARS         WORKON_HOME       work_in_progress  workon  \n```\n",
+    "reactions": 13,
+    "created_at": "2015-05-12T15:03:27Z",
+    "updated_at": "2019-04-04T21:46:26Z",
+    "labels": [
+      "Feature",
+      "Topic: completion"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/3885",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/3885",
+    "author_login": "ivancuric",
+    "author_profile": "https://github.com/ivancuric",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 9124,
+    "title": "Multipass plugin",
+    "body": "<!--\r\nFill this out before posting. You can delete irrelevant sections, but\r\nan issue where no sections have been filled will be deleted without comment.\r\n-->\r\n\r\n**Is your feature request related to a particular plugin or theme? If so, specify it.**\r\n\r\nNot existing yet, probable new plugin \"multipass\".\r\n\r\n**Is your feature request related to a problem? Please describe.**\r\n\r\nI'd like to have autocompletion and aliases for the multipass command line tool.\r\n\r\n**Describe the solution you'd like**\r\n\r\nA plugin for multipass.\r\n\r\n**Describe alternatives you've considered**\r\n\r\nShell aliases and functions. I am interested  in  contributing the aliases and functions.\r\n\r\n**Additional context**\r\n- [Multipass website](https://multipass.run/)\r\n\r\n**Related Issues**\r\n\r\nNothing related found.",
+    "reactions": 12,
+    "created_at": "2020-07-20T10:28:00Z",
+    "updated_at": "2022-02-01T22:48:15Z",
+    "labels": [
+      "Feature",
+      "Area: plugin",
+      "New: plugin"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/9124",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9124",
+    "author_login": "fkromer",
+    "author_profile": "https://github.com/fkromer",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 8302,
+    "title": "Add git-completion compatibility for git v2.23 commands",
+    "body": "**Plugin**\r\ngit-completion\r\n\r\n**Current Behavior**\r\nGit branch name autocompletion does not work when using `git switch` or `git restore -s`.\r\n\r\n**Expected Behavior**\r\nTabbing on incomplete branch names using the aforementioned commands should autocomplete or display a list of possible branches.",
+    "reactions": 12,
+    "created_at": "2019-10-22T18:08:35Z",
+    "updated_at": "2020-05-08T14:10:22Z",
+    "labels": [
+      "Feature",
+      "Topic: completion",
+      "Resolution: not our issue"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/8302",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/8302",
+    "author_login": "apeluffo",
+    "author_profile": "https://github.com/apeluffo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 6060,
+    "title": "Feature: use `ls` colors in completion output",
+    "body": "Problem: tab completion is colored, but colors do not match other colors throughout the terminal.\r\n\r\n\r\n1. How to reproduce the problem  \r\nrun `ls` then type `vim <tab>` with default color scheme/theme  \r\n2. What the correct behavior should be\r\nColors displayed should match colors of output of `ls`\r\n3. What the actual behavior is\r\nColor of output is different than color of `ls` output  \r\n(In my case I'm using the Smyck color scheme for iTerm, though that should not matter here)  \r\n<img width=\"922\" alt=\"screen shot 2017-05-01 at 6 08 19 pm\" src=\"https://cloud.githubusercontent.com/assets/1351436/25600562/ccef3076-2e99-11e7-97b3-247dea8c8dbe.png\">  \r\n\r\nAs you can see, all the colors are different and the `Adobe` entry is downright illegible.\r\n\r\nI came across #1563 but I am new to this and don't know enough about zsh theming to know what dir_colors is or really understand what's going on in that thread. I tried the workaround listed in the thread: `zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}`, but it removes color from tab completion output completely. As I understand it, this behavior is to be expected as I am on a mac and macs use LSCOLORS, but when I use LSCOLORS in that line, I get the same broken result as I do omitting the line in question.\r\n\r\nThis seems like it should be a simple thing. Yes there are iTerm themes that make it legible, but they make my vim scheme illegible and I'd really rather solve this the right way.\r\n\r\nAs a workaround, can I manually override the tab completion colors? Where can I look to look up the LS output colors? `echo LSCOLORS` give me this insane string: `Gxfxcxdxbxegedabagacad`",
+    "reactions": 10,
+    "created_at": "2017-05-02T01:22:15Z",
+    "updated_at": "2023-03-14T08:11:14Z",
+    "labels": [
+      "Area: theme",
+      "Area: core",
+      "Topic: completion",
+      "Enhancement"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/6060",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6060",
+    "author_login": "chuckdries",
+    "author_profile": "https://github.com/chuckdries",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 7642,
+    "title": "After enabling a plugin, autocompletion requires manual rm of a .zcompdump file",
+    "body": "Clean installation on macOS Mojave 10.14.3 (18D109). \r\n`git status` inside `~/.oh-my-zsh` shows clean.\r\n`git rev-parse HEAD` shows `52afbf77f63844abd719e565a15af2c34075de7f`\r\n\r\nNo changes to `.zshrc`.\r\n\r\nPlugin for git works fine\r\n\r\n```\r\n➜  ~ git [TAB]\r\nzsh: do you wish to see all 130 possibilities (130 lines)? \r\n```\r\n\r\nI add `docker` in `.zshrc`. `plugins=(git docker)`. I restart my Terminal (or run `zsh`) and get\r\n\r\n```\r\n➜  ~ docker [TAB]\r\nApplications/     Data/             Lota/             Public/         \r\nArchive/          Documents/        Movies/           bin/            \r\nDesktop/          Downloads/        Music/            \r\nDeveloper/        Library/          Pictures/                   \r\n```\r\n\r\nGit plugin still works. Adding some other plugins (not completion plugins I presume), like `emoji-clock` works fine.\r\n\r\nDebug log: https://pastebin.com/RikhtP3g",
+    "reactions": 9,
+    "created_at": "2019-03-09T00:56:13Z",
+    "updated_at": "2020-05-04T14:51:17Z",
+    "labels": [
+      "Topic: completion",
+      "Enhancement"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/7642",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7642",
+    "author_login": "jkulak",
+    "author_profile": "https://github.com/jkulak",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 10468,
+    "title": "Introduce official versions",
+    "body": "Oh My Zsh does not produce official releases and tags. However, it's [packages](https://repology.org/project/oh-my-zsh/versions) in a lot of repositiries and [contains](https://repology.org/project/oh-my-zsh/cves) known vulnerabilities. As you can see, without official versioning scheme versions are a mess and there's no way for automated tools such as Repology to report new versions for package maintainers and users, and to determine which versions contain vulnerabilities.\r\n\r\nI understand that that you follow \"living on head\" approach and introducing releases and tags may be pointless (however even automated tagging each day if there were new commits may be an option), but at least documenting an official version format would help synchronize repositories and vulnerability database.",
+    "reactions": 7,
+    "created_at": "2021-12-01T15:08:53Z",
+    "updated_at": "2026-02-12T18:30:42Z",
+    "labels": [
+      "Feature",
+      "Area: meta"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/10468",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/10468",
+    "author_login": "AMDmi3",
+    "author_profile": "https://github.com/AMDmi3",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 9999,
+    "title": "Update master to main",
+    "body": "<!--\r\nFill this out before posting. You can delete irrelevant sections, but\r\nan issue where no sections have been filled will be deleted without comment.\r\n-->\r\n\r\n**Is your feature request related to a particular plugin or theme? If so, specify it.**\r\nNope. Just a change of the default repo to match some of the cultural changes of GitHub. \r\n\r\nhttps://github.com/github/renaming\r\n\r\n**Is your feature request related to a problem? Please describe.**\r\nInclusive language.\r\n\r\n**Describe the solution you'd like**\r\nUpdating the default master branch to main.\r\n\r\n**Describe alternatives you've considered**\r\nThere are no replacements for ohmyzsh, long time user, fan, and supporter.\r\n\r\n**Additional context**\r\nI know this will break a lot of things, but wanted to start the converstion.\r\n\r\n**Related Issues**\r\nnil\r\n",
+    "reactions": 7,
+    "created_at": "2021-06-22T21:39:20Z",
+    "updated_at": "2021-06-24T12:56:24Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/9999",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9999",
+    "author_login": "djcarpe",
+    "author_profile": "https://github.com/djcarpe",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 9438,
+    "title": "Git plugin: \"gl\" should be short for \"git log\", not \"git push\"",
+    "body": "It seems more intuitive for \"gl\" to mean \"git log\", and perhaps that was the intent. In the line below, a grouping of \"git log\"-related aliases can be seen. \"git push\" seems out of place.\r\n\r\nhttps://github.com/ohmyzsh/ohmyzsh/blob/51772732f54f01522ad5720e8ed0ba16ca3147ae/plugins/git/git.plugin.zsh#L186-L202\r\n\r\n@robbyrussell I tried to find a list of the plugin maintainers but could not find one. Perhaps it could be linked from the contributing guidelines?",
+    "reactions": 6,
+    "created_at": "2020-11-12T18:26:13Z",
+    "updated_at": "2026-01-18T20:48:26Z",
+    "labels": [
+      "Feature",
+      "Topic: alias"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/9438",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9438",
+    "author_login": "ivanjonas",
+    "author_profile": "https://github.com/ivanjonas",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 7328,
+    "title": "Load plugin completions without aliases",
+    "body": "Oh-my-zsh is great! It makes configuring zsh very easy.\r\n\r\nHowever, it does a bit too much for my taste. Many plugins tend to add autocompletion for a command and a bunch of aliases. Personally I love to have that autocompletion, but I don’t like most of the aliases.\r\n\r\nIs there a nice way to load only plugin completions, but not the aliases?",
+    "reactions": 6,
+    "created_at": "2018-10-23T11:48:23Z",
+    "updated_at": "2023-04-04T20:26:04Z",
+    "labels": [
+      "Feature",
+      "Area: plugin",
+      "Area: init",
+      "Topic: completion"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/7328",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7328",
+    "author_login": "remcohaszing",
+    "author_profile": "https://github.com/remcohaszing",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 4116,
+    "title": "Agnoster theme prompt extremly slow in mercurial",
+    "body": "Code here https://github.com/robbyrussell/oh-my-zsh/blob/3d2bf227ea2b37d351ac3846627f28151e0a4480/themes/agnoster.zsh-theme#L111 runs very slow (mac yosemite)\n",
+    "reactions": 6,
+    "created_at": "2015-07-02T10:11:13Z",
+    "updated_at": "2023-10-13T21:30:13Z",
+    "labels": [
+      "Area: theme",
+      "Enhancement"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/4116",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/4116",
+    "author_login": "MerliX",
+    "author_profile": "https://github.com/MerliX",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 11814,
+    "title": "Social media other than twitter",
+    "body": "### If the feature request is for a plugin or theme, specify it here.\n\n_No response_\n\n### If the feature solves a problem you have, specify it here.\n\nAnnouncements made on twitter now require a twitter account for users to even read.\n\n### Describe the proposed feature.\n\nAdd mastodon (or something else) as an option.\n\n### Describe alternatives you've considered\n\n_No response_\n\n### Additional context\n\n_No response_\n\n### Related Issues\n\n_No response_",
+    "reactions": 5,
+    "created_at": "2023-07-24T19:59:25Z",
+    "updated_at": "2023-10-08T12:51:54Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/11814",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/11814",
+    "author_login": "coke",
+    "author_profile": "https://github.com/coke",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 9216,
+    "title": "Proper versioning to release oh-my-zsh on Linux distributions",
+    "body": "It would be really awesome to have proper versioning and tags around `oh-my-zsh` to make it able to be an official package on some Linux distributions.\r\n\r\nPlease look to Semantic Versioning 2.0.0 standard at [semver.org](https://semver.org/), as an example.",
+    "reactions": 5,
+    "created_at": "2020-08-30T13:11:47Z",
+    "updated_at": "2026-02-12T18:30:20Z",
+    "labels": [
+      "Feature",
+      "Area: meta"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/9216",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9216",
+    "author_login": "ljmf00",
+    "author_profile": "https://github.com/ljmf00",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 8779,
+    "title": "Support completions from external tools in the ZSH fpath/compinit lifecycle ",
+    "body": "<!--\r\nFill this out before posting. You can delete irrelevant sections, but\r\nan issue where no sections have been filled will be deleted without comment.\r\n-->\r\n\r\n**Is your feature request related to a particular plugin or theme? If so, specify it.**\r\n\r\nMy feature request is related to all plugins, but I am particularly interested in the `asdf` plugin.\r\n\r\n**Is your feature request related to a problem? Please describe.**\r\n\r\nCurrently, the `asdf` plugin sources the tool's Bash completions. We (maintainer here) recently added [native ZSH completions to the tools codebase](https://github.com/asdf-vm/asdf/tree/master/completions). It would be great to be able to simply symlink the existing ZSH completions to the `plugins/asdf` dir in place of sourcing the Bash completions. However, given all additions to `fpath` and the call to `compinit` are performed before the `*.plugin.zsh` scripts are executed it means any symlink or copy of the actual ZSH files within the plugin's script will not take affect until https://github.com/ohmyzsh/ohmyzsh/issues/7642 is performed.\r\n\r\n**Describe the solution you'd like**\r\n\r\n1st party support for 3rd party tools to have their completions added to fpath within the oh-my-zsh lifecycle. \r\n\r\nI don't want each `asdf` user to have to learn about `fpath` if this could be automated (as it currently is but with bash completions). Now macOS ships with ZSH as it's default shell we will have many users migrated from Bash to ZSH and so I see this becoming an increasingly large problem. \r\n\r\n**Describe alternatives you've considered**\r\n\r\nManually sourcing the completions from `asdf` before sourcing `oh-my-zsh` so I do not have to rerun compinit.\r\n\r\nRelevant parts of my `.zshrc`: \r\n\r\n```shell\r\nfpath=(${HOME}/.asdf/completions $fpath)\r\nplugins=(\r\n  asdf\r\n)\r\n. \"$ZSH/oh-my-zsh.sh\"\r\n```\r\n\r\n**Additional context**\r\n\r\nNotably, https://github.com/ohmyzsh/ohmyzsh/pull/8777 will not resolve this issue.\r\n\r\nPast work on the asdf plugin:\r\n- https://github.com/ohmyzsh/ohmyzsh/pull/4956\r\n- https://github.com/ohmyzsh/ohmyzsh/pull/6046\r\n- https://github.com/ohmyzsh/ohmyzsh/pull/6456\r\n- https://github.com/ohmyzsh/ohmyzsh/pull/6749\r\n- https://github.com/ohmyzsh/ohmyzsh/pull/7582\r\n\r\nTagging listed Maintainer of OMZ asdf plugin: @RobLoach\r\n\r\nExternally relevant:\r\n- https://github.com/zsh-users/zsh-completions/issues/603",
+    "reactions": 5,
+    "created_at": "2020-03-29T09:34:54Z",
+    "updated_at": "2023-10-02T18:33:18Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/8779",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/8779",
+    "author_login": "jthegedus",
+    "author_profile": "https://github.com/jthegedus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 6523,
+    "title": "Respect ZDOTDIR across all Oh My Zsh",
+    "body": "I´ve noticed that **every** plugin referencing any zsh startup file assumes, that those are located in the users home directory, disregarding the possibility of setting ```ZDOTDIR``` to something else within ```/etc/zshenv```...\r\nIn fact there are only 3 files (lib/compfix.zsh, lib/diagnostics.zsh and oh-my-zsh.sh) that use ```ZDOTDIR```, while there are 45(!!!) files (not counting any readme's) referencing ```.zshrc```",
+    "reactions": 5,
+    "created_at": "2018-01-02T00:46:24Z",
+    "updated_at": "2023-10-16T10:10:36Z",
+    "labels": [
+      "Area: plugin",
+      "Area: core",
+      "Enhancement"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/6523",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6523",
+    "author_login": "Shea690901",
+    "author_profile": "https://github.com/Shea690901",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 6239,
+    "title": "bundle/link with original Gradle bash/zsh completion",
+    "body": "Gradle team created and maintains their own Gradle commands completion. Maybe it's worth to bundle their implementation as a plugin to oh-my-zsh. Default Gradle support does not look alive to me.\r\n\r\nRelated issue\r\nhttps://github.com/gradle/gradle-completion/issues/13",
+    "reactions": 5,
+    "created_at": "2017-08-11T12:51:03Z",
+    "updated_at": "2020-03-09T17:44:49Z",
+    "labels": [
+      "Topic: completion",
+      "Enhancement"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/6239",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6239",
+    "author_login": "jonnyzzz",
+    "author_profile": "https://github.com/jonnyzzz",
+    "already_resurrected": false
+  }
+]

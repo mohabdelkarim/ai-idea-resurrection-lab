@@ -1,0 +1,34 @@
+[
+  {
+    "repo": "ajeetdsouza/zoxide",
+    "issue_number": 9,
+    "title": "Add zsh completion",
+    "body": "It would be awesome to tab complete the top rated entries.\r\n\r\nSide note: All the tickets are because your tool is awesome :) 🥇 ",
+    "reactions": 63,
+    "created_at": "2020-03-08T19:30:41Z",
+    "updated_at": "2023-03-20T14:33:58Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/ajeetdsouza/zoxide/issues/9",
+    "html_url": "https://github.com/ajeetdsouza/zoxide/issues/9",
+    "author_login": "lugoues",
+    "author_profile": "https://github.com/lugoues",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ajeetdsouza/zoxide",
+    "issue_number": 283,
+    "title": "[Feature Request] Zoxide Library",
+    "body": "It would be awesome to integrate zoxide in other rust tools especially file managers like [joshuto](https://github.com/kamiyaa/joshuto). Would it be possible to make a zoxide library similar to the way [skim](https://github.com/lotabout/skim) is both a cli and a [library](https://github.com/lotabout/skim#use-as-a-library)? \r\n\r\nLinking [this issue](https://github.com/kamiyaa/joshuto/issues/97#issuecomment-944695877) for reference",
+    "reactions": 5,
+    "created_at": "2021-10-15T22:30:26Z",
+    "updated_at": "2022-04-25T03:06:54Z",
+    "labels": [
+      "feature"
+    ],
+    "url": "https://api.github.com/repos/ajeetdsouza/zoxide/issues/283",
+    "html_url": "https://github.com/ajeetdsouza/zoxide/issues/283",
+    "author_login": "jtrv",
+    "author_profile": "https://github.com/jtrv",
+    "already_resurrected": false
+  }
+]

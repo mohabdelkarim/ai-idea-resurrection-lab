@@ -1,0 +1,175 @@
+[
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 7946,
+    "title": "Python: .Net: OpenAI - Support response_format type of json_schema (Structured Outputs)",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\r\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\r\n<!-- Please search existing issues to avoid creating duplicates. -->\r\n\r\n<!-- Describe the feature you'd like. -->\r\nThe latest OpenAI models allow passing `json_schema` as the `response_format` `type` property, and supplying the schema itself under the `schema` property. This enforces conformance to the schema by validating output tokens, rather than best LLM effort.\r\n\r\nAnnounced here: https://openai.com/index/introducing-structured-outputs-in-the-api/\r\n\r\nThis is obviously massively useful to any application using json output, especially when deserialising the json to C# types. \r\nPlease consider adding support for these properties through the SemanticKernel abstractions and .Net client in the short term.",
+    "reactions": 20,
+    "created_at": "2024-08-07T01:17:44Z",
+    "updated_at": "2025-04-29T03:08:52Z",
+    "labels": [
+      ".NET",
+      "java",
+      "ai connector",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/7946",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/7946",
+    "author_login": "jonnermut",
+    "author_profile": "https://github.com/jonnermut",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 13047,
+    "title": ".Net: Bug: StreamingChatMessageContent doesn't contain result of tool calls",
+    "body": "This issue is a follow-up to the closed issue #12891 \n\nWhen using streaming responses through `ChatCompletionAgent`, tool calls and their results are not being added to the chat history. This prevents storing and resuming conversations that involve function calling. Information regarding the actual tool call and its arguments can be found, as described in #12891, but the actual results of the tool calls can't.\n\nIt turns our that `agent.InvokeStreamingAsync` is indeed returning a `StreamingChatMessageContent` of role `tool`, but without the result of the function. This is equivalent to the non streaming case, but with the exception that this one holds the result of the tool call. It has an item called `FunctionResultContent` with the result. But that item is missing in the `StreamingChatMessageContent`.\n\nFrom what I can tell it's in https://github.com/microsoft/semantic-kernel/blob/main/dotnet/src/SemanticKernel.Abstractions/AI/ChatClient/ChatResponseUpdateExtensions.cs where we lose the result of the function call. \n\nSo in that method we do get a `ChatResponseUpdate` of role `tool`, that has an `Microsoft.Extensions.AI.FunctionResultContent` in its `Contents` list. However, that item is ignored and the returned `StreamingChatMessageContent` doesn't contain any `Items`. Which is what we're seeing in the program.\n\nSo what do you think. Is this a bug or a design choice? It seems like the information is there, but that it's just not being propagated.\n\nIt would be awesome to get this fixed, since I'm not sure how to store correct history in-between calls otherwise 🤔 \n\nIn general, having access to the same (complete) chat history after a call to either `InvokeAsync` or `InvokeStreamingAsync` would be preferable. \n\n**Platform**\n - Language: C#\n - Source: 1.63.0\n - AI model: AWS Bedrock",
+    "reactions": 9,
+    "created_at": "2025-09-01T12:11:15Z",
+    "updated_at": "2026-01-14T02:16:54Z",
+    "labels": [
+      "bug",
+      ".NET",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/13047",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/13047",
+    "author_login": "jooooel",
+    "author_profile": "https://github.com/jooooel",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 13007,
+    "title": ".Net: New Feature: Expose GPT-5 Verbosity, ReasonEffort= Minimal parameters to SK",
+    "body": "---\nname: Feature request\nabout: Suggest an idea for this project\n\n---\n\n<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- Please search existing issues to avoid creating duplicates. -->\n\n<!-- Describe the feature you'd like. -->\nSince Chat GPT-5 was released, the OpenAI API has two new parameters that can control the AI Response:\n\n1. The `verbosity` parameter (low/medium/high) that controls the length of the answer back\n2. The ReasonEffort = Minimal (SK already has high/medium/low, but with GPT-5 a 'minimal' value has also been introduced that SK does not currently support (if you send the value, you get an exception))\n\nIt would be nice if SK could support these\n",
+    "reactions": 8,
+    "created_at": "2025-08-25T21:53:17Z",
+    "updated_at": "2026-03-04T18:09:41Z",
+    "labels": [
+      ".NET",
+      "ai connector",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/13007",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/13007",
+    "author_login": "rwjdk",
+    "author_profile": "https://github.com/rwjdk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 12887,
+    "title": ".Net: Bug: GPT-5 new reasoning level 'minimal' is not working in SK",
+    "body": "**Describe the bug**\nI tried setting OpenAIPromptExecutionSettings value of 'ReasoningEffort' to the new OpenAI value 'minimal', and I get back **The provided reasoning effort 'minimal' is not supported.**\n\n**To Reproduce**\nSee above.\n\n**Expected behavior**\nTo work with 'minimal' reasoning effort with new gpt-5 model. Should also be added to the struct ChatReasoningEffortLevel to have Minimal.\n\n**Screenshots**\n---\n\n**Platform**\n - Language: C#\n - Source: SK 1.61.0 \n - AI model: OpenAI: gpt-5\n - IDE: VS\n - OS: Win11\n\n**Additional context**\n---",
+    "reactions": 7,
+    "created_at": "2025-08-07T18:43:59Z",
+    "updated_at": "2025-08-25T17:14:19Z",
+    "labels": [
+      ".NET",
+      "enhancement",
+      "blocked external"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/12887",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/12887",
+    "author_login": "dmm-l-mediehus",
+    "author_profile": "https://github.com/dmm-l-mediehus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 9919,
+    "title": ".Net: New Feature: Support ResponseFormat in OllamaPromptExecutionSettings",
+    "body": "---\nname: Feature request\nabout: Suggest an idea for this project\n\n---\n\n<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- Please search existing issues to avoid creating duplicates. -->\n\n<!-- Describe the feature you'd like. -->\nNow [as Ollama supports structured outputs](https://ollama.com/blog/structured-outputs), it's `OllamaPromptExecutionSettings` can support ResponseFormat similar to `OpenAIPromptExecutionSettings`",
+    "reactions": 7,
+    "created_at": "2024-12-10T03:02:22Z",
+    "updated_at": "2025-08-16T20:27:22Z",
+    "labels": [
+      ".NET",
+      "python",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/9919",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/9919",
+    "author_login": "Lanayx",
+    "author_profile": "https://github.com/Lanayx",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 10782,
+    "title": ".Net: Create MCP Sample",
+    "body": "- [x] Create sample showing how to use MCP Tools for function calling with Semantic Kernel\n- [x] Create Blog Post to describe the sample",
+    "reactions": 6,
+    "created_at": "2025-03-04T11:25:46Z",
+    "updated_at": "2025-06-17T12:30:25Z",
+    "labels": [
+      ".NET",
+      "samples",
+      "stale",
+      "needs_port_to_python"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/10782",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/10782",
+    "author_login": "markwallace-microsoft",
+    "author_profile": "https://github.com/markwallace-microsoft",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 1541,
+    "title": "Microsoft Guidance integration/implementation",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\r\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\r\n<!-- Please search existing issues to avoid creating duplicates. -->\r\n\r\n<!-- Describe the feature you'd like. -->\r\nDo you plan to integrate your prompt template with the feature implemented in the mirosoft guidance project? https://github.com/microsoft/guidance\r\n\r\nBoth these project are under the microsoft organization, it would be a pity to waste what you can theoretically achieve with guidance, that's a python native library.\r\nAny plan to do something like that?\r\nI've to say in my project I've currently implemented my own integrations from scratch because C# ecosystem is lackluster in this regard, it has very few low level libraries, but I would be happy to use a library if it implements what I need, and one of these is a prompt template engine like guidance.\r\nActually I'm experimenting with Fluid/Liquid template but I don't want to reinvent the wheel if there is a chance to reuse something more established and battle tested\r\n\r\nThanks",
+    "reactions": 6,
+    "created_at": "2023-06-18T18:05:34Z",
+    "updated_at": "2024-01-04T08:36:00Z",
+    "labels": [
+      ".NET",
+      "needs discussion"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/1541",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/1541",
+    "author_login": "MithrilMan",
+    "author_profile": "https://github.com/MithrilMan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 12617,
+    "title": ".Net: Bug: Chatcompletion usage object reflects only last LLM call even when multiple has been made",
+    "body": "**Describe the bug**\nA clear and concise description of what the bug is.\n\n**To Reproduce**\nSteps to reproduce the behavior:\n1. Perform IChatCompletionService.GetChatMessageContentAsync\n2. Extract usage object (for example for OpenAI)\n3. Check Token count\n4. Token count is just last API call, which can be fraction of reality\n\n**Expected behavior**\nI expect usage object that sums all OpenAI api calls for proper accounting\n\n\n**Platform**\n - Language: C#\n - Source: NuGet package 1.54.0\n - AI model: OpenAI:GPT-4o-mini\n\n**Additional context**\nTo have proper accounting of tokens spend per customer, it is a must to be able to get to proper token count somehow",
+    "reactions": 5,
+    "created_at": "2025-06-27T16:39:34Z",
+    "updated_at": "2026-04-26T02:20:07Z",
+    "labels": [
+      "bug",
+      ".NET",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/12617",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/12617",
+    "author_login": "AlesRuzickaEu",
+    "author_profile": "https://github.com/AlesRuzickaEu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 4334,
+    "title": ".Net: Add connector for Gemini",
+    "body": "https://ai.google.dev/tutorials/rest_quickstart",
+    "reactions": 5,
+    "created_at": "2023-12-17T11:45:59Z",
+    "updated_at": "2024-05-18T03:58:26Z",
+    "labels": [
+      ".NET",
+      "ai connector",
+      "sk team issue",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/microsoft/semantic-kernel/issues/4334",
+    "html_url": "https://github.com/microsoft/semantic-kernel/issues/4334",
+    "author_login": "stephentoub",
+    "author_profile": "https://github.com/stephentoub",
+    "already_resurrected": false
+  }
+]

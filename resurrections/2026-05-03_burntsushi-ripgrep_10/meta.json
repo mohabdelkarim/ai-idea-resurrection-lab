@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-03",
+  "repo": "BurntSushi/ripgrep",
+  "issue_number": 10,
+  "title": "add to package repositories",
+  "reactions": 68,
+  "abandoned_date": "2022-08-02T19:10:11Z",
+  "one_line_why": "The current ecosystem changes with better packaging tools and Rust support in various repositories, making it feasible to add ripgrep to package repositories, and thus...",
+  "impact_score": 5,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "rust",
+    "packaging",
+    "ci/cd",
+    "linux"
+  ],
+  "original_url": "https://github.com/BurntSushi/ripgrep/issues/10"
+}

@@ -1,0 +1,250 @@
+[
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 13477,
+    "title": "[Feature Request]: default to pydantic v2",
+    "body": "### Feature Description\r\n\r\nBy default llama_index is using pydantic v1 Models. This leads to issues when users try to use llamaindex pydantic Models as part of their application where users are probably using pydantic v2 api.\r\n\r\nFor example I am using the current fastapi which uses pydantic v2.7.1. and I cannot use llamaindex models in my API due to this error, I have to copy the llamaindex Models manually and re-create them with pydantic v2 in my code, which goes against DRY principle and also is a maintenance effort.\r\n\r\n<https://github.com/run-llama/llama_index/blob/133cc30bae32a7e23372ccd08aba8fec5cec2bea/llama-index-core/llama_index/core/bridge/pydantic.py#L2-L17>\r\n\r\n### Reason\r\n\r\nConsidering that is deprecated for a long time, wouldn't it make sense to upgrade to pydantic v2 api?\r\n\r\n### Value of Feature\r\n\r\nBetter compatibility with the current status of python ecosystem. Better access for integrations.",
+    "reactions": 15,
+    "created_at": "2024-05-14T08:32:35Z",
+    "updated_at": "2024-10-18T17:41:31Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/13477",
+    "html_url": "https://github.com/run-llama/llama_index/issues/13477",
+    "author_login": "niderhoff",
+    "author_profile": "https://github.com/niderhoff",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 7507,
+    "title": "[Feature Request]: Add native support for Amazon Bedrock embeddings and LLM models",
+    "body": "### Feature Description\n\nIt is possible to add native support for Amazon Bedrock embeddings and LLM models (https://aws.amazon.com/bedrock/), to ramain in Llamaindex ecosystem and not use Langchain for this ?\r\n\r\nhttps://python.langchain.com/docs/integrations/providers/bedrock\r\n\r\nThank you\n\n### Reason\n\nUse Llamaindex ecosystem and not load other libraries \n\n### Value of Feature\n\n_No response_",
+    "reactions": 12,
+    "created_at": "2023-09-01T10:26:40Z",
+    "updated_at": "2024-08-14T08:26:21Z",
+    "labels": [
+      "enhancement",
+      "contributions wanted"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/7507",
+    "html_url": "https://github.com/run-llama/llama_index/issues/7507",
+    "author_login": "xrtechspot",
+    "author_profile": "https://github.com/xrtechspot",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 16681,
+    "title": "[Feature Request]: Add Support for Claude 3.5 Sonnet V2",
+    "body": "### Feature Description\n\nWith the latest release of Claude Sonnet 3.5 V2, it would be nice to have this supported in the the `llama-index-llms-bedrock-converse` package.  It supports messages and tool use, so we can use it with those existing features of the package.\r\n\r\nFor good measure, we can update the `llama-index-llms-bedrock`, as well.\n\n### Reason\n\nOne could in theory download the package, update the model, and bundle it.  But that only works for an individual.  Not ideal!\n\n### Value of Feature\n\nIt adds the latest foundation model from Anthropic for Amazon Bedrock into the library.  This will enable those of us on developing greenfield applications the ability to use the latest models.",
+    "reactions": 8,
+    "created_at": "2024-10-24T20:00:26Z",
+    "updated_at": "2024-10-25T15:45:43Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/16681",
+    "html_url": "https://github.com/run-llama/llama_index/issues/16681",
+    "author_login": "chrismgonzalez",
+    "author_profile": "https://github.com/chrismgonzalez",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 499,
+    "title": "Add postgres vector database support ",
+    "body": "Postgres can now facilitate vector similarity search with the newly developed [pgvector extension](https://github.com/pgvector/pgvector). As Postgres is widely used in the application layer, having a single database engine for simple apps would greatly simplify the development process.",
+    "reactions": 8,
+    "created_at": "2023-02-20T10:35:41Z",
+    "updated_at": "2023-07-21T22:11:07Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/499",
+    "html_url": "https://github.com/run-llama/llama_index/issues/499",
+    "author_login": "m3hari",
+    "author_profile": "https://github.com/m3hari",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 13307,
+    "title": "[Feature Request]: Add support for multi-tenancy in weaviate",
+    "body": "### Feature Description\n\nAdd support for [multi-tenancy](https://weaviate.io/developers/weaviate/manage-data/multi-tenancy) (MT) in Weaviate\n\n### Reason\n\nMT in weaviate requires changes to the schema (enable MT) and CRUD ops (pass tenant name). How should we update the llamaindex integration to account for this?\n\n### Value of Feature\n\nAllow efficient support for large scale use cases. See this [blog post](https://weaviate.io/blog/multi-tenancy-vector-search#the-need-for-multi-tenancy) for examples",
+    "reactions": 7,
+    "created_at": "2024-05-07T00:23:22Z",
+    "updated_at": "2025-07-08T16:01:38Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/13307",
+    "html_url": "https://github.com/run-llama/llama_index/issues/13307",
+    "author_login": "hsm207",
+    "author_profile": "https://github.com/hsm207",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 691,
+    "title": "JS Version",
+    "body": "Langchain has langchainjs and they are almost done with supporting [Edge Functions like Cloudflare Workers or Vercel Edge](https://github.com/hwchase17/langchainjs/issues/62)\r\n\r\nAny plans for LlamaIndexjs?\r\n\r\nWould be awesome.",
+    "reactions": 7,
+    "created_at": "2023-03-10T12:47:51Z",
+    "updated_at": "2023-05-15T08:53:34Z",
+    "labels": [
+      "enhancement",
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/691",
+    "html_url": "https://github.com/run-llama/llama_index/issues/691",
+    "author_login": "tiagoefreitas",
+    "author_profile": "https://github.com/tiagoefreitas",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 340,
+    "title": "Request for Document Weighting Feature in gpt-index",
+    "body": "Can different weights be assigned to multiple documents used as embeddings when querying a large language model through gpt-index library?\n\nWhen working with a corpus consisting of multiple documents, prioritizing certain documents over others in the event of multiple index query matches can be useful.\n\nIs this feature currently available or can it be added in the future?\n\nThanks for your time.",
+    "reactions": 7,
+    "created_at": "2023-01-31T00:58:38Z",
+    "updated_at": "2023-09-10T17:09:40Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/340",
+    "html_url": "https://github.com/run-llama/llama_index/issues/340",
+    "author_login": "marcmagn1",
+    "author_profile": "https://github.com/marcmagn1",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 12517,
+    "title": "[Feature Request]: Integrate graph databases as LlamaIndex Graph Stores",
+    "body": "### Feature Description\n\nOur company developed and is a main contributor to 'Apache AGE', an open source graph database based on PostgreSQL.\r\nWe would like to make our graph database available as a Graph Store in LlamaIndex's RAG framework. \r\nApache AGE is available as an extension to PostgreSQL and can be integrated into the Graph RAG framework as a Graph Store, storing and retrieving graph data based on OpenCypher. \r\n\r\nWe've already read the provided 'Contribution Guideline', but we didn't find any clear integration guidelines for the Graph Store.\r\nIf you can provide more detailed guidelines for the integration, we'd be happy to provide more detailed information and test results in line with those guidelines.\r\n\r\n- [https://github.com/apache/age](https://github.com/apache/age)\n\n### Reason\n\nLlamaIndex has a few different kinds of Graph Stores, but most appear to be native (or single-model) graph database products. Also, some Graph Stores are commercial products, which makes them inaccessible to the average user.  \n\n### Value of Feature\n\nApache AGE is an extension to PostgreSQL, which means that it can be integrated with many other PostgreSQL extensions while still using a traditional RDB. It's also an open source graph database, making it easy to use for the average user.\r\nAs the structure of LLM applications grows more complex, modules that are highly interoperable and extensible are becoming more favorable to use. Apache AGE is a product that fits this trend because it is based on PostgreSQL, has excellent integration and scalability, and has a large community.\r\nApache AGE is also a validated project that has been named a Top-Level Project (TLP) by the Apache Software Foundation.\r\n\r\n- [https://news.apache.org/foundation/entry/the-apache-software-foundation-announces83](https://news.apache.org/foundation/entry/the-apache-software-foundation-announces83)",
+    "reactions": 6,
+    "created_at": "2024-04-03T09:38:30Z",
+    "updated_at": "2024-12-08T09:27:41Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/12517",
+    "html_url": "https://github.com/run-llama/llama_index/issues/12517",
+    "author_login": "ztor2",
+    "author_profile": "https://github.com/ztor2",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 1075,
+    "title": "feat(agent): Add functionality for langchain agent with LlamaToolkit to return sources",
+    "body": "## Description\r\n\r\nI am experimenting with the langchain agent solution provided by `llama-index` using `create_llama_agent` and `LlamaToolkit`. While it provides an easy approach to communicate with my index, the agent only responds back with the string LLM response. The agent should have an optional functionality to return sources as well, similar to [`load_qa_with_sources_chain`](https://python.langchain.com/en/latest/modules/chains/index_examples/qa_with_sources.html) from langchain.",
+    "reactions": 6,
+    "created_at": "2023-04-05T20:15:25Z",
+    "updated_at": "2023-09-10T17:06:07Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/1075",
+    "html_url": "https://github.com/run-llama/llama_index/issues/1075",
+    "author_login": "ajndkr",
+    "author_profile": "https://github.com/ajndkr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 13921,
+    "title": "[Feature Request]: Support AWS Bedrock Converse API for tool use (function calling) and conversational history / memory in FunctionCallingAgentWorker",
+    "body": "### Feature Description\r\n\r\nAnthropic, Mistral, and Cohere have specific tool use API conventions that improve their success rate and reduce hallucinations and chat history formats. The AWS Bedrock Converse API abstracts those differences, allowing easier switching and usage between the models on AWS Bedrock.\r\n\r\n> This API also simplifies managing multi-turn conversations by enabling developers to provide conversational history in a structured way as part of the API request. Converse API supports Tool use (function calling), for supported models (Anthropic's Claude 3 model family including Claude 3 Opus, Claude 3 Sonnet, and Claude 3 Haiku; Mistral Large; and Cohere’s Command R and R+).\r\n\r\nhttps://aws.amazon.com/about-aws/whats-new/2024/05/amazon-bedrock-new-converse-api/\r\n\r\nhttps://docs.aws.amazon.com/bedrock/latest/userguide/tool-use.html\r\n\r\n### Reason\r\n\r\nLlamaIndex has Anthropic specific tool usage but that doesn't carry over to usage through AWS Bedrock which has risen significantly in popularity as a serverless model platform.\r\n\r\nUsing just the ReAct Agent built into LllamaIndex is more prone to hallucinations than direct tool support.\r\n\r\nInstead, allowing the LlamaIndex [FunctionCallingAgentWorker](https://github.com/run-llama/llama_index/blob/75289a212a1b00787f1fddf29be2a6f01c3a8159/llama-index-core/llama_index/core/agent/function_calling/step.py#L83) to support the Bedrock Converse API is expected to improve the success of agent tasks and the flexibility of switching between Bedrock LLMs.\r\n\r\n### Value of Feature\r\n\r\nSupporting a variety of model providers and full feature support makes LlamaIndex a more valuable ecosystem. Otherwise, people will have to build outside of it to get the optimal agentic / tool-use experience.",
+    "reactions": 5,
+    "created_at": "2024-06-03T21:11:16Z",
+    "updated_at": "2024-06-13T13:42:55Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/13921",
+    "html_url": "https://github.com/run-llama/llama_index/issues/13921",
+    "author_login": "alecl",
+    "author_profile": "https://github.com/alecl",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 12096,
+    "title": "[Feature Request]: Include token counts on AWS Bedrock integration",
+    "body": "### Feature Description\n\nSome model integrations include token count info on the `CompletionResponse` object emitted along with `LLMCompletionEvent`s, such as the [Anthropic integration](https://github.com/run-llama/llama_index/blob/main/llama-index-integrations/multi_modal_llms/llama-index-multi-modal-llms-anthropic/llama_index/multi_modal_llms/anthropic/base.py#L204-L208).\r\n\r\nThe AWS Bedrock integration [does not include](https://github.com/run-llama/llama_index/blob/main/llama-index-integrations/llms/llama-index-llms-bedrock/llama_index/llms/bedrock/base.py#L232-L234) any `additional_kwargs`. Many LLMs supported by AWS Bedrock include token count info in the `x-amzn-bedrock-input-token-count` and `x-amzn-bedrock-output-token-count` headers. If possible, it'd be useful to include token count information wherever possible in `CompeltionResponse` objects.\n\n### Reason\n\nI help maintain LlamaIndex instrumentation in ArizeAI's [`OpenInference`](https://github.com/Arize-ai/openinference) library. Many users of `LlamaIndex` instrumentation rely on tracing to understand the token usage of their applications, especially complex ones managed with `LlamaIndex`. Our users are needing to combine `LlamaIndex` autoinstrumentation along with a second instrumentation package in order to see token counts, leading to duplicated spans and additional complexity.\n\n### Value of Feature\n\nWe can improve the experience of using LlamaIndex tracing, as many users rely on instrumentation to help them both understand application behavior and evaluate costs.",
+    "reactions": 5,
+    "created_at": "2024-03-19T22:55:24Z",
+    "updated_at": "2024-10-14T03:22:36Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/12096",
+    "html_url": "https://github.com/run-llama/llama_index/issues/12096",
+    "author_login": "anticorrelator",
+    "author_profile": "https://github.com/anticorrelator",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 8931,
+    "title": "[Feature Request]: GCP Matching Engine Support",
+    "body": "### Feature Description\n\nI would like to add  support for GCP Matching Engine as a vector store.\n\n### Reason\n\nI don't see GCP listed in https://github.com/run-llama/llama_index/tree/main/llama_index/vector_stores . We would have to write a custom vector store, but I feel like it could be include in the repo.\n\n### Value of Feature\n\nAllow Google Cloud Users to easily integrate with Llamaindex.",
+    "reactions": 5,
+    "created_at": "2023-11-15T17:59:33Z",
+    "updated_at": "2024-03-13T21:55:10Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/8931",
+    "html_url": "https://github.com/run-llama/llama_index/issues/8931",
+    "author_login": "tambulkar",
+    "author_profile": "https://github.com/tambulkar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 8221,
+    "title": "[Feature Request]: Support for pydantic v2",
+    "body": "### Feature Description\n\nMigrate to pydantic v2. I noticed there is already a feature branch with related name. https://github.com/run-llama/llama_index/tree/support-pydantic-v2 . But I do not know if its alive\n\n### Reason\n\nI do not know.\n\n### Value of Feature\n\nPydantic v1 iss absolete",
+    "reactions": 5,
+    "created_at": "2023-10-20T08:48:49Z",
+    "updated_at": "2024-02-06T16:08:59Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/8221",
+    "html_url": "https://github.com/run-llama/llama_index/issues/8221",
+    "author_login": "ierehon1905",
+    "author_profile": "https://github.com/ierehon1905",
+    "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 6565,
+    "title": "[Feature Request]: Explore integration with langflow",
+    "body": "### Feature Description\r\n\r\nLangflow provides a visual UI to construct langchain applications.\r\n\r\nIn my mind, this is the most user friendly way to build a complex conversational AI application. \r\n\r\nI think there may be value to create a UI plugin which allows knowledge base management via llamaindex from within langflow\r\n\r\nSee https://huggingface.co/spaces/Logspace/LangFlow to try out the UI.\r\n\r\nSee here for example:\r\n![image](https://github.com/jerryjliu/llama_index/assets/9093549/61fab64f-9390-4067-871d-b0215fd54b5d)\r\n\r\nIf all of this is hosted somewhere (e.g. hugging face spaces), it would be even more awesome.\r\n\r\n### Reason\r\n\r\n### Value of Feature\r\n\r\nQuick, visual prototyping. KB mgmt.",
+    "reactions": 5,
+    "created_at": "2023-06-23T05:35:57Z",
+    "updated_at": "2025-12-20T18:44:12Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/6565",
+    "html_url": "https://github.com/run-llama/llama_index/issues/6565",
+    "author_login": "jon-chuang",
+    "author_profile": "https://github.com/jon-chuang",
+    "already_resurrected": false
+  }
+]

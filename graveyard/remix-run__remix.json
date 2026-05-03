@@ -1,0 +1,410 @@
+[
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 5763,
+    "title": "Integrating Remix Router with React Transitions",
+    "body": "### What version of Remix are you using?\r\n\r\n1.14.1\r\n\r\n### Are all your remix dependencies & dev-dependencies using the same version?\r\n\r\n- [X] Yes\r\n\r\n### Steps to Reproduce\r\n\r\nRemix does not fully integrate with Suspense because the Remix router does not use `startTransition`. I was wondering if there is interest in exploring a fuller integration where Remix router would be more Suspense-y.\r\n\r\nTo illustrate this, I will offer a little example.\r\n\r\n## Initial setup\r\n\r\nSuppose I have an `/index` route that just renders `<h1>` and a more complex `/about` page that loads some data. My navigation to `/about` looks like this:\r\n\r\n\r\nhttps://user-images.githubusercontent.com/810438/224425334-d93ac601-4f35-4788-a62f-d43d26feba0c.mov\r\n\r\n\r\n\r\nThe data loads in two stages:\r\n\r\n1. First, the \"blocking\" part holds the router navigation back.\r\n2. Then, when the loader is ready, we show some content and \"defer\" the rest.\r\n\r\nMy code for `about.js` looks like this:\r\n\r\n```js\r\nimport { Suspense } from 'react'\r\nimport { Await, useLoaderData } from \"@remix-run/react\";\r\nimport { defer } from \"@remix-run/node\";\r\n\r\nfunction sleep(ms) {\r\n  return new Promise(resolve => setTimeout(resolve, ms))\r\n}\r\n\r\nexport async function loader({ request }) {\r\n  await sleep(1000);\r\n  return defer({\r\n    username: 'taylor',\r\n    more: sleep(3000).then(() => ({ bio: 'Hi there!' }))\r\n  })\r\n}\r\n\r\nexport default function Index() {\r\n  const data = useLoaderData();\r\n\r\n  return (\r\n    <>\r\n      <h1>About {data.username}</h1>\r\n      <Suspense fallback={<h2>Loading bio...</h2>}>\r\n        <Await resolve={data.more}>\r\n          {more => <p>{more.bio}</p>}\r\n        </Await>\r\n      </Suspense>\r\n    </>\r\n  );\r\n}\r\n```\r\n\r\nSo far so good.\r\n\r\n## A wild suspense appears!\r\n\r\nNow let's say I add a component *that suspends* to my `/about` page.\r\n\r\n```diff\r\nimport { lazy, Suspense } from 'react'\r\nimport { Await, Link, useLoaderData,  } from \"@remix-run/react\";\r\nimport { defer } from \"@remix-run/node\"; // or cloudflare/deno\r\n+ import Counter from '../counter'\r\n...\r\nexport default function Index() {\r\n  const data = useLoaderData();\r\n\r\n  return (\r\n    <div>\r\n      <h1>about {data.username}</h1>\r\n+     <Counter />\r\n      <Suspense fallback={<h2>Loading bio...</h2>}>\r\n        <Await resolve={data.more}>\r\n          {more => <p>{more.bio}</p>}\r\n        </Await>\r\n      </Suspense>\r\n    </div>\r\n  );\r\n}\r\n```\r\n\r\n**Suppose that `Counter` itself suspends for whatever reason.** E.g. maybe it renders a `lazy` component inside. Maybe it does a client fetch with one of the Suspensey libraries. Maybe it is waiting for some CSS chunk to load (when we add Suspensey CSS integration into React). Etc. In general, you can expect components anywhere in the tree to be able to suspend — and that includes the \"non-deferred\" parts of the UI.\r\n\r\nAt first, we'll have an error:\r\n\r\n<img width=\"1074\" alt=\"Screenshot 2023-03-10 at 20 39 47\" src=\"https://user-images.githubusercontent.com/810438/224423983-81268f47-642a-489a-af8f-0c8b30c49909.png\">\r\n\r\nOK,",
+    "reactions": 139,
+    "created_at": "2023-03-10T21:07:59Z",
+    "updated_at": "2023-12-14T15:19:08Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/5763",
+    "html_url": "https://github.com/remix-run/remix/issues/5763",
+    "author_login": "gaearon",
+    "author_profile": "https://github.com/gaearon",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 372,
+    "title": "Built-in testing?",
+    "body": "Might be helpful. My idea is basically a `@remix-run/test` package with all the utilities.\r\n\r\n- Built on top of `@testing-library/react` and re-exports everything + a custom `render` that includes all providers our route components have access to when they're run + any utilities to set the loader/action data both on initial render as well as re-rendering with those values.\r\n- `@testing-library/user-event` should be built-in as well\r\n- As @sergiodxa suggested, Jest assertions for Responses\r\n- Potentially some helpers for E2E tests with Cypress and MSW 🤔 ",
+    "reactions": 122,
+    "created_at": "2021-11-09T22:49:19Z",
+    "updated_at": "2024-01-23T16:46:32Z",
+    "labels": [
+      "duplicate"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/372",
+    "html_url": "https://github.com/remix-run/remix/issues/372",
+    "author_login": "kentcdodds",
+    "author_profile": "https://github.com/kentcdodds",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 109,
+    "title": "Unable to import from libs using ESM",
+    "body": "The following error is thrown when trying to import from libs using ESM (like [unist-util-visit](https://github.com/syntax-tree/unist-util-visit)):\r\n```\r\nError [ERR_REQUIRE_ESM]: Must use import to load ES Module: /my-app/node_modules/unist-util-visit/index.js\r\nrequire() of ES modules is not supported.\r\nrequire() of /my-app/node_modules/unist-util-visit/index.js from /my-app/build/index.js is an ES module file as it is a .js file whose nearest parent package.json contains \"type\": \"module\" which defines all .js files in that package scope as ES modules.\r\nInstead rename /my-app/node_modules/unist-util-visit/index.js to end in .cjs, change the requiring code to use import(), or remove \"type\": \"module\" from /my-app/node_modules/unist-util-visit/package.json.\r\n```\r\n\r\nCode which caused the error to be thrown:\r\n```ts\r\n// mdx.server.ts\r\nimport { visit } from \"unist-util-visit\"\r\n```",
+    "reactions": 57,
+    "created_at": "2021-05-03T17:19:28Z",
+    "updated_at": "2024-10-14T12:35:26Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/109",
+    "html_url": "https://github.com/remix-run/remix/issues/109",
+    "author_login": "gmencz",
+    "author_profile": "https://github.com/gmencz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 4822,
+    "title": "hydration error when there is a chrome extension that modifies DOM",
+    "body": "### What version of Remix are you using?\n\nlatest\n\n### Steps to Reproduce\n\nI installed an extension that modifies DOM such as Grammar Checker into my browser and tried to develop a web app with Remix.\r\nI get the following errors and the styles of the app were messed up.\r\n\r\nHydration failed because the initial UI does not match what was rendered on the server.\r\nThere was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.\n\n### Expected Behavior\n\nI have errors when I install any extension that modifies DOM into my browser \n\n### Actual Behavior\n\nThe favicon and styles are messed up\r\nThe important thing is that this error has already been mentioned many times and there is no exact solution\r\nWhat's even more interesting is that the https://remix.run site doesn't have this error occur even if it was developed with Remix",
+    "reactions": 52,
+    "created_at": "2022-12-10T18:16:32Z",
+    "updated_at": "2025-03-20T10:56:12Z",
+    "labels": [
+      "bug:unverified",
+      "external",
+      "hydration"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/4822",
+    "html_url": "https://github.com/remix-run/remix/issues/4822",
+    "author_login": "jin2255",
+    "author_profile": "https://github.com/jin2255",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 1193,
+    "title": "[Feature]: Can remix support  monorepo refresh?",
+    "body": "### What is the new or updated feature that you are suggesting?\n\nI create a  monorepo repository. like \r\n\r\n```\r\n- packages\r\n  - ui\r\n- website(remix)\r\n```\r\n\r\nI want use remix app as documentation app. website dependencies: \r\n\r\n```json\r\n\"dependencies\" : {\r\n    \"@remix-run/react\": \"1.1.1\",\r\n    \"@remix-run/serve\": \"1.1.1\",\r\n    \"@nnecec/ui\": \"workspace: *\",\r\n    \"remix\": \"1.1.1\"\r\n    // ...more\r\n}\r\n```\r\nI run `cd packages/ui && yarn dev` start watch ui package, and `cd website` run `remix dev`\r\n\r\nIt's work ,but when I change ui code and auto rebuild, website will not update. I guess remix treat all dependencies cacheable.\r\n\r\n\n\n### Why should this feature be included?\n\nSupport  monorepo refresh. \r\n\r\neg. support user custom esbuild options  like vite, or watchDirectory: [\"../packages/ui\"]",
+    "reactions": 22,
+    "created_at": "2021-12-22T11:09:17Z",
+    "updated_at": "2022-04-19T21:09:17Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/1193",
+    "html_url": "https://github.com/remix-run/remix/issues/1193",
+    "author_login": "nnecec",
+    "author_profile": "https://github.com/nnecec",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 1618,
+    "title": "[Bug]: TypeError: Cannot read properties of undefined (reading 'root')",
+    "body": "### Which Remix packages are impacted?\r\n\r\n- `remix` (Remix core)\r\n\r\n### What version of Remix are you using?\r\n\r\n    \"remix\": \"^1.1.3\",\r\n\r\n### What version of Node are you using? Minimum supported version is 14.\r\n\r\nv16.4.2\r\n\r\n### Steps to Reproduce\r\n\r\nI was just trying to follow the first tutorial, and right after the part when you create the posts .md files everything was working ok. But after you add the code mentioned in the tutorial: \r\n\r\n```\r\nimport path from 'path';\r\nimport fs from 'fs/promises';\r\nimport parseFrontMatter from 'front-matter';\r\nimport invariant from 'tiny-invariant';\r\n\r\nexport type Post = {\r\n  slug: string;\r\n  title: string;\r\n};\r\n\r\nexport type PostMarkdownAttributes = {\r\n  title: string;\r\n};\r\n\r\nconst postsPath = path.join(__dirname, '..', 'posts');\r\n\r\nfunction isValidPostAttributes(attributes: any): attributes is PostMarkdownAttributes {\r\n  return attributes?.title;\r\n}\r\n\r\nexport async function getPosts() {\r\n  const dir = await fs.readdir(postsPath);\r\n  return Promise.all(\r\n    dir.map(async (filename) => {\r\n      const file = await fs.readFile(path.join(postsPath, filename));\r\n      const { attributes } = parseFrontMatter(file.toString());\r\n      invariant(isValidPostAttributes(attributes), `${filename} has bad meta data!`);\r\n      return {\r\n        slug: filename.replace(/\\.md$/, ''),\r\n        title: attributes.title,\r\n      };\r\n    })\r\n  );\r\n}\r\n```\r\n\r\nThen the application breaks and starts showing this error on localhost/posts\r\n```\r\nTypeError: Cannot read properties of undefined (reading 'root')\r\n    at RemixRoute (http://10.0.0.229:3000/build/_shared/chunk-EW2HPZY2.js:3039:19)\r\n    at renderWithHooks (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:11070:26)\r\n    at mountIndeterminateComponent (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:13190:21)\r\n    at beginWork (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:13977:22)\r\n    at HTMLUnknownElement.callCallback2 (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:3680:22)\r\n    at Object.invokeGuardedCallbackDev (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:3705:24)\r\n    at invokeGuardedCallback (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:3739:39)\r\n    at beginWork$1 (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:17086:15)\r\n    at performUnitOfWork (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:16314:20)\r\n    at workLoopSync (http://10.0.0.229:3000/build/entry.client-X6Z7634E.js:16268:13)\r\n```\r\n\r\nThe error is not helpful at all so I spend some time debugging it and I find out that it was because the `<Scripts />` component in the root.tsx file\r\n\r\n```\r\nimport { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from 'remix';\r\nimport type { MetaFunction } from 'remix';\r\n\r\nexport const meta: MetaFunction = () => {\r\n    return { title: 'New Remix App' };\r\n};\r\n\r\nexport default function App() {\r\n    return (\r\n        <html lang=\"en\">\r\n            <head>\r\n                <meta charSet=\"utf-8\" />\r\n        ",
+    "reactions": 18,
+    "created_at": "2022-01-23T02:51:55Z",
+    "updated_at": "2023-01-14T22:24:35Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/1618",
+    "html_url": "https://github.com/remix-run/remix/issues/1618",
+    "author_login": "adrianiskandar",
+    "author_profile": "https://github.com/adrianiskandar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 34,
+    "title": "HMR",
+    "body": "We thought we wanted it in the beginning, but we're not sure now. With the full-stack nature of Remix it's quite nice to have the full page reload so you don't break your app in production.\r\n\r\nFor example, if you do this:\r\n\r\n```js\r\nlet [state, setState] = useState(0)\r\n```\r\n\r\nFire up your app, start working and then change it to this:\r\n\r\n```js\r\nlet [state, setState] = useState(localStorage.foo)\r\n```\r\n\r\nWith HMR, your app continues to work just fine. If you don't hit \"refresh\" and try to server render that code, you'll never know you broke your app.\r\n\r\nOur current live reload approach ensures that every change runs through a full server render pass so you don't end up with those kinds of surprises.\r\n\r\nAdditionally, when you're changing loader code, HMR won't update the UI, live reload does.\r\n\r\nFinally, usually HMR is more about hiding the slowness of front-end build tools than about maintaining client state on code changes. ESBuild is fast, so it doesn't matter.\r\n\r\nAll that said, we've got some experimental stuff working from a while back, but it's really not high priority right now because there are some tradeoffs to consider, it's not just an obvious thing to add. Also the live reload experience right now is so good that some people think we already have HMR 🤫\r\n\r\nThis issue is here, and left open, because we haven't decided to do HMR, but we haven't decided not to either.\r\n",
+    "reactions": 16,
+    "created_at": "2020-11-03T06:00:26Z",
+    "updated_at": "2022-03-18T19:20:56Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/34",
+    "html_url": "https://github.com/remix-run/remix/issues/34",
+    "author_login": "ryanflorence",
+    "author_profile": "https://github.com/ryanflorence",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 214,
+    "title": "Support Storybook?",
+    "body": "I had someone helping me with my website and they started out using storybook, but eventually they gave up on it and here's what they said:\r\n\r\n> Well, it would be nice to use it. I think that allows for better component separation and easier to see if there already is something that can be reused. But the energy it took to keep working there, didn't outweigh the annoyances from Remix. \r\n> \r\n> I don't expect a fix, just a FYI.\r\n> \r\n> - hot reload is REALLY nice when working on frontend. The refresh can be mildly annoying sometimes because it doesn't always scroll back to position, and because the element is deselected in the inspector. Also, comparing slight changes with or without a refresh is a world of difference. (think a change in 1 shade of gray, or small padding offsets)\r\n> \r\n> - more annoying, but I can live with it. The tailwind stylesheet doesn't always update properly. Requiring me to run npm run css:build manually. So that triggers 2 refreshes by Remix. Once, because it updated when I saved the jsx. Second time because I needed to rebuild the css manually.\r\n> I think that second one is possible to get fixed. But seriously, don't directly dive in to spend (much) time on it. Probably not worth it at this stage.\r\n> I don't think it's worth to get storybook fixed for this project. But I do think it would be a great selling point if Ryan would (be able to) provide a mock package, so that most components that depend on Remix, would just be able to run in storybook without changes.\r\n\r\n\r\nJust thought I'd share to see whether it's something y'all would consider supporting.",
+    "reactions": 12,
+    "created_at": "2021-07-08T20:41:52Z",
+    "updated_at": "2022-09-09T11:12:33Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/214",
+    "html_url": "https://github.com/remix-run/remix/issues/214",
+    "author_login": "kentcdodds",
+    "author_profile": "https://github.com/kentcdodds",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 683,
+    "title": "[Bug]: Yarn 3 support?",
+    "body": "### Which Remix packages are impacted?\r\n\r\n- `remix` (Remix core)\r\n- `create-remix`\r\n\r\n### What version of Remix are you using?\r\n\r\n1.0.5\r\n\r\n### Steps to Reproduce\r\n\r\nTrying to install dependencies with Yarn berry. My current Yarn version is `v3.2.0-rc.5`.\r\n\r\nLog file:\r\n\r\n```\r\n# This file contains the result of Yarn building a package (azat-io@workspace:.)\r\n# Script name: postinstall\r\n\r\n(node:67592) ExperimentalWarning: --experimental-loader is an experimental feature. This feature could change at any time\r\n(Use `node --trace-warnings ...` to show where the warning was created)\r\nEROFS: read-only filesystem, open '/node_modules/remix/package.json'\r\n```\r\n\r\nDependencies in my `package.json`:\r\n\r\n```json\r\n{\r\n  \"dependencies\": {\r\n    \"@remix-run/node\": \"1.0.5\",\r\n    \"@remix-run/react\": \"1.0.5\",\r\n    \"@remix-run/serve\": \"1.0.5\",\r\n    \"@remix-run/server-runtime\": \"1.0.5\",\r\n    \"react\": \"17.0.2\",\r\n    \"react-dom\": \"17.0.2\",\r\n    \"remix\": \"1.0.5\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@remix-run/dev\": \"1.0.5\",\r\n    \"@types/react\": \"17.0.24\",\r\n    \"@types/react-dom\": \"17.0.9\",\r\n    \"typescript\": \"4.1.2\"\r\n  }\r\n}\r\n```\r\n\r\n### Expected Behavior\r\n\r\nInstallation successful\r\n\r\n### Actual Behavior\r\n\r\nInstallation failed",
+    "reactions": 11,
+    "created_at": "2021-11-26T17:46:02Z",
+    "updated_at": "2023-08-15T22:30:37Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/683",
+    "html_url": "https://github.com/remix-run/remix/issues/683",
+    "author_login": "azat-io",
+    "author_profile": "https://github.com/azat-io",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 31,
+    "title": "Remix \"Enhancers\"",
+    "body": "Don't have a good name for this API yet, but it's a lot like \"partial hydration\" or even \"progressive enhancement\".\r\n\r\nA lot of the time your page is mostly static markup with just a few dynamic bits (a carousel, some tabs, a dropdown, a fancy form, a chart, etc.) At the moment, you have to bring in a lot of JavaScript and HTML on the initial page load to have a highly dynamic page.\r\n\r\nEnhancements will allow you to render mostly static markup, and then just \"enhance\" a few roots.\r\n\r\nTwo approaches, I don't know pros and cons yet, but probably have some. In either case, Remix will statically analyze your code to find enhancements at build time and create bundled entry points out of them. At runtime, we know the asset manifest and can load that bundle with the same mechanisms that we load route bundles: `/_remix/manifest`. When an enhancement is on the page, its JavaScript will be loaded and executed.\r\n\r\n### Dynamic Component\r\n\r\nPoint to a file in your app and Remix will bundle it up:\r\n\r\n```jsx\r\n<Enhancement file=\"some/file/relative/to/app\">\r\n  <div>Server rendered content</div>\r\n</Enhancement>\r\n```\r\n\r\nOr use inline JavaScript:\r\n\r\n```jsx\r\n<Enhancement\r\n  src={`\r\n    let el = document.getElementById(\"thing\")\r\n    el.style.color = \"red\"\r\n `}\r\n>\r\n    <div id=\"thing\">Server rendered content</div>\r\n  </Enhancement>\r\n</div>\r\n```\r\n\r\n### Static function\r\n\r\nAlternative approach is a static function, unsure of pros-cons right now.\r\n\r\n```jsx\r\nimport * as enhance from \"@remix-run/enhance\";\r\n\r\nlet Thing1 = enhance.file(\"some/file\");\r\nlet Thing2 = enhance.src(`\r\n  let el = document.getElementById(\"thing\")\r\n  el.style.color = \"red\"\r\n`);\r\n\r\n// then render\r\n<div>\r\n  <Thing1>\r\n    <div>Server rendered content</div>\r\n  </Thing1>\r\n\r\n  <Thing2>\r\n    <div id=\"thing\">Server rendered content</div>\r\n  </Thing2>\r\n</div>;\r\n```\r\n\r\n## Magic variables\r\n\r\nYou probably want access to the root element almost every time, could be like `__filename`.\r\n\r\n```jsx\r\n<Enhance src={`__element.style.color = \"red\"`}>\r\n  <div>Howdy</div>\r\n</Enhance>\r\n```\r\n\r\nYou probably want to pass in some stuff you know from the outer world.\r\n\r\n```jsx\r\nlet handleClick = () => setStateInOuterWorld();\r\n\r\n<Enhance\r\n  context={{ onClick: handleClick }}\r\n  src={`__element.onclick = __context.onClick`}\r\n>\r\n  <div>Howdy</div>\r\n</Enhance>;\r\n```\r\n\r\nOr require an enhancement to be a function, then we can pass stuff in rather than use magic globals:\r\n\r\n```jsx\r\nlet handleClick = () => setStateInOuterWorld();\r\n\r\n<Enhance\r\n  args={[onClick]}\r\n  src={`(onClick, element) => {\r\n    // element is always last (or first, whatever)\r\n    element.onclick = onClick;\r\n  `}\r\n>\r\n  <div>Howdy</div>\r\n</Enhance>;\r\n```\r\n\r\n### React Root Enhancers\r\n\r\nWhile the previous examples would just run some really basic JavaScript, if you want a React root, we could have a special component for that that would automatically create a react root, render into it, and pass props down from the server app to it.\r\n\r\n```jsx\r\nlet handleClick = () => setStat",
+    "reactions": 10,
+    "created_at": "2020-11-03T04:32:02Z",
+    "updated_at": "2022-03-18T19:25:25Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/31",
+    "html_url": "https://github.com/remix-run/remix/issues/31",
+    "author_login": "ryanflorence",
+    "author_profile": "https://github.com/ryanflorence",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 1145,
+    "title": "[Feature]: Make Remix extendable",
+    "body": "### What is the new or updated feature that you are suggesting?\r\n\r\nCurrently, extending and wrapping Remix is impossible without being required to copy and overwrite some of the public & private methods. The problematic areas are:\r\n\r\n1. remix config\r\nCurrently you can't get the final `RemixConfig` without an existing remix.config.js file. Refactoring `readConfig` to receive `AppConfig` as parameter will make it possible to get the full config programmatically.\r\nAnother part that is problematic is `defineConventionalRoutes` which there's no way to tell it to ignore some file that do match `routeModuleExts`. I would expect it to use the tsconfig's `include`/`exclude` props.\r\n2. compiler\r\nAlthough the build and watch methods are exported from the compiler, there are some hard coded values that makes it impossible to extend it. I suggest a refactor to also expose the final configurations that will be used in `esbuild.build`.\r\nAlso moving the part of getting the external from the package.json to be received as parameter will also make it easier to extend (NX for example uses a complicated calculation to get the relevant dependencies and devDependencies of a project in the monorepo)\r\n\r\n### Why should this feature be included?\r\n\r\nA good use case for this is adding postCSS support as part of the build process instead of having different npm scripts that needs to be ran before the build itself (and also forcing you to generate build files in your src because its needed before the build)\r\n\r\nIn my specific case, I'm creating an NX plugin that adds support for remix. currently I had to \"hard copy\" some of remix private methods in order to override some of the configuration, im also forced to generate some files before the build itself in the source directory. this also makes it impossible for me to use the existing NX methods and build processes because NX uses webpack.\r\n\r\nIf I had the final configurations available, I can use them as part of esbuild-loader in the generated NX's webpack config (i might need to convert the plugins to be compatible with webpack so it might be wise to consider refactoring them as well & decouple them from esbuild\r\n\r\n### Related Issues\r\n* #1209\r\n* #1193",
+    "reactions": 9,
+    "created_at": "2021-12-19T12:40:47Z",
+    "updated_at": "2022-04-19T22:29:40Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/1145",
+    "html_url": "https://github.com/remix-run/remix/issues/1145",
+    "author_login": "ronnetzer",
+    "author_profile": "https://github.com/ronnetzer",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 54,
+    "title": "useNavigationProgress?",
+    "body": "On a page navigation we do a few async things:\r\n\r\n- Load a manifest patch\r\n- Load styles\r\n- Load modules\r\n- Load data\r\n- (Future) preload other resources\r\n\r\nI'm imagining building a loading indicator in the global layout that's a progress bar. On any navigation remix knows exactly how many resources it's going to load once the manifest is received, so we could set state on the progress and be able to create an accurate progress indicator.\r\n\r\n```jsx\r\nimport { useNavigationProgress } from \"@remix-run/react\"\r\n\r\nexport default function NavigationProgressBar() {\r\n  let progress = useNavigationProgress();\r\n  return progress\r\n    ? <ProgressBar progress={progress.completed.length/progress.total.length} />\r\n    : null;\r\n}\r\n```\r\n\r\n",
+    "reactions": 8,
+    "created_at": "2020-11-18T18:52:17Z",
+    "updated_at": "2021-08-04T23:29:46Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/54",
+    "html_url": "https://github.com/remix-run/remix/issues/54",
+    "author_login": "ryanflorence",
+    "author_profile": "https://github.com/ryanflorence",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 1823,
+    "title": "esbuild externals not accessible",
+    "body": "### Which Remix packages are impacted?\r\n\r\n- `remix` (Remix core)\r\n\r\n### What version of Remix are you using?\r\n\r\n1.1.3\r\n\r\n### What version of Node are you using? Minimum supported version is 14.\r\n\r\n17\r\n\r\n### Steps to Reproduce\r\n\r\nWhen using MikroORM, i get build errors from esbuild:\r\n\r\n```\r\nBuild failed with 8 errors:\r\nnode_modules/.pnpm/registry.npmjs.org+@mikro-orm+core@4.5.10_4c746656b7f7a21ae58d5630207e3edf/node_modules/@mikro-orm/core/utils/Configuration.js:237:61: error: Could not resolve \"@mikro-orm/mongodb\" (mark it as external to exclude it from the bundle, or surround it with try/catch to handle the failure at run-time)\r\nnode_modules/.pnpm/registry.npmjs.org+@mikro-orm+core@4.5.10_4c746656b7f7a21ae58d5630207e3edf/node_modules/@mikro-orm/core/utils/Configuration.js:238:61: error: Could not resolve \"@mikro-orm/mysql\" (mark it as external to exclude it from the bundle, or surround it with try/catch to handle the failure at run-time)\r\nnode_modules/.pnpm/registry.npmjs.org+@mikro-orm+core@4.5.10_4c746656b7f7a21ae58d5630207e3edf/node_modules/@mikro-orm/core/utils/Configuration.js:239:65: error: Could not resolve \"@mikro-orm/mariadb\" (mark it as external to exclude it from the bundle, or surround it with try/catch to handle the failure at run-time)\r\nnode_modules/.pnpm/registry.npmjs.org+@mikro-orm+core@4.5.10_4c746656b7f7a21ae58d5630207e3edf/node_modules/@mikro-orm/core/utils/Configuration.js:241:63: error: Could not resolve \"@mikro-orm/sqlite\" (mark it as external to exclude it from the bundle, or surround it with try/catch to handle the failure at run-time)\r\nnode_modules/.pnpm/registry.npmjs.org+@mikro-orm+core@4.5.10_e93952d69f1164f307a4f6806ae7c0b3/node_modules/@mikro-orm/core/utils/Configuration.js:237:61: error: Could not resolve \"@mikro-orm/mongodb\" (mark it as external to exclude it from the bundle, or surround it with try/catch to handle the failure at run-time)\r\n...\r\n💿 Built in 667ms\r\n```\r\n\r\nI found that here: https://github.com/remix-run/remix/blob/c746c6f75fb8a74da92df91113df5af7bf87adea/packages/remix-dev/compiler.ts#L341\r\n\r\nThere isn't any option for externals used which can be passed to esbuild.\r\n\r\nI would like to request to add an option to pass an array of externals so that esbuild may ignore them.\r\n\r\n### Expected Behavior\r\n\r\nBuild :ok: \r\n\r\n### Actual Behavior\r\n\r\nBuild :bomb: :boom:",
+    "reactions": 8,
+    "created_at": "2022-02-06T18:39:41Z",
+    "updated_at": "2022-10-21T00:06:10Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/1823",
+    "html_url": "https://github.com/remix-run/remix/issues/1823",
+    "author_login": "Industrial",
+    "author_profile": "https://github.com/Industrial",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 154,
+    "title": "Using pnpm with remix package",
+    "body": "The `remix` package is a special one because its exports change based on what other packages you have installed. However, instead of resolving packages at runtime, pnpm [uses hard links on the file system at install time](https://pnpm.io/symlinked-node-modules-structure).\r\n\r\nWhat this means for us is that when you install `remix` with pnpm, it is linked into a `node_modules/.pnpm/remix@version` directory. Inside that, there is another `node_modules` directory that contains the `remix` package and is supposed to contain links to its dependencies as well. But they aren't there since `remix` doesn't explicitly list its dependencies. This means that when `remix` imports something, it has to go look for it in `node_modules`.\r\n\r\nI'm not sure exactly why this is a problem for pnpm, but I believe it ends up causing two different copies of Remix to be loaded in the browser so we don't get the same context objects and `<Outlet>` renders `null`. Still need to look into this further.",
+    "reactions": 8,
+    "created_at": "2021-05-11T18:53:58Z",
+    "updated_at": "2022-04-19T02:42:19Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/154",
+    "html_url": "https://github.com/remix-run/remix/issues/154",
+    "author_login": "mjackson",
+    "author_profile": "https://github.com/mjackson",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 33,
+    "title": "Loaders for mutations with `<Form/>`",
+    "body": "Today, to do a mutation, you typically need to create a server api route (express, or otherwise) and wire it all up with a bunch of JavaScript (that most of us do a poor job of cobbling together).\r\n\r\nWe've had multiple people already trying to use loaders as mutation endpoints, and we ourselves would like to as well.\r\n\r\nA strong philosophy in Remix is that you should be able to build websites the \"web 1.0 way\". When it comes to mutations in HTML, the name of the game is `<form method=post>`. The developer experience with HTML forms for mutations is actually really great.\r\n\r\n### Web 1.0 Mutations\r\n\r\n1. Make a form\r\n\r\n```jsx\r\n<form method=\"post\" action=\"/projects/create\">\r\n  <input type=\"text\" name=\"title\" />\r\n  <input type=\"text\" name=\"description\" />\r\n  <button type=\"submit\">Create Project</button>\r\n</form>\r\n```\r\n\r\n2. Handle it on the server\r\n\r\n```js\r\napp.post(\"/projects/create\", async (req, res) => {\r\n  let project = await createProject(req.body);\r\n  res.redirect(`/projects/${project.id}`);\r\n});\r\n```\r\n\r\nThe end. It was so nice. No screwing around serializing the form, no loading states, or useEffect, or dealing with asynchronous APIs like fetch. Just make a form, the browser serializes the form, handles the asynchrony, and the server redirects to the new page. It's even a built-in state machine where the URLs are the states, which drastically simplifies the code you write.\r\n\r\n### Why we do it client side\r\n\r\nIf you go to https://remix.run/newsletter you can see our submit button animates between states and just feels really fun. Stripe checkout has wonderful loading/error states as well.\r\n\r\nAdditionally, many projects have \"wizard\" like flows to create things, moving through routes makes a lot of sense but you can't really animate that, or there's state in the UI that you don't want to lose in a browser navigation.\r\n\r\nThis kind of stuff is typically not possible with web 1.0 style posts.\r\n\r\n### Why not both?\r\n\r\nRemix is positioned to allow for both the superior developer experience of writing mutations as forms (the way HTML and HTTP are designed) while also enabling great user experiences like stripe checkout.\r\n\r\nCurrently, you can post to a Remix loader if you set up your server that way. For example, in express you can do `app.all(\"*\", createRequestHandler())`. However, it pretty much only works if you're submit plain HTML forms w/o client side navigation.\r\n\r\nWith a new `<Form/>` component, we can add support for mutations on route loaders without doing full page reloads so that you can preserve state on the page for improved UX.\r\n\r\nThis means error handling, pending states, etc. are all normal transition states of Remix, but now for form mutations.\r\n\r\n### Big example:\r\n\r\nThe component:\r\n\r\n```jsx\r\nimport * as React from \"react\";\r\nimport { useRouteData, Form } from \"@remix-run/react\";\r\n\r\nexport default function NewProject() {\r\n  let data = useRouteData();\r\n\r\n  return (\r\n    <>\r\n      <h1>New Project</h1>\r\n      <Form to=\"/projects/new\" method=\"",
+    "reactions": 8,
+    "created_at": "2020-11-03T05:51:14Z",
+    "updated_at": "2022-03-17T20:26:16Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/33",
+    "html_url": "https://github.com/remix-run/remix/issues/33",
+    "author_login": "ryanflorence",
+    "author_profile": "https://github.com/ryanflorence",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 18,
+    "title": "Getting parent data into child loaders",
+    "body": "We were discussing in Remix Chat #help how to get parent data into child loaders (remix.run already needs this).\r\n\r\nI was talking about how we might have some way to indicate that a child needs the parent data, and then rearrange our async work to load those loaders serially, instead of in parallel like we normally do:\r\n\r\n```js\r\nexports.needsParentData = true;\r\n\r\nmodule.exports = ({ params }, parentData) => {\r\n  // can use parentData now\r\n}\r\n```\r\n\r\nWe could use an exports flag, or check the length of the function args to decide to do serial or parallel.\r\n\r\nThen Tima had a really great idea: pass the parent loader promise to the child\r\n\r\n```js\r\nmodule.exports = ({ params}, parentPromise) => {\r\n  let parentData = await parentPromise();\r\n  // tada!\r\n}\r\n```\r\n\r\nIt's really great because now you can do your own data fetching that isn't dependent in parallel, and then await the stuff that is.\r\n\r\n```js\r\nmodule.exports = ({ params }, parent) => {\r\n  let [myStuff, parentStuff] = await Promise.all([\r\n    fetchMyStuff(params.whatev),\r\n    parent\r\n  ]);\r\n  let more = await getMore(parent.thing, myStuff.more);\r\n  return more\r\n}\r\n```\r\n\r\nWe'd want to unwrap the response for them, so that `parentPromise` is awaiting the unwrapped response, not the response itself (otherwise the loader is going to have to become an http consumer, but we've already got code in remix to do that part).\r\n\r\n## Some use cases:\r\n\r\nIn remix run we fetch the user for the `dashboard/` layout to make sure they're authenticated, and then we fetch the user again in `dashboard/index` to then be able to fetch their licenses, stripe customer data, etc.\r\n\r\nInstead of verifying their session, hitting the google oauth endpoint, and hitting our DB in both routes, we'd only do that work in the parent route and the child would look like this:\r\n\r\n```js\r\nmodule.exports = async (_, parent) => {\r\n  let user = await parent\r\n  let [licenses, stripeProfile] = await Promise.all([\r\n    getLicenses(user),\r\n   getStripeProfile(user)\r\n  ]);\r\n  return { licenses, stripeProfile };\r\n}\r\n```\r\n\r\nAlso consider redirecting (after we fix it). Let's say you have a master/detail list and you don't want an index route, but instead want to redirect to the first post in the list. So if the user lands at `/forum/remix` you want to redirect them to the first post `forum/remix/123`.\r\n\r\nWith our (coming soon) fixed loader redirect handling, this could be done pretty easily in your `forum/$forum/index.js` loader.\r\n\r\n```js\r\nmodule.exports = async ({ params }, parent) => {\r\n  let parentData = await parent;\r\n  return redirect(`/forum/${params.forum}/${parentData[0].id}`);\r\n}\r\n```\r\n\r\n## Implementation notes\r\n\r\nThis seem straightforward for the initial HTML page since we call all the matching route loaders together, but the client transitions may prove difficult.\r\n\r\nIf routes `A -> B -> C` match, and we transition to `A -> B -> D` in the client, it's unclear to me how we'll get `B`'s data into `D` on the server when we're only calling `D",
+    "reactions": 8,
+    "created_at": "2020-10-30T15:11:49Z",
+    "updated_at": "2022-10-27T17:41:31Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/18",
+    "html_url": "https://github.com/remix-run/remix/issues/18",
+    "author_login": "ryanflorence",
+    "author_profile": "https://github.com/ryanflorence",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 7056,
+    "title": "Deprecate Remix ESLint Config",
+    "body": "ESLint is an opinion, that's more stacks territory than Remix territory.\n\nChatted with Michael and we think we should\n\n* First, remove this dependency from all of our templates\n* Also remove it from the stacks and duplicate the simplest set of plugins and recommended \"extends\" setups in stacks (react, typescript, jest, etc)\n* Wait a few months 🕐 🕐 \n* Deprecate the `@remix-run/eslint` config in v2 with a warning on install",
+    "reactions": 7,
+    "created_at": "2023-08-03T18:32:31Z",
+    "updated_at": "2023-12-13T15:36:17Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/7056",
+    "html_url": "https://github.com/remix-run/remix/issues/7056",
+    "author_login": "brophdawg11",
+    "author_profile": "https://github.com/brophdawg11",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 759,
+    "title": "[Feature]: Add `basename` to remix config file",
+    "body": "### What is the new or updated feature that you are suggesting?\n\nSomebody in discord asked if he could set a `basename` for a Remix app, so all routes would have that `basename` prepended to them: https://discord.com/channels/770287896669978684/770287896669978687/914576247068188692. I think this is something we could add to the `remix.config.js` file.\n\n### Why should this feature be included?\n\nThis would allow more flexibility in configuring a Remix app, giving more power to the developer a la \"you own your stack.\" ",
+    "reactions": 7,
+    "created_at": "2021-11-28T18:39:13Z",
+    "updated_at": "2022-04-19T21:40:50Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/759",
+    "html_url": "https://github.com/remix-run/remix/issues/759",
+    "author_login": "zachdtaylor",
+    "author_profile": "https://github.com/zachdtaylor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 297,
+    "title": "Nice to Have: Stats after build",
+    "body": "When you build a Next app you get something like this:\r\n\r\n```sh\r\nPage                              Size     First Load JS\r\n┌ λ /                             5.31 kB         132 kB\r\n├   /_app                         0 B             120 kB\r\n├ ○ /404                          243 B           120 kB\r\n├ λ /articles                     10.9 kB         138 kB\r\n├ λ /articles/[slug]              10.9 kB         138 kB\r\n├ λ /about                        10.9 kB         138 kB\r\n├ λ /api/auth/[...auth0]          0 B             120 kB\r\n├ λ /contact                      1.53 kB         125 kB\r\n├ λ /legal                        1.06 kB         128 kB\r\n+ First Load JS shared by all     120 kB\r\n  ├ chunks/framework.09a88f.js    42.4 kB\r\n  ├ chunks/main.5354f3.js         24.2 kB\r\n  ├ chunks/pages/_app.ca95d4.js   52.1 kB\r\n  ├ chunks/webpack.117468.js      1.04 kB\r\n  └ css/06c05b289f192f66d092.css  7.87 kB\r\n```\r\n\r\nIt's helpful to know how much JS you are going to actually load on each page (if it's the first one) and realize \"hey this page which is fairly static is loading a ton of JS, maybe something is off with my imports\" and fix it or at least debug more with other tools to inspect source maps.",
+    "reactions": 7,
+    "created_at": "2021-10-04T23:19:52Z",
+    "updated_at": "2022-06-05T12:44:35Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/297",
+    "html_url": "https://github.com/remix-run/remix/issues/297",
+    "author_login": "sergiodxa",
+    "author_profile": "https://github.com/sergiodxa",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 37,
+    "title": "PostCSS Config",
+    "body": "Same as babel, open up and let people configure their own postcss, and they can use our presets with a plugin if they want (but won't need to):\r\n\r\n```json\r\n{\r\n  \"plugins\": [\r\n    \"@remix-run/core/postcss\",\r\n    \"other-plugins-here\"\r\n  ]\r\n}\r\n```",
+    "reactions": 7,
+    "created_at": "2020-11-03T14:35:21Z",
+    "updated_at": "2021-02-25T18:32:19Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/37",
+    "html_url": "https://github.com/remix-run/remix/issues/37",
+    "author_login": "ryanflorence",
+    "author_profile": "https://github.com/ryanflorence",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 36,
+    "title": "Babel config",
+    "body": "Open up and use an application babel config, apps will just need to make sure to include our preset:\r\n\r\n```js\r\n{\r\n  \"presets\": [\r\n    \"@remix-run/core/babel\",\r\n  ]\r\n}\r\n```\r\n",
+    "reactions": 7,
+    "created_at": "2020-11-03T14:31:30Z",
+    "updated_at": "2021-12-18T06:00:10Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/36",
+    "html_url": "https://github.com/remix-run/remix/issues/36",
+    "author_login": "ryanflorence",
+    "author_profile": "https://github.com/ryanflorence",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 1265,
+    "title": "[Feature]: Propagate unhandled errors from resource requests ",
+    "body": "### What is the new or updated feature that you are suggesting?\n\nThe framework should allow developers to handle unhandled errors that are thrown within loaders/actions within resource routes.\n\n### Why should this feature be included?\n\nErrors that are thrown within these routes are captured and automatically processed by the framework. This leads to the error being logged to the console and an internal server error response being returned to the caller. This makes sense for document requests since a developer is able to use a `CatchBoundary` or `ErrorBoundary` to get access to the error that was thrown.\r\n\r\nThe particular scenario that this affects is error logging/monitoring. Currently the automatic logic makes it difficult to globally send these errors to Sentry and/or some other external service without wrapping `try`/`catch` blocks around each instance.",
+    "reactions": 6,
+    "created_at": "2021-12-28T18:53:59Z",
+    "updated_at": "2022-04-19T21:45:07Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/1265",
+    "html_url": "https://github.com/remix-run/remix/issues/1265",
+    "author_login": "gregbty",
+    "author_profile": "https://github.com/gregbty",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 806,
+    "title": "Support for aws-amplify?",
+    "body": "### Which Remix packages are impacted?\r\n\r\n- `remix` (Remix core)\r\n\r\n### What version of Remix are you using?\r\n\r\n1.0.6\r\n\r\n### Steps to Reproduce\r\n\r\nInstall aws-amplify: `npm i aws-amplify`\r\n\r\nUse it in the project:\r\n```tsx\r\nimport Amplify from 'aws-amplify';\r\n\r\nexport default function App() {\r\n    useEffect(() => {\r\n       Amplify.configure({...});\r\n    }, []);\r\n\r\n    return (\r\n        <Document>\r\n            <Layout>\r\n                <Outlet />\r\n            </Layout>\r\n        </Document>\r\n    );\r\n}\r\n```\r\n\r\n### Expected Behavior\r\n\r\nIt should work, just like before.\r\n\r\n### Actual Behavior\r\n\r\nI am pretty new to remix and ssr altogether.\r\nAlso aws states that aws-amplify [supports ssr](https://aws.amazon.com/de/blogs/mobile/ssr-support-for-aws-amplify-javascript-libraries/), I cannot get it to work.\r\nWhenever I am executing the code above, I get an error:\r\n\r\n> Uncaught TypeError: Failed to resolve module specifier \"url\". Relative references must start with either \"/\", \"./\", or \"../\".\r\n\r\nI am also curious: Is that code I put into the `useEffect` actually executed on the server or in the browser?\r\nI just would like to run aws-amplify in the browser, to get my old app-logic going...",
+    "reactions": 5,
+    "created_at": "2021-11-30T13:46:11Z",
+    "updated_at": "2024-12-30T10:11:59Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/806",
+    "html_url": "https://github.com/remix-run/remix/issues/806",
+    "author_login": "misantronic",
+    "author_profile": "https://github.com/misantronic",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
+    "issue_number": 38,
+    "title": "Better development error display",
+    "body": "When it comes to error handling in Remix there are two categories of errors to deal with:\r\n\r\n1. Development errors (like rollup not being able to compile)\r\n2. Production errors (uncaught errors in loaders or render)\r\n\r\n## Development Errors\r\n\r\nThese are errors that prevent a production build from even happening (`remix build` would fail). During development we can display messages in the terminal, the browser, or when possible, both places.\r\n\r\nThe following are development errors that may occur and where the user is notified:\r\n\r\n- error in readConfig\r\n  - error in terminal, process exits\r\n- dev asset server fails to build on file change (indicates that `remix build` won't work either)\r\n  - message in terminal\r\n  - message in the browser through a websocket\r\n- app server running, dev asset server offline\r\n  - message in terminal\r\n  - message in the browser through a websocket\r\n\r\n## Production Errors\r\n\r\nProduction errors don't prevent the app from being built and could happen in a production environment. For example, trying to read from an object member that doesn't exist in a loader.\r\n\r\nThere are two types of errors that can occur:\r\n\r\n- An error during render\r\n- An error in data loading\r\n\r\nFor rendering errors we use `componentDidCatch`, but errors thrown during data loading happen in `useEffect`, and those errors aren't caught by `componentDidCatch`. For these, we'll render the 500.js file.\r\n\r\n### Specific error handling\r\n\r\nFor more detailed user feedback than a top level error boundary for rendering and 500.js for uncaught data errors, it's up to the application to catch those errors and deal with them locally.\r\n\r\n- In loaders: catch the error and send the information as normal data with the proper status code\r\n- in render: use normal React error handling in the component by wrapping in another component with `componentDidCatch`\r\n\r\nFor loader errors, it would look like this:\r\n\r\n```jsx\r\nexport function loader() {\r\n  try {\r\n    let stuff = db.get(\"stuff\");\r\n    return json(stuff);\r\n  } catch (error) {\r\n    return json({ error: error.message }, { status: 500 });\r\n  }\r\n}\r\n```\r\n\r\nThe route continues to render as usual, there's just a 500 status code on the fetch (or document request) and the component needs to account for it:\r\n\r\n```jsx\r\nfunction SomeRoute() {\r\n  let data = useRouteData();\r\n  if (data.error) {\r\n    return <div>Oops, there was an error: {data.error.message}</div>;\r\n  }\r\n}\r\n```\r\n\r\nAgain, if apps don't catch any errors, loader errors will cause the 500.js file to render, and render errors will propagate up to the `<ErrorBoundary>` in the starter template's `App.tsx` file.\r\n\r\n## Future Next Step\r\n\r\nThis work is not scheduled to be completed right now, but I think it would be a great direction to go.\r\n\r\nWe can take this a step farther and do better than rendering the `500.js` page with uncaught errors, as well as eliminate the `500.js` and `404.js` pages altogether.\r\n\r\nIn Suspense, errors in data loading are part of the component lifecycle",
+    "reactions": 5,
+    "created_at": "2020-11-03T14:54:53Z",
+    "updated_at": "2022-03-18T19:20:02Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/38",
+    "html_url": "https://github.com/remix-run/remix/issues/38",
+    "author_login": "ryanflorence",
+    "author_profile": "https://github.com/ryanflorence",
+    "already_resurrected": false
+  }
+]

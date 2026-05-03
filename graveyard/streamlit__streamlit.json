@@ -1,0 +1,1545 @@
+[
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 1360,
+    "title": "Modal/pop-up widget",
+    "body": "### Problem\r\nAs a user I would like to show some specific data within a modal\r\n\r\n### Solution\r\nhttps://baseweb.design/components/modal/\r\n\r\n### Additional context\r\n\r\nUser question: https://github.com/streamlit/streamlit/issues/1337\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n\r\n![Visits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fstreamlit%2Fstreamlit%2Fissues%2F1360&title=visits&edge_flat=false)\r\n",
+    "reactions": 417,
+    "created_at": "2020-04-17T19:59:51Z",
+    "updated_at": "2024-05-02T14:22:27Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/1360",
+    "html_url": "https://github.com/streamlit/streamlit/issues/1360",
+    "author_login": "arraydude",
+    "author_profile": "https://github.com/arraydude",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 455,
+    "title": "Ability to accept input from Charts, Tables, etc.",
+    "body": "What if every output element could also serve as an input widget?\r\n\r\nThen you could do things like:\r\n* User clicks on chart datapoint → python script receives the value for that data point and does something with it\r\n* User zooms into a chart → python script receives the new zoom bounds and does something with it\r\n* User clicks on dataframe rows → python script receives row index and does something with it\r\n* User click on two points on an image → python script draws a rectangle touching those points\r\n* User edits a row on a dataframe → python script receives the new dataframe\r\n\r\nRelated discussions:\r\n* https://discuss.streamlit.io/t/hover-and-click-events/586\r\n* https://discuss.streamlit.io/t/setting-data-from-javascript/965/2\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n\r\n![Visits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fstreamlit%2Fstreamlit%2Fissues%2F455&title=visits&edge_flat=false)\r\n",
+    "reactions": 283,
+    "created_at": "2019-10-18T06:39:20Z",
+    "updated_at": "2024-09-15T12:49:05Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:charts",
+      "area:events"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/455",
+    "html_url": "https://github.com/streamlit/streamlit/issues/455",
+    "author_login": "tvst",
+    "author_profile": "https://github.com/tvst",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 439,
+    "title": "Support custom HTTP requests",
+    "body": "See: https://discuss.streamlit.io/t/streamlit-restful-app/409\n\nSome users would like to have their Streamlit servers work double duty as both a Streamlit app server and a data server (for REST endpoints, for example)\n\n### API proposal 1\n\nA traditional-looking API for that would be something like:\n```python\nst.server.add_route('foo', foo_callback)\n```\n\nThen, when a POST or GET HTTP request is made against `/foo`, the callback `foo_callback` would handle it and return a response.\n\nI haven't thought through whether this would be possible to implement given our current \"run from the top\" architecture. It's possible this would require a big refactor.\n\n### API proposal 2\n\nA more Streamlit-style API would be something like:\n\n```python\nif st.server.request.foo == 'bar':\n  st.server.respond({'data': df})\n  # And .respond() would cause the script to finish executing immediately.\n```\n\nIn this proposal, the `if` condition would be true if:\n- The user sent a POST to `/` with `foo` set to `bar` (either in a form or in JSON)\n- Or the user sent a GET to `/?foo=bar`\n\nThis API is easier to implement and arguably easier to understand.\n\n---\nMy preference at this point is proposal 2.\n\nThat said, both of these proposals are just straw-man designs to start a discussion. I believe neither of these is ready to implement at this point.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-439)\n",
+    "reactions": 265,
+    "created_at": "2019-10-17T04:21:37Z",
+    "updated_at": "2026-04-10T09:26:12Z",
+    "labels": [
+      "type:enhancement",
+      "area:utilities"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/439",
+    "html_url": "https://github.com/streamlit/streamlit/issues/439",
+    "author_login": "tvst",
+    "author_profile": "https://github.com/tvst",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 3888,
+    "title": "Give each element a unique HTML `id` or `class`",
+    "body": "HI,\r\n\r\nIs it possible to give each of the elements on the page a unique html id?\r\nWould make targering an element a lot easier.\r\n\r\nI love streamlit by the way!\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n\r\n![Visits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fstreamlit%2Fstreamlit%2Fissues%2F3888&title=visits&edge_flat=false)\r\n",
+    "reactions": 260,
+    "created_at": "2021-10-08T08:31:31Z",
+    "updated_at": "2024-09-04T21:32:18Z",
+    "labels": [
+      "type:enhancement",
+      "area:styling"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/3888",
+    "html_url": "https://github.com/streamlit/streamlit/issues/3888",
+    "author_login": "Tooblippe",
+    "author_profile": "https://github.com/Tooblippe",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5009,
+    "title": "Detect if the app is in Light/Dark mode at runtime",
+    "body": "### Problem\n\nWhile developing custom styling components, it is impossible right now to detect if the app is in Light or Dark mode. I would like to be able to detect what mode the user is viewing the app in in order to choose the correct custom styling. \n\n### Solution\n\n1. Create a new API function: `get_current_style`.\n\t  ```python\n\t  if st.get_current_style() == \"light\":\n\t      # do something\n\t  elif st.get_current_style() == \"dark\":\n\t      # do something else\n\t  ```\n\n2. Add this info to `get_config_option`.\n    \n\n### Additional context\n\nSome people have already discussed it here: https://discuss.streamlit.io/t/check-if-the-app-is-in-dark-mode-or-light-mode-at-runtime/20222\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-5009)\n",
+    "reactions": 256,
+    "created_at": "2022-07-21T11:26:26Z",
+    "updated_at": "2025-08-29T20:56:42Z",
+    "labels": [
+      "type:enhancement",
+      "feature:custom-components",
+      "area:styling",
+      "feature:theming"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5009",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5009",
+    "author_login": "vhoulbreque",
+    "author_profile": "https://github.com/vhoulbreque",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 6004,
+    "title": "st.tabs: know and control state",
+    "body": "### Problem\n\nst.tabs is purely an organizational element with no access to know or control its state.\n\n### Solution\n\nAdd an option (or new component) to make st.tabs an element that communicates with the backend to know and control state.\n\n### Additional context\n\nThis is related to #5321 but a more robust feature request.\nThere is an ongoing thread in the forums on this topic. I'm creating this feature request for votes to be recorded.\nhttps://discuss.streamlit.io/t/st-tabs-is-it-possible-to-do-any-of-the-following-access-an-st-tab-click-event-set-a-default-selected-tab-on-a-page/29341\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-6004)\n",
+    "reactions": 244,
+    "created_at": "2023-01-23T19:17:02Z",
+    "updated_at": "2026-03-12T15:26:59Z",
+    "labels": [
+      "type:enhancement",
+      "area:events",
+      "feature:st.tabs",
+      "status:likely"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/6004",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6004",
+    "author_login": "MathCatsAnd",
+    "author_profile": "https://github.com/MathCatsAnd",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8518,
+    "title": "Native authentication support for Streamlit ",
+    "body": "\r\n\r\n### Summary\r\n\r\nWe are investigating approaches to add native authentication support for Streamlit, as it is one of the top most requested community features. This is a rough proposal for how it might work, which is shared for your feedback.\r\n\r\n### Goals\r\n\r\n**Goal 1:** Provide the building blocks for integrating more robust auth solutions including:\r\n- documented support for reading headers (replace the undocumented but heavily used `_get_websocket_headers()`\r\n- native support for reading and writing cookies ( #861 )\r\n- native redirect ( #7123 )\r\n- hooks to add identity information in `st.user`\r\n- _[longer term]_ Support custom http endpoints ( #439 ) - this will be a bigger effort but know we probably need to get there eventually to have a really robust support\r\n- ??? What else ???\r\n\r\n**Goal 2:** Provide an out-of-the-box native integration which covers the most common use cases, especially for developers getting started. To that end, we propose **standardizing on OAuth2 & OpenID Connect as the natively supported protocols in Streamlit**.\r\n- This would be an opinionated and minimal implementation, geared towards integrating with standardized OIDC providers.\r\n- Goal would be, with a few lines of config / secrets, you can be set up with `login()` / `logout()` methods and the users verified email, OAuth2 token, and potentially other claims from a JWT readily available through a standard API (likely attributes on `st.user`).\r\n- Ideally, include an easy integration with cookies support so it's trivial to maintain the user auth session across tabs for some time. However, we still need to investigate whether this is feasible or has other major implications.\r\n\r\n**Why OpenID Connect (OIDC)?**\r\n- From our perspective, OIDC seems like the most modern, standardized authentication protocol we can use which enables a standard format of user identity claims (including roles / groups) and minimal custom code across providers.\r\n- We also see a wide range of adoption across identity providers both in the consumer space (Google, Apple, etc) and enterprise space (Auth0, AWS Cognito, MSFT Entra ID, etc).\r\n- For most app developers who aren't working in a more sophisticated existing platform, it seems to cover the typical use case for \"single sign on\" for relatively low fuss and configuration required in the provider side.\r\n\r\n**Non-goal: Replace the use of reverse proxy in higher security environments**\r\n\r\nWe know this practice of running Streamlit behind an auth proxy and forwarding authenticated requests to the app is fairly common among Streamlit usage in bigger companies or those with higher security requirements. We want to build library features that make that easier to run (such as documented headers support) but not replace it or build extremely hardened security into Streamlit, since it isn't our expertise.\r\n\r\nBut, we think this proposal can still unblock many developers operating in somewhat lower stakes environments who experience a lot of friction toda",
+    "reactions": 207,
+    "created_at": "2024-04-17T00:33:40Z",
+    "updated_at": "2025-02-05T15:54:47Z",
+    "labels": [
+      "type:enhancement",
+      "area:server",
+      "area:backend"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8518",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8518",
+    "author_login": "sfc-gh-jcarroll",
+    "author_profile": "https://github.com/sfc-gh-jcarroll",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 861,
+    "title": "Ability to write cookies",
+    "body": "In my hackathon project, which was a dashboard that used auth, I really wanted a way to persist an authToken across multiple sessions for the same user.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-861)",
+    "reactions": 205,
+    "created_at": "2019-12-18T17:40:07Z",
+    "updated_at": "2026-04-11T14:31:21Z",
+    "labels": [
+      "type:enhancement",
+      "type:possible-component",
+      "feature:st.context"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/861",
+    "html_url": "https://github.com/streamlit/streamlit/issues/861",
+    "author_login": "tconkling",
+    "author_profile": "https://github.com/tconkling",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 1019,
+    "title": "Add directory chooser",
+    "body": "### Problem\n\nThe file uploader is a nice widget but we often wish to point our streamlit application at a directory. As far as I can see this is not possible with the file uploader.\n\n### Solution\n\nCould you add a directory chooser to streamlit?\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-1019)",
+    "reactions": 191,
+    "created_at": "2020-01-27T09:11:52Z",
+    "updated_at": "2025-08-07T02:50:26Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.file_uploader",
+      "type:possible-component"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/1019",
+    "html_url": "https://github.com/streamlit/streamlit/issues/1019",
+    "author_login": "JohnReid",
+    "author_profile": "https://github.com/JohnReid",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 727,
+    "title": "Top navigation bar for multipage apps",
+    "body": "### Problem\n\nI would like to build multi page apps with a nice layout and style for use internally in an enterprise and also for the project awesome-streamlit.org.\n\nOne problem is that there is no \"top\" bar.\n\n![image](https://user-images.githubusercontent.com/42288570/69305981-4db1a600-0c26-11ea-940d-637b02cf04c4.png)\n\n### Solution\n\nAdd a \"st.topbar\" widget similar to the sidebar.\n\nIn the topbar I would expect to have\n- Buttons\n- Dropdowns for navigation\n- Input textboxes for example for search\n- Images and Icons like fontawesome icons to help the user.\n\n### Additional context\n\nFor inspiration see\n\nhttps://getbootstrap.com/docs/4.0/examples/dashboard/\n\nand more top bars like\n\n![image](https://user-images.githubusercontent.com/42288570/69306184-f4964200-0c26-11ea-9c4d-4e498dd7b753.png)\n\n![image](https://user-images.githubusercontent.com/42288570/69306123-c0bb1c80-0c26-11ea-9f8a-70bb7415b1ec.png)\n\n![image](https://user-images.githubusercontent.com/42288570/69306142-cc0e4800-0c26-11ea-8378-042579ee91f3.png)\n\n![image](https://user-images.githubusercontent.com/42288570/69306160-d92b3700-0c26-11ea-8264-fd56c20d9124.png)\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-727)",
+    "reactions": 178,
+    "created_at": "2019-11-21T05:20:08Z",
+    "updated_at": "2025-06-23T08:27:05Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "area:frontend"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/727",
+    "html_url": "https://github.com/streamlit/streamlit/issues/727",
+    "author_login": "MarcSkovMadsen",
+    "author_profile": "https://github.com/MarcSkovMadsen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5053,
+    "title": "Defered data for download button",
+    "body": "### Problem\n\nThe download button currently expects its data to be available when declaring the button. If data needs to be read from disk (or worse: compiled multiple disk sources), this can make the app needlessly slow.\nIn my app, the data downloading is not a common use case, but the packing of the data for downloading is relatively expensive. Caching helps, but only when the data doesn't change.\n\n### Solution\n\nI propose a method to only load and preprocess (archive, pickle, etc) when the download is actually requested.\n\nI propose to also allow a function as a data type that gets called as soon as the download button is pressed. This callback then returns the actual data.\n\n```py\ndef get_data():\n    data = some_heavy_data_loading()\n    return data\n\nst.download_button(\"Download Data\", get_data, file_name=\"my-data.dat\")\n```\n\n\n**Possible additions:**\n\nCurrently a download button accepts `str`, `bytes`, `TextIO`, `BinaryIO`, or `io.RawIOBase`. With deferred loading, it would also be possible to accept a file pointer and stream the data to the user. This might bring huge speed and memory benefits when downloading large files.\n\n_Technically_ this streaming would also be possible without deferred loading, but then you're keeping unnecessary files open.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-5053)\n",
+    "reactions": 171,
+    "created_at": "2022-07-28T12:38:04Z",
+    "updated_at": "2025-11-14T08:41:50Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.download_button",
+      "status:likely"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5053",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5053",
+    "author_login": "Vinno97",
+    "author_profile": "https://github.com/Vinno97",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 4382,
+    "title": "Make sure that clicking on a download button does not reload the entire app",
+    "body": "### Problem\r\n\r\nThe Streamlit app reloads entirely when clicking on a `st.download_button`. In my case, I think it should not: download buttons are different from buttons and should not trigger a reload of the app. They should only trigger a download.\r\n\r\nI perfectly understand that a click on a button does reload the app (to recompute) but downloads don't change the view, downloads don't trigger computations etc.\r\n\r\nI also know about the cache, but it is not always a proper solution: what about apps with a `st.forms`? The user should not have to click on yet another button to generate the same view that has not changed one bit. The same goes if several files can be downloaded: it can be very cumbersome to do such a simple task.\r\n\r\n### Solution\r\n\r\nSeveral options:\r\n1. Stop reloading the app for a `st.download_button`\r\n2. Add a parameter to trigger (or not) a reload of the page when clicking on a `st.download_button`.\r\n\r\n### Additional context\r\n\r\nSee this discourse: https://discuss.streamlit.io/t/stop-page-from-reloading-after-using-downloader/18744\r\n\r\nAnd this code to reproduce the problem exposed above:\r\n\r\n```python\r\nimport streamlit as st\r\n\r\ndef long_computation():\r\n    import time\r\n    time.sleep(10)\r\n\r\nst.header(\"TEST DOWNLOAD BUTTON\")\r\n\r\nwith st.spinner(\"Running a long computation..\"):\r\n    long_computation()\r\n\r\nst.download_button(\"Download\", \"a\")\r\n```\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 169,
+    "created_at": "2022-02-08T17:20:47Z",
+    "updated_at": "2025-03-04T01:59:14Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.download_button"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/4382",
+    "html_url": "https://github.com/streamlit/streamlit/issues/4382",
+    "author_login": "vhoulbreque",
+    "author_profile": "https://github.com/vhoulbreque",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 10378,
+    "title": "Option to Return Access Token in st.login",
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nThe new `st.login` feature does not return the access token provided by the authentication provider. This limits workflows where acting on behalf of a user via an API is required. Additionally, token refresh functionality is not exposed, which further restricts secure interactions with third-party systems.\n\n\n### Why?\n\nIn many authentication flows, the access token grants specific rights that the developer may want to use for subsequent API calls. By not returning this token (or providing an option to do so), some common workflows become impossible. Allowing access token retrieval and refresh handling lets the developer or organization decide on token management, leading to a more flexible and secure integration with external systems.\n\n\n### How?\n\n- **Return Access Token:** Modify `st.login` so that it can optionally return the access token received from the authentication provider.\n- **Token Refresh:** Provide built-in support or hooks for token refresh, if supported by the provider, to ensure long-term token validity and secure interactions.\n\n\n### Additional Context\n\nAdding this functionality would:\n- Increase the flexibility of authentication handling in Streamlit apps.\n- Enable secure API interactions on behalf of authenticated users.\n- Encourage the adoption of `st.login` in more secure and token-dependent environments.\n",
+    "reactions": 164,
+    "created_at": "2025-02-11T21:10:51Z",
+    "updated_at": "2025-12-24T17:01:43Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.login",
+      "feature:authentication"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/10378",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10378",
+    "author_login": "Panosero",
+    "author_profile": "https://github.com/Panosero",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8643,
+    "title": "Support chart selections for multi-view vega-lite & altair charts",
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nWe're soon going to add chart selections for Altair in Streamlit, via `st.altair_chart(..., on_select=\"rerun\")`. However, this only works with simple charts and not with [multi-view / composite charts](https://vega.github.io/vega-lite/docs/composition.html) - e.g. `vconcat`, `hconcat`, `layered`, and `repeat`. There are many edge cases to handle selections on these charts correctly, so we're disallowing them for now.\r\n\r\nIf you'd like us to implement support for selections on multi-view charts, please upvote this issue with a 👍 and let us know in the comments below what types of chart composition types you would like to use. ",
+    "reactions": 159,
+    "created_at": "2024-05-12T13:22:04Z",
+    "updated_at": "2026-02-05T20:34:33Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.altair_chart",
+      "feature:st.vega_lite_chart",
+      "area:events"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8643",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8643",
+    "author_login": "lukasmasuch",
+    "author_profile": "https://github.com/lukasmasuch",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 4832,
+    "title": "Custom navigation for multipage apps",
+    "body": "Hi everyone, thanks for your awesome work.\r\n\r\nFollowing the latest release, I wanted to try the integrated multipage support, but I encountered some limits blocking integration in my use cases.\r\n\r\nI have a \"legacy\" multipage management in my apps based on some custom component (that I like) and a mix of session state and url query parameters (that I would love to throw away).\r\n\r\n## Problem\r\nI wanted to replace it with the new implementation, but I found no way to:\r\n\r\n- Disable the default sidebar component for navigation\r\n- Programmatically change page/detect the page you are in\r\n- Programmatically enable/disable some pages if some application-specific condition is met (e.g. data loading completed)\r\n- Implement some kind of nested and/or sequential navigation\r\n\r\n## Solution\r\nFeatures I would love to have:\r\n\r\n- Hiding the sidebar navigation frontend component\r\n- Have some kind of API to manage navigation programmatically\r\n\r\n**This would suffice to implement both custom components AND custom flows** (e.g. wizard like flows with a next button and some logic managing on which page you will land next) for page navigation.\r\n\r\nThanks!\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 158,
+    "created_at": "2022-06-07T07:27:45Z",
+    "updated_at": "2024-02-02T04:15:17Z",
+    "labels": [
+      "type:enhancement",
+      "feature:multipage-apps",
+      "status:likely"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/4832",
+    "html_url": "https://github.com/streamlit/streamlit/issues/4832",
+    "author_login": "andreaschiappacasse",
+    "author_profile": "https://github.com/andreaschiappacasse",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5908,
+    "title": "Button or API for users to switch between themes without the Hamburger menu",
+    "body": "### Problem\n\nAs of now (version 1.15.2), for users to switch the theme, they have to go to the hamburger menu to access the setting. This is not very intuitive for the end users if they are not familiar with Streamlit. In addition, if I hide the hamburger menu in my app, the users won't be able to change the theme by themselves at all.\n\n### Solution\n\nIt would be nice to have a button outside the hamburger menu for users to quickly switch between light mode and dark mode (or other themes if available). \n\nAnother solution would be to provide an API for switching between the themes, so the developers can implement the theme switcher by themselves if needed.\n\n![Views](https://api.views-badge.org/badge/st-issue-5908)",
+    "reactions": 146,
+    "created_at": "2023-01-04T00:59:01Z",
+    "updated_at": "2026-03-08T12:46:53Z",
+    "labels": [
+      "type:enhancement",
+      "feature:theming"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5908",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5908",
+    "author_login": "lesser-panda",
+    "author_profile": "https://github.com/lesser-panda",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 1301,
+    "title": "Improve our format parameter to support thousand separator",
+    "body": "### Problem\n\n*As a user:* I want to format my number as I do with Python. \n\nFor example:\n```python\nx = 1000000\nprint(f\"{x:,}\")\n# 1,000,000\n```\n\n### Additional context\n\nhttps://discuss.streamlit.io/t/format-integer-with-comma-using-python-printf/2344\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-1301)",
+    "reactions": 143,
+    "created_at": "2020-04-03T19:48:29Z",
+    "updated_at": "2026-02-02T11:07:40Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.number_input",
+      "feature:st.slider",
+      "feature:st.column_config",
+      "upstream"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/1301",
+    "html_url": "https://github.com/streamlit/streamlit/issues/1301",
+    "author_login": "arraydude",
+    "author_profile": "https://github.com/arraydude",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 233,
+    "title": "Feature request: Tabs",
+    "body": "### Problem\r\n\r\nSorry if this has been discussed before (couldn't find anything here on on the forum). While building [my app](https://github.com/explosion/spaCy/blob/master/examples/streamlit_spacy.py), I thought it could be nice to have a tabbed UI component, e.g. to show different \"views\" of the data (visualisation, table view, JSON, more detailed docs etc.) If the user clicks a tab, that content is generated – otherwise it's not.\r\n\r\n### Solution\r\n\r\nAPI could maybe look something like this? Specifying the group name could be optional (default is the same group).\r\n\r\n```python\r\nwith streamlit.tab(\"Tab one\", \"tabgroup1\"):\r\n    st.write(\"This is tab content and only run if user selects the tab\")\r\nwith streamlit.tab(\"Tab two\", \"tabgroup1\"):\r\n    st.write(\"This is tab content and only run if user selects the tab\")\r\n```\r\n### Additional context\r\n\r\nProbably clear, but better to be explicit. By \"tabs\", I mean something like this:\r\n\r\n<img width=\"683\" alt=\"Screenshot 2019-10-02 at 13 05 22\" src=\"https://user-images.githubusercontent.com/13643239/66039487-5256b980-e515-11e9-8b4f-f6f4f12312a2.png\">\r\n\r\n",
+    "reactions": 127,
+    "created_at": "2019-10-02T11:09:46Z",
+    "updated_at": "2023-01-02T02:19:24Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/233",
+    "html_url": "https://github.com/streamlit/streamlit/issues/233",
+    "author_login": "ines",
+    "author_profile": "https://github.com/ines",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7538,
+    "title": "option to disable 'Press Enter to apply'  in Widgets",
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nIssues are related to st.text_input \r\n\r\n- **Issue 1: \"Press Enter to Submit\" Confusion**\r\n   - Description: When users change widgets within forms, a \"Press Enter to Submit\" message is displayed. This message can be misleading, as the code under the \"Submit Form\" button doesn't execute unless the user explicitly triggers it.\r\n   - Request: Improve this behavior to enhance the user experience.\r\n\r\n- **Issue 2: Automatic Widget Clearing Option**\r\n   - Description: There's a need for an option to automatically clear widgets after user input. Currently, a workaround is used to address this issue.\r\n   - Request: Implement a native feature to enhance the user experience.\r\n\r\n- **Issue 3: Widget Input Delay**\r\n   - Description: There's a noticeable delay of 1-2 seconds after clicking a widget before users can start typing input. This delay is time-consuming and not user-friendly.\r\n   - Request: Address and improve this delay, or suggest alternative workarounds if available.\r\n\r\nPlease consider these issues for enhancement. We kindly request the Streamlit development team's attention and assistance to improve the user experience.\r\n\r\n",
+    "reactions": 127,
+    "created_at": "2023-10-11T06:38:20Z",
+    "updated_at": "2025-06-03T07:53:17Z",
+    "labels": [
+      "type:enhancement",
+      "area:widgets",
+      "feature:st.form"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7538",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7538",
+    "author_login": "makhai88",
+    "author_profile": "https://github.com/makhai88",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8112,
+    "title": "Support query params in st.page_link",
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nReading an writing query params using [`st.query_params`](https://docs.streamlit.io/library/api-reference/utilities/st.query_params) can be quire useful. It would be handy to support passing query params with [`st.page_link`](https://docs.streamlit.io/library/api-reference/widgets/st.page_link)\r\n\r\n### Why?\r\n\r\nUseful for creating drill down page links, and improves sharing a page's state using the url.\r\n\r\n### How?\r\n\r\n* introduce a new parameter `query_params: dict[str, str | Iterable[str]]` to `st.page_link` to attach query params to the link: `st.page_link(page=\"pages/foo.py\", query_params={\"my\": \"params\", \"go\": \"here\"})`\r\n* and/or allow query params in the `page` argument: `st.page_link(page=\"pages/foo.py?my=params&go=here\")`\r\n\r\n### Additional Context\r\n\r\n_No response_",
+    "reactions": 116,
+    "created_at": "2024-02-08T14:31:35Z",
+    "updated_at": "2025-11-26T17:12:02Z",
+    "labels": [
+      "type:enhancement",
+      "status:likely",
+      "feature:st.page_link"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8112",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8112",
+    "author_login": "akeeman",
+    "author_profile": "https://github.com/akeeman",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 6787,
+    "title": "Add link-format and anchor-text configuration to LinkColumn",
+    "body": "### Problem\r\n\r\nThe current implementation of `st.column_config.LinkColumn` expects the column to have a URL as the value and the whole URL is displayed in cells. Often times these URLs may belong to the same domain and have the same path prefix while any meaningful differentiating piece of text appears after them. In such cases, it might be helpful to allow a way to format the displayed text while keeping the original link underneath as the value. Also, in some case the display text might be stored in a different column, like title of pages linked to their URLs. Moreover, the data of the column might not be in link format, but can be converted to a link on the fly.\r\n\r\n### Solution\r\n\r\nThere are three requirements here that possibly be consolidated to only two:\r\n\r\n1. Given a column with values like `1`, `2`, `3`... one might want to convert it to `https://example.com/docs/page_{}.html` using a plain format option or a function/lambda expression.\r\n2. Given a column with values like `https://example.com/docs/page_1.html`, `https://example.com/docs/page_2.html`, `https://example.com/docs/page_3.html`... one might want to link these to simply their file names, such as `page_1.html`, `page_2.html`, `page_3.html`... using format function/lambda expression.\r\n3. Given a column with values as links (or ones that can be formatted as links using option 1 above), one might want to use the value from another column as anchor-text using a display column name and/or formatting function/lambda expression that expects the whole row as a dict argument.\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n",
+    "reactions": 116,
+    "created_at": "2023-06-02T21:23:10Z",
+    "updated_at": "2024-07-22T10:01:42Z",
+    "labels": [
+      "type:enhancement",
+      "status:likely",
+      "feature:st.column_config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/6787",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6787",
+    "author_login": "ibnesayeed",
+    "author_profile": "https://github.com/ibnesayeed",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 1799,
+    "title": "Ability to horizontally align elements",
+    "body": "### Problem\n\nAll the streamlit widgets are left-aligned and it is sometimes frustrating because the rest of the web app is centre aligned and there is only one button which is out of the way. There should be a methodology to align the widgets.\n\n### Solution\n\n**Smallest Possible Solution:** Give text alignment as an argument in the widget\n\n**Possible additions:** The same problem can be solved if a markdown could be made clickable. i.e. it registers a click and returns a bool value just like a button. This would open up huge possibilities for the platform\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-1799)",
+    "reactions": 115,
+    "created_at": "2020-08-02T09:45:30Z",
+    "updated_at": "2025-08-09T11:26:54Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "area:widgets",
+      "area:elements"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/1799",
+    "html_url": "https://github.com/streamlit/streamlit/issues/1799",
+    "author_login": "mohak79",
+    "author_profile": "https://github.com/mohak79",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7166,
+    "title": "Custom text value for `st.chat_input`",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nI propose to add a parameter to `st.chat_input` that allows for the customization of the user prompt, similar to the `value` parameter of `st.text_input`. \n\n### Why?\n\nI have been working on an LLM that is built on top of ChatGPT. On the App page, there's a dropdown of prompt examples that users can choose from, and once they select a prompt, it should automatically appear in the `st.chat_input` box (similar to the prompt examples ChatGPT provides). Unfortunately, there is currently no way to set a custom prompt for `st.chat_input`. As this is a common practice for UIs of chat models, this functionality could be extremely helpful for a lot of applications.\n\n### How?\n\nI currently don't have much time to understand the details of `st.chat_input`'s implementation, but I suppose it is at least somewhat similar to how `st.text_input` is implemented. I think the team can look into how the `value` parameter is handled in `st.text_input` and use it as a reference for this functionality.\n\n### Additional Context\n\n_No response_",
+    "reactions": 115,
+    "created_at": "2023-08-13T07:02:30Z",
+    "updated_at": "2025-07-09T17:53:29Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.chat_input"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7166",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7166",
+    "author_login": "frankyzha",
+    "author_profile": "https://github.com/frankyzha",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 641,
+    "title": "Removing index of dataframe while using st.table or st.write",
+    "body": "st.write( ) and st.table( ) shows the index values of the dataframe while using. Providing a way to remove them within the st.table( ) or st.write( ) would be a very good option to show much clear dataframes without index values.\r\n\r\n![image](https://user-images.githubusercontent.com/22565141/68397265-ec56f500-0198-11ea-98da-25f50574efce.png)\r\n\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n",
+    "reactions": 108,
+    "created_at": "2019-11-07T14:28:29Z",
+    "updated_at": "2025-06-18T14:25:01Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.table"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/641",
+    "html_url": "https://github.com/streamlit/streamlit/issues/641",
+    "author_login": "dJOKERdUMMY",
+    "author_profile": "https://github.com/dJOKERdUMMY",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 2169,
+    "title": "Add a height argument to st.container and st.expander",
+    "body": "### Problem\r\n\r\nI want to display a large (i.e. with a lot of lines) text output (say, logs from a simulation) and I would like to constrain the space used by this output. So if the size of the text exceeds the allocated space, then the user has to scroll inside the widget. I previously did it with two unsatisfactory hacks. The first was to use `st.text_area` like this:\r\n\r\n```\r\nimport streamlit as st\r\n\r\nconstrained_height = 50\r\nlarge_text_output = \"\".join([f\"Line number {i}\\n\" for i in range(100)])\r\n\r\nst.text_area(label=\"This is the output\", value=large_text_output, height=constrained_height)\r\n```\r\nThis is not ideal given that I want my text to be an output, I don't want the user to interact with it and modify it.\r\nI found the second hack when I discovered components. It goes like this:\r\n\r\n```\r\nimport streamlit as st\r\nimport streamlit.components.v1 as components\r\n\r\nconstrained_height = 50\r\nlarge_text_output = \"\".join([f\"Line number {i}\\n\" for i in range(100)])\r\n\r\ncomponents.html(\r\n    \"This is the output:<br>\" + large_text_output.replace(\"\\n\", \"<br>\"),\r\n    height=constrained_height,\r\n    scrolling=True,\r\n)\r\n```\r\nAgain, this is not ideal because the output does not look like the classic output of `st.write`.\r\n\r\nFurthermore my two hacks actually require that I append all my logs in a single string to be displayed later, I can't write them \"on the fly\", as they are produced.\r\n\r\n### Solution\r\n\r\nI just discovered the new beta containers, and I find that they are great. They even come with a context logic (`with container`) that allows to write in them on the fly. The solution to my problem is very simple. Add a `height`argument similar to the arguments of `st.text_area` and `components.html` to the new `st.beta_container` and `st.beta_expander`. This way, containers can truly act as modular minipages.\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n",
+    "reactions": 105,
+    "created_at": "2020-10-13T11:25:34Z",
+    "updated_at": "2025-02-12T16:49:10Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "feature:st.container",
+      "feature:st.expander"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/2169",
+    "html_url": "https://github.com/streamlit/streamlit/issues/2169",
+    "author_login": "durandg12",
+    "author_profile": "https://github.com/durandg12",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7078,
+    "title": "Fix / freeze / pin columns in `dataframe` and `data_editor`",
+    "body": "### Problem\r\n\r\nIn st.data_editor, can see that the index column is fixed, so when you scroll horizontally, it remains in the same place.\r\n![image](https://github.com/streamlit/streamlit/assets/57851959/4449addd-9041-46f2-9a2e-f53bdc77d06a)\r\nHave something related to use in st.data_editor and st.dataframe will be nice.\r\n\r\n### Solution\r\nIt can be done have a fixed_columns parameter in st.data_editor/dataframe or a fixed parameter in st.column_config.\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 103,
+    "created_at": "2023-07-26T18:53:28Z",
+    "updated_at": "2024-11-29T22:53:23Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.data_editor",
+      "feature:st.column_config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7078",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7078",
+    "author_login": "ViniciusgCaetano",
+    "author_profile": "https://github.com/ViniciusgCaetano",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 6089,
+    "title": "Add datetime input",
+    "body": "### Problem\n\nThe st.date_input() is not taken into account the time in the widget. We can only select : day, month, year.\n In order to bypass this limitation, I’m using st.text_input, next I convert it into full datetime format (I don’t want to use st.slider(), It’ s ugly).\n\n![image](https://user-images.githubusercontent.com/97457066/217923408-1b80609f-e829-48d2-90a5-03c37e9c8d9e.png)\n\n\n### Solution\n\nThe purpose is to add time selection in the widget like this :\n\n![image](https://user-images.githubusercontent.com/97457066/217924007-b441d90b-6234-483c-8fc6-1a4cf6947500.png)\n\n--------------------------------------------\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\nIf you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.\n\n![Views](https://api.views-badge.org/badge/st-issue-6089)",
+    "reactions": 102,
+    "created_at": "2023-02-09T20:05:15Z",
+    "updated_at": "2025-11-20T04:49:40Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.date_input",
+      "feature:st.time_input",
+      "status:likely"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/6089",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6089",
+    "author_login": "Pydetect",
+    "author_profile": "https://github.com/Pydetect",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 2399,
+    "title": "st.expander expanded/collapsed state",
+    "body": "### Problem\n\nI'd like to be able to know whether a `st.expander` is expanded or collapsed (e.g. to show something on the main layout only when an expander in the sidebar is in expanded state).\n\n### Solution\n\n**MVP:** Something like `st.expander().expanded` as a `bool` would be nice.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-2399)\n",
+    "reactions": 102,
+    "created_at": "2020-12-01T09:01:42Z",
+    "updated_at": "2026-03-12T16:40:30Z",
+    "labels": [
+      "type:enhancement",
+      "area:events",
+      "feature:st.expander"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/2399",
+    "html_url": "https://github.com/streamlit/streamlit/issues/2399",
+    "author_login": "LeoTafti",
+    "author_profile": "https://github.com/LeoTafti",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5088,
+    "title": "Support Polars dataframes",
+    "body": "**What could be better?**\r\nbeing able to operate with polars dataframes\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 99,
+    "created_at": "2022-08-03T20:41:51Z",
+    "updated_at": "2025-03-21T16:09:45Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5088",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5088",
+    "author_login": "LukeA2023",
+    "author_profile": "https://github.com/LukeA2023",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5437,
+    "title": "Widget attribute to hook into for custom CSS",
+    "body": "### Problem\r\n\r\nst.markdown is great for getting under the hood of the generated html. There are some pre-defined IDs under the \"data-testid\" nomenclature which are fine if you need to target those, but not everything has IDs and being able to add our own would clash with the internal ones at some point. \r\n\r\nWhat would be good is to be able to add a user defined class name into the attributes of an existing widget. Then, using CSS via st.markdown target that class for styling.\r\n\r\nFor example, this st.metric;\r\n\r\n```\r\nst.metric(\r\n        label = \"Hard Stops\",\r\n        value = \"5\",\r\n        delta = \"3\")\r\n```\r\n\r\ncreates this html for the value;\r\n\r\n```\r\n<div class=\"css-50ug3q e16fv1kl3\"> 5 </div>\r\n```\r\n\r\n\r\n### Solution\r\n\r\nIf it was possible to add _optional_ **pass through** class names for each widget this may provide a solution for those who wish to add custom styling. For example this to illustrate my point;\r\n\r\n```\r\nst.metric(\r\n        label = \"Hard Stops\",\r\n        value = \"5\",\r\n        delta = \"3\",\r\n        class = \"my-class\"\r\n)\r\n```\r\n\r\nwith the result being;\r\n\r\n```\r\n<div class=\"css-50ug3q e16fv1kl3 my-class\"> 5 </div>\r\n```\r\n\r\nIf each widget attribute maps onto a attribute-class naming schema so that your html generator can splice into the correct element then we could also have multiple class targets;\r\n\r\n```\r\nst.metric(\r\n        label = \"Hard Stops\",\r\n        label-class = \"my-label-class\"\r\n        value = \"5\",\r\n        delta = \"3\",\r\n        value-class = \"my-value class\"\r\n)\r\n```\r\n\r\n```\r\n<label data-testid=\"stMetricLabel\" class=\"css-186pv6d e16fv1kl2 my-label-class\">\r\n       <div class=\"css-50ug3q e16fv1kl3\">Hard Stops</div>\r\n</label>\r\n<div data-testid=\"stMetricValue\" class=\"css-1xarl3l e16fv1kl1\">\r\n       <div class=\"css-50ug3q e16fv1kl3 my-value-class\"> 7 </div>\r\n</div>\r\n\r\n```\r\n\r\nThanks for your time!\r\n\r\n### Voting for feature requests\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 99,
+    "created_at": "2022-09-28T09:44:36Z",
+    "updated_at": "2024-09-04T21:32:25Z",
+    "labels": [
+      "type:enhancement",
+      "area:frontend",
+      "area:styling"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5437",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5437",
+    "author_login": "daveycope",
+    "author_profile": "https://github.com/daveycope",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5858,
+    "title": "Support bokeh 3.0.3",
+    "body": "### Problem\r\n\r\nBokeh is already in version 3.0.3 and there are a few useful changes. It would be great if streamlit could support that version. Currently streamlit raises an exception if bokeh>2.4.3 is used.\r\n\r\n### Solution\r\n\r\nUpgrade bokeh versions supported in streamlit. Is it really necessary to raise an exception if the user tries to use a newer version? Would it be possible to still allow it and let the user deal with potential issues?\r\n",
+    "reactions": 98,
+    "created_at": "2022-12-15T06:52:31Z",
+    "updated_at": "2025-03-01T02:38:48Z",
+    "labels": [
+      "type:enhancement",
+      "area:dependencies",
+      "feature:st.bokeh_chart"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5858",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5858",
+    "author_login": "rafa-guedes",
+    "author_profile": "https://github.com/rafa-guedes",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 10543,
+    "title": "Set `[auth]` secrets config from environment variables or through `st.login`",
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nThe docs page for secrets management says:\n\n> Existing secrets management tools, such as .... will work fine in Streamlit. We just add native secrets management for times when it's useful.\n\nBut the docs page for authentication says:\n\n> st.login() uses your app's secrets.toml file to configure your connection\n\nI would like to use existing secrets management tools to configure st.login secrets. As far as I can tell this is currently only possible through `.streamlit/secrets.toml`.\n\nWould it be possible to also allow setting these secrets using environment variables?\n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "reactions": 98,
+    "created_at": "2025-02-27T15:47:19Z",
+    "updated_at": "2026-04-24T18:40:50Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.secrets",
+      "feature:authentication"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/10543",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10543",
+    "author_login": "Riezebos",
+    "author_profile": "https://github.com/Riezebos",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 6781,
+    "title": "Add cell selection functionality to `st.dataframe` ",
+    "body": "### Problem\n\nIn the official tutorial about [`st.dataframe`](https://docs.streamlit.io/library/api-reference/data/st.dataframe#interactivity), it provides a well interactive UI, but it lacks one important feature: **indicate the selected `(row, column)`**.\n\nFor example:\n\n```py\nimport streamlit as st\nimport pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame(\n   np.random.randn(50, 20),\n   columns=('col %d' % i for i in range(20)))\n\nst.dataframe(df)\n```\n\nWe can change the last line to the following:\n\n```py\nrow, column = st.dataframe(df)\n```\n\nAnd we can select a specific cell in the GUI:\n\n![Screenshot 2023-06-02 at 21 17 16](https://github.com/streamlit/streamlit/assets/804308/adeed4cd-3778-4fdb-a294-bb97cfa0ca08)\n\nNow we can do something with the selected row and/or column (in the above case: `row==4` and `column==\"col 2\"`). For example, we can show the detail info for the selected row.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-6781)",
+    "reactions": 98,
+    "created_at": "2023-06-02T13:20:54Z",
+    "updated_at": "2025-08-12T13:07:49Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "area:events"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/6781",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6781",
+    "author_login": "xareelee",
+    "author_profile": "https://github.com/xareelee",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7409,
+    "title": "`st.chat_input`: Support for image and file input",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nchat_input Support for image input\n\n### Why?\n\nchat_input Support for image input\n\n### How?\n\nchat_input Support for image input\n\n### Additional Context\n\nchat_input Support for image input",
+    "reactions": 97,
+    "created_at": "2023-09-22T08:19:25Z",
+    "updated_at": "2025-03-04T01:59:24Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.chat_input"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7409",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7409",
+    "author_login": "yuanjie-ai",
+    "author_profile": "https://github.com/yuanjie-ai",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 688,
+    "title": "Allow dataframe rows to be selectable and trigger a function in Python code",
+    "body": "### Problem\r\n\r\nI have a st.table displaying search results. I want to be able to click on a specific row (or select several rows) and have that trigger an event in Python to update the page.\r\n\r\n### Solution\r\n\r\n**MVP:** Table rows are clickable and trigger a custom event\r\n\r\n**Possible additions:** What are other things that could be added to the MVP over time to make it better?\r\n\r\n**Preferred solution:** More fully-featured solution similar to DTTables where we can specify custom table styling, embed objects like images in to table cells, select multiple rows or cells, etc.\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 97,
+    "created_at": "2019-11-14T15:44:15Z",
+    "updated_at": "2025-09-02T19:41:51Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/688",
+    "html_url": "https://github.com/streamlit/streamlit/issues/688",
+    "author_login": "timforr",
+    "author_profile": "https://github.com/timforr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5215,
+    "title": "st.date_input: Starting day in a week",
+    "body": "_(Note, you don't have to fill out every section here. They're just here for guidance. That said, nicely detailed feature requests are more likely to get eng attention sooner)_\r\n\r\n### Problem\r\n\r\nThe default first day of a week in st.date_input is a sunday, which is quite unintuitive for users from some regions (e.g. Europe).\r\n\r\n### Solution\r\n\r\n**MVP:** It would be great, if there would be a parameter which allows to set another first day of a week.\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n",
+    "reactions": 94,
+    "created_at": "2022-08-23T15:02:02Z",
+    "updated_at": "2025-02-12T16:44:58Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.date_input"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5215",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5215",
+    "author_login": "iemg",
+    "author_profile": "https://github.com/iemg",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8832,
+    "title": "Add st.button within a dataframe",
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nWould like to be able to have a st.button inside a dataframe that would interact with the data of the data row that it is on when clicked.\r\n\r\n\r\n### Why?\r\n\r\nThis is mostly to make it easier when setting up interactive DF's, when for example working with a DF that contains servers/apps/services where I would want a way to for example stopping/starting said server/app/service with a button press.\r\n\r\nI know this could be solved with checkboxes etc, but that convulutes things and adds extra UI elements, when just have a button inside a DF looks nicer and is more streamlined, especially if you want to interact with only 1 thing(row) at a time.\r\n\r\n### How?\r\n\r\nHave it be a part of the [st.column_config](https://docs.streamlit.io/develop/api-reference/data/st.column_config) where it would be its own column type, such as Button Column.\r\n\r\nThen have it get the data of the row its on when clicked. For example, lets say I have a DF with the following columns;\r\nService, IP, Action\r\nThe button would recide in the \"Action\" column, and if pressed would take the IP of the row its on and inject into a if button pressed function. \r\n\r\n### Additional Context\r\n\r\nSmall mockup of intended look:\r\n![mockup](https://github.com/streamlit/streamlit/assets/35370623/ac549a4c-c524-4505-9425-6827441204f8)\r\n",
+    "reactions": 90,
+    "created_at": "2024-06-05T09:26:28Z",
+    "updated_at": "2025-11-07T05:34:31Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.data_editor",
+      "feature:st.column_config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8832",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8832",
+    "author_login": "darkb1u3",
+    "author_profile": "https://github.com/darkb1u3",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8102,
+    "title": "Passing query parameters on switch_page",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nRecently the switch_page functionality has been integrated in Streamlit 1.30.0, Great! However, it might be handy if we could pass query parameters together with `st.switch_page` so that it counts as one step in the browser, keeping the back-button to function as expected.\n\n### Why?\n\nI'm trying to switch to a different page while adding query parameters to the URL. This would keep specific variables persistent upon subsequent browser page refreshes, since these variables could then be retrieved from the query parameters.\r\n\r\nWhile the same result could be achieved by two consecutive calls - one to `st.switch_page`, followed by a call to `st.query_params` - this will cause the browser (Chrome at least) to keep two steps in history. As such, the back-button would not return to the page before the `st.page_switch` but instead to the page after the switch without query parameters.\n\n### How?\n\n```\r\ndef switch_page(page: str, query_params: str)\r\n\r\n# e.g.\r\nst.switch_page('pages/next_page.py', 'id=123')\r\n```\n\n### Additional Context\n\n_No response_",
+    "reactions": 90,
+    "created_at": "2024-02-07T09:38:41Z",
+    "updated_at": "2025-11-26T18:32:16Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.switch_page"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8102",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8102",
+    "author_login": "MaxvandenBoom",
+    "author_profile": "https://github.com/MaxvandenBoom",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8239,
+    "title": "`st.tabs` & `st.expander` - Improve handling of frontend state/mount",
+    "body": "### Summary\r\n\r\nImprove the management/heuristics used to handle rendering the frontend `st.tabs` & `st.expander` React components.\r\n\r\nScenarios such as conditionally rendering elements before `st.tabs` or `st.expander` causes the unmount/remount of the component, therefore losing its FE state/selected tab. This is expected behavior based on the components in their current implementation, but it can be improved. \r\n\r\nWhen we refactor `st.tabs`, we should also examine the heuristic we used to assess the selected tab:\r\n>  When the number or names of the tabs change, we're now looking for the name of the active tab in the list of new tabs, and activating that one. This has the advantage that you can insert tabs and still keep the current tab active. But it comes at the cost of tabs switching when you simply rename them\r\n\r\n### Additional Context\r\n\r\nSee related issues: \r\n* #6257 \r\n* #7435 \r\n* #2360\r\n\r\nMore expansive feature request for FE/BE communication of tab state: \r\n* #6004 \r\nMore expansive feature request for FE/BE communication of expander state: \r\n* #2399 ",
+    "reactions": 89,
+    "created_at": "2024-03-05T20:50:15Z",
+    "updated_at": "2026-03-24T14:47:34Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.expander",
+      "feature:st.tabs"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8239",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8239",
+    "author_login": "mayagbarnes",
+    "author_profile": "https://github.com/mayagbarnes",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 3790,
+    "title": "st.form should create proper <form> element (with \"enter to submit\" support)",
+    "body": "From a user request here: https://discuss.streamlit.io/t/enter-key-press-to-submit-st-form/16939\r\n\r\nThe request is correct: we don't currently use `<form>` tags in `st.form` HTML output. We should consider it!\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 89,
+    "created_at": "2021-09-13T17:16:16Z",
+    "updated_at": "2024-10-09T15:59:19Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.form"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/3790",
+    "html_url": "https://github.com/streamlit/streamlit/issues/3790",
+    "author_login": "tconkling",
+    "author_profile": "https://github.com/tconkling",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8507,
+    "title": "Rerun when dismissing `st.dialog` by clicking on X or pressing Escape",
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\n@jrieke: Is there a way to do a rerun on x-button click or on esc key hit?\r\n\r\nOur use case is as follows:\r\n\r\nWe use the pop up to display a form with some drop downs where user selects some options\r\nOnce the user submits the form_submit_button, we execute a Snowpark query to update backend data\r\nOnce the query is successfully executes we display a success message\r\nOn seeing the message we expect the user to close the dialog (We don't automatically close because we want the user to really see and digest the success message)\r\nAt this point we want our results on the home screen refreshed with the new results after the updates from the 2.\r\nFor this we need to be able to use the x-button submit. Is there a workaround for this use case? Since I have a form in the dialog I can't introduce a second button that executes a rerun, hence my ask to be able to capture the x-button click in `st.session_state`.\r\n\r\n### Why?\r\n\r\nI'm frustrated when I can't rerun the main app after the dialog is closed due to the `x-button` not being present in the `st.session_state`\r\n\r\n### How?\r\n\r\nCreate a `key` for `st.dialog`. Use the `key` parameter to set `st.session_state.{key}-closed = True` after the dialog is closed until full execution of the app and then reset to `False`.\r\n\r\n### Additional Context\r\nUse case is where we use the dialog to update backend state and then want the closing of the dialog to reflect that backend state in the page that is presented once the dialog is closed.",
+    "reactions": 88,
+    "created_at": "2024-04-15T23:31:17Z",
+    "updated_at": "2025-07-28T19:57:11Z",
+    "labels": [
+      "type:enhancement",
+      "area:events",
+      "feature:st.dialog"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8507",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8507",
+    "author_login": "sfc-gh-pkommini",
+    "author_profile": "https://github.com/sfc-gh-pkommini",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 602,
+    "title": "Log connected IPs and client information to console and/or file",
+    "body": "### Problem\n\nUser story: \"I want to be able to see or store IP #s that have accessed my streamlit app.\"   \"I want to better understand my users and how they use my app so that I can improve.\"\n\n### Solution\n\n**MVP:**  \n\nLog to server console the address of any connecting client.\n\n**Possible additions:** \n\nConfiguration option that allows writing to an Apache-style access log when clients connect and disconnect.\n\n**Preferred solution:** \n\n### Additional context\n\nhttps://discuss.streamlit.io/t/how-to-output-client-or-remote-ip-s-to-console/832\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-602)",
+    "reactions": 88,
+    "created_at": "2019-11-01T22:32:11Z",
+    "updated_at": "2025-06-22T13:13:55Z",
+    "labels": [
+      "type:enhancement",
+      "area:debugging"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/602",
+    "html_url": "https://github.com/streamlit/streamlit/issues/602",
+    "author_login": "nthmost",
+    "author_profile": "https://github.com/nthmost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 395,
+    "title": "Ability to hide the hamburger menu",
+    "body": "See: https://discuss.streamlit.io/t/how-do-i-hide-remove-the-menu-in-production/362\r\n\r\nWhen developing a Streamlit app, the hamburger menu is quite useful. But afterwards, it has almost no use. Should we just remove it when in \"serving to end-users\" mode?\r\n\r\nThis could be part of a larger \"serving mode\" idea: when developing a Streamlit app you'd use `streamlit run myname.py` as usual, but when serving it to users you'd use `streamlit serve myname.py`.\r\n\r\nThe latter would start the app normally except:\r\n1. The hamburger menu have fewer items (or maybe it wouldn't be there at all, as proposed in this bug)\r\n2. Streamlit would not watch your filesystem for changes\r\n3. Probably some other stuff :D\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 86,
+    "created_at": "2019-10-14T01:19:25Z",
+    "updated_at": "2024-09-20T09:45:22Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "area:frontend",
+      "feature:app-menu",
+      "feature:config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/395",
+    "html_url": "https://github.com/streamlit/streamlit/issues/395",
+    "author_login": "tvst",
+    "author_profile": "https://github.com/tvst",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7111,
+    "title": "Add a sort_by argument to st.bar_chart",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nst.bar_chart should have an optional argument `sort_by` which specifies which column to use to order the axis and an `ascending` argument to specify the direction of sorting.\n\n### Why?\n\nst.bar_chart currently seems to always sort values by whatever it uses for the `x` value (the index by default). This leads to a problem if I want to view the data sorted by one column, but displaying a different column for the labels of the x axis.\r\n\r\ndata:\r\n```python\r\ntop_users = (\r\n    pd.DataFrame(\r\n        {\r\n            \"name\": [\"John\", \"Emma\", \"Kelly\", \"Brad\", \"Rachel\"],\r\n            \"views\": [300, 200, 250, 400, 50],\r\n        }\r\n    )\r\n    .sort_values(by=\"views\", ascending=False)\r\n    .reset_index(drop=True)\r\n)\r\n```\r\n\r\nFor example, if I want to show the most active users, then I can just do\r\n```python\r\nst.bar_chart(top_users, y=\"views\")\r\n```\r\nWhich yields \r\n<img width=\"798\" alt=\"image\" src=\"https://github.com/streamlit/streamlit/assets/4040678/878b04fd-a16c-46b1-9894-9668bb064582\">\r\n\r\nThis works great, except the x axis is a bit ugly. It would be nice to actually show the name!\r\n\r\n```python\r\nst.bar_chart(top_users, y=\"views\", x=\"name\")\r\n```\r\n\r\nNow it's sorted by name, which is not what I wanted 😞 \r\n\r\n<img width=\"752\" alt=\"image\" src=\"https://github.com/streamlit/streamlit/assets/4040678/8bfe5b4f-28eb-49ee-b93f-02ece03b7c22\">\r\n\r\nThere is no way I can find to sort by one value, but use a different column for the label of the x axis.\r\n\n\n### How?\n\n```python\r\nst.bar_chart(data=None, *, x=None, y=None, sort_by=None, ascending=False, width=0, height=0, use_container_width=True)\r\n```\n\n### Additional Context\n\n_No response_",
+    "reactions": 86,
+    "created_at": "2023-08-03T15:51:46Z",
+    "updated_at": "2025-08-31T19:42:19Z",
+    "labels": [
+      "type:enhancement",
+      "feature:builtin-charts"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7111",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7111",
+    "author_login": "blackary",
+    "author_profile": "https://github.com/blackary",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 371,
+    "title": "Ability to set dataframe column width",
+    "body": "See: https://discuss.streamlit.io/t/is-there-a-way-to-specify-column-width-for-dataframe-table/333\r\n\r\n`st.dataframe` tries to be smart about column sizes, but often misses the mark — so users end up with dataframes that have truncated/ellipsized values.\r\n\r\nOn Jupyter, you can apply a width-modifying Styler to a dataframe like this: https://stackoverflow.com/a/39680725\r\n\r\nWe should add support for something like that in Streamlit.",
+    "reactions": 82,
+    "created_at": "2019-10-11T04:07:29Z",
+    "updated_at": "2023-11-29T19:54:04Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/371",
+    "html_url": "https://github.com/streamlit/streamlit/issues/371",
+    "author_login": "tvst",
+    "author_profile": "https://github.com/tvst",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7300,
+    "title": "Icons with custom images in `st.button`",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nI would request an image button.\r\n\r\nThe only way I can have an image in st.button, is by using an emoji, and available emojis are not exhaustive (in quantity and quality).\r\n\r\nI could use markdown for an image button, but I cannot call a local function on clicking the image.\n\n### Why?\n\nAn image button is a primary requirement in web development. Further, all the python web frameworks (flet, reflex, etc.) already have it as part of their standard base implementation. It would be nice to have it in streamlit too.\n\n### How?\n\nYou could either have the st.button label parameter accept the base64 text of a button or have it accept a path to a local image / icon file.\n\n### Additional Context\n\n_No response_",
+    "reactions": 81,
+    "created_at": "2023-09-10T19:39:04Z",
+    "updated_at": "2025-10-08T09:02:14Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.image",
+      "feature:st.button"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7300",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7300",
+    "author_login": "shakamoushie",
+    "author_profile": "https://github.com/shakamoushie",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5234,
+    "title": "Set date format for date_input widget",
+    "body": "### Problem\r\n\r\nI want to be able to specify the date format displayed in the date_input widget, at the moment defaults to `%Y/%m/%d`. \r\n\r\nSimilar to Slider `format` option perhaps? as suggested here... https://discuss.streamlit.io/t/datetime-format-with-date-input/21272\r\n\r\nCheers!\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n",
+    "reactions": 80,
+    "created_at": "2022-08-26T08:17:40Z",
+    "updated_at": "2025-12-02T15:42:45Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.date_input"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5234",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5234",
+    "author_login": "AndreLobato",
+    "author_profile": "https://github.com/AndreLobato",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 2446,
+    "title": "Autoplay option for audio and video",
+    "body": "### Request\r\n\r\nWhen a user uploads an audio file via st.audio(), they then have to hit the play button to hear the audio. While this works in most cases, for interesting applications, like writing an app that takes text-to-speech, it would be reasonable to have the audio file play once automatically. \r\n\r\n### Solution\r\n\r\n**MVP:** What's the smallest possible solution that would get 80% of the problem out of the way?\r\n\r\nTo have a parameter like `auto_play` that can be passed to the function such as `st.audio(file.mp4,auto_play=True)` (default is auto_play=False), that triggers the audio file to play one time after the file is finished loading.\r\n\r\n### Additional context\r\n\r\nThe conversation that sparked this Feature Request from the [streamlit community](https://discuss.streamlit.io/t/audio-display/7806) \r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 78,
+    "created_at": "2020-12-09T18:43:36Z",
+    "updated_at": "2025-03-21T16:10:02Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.audio",
+      "feature:st.video",
+      "status:likely"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/2446",
+    "html_url": "https://github.com/streamlit/streamlit/issues/2446",
+    "author_login": "mesmith027",
+    "author_profile": "https://github.com/mesmith027",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 868,
+    "title": "Make it easier to render newlines in markdown",
+    "body": "This isn't a bug, but rather a potential source of confusion. (I was confused, at least.)\n\nIn markdown, if you want a newline in your text, simply putting a newline character in is not enough. You have to put two whitespace characters at the end of the previous line.\n\n```python\nimport streamlit as st\nst.write(\"Not multi-\\nline\")\nst.write(\"Still not multi- \\nline\")\nst.write(\"Ok now it's multi-  \\nline\")\n```\n\nApparently [this is part of the spec](https://markdown-guide.readthedocs.io/en/latest/basics.html#line-return), so maybe we shouldn't do anything here. But it seemed confusing enough to be worth noting.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-868)",
+    "reactions": 77,
+    "created_at": "2019-12-18T19:01:05Z",
+    "updated_at": "2025-06-13T16:39:33Z",
+    "labels": [
+      "type:enhancement",
+      "feature:markdown"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/868",
+    "html_url": "https://github.com/streamlit/streamlit/issues/868",
+    "author_login": "tconkling",
+    "author_profile": "https://github.com/tconkling",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5626,
+    "title": "Bump protobuf",
+    "body": "Would there be any concerns on bumping protobuf >=4.0.0?\r\n\r\n### Voting for feature requests\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 75,
+    "created_at": "2022-10-31T16:06:07Z",
+    "updated_at": "2023-05-04T20:20:11Z",
+    "labels": [
+      "type:enhancement",
+      "area:dependencies",
+      "status:likely"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5626",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5626",
+    "author_login": "rencryptofish",
+    "author_profile": "https://github.com/rencryptofish",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5386,
+    "title": "Word wrapping in st.dataframe",
+    "body": "How to display all text within each cell?\r\n<img width=\"848\" alt=\"image\" src=\"https://user-images.githubusercontent.com/54015474/191358490-18ccd79b-d43b-4710-a79b-9ba5e34fe65d.png\">\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 75,
+    "created_at": "2022-09-20T20:31:11Z",
+    "updated_at": "2025-08-17T22:46:43Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.table"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5386",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5386",
+    "author_login": "keyuchen21",
+    "author_profile": "https://github.com/keyuchen21",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 10895,
+    "title": "Flex layout",
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nWe're currently working on adding flex layout to Streamlit by turning `st.container` into a flexbox-like layout element. You can try out the demo app and download the wheel file here: https://flex-layout-demo.streamlit.app/\n\nWe'd love your feedback! If you have any feedback (no matter if good or bad, bug or feature request), please post below. I'd also love to see what you're building :)\n\n### Why?\n\nStreamlit only has very limited layout options. By shipping a flexbox-like container, we hope to offer a basic building block that lets you build much more complex layouts. \n\n### How?\n\nSee details in the demo app! Here are a few examples of what you can build:\n\n![Image](https://github.com/user-attachments/assets/9059db98-9076-4a0d-88ec-ee0547f827ea)\n\n![Image](https://github.com/user-attachments/assets/5ddf1dc6-3658-41bb-9067-3dce8b75e9fd)\n\n![Image](https://github.com/user-attachments/assets/f935c20d-34d7-46ca-8177-5c4a81d0d055)\n\n![Image](https://github.com/user-attachments/assets/41bd21b5-e568-4ced-908e-b527685a267c)\n\n### Additional Context\n\nRelated issues:\n\n- #1799 \n- #6132\n- #8197\n- #4388\n- #2515\n- #8135 \n- #5466\n- #6592",
+    "reactions": 74,
+    "created_at": "2025-03-25T00:57:43Z",
+    "updated_at": "2025-08-07T02:52:09Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "feature:st.container"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/10895",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10895",
+    "author_login": "sfc-gh-jrieke",
+    "author_profile": "https://github.com/sfc-gh-jrieke",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7250,
+    "title": "Voice (speech to text) input support for `st.chat_input`",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nIn the chat mode, text input is currently supported. When will it support functions such as speech recognition to text and response to speech?\r\n<img width=\"980\" alt=\"image\" src=\"https://github.com/streamlit/streamlit/assets/4254076/71e55d14-6760-4f04-bbf5-5117983a2ba1\">\r\n\n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "reactions": 74,
+    "created_at": "2023-08-30T05:53:31Z",
+    "updated_at": "2025-11-06T02:17:27Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.chat_input"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7250",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7250",
+    "author_login": "Awyshw",
+    "author_profile": "https://github.com/Awyshw",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 9137,
+    "title": "Data Editor: add multi-select column",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nColumn configurations (st.column_config) for st.data_editor only has a configuration for a select box (like st.selectbox) where the user can select one choice from the options. We have a use-case where it would be helpful in st.data_editor for the user to be able to select multiple choices from the options like st.multiselect.\n\n### Why?\n\nThis is a data entry/editing interface where the user can select multiple \"tags\" for a single row of data.\n\n### How?\n\nLogical syntax would be st.column_config.MultiSelect, and return a Python list in the st.data_editor multi-select column.\n\n### Additional Context\n\n_No response_",
+    "reactions": 74,
+    "created_at": "2024-07-24T19:15:28Z",
+    "updated_at": "2025-08-22T21:14:33Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.data_editor",
+      "feature:st.column_config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/9137",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9137",
+    "author_login": "makerofmaps1",
+    "author_profile": "https://github.com/makerofmaps1",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 400,
+    "title": "Ability to download data from Streamlit",
+    "body": "[Edited by tvst, since we narrowed the focus of this feature request]\r\n\r\nI'd love to be able to:\r\n\r\n* ingest data - csv file, etc - I see this is already being worked on.\r\n* do stuff with it - easy with streamlit, as users can tweak stuff till they get the results they are happy with.\r\n* present csv/excel file of the final (with results added) data for download - I can save this to the server using pandas for example but not sure how to present it nicely for the user to download within the streamlit app itself. It would be nice to have a streamlit widget thingamajig.\r\n\r\n**Implementation suggestion:** The existing streamlit object which displays stuff on screen could have a download option for objects like dataframes. So st.write(data) or just st.dataframe(data) should have a download button somewhere.\r\n\r\nSort of how some of the plotting tools in python like plotly displays a download button for charts.",
+    "reactions": 74,
+    "created_at": "2019-10-14T06:19:17Z",
+    "updated_at": "2021-03-25T17:23:59Z",
+    "labels": [
+      "type:enhancement"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/400",
+    "html_url": "https://github.com/streamlit/streamlit/issues/400",
+    "author_login": "anhhd",
+    "author_profile": "https://github.com/anhhd",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 120,
+    "title": "Add a File Picker Widget",
+    "body": "# Problem\r\n\r\nSometimes it's nice to be able to specify a file on the command line.\r\n\r\n# Solution\r\n\r\nA file picker!\r\n\r\n## MVP\r\n\r\nThe file picker can be called as follows:\r\n\r\n```python\r\nwith st.file_input() as input:\r\n  if input == None:\r\n    st.warning('No file selected.')\r\n  else:\r\n    file_contents = input.read()\r\n```\r\n\r\n\r\n## Possible additions\r\n\r\nDown the line, we could imagine keyword args for filetypes and folder selection.",
+    "reactions": 73,
+    "created_at": "2019-09-17T02:11:17Z",
+    "updated_at": "2025-12-08T12:05:23Z",
+    "labels": [
+      "type:enhancement"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/120",
+    "html_url": "https://github.com/streamlit/streamlit/issues/120",
+    "author_login": "treuille",
+    "author_profile": "https://github.com/treuille",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 10128,
+    "title": "Pre set selections for `st.dataframe`",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nIs there any way to set selection on dataframe or data_editor ?\n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "reactions": 71,
+    "created_at": "2025-01-08T10:19:34Z",
+    "updated_at": "2026-03-04T11:07:19Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/10128",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10128",
+    "author_login": "StarDustEins",
+    "author_profile": "https://github.com/StarDustEins",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8265,
+    "title": "Add open/close parameter to st.popover",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\n`st.expander` has an `expanded` Boolean to state if the expander should be open or closed. I think it could be useful to add something analogous to `st.popover`. That would allow you to set the popover open/closed programmatically.\n\n### Why?\n\nOne use case would be to have a form in the popover, and want to automatically close the popover during the callback for the `st.form_submit_button`.\r\nOr if there are widgets in the popover, you could automatically close the popover in the callback on an `on_change` callback for that widget.\n\n### How?\n\nAdd an optional Boolean parameter `expanded` (default to `False`) to `st.popover`. I chose `expanded` to match `st.expander`, but it could be anything reasonable.\n\n### Additional Context\n\n_No response_",
+    "reactions": 71,
+    "created_at": "2024-03-08T21:57:50Z",
+    "updated_at": "2026-03-12T16:59:49Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.popover"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8265",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8265",
+    "author_login": "sfc-gh-bhess",
+    "author_profile": "https://github.com/sfc-gh-bhess",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8161,
+    "title": "Add support for async generators in `write_stream`",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nAdd support for `async_generator` in `write_stream`. This allows to stream data from async requests in Streamlit.\n\n### Why?\n\nToday I can only stream data from synchronous HTTP clients while using `write_stream` in Streamlit.\n\n### How?\n\nAdd support for `async_generator` in `write_stream`.\n\n### Additional Context\n\n_No response_",
+    "reactions": 70,
+    "created_at": "2024-02-15T18:39:00Z",
+    "updated_at": "2024-11-19T16:43:39Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.write_stream",
+      "area:threading/processing"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8161",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8161",
+    "author_login": "evertoncolling",
+    "author_profile": "https://github.com/evertoncolling",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7266,
+    "title": "Bigger (and readable) image size in ImageColumn",
+    "body": "`st.column_config.ImageColumn` includes a `width` parameter that controls the column width, but the image size inside the column stays the same - tiny and unreadable. You should fill the column with the image, such that increasing the width makes the images bigger and more readable.\r\nThanks!",
+    "reactions": 68,
+    "created_at": "2023-08-23T21:23:10Z",
+    "updated_at": "2025-03-04T01:59:40Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.data_editor",
+      "feature:st.column_config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7266",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7266",
+    "author_login": "Ozziko",
+    "author_profile": "https://github.com/Ozziko",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 2263,
+    "title": "Make Altair selections available in Python",
+    "body": "### Problem\r\n\r\nI often want to click on a chart and get what I click on in Python. I also often want to select a range in a histogram and then use the selected range in subsequent calculations in Python. Altair's selections would be perfect for this task if they were available in Python. I have heard many people ask for this feature and it would be a huge differentiator for Streamlit.\r\n\r\nTo show the value of this idea, I created a POC with @hydrosquall at https://github.com/domoritz/streamlit-vega-lite. I don't think the API is that great yet but the feature overall is super useful for making truly interactive Streamlit charts. \r\n\r\n### Solution\r\n\r\n**MVP:** As a first step, Altair selections could be used to get the clicked bar in a default bar chart or a selected range in an area chart available in Python. There is no need for customizations and the feature could be designed in a backwards compatible way.\r\n\r\n**Possible additions:** Later, all selections could be accessible from Python as my POC above. \r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n",
+    "reactions": 66,
+    "created_at": "2020-10-24T04:23:09Z",
+    "updated_at": "2025-03-21T16:10:16Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.altair_chart",
+      "area:events"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/2263",
+    "html_url": "https://github.com/streamlit/streamlit/issues/2263",
+    "author_login": "domoritz",
+    "author_profile": "https://github.com/domoritz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 949,
+    "title": "st.selectbox - No selection per default ",
+    "body": "### Problem\r\n\r\nI believe it is currently not possible to use a selectbox that has nothing selected per default. This may be undesirable in some cases.\r\n\r\n### Solution\r\n\r\nReplace the `index`parameter with a `default` parameter just like the multiselect item does. Problem: This is a breaking change.\r\n\r\nPossibly better: Instead of throwing an error when the provided index is not within the list, return `None` and show an empty selection in the UI instead of throwing an error. Problem: No explicit error is being raised in case the index out of bound in an unwanted scenario.\r\n\r\nPossibly possibly better: An index of `-1` indicates an empty selection and `None` is returned. This might be a good balance since negative values are currently forbidden.\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n",
+    "reactions": 66,
+    "created_at": "2020-01-10T08:05:35Z",
+    "updated_at": "2024-05-15T08:10:29Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.selectbox"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/949",
+    "html_url": "https://github.com/streamlit/streamlit/issues/949",
+    "author_login": "pietz",
+    "author_profile": "https://github.com/pietz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 585,
+    "title": "Change background and text color",
+    "body": "### Problem\r\n\r\nUsers would like the ability to change the background color and text color of their apps.\r\n\r\n### Solution\r\n\r\nAllow users through a simple API to change background and text color without having to pass a`<style>` block into `st.markdown` with `unsafe_allow_html=True` or some similar process.\r\n\r\n### Additional context\r\n\r\n[Here](https://discuss.streamlit.io/t/background-and-text-colors/807) is a forum topic requesting this feature.\r\n",
+    "reactions": 66,
+    "created_at": "2019-10-31T16:40:38Z",
+    "updated_at": "2022-11-07T20:23:07Z",
+    "labels": [
+      "type:enhancement",
+      "area:frontend",
+      "area:styling"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/585",
+    "html_url": "https://github.com/streamlit/streamlit/issues/585",
+    "author_login": "tc87",
+    "author_profile": "https://github.com/tc87",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8388,
+    "title": "Multi-page apps: Improved API and new navigation UI features",
+    "body": "Hi folks! 👋\r\n\r\nI wanted to preview a new way to define multi-page Streamlit apps and some new features coming to the side navigation. We're aiming to release these updates within the next 2 months.\r\n\r\n**⚠️👉 NOTE: this will be additive, the current MPA approach with `pages/` will still work just fine 🙂**\r\n\r\n## Update: Check out the :point_right: [demo app](https://multipage-v2-preview.streamlit.app/) :point_left: & whl file!\r\n\r\nhttps://multipage-v2-preview.streamlit.app/\r\n\r\n## Summary\r\n\r\nUsing the new API, when you do `streamlit run streamlit_app.py`, **the contents of `streamlit_app.py` will automatically run before every page** instead of defining the home page. Any common code can go here.\r\n\r\n* We're building a new API called `st.navigation()` with `st.Page()` to programmatically define the available pages of your app.\r\n* This means the available and displayed pages can change in a given session / rerun! (see code example below)\r\n* Besides defining your pages / nav, you can also add any common session setup code, authorization check, page_config, styles, etc only once in this file.\r\n* We also plan to add native support for an app logo at the top left, text headings between page groups in the native navigation, and support for Material icons in addition to emojis\r\n\r\nHere's how a native side navigation might look using all the new features:\r\n\r\n![image](https://github.com/streamlit/streamlit/assets/116604821/214888d1-703c-4d71-9ca2-8391fc7e3ee5)\r\n\r\nHere's the simplest example of how this would look in your app code:\r\n\r\n```python\r\n# streamlit_app.py\r\n\r\n# Define all the available pages, and return the current page\r\ncurrent_page = st.navigation([\r\n    st.Page(\"hello.py\", title=\"Hello World\", icon=\":material:Plane:\"),\r\n    st.Page(\"north_star.py\", title=\"North Star\", icon=\":material:Star:\"),\r\n    # ...\r\n])\r\n\r\n# call run() to execute the current page\r\ncurrent_page.run()\r\n```\r\n\r\nPages can be defined by path to a python file, or passing in a function.\r\n\r\n```python\r\ndef Page(\r\n    page: str | Callable,\r\n    *,\r\n    title: str = None,\r\n    icon: str = None, # emojis and material icons\r\n    default: bool = False, # Explicitly set a default page (\"/\") for the app\r\n    url_path: str = None, # set an identifier and /url-path for the page, otherwise inferred\r\n)\r\n```\r\n\r\n## New navigation UI\r\n\r\nHere's a fuller example with a logo and section headers.\r\n\r\n```python\r\nst.logo(\"my_logo.png\")\r\n\r\n# Define all the available pages, and return the current page\r\ncurrent_page = st.navigation({\r\n    \"Overview\": [\r\n        st.Page(\"hello.py\", title=\"Hello World\", icon=\":material:Plane:\"),\r\n        st.Page(\"north_star.py\", title=\"North Star\", icon=\":material:Star:\"),\r\n    ],\r\n    \"Metrics\": [\r\n        st.Page(\"core_metrics.py\", title=\"Core Metrics\", icon=\":material:Hourglass:\"),\r\n        # ...\r\n    ],\r\n})\r\n\r\n# current_page is also a Page object you can .run()\r\ncurrent_page.run()\r\n```\r\n\r\n### Logos\r\n\r\nCalling `st.logo(image)` adds an app logo in the top left of your app, floating",
+    "reactions": 65,
+    "created_at": "2024-03-27T18:17:12Z",
+    "updated_at": "2025-03-21T16:10:23Z",
+    "labels": [
+      "type:enhancement",
+      "feature:multipage-apps"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8388",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8388",
+    "author_login": "sfc-gh-jcarroll",
+    "author_profile": "https://github.com/sfc-gh-jcarroll",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 1291,
+    "title": "Keyboard shortcuts for buttons",
+    "body": "### Problem\n\nI'm more productive when I can use keyboard shortcuts.\nE.g. press left/right to move to previous / next image. Press space to toggle some viz. Press j/k to move up/down some slider.\n\n### Solution\n\n**MVP:** Provide a way to map 80% of the keys to custom actions. It could be an optional argument to `streamlit.button`, `streamlit.slider` (two keys for up/down one step), etc.\n\n**Possible additions:** Allow to map most keys, inclluding remapping 'c' which currenty clears the streamlit cache.\n\n### Additional context\n\nComes form personal need. Also mentioned here: https://discuss.streamlit.io/t/idea-keyboard-bindings/1976 .\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-1291)",
+    "reactions": 65,
+    "created_at": "2020-04-02T06:33:39Z",
+    "updated_at": "2025-11-24T19:54:06Z",
+    "labels": [
+      "type:enhancement",
+      "area:widgets",
+      "area:utilities"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/1291",
+    "html_url": "https://github.com/streamlit/streamlit/issues/1291",
+    "author_login": "jrouquie",
+    "author_profile": "https://github.com/jrouquie",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 969,
+    "title": "Allow arbitrary Javascript code blocks (e.g. Google Analytics)",
+    "body": "### Problem\r\n\r\nCurrently, Streamlit provides no vector for injection of arbitrary chunks of Javascript like Google Analytics, Adsense, LimeExplainer, and so on.\r\n\r\n### Solution\r\n\r\n**MVP:**  Perhaps an st.javascript() function with its own Javascript protobuf.\r\n\r\n**Possible additions:**  It would be great if you could do something like this: \r\n\r\n    st.write(<some stuff that includes HTML and javascript>, allow_javascript=True, allow_html=True)\r\n\r\n**Preferred solution:**  Suggestions welcome.\r\n\r\n### Additional context\r\n\r\nRelates to:\r\n\r\n* https://discuss.streamlit.io/t/how-to-add-google-analytics-or-js-code-in-a-streamlit-app/1610\r\n* https://github.com/streamlit/streamlit/issues/779\r\n",
+    "reactions": 62,
+    "created_at": "2020-01-15T00:21:56Z",
+    "updated_at": "2024-03-06T14:44:52Z",
+    "labels": [
+      "type:enhancement",
+      "feature:custom-components"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/969",
+    "html_url": "https://github.com/streamlit/streamlit/issues/969",
+    "author_login": "nthmost",
+    "author_profile": "https://github.com/nthmost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7533,
+    "title": "Allow to customize colors for chart dataframe columns ",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nAdd a config option to customize the colors of chart columns (LineChartColumn, BarChartColumn, ProgressColumn). Currently, it's always showing in the primary color.  \n\n### Why?\n\n_No response_\n\n### How?\n\n```python\r\nst.column_config.LineChartColumn(\"Trend\", color=\"green\")\r\n```\n\n### Additional Context\n\n_No response_",
+    "reactions": 62,
+    "created_at": "2023-10-10T21:49:46Z",
+    "updated_at": "2025-09-30T10:03:30Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.column_config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7533",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7533",
+    "author_login": "lukasmasuch",
+    "author_profile": "https://github.com/lukasmasuch",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 6795,
+    "title": "st.column_config.SelectboxColumn: Extend config with dict mapping to separate backend and user value representation.",
+    "body": "### Problem\n\nThe current implementation of a select box is a great start but not always the data from the backend for the category options is the like the one for GUI. I'm missing a format function/option like in other widgets.\n\n```python\nimport pandas as pd\nimport streamlit as st\n\ndata_df = pd.DataFrame(\n    {\n        \"category\": [\n            \"📊 Data Exploration\",\n            \"📈 Data Visualization\",\n            \"🤖 LLM\",\n            \"📊 Data Exploration\",\n        ],\n    }\n)\n\nst.data_editor(\n    data_df,\n    column_config={\n        \"category\": st.column_config.SelectboxColumn(\n            \"App Category\",\n            help=\"The category of the app\",\n            width=\"medium\",\n            options=[\n                \"📊 Data Exploration\",\n                \"📈 Data Visualization\",\n                \"🤖 LLM\",\n            ],\n        )\n    },\n    hide_index=True,\n)\n````\n\nUsually, options like this won't come from the backend directly and need to be converted before displaying them in the front end. I would really like to use a built-in solution for that, instead of formatting the panda's data frame before referencing it in the data editor as well as afterward to convert the users' selection back to the backend representation of the values.\n\n### Solution\n\nA solution for that could be extending the config with a dictionary mapping to the user representation. In a way that it's just for display purposes.\n\n````python\nimport pandas as pd\nimport streamlit as st\n\ndata_df = pd.DataFrame(\n    {\n        \"category\": [\n            \"1\",\n            \"2\",\n            \"3\",\n            \"4\",\n        ],\n    }\n)\n\nst.data_editor(\n    data_df,\n    column_config={\n        \"category\": st.column_config.SelectboxColumn(\n            \"App Category\",\n            help=\"The category of the app\",\n            width=\"medium\",\n            options={\n                1:  \"📊 Data Exploration\",\n                2:  \"📈 Data Visualization\",\n                3:  \"🤖 LLM\",\n            },\n        )\n    },\n    hide_index=True,\n)\n\n````\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-6795)\n",
+    "reactions": 61,
+    "created_at": "2023-06-04T19:13:20Z",
+    "updated_at": "2025-08-18T14:21:28Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.column_config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/6795",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6795",
+    "author_login": "robingie",
+    "author_profile": "https://github.com/robingie",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8844,
+    "title": "Expose additional theming options",
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nExpose additional theming options in `config.toml` to allow better customization of apps. \r\n\r\n### Why?\r\n\r\nThe current set of [theming options](https://docs.streamlit.io/develop/concepts/configuration/theming) is quite minimal and doesn't allow to create a cohesive theme. A couple of additional options would allow better app customization, especially for aligning Streamlit apps better with company themes. \r\n\r\n### How?\r\n\r\nProvide additional theming options that can be defined in `config.toml` like:\r\n\r\n- Allow custom fonts (via URL?)\r\n    - Related feature requests: #7274 & #5803\r\n\r\n- Allow changing predefined colors used for:\r\n  - Alert elements like `st.info`, `st.warning`, `st.success`, …\r\n  - Chart theme colors used in `altair_chart`, `plotly_chart`, and our internal charts. This is mainly referring to a categorical, diverging, and sequential color palette.\r\n  - Markdown: link color & inline-code color\r\n  - Metrics delta color\r\n  - Markdown: text and background color like red, green , …\r\n - Default text size\r\n   - maybe only with a couple of predefined options (small / medium / large)\r\n - Default spacing (to influence padding & gaps used around and within elements)\r\n    - maybe only a couple of predefined options (compact / default)\r\n - Roundness (radius) of elements\r\n   - maybe only a couple of predefined options (none / small / medium / large)\r\n - Default border width & color\r\n - Sidebar text color\r\n\r\nFor example: \r\n\r\n```js\r\nfont: \"sans serif\" | \"serif\" | \"monospace\" | str (custom font URL)\r\n\r\ntext_size: \"small\" | \"medium\" | \"large\"\r\nradius_size: \"none\" | \"small\" | \"medium\" | \"large\"\r\nspacing_size: \"compact\" | \"default\" | \"large\"\r\n\r\nsidebar_text_color: str (hex color)\r\n\r\nsuccess_color: str (hex color) \r\nwarning_color: str (hex color)\r\ninfo_color: str (hex color)\r\nerror_color: str (hex color)\r\n\r\nlink_color: str (hex color)\r\ninline_code_color: str (hex color)\r\n\r\nchart_categorical_colors: list[str] (list of hex colors)\r\nchart_diverging_colors: list[str] (list of hex colors)\r\nchart_sequential_colors: list[str] (list of hex colors)\r\n\r\npositive_delta_color: str (hex color)\r\nnegative_delta_color: str (hex color)\r\n```",
+    "reactions": 60,
+    "created_at": "2024-06-06T15:46:47Z",
+    "updated_at": "2025-07-08T19:39:25Z",
+    "labels": [
+      "type:enhancement",
+      "area:styling",
+      "feature:theming",
+      "feature:config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8844",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8844",
+    "author_login": "lukasmasuch",
+    "author_profile": "https://github.com/lukasmasuch",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 8840,
+    "title": "Feedback: `st.logo` sizing - ability to set height & width",
+    "body": "## Summary\r\nWe are gathering input for enhancing the `st.logo` command to allow for more sizes, please feel free to leave any feedback and/or submit your logos so we can better test/address a variety 🎉\r\n\r\n**Proposal would be introducing a `size` param to `st.logo` with the following options:**\r\n* Small: 1.25rem (20px) max height \r\n<img height=600 src=https://github.com/streamlit/streamlit/assets/63436329/9547c466-2e12-404a-bca3-a9a252f3e6ed />\r\n\r\n* Medium: 1.5rem (24px) max height  _(This is the current/only size)_\r\n<img height=600 src=https://github.com/streamlit/streamlit/assets/63436329/fe5b1658-fc80-4772-bd2e-693ba9f8d497 />\r\n\r\n* Large 2.0rem (32px) max height \r\n<img height=600 src=https://github.com/streamlit/streamlit/assets/63436329/d0086c92-5a6c-4b44-9c4b-3bad45eacb06 />\r\n\r\n---\r\n\r\n### Available Workaround:\r\nThe following code is a customizable workaround for logo sizing using `st.html`.\r\n```python\r\nst.html(\"\"\"\r\n  <style>\r\n    [alt=Logo] {\r\n      height: 3rem;\r\n    }\r\n  </style>\r\n        \"\"\")\r\n```",
+    "reactions": 59,
+    "created_at": "2024-06-05T23:16:42Z",
+    "updated_at": "2024-08-27T17:25:33Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.logo"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/8840",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8840",
+    "author_login": "mayagbarnes",
+    "author_profile": "https://github.com/mayagbarnes",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7082,
+    "title": "initial_sidebar_state='collapsed' behaviour in multipage app",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nOn a multipage app, the option initial_sidebar_state='collapsed' should make it so that the sidebar doesn't appear at all on page load, instead of playing the \"collapse animation\".\n\n### Why?\n\nI am creating a multipage app where the navigation is accomplished with a component (st_pages), making the sidebar not necessary. Therefore, I wanted to hide it, but no matter what I try it always shows for a few moments on every page load, making for a distraction and not good user experience.\r\n\r\nI have tried to address this hiding the sidebar with css using st.markdown(). However, because st.set_page_config() must run before any other streamlit command, the css always loads after the sidebar has already been shown by st.set_page_config().\n\n### How?\n\nThe default behaviour of initial_sidebar_state='collapsed' in st.set_page_config() should be to actually load the sidebar as collapsed, instead of loading the page with the sidebar expanded and then collapsing it.\r\n\r\nA solution like applying 'display: none' to the sidebar's css (as I was trying to do) should work if streamlit registers it before loading the sidebar. But I am sure there is a simpler, less hacky way to adress this.\n\n### Additional Context\n\nOn this [post](https://discuss.streamlit.io/t/instantly-collapse-or-hide-sidebar/47632?u=jesusgarsan) you can see details on how this problem arose for me. You can also find a minimal working example.\r\n",
+    "reactions": 56,
+    "created_at": "2023-07-27T06:26:55Z",
+    "updated_at": "2025-05-26T12:15:30Z",
+    "labels": [
+      "type:enhancement",
+      "feature:multipage-apps",
+      "feature:st.sidebar",
+      "feature:st.set_page_config"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7082",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7082",
+    "author_login": "JesusGarSan",
+    "author_profile": "https://github.com/JesusGarSan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 6805,
+    "title": "Show elapsed time on `st.spinner`",
+    "body": "### Problem\r\n\r\nI have a long-running task (taking several minutes). I hope that the spinner could show the elapsed time, or add a **stopwatch** widget. It would be useful to know how long it takes.\r\n\r\n### Solution\r\n\r\nAdd `show_elapsed` parameter to `st.spinner` to support this feature (default is `False`).\r\n\r\nFrom this:\r\n\r\n```py\r\nwith st.spinner('Wait for it...'):\r\n    time.sleep(5)\r\n```\r\n\r\nTo this:\r\n\r\n```py\r\nwith st.spinner('Wait for it...', show_elapsed=True):\r\n    time.sleep(5)\r\n```\r\n\r\n---------------------------------\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\nIf you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.\r\n",
+    "reactions": 55,
+    "created_at": "2023-06-06T17:52:20Z",
+    "updated_at": "2025-03-21T16:10:32Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.spinner"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/6805",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6805",
+    "author_login": "xareelee",
+    "author_profile": "https://github.com/xareelee",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7702,
+    "title": "Change the character of the thousand and decimal separator in `st.data_editor` and `st.dataframe`",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nThere is no way to change the character of the thousand and decimal separator using st.column_config.NumberColumn in st.data_editor.\r\nThe current valid formatters are %d %e %f %g %i %u. \n\n### Why?\n\nFor countries like Brazil, we use dot as thousand separator and comma as decimal separator. \r\n\n\n### How?\n\nOne solution would be to add a locale and that would be a feature enhancement\n\n### Additional Context\n\n_No response_",
+    "reactions": 55,
+    "created_at": "2023-11-10T16:59:41Z",
+    "updated_at": "2025-03-24T17:38:24Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.data_editor",
+      "feature:st.column_config",
+      "area:localization"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7702",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7702",
+    "author_login": "heitormarcal",
+    "author_profile": "https://github.com/heitormarcal",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 7839,
+    "title": "Basic left/center/right alignment of streamlit elements.",
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nSometimes it'd be nice to center or right align an element in streamlit.\n\n### Why?\n\nYou can imagine wanting a chart to be in the center or the screen, or side by side charts (eg. two columns) to be symmetric.\n\n### How?\n\nI think this could be implemented without too much trouble.\r\n\r\nProbably the easiest way is with a context bock:\r\n\r\n```python\r\nwith st.align('left'):\r\n    st.write('Hello')\r\n```\r\n\r\nA for a more robust example, consider:\r\n\r\n\r\n```python\r\n\r\nc1, c2, c3 = st.columns(3)\r\n\r\nwith c1:\r\n    with st.align('left'):\r\n        st.write('Hello')\r\n\r\nwith c1:\r\n    with st.align('middle'):\r\n        st.write('World')\r\n\r\nwith c1:\r\n    with st.align('right'):\r\n        st.write('!')\r\n```\n\n### Additional Context\n\n_No response_",
+    "reactions": 54,
+    "created_at": "2023-12-14T14:28:08Z",
+    "updated_at": "2023-12-15T03:49:29Z",
+    "labels": [
+      "type:enhancement"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/7839",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7839",
+    "author_login": "mkleinbort-ic",
+    "author_profile": "https://github.com/mkleinbort-ic",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 726,
+    "title": "Please add a st.navigation widget",
+    "body": "### Problem\r\n\r\nI would like to build multi page apps with a nice layout and style for use internally in an enterprise and also for the project awesome-streamlit.org.\r\n\r\nOne of the problems is navigation between pages.\r\n\r\n### Solution\r\n\r\nAdd \"nav\"/ \"navigation\" widget like the one in twitter bootstrap\r\n\r\nI would be nice if it supported\r\n- Icons like fontawesome and similar\r\n- Divider lines\r\n- Multilevel navigation\r\n- Integration with routing. I.e. if I click the \"Dashboard\" navigation item the the \"dashboard\" is appended to the url such that my users can bookmark that page.\r\n- Compact or minimized layout.\r\n  - The sidebar is also used by the individual pages for the user to change settings using sliders, checkboxes etc. So there can quickly be a lot of things going on in the sidebar.\r\n\r\n![image](https://user-images.githubusercontent.com/42288570/69305702-33c39380-0c25-11ea-826a-0645f49f0809.png)\r\n\r\n### Additional context\r\n\r\nMaybe the navigation widget should not go in the sidebar but be integrated with the existing \"hamburger\" menu. A UX expert would know better than I do.\r\n\r\nFor more inspiration see https://getbootstrap.com/docs/4.0/examples/dashboard/\r\n\r\n![image](https://user-images.githubusercontent.com/42288570/69305585-d3345680-0c24-11ea-9a6c-1f54914164ac.png)\r\n\r\n![image](https://user-images.githubusercontent.com/42288570/69305543-abdd8980-0c24-11ea-8c8b-517201cbe640.png)",
+    "reactions": 54,
+    "created_at": "2019-11-21T05:07:02Z",
+    "updated_at": "2022-07-26T03:41:56Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "area:frontend"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/726",
+    "html_url": "https://github.com/streamlit/streamlit/issues/726",
+    "author_login": "MarcSkovMadsen",
+    "author_profile": "https://github.com/MarcSkovMadsen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5348,
+    "title": "Add an option to allow multiselect to accept new values",
+    "body": "### Problem\n\nI'm building a small CRUD application with database behind it. Absolutely love how Streamlit works and allows to use Python everywhere, but once it comes to the ability to enter new information - currently available components are lacking.\n\nOne of use cases is tag-like fields. I need user to be able to select multiple existing tags with autocompletion - and multiselect is awesome there. But once user needs to add a new tag - basically there are only 2 ways: either to have a 2nd text field nearby (looks ugly), or to have a separate subpage for tags addition (even worse, as user has to navigate off his work).\n\n### Solution\n\n**MVP:** I'd llike to propose a minimal change - an option for multiselect to **allow new input from user**, which is not on options, confirmed with enter. With this option enabled - return new value as part of results. Dev checks if there are any items returned, which were not on original list of options - and then decides what to do with that. I believe this will require minimal changes, but this will greatly expand Streamlit use cases.\n\n**Preferred solution:** It would be great to expand other means to enter information too. Streamlit has gone a long way from Jupyter replacement to nearly full-featured web app framework. Ideally I'd love to see better user input support, including editable / clickable / selectable tables, and options to allow new input for other components, like selectbox (or maybe just an option to **limit number** of inputs on multiselect - with max=1 that could be a replacement for selectbox, which also allows no selection and new user input, as described above).\n\n### Additional context\n\nThere's a 3rd party streamlit-tags component, but it really lacks the polish, lacks proper suggestions by partial match, it has different theming.\n\n### Voting for feature requests\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-5348)",
+    "reactions": 53,
+    "created_at": "2022-09-13T19:43:46Z",
+    "updated_at": "2025-03-28T10:00:35Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.multiselect",
+      "status:likely"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5348",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5348",
+    "author_login": "CHerSun",
+    "author_profile": "https://github.com/CHerSun",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5284,
+    "title": "Allow columns inside columns",
+    "body": "### Problem\r\n\r\nThere's no way to use `st.columns` inside `st.columns` right now.\r\n\r\nE.g. if you do:\r\n\r\n```python\r\ncol1, col2 = st.columns(2)\r\nwith col1:\r\n    subcol1, subcol2 = st.columns(2)\r\n```\r\n\r\nit throws an exception. \r\n\r\nNote that this is just an aritificial limitation today. There's nothing technically preventing columns inside columns. We just limited this to prevent users from creating weird layouts and having them do any kind of layout with columns (just like HTML tables were used in the distant past).\r\n\r\n\r\n\r\n### Solution\r\n\r\n- Option 1: Just allow columns inside columns. Maybe restrict to one level of nesting and disallow it in the sidebar. \r\n- Option 2: Find another way to create complex layouts, e.g. `st.grid`.\r\n\r\n\r\n### Additional context\r\n\r\nSee #5266, where this was proposed by @ZeroCool940711.\r\n\r\nSome forum posts mentioning this:\r\n\r\n- https://discuss.streamlit.io/t/columns-in-a-column/21978/5\r\n- https://discuss.streamlit.io/t/need-help-with-layout-columns-within-columns/12912\r\n- https://discuss.streamlit.io/t/create-nested-columns/18807\r\n- https://discuss.streamlit.io/t/is-there-any-possibility-to-use-st-beta-column-in-st-beta-column/11050\r\n- https://discuss.streamlit.io/t/new-layout-columns/6280\r\n- https://discuss.streamlit.io/t/specific-layout-without-nested-columns/22861\r\n- https://discuss.streamlit.io/t/column-layout/28937\r\n- https://discuss.streamlit.io/t/how-to-create-layout-merge-two-columns-into-one/26359\r\n- https://discuss.streamlit.io/t/support-for-nested-columns/28810\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 53,
+    "created_at": "2022-08-31T16:01:12Z",
+    "updated_at": "2025-04-12T12:11:46Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.columns"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5284",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5284",
+    "author_login": "jrieke",
+    "author_profile": "https://github.com/jrieke",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 241,
+    "title": "Horizontal layout",
+    "body": "# Problem\r\n\r\nStreamlit should support horizontal layout.\r\n\r\n### Use Case 1\r\n\r\nzhun_t [wanted to display images side-by-side](https://discuss.streamlit.io/t/multiple-images-along-the-same-row/118e).\r\n\r\n(Note that in the special case of images, [we already have limited support for this](https://streamlit.io/docs/api.html?highlight=image#streamlit.image) by passing an array of images into `st.image`.)\r\n\r\n### Use Case 2\r\n\r\n[In our old repo](https://github.com/streamlit/streamlit-old-private/issues/775), @kellyamanda asked for the following:\r\n\r\n> I would like to be able to put a bunch of widgets horizontally next to each other. Almost like setting up st.table - I would ideally want to specify how many \"spaces\" or \"cells\" I have layered across and then in code from top to bottom, specify what goes where from right to left.\r\n> \r\n> Basically I want to make a grid and from that grid put the widgets (or text or other elements) where I want in that grid.\r\n\r\n# Note To Users\r\n\r\nThis feature is in design right now, **please add comments to this issue describing your use case** to help us design this feature properly!",
+    "reactions": 53,
+    "created_at": "2019-10-02T17:55:41Z",
+    "updated_at": "2024-10-19T12:46:08Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "feature:custom-components"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/241",
+    "html_url": "https://github.com/streamlit/streamlit/issues/241",
+    "author_login": "treuille",
+    "author_profile": "https://github.com/treuille",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 2447,
+    "title": "Independently scroll columns",
+    "body": "### Request\r\n\r\nThe `st.columns` feature creates the specified number of columns, when scrolling through the app the columns scroll together, and you cannot look at one column independently from the other. This would be useful when the columns are very long and the information in each column are related. \r\n\r\nFor example: \r\nIf, in one column you had a graph. \r\nIn the second, you had some information on that graph. the second column ends up being very long and you cannot read all of the information about that graph without scrolling down the page. \r\nIt would be nice to be able to scroll down the second column, while keeping the first fixed on the graph, so you can read information while still referring back to the graph. \r\n \r\n### Solution\r\n\r\n**MVP:** What's the smallest possible solution that would get 80% of the problem out of the way?\r\n\r\nA parameter, such as, `indep_scroll` that you pass to the `st.columns(2, indep_scroll=True)`, (default could be False) that allows you to independently move each column. \r\n\r\n### Additional context\r\n\r\nIdea came out of November Hackathon event\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\r\n",
+    "reactions": 51,
+    "created_at": "2020-12-09T19:12:37Z",
+    "updated_at": "2025-09-17T08:47:00Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "feature:st.columns"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/2447",
+    "html_url": "https://github.com/streamlit/streamlit/issues/2447",
+    "author_login": "mesmith027",
+    "author_profile": "https://github.com/mesmith027",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5353,
+    "title": "Wrap columns/grids on different screen sizes",
+    "body": "### Problem\nOur Streamlit dashboard has users with different width screens, some 4K others not. If we put everything in one column it gets very long, and for 4K users there's tons of wasted empty space either side. If we use full width with columns it's much better for 4K users, but other users get things squished into narrow side-by-side columns.\n\n### Solution\nWhat we need is basically the [flex-wrap](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-wrap) option provided by CSS flexboxes, where items are laid out in a row if there's room, but they wrap to give a column on smaller screens.\n\nAn implementation of this might be an option passed to `st.column` that tells it to wrap on smaller screens to maintain a minimum pixel width per column. Or perhaps a new function `st.grid` that arranges things in a grid of boxes where the rows and columns adjust to suit the user's screen.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-5353)\n",
+    "reactions": 51,
+    "created_at": "2022-09-14T22:17:41Z",
+    "updated_at": "2025-08-17T22:35:13Z",
+    "labels": [
+      "type:enhancement",
+      "feature:st.columns"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5353",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5353",
+    "author_login": "quantoid",
+    "author_profile": "https://github.com/quantoid",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 5552,
+    "title": "Tabs hidden when titles exceed the content area width (no ability to scroll)",
+    "body": "### Summary\n\nIf you have too many tabs, or even a couple with long titles, and their total width exceeds the main area with, the latter ones become inaccessible.\n\nThere should be an ability to scroll through them, perhaps just some small arrows at each end.\n\n### Steps to reproduce\n\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-5552)\n\nCode snippet:\n\n```\ntab_names = []\nfor i in range(100):\n  tab_names.append(str(i)*4)\n\ntabs = st.tabs(tab_names)\n```\n\n**Expected behavior:**\n\nShould be able to scroll the tab bar when tabs exceed the screen width, hiding them is bad UX.\n\n**Actual behavior:**\n\nMy tabs are inaccessible.\n\n### Is this a regression?\n\nno\n\n### Debug info\n\n- Streamlit version: streamlit share\n- Python version: 3.10\n- Browser version: Chrome latest\n\n### Voting for feature requests\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-5552)\n",
+    "reactions": 50,
+    "created_at": "2022-10-16T04:41:23Z",
+    "updated_at": "2026-02-18T21:43:35Z",
+    "labels": [
+      "type:enhancement",
+      "good first issue",
+      "feature:st.tabs"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/5552",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5552",
+    "author_login": "blipk",
+    "author_profile": "https://github.com/blipk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 4109,
+    "title": "Content alignment option for text elements",
+    "body": "### Problem\n\nAs a developer, I'd like to add an argument option to align text content for elements `st.markdown`, `st.caption`, and `st.text`. The available options of the alignment will be `left` (default option), `center`, `right`, and `justify`.\n\n### Solution\n\n**MVP:**\n\n```python\n>>> st.markdown('Lorem ipsum dolor sit amet...', align_text='left') # Default\n```\n\n![align_left](https://user-images.githubusercontent.com/22917736/144139313-9afd28fb-18f0-452b-95a1-19e45adda850.png)\n\n```python\n>>> st.markdown('Lorem ipsum dolor sit amet...', align_text='center')\n```\n\n![align_center](https://user-images.githubusercontent.com/22917736/144139360-0a15d84c-358f-4747-92ca-0012b8611d0e.png)\n\n```python\n>>> st.markdown('Lorem ipsum dolor sit amet...', align_text='right')\n```\n\n![align_right](https://user-images.githubusercontent.com/22917736/144139394-673ba898-97b2-4804-af31-cb6c9cfca9b5.png)\n\n```python\n>>> st.markdown('Lorem ipsum dolor sit amet...', align_text='justify')\n```\n\n![align_justify](https://user-images.githubusercontent.com/22917736/144139427-54cec3b8-9b8e-4a31-8331-c2f058f6df46.png)\n\n**Possible additions:** Add `kwargs` to the text elements for more flexible options input.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-4109)",
+    "reactions": 50,
+    "created_at": "2021-11-30T22:39:39Z",
+    "updated_at": "2025-12-10T13:19:52Z",
+    "labels": [
+      "type:enhancement",
+      "feature:markdown",
+      "area:styling",
+      "feature:st.caption"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/4109",
+    "html_url": "https://github.com/streamlit/streamlit/issues/4109",
+    "author_login": "kaydotdev",
+    "author_profile": "https://github.com/kaydotdev",
+    "already_resurrected": false
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "repo": "starship/starship",
+    "issue_number": 498,
+    "title": "Support for right-aligned modules before line_break",
+    "body": "## Feature Request\r\n\r\nSome custom zsh prompts support right-aligning some elements. For example, my current zsh prompt looks like this (the time part is right-aligned on the first line):\r\n\r\n![Screen Shot 2019-10-06 at 19 55 46](https://user-images.githubusercontent.com/198359/66269541-c83f8580-e873-11e9-8ea2-6afe031f8046.png)\r\n\r\nNote that this is about right-aligning parts that come before the last line break. It is different from `RPROMPT`, which is for right-aligning an additional prompt on the same line as the input.\r\n\r\n#### Is your feature request related to a problem? Please describe.\r\nNo.\r\n\r\n#### Describe the solution you'd like\r\nA new `alignment` option that affects a module's alignment.\r\nA module is right-aligned if `alignment = \"right\"`, and there's a `line_break` module that comes after it in `prompt_order`.\r\n\r\n#### Describe alternatives you've considered\r\n1. Make `prompt_order` support a new structure other than a flat list.\r\n2. Add a `right_align` module that changes layout direction until the next `line_break`. It's kind of like Unicode's right-to-left mark.\r\n",
+    "reactions": 72,
+    "created_at": "2019-10-06T13:22:00Z",
+    "updated_at": "2021-10-17T15:07:40Z",
+    "labels": [
+      "✨ enhancement"
+    ],
+    "url": "https://api.github.com/repos/starship/starship/issues/498",
+    "html_url": "https://github.com/starship/starship/issues/498",
+    "author_login": "ubolonton",
+    "author_profile": "https://github.com/ubolonton",
+    "already_resurrected": false
+  }
+]

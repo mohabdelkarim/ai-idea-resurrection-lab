@@ -1,0 +1,322 @@
+[
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 307,
+    "title": "Finding by owner username/group/uid/gid",
+    "body": "Hello,\r\n\r\nI've been using `fd` for quite a long time, and loving it! Recently I've found myself needing to search for files owned by one user or another. I'm willing to do any implementation work required for it, and i'd like to start off a discussion and see if anyone else here has had a need for this feature.\r\n\r\nInterface-wise, my first proposal would be to add a `--user` (as well as a `--group` switch) in the style of find, and maybe they could handle a uid/gid by default when passed a number.\r\n\r\nAnother idea, which is more flexible and less backwards-looking would be passing an `--owner` flag that can parse a `[(uid|username)][:(gid|groupname)]` input pair. As a precedent, docker's `--user` does this. Maybe it would make sense to call the flag `--user` in fd also, but i'm personally worried that it would make finding the \"search by gid\" option a little more obscure or unintuitive.\r\n\r\nLastly, I really don't know what to say right now about negative reasoning. I haven't encountered the need per se, but it feels \"natural\" in a way to be able to search for files \"not owned by my user in this directory\". Any ideas of how (or if) to do negation/exclusion by owner are welcome.\r\n\r\nI'll start to hack a prototype together, and I'm really curious as what people think about this option.",
+    "reactions": 20,
+    "created_at": "2018-06-27T21:01:58Z",
+    "updated_at": "2020-05-19T17:02:36Z",
+    "labels": [
+      "help wanted",
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/307",
+    "html_url": "https://github.com/sharkdp/fd/issues/307",
+    "author_login": "alexmaco",
+    "author_profile": "https://github.com/alexmaco",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 165,
+    "title": "Search based on file timestamps (atime, ctime, mtime)",
+    "body": "`find` has this very useful feature that I use often, which is timestamp-based file search. You're probably familiar with it already, but here's the documentation for those flags:\r\n\r\n```\r\n-atime n\r\n              File  was  last  accessed n*24 hours ago.  When find figures out\r\n              how many 24-hour periods ago the file  was  last  accessed,  any\r\n              fractional part is ignored, so to match -atime +1, a file has to\r\n              have been accessed at least two days ago.\r\n\r\n-ctime n\r\n              File's status was last changed n*24 hours ago.  See the comments\r\n              for -atime to understand how rounding affects the interpretation\r\n              of file status change times.\r\n\r\n-mtime n\r\n              File's  data was last modified n*24 hours ago.  See the comments\r\n              for -atime to understand how rounding affects the interpretation\r\n              of file modification times.\r\n```\r\n\r\nWhat do you think? Thank you.",
+    "reactions": 17,
+    "created_at": "2017-11-11T17:16:30Z",
+    "updated_at": "2025-11-10T09:48:29Z",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/165",
+    "html_url": "https://github.com/sharkdp/fd/issues/165",
+    "author_login": "guihkx",
+    "author_profile": "https://github.com/guihkx",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 315,
+    "title": "Finding multiple patterns",
+    "body": "I'd like to be able to search for multiple patterns, like with grep's -e argument.  It seems (with fd 7.0.0) the only way is to use alternation in the regex pattern, but this can be less clear than multiple arguments, and is harder to build up programmatically.",
+    "reactions": 16,
+    "created_at": "2018-07-31T16:05:59Z",
+    "updated_at": "2022-11-21T20:19:48Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/315",
+    "html_url": "https://github.com/sharkdp/fd/issues/315",
+    "author_login": "tjkirch",
+    "author_profile": "https://github.com/tjkirch",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 406,
+    "title": "Support multiple --exec <cmd> instances",
+    "body": "Sometimes I run a command in several different matching directories with --exec, but I would like to print each directory for each command that is executed without having to add an intermediate shell just to print the path.\r\n\r\nPerhaps adding an option that would print the matched file-name as well as executing the command in `--exec`. I tried with multiple `--exec` but it is not allowed, the only workaround I found was to have an intermediate shell.\r\n\r\nHere is an example (print the git-status in all matching git directories:\r\n```\r\nfd -HFtd .git -x git -C '{//}' status -s\r\n```\r\n\r\nI can imagine that there are other use cases where you would want to print the matched file you execute the `-x` command for.",
+    "reactions": 14,
+    "created_at": "2019-02-09T11:20:47Z",
+    "updated_at": "2022-03-21T14:51:26Z",
+    "labels": [
+      "help wanted",
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/406",
+    "html_url": "https://github.com/sharkdp/fd/issues/406",
+    "author_login": "terlar",
+    "author_profile": "https://github.com/terlar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 523,
+    "title": "RFE: Add --perm flag",
+    "body": "In conjunction with #328 (specifically the --owner option), please consider adding a --perm flag accepting the standard four digit permission format as a filter",
+    "reactions": 13,
+    "created_at": "2019-12-31T18:36:08Z",
+    "updated_at": "2025-02-04T20:46:57Z",
+    "labels": [
+      "help wanted",
+      "question"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/523",
+    "html_url": "https://github.com/sharkdp/fd/issues/523",
+    "author_login": "kclevenger",
+    "author_profile": "https://github.com/kclevenger",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 487,
+    "title": "fd zsh completion shows error 'zsh: command not found: a'",
+    "body": "Attempting to use fd's zsh completion outputs an annoying \"command not found: a\" upon requesting completion with the tab key. Screencast:\r\n\r\n[![asciicast](https://asciinema.org/a/270421.svg)](https://asciinema.org/a/270421)\r\n\r\nI narrowed it down to line 73 in the generated zsh completion script (installed at `/usr/share/zsh/site-functions/_fd` on Arch Linux):\r\n\r\n```zsh\r\n'::pattern -- the search pattern: a regular expression unless '--glob' is used (optional):_files' \\\r\n```\r\n\r\nEscaping the third `:` solves the issue:\r\n\r\n ```zsh\r\n'::pattern -- the search pattern\\: a regular expression unless '--glob' is used (optional):_files' \\\r\n```\r\n\r\n---\r\n\r\n```\r\n$ fd --version\r\nfd 7.4.0\r\n```",
+    "reactions": 11,
+    "created_at": "2019-09-23T09:28:00Z",
+    "updated_at": "2020-03-23T02:09:13Z",
+    "labels": [
+      "help wanted",
+      "packaging/tooling",
+      "upstream-error"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/487",
+    "html_url": "https://github.com/sharkdp/fd/issues/487",
+    "author_login": "b0o",
+    "author_profile": "https://github.com/b0o",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 1457,
+    "title": "New .git Handling has no opt out",
+    "body": "I have the following code:\r\n\r\n```\r\nfd --type d --base-directory ~/Source -H '\\.git' | sed 's|/.git||'\r\n```\r\nwhich lists all folders that contain a `.git` folder (basically a project search). This worked fine in 8.x.x but breaks in 9.x.x due to the breaking change of the .git handling.\r\n\r\nSadly there is no option to opt out for this. because --no-ignore-vcs does bring back all ignored files (so .terraform, .terragrunt-cache, .node-modules, ...) which I do not want. I just want to include \".git\" but not everything .gitignore\r\n\r\nHow can this be achieved? Could you bring back the old behaviour with some cli flag?",
+    "reactions": 9,
+    "created_at": "2023-12-21T06:34:31Z",
+    "updated_at": "2024-04-29T02:33:05Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/1457",
+    "html_url": "https://github.com/sharkdp/fd/issues/1457",
+    "author_login": "raphael-ratepay",
+    "author_profile": "https://github.com/raphael-ratepay",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 789,
+    "title": "Feature: Add a --sort flag so that output is ordered as if piped through `sort`",
+    "body": "`fd` is great and I use it on my day-to-day.\r\n\r\nUnfortunately, by virtue of being heavily multi-threaded, its output is not sorted.\r\n\r\nPiping through `sort` removes coloring (by default) and using `--color=always` is a small barrier.\r\n\r\nIt would be nice if there were a way to cause `fd` to traverse the directory tree in a sorted fashion (while still being multi-threaded) or otherwise sort its output.",
+    "reactions": 8,
+    "created_at": "2021-07-08T21:59:50Z",
+    "updated_at": "2023-08-24T13:02:50Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/789",
+    "html_url": "https://github.com/sharkdp/fd/issues/789",
+    "author_login": "zachriggle",
+    "author_profile": "https://github.com/zachriggle",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 613,
+    "title": "Discussion: Stabilization phase?",
+    "body": "I personally feel like we reached a point in the development of `fd` where we could take a longer break from introducing new features (especially breaking changes) and focus on stabilization instead. I would like to know what others think about this idea.\r\n\r\nThere are a few things which I would like to get finished before we start this phase (in particular: #612).\r\n\r\nOnce we enter the stabilization phase, I would like to focus on three major things:\r\n- Bug fixing\r\n- Documentation improvements\r\n- Performance improvements\r\n\r\nI would not put a super-strict ban on new features, but I would probably reject larger-scale changes for a while. Especially those that are likely to introduce new bugs.\r\n\r\nWhat do you think? If you think this is a good idea, what kind of feature requests / breaking changes would you like to see implemented before we would start such a phase? If not, what do you propose instead?",
+    "reactions": 7,
+    "created_at": "2020-06-07T14:57:57Z",
+    "updated_at": "2021-08-08T14:08:36Z",
+    "labels": [
+      "help wanted",
+      "question"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/613",
+    "html_url": "https://github.com/sharkdp/fd/issues/613",
+    "author_login": "sharkdp",
+    "author_profile": "https://github.com/sharkdp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 1295,
+    "title": "Show found files as hyperlinks just as ls does?",
+    "body": "Could it possible that `fd` would return its results as hyperlinks, just as `ls`, [for instance](https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda), does:\r\n\r\n    --hyperlink[=WHEN]\r\n        hyperlink file names; WHEN can be 'always' (default if omitted), 'auto', or 'never'\r\n\r\n(Which -- in some terminal emulators -- would allow to open the found files with hotkeys, like via the \"Hints\" mechanism in `alacritty`.)\r\n",
+    "reactions": 7,
+    "created_at": "2023-04-02T06:29:52Z",
+    "updated_at": "2024-07-16T21:57:31Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/1295",
+    "html_url": "https://github.com/sharkdp/fd/issues/1295",
+    "author_login": "097115",
+    "author_profile": "https://github.com/097115",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 830,
+    "title": "Search xattrs",
+    "body": "Several partition formats support extended attributes, like ext4 & NTFS.\r\n\r\nThe normal `find` ignores all of these tags, but could `fd` conditionally support searching over them, if the filesystem supports them?",
+    "reactions": 7,
+    "created_at": "2021-08-13T10:45:34Z",
+    "updated_at": "2024-11-23T16:45:11Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/830",
+    "html_url": "https://github.com/sharkdp/fd/issues/830",
+    "author_login": "shakna-israel",
+    "author_profile": "https://github.com/shakna-israel",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 284,
+    "title": "Add --glob/-g option for glob-based search",
+    "body": "A glob-based search (in addition to the default regex-based search) has been requested a few times (see #97, #157). I think we should consider to add this.\r\n\r\nA few things to consider are:\r\n\r\n- Smart case, `--case-sensitive` and `--ignore-case` should work as expected\r\n- Interplay with other command line options has to be reviewed (`--fixed-strings`, `--full-path`, `--extension`)\r\n\r\nImplementation-wise, we would probably just create a regex from the glob-pattern (glob syntax: https://docs.rs/globset/0.3.0/globset/#syntax). Also, we should enable \"dot-all\", just like in https://github.com/sharkdp/fd/issues/111. Note that there is a (possible outdated) implementation here: #96. If nothing else, we should definitely looks at the extensive tests.\r\n\r\nNote: a `--regex` option could be an optional extension to override `--glob` (if someone wants to `alias fd=\"fd --glob\"`, for example).",
+    "reactions": 7,
+    "created_at": "2018-04-19T19:43:36Z",
+    "updated_at": "2019-09-15T18:22:48Z",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/284",
+    "html_url": "https://github.com/sharkdp/fd/issues/284",
+    "author_login": "sharkdp",
+    "author_profile": "https://github.com/sharkdp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 273,
+    "title": "Option for filtering empty files/directories",
+    "body": "This is something that find has that would be very nice to have.",
+    "reactions": 6,
+    "created_at": "2018-03-30T04:36:48Z",
+    "updated_at": "2018-08-19T17:56:46Z",
+    "labels": [
+      "help wanted",
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/273",
+    "html_url": "https://github.com/sharkdp/fd/issues/273",
+    "author_login": "clarfonthey",
+    "author_profile": "https://github.com/clarfonthey",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 436,
+    "title": "Display directories with trailing slashes",
+    "body": "HI,\r\n\r\nIt will be great if there will be a possibility to have directories displayed with a trailing \"/\" (as an option or not).\r\nWhen you don't use colors, there is no way to distinct directories from files.\r\n\r\nRegards,",
+    "reactions": 5,
+    "created_at": "2019-05-07T07:36:22Z",
+    "updated_at": "2025-05-01T01:14:30Z",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/436",
+    "html_url": "https://github.com/sharkdp/fd/issues/436",
+    "author_login": "rockandska",
+    "author_profile": "https://github.com/rockandska",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 89,
+    "title": "Add --exclude option.",
+    "body": "Add an --exclude option which takes a .gitignore style pattern to exclude from the search (the option can be specified multiple times to add multiple excludes). \r\n\r\nMaybe also consider a complementary --include option.\r\n\r\n# Implementation\r\n\r\nThe argument(s) would be added to the WalkBuilder with the `overrides` method, with a \"!\" prepended so they are exclusions, not inclusions. Alternatively, write the arguments to a temporary file and use `add_ignore`. (It may be worth adding a PR to `ignore` to add an easier way to add exclude globs to overrides).\r\n",
+    "reactions": 5,
+    "created_at": "2017-10-10T05:09:40Z",
+    "updated_at": "2017-10-25T20:23:32Z",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/89",
+    "html_url": "https://github.com/sharkdp/fd/issues/89",
+    "author_login": "tmccombs",
+    "author_profile": "https://github.com/tmccombs",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 303,
+    "title": "Thoughts on non-zero exit code for no matches?",
+    "body": "`grep` returns a non-zero exit code when no matches are found, making it easy to include in shell scripts and if conditions directly without having to shell out to `test` to analyze the results.\r\n\r\nWhat are your thoughts on having `fd` do the same so that `fd not-exists` and `fd exists` have differing exit codes that could be directly checked?",
+    "reactions": 5,
+    "created_at": "2018-06-11T01:21:16Z",
+    "updated_at": "2021-08-15T17:30:03Z",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/303",
+    "html_url": "https://github.com/sharkdp/fd/issues/303",
+    "author_login": "mqudsi",
+    "author_profile": "https://github.com/mqudsi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 276,
+    "title": "support size filter option",
+    "body": "`find` supports the `-size` filter, could `fd` do that too?",
+    "reactions": 5,
+    "created_at": "2018-04-01T23:11:17Z",
+    "updated_at": "2021-02-13T20:55:07Z",
+    "labels": [
+      "help wanted",
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/276",
+    "html_url": "https://github.com/sharkdp/fd/issues/276",
+    "author_login": "perkfly",
+    "author_profile": "https://github.com/perkfly",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/fd",
+    "issue_number": 244,
+    "title": "Binary release for ARM (Raspberry Pi)",
+    "body": "It would be nice to have an ARM build, so we can use it on devices like Raspberry Pi.",
+    "reactions": 5,
+    "created_at": "2018-02-22T02:44:58Z",
+    "updated_at": "2018-08-19T20:08:19Z",
+    "labels": [
+      "help wanted",
+      "packaging/tooling"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/fd/issues/244",
+    "html_url": "https://github.com/sharkdp/fd/issues/244",
+    "author_login": "cpixl",
+    "author_profile": "https://github.com/cpixl",
+    "already_resurrected": false
+  }
+]

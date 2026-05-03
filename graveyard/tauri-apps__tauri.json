@@ -1,0 +1,148 @@
+[
+  {
+    "repo": "tauri-apps/tauri",
+    "issue_number": 9662,
+    "title": "libwebkit2gtk-4.0 not available in Ubuntu 24 & Debian 13 repositories",
+    "body": "### Describe the bug\r\n\r\nThe Tauri v1 pre-requisite `libwebkit2gtk-4.0-dev` is not available in Ubuntu 24 repositories. This causes an error when installing the pre-requisites specified [here](https://tauri.app/v1/guides/getting-started/prerequisites/#setting-up-linux), and when running `cargo tauri dev` on Ubuntu 24.\r\n\r\nNote: `libwebkit2gtk-4.1-dev` is available but doesn't help with Tauri 1. \r\n\r\n### Reproduction\r\n\r\nRun:\r\n```\r\nsudo apt update\r\nsudo apt install libwebkit2gtk-4.0-dev \\\r\n    build-essential \\\r\n    curl \\\r\n    wget \\\r\n    file \\\r\n    libssl-dev \\\r\n    libgtk-3-dev \\\r\n    libayatana-appindicator3-dev \\\r\n    librsvg2-dev\r\n```\r\nreports:\r\n```\r\nE: Unable to locate package libwebkit2gtk-4.0-dev\r\nE: Couldn't find any package by glob 'libwebkit2gtk-4.0-dev'\r\n```\r\n\r\nAnd `cargo tauri dev`:\r\n```\r\nThe following warnings were emitted during compilation:\r\n\r\nwarning: javascriptcore-rs-sys@0.4.0: \r\n\r\nerror: failed to run custom build command for `javascriptcore-rs-sys v0.4.0`\r\n\r\nCaused by:\r\n  process didn't exit successfully: `/home/mrh/src/safe-browser/awe/src-tauri/target/debug/build/javascriptcore-rs-sys-855dc84908b0218c/build-script-build` (exit status: 1)\r\n  --- stdout\r\n  cargo:rerun-if-env-changed=JAVASCRIPTCOREGTK_4.0_NO_PKG_CONFIG\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_x86_64-unknown-linux-gnu\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_x86_64_unknown_linux_gnu\r\n  cargo:rerun-if-env-changed=HOST_PKG_CONFIG\r\n  cargo:rerun-if-env-changed=PKG_CONFIG\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64-unknown-linux-gnu\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64_unknown_linux_gnu\r\n  cargo:rerun-if-env-changed=HOST_PKG_CONFIG_PATH\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_PATH\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64-unknown-linux-gnu\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64_unknown_linux_gnu\r\n  cargo:rerun-if-env-changed=HOST_PKG_CONFIG_LIBDIR\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64-unknown-linux-gnu\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64_unknown_linux_gnu\r\n  cargo:rerun-if-env-changed=HOST_PKG_CONFIG_SYSROOT_DIR\r\n  cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR\r\n  cargo:warning=\r\n  pkg-config exited with status code 1\r\n  > PKG_CONFIG_PATH=/home/mrh/.gvm/pkgsets/go1.15/global/overlay/lib/pkgconfig: PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 pkg-config --libs --cflags javascriptcoregtk-4.0 javascriptcoregtk-4.0 >= 2.24\r\n\r\n  The system library `javascriptcoregtk-4.0` required by crate `javascriptcore-rs-sys` was not found.\r\n  The file `javascriptcoregtk-4.0.pc` needs to be installed and the PKG_CONFIG_PATH environment variable must contain its parent directory.\r\n  PKG_CONFIG_PATH contains the following:\r\n      - /home/mrh/.gvm/pkgsets/go1.15/global/overlay/lib/pkgconfig\r\n      - \r\n\r\n  HINT: you may need to install a package such as javascriptcoregtk-4.0, javascriptcoregtk-4.0-dev or javascriptcoregtk-4.0-devel.\r\n\r\nwarning: build fa",
+    "reactions": 133,
+    "created_at": "2024-05-05T11:31:06Z",
+    "updated_at": "2026-03-24T04:50:29Z",
+    "labels": [
+      "type: bug",
+      "platform: Linux",
+      "status: invalid"
+    ],
+    "url": "https://api.github.com/repos/tauri-apps/tauri/issues/9662",
+    "html_url": "https://github.com/tauri-apps/tauri/issues/9662",
+    "author_login": "happybeing",
+    "author_profile": "https://github.com/happybeing",
+    "already_resurrected": false
+  },
+  {
+    "repo": "tauri-apps/tauri",
+    "issue_number": 323,
+    "title": "Feature: Custom URI scheme support (deep linking)",
+    "body": "Custom URL schemes provide a way to reference resources inside an app. Users tapping a custom URL e.g. `yourapp://foo?bar` in an email, for example, launch the app in a specified context. Other apps can also trigger the app to launch with specific context data; for example, a photo library app might display a specified image.\r\n\r\nTauri could have a simplified API to register/unregister the custom URI scheme protocol a listener.\r\n\r\nA Rust package https://github.com/maidsafe/system_uri exists that does System App URI registration for macOS, Linux and Windows. Unfortunately, this package does not support passing also the url params to the application - it only triggers the application launch. An example implementation together with Tauri  -https://github.com/iotaledger/spark-wallet/blob/master/src-tauri/src/main.rs\r\n",
+    "reactions": 104,
+    "created_at": "2020-01-15T10:25:25Z",
+    "updated_at": "2024-01-29T16:59:46Z",
+    "labels": [
+      "type: feature request"
+    ],
+    "url": "https://api.github.com/repos/tauri-apps/tauri/issues/323",
+    "html_url": "https://github.com/tauri-apps/tauri/issues/323",
+    "author_login": "rihardsgravis",
+    "author_profile": "https://github.com/rihardsgravis",
+    "already_resurrected": false
+  },
+  {
+    "repo": "tauri-apps/tauri",
+    "issue_number": 843,
+    "title": "MOBILE when?",
+    "body": "This is a tracking issue for our work toward making mobile available. The following is a citation from @tensor-programming \r\nin the wg-tech discussion we had a few days ago:\r\n\r\n```\r\nWell much of it is just down to connecting the existing tauri library to the native webview.\r\nAnd the native webview can be access a number of ways.\r\nThough it would likely be easier to keep that access consistent across the two mobile \r\nplatforms Thats why kotlin for instance was a choice that I was considering.  \r\nIts got the ability to access both iOS and android.\r\nSo a lot of it is just taking our existing interface and molding the android and iOS \r\nwebviews to it.\r\nAll those functions that set the title, push the javascript and html in, make a window etc.\r\nAnd then I guess the final thing that you want to do is just make sure that you can \r\ncompile the Rust with the other code and load it onto a mobile device\r\nThough all of that should be straight forward.\r\nWe could take our c++ bindings and expand them for android and iOS or we could make \r\na library using kotlin and/or java and swift\r\nThe rest of the stuff is just the same things that we are working on for tauri desktop\r\n```",
+    "reactions": 86,
+    "created_at": "2020-07-16T08:56:47Z",
+    "updated_at": "2023-10-04T04:01:44Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/tauri-apps/tauri/issues/843",
+    "html_url": "https://github.com/tauri-apps/tauri/issues/843",
+    "author_login": "nothingismagick",
+    "author_profile": "https://github.com/nothingismagick",
+    "already_resurrected": false
+  },
+  {
+    "repo": "tauri-apps/tauri",
+    "issue_number": 2663,
+    "title": "Feature request: Add setting for titlebar style with native window controls support",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\n\r\nWhen creating frameless windows you're required to provide your own UI for window controls. This has multiple problems with consistency and accessibility and requires more work to get close to the UX that is already provided by the native window system.\r\n\r\nFor example on macOS there are different actions based on how you interact with the window controls (\"traffic lights\"):\r\n\r\n- Unfocused windows makes traffic lights appear gray\r\n    - Unfocused windows still respond to mouse events for the traffic lights such as hovering. \r\n- Hovering the traffic lights will display the icons, based on system preference.\r\n- Holding `Alt`/`Option` key while clicking on \"resize\" will maximize the window as opposed to the default fullscreen behavior.\r\n- Traffic lights can still be used even if the underlying application becomes unresponsive.\r\n\r\nAnd many more edge-cases that needs to be handled in order to provide native-like experience.\r\n\r\nThese cases only describes macOS-specific parts, but could easily apply to Windows and Linux as well, which would require more work to provide native-like UI.\r\n\r\nFrameless windows also has several problems as outlined in https://github.com/tauri-apps/tauri/issues/2549 and described in [Electron's documentation](https://www.electronjs.org/docs/api/frameless-window#custombuttonsonhover)\r\n\r\n**Describe the solution you'd like**\r\n\r\nSupport the ability to set the titlebar style [similarly to Electron's `titleBarStyle` setting](https://www.electronjs.org/docs/latest/tutorial/window-customization#apply-custom-title-bar-styles-macos-windows) which allows for custom title bars while preserving native window controls in different ways.\r\n\r\n**Describe alternatives you've considered**\r\n\r\nI don't believe there are any alternatives and needs to be solved within Tauri.\r\n",
+    "reactions": 73,
+    "created_at": "2021-09-26T12:11:55Z",
+    "updated_at": "2025-09-02T22:36:58Z",
+    "labels": [
+      "type: feature request",
+      "platform: Windows",
+      "platform: macOS"
+    ],
+    "url": "https://api.github.com/repos/tauri-apps/tauri/issues/2663",
+    "html_url": "https://github.com/tauri-apps/tauri/issues/2663",
+    "author_login": "fnky",
+    "author_profile": "https://github.com/fnky",
+    "already_resurrected": false
+  },
+  {
+    "repo": "tauri-apps/tauri",
+    "issue_number": 3884,
+    "title": "[feat] Android/iOS support",
+    "body": "Wry has mobile support for a while and I've update a few commits to make it easier to develop with.\r\nHere's the notes for using wry on mobile ends:\r\nhttps://hackmd.io/XIcEwk4GSxy8APZhSa0UnA?view\r\n\r\nBefore we add mobile support to tauri, I would like to gather more feedbacks on this. There are a few issues we have to discuss and decide.\r\n\r\n## How do we setup a Tauri mobile project?\r\n\r\nWry uses a custom cargo-mobile and it has to modify a few things to make it works especially on Android. We couldn't simply use NDK due to restriction of its own webview. This brings a lot of limitations on Android, and writing Rust code is very inconvenient. It usually would be a lot easier to just write plan Kotlin.\r\n\r\nMany traits defined in `tauri-runtime` also don't apply to mobile. There's no menu, global shortcut, system tray etc. And many window methods don't work either.\r\n\r\nI think we probably want to merge the custom cargo-mobile into our own CLI. But I'm not sure how do we do it and maintain it. Perhaps we can make a tauri template on cargo-mobile first and think about next step after this.\r\n\r\n## Project structure must comply to Xcode and Android studio\r\n\r\nCargo-mobile generate templates for Xcode and Android studio. They have to obey the structure of these IDE.  Cargo-mobile will usually generate a shared `assets` directory and I've made custom protocol to follow it in wry. But this still have some limitation especially on Android (again):\r\nhttps://hackmd.io/XIcEwk4GSxy8APZhSa0UnA?view#Android2\r\n\r\nCustom protocol on Android is fixed. I didn't add FFI to rust side because if you know the signature of JNI, `You_already_know_how_verbose_It_HAS_TO_BE`. I hope this limitation would be fine for tauri. Otherwise, we'll have to think again how to support it.\r\n\r\n## Environment setup is still difficult\r\n\r\nI've tried several weeks to ease the pain but there are still a lot of issue across different plantforms and archs. Cargo-mobile only supports macOS and Linux. To be honest, if you want to develop iOS app, you must use a macOS device.\r\n\r\nDifferent architectures also break cargo-mobile in a few places. I didn't know how to fix it, and hence could only add notes about it. Ideally, it should just do the work with `cargo apple/android build` and then `cargo apple/android run`.\r\n\r\nSo before we start working support of tauri, I really hope someone who is interested could help testing the mobile support on Wry. And see what would be the blockers and how do we improve it.\r\n",
+    "reactions": 64,
+    "created_at": "2022-04-11T05:35:51Z",
+    "updated_at": "2024-03-13T02:04:39Z",
+    "labels": [
+      "type: feature request"
+    ],
+    "url": "https://api.github.com/repos/tauri-apps/tauri/issues/3884",
+    "html_url": "https://github.com/tauri-apps/tauri/issues/3884",
+    "author_login": "wusyong",
+    "author_profile": "https://github.com/wusyong",
+    "already_resurrected": false
+  },
+  {
+    "repo": "tauri-apps/tauri",
+    "issue_number": 10384,
+    "title": "[v2] No way to remove plugins",
+    "body": "I couldn't find anything in docs or with `cargo tauri --help` that is related to removing plugins from your project. \r\n\r\nI know that removing plugins from project is rare, but I still think it's a solid \"nice to have\".",
+    "reactions": 9,
+    "created_at": "2024-07-25T07:46:25Z",
+    "updated_at": "2025-04-04T11:29:46Z",
+    "labels": [
+      "help wanted",
+      "scope: cli",
+      "type: feature request",
+      "security: needs feedback"
+    ],
+    "url": "https://api.github.com/repos/tauri-apps/tauri/issues/10384",
+    "html_url": "https://github.com/tauri-apps/tauri/issues/10384",
+    "author_login": "StepanZagray",
+    "author_profile": "https://github.com/StepanZagray",
+    "already_resurrected": false
+  },
+  {
+    "repo": "tauri-apps/tauri",
+    "issue_number": 6421,
+    "title": "[bug] use `enigo` in tauri cause app crashed",
+    "body": "### Describe the bug\n\nI try to use `enigo` to do some keyboard event mock in my tauri app, and it will crash when the macOS api `TISCopyCurrentKeyboardInputSource` or `TISGetInputSourceProperty` execute in `enigo`.\r\n\r\nI start an [issue](https://github.com/enigo-rs/enigo/pull/161) in enigo before, but we found the crash will only appear in my Tauri app.\n\n### Reproduction\n\n1. register a shortcut\r\n```rust\r\nimport { isRegistered, register, unregister } from '@tauri-apps/api/globalShortcut';\r\nexport async function registerShortcut(shortcut: string, callback: (shortcut?: string) => void) {\r\n  await register(shortcut, (shortcut) => {\r\n    callback(shortcut);\r\n  });\r\n}\r\n```\r\nand there is a log in shell: \r\n```shell\r\nregister Accelerator { id: Some(AcceleratorId(29420)), mods: ALT, key: KeyS }\r\n```\r\n\r\n2. write a tauri command, and invoke in javascript\r\n```rust\r\n#[tauri::command]\r\nasync fn paste_content(window: tauri::Window) {\r\n    let mut enigo = Enigo::new();\r\n    let trusted = accessibility::query_accessibility_permissions();\r\n    if trusted {\r\n        enigo.key_down(Key::Meta);\r\n        enigo.key_click(Key::Layout('v'));\r\n        enigo.key_up(Key::Meta);\r\n\r\n    }\r\n}\r\n```\r\n```javascript\r\ninvoke(\"paste_content\").then(async _ => {\r\n        \r\n })\r\n```\r\nI use `accessibility` to help me request the macOS accessibility permission, and it returns `true`.\r\n3. the application crashed\n\n### Expected behavior\n\nThe app does not crash.\n\n### Platform and versions\n\n```text\nEnvironment\r\n  › OS: Mac OS 13.0.0 X64\r\n  › Node.js: 16.14.0\r\n  › npm: 8.3.1\r\n  › pnpm: 7.9.5\r\n  › yarn: 3.1.1\r\n  › rustup: 1.25.2\r\n  › rustc: 1.68.0\r\n  › cargo: 1.68.0\r\n  › Rust toolchain: stable-aarch64-apple-darwin \r\n\r\nPackages\r\n  › @tauri-apps/cli [NPM]: 1.2.3\r\n  › @tauri-apps/api [NPM]: 1.2.0\r\n  › tauri [RUST]: 1.2.4,\r\n  › tauri-build [RUST]: 1.2.1,\r\n  › tao [RUST]: 0.15.8,\r\n  › wry [RUST]: 0.23.4,\r\n\r\nApp\r\n  › build-type: bundle\r\n  › CSP: unset\r\n  › distDir: ../dist\r\n  › devPath: http://localhost:1420/\r\n  › framework: React\r\n  › bundler: Vite\r\n\r\nApp directory structure\r\n  ├─ dist\r\n  ├─ node_modules\r\n  ├─ public\r\n  ├─ .github\r\n  ├─ src-tauri\r\n  ├─ api\r\n  ├─ .git\r\n  ├─ .vscode\r\n  ├─ assets\r\n  └─ src\n```\n\n\n### Stack trace\n\n```text\nThere is no output in my shell when it crashed, I try to debug it and set some breakpoints, I put the screenshots [here](https://github.com/enigo-rs/enigo/pull/161#issuecomment-1460236620)\n```\n\n\n### Additional context\n\n_No response_",
+    "reactions": 7,
+    "created_at": "2023-03-11T01:04:56Z",
+    "updated_at": "2025-11-30T18:14:22Z",
+    "labels": [
+      "type: bug",
+      "help wanted",
+      "platform: macOS",
+      "status: needs triage"
+    ],
+    "url": "https://api.github.com/repos/tauri-apps/tauri/issues/6421",
+    "html_url": "https://github.com/tauri-apps/tauri/issues/6421",
+    "author_login": "jackeydou",
+    "author_profile": "https://github.com/jackeydou",
+    "already_resurrected": false
+  },
+  {
+    "repo": "tauri-apps/tauri",
+    "issue_number": 8588,
+    "title": "[feat] upstream nix requirements to nixpkgs",
+    "body": "### Describe the problem\n\nNot sure if this is a bug or a feature, it's borderline imo.\r\n\r\nBasically what I expect is that when i use the `cargo-tauri` derivation from `nixpkgs` that i don't also have to copy and paste a bunch of additional prerequisites from the tauri docs in order to get things half working.\r\n\r\nI say half working because I'm still running into bugs with `cargo-tauri`, especially on mac, one of which i already pushed a fix for https://github.com/NixOS/nixpkgs/pull/279771#event-11446551011\r\n\r\nI also see that one of the dependencies, `webkitgtk` is marked as broken in `nixpkgs` on mac, but listed as a dependency on the tauri docs. I understand the nix docs say nixos rather than `nix` but it's pretty common use case for people working on linux/mac to be using nix rather than committing to a full nixos setup.\r\n\r\nAdditionally, I noticed that the prerequisites in the docs only work for a `nix develop` style shell, they don't work for `nix run`, say if I wanted to lift some standard tauri tasks into a package, the instructions don't cover that. This is because the additional steps of setting up the library etc. are limited to a `shellHook`.\r\n\r\nFurther, the prerequisites are missing required steps in the `shellHook`. We found that when tauri is built via nix there is a need to disable webkit compositing mode like `export WEBKIT_DISABLE_COMPOSITING_MODE=1` in the `shellHook`. This seems to be some known tribal knowledge, as it appears in snippets from other people such as https://github.com/tauri-apps/tauri/issues/8535 but it's not listed in the prerequisites in the docs.\r\n\r\nThere are other issues like https://github.com/tauri-apps/tauri/issues/8535 that I expect are probably not issues with tauri itself, but some additional work that needs to be done on the nix side. At the moment it isn't clear where to put or discuss such a fix, would it just result in more documented boilerplate? or is there a way to codify it?\r\n\r\nStepping back a bit, I feel like the meta issue is that fixes to issues are being pushed into the tauri docs (or not) rather than some derivation that is directly maintainable and reusable downstream.\n\n### Describe the solution you'd like\n\nTauri maintains the derivation in `nixpkgs` with the same dependencies that it outlines in the documentation, so then there are no manual steps for consumers.\n\n### Alternatives considered\n\nAnother alternative would be that tauri maintains their own nix code separate to nixpkgs, such as an overlay or flake.\r\n\r\nThis would be fine too, the main problem to solve is to lift dependencies and other issues from docs and into nix-compatible code somewhere.\n\n### Additional context\n\n_No response_",
+    "reactions": 6,
+    "created_at": "2024-01-11T10:28:19Z",
+    "updated_at": "2025-09-03T12:13:49Z",
+    "labels": [
+      "help wanted",
+      "type: feature request",
+      "platform: Nix/NixOS"
+    ],
+    "url": "https://api.github.com/repos/tauri-apps/tauri/issues/8588",
+    "html_url": "https://github.com/tauri-apps/tauri/issues/8588",
+    "author_login": "thedavidmeister",
+    "author_profile": "https://github.com/thedavidmeister",
+    "already_resurrected": false
+  }
+]

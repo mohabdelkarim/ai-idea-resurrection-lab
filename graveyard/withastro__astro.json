@@ -1,0 +1,113 @@
+[
+  {
+    "repo": "withastro/astro",
+    "issue_number": 4432,
+    "title": "Supporting CSS-in-JS",
+    "body": "It's not super clear which CSS-in-JS libraries work, so I'm creating this issue as sort of a place to start the conversation and document the current status.\r\n\r\nHere's a few popular libraries that I know about (will keep this list updated):\r\n\r\n| Library           | Status             | Notes                                                                                                                                                                                                                                                                                                                                                                                                   |\r\n| ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\r\n| styled-components | 🟡 Partially works | Prod build errors with: `styled.div is not a function`. <br> Can be worked around with [`client:only`](https://docs.astro.build/en/reference/directives-reference/#clientonly) or by using [`buildSsrCjsExternalHeuristics`](https://vitejs.dev/guide/ssr.html#ssr-format) and [`ssr.noExternal`](https://vitejs.dev/config/ssr-options.html#ssr-noexternal) (will cause FOUC). |\r\n| emotion           | 🟡 Partially works | Prod build errors with: `styled.div is not a function`. <br> Can be worked around with [`client:only`](https://docs.astro.build/en/reference/directives-reference/#clientonly) or by using [conditional default import](https://github.com/withastro/astro/issues/4432#issuecomment-1259062851) (will cause FOUC). Can also [patch `@astrojs/react`](https://github.com/withastro/astro/issues/4432#issuecomment-1259062851). |\r\n| linaria           | 🟡 Partially works           | Prod build errors with: `Named export 'styled' not found`. <br> Can be worked around using [`buildSsrCjsExternalHeuristics`](https://vitejs.dev/guide/ssr.html#ssr-format) and [`ssr.noExternal`](https://vitejs.dev/config/ssr-options.html#ssr-noexternal) or by downgrading to v3.                                                                                                 |\r\n| stitches          | 🟡 Partially works           | `<style>` tag for SSR needs to be in React component                                                                                                                                                                                                                                                                                                                                                    |\r\n| typestyle         | ✅ Works           | -                                                                                         ",
+    "reactions": 55,
+    "created_at": "2022-08-22T23:13:00Z",
+    "updated_at": "2023-11-21T20:07:19Z",
+    "labels": [
+      "- P2: nice to have"
+    ],
+    "url": "https://api.github.com/repos/withastro/astro/issues/4432",
+    "html_url": "https://github.com/withastro/astro/issues/4432",
+    "author_login": "mayank99",
+    "author_profile": "https://github.com/mayank99",
+    "already_resurrected": false
+  },
+  {
+    "repo": "withastro/astro",
+    "issue_number": 12824,
+    "title": "React 19 + Cloudflare Adapter -> \"Bug: Uncaught ReferenceError: MessageChannel is not defined\"",
+    "body": "### Astro Info\n\n```block\nAstro                    v5.1.1\r\nNode                     v22.6.0\r\nSystem                   macOS (arm64)\r\nPackage Manager          bun\r\nOutput                   server\r\nAdapter                  @astrojs/cloudflare\r\nIntegrations             @astrojs/mdx\r\n                         @astrojs/sitemap\r\n                         @astrojs/tailwind\r\n                         @astrojs/react\n```\n\n\n### If this issue only occurs in one browser, which browser is a problem?\n\n_No response_\n\n### Describe the Bug\n\noriginally shared facebook/react#31827 but I think it makes sense to be an issue here as I doubt its a react issue\r\n\r\n![image](https://github.com/user-attachments/assets/98715f11-f094-486c-8d10-5ff108e19555)\r\n\r\nIt doesn't happen during build but instead during the \"Deploying to Cloudflare's global network\" step\n\n### What's the expected result?\n\nThe error should not happen\n\n### Link to Minimal Reproducible Example\n\nhttps://github.com/phase/test-astro-react19-cf-workers (thank you @phase)\n\n### Participation\n\n- [ ] I am willing to submit a pull request for this issue.",
+    "reactions": 30,
+    "created_at": "2024-12-24T03:38:01Z",
+    "updated_at": "2026-02-07T21:42:41Z",
+    "labels": [
+      "help wanted",
+      "- P4: important",
+      "pkg: cloudflare"
+    ],
+    "url": "https://api.github.com/repos/withastro/astro/issues/12824",
+    "html_url": "https://github.com/withastro/astro/issues/12824",
+    "author_login": "ethanniser",
+    "author_profile": "https://github.com/ethanniser",
+    "already_resurrected": false
+  },
+  {
+    "repo": "withastro/astro",
+    "issue_number": 13789,
+    "title": "[404] /.well-known/appspecific/com.chrome.devtools.json",
+    "body": "### Astro Info\n\n```block\n[404] /.well-known/appspecific/com.chrome.devtools.json\n```\n\n### If this issue only occurs in one browser, which browser is a problem?\n\nChrome\n\n### Describe the Bug\n\n[404] /.well-known/appspecific/com.chrome.devtools.json\n\n\n> It will only happen on localhost development:\n> \n> https://chromium.googlesource.com/devtools/devtools-frontend/+/main/docs/ecosystem/automatic_workspace_folders.md#solution\n\n\nreference: https://github.com/nuxt/nuxt/issues/31978#issuecomment-2869622575\n\n### What's the expected result?\n\nHandle this request\n\n### Link to Minimal Reproducible Example\n\nundefined\n\n### Participation\n\n- [ ] I am willing to submit a pull request for this issue.",
+    "reactions": 29,
+    "created_at": "2025-05-12T16:40:39Z",
+    "updated_at": "2025-08-13T10:48:54Z",
+    "labels": [
+      "needs discussion",
+      "- P2: has workaround"
+    ],
+    "url": "https://api.github.com/repos/withastro/astro/issues/13789",
+    "html_url": "https://github.com/withastro/astro/issues/13789",
+    "author_login": "sgalcheung",
+    "author_profile": "https://github.com/sgalcheung",
+    "already_resurrected": false
+  },
+  {
+    "repo": "withastro/astro",
+    "issue_number": 13060,
+    "title": "Aastro preview doesn't respect vite preview allowedHostnames in astro config",
+    "body": "### Astro Info\n\n```block\nAstro                    v5.1.9\nNode                     v22.6.0\nSystem                   Linux (x64)\nPackage Manager          pnpm\nOutput                   static\nAdapter                  none\nIntegrations             @astrojs/starlight\n```\n\n### If this issue only occurs in one browser, which browser is a problem?\n\n_No response_\n\n### Describe the Bug\n\nWhen running astro preview and visiting the site from another device via the hostname I am met with the below message\n```\nBlocked request. This host (\"my-hostname\") is not allowed.\nTo allow this host, add \"my-hostname\" to `preview.allowedHosts` in vite.config.js.\n```\n\nUpdating the corresponding part of `astro.config.mjs` (`vite.preview.allowedHosts`) does not work, nor does setting it to true or adding a `vite.config.js` file with this set.\n\nThe corresponding property for `astro dev` (`vite.server.allowedHosts`) does work.\n\nNote: not reproducible on stackblitz (probably because it forwards direct to the IP).\nCan be done with `pnpm astro create` on the starlight template (unable to check basic template at the moment but suspect it's an issue there too).\n\nastro config:\n```js\n export default defineConfig({\n   site: \"http://my-hostname:54321\",\n   vite: {\n     server: {\n       allowedHosts: true,\n     },\n     preview: {\n       allowedHosts: true,\n     },\n   },\n...\n```\n\npackage.json scripts\n```json\n    \"dev\": \"astro dev --port 54321 --host\",\n    \"preview\": \"astro preview --port 54321 --host\",\n```\n\n\n### What's the expected result?\n\nastro preview respects astro config `vite.preview.allowedHosts` - when I add `\"my-hostname\"`/`true` to this setting I am able to visit the site in a browser at `http://my-hostname`\n\n### Link to Minimal Reproducible Example\n\nhttps://github.com/andrewflbarnes/bug-astro-preview-allowedhosts\n\n```bash\npnpm i\npnpm build\npnpm preview\n\ncurl yourhostname:54321\n```\n```\nBlocked request. This host (\"yourhostname\") is not allowed.\nTo allow this host, add \"yourhostname\" to `preview.allowedHosts` in vite.config.js.\n```\n\n\n### Participation\n\n- [ ] I am willing to submit a pull request for this issue.",
+    "reactions": 18,
+    "created_at": "2025-01-24T13:13:51Z",
+    "updated_at": "2026-03-09T22:18:08Z",
+    "labels": [
+      "help wanted",
+      "- P3: minor bug",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/withastro/astro/issues/13060",
+    "html_url": "https://github.com/withastro/astro/issues/13060",
+    "author_login": "andrewflbarnes",
+    "author_profile": "https://github.com/andrewflbarnes",
+    "already_resurrected": false
+  },
+  {
+    "repo": "withastro/astro",
+    "issue_number": 9328,
+    "title": "Vue components cannot reference images in public folder",
+    "body": "### Astro Info\r\n\r\n```block\r\nAstro                    v4.0.1\r\nNode                     v18.16.0\r\nSystem                   macOS (arm64)\r\nPackage Manager          pnpm\r\nOutput                   static\r\nAdapter                  none\r\nIntegrations             @astrojs/vue\r\n```\r\n\r\n\r\n### If this issue only occurs in one browser, which browser is a problem?\r\n\r\n_No response_\r\n\r\n### Describe the Bug\r\n\r\nReferences images in `/public` seems to be broken in Vue components:\r\n\r\n```html\r\n<template>\r\n  <div>\r\n    <img src=\"/favicon.svg\" />\r\n  </div>\r\n</template>\r\n```\r\n\r\n### What's the expected result?\r\n\r\nI'd expect to see an image displayed. This works in Astro 2.x, and it works in an .astro component in 4.x.\r\n\r\n### Link to Minimal Reproducible Example\r\n\r\nhttps://stackblitz.com/edit/github-njmj9o\r\n\r\n### Participation\r\n\r\n- [ ] I am willing to submit a pull request for this issue.",
+    "reactions": 5,
+    "created_at": "2023-12-05T22:36:15Z",
+    "updated_at": "2024-09-08T20:27:12Z",
+    "labels": [
+      "help wanted",
+      "ecosystem: upstream",
+      "- P2: has workaround"
+    ],
+    "url": "https://api.github.com/repos/withastro/astro/issues/9328",
+    "html_url": "https://github.com/withastro/astro/issues/9328",
+    "author_login": "ffxsam",
+    "author_profile": "https://github.com/ffxsam",
+    "already_resurrected": false
+  },
+  {
+    "repo": "withastro/astro",
+    "issue_number": 9110,
+    "title": "Cannot destructure react component props",
+    "body": "### Astro Info\n\n```block\nAstro                    v3.5.4\r\nNode                     v18.18.0\r\nSystem                   Linux (x64)\r\nPackage Manager          unknown\r\nOutput                   static\r\nAdapter                  none\r\nIntegrations             @astrojs/react\n```\n\n\n### If this issue only occurs in one browser, which browser is a problem?\n\n_No response_\n\n### Describe the Bug\n\nWhen running `astro dev`, I got an error **\"Cannot destructure property 'xxx' of 'undefined' as it is undefined\"** when using the `map` method on React component props. It seems like this error has occurred before and has been resolved in #660 , but it's happening again. \r\nIf I missed something, please let me know.\n\n### What's the expected result?\n\nno errors\n\n### Link to Minimal Reproducible Example\n\nhttps://stackblitz.com/edit/github-hrgerw\n\n### Participation\n\n- [ ] I am willing to submit a pull request for this issue.",
+    "reactions": 5,
+    "created_at": "2023-11-15T19:44:04Z",
+    "updated_at": "2025-01-03T13:45:54Z",
+    "labels": [
+      "pkg: react",
+      "- P3: minor bug",
+      "needs discussion"
+    ],
+    "url": "https://api.github.com/repos/withastro/astro/issues/9110",
+    "html_url": "https://github.com/withastro/astro/issues/9110",
+    "author_login": "izmttk",
+    "author_profile": "https://github.com/izmttk",
+    "already_resurrected": false
+  }
+]

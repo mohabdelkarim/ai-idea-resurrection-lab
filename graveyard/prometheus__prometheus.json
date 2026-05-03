@@ -1,0 +1,1036 @@
+[
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 3756,
+    "title": "Support for multiple ports in annotations",
+    "body": "The use case is if you have for example several containers in a pod, currently with the port annotation it seems you can only specify one port. The only way i see to scrape several ports is removing the port annotation, the problem is that ports that i dont wanna get scraped are scraped.\r\n",
+    "reactions": 132,
+    "created_at": "2018-01-29T07:28:26Z",
+    "updated_at": "2024-12-17T23:21:16Z",
+    "labels": [
+      "kind/enhancement",
+      "component/service discovery"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/3756",
+    "html_url": "https://github.com/prometheus/prometheus/issues/3756",
+    "author_login": "vaijira",
+    "author_profile": "https://github.com/vaijira",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 3806,
+    "title": "Proposal for improving rate/increase ",
+    "body": "I'm creating a separate, hopefully more focused (and civil) issue in an attempt to start a discussion on the problems (as seen by me and a number of others) with and possible solutions for `rate()` and `increase()`.\r\n\r\nFirst, let me start by acknowledging that considering Prometheus' self-imposed constraints -- in particular having `foo[5m]` in the context of `rate(foo[5m])` only produce the data points that are strictly contained in the 5 minute range -- the current `rate()` and `increase()` implementations are essentially the most comprehensive solution for the particular problem.\r\n\r\nThat being said, I believe the core problems/limitations in the implementation stem from the constrained definition of what is a time range and an only slightly more generous definition (i.e. including the last point before the range) would provide a number of significant improvements. Why/how does including the last point before the range make any sense? Well, you could look at it as \"the (rate of) increase between the value of the timeseries X minutes ago and now\". And just as the current value of a timeseries is the last collected/evaluated point, so the value of the timeseries X seconds ago is the last collected/evaluated point at that time (i.e. the one immediately preceding the start of the range).\r\n\r\nOr looking at it another way, if we consider a scrape interval of 1m (and, for now, no missed scrapes or series beginning/ending), a 5m rate calculated *\"now\"* should cover **the last 5m (plus jitter) starting from the last point collected**, just as the value of the timeseries *\"now\"* is **the last point collected**.\r\n\r\nMoving on to the possible benefits of expanding the range to include the one extra point (in the past, not in the future):\r\n\r\n1. Evaluating a rate/increase over the last X minutes every X minutes without any loss of data. Currently the options are either (a) compute a rate over significantly more than X minutes (which results in rates being averaged out over unnecessarily long ranges); or (b) compute the rate over `X minutes + scrape_interval`, which will basically give you the actual rate over X minutes, but requires you to be consistently aware of both the evaluation and scrape intervals.\r\n\r\n2. `rate()` and `increase()` evaluations at the resolution of the underlying data, later aggregatable over arbitrarily long time ranges. Going back to the 1m scrape interval example, one would be able to compute a rate over 1m every minute, then, in a console/dashboard use `avg_over_time()` to obtain rates over any number of minutes/hours/days (and the same with `increase` and `sum_over_time`). Currently the rule of thumb is to calculate rates over 2.5-3.5x the scraping interval every 2 scraping intervals, resulting in (a) unnecessarily low resolution and (b) every resulting rate covering anywhere between 1 and 3 actual counter increases (2-4 points) with each increase arbitrarily included in either 1 or 2 rates. To be fair, the current implementation coul",
+    "reactions": 125,
+    "created_at": "2018-02-06T23:43:05Z",
+    "updated_at": "2026-03-24T23:23:53Z",
+    "labels": [
+      "component/promql"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/3806",
+    "html_url": "https://github.com/prometheus/prometheus/issues/3806",
+    "author_login": "free",
+    "author_profile": "https://github.com/free",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 535,
+    "title": "Add mechanism to perform bulk imports",
+    "body": "Currently the only way to bulk-import data is a hacky one involving client-side timestamps and scrapes with multiple samples per time series. We should offer an API for bulk import. This relies on https://github.com/prometheus/prometheus/issues/481.\r\n\r\nEDIT: It probably won't be an web-based API in Prometheus, but a command-line tool.",
+    "reactions": 122,
+    "created_at": "2015-02-17T22:30:21Z",
+    "updated_at": "2021-11-17T23:21:18Z",
+    "labels": [
+      "kind/enhancement",
+      "priority/P2",
+      "component/tsdb"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/535",
+    "html_url": "https://github.com/prometheus/prometheus/issues/535",
+    "author_login": "juliusv",
+    "author_profile": "https://github.com/juliusv",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 6934,
+    "title": "Memory usage spikes during WAL replay to more than normal usage",
+    "body": "**What did you do?**\r\nTried to start prometheus.\r\n\r\n**What did you expect to see?**\r\nPrometheus up & running, web interface showing up.\r\n\r\n**What did you see instead? Under which circumstances?**\r\nPrometheus runs out of RAM during \"WAL segment loaded\" process.\r\n\r\n**Environment**\r\n`Debian 9`\r\n\r\n* System information:\r\n`Linux 4.9.0-11-amd64 x86_64`\r\n\r\n* Prometheus version:\r\n```\r\nprometheus, version 2.16.0 (branch: HEAD, revision: b90be6f32a33c03163d700e1452b54454ddce0ec)\r\n  build user:       root@7ea0ae865f12\r\n  build date:       20200213-23:50:02\r\n  go version:       go1.13.8\r\n```\r\n\r\n* Prometheus configuration file:\r\n```\r\nglobal:\r\n  evaluation_interval: 60s\r\n  scrape_interval: 60s\r\n...\r\n...\r\n...\r\n```\r\n\r\n* Logs:\r\n\r\nThis is what happends during the start after 10+- minutes:\r\n```\r\n... prometheus[39101]: level=info ts=2020-03-05T14:02:26.811Z caller=head.go:625 component=tsdb msg=\"WAL segment loaded\" segment=41869 maxSegment=41871\r\n... prometheus[39101]: level=info ts=2020-03-05T14:02:26.812Z caller=head.go:625 component=tsdb msg=\"WAL segment loaded\" segment=41870 maxSegment=41871\r\n... prometheus[39101]: level=info ts=2020-03-05T14:02:26.812Z caller=head.go:625 component=tsdb msg=\"WAL segment loaded\" segment=41871 maxSegment=41871\r\n... prometheus[39101]: fatal error: runtime: out of memory\r\n... prometheus[39101]: runtime stack:\r\n... prometheus[39101]: runtime.throw(0x253885d, 0x16)\r\n... prometheus[39101]:         /usr/local/go/src/runtime/panic.go:774 +0x72\r\n... prometheus[39101]: runtime.sysMap(0xce78000000, 0x14000000, 0x3f5bc78)\r\n... prometheus[39101]:         /usr/local/go/src/runtime/mem_linux.go:169 +0xc5\r\n... prometheus[39101]: runtime.(*mheap).sysAlloc(0x3f432c0, 0x11de6000, 0xc000, 0x4373e7)\r\n... prometheus[39101]:         /usr/local/go/src/runtime/malloc.go:701 +0x1cd\r\n... prometheus[39101]: runtime.(*mheap).grow(0x3f432c0, 0x8ef3, 0xffffffff)\r\n... prometheus[39101]:         /usr/local/go/src/runtime/mheap.go:1255 +0xa3\r\n... prometheus[39101]: runtime.(*mheap).allocSpanLocked(0x3f432c0, 0x8ef3, 0x3f5bc88, 0x20339d00000000)\r\n... prometheus[39101]:         /usr/local/go/src/runtime/mheap.go:1170 +0x266\r\n... prometheus[39101]: runtime.(*mheap).alloc_m(0x3f432c0, 0x8ef3, 0x101, 0x7f5861cc3fff)\r\n... prometheus[39101]:         /usr/local/go/src/runtime/mheap.go:1022 +0xc2\r\n... prometheus[39101]: runtime.(*mheap).alloc.func1()\r\n... prometheus[39101]:         /usr/local/go/src/runtime/mheap.go:1093 +0x4c\r\n... prometheus[39101]: runtime.(*mheap).alloc(0x3f432c0, 0x8ef3, 0x7f5861010101, 0x7f5861d11008)\r\n... prometheus[39101]:         /usr/local/go/src/runtime/mheap.go:1092 +0x8a\r\n... prometheus[39101]: runtime.largeAlloc(0x11de5ec0, 0x450101, 0x7f5861d11008)\r\n... prometheus[39101]:         /usr/local/go/src/runtime/malloc.go:1138 +0x97\r\n... prometheus[39101]: runtime.mallocgc.func1()\r\n... prometheus[39101]:         /usr/local/go/src/runtime/malloc.go:1033 +0x46\r\n... prometheus[39101]: runtime.systemstack(0x0)\r\n... prometheus[39101]:         /usr/local/",
+    "reactions": 119,
+    "created_at": "2020-03-05T14:24:15Z",
+    "updated_at": "2025-07-29T12:12:18Z",
+    "labels": [
+      "kind/bug",
+      "component/tsdb"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/6934",
+    "html_url": "https://github.com/prometheus/prometheus/issues/6934",
+    "author_login": "erkexzcx",
+    "author_profile": "https://github.com/erkexzcx",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 4633,
+    "title": "Monitoring kubernetes with prometheus from outside of k8s cluster.",
+    "body": "## Proposal\r\n**The goal of this ticket is to understand how it would be possible or correct way to run prometheus outside of the k8s cluster being monitored. Or what kind of additonal development this would require.**\r\n\r\n## Background\r\nIt is a common practice to not run the monitoring software on the stack that is being monitored.\r\nIt is important because during outages/problems with the cluster, prometheus might not be working or accessible, leaving the administrator in the blind while solving issues. \r\nAlso the case of having multiple clusters to monitor, but wanting to have a centralized prometheus setup.\r\n\r\n## Acceptable solutions\r\n1) Prometheus configured against kubernetes API, similar manner as in kubectl works(provide host, client-certificate-data and client-key-data.\r\n2) Run some sort of proxy inside of kubernetes cluster that takes care of tokens, discovery and accessing network inside of the cluster. So you configure central prometheus against this proxy, instead of kubernetes api and it provides the metrics from the cluster.\r\n3) Provide instructions/documentation on how to use the current prometheus kubernetes_sd_configs opton to acheve the similar result\r\n\r\nhttps://github.com/prometheus/prometheus/issues/2430 \r\nIn the end of it there are several users with this issue.\r\n\r\nHaving the kubernetes interanal network available on the monitoring server is not a desired solution because:\r\n1) Multiple clusters might use the same IP ranges - so routing becomes complicated.\r\n2) The monitoring server can be in another location or \"zone\" - so it might create latency issues for the entire network (depending on the solution used).\r\n\r\n",
+    "reactions": 68,
+    "created_at": "2018-09-19T10:23:27Z",
+    "updated_at": "2021-12-01T23:21:39Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/4633",
+    "html_url": "https://github.com/prometheus/prometheus/issues/4633",
+    "author_login": "martivo",
+    "author_profile": "https://github.com/martivo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 10,
+    "title": "Remote storage",
+    "body": "Prometheus needs to be able to interface with a remote and scalable data store for long-term storage/retrieval.\n",
+    "reactions": 64,
+    "created_at": "2013-01-04T16:24:05Z",
+    "updated_at": "2019-03-23T10:45:49Z",
+    "labels": [
+      "kind/enhancement"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/10",
+    "html_url": "https://github.com/prometheus/prometheus/issues/10",
+    "author_login": "juliusv",
+    "author_profile": "https://github.com/juliusv",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 8543,
+    "title": "Load scrape configs from multiple files",
+    "body": "This issue is about providing the ability to split Prometheus scrape configs into multiple files.\r\n\r\nDesign doc: https://docs.google.com/document/d/1bSehbL_Rzx9_guVgISmara-Ft_FB57q_YxEZtwxE3C8/edit#heading=h.bupciudrwmna\r\n\r\n\r\nAdd a new parameter `scrape_config_files: [ - <filepath_glob> ... ]`.\r\n\r\nThe files in the scrape_config_files are read, and may contain one or multiple files. The filenames can contain globs (scrape_configs.d/*.yml). Relative paths are relative to the main config file.\r\n\r\nThe files are re-read on every reload. Wrong scrape configs make the reload fail, and scrape configs as applied before apply. Errors reading scrape configs prevent Prometheus to start.\r\n\r\nScrape config names must be unique between prometheus.yml and imported files, otherwise reload/start fail.\r\n\r\nScrape configs are never merged together.\r\n\r\n\r\nExemple scrape config file:\r\n\r\nPrometheus.yml\r\n\r\n```\r\nglobal: \r\n   scrape_interval: 10s\r\nscrape_configs:\r\n  - job_name: 'prometheus'\r\n    static_configs:\r\n    - targets: ['localhost:9090']\r\nscrape_config_files:\r\n  - blackbox.yml\r\n```\r\n\r\nblackbox.yml\r\n\r\n```\r\nscrape_configs:\r\n - job_name: 'blackbox'\r\n    metrics_path: /probe\r\n    params:\r\n      module: [http_2xx]\r\n    static_configs:\r\n      - targets:\r\n        - http://prometheus.io\r\n        - https://prometheus.io\r\n        - http://example.com:8080\r\n    relabel_configs:\r\n      - source_labels: [__address__]\r\n        target_label: __param_target\r\n      - source_labels: [__param_target]\r\n        target_label: instance\r\n      - target_label: __address__\r\n        replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.\r\n```",
+    "reactions": 59,
+    "created_at": "2021-02-25T21:13:10Z",
+    "updated_at": "2023-09-16T23:18:35Z",
+    "labels": [
+      "priority/Pmaybe",
+      "component/scraping",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/8543",
+    "html_url": "https://github.com/prometheus/prometheus/issues/8543",
+    "author_login": "roidelapluie",
+    "author_profile": "https://github.com/roidelapluie",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 5469,
+    "title": "Document memory planning guidelines",
+    "body": "## Proposal\r\nI would like to ask the prometheus dev community to consider adding some documentation around estimating the memory requirements of prometheus.  \r\nThe fact that prometheus is mostly being run in memory capped containers and is OOMkilled when reaching the mem limit is surprising many users who are accustomed to robust software that degrades instead of dying.\r\n\r\nI've been running prometheus in production for a while which is occasionally OOMKilled. I have expanded the memory limits more than once to arbitrary limits but I would prefer to make an educated estimation for a reasonable limit given my workload.  \r\nI have read the TSDB design paper which was super interesting but I don't feel that it gave me a practical hint to my problem, and even if I did, I think this is something the average user is far away from doing, and I'd consider this a development task rather then a usage question.  \r\nSince being in this state I have also learned that many others are in the same situation and are just \"living with it\", which is unfortunate.\r\n\r\nCan we please discuss this topic, and possibly document our conclusions in the readme?\r\n(I understand that planning for queries is harder, so we can stick to planning for metrics ingestion only which is supposed to be predictable)",
+    "reactions": 59,
+    "created_at": "2019-04-16T18:51:39Z",
+    "updated_at": "2024-09-15T23:21:12Z",
+    "labels": [
+      "help wanted",
+      "priority/P3",
+      "component/documentation"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/5469",
+    "html_url": "https://github.com/prometheus/prometheus/issues/5469",
+    "author_login": "itaysk",
+    "author_profile": "https://github.com/itaysk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 3441,
+    "title": "Prometheus docker container shouldn't run as user nobody",
+    "body": "With the update to 2.0, the Docker container was modified so that Prometheus runs as the user \"nobody\" (UID/GID 99/99) (#2859). While it's good that Prometheus is no longer running as root, it's not the best idea either to run as \"nobody\". There are many examples of Docker containers out there that allow changing the UID/GID at runtime that could be borrowed from. At a minimum a different static UID/GID should be used.\r\n",
+    "reactions": 53,
+    "created_at": "2017-11-08T19:41:11Z",
+    "updated_at": "2025-09-03T23:21:02Z",
+    "labels": [
+      "priority/Pmaybe"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/3441",
+    "html_url": "https://github.com/prometheus/prometheus/issues/3441",
+    "author_login": "jcollie",
+    "author_profile": "https://github.com/jcollie",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 3746,
+    "title": "rate()/increase() extrapolation considered harmful",
+    "body": "**The problem**\r\n\r\n*[Feel free to skip ahead to the proposed solution, as I'm guessing the problem is widely understood. Or just read the last couple of paragraphs for a real-life example of the problem and my current workaround.]*\r\n\r\nI've been trying to deal with the errors introduced by the `rate()` and `increase()` functions for so long that I keep going back every few months and spend a couple of hours tweaking Grafana dashboards before I remember that there is literally **no way of getting an accurate result** out of them short of using recorded rules for everything and, even in that case, working around and against Prometheus.\r\n\r\nTo clarify, let's assume I have a monitoring configuration with **scrapes every 5 seconds** and **rule evaluation every 10 seconds**. It collects among other things a `request_count` counter, that increases by 1 every 20 seconds. Let's also assume that I would really like a Grafana graph that displays an accurate number of requests over time, on a dashboard with an adjustable time range. (I.e. I want to be able to look at 15 minutes, 1 hour and 7 days on the same dashboard, with Grafana automatically adjusting the resolution.) Not a tall order, right?\r\n\r\nFor the purpose of clarity, here is how the `request_count` samples would look like (at a 5 second resolution):\r\n\r\n    [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, ...]\r\n\r\nThe naive approach is you add a graph and put in an expression along the lines of:\r\n\r\n    increase(request_count[$__interval])\r\n\r\nand set *Min step* to `10s` (I would prefer a *Min step* of `5s`, since the resolution of the underlying data is 5 seconds, but let's not even go there yet). Ideally the graphed values (with a 10 second resolution) would look something like:\r\n\r\n    [0, 1, 0, 1, 0, 1, 0, 1, 0, ...]\r\n\r\nWhat I'm getting instead, depending on the exact time I reload the page is one of:\r\n\r\n    [0, 2, 0, 2, 0, 2, 0, 2, 0, ...]\r\n\r\nor\r\n\r\n    [0, 0, 0, 0, 0, 0, 0, 0, 0, ...]\r\n\r\nThis is because what `increase()` ends up doing is it calculates the increase between disjoint pairs of values (i.e. `(v0, v1)`, `(v2, v3)`, `(v4, v5)`), losing half of the data in the process, and extrapolates it to 10 seconds, ending up with double the actual increase. At 15 seconds resolution it only throws away a third of the data and the increases it doesn't throw away get multiplied by 1.5 due to the extrapolation. As the resolution decreases, less data gets thrown away and the multiplier gets closer to 1 but there is, as I said before, literally no way to get an accurate `rate()`/`increase()` value in a range query directly from a counter. `rate()` is not affected by the multiplier issue, but still suffers from thrown away data and noise.\r\n\r\nEven with less discrete data, such as CPU usage, the graph jumps every 5 seconds between one shape and another. In particular, if I'm looking at Prometheus' own CPU usage, because my rule evaluation happens every 10 seconds but takes less than 5 seconds, the graph keeps",
+    "reactions": 50,
+    "created_at": "2018-01-26T15:42:50Z",
+    "updated_at": "2019-11-25T11:19:32Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/3746",
+    "html_url": "https://github.com/prometheus/prometheus/issues/3746",
+    "author_login": "free",
+    "author_profile": "https://github.com/free",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 39,
+    "title": "Add support for graphing multiple unrelated timeseries (metrics) in one graph",
+    "body": "It should be possible to correlate multiple metrics in the same graph. The graphing UI should show (dynamically) multiple expression input fields to enable that.\n",
+    "reactions": 32,
+    "created_at": "2013-01-22T17:01:31Z",
+    "updated_at": "2024-08-11T23:20:01Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "component/ui",
+      "priority/P3",
+      "hacktoberfest"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/39",
+    "html_url": "https://github.com/prometheus/prometheus/issues/39",
+    "author_login": "juliusv",
+    "author_profile": "https://github.com/juliusv",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 9310,
+    "title": "Discovery for ECS",
+    "body": "In an earlier evaluation, ECS discovery was rejected due to API rate limiting issues described at the [discovery](https://github.com/prometheus/prometheus/blob/60918b8415d928363ea4bc766d450e707035abe0/discovery/README.md) section.  As of today, there are ECS users that are publishing Prometheus metrics and using CloudWatch Agent's Prometheus scraping capabilities. They configure the agent with task selection mechanism to shard the load among multiple clusters. Influenced by what the users already do, we think we can tackle the problem in a couple of ways:\r\n\r\n* Asking users to configure the discovery to discover a set of matching tasks from a cluster, cache metadata in memory where possible.\r\n* Querying the initial data with the ECS API and then relying on ECS events to identify new and terminated tasks.\r\n* Asking users to run Prometheus as a sidecar in their ECS tasks as a last resort.\r\n\r\nGiven we have this functionality in the CW Agent, not having a similar capability in Prometheus is confusing the ECS users. We would like to fill this gap by contributing an ECS discovery agent to Prometheus and want to switch to the discovery mechanism provided here in all our other collection agents (CW Agent, OpenTelemetry Prometheus Receiver, etc)\r\n\r\n## Goals\r\n* Discovery will only discover metric endpoints from a single cluster.\r\n* We will allow users to filter the tasks by the Cluster Query language and ECS tags.\r\n* Users should be able to specify ports and metrics path where the Prometheus metrics are published from the task. (See the config for more.)\r\n* ECS discovery will support both ECS on EC2 and ECS on Fargate.\r\n\r\n## Config\r\nOnce implemented, ECS discovery will be supported in the Prometheus config. The example below will query the cluster to discover ECS tasks/containers matching the given task selectors.\r\n\r\n```\r\nscrape_configs:\r\n  - job_name: ecs-job\r\n    [ metrics_path: <string> ]\r\n    ecs_sd_configs:\r\n      - [ refresh_interval: <string> | default = 720s ]\r\n        [ region: <string> ]\r\n        cluster: <string>\r\n        [ access_key: <string> ] \r\n        [ secret_key: <secret> ]\r\n        [ profile: <string> ]\r\n        [ role_arn: <string> ]\r\n        ports:\r\n            - <int>\r\n        task_selectors:\r\n          - [ service: <string> ]\r\n            [ family: <string> ]\r\n            [ revisions: <int> ]\r\n            [ launch_type: <string> ]\r\n            [ query: <string> ]\r\n            [ tags: \r\n               - <string>:  <string> ]\r\n```\r\n\r\n## Discovery\r\nDiscovery is done by periodically pulling the ListTasks API. Discovery will only return the ACTIVE tasks.\r\n\r\nAs an improvement, we will switch to a model where we will listen to ECS events to be notified about the task start and terminations in the future. This will allow us to call the ListTasks for once and rely on the events for the changes as an optimization.\r\n\r\n## Labels\r\nPrometheus discovery can automatically add ECS task/container labels to the scraped metrics. The discovery will add th",
+    "reactions": 25,
+    "created_at": "2021-09-07T19:45:00Z",
+    "updated_at": "2026-04-23T15:49:11Z",
+    "labels": [
+      "component/service discovery",
+      "priority/P3",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/9310",
+    "html_url": "https://github.com/prometheus/prometheus/issues/9310",
+    "author_login": "rakyll",
+    "author_profile": "https://github.com/rakyll",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 2747,
+    "title": "Store metrics docstrings and allow to query them",
+    "body": "Prometheus doesn't currently store metrics docstrings (`#HELP` lines in text format). They could be useful for a user in various UIs and dashboards.\r\n\r\nI think they can be stored as simple non-versioned metainformation. If some metric has different docstrings in various jobs, then log a warning and overwrite it (the last write wins).\r\n\r\nObviously, they also should be exposed via API.",
+    "reactions": 23,
+    "created_at": "2017-05-19T16:02:55Z",
+    "updated_at": "2019-03-22T15:09:44Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "component/ui",
+      "not-as-easy-as-it-looks",
+      "priority/P3"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/2747",
+    "html_url": "https://github.com/prometheus/prometheus/issues/2747",
+    "author_login": "AlekSi",
+    "author_profile": "https://github.com/AlekSi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 5655,
+    "title": "Display active alerts on top",
+    "body": "## Proposal\r\nhttps://github.com/prometheus/prometheus/pull/5448 introduced grouping of alerts by file. This makes alerts page look nice and tidy, but the problem is that it's very hard to see which alerts are currently active because if you have a lot of alerts you have to scroll down to find an active alert. We mostly used the alerts page to see at a glance which alerts are still active.",
+    "reactions": 20,
+    "created_at": "2019-06-12T14:41:30Z",
+    "updated_at": "2021-11-26T23:21:15Z",
+    "labels": [
+      "help wanted",
+      "component/ui"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/5655",
+    "html_url": "https://github.com/prometheus/prometheus/issues/5655",
+    "author_login": "kustodian",
+    "author_profile": "https://github.com/kustodian",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 6139,
+    "title": "Error: http: superfluous response.WriteHeader call",
+    "body": "## Bug Report\r\n\r\n**What did you see?**\r\n\r\nMultiple errors of `http: superfluous response.WriteHeader call` in the logs - during normal operation.\r\n\r\n```\r\nlevel=info ts=2019-10-14T11:01:57.535Z caller=head.go:666 component=tsdb msg=\"WAL checkpoint complete\" first=90900 last=90995 duration=58.045866315s\r\nlevel=error ts=2019-10-14T11:02:03.505Z caller=stdlib.go:89 component=web caller=\"http: superfluous response.WriteHeader call from github.com/opentracing-contrib/go-stdlib/nethttp.(*statusCodeTracker).WriteHeader (status-code-tracker.go:19\" msg=)\r\nlevel=error ts=2019-10-14T11:02:06.599Z caller=stdlib.go:89 component=web caller=\"http: superfluous response.WriteHeader call from github.com/opentracing-contrib/go-stdlib/nethttp.(*statusCodeTracker).WriteHeader (status-code-tracker.go:19\" msg=)\r\nlevel=error ts=2019-10-14T11:02:07.848Z caller=stdlib.go:89 component=web caller=\"http: superfluous response.WriteHeader call from github.com/opentracing-contrib/go-stdlib/nethttp.(*statusCodeTracker).WriteHeader (status-code-tracker.go:19\" msg=)\r\n[...]\r\n```\r\n\r\n**Environment**\r\n\r\n* System information:\r\n\r\n\tbusybox Docker image running the Prometheus binary.\r\n\r\n* Prometheus version:\r\n\r\n\t```level=info ts=2019-10-09T12:24:15.591Z caller=main.go:332 msg=\"Starting Prometheus\" version=\"(version=2.13.0, branch=HEAD, revision=6ea4252299f542669aca11860abc2192bdc7bede)\"```\r\n",
+    "reactions": 19,
+    "created_at": "2019-10-15T08:58:45Z",
+    "updated_at": "2024-09-22T23:21:22Z",
+    "labels": [
+      "help wanted",
+      "kind/bug",
+      "priority/P2",
+      "hacktoberfest"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/6139",
+    "html_url": "https://github.com/prometheus/prometheus/issues/6139",
+    "author_login": "bandesz",
+    "author_profile": "https://github.com/bandesz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 4608,
+    "title": "Show offending labels in many-to-many error",
+    "body": "## Proposal\r\n\r\nWhen showing the error message\r\n\r\n```\r\nError executing query: many-to-many matching not allowed: matching labels must be unique on one side\r\n```\r\n\r\ninclude the labels, and potentially even the whole metric, that caused it.\r\n\r\n**Use case. Why is this important?**\r\n\r\nI just spent half an hour staring at a query trying to fix this issue; sometimes a very large set of time series has duplication in only a handful of them. Knowing more about the reason for the many-to-many error would have helped a lot.\r\n\r\nThis message is generated here: https://github.com/prometheus/prometheus/blob/576ee4d3099131e12aa56f7562de416393ad86f4/promql/engine.go#L1222",
+    "reactions": 15,
+    "created_at": "2018-09-14T15:17:10Z",
+    "updated_at": "2019-08-08T10:05:21Z",
+    "labels": [
+      "help wanted",
+      "component/promql"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/4608",
+    "html_url": "https://github.com/prometheus/prometheus/issues/4608",
+    "author_login": "matthiasr",
+    "author_profile": "https://github.com/matthiasr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 3697,
+    "title": "better PromQL syntax documentation",
+    "body": "I recently tried to form a query that failed with a parse error, but I'm not sure why it did.\r\nAs the query language documentation is mostly by example, I have no clear idea what the syntax of the query language actually is.\r\n\r\nMy specific example was that it's not clear what syntactic role an instance vector selector takes and hence how it can be applied. I had a vector expression `rate(jem_monitor_errors_count[1m])` that I wanted only one component of, so I thought that `rate(jem_monitor_errors_count[1m]){instance=\"instance-name\"}` would work, but I get `parse error at char 37: could not parse remaining input \\\"{instance=\\\\\\\"in\\\"...\"`, which I find odd because `jem_monitor_errors_count{instance=\"instance-name\"}` works fine.\r\n\r\nIt would be great to have the PromQL grammar available as a reference doc (ideally in some kind of BNF notation), so people like me don't come bugging the prometheus issues with probably-stupid questions like this.\r\n\r\nPS I realised that I could fix the issue by applying the instance vector selector to the inner expression, but I think my point remains - the syntax is not clearly documented so we have to guess.",
+    "reactions": 15,
+    "created_at": "2018-01-17T17:30:10Z",
+    "updated_at": "2024-08-25T23:20:36Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "component/promql",
+      "component/documentation"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/3697",
+    "html_url": "https://github.com/prometheus/prometheus/issues/3697",
+    "author_login": "rogpeppe",
+    "author_profile": "https://github.com/rogpeppe",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 12763,
+    "title": "Support OTel delta temporality",
+    "body": "### Proposal\n\nI've outlined my thoughts here: https://docs.google.com/document/d/1vMtFKEnkxRiwkr0JvVOrUrNTogVvHlcEWaWgZIqsY7Q/edit\r\n\r\nBut I think supporting ingesting deltas instead of cumulatives will open us up to new use-cases.",
+    "reactions": 14,
+    "created_at": "2023-08-29T07:30:11Z",
+    "updated_at": "2025-12-16T15:41:47Z",
+    "labels": [
+      "help wanted",
+      "component/remote storage",
+      "component/promql",
+      "not-as-easy-as-it-looks"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/12763",
+    "html_url": "https://github.com/prometheus/prometheus/issues/12763",
+    "author_login": "gouthamve",
+    "author_profile": "https://github.com/gouthamve",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 13625,
+    "title": "Proposal: PromQL arithmetic with default value, or outer join",
+    "body": "### Proposal\n\nIf I have data in `foo` and data in `bar`, then `foo + bar` will add them up.\r\nIf there are some gaps in `foo` or `bar` then `foo + bar` will have gaps in all of those places.\r\nI would like to add them and have PromQL treat a missing value as zero, so I don't get gaps.\r\n\r\nI am aware of some work-arounds available today:\r\n* I can write `sum ( {__name__=~\"foo|bar\"} )`, but that is ugly, and runs into \"duplicate labels\" problems if I call a function like `rate`.\r\n* Probably I can use `or vector(0)`, with some trickery to get the right labels.\r\n\r\nI want to be able to do it without an ugly workaround and without trickery.\r\n\r\nWhat would the syntax look like?  Maybe `foo + default(0) bar` ?\r\nOne possibility, if I only want addition, would to have `sum` take multiple selectors as inputs, i.e. `sum(foo, bar)`.",
+    "reactions": 13,
+    "created_at": "2024-02-21T14:52:50Z",
+    "updated_at": "2026-01-19T19:05:54Z",
+    "labels": [
+      "help wanted",
+      "component/promql",
+      "not-as-easy-as-it-looks",
+      "priority/P3",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/13625",
+    "html_url": "https://github.com/prometheus/prometheus/issues/13625",
+    "author_login": "bboreham",
+    "author_profile": "https://github.com/bboreham",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 13095,
+    "title": "Epic: Implement UTF-8 character support for label and metric names",
+    "body": "### Tracking Issue\n\nRelates to:\n\n[Original discussion](https://groups.google.com/g/prometheus-developers/c/-O23C4_9Ijc/m/Zrk2UOaNAQAJ)\nBrainstorming doc [Quoting Prometheus Names](https://docs.google.com/document/d/1yFj5QSd1AgCYecZ9EJ8f2t4OgF2KBZgJYVde-uzVEtI/edit)\n[OTEL Attribute compatibility section](https://docs.google.com/document/d/1epvoO_R7JhmHYsII-GJ6Yw99Ky91dKOqOtZGqX7Bk0g/edit#heading=h.yqsgk5wz7ww0)\n\nWe are creating this issue as part of the OTEL Support milestone so it will be OTEL oriented but the problem is general to prometheus and has been around for a long time.\n\nOTel allows UTF-8 in label names while Prometheus has a much [more restrictive set](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels). This is causing friction for users when using Prometheus. In particular, . (dot) is a very common character in OTel and we convert that to _ when converting to Prometheus. For example, service.version becomes service_version.\n\nProposals have been accepted to do this work:  \n\n* https://github.com/prometheus/proposals/blob/main/proposals/2023-08-21-utf8.md\n* ~https://github.com/prometheus/proposals/blob/main/proposals/2023-11-13-utf8-migration.md~  **Note**: the migration proposal has been deprioritized due to higher-than-anticipated complexity and lack of concrete demand.\n\n### Minimum Viable Product ✅ \n\nMVP is defined as round-trip support for UTF-8 names and labels in the Go language with scraping and remote-write. This serves as an initial testing bed and implementation example for other language bindings.\n\n- [x] prom/common: update openmetrics_parse, promparse (https://github.com/prometheus/common/pull/537)\n- [x] prom/common: content negotiation in scraping (https://github.com/prometheus/common/pull/570)\n- [x] prom/promtheus: content negotiation and flags (https://github.com/prometheus/prometheus/pull/14490)\n- [x] prom/client_golang: (https://github.com/prometheus/client_golang/issues/1369)\n- [x] prom/prometheus: Update some parsers (https://github.com/prometheus/prometheus/pull/13271)\n- [x] prom/common: update text_parse (go version) (https://github.com/prometheus/common/issues/554)\n- [x] [Go client library](https://github.com/prometheus/client_golang/issues/1369): no changes required\n- [x] https://github.com/prometheus/prometheus/issues/14728\n- [x] prom/prometheus: flip flag defaults in v3 branch (https://github.com/prometheus/prometheus/pull/14705)\n- [x] prom/prometheus: flip flag defaults in main (https://github.com/prometheus/prometheus/issues/14674)\n\n### Follow-ons\n\n- [ ] https://github.com/prometheus/client_golang/pull/1641\n- [x] #15202\n- [x] https://github.com/prometheus/prometheus/issues/15243\n- [x] https://github.com/prometheus/prometheus/issues/15259\n- [x] https://github.com/prometheus/prometheus/pull/15399\n- [x] https://github.com/prometheus/common/issues/723\n- [x] https://github.com/prometheus/prometheus/issues/15470\n- [x] #15528\n- [x] #15791\n- [x] https://github.com/prometheus/prometheus/issues/16027",
+    "reactions": 13,
+    "created_at": "2023-11-03T14:21:08Z",
+    "updated_at": "2026-01-20T19:00:04Z",
+    "labels": [
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/13095",
+    "html_url": "https://github.com/prometheus/prometheus/issues/13095",
+    "author_login": "ywwg",
+    "author_profile": "https://github.com/ywwg",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 8307,
+    "title": "Prometheus remote-write receiver",
+    "body": "As per the dev summit: https://docs.google.com/document/d/1iO1QHRyABaIpc6xXB1oqu91jYL1QQibEpvQqXfQF-WA\r\n\r\nCONSENSUS:  We want to explore remote write in Prometheus as an EXPERIMENTAL feature behind a feature flag. We will explore this without restricting possible approaches. We will do this in a design doc at first.\r\n\r\nThis is the design document: https://docs.google.com/document/d/1PpTDtVaKAnhMRxBJ0k7_rCQ3Z3uJVcALgdPo0QpObSk\r\n\r\nAlso see https://github.com/prometheus/prometheus/issues/4769",
+    "reactions": 11,
+    "created_at": "2020-12-19T10:08:32Z",
+    "updated_at": "2021-11-14T23:21:29Z",
+    "labels": [
+      "component/remote storage",
+      "not-as-easy-as-it-looks",
+      "priority/P3",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/8307",
+    "html_url": "https://github.com/prometheus/prometheus/issues/8307",
+    "author_login": "RichiH",
+    "author_profile": "https://github.com/RichiH",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 6178,
+    "title": "Allow filtering label values API with matchers",
+    "body": "## Proposal\r\n\r\nI would like to propose allowing our label values API to be filter-able by matchers, just like we [already do with the series API](https://prometheus.io/docs/prometheus/latest/querying/api/#finding-series-by-label-matchers).\r\n\r\n**Use case. Why is this important?**\r\n\r\nIn particular we have two use cases: \r\n\r\n* Autocompletion: a language server implementation (that we are actively working on) can perform requests against a live system for advanced auto-complete, this could help us create a really nice auto complete for label values, as we can cut down the possible values using the already provided selectors.\r\n* Cutting down on cognitive overload: we have a bunch of rather large Prometheus servers that are shared by teams and the mix of concerns is causing even just metric autocompletion to be kind of a nightmare, so the ability to isolate this for teams would allow us to provide a way better experience to users.\r\n\r\nBeyond that, it would be great if our APIs were consistent in what they offer so a third point :slightly_smiling_face: .\r\n\r\nI brought this up on IRC and multiple people seemed to be for this idea so I felt it was worth opening an issue on.",
+    "reactions": 11,
+    "created_at": "2019-10-18T08:24:36Z",
+    "updated_at": "2021-11-16T23:21:34Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "priority/P3",
+      "component/api"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/6178",
+    "html_url": "https://github.com/prometheus/prometheus/issues/6178",
+    "author_login": "brancz",
+    "author_profile": "https://github.com/brancz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 15909,
+    "title": "LFX Mentorship: UX Research - How users expect to use OTLP Resource Attributes in Prometheus",
+    "body": "Prometheus can ingest OTLP data since long ago, although under a feature flag. Since 3.0, the OTLP endpoint has been declared stable, and thus, usage has increased! With increased usage, we're also noticing more UX problems. The LFX mentorship involves conducting UX research to clearly state the issues and design alternatives to what we have today.\n\nThe research will be broad, focusing on several different personas:\n* Application developers who send OTLP data to Prometheus and use Prometheus to query data back.\n* Sysadmins/SRE/Platform Engineers who are responsible for running and scaling Prometheus in their infrastructure and expect OTLP data to be ingested.\n\nUX Research methodology will be discussed during the mentorship. \n\nProposing design ideas will only make sense after the research is done, but one can get familiar with a few UX problems by reading:\n* https://opentelemetry.io/docs/specs/otel/compatibility/prometheus_and_openmetrics/\n* A talk from PromCon 2023: [Towards making Prometheus OpenTelemetry native](https://www.youtube.com/watch?v=mcabOH70FqU&ab_channel=PrometheusMonitoring)\n* [Part of an OTEP (OpenTelemetry Enhancement Proposals) that focus on Prometheus/ResourceAttributes/Entities](https://github.com/open-telemetry/oteps/blob/main/text/entities/0264-resource-and-entities.md#how-to-deal-with-prometheus-compatibility-for-non-sdk-telemetry)\n\nPlaying around with an app that is instrumented with the OTel SDK and sends metrics to Prometheus' OTLP endpoint is also a perfect way of experiencing issues yourself. \n\nSome existing related documents:\n* https://docs.google.com/document/d/1epvoO_R7JhmHYsII-GJ6Yw99Ky91dKOqOtZGqX7Bk0g/edit?tab=t.0#bookmark=id.70m1z0ft53en\n* https://github.com/prometheus/proposals/blob/main/proposals/2024-04-10-native-support-for-info-metrics-metadata.md\n* https://github.com/prometheus/proposals/blob/main/proposals/2024-07-15-otel-resource-attribute-promotion.md\n* https://docs.google.com/document/d/1epBslSSwRO2do4armx40fruStJy_PS6thROnPeDifz8/edit?tab=t.0#heading=h.5sybau7waq2q\n* https://github.com/open-telemetry/oteps/blob/main/text/entities/0264-resource-and-entities.md",
+    "reactions": 10,
+    "created_at": "2025-01-30T23:14:44Z",
+    "updated_at": "2026-01-20T23:22:26Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/15909",
+    "html_url": "https://github.com/prometheus/prometheus/issues/15909",
+    "author_login": "ArthurSens",
+    "author_profile": "https://github.com/ArthurSens",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 7300,
+    "title": "Add yandex cloud service discovery",
+    "body": "<!--\r\n\r\n    Please do *NOT* ask usage questions in Github issues.\r\n\r\n    If your issue is not a feature request or bug report use:\r\n    https://groups.google.com/forum/#!forum/prometheus-users. If\r\n    you are unsure whether you hit a bug, search and ask in the\r\n    mailing list first.\r\n\r\n    You can find more information at: https://prometheus.io/community/\r\n\r\n-->\r\n## Proposal\r\n**Use case. Why is this important?**\r\nYandex Cloud -- one of the largest cloud providers in Russia. We need service discovery in this cloud, just as we need it in gce or amazon\r\n\r\n@yandex-cloud, add your service to Prometheus, please.",
+    "reactions": 10,
+    "created_at": "2020-05-27T13:24:18Z",
+    "updated_at": "2024-10-27T23:21:42Z",
+    "labels": [
+      "priority/Pmaybe",
+      "component/service discovery",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/7300",
+    "html_url": "https://github.com/prometheus/prometheus/issues/7300",
+    "author_login": "lexfrei",
+    "author_profile": "https://github.com/lexfrei",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 9115,
+    "title": "Move some of storage config from command line to config file",
+    "body": "## Proposal\r\n\r\nhttps://github.com/prometheus/prometheus/pull/8974 introduced a `storage` section in the config file and also added mechanism to reload the config in TSDB without needing a restart. I think we can (and should) move some of the CLI flags to the config file so that it can be reloaded without having to restart Prometheus (hence the WAL replay).\r\n\r\nThe config file would take precedence over the CLI flags, and deprecate the CLI flags in favour of config file.\r\n\r\nSome of the flags that I am proposing to move to file (not including any hidden flags here):\r\n\r\n* `--storage.tsdb.retention.time=STORAGE.TSDB.RETENTION.TIME`\r\n* `--storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE`\r\n* `--storage.tsdb.allow-overlapping-blocks` - this only to allow overlapping blocks if it is disabled. If it's already allowed, config reload should not disable it again. Have to restart Prometheus to disable so that overlapping blocks fail to startup if disabled.\r\n\r\n~Maybe also~\r\n~* `--storage.tsdb.wal-compression`~\r\n\r\n@cstyan do you think we can move some of these below flags to config file too?\r\n```\r\n--storage.remote.flush-deadline=<duration>  \r\n--storage.remote.read-sample-limit=5e7  \r\n--storage.remote.read-concurrent-limit=10  \r\n--storage.remote.read-max-bytes-in-frame=1048576\r\n```\r\n\r\ncc @bwplotka ",
+    "reactions": 9,
+    "created_at": "2021-07-27T04:52:35Z",
+    "updated_at": "2026-04-25T23:24:53Z",
+    "labels": [
+      "help wanted",
+      "component/tsdb",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/9115",
+    "html_url": "https://github.com/prometheus/prometheus/issues/9115",
+    "author_login": "codesome",
+    "author_profile": "https://github.com/codesome",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 13616,
+    "title": "Eager compaction of stale series",
+    "body": "### Proposal\n\nTotal number of series in memory has a direct correlation on the total memory being consumed. This is a problem when the series keep churning either because of pods either in crash loop backoff or when a user does a rollout that churned pods, did a roll back and then again rolled forward. this would 3x the total series in memory. \r\n\r\nI would like to propose an \"eager compaction of stale series\" based on a flag that says \"compact when total stale series in memory crosses 1M\". this would greatly improve our ability to observe high churn series. ",
+    "reactions": 9,
+    "created_at": "2024-02-21T00:19:07Z",
+    "updated_at": "2026-01-24T23:18:18Z",
+    "labels": [
+      "help wanted",
+      "not-as-easy-as-it-looks",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/13616",
+    "html_url": "https://github.com/prometheus/prometheus/issues/13616",
+    "author_login": "vjsamuel",
+    "author_profile": "https://github.com/vjsamuel",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 11995,
+    "title": "Poor usability on /targets page with over 20 scrape pools",
+    "body": "### What did you do?\n\nUpgrade to v2.42 with the new Scrape Pools feature (https://github.com/prometheus/prometheus/pull/11142) and looking at the Targets pages no longer shows all scrape pools by default but the first scrape pool based on alphabetical order is preselected.\n\n### What did you expect to see?\n\nWhen opening the Targets page via the Status menu item I would expect it to default to show \"All Scrape Pools\".\n\n### What did you see instead? Under which circumstances?\n\nWhen opening the Targets page via the Status menu item the first scrape pool based on alphabetical order is preselected.\r\n\r\nAfter selecting \"All scrape pools\" from the drop-down, a `scrapePool=` parameter without any value is added to the URL: https://some.domain/prometheus/targets?search=&scrapePool=  and all pools are then shown correctly.\r\n\r\nHowever a refresh of that page or pasting this URL in a fresh browser session then goes back to showing the first pool again instead of all of them.\r\n\n\n### System information\n\nLinux 4.18.0-425.10.1.el8_7.x86_64 x86_64\n\n### Prometheus version\n\n```text\nprometheus, version 2.42.0 (branch: HEAD, revision: 225c61122d88b01d1f0eaaee0e05b6f3e0567ac0)\r\n  build user:       root@c67d48967507\r\n  build date:       20230201-07:53:32\r\n  go version:       go1.19.5\r\n  platform:         linux/amd64\n```\n\n\n### Prometheus configuration file\n\n_No response_\n\n### Alertmanager version\n\n_No response_\n\n### Alertmanager configuration file\n\n_No response_\n\n### Logs\n\n_No response_",
+    "reactions": 9,
+    "created_at": "2023-02-20T15:48:42Z",
+    "updated_at": "2025-08-09T23:21:44Z",
+    "labels": [
+      "help wanted",
+      "kind/bug",
+      "component/ui"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/11995",
+    "html_url": "https://github.com/prometheus/prometheus/issues/11995",
+    "author_login": "MHeus",
+    "author_profile": "https://github.com/MHeus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 15716,
+    "title": "v3 UI: Make `Hide empty groups` permanent",
+    "body": "### Proposal\n\nIt would be great if we could configure `Hide empty groups` on the Alerts page to be the default option. Now we have to click this every time we look at the alerts.",
+    "reactions": 8,
+    "created_at": "2024-12-28T17:30:54Z",
+    "updated_at": "2026-01-25T23:22:09Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/15716",
+    "html_url": "https://github.com/prometheus/prometheus/issues/15716",
+    "author_login": "Pionerd",
+    "author_profile": "https://github.com/Pionerd",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 14592,
+    "title": "Enable prometheus rules processing in agent mode",
+    "body": "### Proposal\n\nHi!\r\nWe are using prometheus operator (from kube-prom-stack) to push the metrics via `remote_write`.\r\nUnfortunately in Agent mode, the instance is not processing the rules (`PrometheusRule` CRD). It would be nice to enable the agent to process recording rules and push them via Remote Write.",
+    "reactions": 8,
+    "created_at": "2024-08-05T15:32:42Z",
+    "updated_at": "2025-12-07T23:21:32Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/14592",
+    "html_url": "https://github.com/prometheus/prometheus/issues/14592",
+    "author_login": "rkubik-hostersi",
+    "author_profile": "https://github.com/rkubik-hostersi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 14321,
+    "title": "Add trace ID headers to scrape requests",
+    "body": "### Proposal\n\nIn order to generate end-to-end trace information of Prometheus scrapes, it would be useful to add the initial trace ID headers at the Prometheus scrape.\r\n\r\nThis would allow for full end-to-end traces for situations like this:\r\n\r\n```\r\nPrometheus scrape -> blackbox_exporter http_2xx probe -> service\r\n```",
+    "reactions": 8,
+    "created_at": "2024-06-20T10:03:59Z",
+    "updated_at": "2026-02-25T04:59:06Z",
+    "labels": [
+      "priority/P3",
+      "component/scraping",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/14321",
+    "html_url": "https://github.com/prometheus/prometheus/issues/14321",
+    "author_login": "SuperQ",
+    "author_profile": "https://github.com/SuperQ",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 11181,
+    "title": "Metric explorer in Prometheus",
+    "body": "## Proposal\r\n\r\nWith large Prometheus and Prometheus based deployments, exploring metrics with PromQL can be difficult since entire series with their samples need to be fetched from the TSDB. We run a large Thanos deployment and autocomplete for labels and values coming from the `api/v1/labels` API would often time out due to the large amount of data that we store.\r\n\r\nIt would be great if Prometheus had an API that exposes all metrics, together with the labels and values, through some endpoint like `api/v1/metrics`. As a follow up, this information can also be exposed directly in the Prometheus UI.\r\n\r\nHere is an example of what the metrics explorer in DataDog looks like: \r\n<img width=\"550\" alt=\"image\" src=\"https://user-images.githubusercontent.com/1286231/185309031-d6ebe89f-bf4d-447f-bc6f-8630c8063fb9.png\">\r\n\r\n",
+    "reactions": 8,
+    "created_at": "2022-08-18T06:26:36Z",
+    "updated_at": "2025-03-19T23:21:42Z",
+    "labels": [
+      "priority/Pmaybe",
+      "component/ui",
+      "component/api",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/11181",
+    "html_url": "https://github.com/prometheus/prometheus/issues/11181",
+    "author_login": "fpetkovski",
+    "author_profile": "https://github.com/fpetkovski",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 8535,
+    "title": "[tsdb] Ingest out of order samples and samples from a few hours ago",
+    "body": "## Proposal\r\n\r\nPrometheus now accepts remote write data. But it can't ingest data more than an hour old reliably. This means if there is an outage or network partition and the downstream Prometheus has issues with pushing for more than an hour, it is likely that there will be data loss after the issues are resolved. Cortex and Thanos, which consume TSDB have the same limitation.\r\n\r\nWe should solve this issue in TSDB, and a very interesting trade-off was presented at the storage working group. When ingesting data that is outside the current head block, we don't need to make it immediately available for querying. We could write to a log and compact it in the background before making it available for querying. I think its a fair trade-off that wouldn't use too much extra resources. I'm curious what others think!",
+    "reactions": 8,
+    "created_at": "2021-02-23T10:53:49Z",
+    "updated_at": "2023-03-19T23:20:04Z",
+    "labels": [
+      "component/tsdb",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/8535",
+    "html_url": "https://github.com/prometheus/prometheus/issues/8535",
+    "author_login": "gouthamve",
+    "author_profile": "https://github.com/gouthamve",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 17823,
+    "title": "LFX Mentorship: Improving Documentation for Prometheus and OpenTelemetry Interoperability",
+    "body": "## What the mentorship will explore\n\nDuring the [March–May 2025 LFX mentorship cohort](https://github.com/prometheus/prometheus/issues/15909), we conducted UX research to understand user challenges around how Prometheus handles OpenTelemetry resource attributes. One key finding was that users struggled to find clear, cohesive, and practical documentation explaining how the two systems work together.\n\nThis issue proposes continuing that work by tackling the documentation gaps problem as part of the March 2026 LFX mentorship term.\n\n## What we look for in candidates\n\nWe’re looking for contributors who:\n\n- Are interested in technical writing, documentation, or developer experience\n- Enjoy breaking down complex technical concepts into clear, approachable explanations\n- Want to contribute to and be a part of the Prometheus community, with an understanding that documentation is an ongoing responsibility rather than a one-off contribution\n\n> Prior expertise in Prometheus or OpenTelemetry is **not required**, but a willingness to learn and actively engage with both communities is important.\n\n## Expected outcome of the mentorship\n\n- Review and audit existing Prometheus and OpenTelemetry documentation related to interoperability\n- Define a prioritized documentation improvement plan together with the mentors.\n- Concrete documentation improvements submitted upstream, such as conceptual explanations, practical guides, examples, diagrams, and cross-project references.\n- Establish basic criteria or methods to evaluate documentation effectiveness during the mentorship.\n\n## Resources\n\nTo get started, applicants are encouraged to:\n\n- Familiarize themselves with Prometheus and OpenTelemetry at a high level\n- Review [outputs from the previous UX mentorship](https://github.com/prometheus-community/ux-research/tree/main/prom-otel-research), including [interviews](https://www.youtube.com/playlist?list=PLK87GQAYMTgM9Q5vjz7gIp8hW0o53FubD) and [blog posts](https://opentelemetry.io/blog/2025/ux-research-prometheus-otel/)\n- Check out existing documentation:\n   - https://prometheus.io/docs/guides/opentelemetry/\n   - https://opentelemetry.io/docs/languages/js/exporters/#prometheus (This is JavaScript-specific, but all languages have a similar page)\n   - https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md\n   - https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusremotewritereceiver/README.md\n   - https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/prometheusremotewriteexporter/README.md\n   - https://github.com/open-telemetry/prometheus-interoperability-spec/blob/main/specification.md\n   - https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/prometheusexporter/README.md",
+    "reactions": 7,
+    "created_at": "2026-01-09T13:23:43Z",
+    "updated_at": "2026-03-31T11:59:48Z",
+    "labels": [
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/17823",
+    "html_url": "https://github.com/prometheus/prometheus/issues/17823",
+    "author_login": "nwanduka",
+    "author_profile": "https://github.com/nwanduka",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 13577,
+    "title": "Support for ingesting out of order exemplars",
+    "body": "### Proposal\n\n### Background\r\n\r\nOTLP ingestion includes out of order samples. As a result of that exemplars might also come out of order. This leads to errors being returned to clients and discarding data ([code](https://github.com/prometheus/prometheus/blob/8f6cf3aabb1b9c0b385d57c922f8e2f571bba61b/tsdb/exemplar.go#L257-L273))\r\n\r\n### Proposal\r\n\r\nSupport out of order exemplars. Implementing this should be as easy as modifying the linked list of the exemplars for the series ([code](https://github.com/grafana/mimir/blob/ee9b483e918e0c17c4af19a21479ad73f65a8ca6/vendor/github.com/prometheus/prometheus/tsdb/exemplar.go#L57)). We still insert the exemplar in the next available slot in the circular buffer as today ([code](https://github.com/prometheus/prometheus/blob/8f6cf3aabb1b9c0b385d57c922f8e2f571bba61b/tsdb/exemplar.go#L398-L400)) but then change the order of existing exemplars. Changing the order means traversing from the oldest exemplar of a series and finding the insertion point for the exemplar that's being inserted right now, then mutating the linked list elements.\r\n\r\n### Side effects/considerations\r\n\r\n* During querying traversing the ring buffer will now happen in multiple directions ([code](https://github.com/dimitarvdimitrov/prometheus/blob/8f6cf3aabb1b9c0b385d57c922f8e2f571bba61b/tsdb/exemplar.go#L182)). The next hop might be forward in the buffer or backwards if there was an out-of-order exemplar inserted. This less predictable access pattern might make CPU caches less effective.\r\n* Since insertion and querying both hold a [global lock](https://github.com/prometheus/prometheus/blob/8f6cf3aabb1b9c0b385d57c922f8e2f571bba61b/tsdb/exemplar.go#L39), now traversing the linked list from its beginning is going to take more time while holding the lock. There are multiple ways to account for this:\r\n  1. make the linked list a doubly linked list, so that we can start from the most recent exemplar. It's more likely that an out-of-order exemplar is closer to `now`. This should reduce the number of hops we make to find the insertion spot. The tradeoff is increased memory usage for the circular buffer.\r\n  2. insert the exemplar in the circular buffer while holding the write lock, hold the read lock while traversing the linked list and finding the right insertion point, and finally reacquire the write lock to correct the linked list. While holding the read lock queries can still flow, but they won't be able to query for the exemplar. This comes with the tradeoff of added lock contention and code complexity.\r\n\r\n",
+    "reactions": 7,
+    "created_at": "2024-02-13T20:18:58Z",
+    "updated_at": "2026-01-07T12:25:51Z",
+    "labels": [
+      "help wanted",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/13577",
+    "html_url": "https://github.com/prometheus/prometheus/issues/13577",
+    "author_login": "dimitarvdimitrov",
+    "author_profile": "https://github.com/dimitarvdimitrov",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 7397,
+    "title": "tsdb.Open fails with `invalid magic number 0` when running with reverted previously mmaped chunks ",
+    "body": "Hi, \r\n\r\nWhen starting the TSDB f4dd45609a05e8f582cdcd8ef369004d1f9e3c02 (initial version of mmap + chunks) used by Thanos Recevie we got following error:\r\n\r\n```\r\nlevel=error ts=2020-06-15T13:34:38.5403894Z caller=multitsdb.go:271 component=receive tenant=FB870BF3-9F3A-44FF-9BF7-D7A047A52F43 msg=\"failed to open tsdb\" err=\"invalid magic number 0\"\r\nlevel=warn ts=2020-06-15T13:34:38.540465482Z caller=intrumentation.go:54 component=receive msg=\"changing probe status\" status=not-ready reason=\"opening storage: invalid magic number 0\"\r\nlevel=info ts=2020-06-15T13:34:38.540508553Z caller=http.go:81 component=receive service=http/server component=receive msg=\"internal server shutdown\" err=\"opening storage: invalid magic number 0\"\r\nlevel=info ts=2020-06-15T13:34:38.540523593Z caller=intrumentation.go:66 component=receive msg=\"changing probe status\" status=not-healthy reason=\"opening storage: invalid magic number 0\"\r\nlevel=error ts=2020-06-15T13:34:38.540633727Z caller=main.go:211 err=\"invalid magic number 0\\nopening storage\\nmain.runReceive.func1\\n\\t/go/src/github.com/thanos-io/thanos/cmd/thanos/receive.go:316\\ngithub.com/oklog/run.(*Group).Run.func1\\n\\t/go/pkg/mod/github.com/oklog/run@v1.1.0/group.go:38\\nruntime.goexit\\n\\t/usr/local/go/src/runtime/asm_amd64.s:1373\\nreceive command failed\\nmain.main\\n\\t/go/src/github.com/thanos-io/thanos/cmd/thanos/main.go:211\\nruntime.main\\n\\t/usr/local/go/src/runtime/proc.go:203\\nruntime.goexit\\n\\t/usr/local/go/src/runtime/asm_amd64.s:1373\"\r\n```\r\n\r\n### Repro:\r\n\r\n1. Deploy receive `master-2020-05-25-c733564d` ( TSDB cd73b3d33e064bbd846fc7a26dc8c313d46af382 - without mmap chunks features)\r\n1. Upgrade and deploy receive to `master-2020-06-03-20004510` which maps TSDB upgrade from to 3268eac2ddda (mainly adds mmap chunks feature + fixes)\r\n1. Revert to Thanos `master-2020-05-25-c733564d` (so back to TSDB with no mmap chunks) \r\n1.  Upgraded and deploy to `master-2020-05-28-e7d431d3` (TSDB f4dd45609a05e8f582cdcd8ef369004d1f9e3c02 with initial mmap feature).\r\n1. See crash on startup.\r\n\r\nI think we hit either lack of compatibility or some kind of partial write race case.\r\nAlso, we might want better error wraps in TSDB to ensure which file this actually relates to.\r\n\r\ncc @codesome \r\n\r\n\r\n\r\n",
+    "reactions": 7,
+    "created_at": "2020-06-15T13:56:09Z",
+    "updated_at": "2023-03-27T23:20:56Z",
+    "labels": [
+      "help wanted",
+      "kind/bug",
+      "priority/P3",
+      "component/tsdb"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/7397",
+    "html_url": "https://github.com/prometheus/prometheus/issues/7397",
+    "author_login": "bwplotka",
+    "author_profile": "https://github.com/bwplotka",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 11494,
+    "title": "add default sample_limit (and all other *_limit) to global",
+    "body": "### Proposal\r\n\r\nit's possible to set `global.scrape_interval` and `global.scrape_timeout` which acts as a default value for all scrapes.\r\nplease also add all limits eg `sample_limit` as `global.sample_limit` so it can act as default as well.\r\n\r\neg:\r\n```yaml\r\nglobal:\r\n  scrape_interval: 30s\r\n  scrape_timeout: 20s\r\n  \r\n  body_size_limit: 10MB\r\n  sample_limit: 20000\r\n  label_limit: 20\r\n  label_value_length_limit: 200\r\n  target_limit: 100\r\n```\r\n\r\nif `sample_limit` set in scrape it should override the `global.sample_limit`.\r\n\r\nrelated to https://github.com/prometheus-operator/prometheus-operator/issues/5119 (prometheus operator team is asking for this feature in prometheus server)",
+    "reactions": 7,
+    "created_at": "2022-10-26T11:38:25Z",
+    "updated_at": "2023-11-26T23:19:00Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/11494",
+    "html_url": "https://github.com/prometheus/prometheus/issues/11494",
+    "author_login": "mblaschke-daimlertruck",
+    "author_profile": "https://github.com/mblaschke-daimlertruck",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 10420,
+    "title": "Proposal: add query sharding support to TSDB",
+    "body": "## Proposal\r\nIn November 2021, Grafana Labs [announced query sharding](https://grafana.com/blog/2021/11/09/observabilitycon-announcements/) for Grafana Enterprise Metrics (GEM).\r\n\r\nThe query sharding implementation leverages some changes we did in TSDB to be able to selectively query a given shard, so that multiple processes (running on different machines) can query different shards from the same copy of a TSDB block.\r\n\r\nA shard is a consistent set of series. The same series belongs to the same shard across different blocks. To do it, we use a simple hash mod algorithm to find out which shard each series belongs to.\r\n\r\nWe propose to upstream to Prometheus TSDB the changes we did to support query sharding. \r\n\r\nThe proposed changes target TSDB as a library. They can be used by other OSS projects as a foundation to build query sharding capabilities.\r\n\r\n**Use case. Why is this important?**\r\n\r\nQuery sharding can significantly reduce the time required to execute high cardinality and/or CPU intensive queries. Running GEM at Grafana Labs, we’ve seen a 10x reduction in query latency for high cardinality queries (up to 30x for some special cases).\r\n\r\n### How query sharding works in GEM\r\n\r\nLet’s start with an example. Consider this simple query:\r\n\r\n```\r\nsum(rate(metric[1m]))\r\n```\r\n\r\nQuery sharding splits the query into N partial queries, where N is the number of shards (3 in the example) and each partial query runs the `sum(rate())` on a different set of series (a shard). Each partial query is executed by a different process (typically running on different machines) and the result of each partial query is then concatenated and a final `sum()` aggregation is run on top of it:\r\n\r\n```\r\nsum(\r\n  concat(\r\n    sum(rate(metric{__query_shard__=\"1_of_3\"}[1m]))\r\n    sum(rate(metric{__query_shard__=\"2_of_3\"}[1m]))\r\n    sum(rate(metric{__query_shard__=\"3_of_3\"}[1m]))\r\n  )\r\n)\r\n```\r\n\r\n> Note: the `concat()` function doesn’t exist in PromQL and is not a real function. I’ve used it to give an idea of the series concatenation process.\r\n\r\n### How GEM queries different shards from the same TSDB block\r\n\r\nFor a given block (containing all series for a time period, eg. 2h), a partial query needs to fetch chunks only from a subset of the series, which are the series matching the given shard. To do it, we added a couple of options to `storage.SelectHints`:\r\n\r\n- ShardIndex: the ID of the shard to query from the block (ranges between 0 and ShardCount-1). Only series whose hash mod matches the ShardIndex will be considered when running the `Select()`.\r\n- ShardCount: Total number of shards.\r\n\r\n### Proposed changes in Prometheus TSDB\r\n\r\nTo add sharding capability to TSDB querier’s `Select()`, we propose the following changes.\r\n\r\nAdd `ShardIndex` and `ShardCount` to `storage.SelectHints`:\r\n\r\n```golang\r\ntype SelectHints struct {\r\n\t// …\r\n\r\n\tShardIndex uint64 // Current shard index (starts from 0 and up to ShardCount-1).\r\n\tShardCount uint64 // Total number of shards (0 means sharding is dis",
+    "reactions": 7,
+    "created_at": "2022-03-09T13:38:56Z",
+    "updated_at": "2025-03-30T23:21:47Z",
+    "labels": [
+      "priority/Pmaybe",
+      "component/tsdb",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/10420",
+    "html_url": "https://github.com/prometheus/prometheus/issues/10420",
+    "author_login": "pracucci",
+    "author_profile": "https://github.com/pracucci",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 10287,
+    "title": "Support percentage values in size-based retention",
+    "body": "## Proposal\r\n\r\nI'd love to see percentage values supported in size-based retenation. Prometheus might determine disk size on startup, and configure the disk size to n percent of this. For example: `--storage.tsdb.retention.size=90%` would configure a limit of 9GiB for a 10GiB disk.\r\n\r\nThis seems rather easily possible by using the syscall directly, or import Minio libraries (didn't check what license that code is under, though): https://stackoverflow.com/q/20108520/695343\r\n\r\n**Use case. Why is this important?**\r\n\r\nWe're operating hundreds of Prometheus instances for differently sized Kubernetes clusters using prometheus-operator. We're actively monitoring for Prometheus instances not having a sufficiently large disk and increase their sizes. Currently, we need to not only resize the volume, but also reconfigure our prometheus operator CR, allowing diverging configuration. A percentage-based size definition would allow us to simply configure retention to use up \"most of the disk\".\r\n\r\n<sup>Jens Erat <jens.erat@daimler.com>, Daimler TSS GmbH, [imprint](https://github.com/mercedes-benz/daimler-foss/blob/master/PROVIDER_INFORMATION.md)</sup>",
+    "reactions": 7,
+    "created_at": "2022-02-11T15:02:22Z",
+    "updated_at": "2026-02-24T14:50:38Z",
+    "labels": [
+      "help wanted",
+      "priority/P3",
+      "component/tsdb",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/10287",
+    "html_url": "https://github.com/prometheus/prometheus/issues/10287",
+    "author_login": "JensErat",
+    "author_profile": "https://github.com/JensErat",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 8278,
+    "title": "[TSDB] Prometheus instances dumping blocks simultaneously",
+    "body": "**What did you do?**\r\nAll our prometheus instances are dumping their blocks every 2hours (fixed for the thanos setup).\r\nThe problem I see is  every prometheus instances are dumping these blocks in sync:\r\nall instances: 09:00, 11:00, 13:00 ...\r\n\r\nThese makes hard time for our capacity planning as we have huge CPU peaks:\r\n![Screen Shot 2020-12-11 at 10 09 37](https://user-images.githubusercontent.com/25080995/101885804-e7822300-3b9a-11eb-98b9-f2325c03ccdd.png)\r\n\r\n**What did you expect to see?**\r\nI would like to have randomness so that the multiple prometheus can dump at random times, e.g.\r\n- instance1: 09:28, 11:28, 13:28 ...\r\n- instance2: 09:44, 11:44, 13:44 ...\r\n\r\n**Environment**\r\nkubernetes\r\nprometheus 2.23.0\r\nthanos v0.17.2\r\n\r\nAlready discussed this with @brancz on thanos slack. A discussion about this is scheduled on the Prometheus Storage\r\nWorking Group.",
+    "reactions": 7,
+    "created_at": "2020-12-11T09:29:56Z",
+    "updated_at": "2025-02-15T23:20:10Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "priority/Pmaybe",
+      "not-as-easy-as-it-looks",
+      "component/tsdb"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/8278",
+    "html_url": "https://github.com/prometheus/prometheus/issues/8278",
+    "author_login": "ahurtaud",
+    "author_profile": "https://github.com/ahurtaud",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 6282,
+    "title": "PromQL: Allow negative (i.e. \"future\") offset",
+    "body": "Currently these are parse errors:\r\n- `metric offset -5m`\r\n- `sum_over_time(metric[1h:1m] offset -5m)`\r\n\r\nI propose these should allow a negative offset and therefore allow offsetting a query to the future of where the evaluation time currently is. This should be a special case as other durations don't make sense to be negative.\r\n\r\nUse cases:\r\n- Annotations on graphs, for example using ALERTS to annotate where alerts happened, it would be useful in some cases to join on the future `alertstate=\"firing\"` when an alert became pending (i.e. alert that was fired actually started here).\r\n- Manually exploring data with subqueries: in nested subqueries it can be useful to \"get rid\" of an offset.\r\n- Custom uses outside the main Prometheus, for example in Thanos a custom store API could answer queries in the \"future\", imagine a timeseries for planned maintenance or similar.\r\n\r\nMost of the uses I envisage would be historical queries, using this with recording rules would obviously not be useful in Prometheus alone.",
+    "reactions": 7,
+    "created_at": "2019-11-06T09:04:41Z",
+    "updated_at": "2021-11-14T23:21:22Z",
+    "labels": [
+      "component/promql",
+      "priority/P3",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/6282",
+    "html_url": "https://github.com/prometheus/prometheus/issues/6282",
+    "author_login": "dgl",
+    "author_profile": "https://github.com/dgl",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 13061,
+    "title": "Workload identity support in Prometheus",
+    "body": "### Proposal\n\nCurrently, Prometheus supports basic auth, authorization headers, sigv4, azuread and oauth2 based authentication for remote write. Though these authentication mechanisms work for most of the scenarios, there are some Kubernetes scenarios where users would want to restrict the access to credential and secret to one pod or few pods in the Kubernetes cluster. It is in this case, workload identity would be the preferred and secure choice of authentication method. \r\n\r\nWorkload identity leverages native Kubernetes components like [Service Account](https://kubernetes.io/docs/concepts/security/service-accounts/) and uses the token generated by the Service Account to authenticate with external identity providers like AWS IAM,  Azure Entra(previously known as Azure AD), GCP IAM and many more. This enables users to allow their Kubernetes cluster to interact with services/components behind different identity providers in a secure and seamless manner. \r\n\r\nIn Prometheus remote write, adding workload identity support would help users to provide another secure path, especially for users running workloads in Kubernetes, to push Prometheus to different remote storage behind identity providers. My proposal is to expose another config block(`workload_identity`) and implement identity client for different identity providers based on the values provided. Here is an excerpt of the configuration I was thinking:\r\n\r\n```\r\nremote_write:\r\n  url: <remote-endpoint-url>\r\n  workload_identity:\r\n    token_file_path: <path of the projected service account token file>  \r\n    azuread:\r\n    [Azure Entra related fields]\r\n    gcp:\r\n    [GCP IAM related fields]\r\n    sigv4:\r\n    [AWS IAM related fields]\r\n```\r\n\r\nReference: [ServiceAccount token volume projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection)",
+    "reactions": 6,
+    "created_at": "2023-11-01T01:49:38Z",
+    "updated_at": "2025-10-14T23:21:16Z",
+    "labels": [
+      "component/remote storage",
+      "kind/more-info-needed",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/13061",
+    "html_url": "https://github.com/prometheus/prometheus/issues/13061",
+    "author_login": "rakshith210",
+    "author_profile": "https://github.com/rakshith210",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 17384,
+    "title": "Remote write fails to scale after 3.7 upgrade in some clusters",
+    "body": "### What did you do?\n\nI upgraded a few Prometheus instances to from 3.6.0 to 3.7.1.\n\nThese instances are spread across the world, and send data to a central instance via remote write.\n\n### What did you expect to see?\n\nI didn't expect to see any issues with remote write. The instances have been running happily for months.\n\n\n### What did you see instead? Under which circumstances?\n\nSome of the instances, especially those with worse network connection, started to lag behind (more than an hour), and the number of shards did not increase. \n\nAs an example, one of these instances has the following remote write config:\n```\n    remote_write:\n    - queue_config:\n        capacity: 3000\n        max_samples_per_send: 1000\n        max_shards: 75\n      remote_timeout: 15s\n```\n\nThe number of shards was between 3 and 4, even with an hour delay, and there was enough CPU and memory available for it to scale.\n\nCPU: 2 cores requested, <20% used\nMemory: 16GB requested, 25% used\n\nAfter rolling it back to 3.6, everything went back to normal.\n\nI tried the upgrade again after a day, and I hit the same issues. Rolling it back solved it again.\n\n### System information\n\nLinux 6.12.10-76061203-generic x86_64\n\n### Prometheus version\n\n```text\nprometheus, version 3.7.1 (branch: HEAD, revision: 0aeb4fddc93b64e4e95104d5e8ea8b55ad36fb61)\n  build user:       root@54bf11233185\n  build date:       20251017-06:31:55\n  go version:       go1.25.3\n  platform:         linux/amd64\n  tags:             netgo,builtinassets\n```\n\n",
+    "reactions": 6,
+    "created_at": "2025-10-22T09:26:56Z",
+    "updated_at": "2025-11-04T21:33:56Z",
+    "labels": [
+      "help wanted",
+      "kind/bug"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/17384",
+    "html_url": "https://github.com/prometheus/prometheus/issues/17384",
+    "author_login": "psalaberria002",
+    "author_profile": "https://github.com/psalaberria002",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 12616,
+    "title": "add docker images to Github Container Registry too",
+    "body": "### Proposal\n\nHi, \r\nthe Github Container Registry is a good tool that github add to its toolset. \r\nPlease add the prometheus images to the Github Container Registry too.",
+    "reactions": 6,
+    "created_at": "2023-07-29T10:27:28Z",
+    "updated_at": "2025-11-11T18:25:02Z",
+    "labels": [
+      "help wanted",
+      "priority/P3",
+      "area/build"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/12616",
+    "html_url": "https://github.com/prometheus/prometheus/issues/12616",
+    "author_login": "behroozbc",
+    "author_profile": "https://github.com/behroozbc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 10043,
+    "title": "Out of sequence chunks no longer considered a CorruptionErr and never deleted from disk",
+    "body": "**What did you do?**\r\n\r\n*Note:* This came from investigate a incident we had in production in https://gitlab.com/gitlab-com/gl-infra/production/-/issues/5998, we still don't know the root cause and are investigating in https://gitlab.com/gitlab-com/gl-infra/infrastructure/-/issues/14821 and when doing so we found the following:\r\n\r\n\r\n1. Start seeing the following errors inside of Prometheus logs: `msg: Deletion of mmap chunk files failed, discarding chunk files completely err: cannot handle error: iterate on on-disk chunks: out of sequence m-mapped chunk for series ref 2667074520`.\r\n2. We start looking at the stack trace where error is being return and saw the following:\r\n    1. [`Head.Init`](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/head.go#L474) is called\r\n    2. [`loadMmappedChunks`](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/head.go#L511) is called\r\n    3. Finds out of sequence m-mapped chunk and [returns error](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/head.go#L639)\r\n    4. Check if error is of type [`CorruptionErr`](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/head.go#L514)\r\n        - Corruption counter never incremented.\r\n        - Nothing else from the `loadMmappedChunks` return `CorruptionErr` so this check is either reduntant or `CorruptionErr` should be returned.\r\n        - This was changed in https://github.com/prometheus/prometheus/pull/7229/files#diff-d9f058bd14a07ebec78d70aaa8d6e8e705bc09086e338b74b12666e7ac121605L542-R573\r\n    6. Start recovery process by calling [`removeCorruptedMmappedChunks`](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/head.go#L519)\r\n    7. Deleting corrupted chunks with [`DeleteCorrupted`](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/head.go#L670)\r\n    8. [Check error type](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/chunks/head_chunks.go#L767-L770)\r\n        - In the past this used to be true for out of sequence, only after https://github.com/prometheus/prometheus/pull/7229 is merged.\r\n        - This is where we get `cannot handle error` from the log message\r\n\r\n**What did you expect to see?**\r\n\r\nWhen [out of sequence m-mapped chunk](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/head.go#L638-L640)\r\n1. Increment the `prometheus_tsdb_mmap_chunk_corruptions_total` counter increments.\r\n2. [`DeleteCorrupted` err assertion passes](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/chunks/head_chunks.go#L767) \r\n3. [Delete chunk file from disk](https://github.com/prometheus/prometheus/blob/c92673fb1480cd6e3404a004522cbb851be4115d/tsdb/chunks/head_chunks.go#L772-L780)\r\n\r\n**What did you see instead? Unde",
+    "reactions": 6,
+    "created_at": "2021-12-17T14:00:44Z",
+    "updated_at": "2022-12-14T23:21:09Z",
+    "labels": [
+      "help wanted",
+      "kind/bug",
+      "priority/P3",
+      "component/tsdb"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/10043",
+    "html_url": "https://github.com/prometheus/prometheus/issues/10043",
+    "author_login": "steve-mt",
+    "author_profile": "https://github.com/steve-mt",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 6865,
+    "title": "HTTP API: Time range selectors for `/api/v1/labels` and `/api/v1/label/<label_name>/values`",
+    "body": "Hi Prometheus Family :wave: \r\n\r\n## What\r\n\r\nI would like to propose extending existing HTTP v1 APIs for fetching labels and label values to accept time range selection:\r\n\r\n```\r\nstart=<rfc3339 | unix_timestamp>: Start timestamp.\r\nend=<rfc3339 | unix_timestamp>: End timestamp.\r\n```\r\n\r\n## Why\r\n\r\nNowadays in Prometheus (TSDB) we don't cache all values and label names anymore like we used to do. With mmap + 1/32 symbols and 1/32 posting offset block loading we have now from 2.15, each call for labels or label values will allocate extra memory (+CPU cycles) every time those APIs are invoked. This is fine for small retention, but with years of data, this might be a major bottleneck.\r\n\r\nThe main problem is that we usually don't need label names or values for EVERYTHING. The typical use case is in dashboards, where we want to know what are metric (e.g `__name__`) values available for certain e.g 1h time range we want to query for! So fetching all names and values for whole available retention is highly unnecessary. Its also both inefficient and incorrect (**this label name might not exist in the certain 1h time range we query for**). Because of that API limitation, even though e.g. Grafana, might know what time range we are interested in, it can't pass this info to Prometheus.\r\n\r\nIt is even more problematic for LTS solutions like Thanos and Cortex. In fact, Cortex already ignores correctness and returns just ~2h of labels name / values. Thanos is now correct, but with millions of series stored for years, it's super silly to fetch all label names and values for every request. Yes, we can cache things, but it would be awesome if Grafana, Prometheus UI or any client could just select the time range it is interested in.\r\n\r\n## How\r\n\r\nThe proposed solution allows time slicing, but to be fully correct on the Prometheus side (and same will be for Thanos), we would need to perform literally `select` operation to know which labels are within desired time range. We can optimize for the case where time range fully overlaps with block though:\r\n\r\n### /api/v1/labels?start=T1&end=T2\r\n\r\n* Narrow down to block-level only if we time range fully overlaps with a block time range.\r\n* Perform series call to fetch label names within block otherwise.\r\n\r\n### /api/v1/label/<label_name>/values?start=T1&end=T2\r\n\r\n* Narrow down to block-level only if we time range fully overlaps with a block time range.\r\n* Perform series call to fetch label names within block otherwise.\r\n\r\nReference: https://github.com/thanos-io/thanos/issues/1811\r\n\r\nThoughts? (: \r\n\r\n@pracucci @brancz @brian-brazil @davkal @tomwilkie ?",
+    "reactions": 6,
+    "created_at": "2020-02-24T13:58:31Z",
+    "updated_at": "2021-11-19T23:21:29Z",
+    "labels": [
+      "help wanted",
+      "component/api",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/6865",
+    "html_url": "https://github.com/prometheus/prometheus/issues/6865",
+    "author_login": "bwplotka",
+    "author_profile": "https://github.com/bwplotka",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 5352,
+    "title": "Promtool unit test rules support values as a range",
+    "body": "## Proposal\r\nPromtool test cases don't always provide exact values, hence expected values with an allowable delta should be supported.\r\n\r\n## Bug Report\r\nI am using the promtool unit testing support to test my alerts and recording rules. However, probably due to inaccuracies in floating point math, the test result of my rule is not precise.\r\n\r\n```\r\n- record: avg_read_latency_5m\r\n  expr: rate(duration_sum[5m])/rate(duration_count[5m])\r\n```\r\n\r\nAnd then I have the following test\r\n\r\n```\r\ntests:\r\n  - interval: 10s \r\n    input_series: \r\n    - series: 'duration_sum'\r\n      values: '0+0.4x120'\r\n    - series: 'duration_count'\r\n      values: '0+1x120'\r\n    promql_expr_test:\r\n    - expr: avg_read_latency_5m\r\n      eval_time: 10m\r\n      exp_samples:\r\n        - labels: 'avg_read_latency_5m'\r\n          value: 0.4\r\n```\r\nHowever, the above test fails with:\r\n```\r\n  FAILED:\r\n    expr:'avg_read_latency_5m', time:10m0s,\r\n        exp:\"{__name__=\\\"avg_read_latency_5m\\\"} 4E-01, {__name__=\\\"avg_read_latency_5m\\\"} 4E-01\",\r\n        got:\"{__name__=\\\"avg_read_latency_5m\\\"} 3.999999999999991E-01, {__name__=\\\"avg_read_latency_5m\\\"} 3.999999999999991E-01\"\r\n```\r\nIn that case it would be good to be able to, instead of using 0.4 as expected value, be able to specify something like `0.4 ±3%` or something like this.\r\n\r\n* System information:\r\n\r\n\tDarwin 18.2.0 x86_64\r\n\r\n* Prometheus version:\r\n\r\n\tpromtool, version 2.7.1 (branch: HEAD, revision: 62e591f928ddf6b3468308b7ac1de1c63aa7fcf3)\r\n        build user:       root@f9f82868fc43\r\n        build date:       20190131-11:16:59\r\n        go version:       go1.11.5\r\n",
+    "reactions": 6,
+    "created_at": "2019-03-13T16:07:33Z",
+    "updated_at": "2025-10-28T23:21:32Z",
+    "labels": [
+      "help wanted",
+      "component/promtool",
+      "not-as-easy-as-it-looks",
+      "priority/P3"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/5352",
+    "html_url": "https://github.com/prometheus/prometheus/issues/5352",
+    "author_login": "bosschaert",
+    "author_profile": "https://github.com/bosschaert",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 4517,
+    "title": "Add streaming to Remote Read endpoint",
+    "body": "Remote read is quite inefficient right now and could be made much better through streaming. This has been discussed in the dev-summit: https://docs.google.com/document/d/1-C5PycocOZEVIPrmM1hn8fBelShqtqiAmFptoG4yK70/edit#heading=h.5d2mc4i0bnnp",
+    "reactions": 6,
+    "created_at": "2018-08-19T06:59:40Z",
+    "updated_at": "2020-02-15T21:52:40Z",
+    "labels": [
+      "help wanted",
+      "component/remote storage",
+      "priority/P3"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/4517",
+    "html_url": "https://github.com/prometheus/prometheus/issues/4517",
+    "author_login": "gouthamve",
+    "author_profile": "https://github.com/gouthamve",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 8860,
+    "title": "promtool: junit output",
+    "body": "<!--\r\n\r\n    Please do *NOT* ask support questions in Github issues.\r\n\r\n    If your issue is not a feature request or bug report use our\r\n    community support.\r\n\r\n    https://prometheus.io/community/\r\n\r\n    There is also commercial support available.\r\n\r\n    https://prometheus.io/support-training/\r\n\r\n-->\r\n## Proposal\r\n\r\nWe are using promtool for checking rule syntax as well as evaluating rule unit-tests. For this to integrate nicely in our tooling, we have created a wrapper to produce junit compatible output: https://github.com/sorend/promunit\r\n\r\nJunit compatible output is supported by many tools, in our case we use Jenkins to collect it during CI phase.\r\n\r\nOur proposal is to make promtool checks output junit (or other standard) machine-parseable test/check results.\r\n",
+    "reactions": 5,
+    "created_at": "2021-05-21T14:26:32Z",
+    "updated_at": "2025-01-25T23:20:47Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "component/promtool",
+      "priority/P3"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/8860",
+    "html_url": "https://github.com/prometheus/prometheus/issues/8860",
+    "author_login": "sorend",
+    "author_profile": "https://github.com/sorend",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 8534,
+    "title": "[tsdb] Support ingesting data out of order",
+    "body": "## Proposal\r\n\r\nPrometheus now supports remote-write and I can see people using Prometheus for some push based use-cases. I am not yet sure we want to make Prometheus a full push based system. Having said that, there are other downstream projects like Thanos and Cortex which use TSDB and want to support out of order ingest for various use-cases. \r\n\r\nWe are working on adding more protocols in front of Cortex (for ex, https://github.com/grafana/influx2cortex) to enable more usecases and also to help people migrate from other TSDBs to Prometheus based systems. But for these use-cases we need to have out of order ingests.\r\n\r\nWe should have support for that in TSDB core rather than Thanos and Cortex hacking a layer on top of TSDB. We could enable it in Prometheus too if needed. I briefly raised this in the storage working group, and there is broad consensus. We should find a good way to do this without blowing up the resource requirements.",
+    "reactions": 5,
+    "created_at": "2021-02-23T10:44:51Z",
+    "updated_at": "2023-01-28T23:19:45Z",
+    "labels": [
+      "priority/P3",
+      "component/tsdb",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/8534",
+    "html_url": "https://github.com/prometheus/prometheus/issues/8534",
+    "author_login": "gouthamve",
+    "author_profile": "https://github.com/gouthamve",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 7824,
+    "title": "Prometheus v2 docker tag",
+    "body": "<!--\r\n\r\n    Please do *NOT* ask usage questions in Github issues.\r\n\r\n    If your issue is not a feature request or bug report use:\r\n    https://groups.google.com/forum/#!forum/prometheus-users. If\r\n    you are unsure whether you hit a bug, search and ask in the\r\n    mailing list first.\r\n\r\n    You can find more information at: https://prometheus.io/community/\r\n\r\n-->\r\n\r\nWe should publish a docker image with a v2 tag, so people can chose to stick to that one.\r\n\r\nCurrenly, they can chose a latest (which will break in 3.x) or a very specific v1.2.3 tag.",
+    "reactions": 5,
+    "created_at": "2020-08-18T20:39:57Z",
+    "updated_at": "2021-11-18T23:21:28Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "priority/P3",
+      "hacktoberfest"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/7824",
+    "html_url": "https://github.com/prometheus/prometheus/issues/7824",
+    "author_login": "roidelapluie",
+    "author_profile": "https://github.com/roidelapluie",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 7735,
+    "title": "Implement a dark theme in the react UI",
+    "body": "Well, hem that's a nice to have I know. But in case of an UI, it's always a bit a nice to have :).\r\n\r\nAnyway a dark theme could be cool in Prometheus. And being able to manage some themes provides usually a good way to manage the css. ",
+    "reactions": 5,
+    "created_at": "2020-08-04T05:36:16Z",
+    "updated_at": "2021-11-13T23:21:38Z",
+    "labels": [
+      "priority/Pmaybe",
+      "component/ui",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/7735",
+    "html_url": "https://github.com/prometheus/prometheus/issues/7735",
+    "author_login": "Nexucis",
+    "author_profile": "https://github.com/Nexucis",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 7406,
+    "title": "How to use Prometheus EC2 SD with Multiple AWS EC2 interfaces",
+    "body": "Need some help with Prometheus EC2 SD use case.\r\n\r\nI have multiple VPCs setup with VPC peering and EC2 with several Private interfaces and no Public interfaces/Public access available.\r\n\r\nSetup example:\r\nVPC1 - EC2 which needs to be monitored\r\nVPC2 - Prometheus server\r\n\r\nEC2 IPs (order is preserved):\r\n - 192.168.1.10 (does not have routing outside VPC1) \r\n - 192.168.2.10 (does not have routing outside and peered with VPC2)\r\n\r\nPrometheus IP:\r\n - 192.168.2.9 (VPC2)\r\n\r\nPrometheus simple config with ec2_sd and node_exporter:\r\n```\r\n    - job_name: 'test'\r\n      ec2_sd_configs:\r\n        - region: <region_name>\r\n          port: 9100\r\n      relabel_configs:\r\n        - source_labels: [__meta_ec2_tag_Name]\r\n          regex: 'test-instance'\r\n          action: keep\r\n```\r\n\r\nAs a result EC2 is being discovered but *__address__* and *__meta_ec2_private_ip* are always take first IP from preserved order - *192.168.1.10* and hence target not able to communicate with Prometheus and down.\r\n\r\n## Proposal\r\n**Use case: Monitor EC2 with multiple interfaces and VPCs with peering on single prometheus server**\r\n\r\n",
+    "reactions": 5,
+    "created_at": "2020-06-16T11:10:27Z",
+    "updated_at": "2024-12-17T23:21:15Z",
+    "labels": [
+      "component/service discovery",
+      "priority/P3",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/7406",
+    "html_url": "https://github.com/prometheus/prometheus/issues/7406",
+    "author_login": "silazare",
+    "author_profile": "https://github.com/silazare",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 5616,
+    "title": "Show more offending metrics in error",
+    "body": "#4608 added some useful diagnostic feedback for many-to-many errors, making it easier to figure out what is going on with a query that refuses to execute.\r\n\r\nI am in a similar situation right now with a different error case: \"Error executing query: multiple matches for labels: grouping labels must ensure unique matches\".\r\n\r\nI request that this error also be enhanced to give some hint of what exactly is getting duplicated, following on in the same spirit as #4608.",
+    "reactions": 5,
+    "created_at": "2019-05-31T07:56:45Z",
+    "updated_at": "2024-09-15T23:21:09Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "component/promql",
+      "priority/P3",
+      "hacktoberfest"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/5616",
+    "html_url": "https://github.com/prometheus/prometheus/issues/5616",
+    "author_login": "sandersaares",
+    "author_profile": "https://github.com/sandersaares",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 5588,
+    "title": "azure service discovery does not report public IP ",
+    "body": "## Bug Report\r\n**What did you do?**\r\nRun azure service discovery\r\n\r\n**What did you expect to see?**\r\nA label with VM's public IP should be added to the target VMs\r\n\r\n**What did you see instead? Under which circumstances?**\r\nThe label with public IP was missing\r\n\r\n**Environment**\r\n\r\n* System information:\r\n\r\n\tLinux 4.15.0-50-generic x86_64\r\n\r\n* Prometheus version:\r\n\r\n\tprometheus, version 2.9.2 (branch: upstream-master, revision: d6a4daa26a861c8642dca467cc6afc450bbc6b2f)\r\n\tgo version:       go1.12.4\r\n\r\n* Prometheus configuration file:\r\n```\r\n# my global config\r\nglobal:\r\n  scrape_interval:     15s\r\n  evaluation_interval: 30s\r\n  # scrape_timeout is set to the global default (10s).\r\n\r\nscrape_configs:\r\n- job_name: service-azure\r\n  azure_sd_configs:\r\n    - environment: AzurePublicCloud\r\n      authentication_method: OAuth\r\n      subscription_id: xxxxxx\r\n      tenant_id: xxxxxx\r\n      client_id: xxxxxx\r\n      client_secret: xxxxxx\r\n      port: 9100\r\n```\r\n",
+    "reactions": 5,
+    "created_at": "2019-05-21T18:11:18Z",
+    "updated_at": "2024-06-04T23:21:01Z",
+    "labels": [
+      "help wanted",
+      "component/service discovery",
+      "priority/P3"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/5588",
+    "html_url": "https://github.com/prometheus/prometheus/issues/5588",
+    "author_login": "dmitsh",
+    "author_profile": "https://github.com/dmitsh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 5436,
+    "title": "Setup packagecloud and distribute official debs",
+    "body": "I do know we have a packagecloud account and it's about time we started distributing the debs. The reason I say this is because there are a bunch of unofficial packagings out there and I quite like the [robustperception](https://www.robustperception.io/machine-monitoring-with-prometheus-debs) ones, but they're out of date :) We should have official ones.\r\n\r\nSome others I've found:\r\nhttps://packagecloud.io/prometheus-deb/release\r\nhttps://github.com/lest/prometheus-rpm",
+    "reactions": 5,
+    "created_at": "2019-04-08T13:51:53Z",
+    "updated_at": "2024-09-15T23:21:13Z",
+    "labels": [
+      "help wanted",
+      "priority/P3"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/5436",
+    "html_url": "https://github.com/prometheus/prometheus/issues/5436",
+    "author_login": "gouthamve",
+    "author_profile": "https://github.com/gouthamve",
+    "already_resurrected": false
+  }
+]

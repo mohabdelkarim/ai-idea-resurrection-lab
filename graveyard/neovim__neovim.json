@@ -1,0 +1,323 @@
+[
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 24579,
+    "title": "Bram Moolenaar",
+    "body": "### Problem\n\nIt's been widely reported that Bram Moolenaar, the originator of Vim and inspiration for Neovim, has passed.\r\nhttps://groups.google.com/g/vim_announce/c/tWahca9zkt4\r\n\r\nJust wondering if this could be recognised in the Neovim website somewhere?\n\n### Expected behavior\n\nMaybe a modest tribute on the Neovim website.",
+    "reactions": 122,
+    "created_at": "2023-08-06T05:31:53Z",
+    "updated_at": "2023-09-30T10:41:15Z",
+    "labels": [
+      "project-management"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/24579",
+    "html_url": "https://github.com/neovim/neovim/issues/24579",
+    "author_login": "pguerin3",
+    "author_profile": "https://github.com/pguerin3",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 18086,
+    "title": "LSP: support InlayHint, a new feature in LSP Spec 3.17",
+    "body": "\r\n\r\n### Feature description\r\n\r\n[The inlay hint feature](https://github.com/microsoft/language-server-protocol/issues/956) is stabilized in latest [LSP Spec 3.17](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/), and implemented in VSCode.\r\n\r\nThe latest stable version of rust-analyzer 2022-04-11 already changed the inlay hint interface from the experimental one to the finalized one. Thus it no longer work with nvim's builtin LSP and [lsp_extensions.nvim](https://github.com/nvim-lua/lsp_extensions.nvim). Since it's not an experimental feature anymore, I think it's better to be implemented inside nvim rather than plugins.",
+    "reactions": 121,
+    "created_at": "2022-04-11T21:25:04Z",
+    "updated_at": "2023-06-20T06:06:56Z",
+    "labels": [
+      "lsp"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/18086",
+    "html_url": "https://github.com/neovim/neovim/issues/18086",
+    "author_login": "oxalica",
+    "author_profile": "https://github.com/oxalica",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 5522,
+    "title": "Language Server Implementation (LSP)",
+    "body": "@justinmk, I have been looking into trying to write some sort of shim/plugin/client (still not sure what the name should be) to provide (at least some amount of) integration between the language server protocol and Neovim. \n\nI have read your discussion in Gitter a  bit ago and it got me interested in trying to implement some part of it. However, before I got working on implementing it, I wanted to try and figure out if I was understanding the idea of the integration correctly.\n\nI made this diagram to explain some of what I was thinking. Obviously there are a lot more scenarios to cover, but this is what I was thinking.\n\n![basic](https://cloud.githubusercontent.com/assets/4466899/19621085/50e0af78-9858-11e6-93c7-83d4baf1f24e.png)\n\nAlso, do you know what language this client should be written in? I was thinking one of the remote plugins. It appears that Microsoft is working with this (https://github.com/Microsoft/vscode-languageserver-node) for a lot of their stuff, and we might be able to use it as well. Do you know which of the neovim node libraries would work well with this?\n\nThanks.\n",
+    "reactions": 112,
+    "created_at": "2016-10-22T17:08:46Z",
+    "updated_at": "2021-07-28T10:22:50Z",
+    "labels": [
+      "plugin",
+      "needs:design",
+      "needs:discussion",
+      "lsp"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/5522",
+    "html_url": "https://github.com/neovim/neovim/issues/5522",
+    "author_login": "tjdevries",
+    "author_profile": "https://github.com/tjdevries",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 30889,
+    "title": "image API",
+    "body": "\n\n# Problem\n\nNo API to load images as bytes and disiplay them using e.g. kitty image protocol.\n\n# Expected behavior\n\n- `vim.ui.img` (is `vim.ui` the right place for this? or `vim.os`, or ...?)\n    - Could shell out to `imagemagick` CLI. For reference, https://github.com/3rd/image.nvim uses FFI but that seems unnecessary.\n    - `show`\n    - `load`\n\n# Related\n\n- https://github.com/folke/snacks.nvim/blob/main/docs/image.md\n- https://github.com/neovim/neovim/issues/24164\n- https://github.com/neovim/neovim/issues/27119\n- with [#34426](https://github.com/neovim/neovim/pull/34426), `TermResponse` can be used to detect if the host-terminal supports kitty graphics protocol.",
+    "reactions": 98,
+    "created_at": "2024-10-21T15:21:59Z",
+    "updated_at": "2026-04-26T22:07:07Z",
+    "labels": [
+      "api",
+      "provider",
+      "lua",
+      "image"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/30889",
+    "html_url": "https://github.com/neovim/neovim/issues/30889",
+    "author_login": "justinmk",
+    "author_profile": "https://github.com/justinmk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 9342,
+    "title": "UI: Global Statusline",
+    "body": "## What we have right now\r\n\r\n- Every window has its own statusline\r\n- But: Only one can be active at once\r\n- Inactive statusline gives no useful information...\r\n- Any sufficiently sophisticated statusline (powerline, etc) will get truncated in vertical splits\r\n- Truncation increases visual clutter\r\n- The default powerline setup easily fills up 80 characters (without plugins):\r\n![image](https://user-images.githubusercontent.com/38919842/49722881-fa895200-fc65-11e8-9ebd-2317b7bd39df.png)\r\n\r\n## The idea\r\n\r\nWouldn't it be nice to have a single statusline at the bottom, like in screen or tmux?\r\n\r\n- Statusline is always in the same spot, 'where you expect it to be'\r\n- We already have a 'global' command line: It's at the bottom!\r\n- Less visual clutter, nicer window seperators (see below)\r\n- Might speed up the UI: 'statusline' needs to be evaluated only for the active window, rather than all.\r\n- Only restricted in size by your Terminal.\r\n\r\n## How could it be done?\r\n\r\nI'm strongly in favor of a 'laststatus' value of 3 enabling the global statusline, since any value < 0 or > 2 currently doesn't error, and instead behaves like 'laststatus' = 1.\r\n\r\nCurrently, only vertical window seperators are used. ('vert' value in 'fillchars')\r\nAll Terminals I've tried correctly display box drawing characters (tested with tmux), so I think those should be the default. Otherwise, window seperators would probably need their own option:\r\n\r\n'windowseperators' (default: ─│├┤┬┴┼, for 1-1, 1|1, 1|2, 2|1 1-2, 2-1, and 2*2 layouts respectively).\r\n\r\nAnother thing that *could* be done would be to highlight the window seperators around the active window differently, like tmux does. This could be used to more easily distinguish the active window when the global statusline is enabled, although I don't think that is really necessary.\r\n\r\n## Costs\r\n\r\nImplementation: medium (Additional options and ui code)\r\nMaintainability: minor\r\n\r\n## A look into the future?\r\n\r\nThis mock-up was made with tmux as well as some slight editing:\r\n![nvim-global-statusline-mock](https://user-images.githubusercontent.com/38919842/49723015-3de3c080-fc66-11e8-9a16-71c3cceedf56.png)",
+    "reactions": 96,
+    "created_at": "2018-12-10T10:00:09Z",
+    "updated_at": "2022-03-18T03:51:24Z",
+    "labels": [
+      "ui",
+      "ui-extensibility",
+      "statusline"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/9342",
+    "html_url": "https://github.com/neovim/neovim/issues/9342",
+    "author_login": "LunarLambda",
+    "author_profile": "https://github.com/LunarLambda",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 15143,
+    "title": "provide AppImage release for arm / aarch64",
+    "body": "\r\n- `nvim --version`: N/A\r\n- Operating system/version: Debian testing, arm64\r\n\r\n### Actual behaviour\r\n\r\nthere is no AppImage for aarch64 platforms. this means users like me who do not use x86_64 and run a distribution without the latest version in its repositories, will have to build it ourselves if we want the latest.\r\n\r\n### Expected behaviour\r\n\r\nan AppImage for aarch64 is provided.\r\n",
+    "reactions": 89,
+    "created_at": "2021-07-20T23:52:42Z",
+    "updated_at": "2025-01-27T16:36:30Z",
+    "labels": [
+      "build",
+      "ci"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/15143",
+    "html_url": "https://github.com/neovim/neovim/issues/15143",
+    "author_login": "goshhhy",
+    "author_profile": "https://github.com/goshhhy",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 13271,
+    "title": "Thank you!",
+    "body": "I have no bug to report nor feature to request.\r\n\r\nI just want to relay my thanks to everyone working on Neovim over the years. You've all done some incredible things. The entire vim ecosystem is better because of Neovim's existence, and using neovim as my daily driver is just a _joyful_ experience. It provides everything I need out of a modern editor + all the power and flexibility of vim.\r\n\r\nSo thanks!",
+    "reactions": 87,
+    "created_at": "2020-11-11T18:27:13Z",
+    "updated_at": "2021-05-17T16:32:36Z",
+    "labels": [
+      "closed:wontfix"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/13271",
+    "html_url": "https://github.com/neovim/neovim/issues/13271",
+    "author_login": "cweagans",
+    "author_profile": "https://github.com/cweagans",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 3681,
+    "title": ":terminal cursor doesn't match $TERM cursor",
+    "body": "It looks like NeoVim is manually drawing the cursor in `:terminal` windows, rather than letting the external terminal (in my case, urxvt) draw the cursor. This results in some irksome inconsistency in how my cursor looks in `:terminal` windows vs. how it looks everywhere else, including other buffers in NeoVim. Specifically, I have my terminal cursor set to blink. Everywhere else in NeoVim, my cursor blinks, but in `:terminal` windows, it doesn't.\n\nNeoVim really ought to be letting the external terminal draw the cursor.\n",
+    "reactions": 86,
+    "created_at": "2015-11-16T15:56:21Z",
+    "updated_at": "2024-12-17T13:11:42Z",
+    "labels": [
+      "terminal"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/3681",
+    "html_url": "https://github.com/neovim/neovim/issues/3681",
+    "author_login": "qstrahl",
+    "author_profile": "https://github.com/qstrahl",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 12991,
+    "title": "Kitty's graphic protocol support",
+    "body": "- `nvim --version`: 0.4.4\r\n- Operating system/version: fedora 32\r\n- Terminal name/version: kitty 0.18.3\r\n- `$TERM`: xterm-kitty\r\n\r\nKitty terminal created a [protocol for graphic support](https://sw.kovidgoyal.net/kitty/graphics-protocol.html) using escape characters, we could display images in neovim by supporting the protocol.\r\nI would love to see this feature implemented as it would enable full notebook (R notebook, jupyter notebook, also markdown) experience in neovim as well as many other applications.\r\nWhile Kitty is (as far as I know) the only terminal to support graphics at the moment, their protocol is designed to integrate well with current terminal architectures. ",
+    "reactions": 83,
+    "created_at": "2020-09-27T14:02:48Z",
+    "updated_at": "2025-01-23T15:56:01Z",
+    "labels": [
+      "tui"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/12991",
+    "html_url": "https://github.com/neovim/neovim/issues/12991",
+    "author_login": "nscotto",
+    "author_profile": "https://github.com/nscotto",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 9337,
+    "title": "Indent Guides",
+    "body": "## Preface\r\n\r\nYes, there are plugins for that. They are quite far from perfect, however.\r\nI know it's a fairly complex feature, but please bear with me for a moment.\r\n\r\n## Rationale\r\n\r\nEvery major programming-oriented text editor supports indent guides. Sublime, Atom, VS Code, even the rather innocuous Notepad++. If you look for 'Vim indentation guides' online you'll find _loads_ of posts about it. People want this feature.\r\n\r\n## How big is 'one indent'?\r\n\r\nVim supports many types of indentation. This makes it somewhat difficult to determine how big 'one indent' should be. We can disregard tabs versus spaces here since what matters is only the size of the indentation.\r\n\r\nConsider how the following options are used:\r\n```\r\nOption           Use\r\n--------------------\r\nshiftwidth       cindent, >>, <<, etc, and <Tab> when smarttab or softtabstop < 0\r\ntabstop          <Tab> if nosmarttab and softtabstop = 0\r\nsofttabstop      <Tab> if nosmarttab and softtabstop > 0\r\n```\r\n\r\nThe size of indentation inserted when pressing <Tab> can be expressed with the following pseudocode then:\r\n\r\n```c\r\n#include <stdint.h> // intptr_t\r\n\r\n// Returns 0/1 for boolean options, integers for numeric options, const char * (as intptr_t) for string options\r\nintptr_t get_option(const char *option);\r\n\r\n// :help shiftwidth()\r\nint shiftwidth();\r\n\r\nint get_indent_size()\r\n{\r\n    int sts = (int)get_option(\"softtabstop\");\r\n\r\n    if (get_option(\"smarttab\") || sts < 0)\r\n    {\r\n        return shiftwidth();\r\n    }\r\n    else if (sts > 0)\r\n    {\r\n        return sts;\r\n    }\r\n    else\r\n    {\r\n        return (int)get_option(\"tabstop\");\r\n    }\r\n}\r\n```\r\n\r\n## What else is needed?\r\n\r\n-  An 'indent' value for 'listchars' to change how they're displayed (default: ???)\r\n- Or: An 'indentguides' option (single char or empty (disabled), default: \"│\" or \"|\")\r\n\r\nIt would also help if indentation became a 'first-class concept' as discussed here https://github.com/neovim/neovim/issues/6052#issuecomment-277306274\r\n\r\n## Costs\r\n\r\n- Implementation: high (might be a lot of UI code?)\r\n- Maintainability: low (unless new indentation options are added)\r\n\r\nBut: Huge quality of life feature!\r\n\r\n## A look into the future?\r\n\r\n`:set tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab listchars=tab:│\\ list`\r\n![image](https://user-images.githubusercontent.com/38919842/49704034-c3875200-fc0d-11e8-917a-29227efa8d0d.png)\r\n\r\nUnfortunately, this only works if you're indenting with hard tabs only, and using tabs for nothing else.",
+    "reactions": 74,
+    "created_at": "2018-12-09T22:59:54Z",
+    "updated_at": "2021-03-18T08:42:59Z",
+    "labels": [
+      "ui",
+      "display",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/9337",
+    "html_url": "https://github.com/neovim/neovim/issues/9337",
+    "author_login": "LunarLambda",
+    "author_profile": "https://github.com/LunarLambda",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 1750,
+    "title": "restore --remote (+clientserver)",
+    "body": "AFAICT there is no reason we should not restore these Vim command line options:\n\n```\n   --remote <files>▸    Edit <files> in a Vim server if possible\n   --remote-silent <files>  Same, don't complain if there is no server\n   --remote-wait <files>  As --remote but wait for files to have been edited\n   --remote-wait-silent <files>  Same, don't complain if there is no server\n   --remote-tab[-wait][-silent] <files>  As --remote but use tab page per file\n   --remote-send <keys>▸Send <keys> to a Vim server and exit\n   --remote-expr <expr>▸Evaluate <expr> in a Vim server and print result \n```\n\nWhat is the equivalent of these options in the current state of Neovim? cc @tarruda \n",
+    "reactions": 73,
+    "created_at": "2014-12-28T21:26:03Z",
+    "updated_at": "2022-05-04T18:46:10Z",
+    "labels": [
+      "api",
+      "compatibility"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/1750",
+    "html_url": "https://github.com/neovim/neovim/issues/1750",
+    "author_login": "justinmk",
+    "author_profile": "https://github.com/justinmk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 21191,
+    "title": "LSP: textDocument/onTypeFormatting",
+    "body": "\n### Feature description\n\n### Spec\n\nhttps://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_onTypeFormatting\n\n### Incomplete list of capable servers\n\n- [rust-analyzer](https://rust-analyzer.github.io/)\n- [lua-language-server](https://github.com/sumneko/lua-language-server/blob/7400644545baad38c0830c2cbb596f51b88316e5/script/core/type-formatting.lua) \n- [tsserver](https://github.com/microsoft/TypeScript/blob/f6628a4573cd37c26912f78de3d08cd1dbf687a5/lib/protocol.d.ts#L25)\n- [ccls](https://github.com/MaskRay/ccls/blob/8a93950fb9828182919df12083a0443ab7ad831e/src/message_handler.cc)\n- [clangd](https://github.com/search?q=repo%3Allvm%2Fllvm-project%20onTypeFormatting&type=code)?\n- [basedpyright](https://github.com/DetachHead/basedpyright/pull/1390)\n\n### Benefits\n\n- Format code instantly at typing and reduce the need of requesting `textDocument/(range)formatting` and typing burden.\n- Partially alleviate the reliance on indenting (perhaps even a replacement for it?) as most of the current vim indent plugins simply use regex which is not accurate enough, and the [tree-sitter one](https://github.com/nvim-treesitter/nvim-treesitter#indentation) seldom works now.\n- The capability has been standardized in LSP along with `textDocument/(range)formatting` and the other two have been already implemented for a long time. I think it should be trivial and reasonable to add support for it either.\n\n### Possible implementation\n\n[coc.nvim](https://github.com/neoclide/coc.nvim/blob/2d0634eb8064fd483f78e38e72feed30d5a418b9/src/handler/format.ts#L107)\n\nThe support has been added there for years and the implementation is an excellent reference. The key listening is implemented by [a combination of autocmd events](https://github.com/neoclide/coc.nvim/blob/2d0634eb8064fd483f78e38e72feed30d5a418b9/src/handler/format.ts#L63-L77).\n\n[A version use `vim.on_key`](https://github.com/yioneko/nvim-type-fmt/blob/main/lua/type-fmt.lua)\n\nThis one uses `vim.on_key` to make it possible to receive special inserted chars like `\\r`, as some servers support `onTypeFormatting` on newline (`\\n`). The caveat is that `vim.on_key` actually listens on rhs of mapping, which doesn't reflect what the char user actually typed. A better approach might be needed.",
+    "reactions": 64,
+    "created_at": "2022-11-25T17:02:40Z",
+    "updated_at": "2025-08-31T21:09:14Z",
+    "labels": [
+      "lsp"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/21191",
+    "html_url": "https://github.com/neovim/neovim/issues/21191",
+    "author_login": "yioneko",
+    "author_profile": "https://github.com/yioneko",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 20784,
+    "title": "LSP: move/rename file and update imports",
+    "body": "### Feature already in Vim?\r\n\r\n_No response_\r\n\r\n### Feature description\r\n\r\nLanguage servers usually have the ability to \r\n- move code segment to a new file and update all the imports or \r\n- automatically update imports on file rename via `:!mv ... ...` \r\n\r\nBut I haven't found a way to do it with the built-in lsp\r\n\r\nThere's no interface like vim.lsp.buf.rename_file, there is vim.lsp.util.rename but that just renames the file and doesnt update any imports\r\n\r\nAs far as I know vim.lsp.buf.rename doesnt deal with file renames\r\n\r\nAnother problem : \r\nMove to a new file code action uses the very first function/variable name as the new filename and doesn't ask for the new filename, so even if I can move some code segment to a new file, I have no control over the new filename\r\nif it did there could be a workaround to achieve file rename by selecting everything and use the move to a new file code action, then deleting the current file.\r\nI'm not sure if this behaviour is language server specific, the one I tested with is tsserver\r\n\r\nNote : coc has CocCommand workspace.renameCurrentFile\r\n\r\nExpected behaviour should be to prompt the user if imports should be updated after a `:!mv ... ` ,  as is the case with coc\r\n\r\nEdit: \r\nExpected behaviour is vim.lsp.util.rename should update imports if the lsp has that capability",
+    "reactions": 64,
+    "created_at": "2022-10-23T10:52:45Z",
+    "updated_at": "2024-04-14T14:49:05Z",
+    "labels": [
+      "lsp"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/20784",
+    "html_url": "https://github.com/neovim/neovim/issues/20784",
+    "author_login": "renzhamin",
+    "author_profile": "https://github.com/renzhamin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 30985,
+    "title": "LSP: rust_analyzer: -32802: server cancelled the request",
+    "body": "### Problem\n\neditor is being interrupted with message `rust_analyzer: -32802: server cancelled the request` while typing on every keystroke after the latest updates of rust-analyzer\n\n### Steps to reproduce using \"nvim -u minimal_init.lua\"\n\nJust start typing in `main.rs` inside `fn main() {|}` of `cargo new --bin test_project`\n\n```lua\nlocal pattern = 'rust'\nlocal cmd = { '/opt/homebrew/bin/rust-analyzer' }\n-- Add files/folders here that indicate the root of a project\nlocal root_markers = { 'Cargo.toml' }\n-- Change to table with settings if required\nlocal settings = vim.empty_dict()\n\nvim.api.nvim_create_autocmd('FileType', {\n    pattern = pattern,\n    callback = function(args)\n        local match = vim.fs.find(root_markers, { path = args.file, upward = true })[1]\n        local root_dir = match and vim.fn.fnamemodify(match, ':p:h') or nil\n        vim.lsp.start({\n            name = 'rust-analyzer',\n            cmd = cmd,\n            root_dir = root_dir,\n            settings = settings\n        })\n    end\n})\n```\n\n### Expected behavior\n\nThere is no this message with interrupt\n\n### Nvim version (nvim -v)\n\nNVIM v0.10.2 Build type: Release LuaJIT 2.1.1727870382\n\n### Language server name/version\n\nrust-analyzer 0.0.0 (3b3a87fe9 2024-10-27)\n\n### Operating system/version\n\nmacos 15.1\n\n### Log file\n\n_No response_",
+    "reactions": 62,
+    "created_at": "2024-10-29T17:20:23Z",
+    "updated_at": "2025-03-27T15:01:48Z",
+    "labels": [
+      "needs:repro",
+      "has:workaround",
+      "lsp"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/30985",
+    "html_url": "https://github.com/neovim/neovim/issues/30985",
+    "author_login": "vikulikov",
+    "author_profile": "https://github.com/vikulikov",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 6092,
+    "title": "configurable margin between line numbers and code",
+    "body": "It'd be super sweet to configure the spacing between the line number section and the code. For example, right now it is permanently `0`:\r\n\r\n<img width=\"296\" alt=\"screen shot 2017-02-10 at 9 33 28 pm\" src=\"https://cloud.githubusercontent.com/assets/297678/22851507/9ad239d0-efd8-11e6-8190-4e41fc01b77a.png\">\r\n\r\nThe following mockup shows what it would look like if we could configure the spacing to be `1` so the code doesn't butt up against the line number column:\r\n\r\n<img width=\"296\" alt=\"screen shot 2017-02-10 at 9 33 28 pm\" src=\"https://cloud.githubusercontent.com/assets/297678/22851514/1002866a-efd9-11e6-8a30-5d504d0f1661.png\">\r\n\r\nThis would be cool!",
+    "reactions": 61,
+    "created_at": "2017-02-11T05:37:06Z",
+    "updated_at": "2023-01-09T17:12:08Z",
+    "labels": [
+      "ui",
+      "column"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/6092",
+    "html_url": "https://github.com/neovim/neovim/issues/6092",
+    "author_login": "trusktr",
+    "author_profile": "https://github.com/trusktr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 1004,
+    "title": "set cmdheight=0",
+    "body": "Being able to hide the command line and gain an extra line would be nice.\r\n\r\nThis one is tricky. What do we do when there's output and the height is 0? One thing we could do is just not show any output, except for output that requires interaction (a choice, or tab completion). Another thing we could do is show output like normal and treat it like a multiline output that tells you to press enter to continue, after which the cmdline goes back to it's original height (0). A third thing we could do is give the user a new flag for the `shortmess` option to turn off all non-interactive messages. The flag could be `N` for \"No output and all other flags are ignored\".\r\n\r\nWhen `:` is typed the cmdline changes to a height of 1. After the command is executed, the cmdline disappears.\r\n\r\nA new feature could be to make the status line more customizable so that a portion of the status line could be designated for commands. Commands could appear in the middle of the status line for example, and after executing the command the output appears in the same spot, truncated on the right side with a configurable symbol like `...` or `>`.\r\n\r\n",
+    "reactions": 58,
+    "created_at": "2014-07-29T08:40:51Z",
+    "updated_at": "2022-08-18T10:26:57Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/1004",
+    "html_url": "https://github.com/neovim/neovim/issues/1004",
+    "author_login": "trusktr",
+    "author_profile": "https://github.com/trusktr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 7895,
+    "title": "init.lua as an alternative to init.vim",
+    "body": "If init.lua is found in the usual places, that should be used as the user config instead of init.vim. \r\n\r\nWhat should happen if both init.lua _and_ init.vim are found? \r\n\r\n1. Should it be an error? Most deterministic, avoids users needing to understand load order.\r\n2. Should we silently ignore it, and choose only one? (But warn about this in `:checkhealth`)\r\n3. Should we load both, in a particular order?\r\n\r\nAlso the `-u` and `-S` flags should evaluate `*.lua` files automatically:\r\n\r\n    nvim -u foo.lua\r\n    nvim -S foo.lua\r\n\r\nshould work like `lua foo.lua `.",
+    "reactions": 54,
+    "created_at": "2018-01-22T19:26:46Z",
+    "updated_at": "2020-12-07T10:10:43Z",
+    "labels": [
+      "revisit-at-release",
+      "lua"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/7895",
+    "html_url": "https://github.com/neovim/neovim/issues/7895",
+    "author_login": "justinmk",
+    "author_profile": "https://github.com/justinmk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 8715,
+    "title": "scroll screen-lines (long/wrapped) instead of text lines",
+    "body": "I've been using vim for years to write prose, books, letters, tex, and to write code, and now I'm considering neovim because of this.\r\n\r\nI've been growing increasingly frustrated by the lack of a nice way to navigate through long lines. And yes, I've remapped j and k to gj and gk, but yet all the other nice ways to scroll and navigate through text remain absolutely unusable (c-e, c-y, mouse wheel scroll, c-d, c-u...). Through the years I've found a very big number of topics on this subject, and many users that have requested this function. Many of them tried hard to get into it but end up getting really frustrated by its scrolling behavior and then give up.\r\n\r\n**Can we please add an option that makes vim consider equal the soft wrapped (visual) lines and the hard wrapped lines? This will make my job infinitely more easy and enjoyable too.**\r\n\r\nsome links:\r\nhttp://vim.1045645.n5.nabble.com/Scrolling-Long-Lines-Revisited-Again-td5031203.html\r\n2001 \"scrolling long lines\": http://marc.info/?l=vim&m=100485909423627&w=2\r\n2002 \"smooth scroll\": http://marc.info/?l=vim&m=102468968303594&w=2\r\n2005 \"how to view a long line\": http://marc.info/?l=vim&m=111466655128136&w=2\r\n2009 \"can vim jump line by screen-line\": http://groups.google.com/group/vim_use/browse_thread/thread/85318546ec889513/73ac449d902662e6\r\n2010 \"long lines and scrolling\": http://groups.google.com/group/vim_use/browse_thread/thread/ed77cb8d39ff1bbf/31d252de859a80d5\r\nhttp://vim.1045645.n5.nabble.com/Long-lines-and-scrolling-td1183898.html\r\nhttp://vim.1045645.n5.nabble.com/Scrolling-Long-Lines-Revisited-Again-td5031203.html\r\nhttps://vi.stackexchange.com/questions/11315/visual-scrolling-visual-c-e-and-c-y-across-wrapped-lines/11383#11383\r\nhttp://vim.1045645.n5.nabble.com/Scrolling-screen-lines-I-knew-it-s-impossible-td3358342.html\r\nhttp://vim.1045645.n5.nabble.com/Feature-request-Display-partial-paragraph-at-the-top-of-the-window-td1166809.html\r\nhttps://github.com/neovim/neovim/issues/7172\r\nhttps://vi.stackexchange.com/questions/11315/visual-scrolling-visual-c-e-and-c-y-across-wrapped-lines/11383#11383\r\nset display+=lastline\r\n",
+    "reactions": 51,
+    "created_at": "2018-07-10T09:28:26Z",
+    "updated_at": "2025-06-01T18:54:02Z",
+    "labels": [
+      "has:vim-patch",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/8715",
+    "html_url": "https://github.com/neovim/neovim/issues/8715",
+    "author_login": "g-i-o-r-g-i-o",
+    "author_profile": "https://github.com/g-i-o-r-g-i-o",
+    "already_resurrected": false
+  }
+]

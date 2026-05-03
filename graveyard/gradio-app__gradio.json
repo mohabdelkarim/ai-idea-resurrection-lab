@@ -1,0 +1,679 @@
+[
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 631,
+    "title": "Support deleting rows and columns from the dataframe",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nI would like to be able to delete rows and/or columns when suing the dataframe component.\r\n\r\nFollow on from #588.",
+    "reactions": 16,
+    "created_at": "2022-02-16T09:59:23Z",
+    "updated_at": "2025-10-14T15:59:35Z",
+    "labels": [
+      "enhancement",
+      "svelte",
+      "💾 Dataframe"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/631",
+    "html_url": "https://github.com/gradio-app/gradio/issues/631",
+    "author_login": "pngwn",
+    "author_profile": "https://github.com/pngwn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2654,
+    "title": "Support multiple pages in a gradio app",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nIt would be good to distinct pages for different parts of a gradio app, including the ability to navigate directly to that page using the url. This feature should also add some kind of navigation bar/ structure in order to navigate the application.\r\n\r\n**Describe the solution you'd like**  \r\nSomething like this would be cool:\r\n\r\n```py\r\nimport gradio as gr\r\n\r\ngr.Blocks():\r\n  gr.Page(\"My amazing page\", route=\"/\"):\r\n    gr.Markdown(\"# My amazing page\")\r\n    gr.Textbox(\"Page one\")\r\n  gr.Page(\"My second amazing page\", route=\"/page-two\"):\r\n    gr.Markdown(\"# My second amazing page\")\r\n    gr.Textbox(\"Page two\")\r\n```\r\n\r\nThis would generate an app with a client side router that shows the first page by default with some kind of navigation bar with a link to the first + second pages. Clicking the second page link would change the url and change what is displayed. the urls would be something like:\r\n\r\n- `/#/`\r\n- `/#/page-two`\r\n\r\n\r\nWe could use hashbangs `/#!/xxx` but i don't know if there is any value in doing that anymore, might help google a bit but I don't know how crawlable spaces are anyway. \r\n\r\n**Additional context**  \r\nIt is important that this features works well on huggingface spaces, since it is one of our most used platforms. This introduces certain challenges/ limitations as, even though spaces have their own subdomain now, they are typically used via the the spaces chrome embed. \r\n\r\nAdditionally as we support embedding via the web component, it is important that gradio doesn't have too many opinions about the structure of the URL and works on any subpath.\r\n\r\nWith this in mind, I think the best solution is a hash-based router, as hashes are inherently very flexible and can be appended to any URL. This will work well in spaces (and can be made really nice with some tweaks to spaces themselves) and will work well when embedded on blogposts etc.",
+    "reactions": 15,
+    "created_at": "2022-11-15T20:26:51Z",
+    "updated_at": "2025-02-05T03:09:02Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2654",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2654",
+    "author_login": "pngwn",
+    "author_profile": "https://github.com/pngwn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 3278,
+    "title": "[ImageEditor] - Zoomable Image components for better UX",
+    "body": "This is a request to add zoom capability to the various Image components (sketch, color-sketch, etc.)\r\n\r\nUsers of Stable Diffusion via Automatic1111 are currently zooming the Gradio Sketch and Image components by zooming their entire browser windows (CTRL+mousewheel) in order to paint masks, as there's currently no native support.\r\n\r\nSome implementation ideas:\r\n\r\nZoom button that creates a \"mode\" where the user can draw a bounding box.\r\nZoom autoscale button to zoom back to 1:1.  And/Or optionally double-click while in zoom mode.\r\nZoom via mousewheel (aka Google Maps / Photoshop) where the zoom centers on the cursor.  (I can provide the algorithm if needed)",
+    "reactions": 13,
+    "created_at": "2023-02-22T05:27:04Z",
+    "updated_at": "2025-04-08T21:02:06Z",
+    "labels": [
+      "enhancement",
+      "🖼️ ImageEditor"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/3278",
+    "html_url": "https://github.com/gradio-app/gradio/issues/3278",
+    "author_login": "Alchete",
+    "author_profile": "https://github.com/Alchete",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2790,
+    "title": "Google Authentication",
+    "body": "In some apps, we want to filter harmful users or bots. I think that having a component that enables google authentication (rather than a username, passowrd authentication) in gradio can be very helpful. \r\n\r\n**Describe the solution you'd like**  \r\nI'd like to have an authentication component that receives the details of the user so it can decide if the user may access the app or not. ",
+    "reactions": 13,
+    "created_at": "2022-12-11T09:55:46Z",
+    "updated_at": "2025-06-23T08:30:25Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2790",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2790",
+    "author_login": "yuvalkirstain",
+    "author_profile": "https://github.com/yuvalkirstain",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2298,
+    "title": "Video Gallery Outputs",
+    "body": "[*] I have searched to see if a similar issue already exists.\r\nYES\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nNO\r\n\r\n**Describe the solution you'd like**  \r\nI'd like to be able to display a list of videos outputs as a Gallery, that would work as the images gallery works, but for videos.\r\n\r\n**Additional context**  \r\nContext: I made a PySceneDetect demo that can divide a video sequence into every shots it can detect.\r\nLink: [Scene Edit Detection on HuggingFace](https://huggingface.co/spaces/nanomenta/scene-edit-detection)\r\nI use the `gr.List` instead, and display an image Gallery for every first frame of each shot.\r\n",
+    "reactions": 13,
+    "created_at": "2022-09-20T06:46:44Z",
+    "updated_at": "2024-08-22T20:40:44Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2298",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2298",
+    "author_login": "fffiloni",
+    "author_profile": "https://github.com/fffiloni",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 7127,
+    "title": "Entire Row Data in Dataframe Select Event",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nI have a Dataframe Component with a row for every datapoint and multiple columns with aspects of the data.... one of the columns being an ID column.\r\n\r\nI have my app instrumented such that when someone clicks a row in the Dataframe, several other components are updated to showcase data for that particular ID.\r\n\r\nHowever, the evt send when a Dataframe is selected only contains the value and index of the cell that was clicked. If someone has clicked a cell in the ID column.... this works great. But if they clicked a different cell in the row I have no way of figuring out what ID that corresponds to from the evt.\r\n\r\nThe index value in the event is not useful as it gives the current index of wherever the user clicked... and does not take into account any column sorting the user may have done (ie. if you click the first row and first column.. the index will always return `[0,0]` even if you have sorted the columns such that the 100th row is now shown in the first row spot).\r\n\r\n**Describe the solution you'd like**  \r\nEither:\r\n- Entire row sent with dataframe select along with everything else\r\n- An index that references the underlying data regardless of sorting\r\n- A way to get the current view of the Dataframe so that I can deduce what row a particular index refers to... this might exist but struggling\r\n\r\n",
+    "reactions": 12,
+    "created_at": "2024-01-23T21:46:17Z",
+    "updated_at": "2024-08-20T21:08:31Z",
+    "labels": [
+      "enhancement",
+      "💾 Dataframe"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/7127",
+    "html_url": "https://github.com/gradio-app/gradio/issues/7127",
+    "author_login": "derek-pyne",
+    "author_profile": "https://github.com/derek-pyne",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 3965,
+    "title": "provide a way to 'see' a position of a video via the python API",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nA user was asking for a way to seek to a specific position of a video. Currently this is pretty difficult and requires some hacky javascript (which would probably break). It would be good if we could provide a cleaner way of doing this, preferably via python.\r\n\r\n**Describe the solution you'd like**  \r\nAdd a `seek` or `currentTime` kwarg to the `update` method of `Video` (and probably `Audio` too). This would allow users to change the position of the video or audio with a clean python API. We could also expose one or two other properties while we are doing this, if it makes sense.\r\n",
+    "reactions": 12,
+    "created_at": "2023-04-25T10:39:40Z",
+    "updated_at": "2025-09-11T21:32:32Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/3965",
+    "html_url": "https://github.com/gradio-app/gradio/issues/3965",
+    "author_login": "pngwn",
+    "author_profile": "https://github.com/pngwn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 3106,
+    "title": "Support session state across multiple pages or page refresh (e.g. with LocalStorage)",
+    "body": "Right now, the session state is either global shared between users or local within a page. We are seeing the needs to support session state across multiple pages.\r\n\r\nE.g., we host a service on Hugging Face spaces, and we ask users to login with token first before using the spaces. The ideal case is users just need to login once but use the spaces multiple time without further login (even the page is refreshed, or multiple pages requires login status).\r\n",
+    "reactions": 11,
+    "created_at": "2023-02-01T01:17:09Z",
+    "updated_at": "2025-02-13T17:11:51Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/3106",
+    "html_url": "https://github.com/gradio-app/gradio/issues/3106",
+    "author_login": "hshen14",
+    "author_profile": "https://github.com/hshen14",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 1976,
+    "title": "Provide a way to determine the selected image in a `Gallery`",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\nPossibly related to #1379.\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nThe use case is: generate a grid of images, using for example a text to image model, then select one of the results for further processing.\r\n\r\n**Describe the solution you'd like**  \r\nI thought about two potential solutions:\r\n- Update `value` to reflect the index of the currently selected image, so it can be checked as a response to some user action (click a button, for instance).\r\n- Adopt `Gallery.click` and send that event whenever an image is clicked.\r\n\r\nThis sounds similar to the discussion in #1379, except for the upload ability. I think that exposing the selection would be useful even if upload is not yet supported.\r\n",
+    "reactions": 11,
+    "created_at": "2022-08-08T16:06:58Z",
+    "updated_at": "2023-09-19T16:16:29Z",
+    "labels": [
+      "enhancement",
+      "svelte",
+      "python"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/1976",
+    "html_url": "https://github.com/gradio-app/gradio/issues/1976",
+    "author_login": "pcuenca",
+    "author_profile": "https://github.com/pcuenca",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 7489,
+    "title": "[enhancement]: Add `gr.Success()`",
+    "body": "For reference: #4319 \r\n\r\nAdd `gr.Success()` similar to `gr.Info()` and `gr.Warning()`. This could be useful for small success messages, ex. to state that a file upload was successful. I do not think that the answer given in #4319 is still pertinent given the continously growing and wider usage of gradio. Furthermore this does not *seem* like a complex change, nor a breaking one.",
+    "reactions": 9,
+    "created_at": "2024-02-20T11:43:55Z",
+    "updated_at": "2024-12-30T16:16:10Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/7489",
+    "html_url": "https://github.com/gradio-app/gradio/issues/7489",
+    "author_login": "Paillat-dev",
+    "author_profile": "https://github.com/Paillat-dev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 7231,
+    "title": "Requirement to use ImageEditor as a mask editor ",
+    "body": "Being able to edit a mask on top of an image is now a very common requirement for lots of Visual models. \r\nIn v3 there used to be an Image Mask, it was fine but required hacks to be able to access independently the image and its mask. \r\nIn v4 the Image Mask was replaced by the ImageEditor which is much more generic. However it incurs lots of default behaviors that makes the user experience worse. Therefore it would be great if one could customize the default behaviors : \r\n- clicking on an empty image does nothing. We should be able to trigger an upload or start a webcam\r\n- once the image is loaded clicking on the image does nothing. We should be able to specify that we want to edit for instance default layer 1 (the mask)\r\n- Multiple layers may not be useful or break things. We should be to be fix the number of layers needed and prevent the user to add or remove layers\r\n\r\nin addition I have spotted the following small bugs :\r\n- the download image button doesn’t always appear (especially if an image can be uploaded). A download may make sense even on an upload component if the corresponding image is modified after server side (very useful for iterative changes). \r\n- if a default color is defined for the brush, the user loses the ability to change it size on the user interface. These two things should be completely unrelated : one should be able to fix a color while letting the user decide the size of the brush. In fact ideally we should be able to set a default size for the brush and let the user change it afterwards. ",
+    "reactions": 9,
+    "created_at": "2024-01-31T09:05:06Z",
+    "updated_at": "2025-04-08T21:02:09Z",
+    "labels": [
+      "enhancement",
+      "🖼️ ImageEditor"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/7231",
+    "html_url": "https://github.com/gradio-app/gradio/issues/7231",
+    "author_login": "deepbeepmeep",
+    "author_profile": "https://github.com/deepbeepmeep",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2718,
+    "title": "Implement form validation (mandatory fields)",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nThere's no form validation on Gradio\r\n\r\n**Describe the solution you'd like**  \r\nImplement basic form validation for form fields. Specifically, a suggestion would be to add a `mandatory` parameter to all input fields, if `true` and one tries to submit without filling that in, they get a front-end error without actually submitting\r\n\r\n**Additional context**  \r\nImplementing form validation on the user side increases complexity on apps, I feel that could be sorted on Gradio side",
+    "reactions": 8,
+    "created_at": "2022-11-25T09:21:34Z",
+    "updated_at": "2025-09-11T20:23:16Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2718",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2718",
+    "author_login": "apolinario",
+    "author_profile": "https://github.com/apolinario",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2137,
+    "title": "Support serving user-defined javascript with Gradio",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\nCurrently the functionality of Gradio as a web server is completely blackboxed: there is no way to take advantage of it from the project folder but the initial steps are already in place. `Blocks` constructor can take a `css` file path to extend the styles of the app. I propose the similar approach is taken with javascript.\r\n\r\nIntroduce the ability to set lists of css and js assets to be served by Gradio, e.g. `Blocks` could take `css` and `js` arguments as lists of either _local file paths_ or _URLs to external CNDs_ to be served along with Gradio's own assets.\r\n\r\nAn additional but very welcome feature would be to designate that a particular js file should be included as a script tag with `type=\"module\"` attribute.\r\n\r\n**Additional context**  \r\nThe main drive behind this feature is extending the functionality of gradio components (partly relating to #1432) using first and third party static assets (css and js). While the support for styling is mostly there (#2104 is a welcome addition to that), the integration of scripts can currently only be performed via `_js` parameter on block instances which is not always convenient especially if a third party dependency needs to be introduced.\r\n\r\nAs an example at https://github.com/hlky/stable-diffusion we had an experience of extending `Image` functionality with a 3rd party [plugin](https://github.com/devforth/painterro). The ability to just link the dependencies to be served via script tag and then call it via `_js` argument on the relevant components would significantly improve the developer experience whilst not having any drawbacks on user experience.\r\n",
+    "reactions": 8,
+    "created_at": "2022-08-31T10:21:15Z",
+    "updated_at": "2023-11-01T14:46:17Z",
+    "labels": [
+      "enhancement",
+      "svelte"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2137",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2137",
+    "author_login": "codedealer",
+    "author_profile": "https://github.com/codedealer",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 1637,
+    "title": "Streaming  video update",
+    "body": "**Is your feature request related to a problem? Please describe.**  \r\nI would like a Gradio equivalent to cv2.imshow() to process the frames of a video, and see the update in realtime/streaming fashion. \r\n\r\n**Describe the solution you'd like**  \r\nWhen processing video, we use cv2.VideoReader to pull a frame, make modifications to that frame, and display the modified frame with cv2.imshow(). I would like something like this in Gradio.\r\n\r\n**Additional context**  \r\nCurrently for a video demo, once the user has changed the inputs in some fashion, to see the results, the following have to happen: 1) the model has to process the frames of the video, 2) the modified frames are then compiled back into a video, 3) this video is saved somewhere and displayed. I would like to avoid having to do this intermediate saving and just show each modified frame with a gradio equivalent to cv2.imshow for streaming frames.\r\n",
+    "reactions": 8,
+    "created_at": "2022-06-26T03:50:59Z",
+    "updated_at": "2025-04-12T09:38:09Z",
+    "labels": [
+      "enhancement",
+      "svelte",
+      "python"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/1637",
+    "html_url": "https://github.com/gradio-app/gradio/issues/1637",
+    "author_login": "nikky4D",
+    "author_profile": "https://github.com/nikky4D",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 1156,
+    "title": "[Blocks] Expose Examples as Block Component",
+    "body": "At the moment, examples are part of the `Interface` Class, as well as the `cache_examples` feature. With `Blocks` users can compose custom layouts, positioning inputs and outputs arbitrarily using `Columns`, `Rows`, etc.\r\n\r\nThis request is to expose examples as a `Block` component, thus one can position and layout it as needed.\r\n\r\nHere is one snippet idea:\r\n\r\n```python\r\nwith blocks:\r\n....\r\n    with gr.Row() \r\n        gr.Examples(examples=examples, cache_examples=False)\r\n....\r\n```\r\n\r\nor maybe\r\n\r\n```python\r\nwith blocks:\r\n....\r\n    with gr.Row() \r\n        examples = gr.Examples(examples=examples, cache_examples=False)\r\n\r\n    button.click(predict, inputs, outputs, examples)\r\n....\r\n```",
+    "reactions": 8,
+    "created_at": "2022-05-03T22:50:07Z",
+    "updated_at": "2022-07-06T18:23:36Z",
+    "labels": [
+      "enhancement",
+      "refactor"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/1156",
+    "html_url": "https://github.com/gradio-app/gradio/issues/1156",
+    "author_login": "radames",
+    "author_profile": "https://github.com/radames",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 943,
+    "title": "Access filename of uploaded image file",
+    "body": "When an image file object is uploaded, you cannot retrieve it's original filename. You can only get the temporary filename associated with it. I'm using the flagging feature to log mistakes in my model, and then use the generated csv to further retrain my model. It'd be helpful if instead of Image/0.png, Image/1.png, and so on, I get the ability to use the original filename in the longs.\r\n\r\n**Describe the solution you'd like**\r\n1. Modify the flagging option to use the original filename instead of a iterator starting from 0. \r\n2. Have access to the original filename, when the type of input image is set to 'pil'. \r\n\r\n\r\n",
+    "reactions": 8,
+    "created_at": "2022-04-07T00:01:37Z",
+    "updated_at": "2024-01-02T14:33:56Z",
+    "labels": [
+      "enhancement",
+      "python"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/943",
+    "html_url": "https://github.com/gradio-app/gradio/issues/943",
+    "author_login": "shubham-goel-zefr",
+    "author_profile": "https://github.com/shubham-goel-zefr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 5460,
+    "title": "Allow searching and filtering of the Dataframe",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nDue to recent performance improvements, we now have the ability to support pretty large datasets but due to the implementation we lose ctrl+f support. It would be good to bring back thins functionality with a new UI. \r\n\r\nIt would also be nice to filter the results.\r\n\r\n**Describe the solution you'd like**  \r\n\r\nI imagine this being a search not a filter, so everything is visible but the matches are highlighted and we can 'jump' to each match.\r\n\r\nSince we would be implementing a search UI filtering would also be very easy (filtering is easier than searching), we could reuse the same UI.\r\n\r\n**Additional context**  \r\nFor the LLM Leaderboard `ctrl+f`  is a pretty common workflow, there is also a filter/ search box in the UI but we already have all of the data and could filter more quickly on the frontend.\r\n\r\nI'll try to come up with a possible UI for this feature soon.",
+    "reactions": 7,
+    "created_at": "2023-09-08T14:01:24Z",
+    "updated_at": "2025-02-27T07:08:37Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/5460",
+    "html_url": "https://github.com/gradio-app/gradio/issues/5460",
+    "author_login": "pngwn",
+    "author_profile": "https://github.com/pngwn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 5163,
+    "title": "Request for Adding Logout Functionality",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\nIs your feature request related to a problem? Please describe.\r\nI often find it inconvenient when using Gradio that there isn't a way to log out from the system once I'm done using it. This creates a potential security risk, especially when using shared computers or public networks.\r\n\r\n**Describe the solution you'd like**\r\nI would appreciate it if a logout functionality could be implemented in Gradio. This would allow users to securely log out after they have finished using the platform, ensuring that their sensitive information and session data are properly cleared.\r\n\r\n**Additional context**\r\nIt would be helpful if the logout option could be easily accessible from the user interface, perhaps in the form of a profile or account settings menu. This feature would enhance the overall user experience and provide an added layer of security to the application. Screenshots or mockups demonstrating the proposed logout feature's placement and design might be beneficial for consideration.",
+    "reactions": 7,
+    "created_at": "2023-08-10T03:23:58Z",
+    "updated_at": "2024-02-27T22:53:25Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/5163",
+    "html_url": "https://github.com/gradio-app/gradio/issues/5163",
+    "author_login": "YuminosukeSato",
+    "author_profile": "https://github.com/YuminosukeSato",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 4226,
+    "title": "Ensure that analytics collection is compliant with GDPR",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\n\r\nI was surprised to see that an open source project running locally as a demo was sending analytics data to Google.\r\n\r\n**Describe the solution you'd like**  \r\n\r\n`enable_analytics` should be an option that defaults to **do not track analytics**. A user should explicitly opt-into this behavior rather than have to opt out.\r\n\r\n**Additional context**  \r\n\r\nThe opt-in default is implemented here:\r\n\r\nhttps://github.com/gradio-app/gradio/blob/v3.30.0/gradio/blocks.py#L686-L687\r\n\r\nApart from the unconventional use of `True` as an environment variable to signal true/yes/on (it's more common to use `1`), environment variables should default to \"user did not specify this value\".\r\n\r\nI think it's perfectly acceptable and to enable the collection of data by way of a public server (e.g. a hosted version of a gradio app) but it is not acceptable IMO to track data running locally without an explicit opt-in from the user.",
+    "reactions": 7,
+    "created_at": "2023-05-15T22:24:39Z",
+    "updated_at": "2024-05-16T04:31:57Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/4226",
+    "html_url": "https://github.com/gradio-app/gradio/issues/4226",
+    "author_login": "gar1t",
+    "author_profile": "https://github.com/gar1t",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 3714,
+    "title": "Allow showing progress updates on specific components",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\n\r\nI have a slow step triggered by a Button, and I could not get a progress bar to show up for it. I finally got it to work by adding a fake TextBox and setting it as an output, but that neither seems documented nor the best way. \r\n\r\n\r\n**Describe the solution you'd like**  \r\nThe button should show a spinner or progress bar attached to it somehow.\r\n\r\n\r\n",
+    "reactions": 7,
+    "created_at": "2023-03-30T20:21:58Z",
+    "updated_at": "2025-02-06T00:52:16Z",
+    "labels": [
+      "enhancement",
+      "needs designing"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/3714",
+    "html_url": "https://github.com/gradio-app/gradio/issues/3714",
+    "author_login": "indigoviolet",
+    "author_profile": "https://github.com/indigoviolet",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 1020,
+    "title": "Allow background image for gradio.inputs.Image source canvas",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nI would like to add a background-image to be drawn on top of with the canvas element\r\n\r\n**Describe the solution you'd like**\r\nI would want to be able to upload a picture and then draw on top of it for inpainting demos. This would return two elements: the uploaded image and the drawn mask.\r\n![image](https://user-images.githubusercontent.com/788417/163977694-ed729288-c509-4efd-99e9-e18058fb6224.png)\r\n\r\n**Additional context**\r\nI am aware of the existence of `tool=\"editor\"` however the canvas component is perfect for inpainting as is if only it was able to overlay the image. The editor enables way too many variables for a one dimensional inpainting endeavor and also doesn't return only a mask of edited things on top of the original image",
+    "reactions": 7,
+    "created_at": "2022-04-19T09:51:27Z",
+    "updated_at": "2022-06-25T00:22:44Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/1020",
+    "html_url": "https://github.com/gradio-app/gradio/issues/1020",
+    "author_login": "apolinario",
+    "author_profile": "https://github.com/apolinario",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 6708,
+    "title": "Ability to remove individual files from `gr.File()` component",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nCurrently the `gr.File()` component, once you upload files you can only remove all files at once\r\n<img width=\"328\" alt=\"image\" src=\"https://github.com/gradio-app/gradio/assets/788417/a2853d35-3eef-402c-849e-254fd91d6bbf\">\r\n\r\n**Describe the solution you'd like**  \r\nI'd like to be able to individually remove each uploaded file.\r\n\r\n**Additional context**  \r\nIf uploaded something wrong by accident is very frustrating to remove all to reupload the correct ones. ",
+    "reactions": 6,
+    "created_at": "2023-12-08T14:22:17Z",
+    "updated_at": "2024-02-09T16:55:49Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/6708",
+    "html_url": "https://github.com/gradio-app/gradio/issues/6708",
+    "author_login": "apolinario",
+    "author_profile": "https://github.com/apolinario",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 5848,
+    "title": "Support setting sample rate and channels for mic capture",
+    "body": "- [x]  I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nI am building a app for real time streaming ASR use case. App is hosted on a webserver. Streaming mic data to app happens at 48khz, 2 channel. This seems to adding latency. Can this format be changed to 16khz, 1 channel?\r\n\r\n\r\n**Describe the solution you'd like**  \r\nA clear and concise description of what you want to happen.\r\nSupport setting audio format of the mic audio stream - sample rate, channel, sample width \r\n\r\n**Additional context**  \r\nAdd any other context or screenshots about the feature request here.\r\n",
+    "reactions": 6,
+    "created_at": "2023-10-09T14:26:00Z",
+    "updated_at": "2024-10-24T22:09:06Z",
+    "labels": [
+      "enhancement",
+      "🎵 Audio"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/5848",
+    "html_url": "https://github.com/gradio-app/gradio/issues/5848",
+    "author_login": "virajkarandikar",
+    "author_profile": "https://github.com/virajkarandikar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 4763,
+    "title": "chatbot buttons support",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\nChatbot buttons are pretty much standard. It can restrict the user inputs and control the conversation flow. It would be great if gr.Chatbot() can have chatbot buttons support.\r\n\r\n![](https://europe1.discourse-cdn.com/business20/uploads/rasa/original/2X/8/85cc40a9e703fd75962ef74a3c6bbf5901e2818f.png)\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nA clear and concise description of what the problem is. Ex. I'm always frustrated when [...]\r\n\r\n**Describe the solution you'd like**  \r\nA clear and concise description of what you want to happen.\r\n\r\nIt would be great that gr.Chatbot() can natively support Buttons. Currently, I developed a workaround for chatbot buttons with the following script:\r\n\r\n\r\n```python\r\nimport gradio as gr\r\n\r\ndef bot(history, msg):\r\n    bot_msg = \"\"\"\r\nHello, how can I help you today? <br /><button type=\"button\" class=\"btn btn-primary btn-chatbot\">Primary</button> \\\r\n<button type=\"button\" class=\"btn btn-primary btn-chatbot\">Secondary</button>\r\n\"\"\"\r\n    return history + [[msg, bot_msg]], \"\"\r\n\r\nwith gr.Blocks() as demo:\r\n    chatbot = gr.Chatbot()\r\n    msg = gr.Textbox(show_label=False,\r\n        placeholder=\"Enter text and press ENTER\", container=False, elem_id=\"inputTextBox\")\r\n    msg.submit(bot, [chatbot, msg], [chatbot, msg])\r\n    \r\ndef reload_javascript():\r\n    js = \"\"\"\r\n// for bootstrap\r\n<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM\" crossorigin=\"anonymous\">\r\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz\" crossorigin=\"anonymous\"></script>\r\n\r\n// for message buttons to work\r\n<script>\r\nfunction registerMessageButtons() {\r\n\tconst collection = document.querySelectorAll(\".btn-chatbot\");\r\n\tfor (let i = 0; i < collection.length; i++) {\r\n      // NOTE: gradio use .value instead of .innerHTML for gr.Textbox\r\n\t  collection[i].onclick=function() {document.getElementById(\"inputTextBox\").getElementsByTagName('textarea')[0].value = collection[i].innerHTML};\r\n\t}\r\n}\r\n// need to make sure registerMessageButtons() is executed all the time as new message can come out;\r\nvar intervalId = window.setInterval(function(){\r\n  registerMessageButtons();\r\n}, 1000);\r\n</script>\r\n\"\"\"\r\n    def template_response(*args, **kwargs):\r\n        res = GradioTemplateResponseOriginal(*args, **kwargs)\r\n        res.body = res.body.replace(b'</html>', f'{js}</html>'.encode(\"utf8\"))\r\n        res.init_headers()\r\n        return res\r\n\r\n    gr.routes.templates.TemplateResponse = template_response\r\n\r\nGradioTemplateResponseOriginal = gr.routes.templates.TemplateResponse\r\n\r\nreload_javascript()\r\ndemo.launch()\r\n```\r\n\r\n![image](https://github.com/gradio-app/gradio/assets/3815006/989dcb7c-4331-438f-8ad2-fac7f49da78e)\r\n\r\n\r\nIt is almo",
+    "reactions": 6,
+    "created_at": "2023-07-03T06:05:28Z",
+    "updated_at": "2024-11-22T00:19:54Z",
+    "labels": [
+      "enhancement",
+      "needs designing",
+      "💬 Chatbot"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/4763",
+    "html_url": "https://github.com/gradio-app/gradio/issues/4763",
+    "author_login": "taoari",
+    "author_profile": "https://github.com/taoari",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 4268,
+    "title": "gr.Examples Enable for each example to have a label and a value",
+    "body": "- [yes ] I have searched to see if a similar issue already exists.\r\n\r\nFor example I would like the gr.Examples to display the example as \"Person 1\" and when it is clicked, to populate the linked component with \"John Doe\". \r\n",
+    "reactions": 6,
+    "created_at": "2023-05-18T17:51:25Z",
+    "updated_at": "2024-07-10T23:35:37Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/4268",
+    "html_url": "https://github.com/gradio-app/gradio/issues/4268",
+    "author_login": "t-marinos",
+    "author_profile": "https://github.com/t-marinos",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 3680,
+    "title": "Additional `Chatbot` Markdown Support",
+    "body": "Hi there,\r\n\r\nFirst I gotta say thank you for the awesome library, definitely speeds up my ml prototyping process a lot!\r\n\r\nI was wondering if it's possible to extend the limited markdown support for the `Chatbot` block to include some additional expected features like headings, lists and tables. I'm trying to display structured data (list of query results for example) in the `Chatbot` body but currently this is quite difficult to do without support for tables and proper headings to seperate sections of the interface.",
+    "reactions": 6,
+    "created_at": "2023-03-29T02:50:06Z",
+    "updated_at": "2023-08-17T16:00:13Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/3680",
+    "html_url": "https://github.com/gradio-app/gradio/issues/3680",
+    "author_login": "abetlen",
+    "author_profile": "https://github.com/abetlen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 3441,
+    "title": "When \"allow_flagging\" = auto, allow saving output as well",
+    "body": "- [yes] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nWhen \"allow_flagging\" = \"auto\", every input the user submits is automatically flagged (https://www.gradio.app/docs/#dataset).  Outputs are not flagged.  However, I need outputs to be flagged as well, similar to how inputs and outputs are flagged when \"allow_flagging\" = \"manual\".\r\n\r\n**Describe the solution you'd like**  \r\nWhen \"allow_flagging\" = \"auto\", allow outputs to be flagged as well so that they can also be auto saved along with the inputs to a Hugging Face dataset (similar to the behavior when \"allow_flagging\" = \"manual\").\r\n\r\n**Additional context**  \r\nMy usecase is that I'd like to be able to see all input and output images, so that I can make sure the model is outputting quality results.\r\n",
+    "reactions": 6,
+    "created_at": "2023-03-11T05:18:22Z",
+    "updated_at": "2024-03-14T21:03:36Z",
+    "labels": [
+      "bug",
+      "enhancement",
+      "good first issue",
+      "python"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/3441",
+    "html_url": "https://github.com/gradio-app/gradio/issues/3441",
+    "author_login": "lakshman111",
+    "author_profile": "https://github.com/lakshman111",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2688,
+    "title": "Display Cell Colors in a Dataframe",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nIn pandas, you can use the [style](https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html) property to apply formatting to your data (cell background colors, rounding decimals) and then get an HTML representation of the table.\r\n\r\nGradio developers can display this data with the HTML component but at that point you loose the ability to add/remove/edit cells and sort by cell contents. \r\n\r\nIt would be better if the dataframe component could take in the style defined on the backend.\r\n\r\n**Describe the solution you'd like**  \r\n\r\nThe gr.DataFrame component takes the output of the pandas.style method. \r\n\r\nOpen to other suggestions for how to support the colored cell case.\r\n\r\n\r\n**Additional context**  \r\nCame up during the Data Measurements project (https://github.com/huggingface/data-measurements-tool/pull/45)",
+    "reactions": 6,
+    "created_at": "2022-11-21T17:56:18Z",
+    "updated_at": "2023-10-12T22:45:58Z",
+    "labels": [
+      "enhancement",
+      "needs designing",
+      "💾 Dataframe"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2688",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2688",
+    "author_login": "freddyaboulton",
+    "author_profile": "https://github.com/freddyaboulton",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 776,
+    "title": "[Blocks] Is it possible to support iterative updating of an output component?",
+    "body": "We've heard this request in the past, and just heard this from a user at Hugging Face, who wanted to update the images in an image output component iteratively. \r\n\r\nFrom the user: \r\n> I couldn't work out how to repeatedly update an image in a loop. It is probably best to refer to the example Space I linked, any help would be much appreciated, as I would prefer if it was a Gradio App!\r\n\r\nSpace they linked: https://huggingface.co/spaces/edbeeching/atari_live_model\r\n\r\nCan we support this in Blocks?",
+    "reactions": 6,
+    "created_at": "2022-03-04T14:22:00Z",
+    "updated_at": "2022-09-08T14:35:37Z",
+    "labels": [
+      "enhancement",
+      "python"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/776",
+    "html_url": "https://github.com/gradio-app/gradio/issues/776",
+    "author_login": "abidlabs",
+    "author_profile": "https://github.com/abidlabs",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2104,
+    "title": "Enhance ability to apply CSS to components / blocks ",
+    "body": "As people build more custom demos with Gradio, there is a need for custom stylization for individual Blocks and components. We already provide some ability to target Blocks with css through the `elem_id` parameter, but:\r\n\r\n* Right now, some components/blocks don't support the `elem_id` parameter. Can we do a sweep and make sure every `Block` supports this parameter correctly\r\n* Can we provide a similar `elem_class` parameter to make it easier to reuse css styles across similar components?\r\n\r\nSee original comment by @altryne: https://github.com/gradio-app/gradio/issues/2071#issuecomment-1229543675",
+    "reactions": 5,
+    "created_at": "2022-08-28T20:26:04Z",
+    "updated_at": "2023-09-29T17:51:29Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2104",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2104",
+    "author_login": "abidlabs",
+    "author_profile": "https://github.com/abidlabs",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 4966,
+    "title": "Chatbot height should be optionally 100% or not set at all",
+    "body": "Chatbot component accepts `height` as input in pixels. If not defined, the default value is set to 400px.\r\n\r\nHowever, there should be a third option - it should be possible to either set it to a percent value (e.g. `100%`) or **not set it at all**.\r\n\r\nThe issue is that the `height` is set in the `style` attribute. Consequently, you can't override it via css of the `id` or `class` of given `div`, because `style` value always takes precedence.\r\n\r\n<img width=\"2542\" alt=\"image\" src=\"https://github.com/gradio-app/gradio/assets/18228330/061f28ce-db86-41e2-8702-e58c30e2a5ad\">\r\n\r\nyou can also check out the branch:\r\nhttps://github.com/h2oai/h2ogpt/compare/jp/main/full-height?expand=1\r\n",
+    "reactions": 5,
+    "created_at": "2023-07-18T23:01:40Z",
+    "updated_at": "2023-12-11T14:58:05Z",
+    "labels": [
+      "enhancement",
+      "svelte",
+      "python"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/4966",
+    "html_url": "https://github.com/gradio-app/gradio/issues/4966",
+    "author_login": "fazpu",
+    "author_profile": "https://github.com/fazpu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 4908,
+    "title": "Add a fullscreen icon for the Image component",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nA clear and concise description of what the problem is. Ex. I'm always frustrated when [...]\r\n\r\nFor the Image component, there are already **\"close\"** and **\"edit\"** buttons. It is very much desired if there could be an additional **\"fullscreen\"** button. The current Image component displays an image in a fixed size. The \"fullscreen\" button is of great help to allow a user to examine the details of an image without changing the app layout.\r\n\r\n![Screenshot 2023-07-12 185324](https://github.com/gradio-app/gradio/assets/3815006/dff7b60e-65bb-4c32-920e-be5fd9899551)\r\n\r\n**Describe the solution you'd like**  \r\nA clear and concise description of what you want to happen.\r\n\r\nAdd an additional \"fullscreen\" button along with existing \"edit\" and \"close\" buttons on the top right corner of the Image component.\r\n\r\n**Additional context**  \r\nAdd any other context or screenshots about the feature request here.\r\n",
+    "reactions": 5,
+    "created_at": "2023-07-13T01:59:12Z",
+    "updated_at": "2024-08-05T22:45:16Z",
+    "labels": [
+      "enhancement",
+      "🖼️ image"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/4908",
+    "html_url": "https://github.com/gradio-app/gradio/issues/4908",
+    "author_login": "taoari",
+    "author_profile": "https://github.com/taoari",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 3969,
+    "title": "Add video input length cropping feature",
+    "body": "✅ I have searched to see if a similar issue already exists.\r\n\r\nadd the `gradio.Audio()` component feature that allows to crop the file duration (in & out) to the `gradio.Video()` component too\r\nplus the possibility to set a maximum length value allowed for the cropped area\r\n\r\n![image_d___ios](https://user-images.githubusercontent.com/7447007/234309050-acd075b1-06ae-4e19-a585-8a27613a3aeb.jpeg)\r\n\r\n\r\n\r\n**Additional context**  \r\nwe have a lot of demos involving video input already, and i guess more coming soon\r\npeople often abuse by dropping large videos and occupy the queue for too long\r\nwith this feature we could easily set limits, and allow user to choose wich part of the video they want to use in inference\r\n",
+    "reactions": 5,
+    "created_at": "2023-04-25T14:30:57Z",
+    "updated_at": "2023-11-01T15:46:04Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/3969",
+    "html_url": "https://github.com/gradio-app/gradio/issues/3969",
+    "author_login": "fffiloni",
+    "author_profile": "https://github.com/fffiloni",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 3763,
+    "title": "a feature to disable the detailed view in `gr.Gallery`",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\n\r\nWhen using `gr.Gallery` to select an image, it would be nice if there was an option to disable opening a detailed view when clicked and keep displaying the preview.\r\n\r\nIn the case of the [Text2Video-Zero Space](https://huggingface.co/spaces/PAIR/Text2Video-Zero), as they show the gallery large enough from the beginning, switching to the detailed view doesn't make much sense.\r\nAt first, I thought `.style(preview=True)` might work, but it wasn't what I wanted. I think it would be nice if there was an argument like `preview_only`.\r\n\r\n![](https://user-images.githubusercontent.com/25161192/230014483-0c88cf6c-c4d7-40fd-aaa1-294b23a0d13f.png)\r\n",
+    "reactions": 5,
+    "created_at": "2023-04-05T07:46:31Z",
+    "updated_at": "2023-06-16T04:28:23Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/3763",
+    "html_url": "https://github.com/gradio-app/gradio/issues/3763",
+    "author_login": "hysts",
+    "author_profile": "https://github.com/hysts",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2666,
+    "title": "Scroll bars on dataframes",
+    "body": "- [x] I have searched to see if a similar issue already exists.\r\n\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nIf your gradio demo displays a dataframe with many rows or columns, all of the dataframe will be displayed at once and users have to scroll all the way down the page to see their data.\r\n\r\n![dataframe_long](https://user-images.githubusercontent.com/41651716/202559043-f02fbd8f-a7a2-48a5-a5de-0cfca4042f1a.gif)\r\n\r\n\r\n**Describe the solution you'd like**  \r\nKeep the dataframe a fixed size but add a scroll bar to the right hand side and bottom of the dataframe. That way the scroll bar doesn't increase the size of the entire page.\r\n\r\n\r\n**Additional context**  \r\nAdd any other context or screenshots about the feature request here.\r\n",
+    "reactions": 5,
+    "created_at": "2022-11-17T21:04:16Z",
+    "updated_at": "2023-08-22T21:42:04Z",
+    "labels": [
+      "enhancement",
+      "💾 Dataframe"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2666",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2666",
+    "author_login": "freddyaboulton",
+    "author_profile": "https://github.com/freddyaboulton",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2444,
+    "title": "Input in HighlightedText",
+    "body": "- [*] I have searched to see if a similar issue already exists.\r\n\r\n**Is your feature request related to a problem? Please describe.**  \r\nAs it stands highlighted text can only be used for output (i.e. in case of demonstrating a NER model). There could be a lot of use to adding interactivity to it. i.e. allowing users to highlight text and add labels/comments to it (similar to inline comments in a google doc). \r\n\r\n**Describe the solution you'd like**  \r\nThe ability to make HighlightedText interactive, such that a user can highlight text and click a button to write a label/comment for their highlighted text.\r\n\r\n**Additional context**  \r\nI'm working on CHEESE, a labeling/evaluation/HITL platform that runs primarily off gradio. Having this kind of feature would allow us to add NER labelling tasks or generally any task that could make use of inline labels/comments.\r\n",
+    "reactions": 5,
+    "created_at": "2022-10-12T18:27:52Z",
+    "updated_at": "2023-09-13T17:20:04Z",
+    "labels": [
+      "enhancement",
+      "svelte",
+      "python",
+      "new component"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2444",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2444",
+    "author_login": "shahbuland",
+    "author_profile": "https://github.com/shahbuland",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 2362,
+    "title": "Pipe Python terminal output/log to Gradio UI",
+    "body": "Reopening this https://github.com/gradio-app/gradio/issues/2360 \r\n\r\nOriginal description from 2360 : \r\nWhen one submits, show live log of console outputs on gradio output box.\r\n\r\nThis is a feature request, not an issue",
+    "reactions": 5,
+    "created_at": "2022-09-28T20:50:32Z",
+    "updated_at": "2025-08-22T16:48:43Z",
+    "labels": [
+      "enhancement",
+      "pending clarification"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/2362",
+    "html_url": "https://github.com/gradio-app/gradio/issues/2362",
+    "author_login": "djaym7",
+    "author_profile": "https://github.com/djaym7",
+    "already_resurrected": false
+  },
+  {
+    "repo": "gradio-app/gradio",
+    "issue_number": 466,
+    "title": "`Image` component requests",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\n\r\nWe are getting a lot of feature requests for the different interactive `Image` variants, historically we had numerous different tools to handle the different kinds of Image editing functionality, this has improved somewhat but the Image is less feature rich than it used to be. Sadly over time the new (kinda) `Image` component has become difficult to maintain and extend and need substantial refactoring to realise its full potential.\r\n\r\nWe are also finding the current signature of pre and post-process limiting, the challenge here is that the sensible thing would be to issue a breaking change to make a clean break with the past but we don't want to introduce too much churn for users.\r\n\r\nThis issue will collate all feedback we have received so far (assuming I can find it all) and act as a single place to discuss features and design of a new unified image component.\r\n\r\n**overview**\r\n\r\nBroadly speaking the `Image` component (as an interactive input) has two key parts: the source of the image and the editing capabilities. The rewrite that will stem from this issue will preserve the different inputs (and maybe there are more people would like to see) but unify the editing tools into a single, simple (hopefully) GUI. The high level thinking is that the Gradio developer will be able to toggle and constrain the various features one by one if necessary (with defaults and templates making this even simpler for users who do not need such granular control).\r\n\r\nReferences to \"Gradio API\" refer to controlling the feature via the Gradio Python API when creating the app.\r\nReferences to \"GUI\" refer to end users controlling the feature in the browser when interacting with the tool.\r\n\r\n**inputs/source**\r\n\r\n- **none** - blank background on which to sketch (other uses?)\r\n  - Gradio API - Can be constrained to a specific background colour (removing the config from the GUI), or a set of valid colours, or left open.\r\n  - GUI - Can be changed by users if left open of limited to a set of users. No config if a single background colour constraint is set in Gradio API.\r\n- **webcam** - Webcam image snapshot can be taken to be used as a background image.\r\n- **upload** - Background image can be uploaded from the users computer (either by browsing or drag+drop)\r\n\r\nOne thing that has crossed my mind is allowing multiple inputs, this would allow Gradio app authors to be very flexible with what kinds of `Image` sources are set which will work well for some more general models. Could be controllable via the GUI (defaulting to blank background but with buttons/ toggles to enable different source modes).\r\n\r\nNote: `source=canvas` would be deprecated as everything can be a canvas in the new world.\r\n\r\nAre there other possible inputs we should consider here?\r\n\r\n**editor tools**\r\n\r\nCurrently the Gradio Image component is a simple raster/bitmap graphics editor but there is no reason we cannot support certain vector features.",
+    "reactions": 5,
+    "created_at": "2022-01-19T15:57:34Z",
+    "updated_at": "2025-04-29T22:45:58Z",
+    "labels": [
+      "enhancement",
+      "🖼️ image"
+    ],
+    "url": "https://api.github.com/repos/gradio-app/gradio/issues/466",
+    "html_url": "https://github.com/gradio-app/gradio/issues/466",
+    "author_login": "pngwn",
+    "author_profile": "https://github.com/pngwn",
+    "already_resurrected": false
+  }
+]
