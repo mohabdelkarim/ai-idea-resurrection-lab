@@ -1,0 +1,10 @@
+[package]
+name = "multiline-ripgrep-poc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex = "1"
+grep-searcher = "0.1"
+grep-matcher = "0.1"
+grep-regex = "0.1"
