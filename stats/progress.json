@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-05-02T19:59:38",
-  "total_resurrections": 3,
+  "last_updated": "2026-05-03T01:55:38",
+  "total_resurrections": 4,
   "total_repos_covered": 1,
-  "average_impact_score": 5.67,
+  "average_impact_score": 5.5,
   "average_effort_hours": 120.0,
   "top_tags": [
     "terraform",
     "aws",
-    "hcl",
     "go",
+    "hcl",
     "infrastructure"
   ],
   "hall_of_fame": [
@@ -41,13 +41,13 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-02",
+    "date": "2026-05-03",
     "repo": "hashicorp/terraform",
-    "issue_number": 6632,
-    "title": "Ignore changes for a single AWS Resource Tag",
-    "reactions": 57,
-    "abandoned_date": "2019-07-24T01:54:17Z",
-    "one_line_why": "The proposed feature is necessary because it addresses a significant limitation in the current implementation of the ignore_changes argument in Terraform, which only allows users...",
+    "issue_number": 19509,
+    "title": "Remote-Exec capturing output from Inline Commands",
+    "reactions": 39,
+    "abandoned_date": "2019-07-11T19:12:07Z",
+    "one_line_why": "This feature will succeed now because the introduction of Terraform 1.3 and the widespread adoption of Terraform have created an opportunity to revisit this feature,...",
     "impact_score": 5,
     "effort_hours": 120.0,
     "has_poc": true,
@@ -55,10 +55,10 @@
     "poc_language": "go",
     "technology_tags": [
       "terraform",
-      "aws",
-      "hcl",
-      "go"
+      "go",
+      "plugin",
+      "automation"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/6632"
+    "original_url": "https://github.com/hashicorp/terraform/issues/19509"
   }
 }
