@@ -161,7 +161,7 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/15180",
     "author_login": "danielcompton",
     "author_profile": "https://github.com/danielcompton",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "hashicorp/terraform",

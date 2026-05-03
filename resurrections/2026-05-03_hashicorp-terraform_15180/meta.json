@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-03",
+  "repo": "hashicorp/terraform",
+  "issue_number": 15180,
+  "title": "Improving perception of changes when showing diff",
+  "reactions": 36,
+  "abandoned_date": "2019-02-20T02:18:18Z",
+  "one_line_why": "The proposed feature will succeed now because the current state of Terraform and its ecosystem has changed significantly since the issue was filed, with advancements...",
+  "impact_score": 6,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "terraform",
+    "react",
+    "typescript",
+    "cdk"
+  ],
+  "original_url": "https://github.com/hashicorp/terraform/issues/15180"
+}

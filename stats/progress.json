@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-05-03T01:55:38",
-  "total_resurrections": 4,
+  "last_updated": "2026-05-03T07:51:29",
+  "total_resurrections": 5,
   "total_repos_covered": 1,
-  "average_impact_score": 5.5,
+  "average_impact_score": 5.6,
   "average_effort_hours": 120.0,
   "top_tags": [
     "terraform",
@@ -31,13 +31,13 @@
       "original_url": "https://github.com/hashicorp/terraform/issues/12780"
     },
     {
-      "date": "2026-05-02",
+      "date": "2026-05-03",
       "repo": "hashicorp/terraform",
-      "issue_number": 6632,
-      "title": "Ignore changes for a single AWS Resource Tag",
-      "impact_score": 5,
-      "one_line_why": "The proposed feature is necessary because it addresses a significant limitation in the current implementation of the ignore_changes argument in Terraform, which only allows users...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/6632"
+      "issue_number": 15180,
+      "title": "Improving perception of changes when showing diff",
+      "impact_score": 6,
+      "one_line_why": "The proposed feature will succeed now because the current state of Terraform and its ecosystem has changed significantly since the issue was filed, with advancements...",
+      "original_url": "https://github.com/hashicorp/terraform/issues/15180"
     }
   ],
   "last_resurrection": {
