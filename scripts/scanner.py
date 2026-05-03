@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import time
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
@@ -31,11 +32,42 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 MAX_BODY_LENGTH = 3000
 SECONDS_BETWEEN_REPOS = 2
+MAX_COMMENTS_TO_INSPECT = 12
 
 # Minimum upvotes (reactions +1) for an issue to be considered
 MIN_REACTIONS = MIN_UPVOTES  # from config
 # If reactions >= this, skip label check entirely
 HIGH_REACTIONS_OVERRIDE = HIGH_DEMAND_UPVOTES_OVERRIDE  # from config
+
+# Labels that indicate an issue is already resolved / closed-as-done
+RESOLVED_LABELS = {
+    "completed", "done", "duplicate", "fixed", "implemented",
+    "released", "resolved", "wontfix",
+}
+
+# Text patterns that signal the issue is already solved in practice
+RESOLVED_TEXT_PATTERNS = [
+    re.compile(pattern, re.IGNORECASE) for pattern in [
+        r"\balready (?:available|implemented|supported|possible|works?|added)\b",
+        r"\bthis (?:is|was) (?:already )?(?:available|implemented|supported|fixed|done)\b",
+        r"\b(?:fixed|resolved|implemented|released|shipped) (?:in|by|since|with)\b",
+        r"\bduplicate of\b",
+        r"\byou can already\b",
+        r"\buse (?:the )?.+ instead\b",
+        r"\bavailable (?:in|via|through|as of)\b",
+        r"\bpackaged (?:for|in|on)\b",
+        r"\bhomebrew\b",
+        r"\bapt(?:-get)? install\b",
+        r"\bwinget install\b",
+        r"\bpacman -S\b",
+        r"\bscoop install\b",
+        r"\bchoco install\b",
+        r"\bsnapcraft\b",
+        r"\bflatpak install\b",
+        r"\bclosing (?:as|this as) (?:resolved|done|fixed|duplicate|complete)\b",
+        r"\bhas been (?:added|merged|implemented|shipped|released)\b",
+    ]
+]
 
 
 @dataclass(slots=True)
@@ -216,6 +248,83 @@ def get_repo_issues(repo: str, token: str) -> list[dict[str, Any]]:
     return all_issues[:MAX_ISSUES_PER_REPO]
 
 
+def get_issue_comments(repo: str, issue_number: int, token: str) -> list[dict[str, Any]]:
+    """Fetch the first MAX_COMMENTS_TO_INSPECT comments for a given issue."""
+    url = f"https://api.github.com/repos/{repo}/issues/{issue_number}/comments"
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "Authorization": f"Bearer {token}",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    response = _request_with_backoff(
+        url, headers=headers, params={"per_page": MAX_COMMENTS_TO_INSPECT}
+    )
+    if response is None or response.status_code != 200:
+        return []
+    try:
+        data = response.json()
+    except ValueError:
+        return []
+    return data if isinstance(data, list) else []
+
+
+def _has_resolved_label(issue: dict[str, Any]) -> bool:
+    labels = issue.get("labels", [])
+    label_names = {
+        str(label.get("name", "")).strip().lower()
+        for label in labels
+        if isinstance(label, dict)
+    }
+    return any(label in RESOLVED_LABELS for label in label_names)
+
+
+def _has_resolved_signal(text: str) -> bool:
+    """Return True if the text contains language suggesting the issue is solved."""
+    compact = re.sub(r"\s+", " ", text).strip()
+    if not compact:
+        return False
+    return any(pattern.search(compact) for pattern in RESOLVED_TEXT_PATTERNS)
+
+
+def is_already_solved(repo: str, issue: dict[str, Any], token: str) -> bool:
+    """
+    Return True if the issue appears to be already solved / obsolete.
+
+    Checks (in order, cheapest first):
+      1. Label contains a resolved signal (no API calls needed).
+      2. Title or body contains a resolved text pattern.
+      3. Any of the first MAX_COMMENTS_TO_INSPECT comments contains a resolved pattern.
+    """
+    if _has_resolved_label(issue):
+        LOGGER.info(
+            "Resolved label on issue #%s (%s) — skipping.",
+            issue.get("number"), issue.get("title", "")[:60],
+        )
+        return True
+
+    title = str(issue.get("title", ""))
+    body = str(issue.get("body") or "")
+    if _has_resolved_signal(title + " " + body):
+        LOGGER.info(
+            "Resolved signal in issue text #%s (%s) — skipping.",
+            issue.get("number"), title[:60],
+        )
+        return True
+
+    issue_number = int(issue.get("number", 0))
+    if issue_number:
+        for comment in get_issue_comments(repo, issue_number, token):
+            comment_body = str(comment.get("body") or "")
+            if _has_resolved_signal(comment_body):
+                LOGGER.info(
+                    "Resolved signal in comment on issue #%d (%s) — skipping.",
+                    issue_number, title[:60],
+                )
+                return True
+
+    return False
+
+
 def _get_reactions_count(issue: dict[str, Any]) -> int:
     """Extract +1 reactions. GitHub API returns reactions.+1 directly."""
     reactions = issue.get("reactions", {})
@@ -236,7 +345,7 @@ def is_abandoned(issue: dict[str, Any]) -> bool:
     1. Skip pull requests.
     2. Must have >= MIN_REACTIONS upvotes.
     3. Must be closed OR last updated >= MONTHS_STALE_THRESHOLD months ago.
-    4. If reactions >= HIGH_REACTIONS_OVERRIDE → always qualifies (ignore labels).
+    4. If reactions >= HIGH_REACTIONS_OVERRIDE, always qualifies (ignore labels).
     5. Otherwise must have at least one label from ABANDONED_LABELS (from config).
     """
     # 1. Skip PRs
@@ -317,6 +426,10 @@ def scan_repo(repo: str, token: str) -> int:
             continue
         if not is_abandoned(raw_issue):
             continue
+        # Skip issues that appear to already be solved in practice
+        if is_already_solved(repo, raw_issue, token):
+            LOGGER.info("Skipping solved/obsolete issue: %s#%d", repo, issue_number)
+            continue
         entry = _entry_from_issue(repo, raw_issue)
         new_entries.append(asdict(entry))
         LOGGER.info("Qualified issue found: %s#%d (reactions=%d)", repo, issue_number, entry.reactions)
@@ -365,7 +478,7 @@ def main() -> None:
         if index < len(REPOS_TO_SCAN) - 1:
             time.sleep(SECONDS_BETWEEN_REPOS)
 
-    print(f"✅ Scan complete. Total new issues found: {total}")
+    print(f"\u2705 Scan complete. Total new issues found: {total}")
 
 
 if __name__ == "__main__":
