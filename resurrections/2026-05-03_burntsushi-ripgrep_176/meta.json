@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-03",
+  "repo": "BurntSushi/ripgrep",
+  "issue_number": 176,
+  "title": "support searching across multiple lines",
+  "reactions": 61,
+  "abandoned_date": "2021-12-01T14:11:33Z",
+  "one_line_why": "Ripgrep's improved search engine and Rust's regex library make this feature feasible now.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "technology_tags": [
+    "rust",
+    "regex",
+    "search",
+    "ripgrep"
+  ],
+  "original_url": "https://github.com/BurntSushi/ripgrep/issues/176"
+}

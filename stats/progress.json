@@ -1,64 +1,45 @@
 {
-  "last_updated": "2026-05-03T08:34:41",
-  "total_resurrections": 6,
-  "total_repos_covered": 2,
-  "average_impact_score": 5.5,
-  "average_effort_hours": 120.0,
+  "last_updated": "2026-05-03T12:53:13",
+  "total_resurrections": 1,
+  "total_repos_covered": 1,
+  "average_impact_score": 6.0,
+  "average_effort_hours": 80.0,
   "top_tags": [
-    "terraform",
-    "aws",
-    "go",
-    "hcl",
-    "infrastructure"
+    "rust",
+    "regex",
+    "search",
+    "ripgrep"
   ],
   "hall_of_fame": [
     {
-      "date": "2026-05-02",
-      "repo": "hashicorp/terraform",
-      "issue_number": 1439,
-      "title": "terraform get: can't use variable in module source parameter?",
-      "impact_score": 6,
-      "one_line_why": "This feature will succeed now because it addresses a long-standing issue in Terraform's module management system, and provides users with a way to dynamically configure...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/1439"
-    },
-    {
-      "date": "2026-05-02",
-      "repo": "hashicorp/terraform",
-      "issue_number": 12780,
-      "title": "offer to create missing bucket and lock_table for s3 backend",
-      "impact_score": 6,
-      "one_line_why": "Improve user experience and reduce errors by automating the creation of S3 buckets and lock tables, which is a common pain point for Terraform users...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/12780"
-    },
-    {
       "date": "2026-05-03",
-      "repo": "hashicorp/terraform",
-      "issue_number": 15180,
-      "title": "Improving perception of changes when showing diff",
+      "repo": "BurntSushi/ripgrep",
+      "issue_number": 176,
+      "title": "support searching across multiple lines",
       "impact_score": 6,
-      "one_line_why": "The proposed feature will succeed now because the current state of Terraform and its ecosystem has changed significantly since the issue was filed, with advancements...",
-      "original_url": "https://github.com/hashicorp/terraform/issues/15180"
+      "one_line_why": "Ripgrep's improved search engine and Rust's regex library make this feature feasible now.",
+      "original_url": "https://github.com/BurntSushi/ripgrep/issues/176"
     }
   ],
   "last_resurrection": {
     "date": "2026-05-03",
-    "repo": "hashicorp/terraform",
-    "issue_number": 19509,
-    "title": "Remote-Exec capturing output from Inline Commands",
-    "reactions": 39,
-    "abandoned_date": "2019-07-11T19:12:07Z",
-    "one_line_why": "This feature will succeed now because the introduction of Terraform 1.3 and the widespread adoption of Terraform have created an opportunity to revisit this feature,...",
-    "impact_score": 5,
-    "effort_hours": 120.0,
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 176,
+    "title": "support searching across multiple lines",
+    "reactions": 61,
+    "abandoned_date": "2021-12-01T14:11:33Z",
+    "one_line_why": "Ripgrep's improved search engine and Rust's regex library make this feature feasible now.",
+    "impact_score": 6,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "rust",
     "technology_tags": [
-      "terraform",
-      "go",
-      "plugin",
-      "automation"
+      "rust",
+      "regex",
+      "search",
+      "ripgrep"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/19509"
+    "original_url": "https://github.com/BurntSushi/ripgrep/issues/176"
   }
 }
