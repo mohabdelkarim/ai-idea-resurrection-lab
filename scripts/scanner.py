@@ -12,6 +12,7 @@ from typing import Any
 import requests
 
 from config import (
+    ABANDONED_LABELS,
     GRAVEYARD_FOLDER,
     HIGH_DEMAND_UPVOTES_OVERRIDE,
     MAX_ISSUES_PER_REPO,
@@ -31,39 +32,10 @@ LOGGER = logging.getLogger(__name__)
 MAX_BODY_LENGTH = 3000
 SECONDS_BETWEEN_REPOS = 2
 
-# Labels that indicate an issue was closed/abandoned without being implemented.
-# Cast wide net: wontfix, stale, someday, won't fix variants, declined, closed-as-design, etc.
-ABANDONED_LABELS: frozenset[str] = frozenset({
-    "wontfix",
-    "wont fix",
-    "won't fix",
-    "stale",
-    "someday",
-    "help wanted",
-    "enhancement",
-    "feature-request",
-    "feature request",
-    "declined",
-    "closed",
-    "backlog",
-    "needs-discussion",
-    "needs discussion",
-    "idea",
-    "proposal",
-    "not planned",
-    "not-planned",
-    "on hold",
-    "on-hold",
-    "future",
-    "icebox",
-    "awaiting-more-feedback",
-    "awaiting more feedback",
-})
-
 # Minimum upvotes (reactions +1) for an issue to be considered
-MIN_REACTIONS = MIN_UPVOTES  # from config, default 20
+MIN_REACTIONS = MIN_UPVOTES  # from config
 # If reactions >= this, skip label check entirely
-HIGH_REACTIONS_OVERRIDE = HIGH_DEMAND_UPVOTES_OVERRIDE  # from config, default 100
+HIGH_REACTIONS_OVERRIDE = HIGH_DEMAND_UPVOTES_OVERRIDE  # from config
 
 
 @dataclass(slots=True)
@@ -201,11 +173,11 @@ def get_repo_issues(repo: str, token: str) -> list[dict[str, Any]]:
 
     while page <= SCAN_PAGES_PER_REPO and len(all_issues) < MAX_ISSUES_PER_REPO:
         params = {
-            "state": "all",
+            "state": "closed",           # focus on closed issues — abandoned features live here
             "per_page": per_page,
             "page": page,
-            "sort": "updated",
-            "direction": "asc",  # oldest first = most likely abandoned
+            "sort": "reactions",         # most-reacted first = highest impact candidates
+            "direction": "desc",         # highest reactions at the top
         }
         response = _request_with_backoff(url, headers=headers, params=params)
         if response is None:
@@ -263,9 +235,9 @@ def is_abandoned(issue: dict[str, Any]) -> bool:
     Rules (in order):
     1. Skip pull requests.
     2. Must have >= MIN_REACTIONS upvotes.
-    3. Must be either closed OR last updated >= MONTHS_STALE_THRESHOLD months ago.
+    3. Must be closed OR last updated >= MONTHS_STALE_THRESHOLD months ago.
     4. If reactions >= HIGH_REACTIONS_OVERRIDE → always qualifies (ignore labels).
-    5. Otherwise must have at least one label from ABANDONED_LABELS.
+    5. Otherwise must have at least one label from ABANDONED_LABELS (from config).
     """
     # 1. Skip PRs
     if "pull_request" in issue:
@@ -292,7 +264,7 @@ def is_abandoned(issue: dict[str, Any]) -> bool:
     if reactions >= HIGH_REACTIONS_OVERRIDE:
         return True
 
-    # 5. Must have at least one qualifying label
+    # 5. Must have at least one qualifying label (sourced from config.ABANDONED_LABELS)
     labels = issue.get("labels", [])
     label_names = {
         str(label.get("name", "")).strip().lower()
