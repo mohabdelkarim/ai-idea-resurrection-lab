@@ -60,11 +60,13 @@ def run_step(step_name: str, fn: Callable[[], None]) -> bool:
 
 def load_latest_meta() -> dict[str, Any]:
     base = Path(RESURRECTION_BASE_FOLDER)
-    candidates = sorted(base.glob("day-*/meta.json"), reverse=True)
+    # Folders use format: YYYY-MM-DD_repo_issuenumber (e.g. 2026-05-03_burntsushi-ripgrep_176)
+    candidates = sorted(base.glob("*/meta.json"), reverse=True)
     if not candidates:
         LOGGER.warning("No resurrection meta.json files found under %s", base)
         return {}
     latest = candidates[0]
+    LOGGER.info("Loading latest meta from: %s", latest)
     try:
         with latest.open("r", encoding="utf-8") as handle:
             parsed = json.load(handle)
@@ -75,6 +77,11 @@ def load_latest_meta() -> dict[str, Any]:
 
 
 def export_commit_vars(meta: dict[str, Any]) -> None:
+    if not meta:
+        LOGGER.error(
+            "⚠️  export_commit_vars called with empty meta — "
+            "commit message will use fallback values. Check load_latest_meta()."
+        )
     export_to_github_env("ISSUE_TITLE", str(meta.get("title", "Unknown")))
     export_to_github_env("ISSUE_REPO", str(meta.get("repo", "unknown/unknown")))
     export_to_github_env("ISSUE_NUMBER", str(meta.get("issue_number", "0")))
@@ -140,6 +147,13 @@ def run_pipeline() -> None:
     results.append(run_step("Original Issue Commenter", _commenter_step))
 
     meta = load_latest_meta()
+    if not meta:
+        LOGGER.error(
+            "❌ Pipeline finished but no meta.json was found. "
+            "Commit message vars will be empty. Aborting to prevent a bad commit."
+        )
+        sys.exit(1)
+
     export_commit_vars(meta)
     LOGGER.info("Pipeline complete. Steps: %d/%d passed.", sum(results), len(results))
 
