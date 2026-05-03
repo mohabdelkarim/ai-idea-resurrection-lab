@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import re
+import time
 from pathlib import Path
 from typing import Any
 
@@ -129,7 +130,9 @@ CRITICAL RULES:
 3. one_line_summary and one_line_why MUST be complete sentences of 10-20 words, no ellipsis.
 4. proof_of_concept_code must be runnable code, NOT pseudocode or a description.
 5. rfc_content MUST contain all 6 sections listed above.
-6. Respond with ONLY a valid JSON object. No markdown fences. No explanation outside JSON."""
+6. Keep each prose field (why_it_died, why_2026_changes_it, modern_design) to 3-5 sentences max.
+   Do NOT write long essays — concise, specific, and technical is the goal.
+7. Respond with ONLY a valid JSON object. No markdown fences. No explanation outside JSON."""
 
 
 ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
@@ -141,6 +144,9 @@ ONE_LINE_MAX_WORDS = 20
 MODEL_NAME = "llama-3.3-70b-versatile"
 ANALYZER_TEMPERATURE = 0.55
 MAX_ANALYSIS_RETRIES = 4
+# Set a high token budget so the model never gets truncated mid-JSON.
+# llama-3.3-70b-versatile supports up to 32 768 output tokens on Groq.
+MAX_TOKENS = 8192
 
 
 def _preferred_poc_language(repo: str) -> str:
@@ -169,7 +175,7 @@ def build_user_prompt(issue: dict[str, Any]) -> str:
         f"Last activity: {updated_at}\n"
         f"Labels: {labels_text}\n\n"
         f"Original description from the issue author:\n"
-        f'"""{{body}}"""\n\n'
+        f'"""{body}"""\n\n'
         "Produce a FULL, DETAILED resurrection analysis following your system instructions.\n"
         "For impact_score: estimate the number of developers directly affected by this "
         "specific feature, then map that to the 1-10 scale in your instructions. "
@@ -178,8 +184,9 @@ def build_user_prompt(issue: dict[str, Any]) -> str:
         "Use this language for proof_of_concept_code — it matches the repo's real implementation stack.\n"
         "For effort_hours: give a REALISTIC estimate specific to this issue's complexity. "
         "Do not use 120 as a default — justify the number based on scope.\n"
+        "IMPORTANT: Keep each prose field to 3-5 sentences. Be concise and technical.\n"
         "Return ONLY the JSON object. No markdown. No explanation outside the JSON."
-    ).replace("{body}", body)
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -445,6 +452,9 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
     user_prompt = build_user_prompt(issue)
     attempt_errors: list[str] = []
+    # Track whether the last failure was a JSON validation error from Groq (400).
+    # If so, we adjust the prompt on the next attempt instead of sending identically.
+    last_was_json_validate_failure = False
 
     for attempt in range(1, MAX_ANALYSIS_RETRIES + 1):
         LOGGER.info("[Analyzer] Attempt %d/%d for issue #%s",
@@ -454,30 +464,53 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_prompt},
         ]
+
+        # On retry: always append a correction message so the model adjusts.
+        # This is especially important after a json_validate_failed (400) —
+        # sending the identical prompt again guarantees the same failure.
         if attempt > 1 and attempt_errors:
-            messages.append({
-                "role": "user",
-                "content": (
-                    f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
-                    "Fix them and return only the corrected JSON object. "
-                    "proof_of_concept_code must be at least 80 lines of real runnable code. "
-                    "one_line_summary and one_line_why must be complete sentences with no trailing ellipsis. "
-                    "effort_hours must reflect the actual complexity of this specific issue."
-                ),
-            })
+            correction = (
+                f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
+                "Fix ALL of them and return only the corrected JSON object.\n"
+                "proof_of_concept_code must be at least 80 lines of real runnable code.\n"
+                "one_line_summary and one_line_why must be complete sentences with no trailing ellipsis.\n"
+                "effort_hours must reflect the actual complexity of this specific issue.\n"
+            )
+            if last_was_json_validate_failure:
+                correction += (
+                    "IMPORTANT: Your last response was truncated before the closing brace. "
+                    "Keep all prose fields (why_it_died, why_2026_changes_it, modern_design, "
+                    "rfc_content) to 3-5 sentences each. "
+                    "Do NOT write long paragraphs — be concise so the JSON closes properly."
+                )
+            messages.append({"role": "user", "content": correction})
 
         try:
             completion = client.chat.completions.create(
                 model=MODEL_NAME,
                 temperature=ANALYZER_TEMPERATURE,
+                max_tokens=MAX_TOKENS,
                 response_format={"type": "json_object"},
                 messages=messages,
             )
+            last_was_json_validate_failure = False
         except Exception as api_error:
-            attempt_errors.append(f"Attempt {attempt}: API error — {api_error}")
+            error_str = str(api_error)
+            attempt_errors.append(f"Attempt {attempt}: API error — {error_str}")
             LOGGER.error("[Analyzer] API error: %s", api_error)
+
+            # If Groq returned 400 json_validate_failed, the prompt caused truncation.
+            # Flag it so the next attempt sends a conciseness correction message.
+            if "json_validate_failed" in error_str or "400" in error_str:
+                last_was_json_validate_failure = True
+
             if attempt == MAX_ANALYSIS_RETRIES:
                 raise
+
+            # Exponential backoff: 2s, 4s, 8s — prevents rate-limit exhaustion (429)
+            backoff = 2 ** attempt
+            LOGGER.info("[Analyzer] Waiting %ds before retry %d...", backoff, attempt + 1)
+            time.sleep(backoff)
             continue
 
         raw_response = _extract_raw_response(completion)
@@ -493,12 +526,16 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
             LOGGER.warning("[Analyzer] %s", msg)
             if attempt == MAX_ANALYSIS_RETRIES:
                 raise ValueError("; ".join(attempt_errors)) from error
+            backoff = 2 ** attempt
+            time.sleep(backoff)
             continue
 
         if not isinstance(parsed, dict):
             attempt_errors.append(f"Attempt {attempt}: response is not a JSON object")
             if attempt == MAX_ANALYSIS_RETRIES:
                 raise ValueError("; ".join(attempt_errors))
+            backoff = 2 ** attempt
+            time.sleep(backoff)
             continue
 
         LOGGER.info("[Analyzer] Keys returned: %s", list(parsed.keys()))
@@ -521,6 +558,9 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
                 MAX_ANALYSIS_RETRIES,
             )
             return {"raw_response": raw_response, "analysis": parsed}
+
+        backoff = 2 ** attempt
+        time.sleep(backoff)
 
     raise ValueError("Analysis failed after all retries.")
 
