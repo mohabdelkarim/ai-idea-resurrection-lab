@@ -1,0 +1,125 @@
+[
+  {
+    "repo": "expressjs/express",
+    "issue_number": 4282,
+    "title": "Dependencies (5.0)",
+    "body": "It seems that we can remove a few dependencies before the `5.0` release:\r\n\r\n- `methods` - We can use the built-in `http` module:\r\n\r\n```javascript\r\nconst { METHODS } = require(\"http\");\r\nconst methods = METHODS.map((method) => method.toLowerCase());\r\n```\r\n\r\n- `path-is-absolute` - We can use the built-in `path` module:\r\n\r\n```javascript\r\nconst path = require(\"path\");\r\nconst isAbsolute = path.isAbsolute(\"some-path\");\r\n```\r\n\r\n- `safe-buffer` - We can use the built-in `Buffer`:\r\n\r\n```javascript\r\nconst a = Buffer.from(\"something\");\r\n```\r\n\r\n- `setprototypeof` - We can use the `Object.setPrototypeOf()`\r\n\r\n```javascript\r\nObject.setPrototypeOf(this.request, parent.request);\r\n```\r\n\r\n- `utils-merge` - We can use the spread operator:\r\n\r\n```javascript\r\nconst opts = { expires: new Date(1), path: '/' , ...options};\r\n```",
+    "reactions": 57,
+    "created_at": "2020-05-16T09:47:16Z",
+    "updated_at": "2025-01-11T18:01:33Z",
+    "labels": [
+      "ideas"
+    ],
+    "url": "https://api.github.com/repos/expressjs/express/issues/4282",
+    "html_url": "https://github.com/expressjs/express/issues/4282",
+    "author_login": "vansergen",
+    "author_profile": "https://github.com/vansergen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "expressjs/express",
+    "issue_number": 2259,
+    "title": "promises",
+    "body": "now that promises are going mainstream, i'm trying to think of how to make express more async friendly. an idea is to use promises.\n- `next()` now returns a promise\n- if middleware returns a promise, that promise is resolved and propagated up `next()`s\n\n``` js\napp.use(function (req, res, next) {\n  // a promise must be returned, \n  // otherwise the function will be assumed to be synchronous\n  return User.get(req.session.userid).then(function (user) {\n    req.user = user\n  })\n  .then(next) // execute all downstream middleware\n  .then(function () {\n    // send a response after all downstream middleware have executed\n    // this is equivalent to koa's \"upstream\"\n    res.send(user)\n  })\n})\n```\n\nError handlers are now more koa-like:\n\n``` js\napp.use(function (req, res, next) {\n  return next().catch(function (err) {\n    // a custom error handler\n    if (res.headerSent) return\n    res.statusCode = err.status || 500\n    res.send(err.message) \n  })\n})\n\napp.use(function (req, res) {\n  throw new Error('hahahah')\n})\n```\n\nPros:\n- it **should** be backwards compatible since you don't have to resolve the promise returned from `next()`\n- much easier error handling including `throw`ing\n- solves issues shown in https://github.com/visionmedia/express/issues/2255\n- no more `fn.length` checking ~_~\n- could probably easily upgrade to es7 async functions\n\nCons:\n- promises\n- upgrading middleware and supporting both signatures might be a pain in the ass\n- probably a lot slower\n",
+    "reactions": 44,
+    "created_at": "2014-07-24T01:27:09Z",
+    "updated_at": "2019-02-15T14:13:56Z",
+    "labels": [
+      "discuss",
+      "enhancement",
+      "5.x"
+    ],
+    "url": "https://api.github.com/repos/expressjs/express/issues/2259",
+    "html_url": "https://github.com/expressjs/express/issues/2259",
+    "author_login": "jonathanong",
+    "author_profile": "https://github.com/jonathanong",
+    "already_resurrected": false
+  },
+  {
+    "repo": "expressjs/express",
+    "issue_number": 2761,
+    "title": "Support for module http2?",
+    "body": "Hi, I would like to know if Express 5.0 will have support for http2:\nhttps://github.com/molnarg/node-http2\n\nI was reading a bit and I noticed that exist a problem with http2 module:\nhttps://github.com/molnarg/node-http2/issues/100\n\nI have tested in local and the problem continues:\nhttps://github.com/jabrena/CloudFoundryLab/blob/master/Node_HelloWorld_http2_express/index.js\n\nIt this issue in the roadmap?\nDoes exist another alternative to run a express application with http2?\n\nMany thanks in advance.\n\nJuan Antonio\n",
+    "reactions": 39,
+    "created_at": "2015-09-23T08:57:14Z",
+    "updated_at": "2025-03-28T19:37:00Z",
+    "labels": [
+      "future"
+    ],
+    "url": "https://api.github.com/repos/expressjs/express/issues/2761",
+    "html_url": "https://github.com/expressjs/express/issues/2761",
+    "author_login": "jabrena",
+    "author_profile": "https://github.com/jabrena",
+    "already_resurrected": false
+  },
+  {
+    "repo": "expressjs/express",
+    "issue_number": 4535,
+    "title": "Node.js 15+ starts recommending promise based versions by default - Express 5.0 and wrapAsync",
+    "body": "Hi!\r\n\r\nAs an example Node.js and https://nodejs.org/api/fs.html is starting to recommend promise-based versions foremost. (compare with earlier versions that has the promised based versions last: https://nodejs.org/docs/latest-v14.x/api/fs.html).\r\n\r\nExpress 5.0 has added automatic handling in routes of async/await routes that will automatically invoke the Express error handler if a an async function throws. There are current workarounds to create a `wrapAsync()` function around routes, but in bigger projects some users miss this and it's also not-so-nice-looking (and confusing for some).\r\n\r\nI am merely wondering if Express 5.0 could be released, and current items on https://github.com/expressjs/express/milestone/11 could be moved to a 6.0 release? I am very respectful of the fact that you voluntarily work on this, and these kind of questions are frowned upon. https://github.com/expressjs/express/pull/2237 was created 7 years ago now, so I at least think it should be ok to ask for this without in any way not being grateful of this project already and its release cadence.\r\n\r\nI guess what I am saying is that there are some nice things already on the main branch for Express 5.0 that works good with latest versions of Node.js 15, so a release would be amazing.",
+    "reactions": 36,
+    "created_at": "2021-02-23T12:31:48Z",
+    "updated_at": "2022-02-17T16:01:51Z",
+    "labels": [
+      "future"
+    ],
+    "url": "https://api.github.com/repos/expressjs/express/issues/4535",
+    "html_url": "https://github.com/expressjs/express/issues/4535",
+    "author_login": "thernstig",
+    "author_profile": "https://github.com/thernstig",
+    "already_resurrected": false
+  },
+  {
+    "repo": "expressjs/express",
+    "issue_number": 4453,
+    "title": "Allow specifying JSON stringifier",
+    "body": "It would be great to be able to override the [`JSON.stringify`](https://github.com/expressjs/express/blob/508936853a6e311099c9985d4c11a4b1b8f6af07/lib/response.js#L1122-L1123) call in `res.json()`, to use `json-bigint` to serialize JSON objects",
+    "reactions": 28,
+    "created_at": "2020-11-02T23:01:37Z",
+    "updated_at": "2025-12-03T18:19:43Z",
+    "labels": [
+      "discuss",
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/expressjs/express/issues/4453",
+    "html_url": "https://github.com/expressjs/express/issues/4453",
+    "author_login": "brandon-leapyear",
+    "author_profile": "https://github.com/brandon-leapyear",
+    "already_resurrected": false
+  },
+  {
+    "repo": "expressjs/express",
+    "issue_number": 5275,
+    "title": "Unable to create Partitioned cookie",
+    "body": "The Partitioned attribute is not set when passing the option to res.cookie(). \r\n\r\nhttps://developer.chrome.com/docs/privacy-sandbox/third-party-cookie-phase-out/#partitioned-cookies",
+    "reactions": 12,
+    "created_at": "2023-10-10T23:03:18Z",
+    "updated_at": "2026-01-17T04:07:18Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/expressjs/express/issues/5275",
+    "html_url": "https://github.com/expressjs/express/issues/5275",
+    "author_login": "benfosterlitmos",
+    "author_profile": "https://github.com/benfosterlitmos",
+    "already_resurrected": false
+  },
+  {
+    "repo": "expressjs/express",
+    "issue_number": 3197,
+    "title": "express.static - add support for cache-control: immutable",
+    "body": "On static content with versioned URLs, add a flag to options on express.static that generates a cache-control header with immutable, e.g.:\r\n`Cache-Control: max-age=365000000, immutable`\r\nThis reduces unnecessary requests in supporting clients.\r\n\r\nThis is supported by Firefox 49 and used by Facebook:\r\nhttps://hacks.mozilla.org/2017/01/using-immutable-caching-to-speed-up-the-web/\r\nhttps://bitsup.blogspot.co.uk/2016/05/cache-control-immutable.html\r\n\r\nSupported in Chrome 54\r\nhttps://bugs.chromium.org/p/chromium/issues/detail?id=611416\r\n\r\nWebkit support seems to be added:\r\nhttps://bugs.webkit.org/show_bug.cgi?id=167497\r\n\r\n",
+    "reactions": 8,
+    "created_at": "2017-02-03T13:47:13Z",
+    "updated_at": "2017-09-28T17:46:31Z",
+    "labels": [
+      "enhancement",
+      "module:express-static"
+    ],
+    "url": "https://api.github.com/repos/expressjs/express/issues/3197",
+    "html_url": "https://github.com/expressjs/express/issues/3197",
+    "author_login": "techandsoftware",
+    "author_profile": "https://github.com/techandsoftware",
+    "already_resurrected": false
+  }
+]

@@ -1,0 +1,574 @@
+[
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 938,
+    "title": "Ubuntu install error when rg is installed also",
+    "body": "Running Ubuntu 20.04:\r\n```\r\n$ sudo apt install bat ripgrep\r\nReading package lists... Done\r\nBuilding dependency tree       \r\nReading state information... Done\r\nThe following additional packages will be installed:\r\n  libgit2-28 libhttp-parser2.9 libmbedcrypto3 libmbedtls12 libmbedx509-0\r\n  libssh2-1\r\nThe following NEW packages will be installed:\r\n  bat libgit2-28 libhttp-parser2.9 libmbedcrypto3 libmbedtls12 libmbedx509-0\r\n  libssh2-1 ripgrep\r\n0 to upgrade, 8 to newly install, 0 to remove and 1 not to upgrade.\r\nNeed to get 1,228 kB/3,577 kB of archives.\r\nAfter this operation, 11.1 MB of additional disk space will be used.\r\nDo you want to continue? [Y/n] Y\r\nGet:1 http://au.archive.ubuntu.com/ubuntu focal/universe amd64 ripgrep amd64 11.0.2-1build1 [1,228 kB]\r\nFetched 1,228 kB in 0s (2,731 kB/s)\r\nINFO Requesting to save current system state      \r\nSuccessfully saved as \"autozsys_j4dqft\"\r\nSelecting previously unselected package libhttp-parser2.9:amd64.\r\n(Reading database ... 225178 files and directories currently installed.)\r\nPreparing to unpack .../0-libhttp-parser2.9_2.9.2-2_amd64.deb ...\r\nUnpacking libhttp-parser2.9:amd64 (2.9.2-2) ...\r\nSelecting previously unselected package libmbedcrypto3:amd64.\r\nPreparing to unpack .../1-libmbedcrypto3_2.16.4-1ubuntu2_amd64.deb ...\r\nUnpacking libmbedcrypto3:amd64 (2.16.4-1ubuntu2) ...\r\nSelecting previously unselected package libmbedx509-0:amd64.\r\nPreparing to unpack .../2-libmbedx509-0_2.16.4-1ubuntu2_amd64.deb ...\r\nUnpacking libmbedx509-0:amd64 (2.16.4-1ubuntu2) ...\r\nSelecting previously unselected package libmbedtls12:amd64.\r\nPreparing to unpack .../3-libmbedtls12_2.16.4-1ubuntu2_amd64.deb ...\r\nUnpacking libmbedtls12:amd64 (2.16.4-1ubuntu2) ...\r\nSelecting previously unselected package libssh2-1:amd64.\r\nPreparing to unpack .../4-libssh2-1_1.8.0-2.1build1_amd64.deb ...\r\nUnpacking libssh2-1:amd64 (1.8.0-2.1build1) ...\r\nSelecting previously unselected package libgit2-28:amd64.\r\nPreparing to unpack .../5-libgit2-28_0.28.4+dfsg.1-2_amd64.deb ...\r\nUnpacking libgit2-28:amd64 (0.28.4+dfsg.1-2) ...\r\nPreparing to unpack .../6-bat_0.12.1-1build1_amd64.deb ...\r\nUnpacking bat (0.12.1-1build1) ...\r\nSelecting previously unselected package ripgrep.\r\nPreparing to unpack .../7-ripgrep_11.0.2-1build1_amd64.deb ...\r\nUnpacking ripgrep (11.0.2-1build1) ...\r\ndpkg: error processing archive /tmp/apt-dpkg-install-8eoEcZ/7-ripgrep_11.0.2-1bu\r\nild1_amd64.deb (--unpack):\r\n trying to overwrite '/usr/.crates2.json', which is also in package bat 0.12.1-1\r\nbuild1\r\ndpkg-deb: error: paste subprocess was killed by signal (Broken pipe)\r\nErrors were encountered while processing:\r\n /tmp/apt-dpkg-install-8eoEcZ/7-ripgrep_11.0.2-1build1_amd64.deb\r\nINFO Updating GRUB menu                           \r\nE: Sub-process /usr/bin/dpkg returned an error code (1)\r\n```",
+    "reactions": 50,
+    "created_at": "2020-04-23T09:00:06Z",
+    "updated_at": "2022-04-22T15:10:58Z",
+    "labels": [
+      "bug",
+      "packaging/tooling"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/938",
+    "html_url": "https://github.com/sharkdp/bat/issues/938",
+    "author_login": "SamuelMarks",
+    "author_profile": "https://github.com/SamuelMarks",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 1746,
+    "title": "Support for different themes based on Terminal color scheme",
+    "body": "## Thanks!\r\n\r\nAs always and once again, thank you @sharkdp for your time and effort.  Hopefully I'm not being a nuisance with these requests.\r\n\r\n## Homework\r\n\r\nThis is not a direct duplicate of #641 or #689, but it is related.  I think that `bat` can be improved beyond its current suggestion of manually running `defaults read` by performing actual detection of background colors, and exposing multiple theme options.\r\n\r\n## Current State\r\n\r\nCurrently, `bat` allows specification of a SINGLE theme, via either `$BAT_THEME` or `--theme`.  This is great, and fits most use-cases.  The [README.md proposes a way to work around this](https://github.com/sharkdp/bat#dark-mode), which is macOS Terminal.app-specific, and a little hacky.  I think `bat` can do even better (and work on more platforms than macOS)!\r\n\r\nWhen distributing tools built upon `bat`, it's not generally predictable what background color / terminal theme a user has configured for `{Terminal.app,iTerm2.app,Konsole,gnome-terminal,etc}`.\r\n\r\nAdditionally, the default theme (i.e. no `--theme` nor `$BAT_THEME`) may not be appropriate for a given terminal (and the work-around does not fix this).\r\n\r\nFinally, the theme may actually need to change, if the user has multiple different terminal profiles, or if the color scheme of the profile changes based on external factors (such as the default Terminal.app theme, which may change based on the current time of day).\r\n\r\n## Feature\r\n\r\nIt would be nice to have `bat` attempt to do some forms of auto-detection of the terminal's default background color, and allow the user to supply `$BAT_THEME_DARK` and `$BAT_THEME_LIGHT`, one of which is auto-selected by `bat`.\r\n\r\nThese should probably have lower precedence of `$BAT_THEME` and `--theme`.\r\n\r\nThere are several reasons for wanting this:\r\n\r\n* Users who use macOS's \"Auto\" appearance switches between \"Light\" and \"Dark\" at various times of day, so a single theme isn't sufficient.\r\n* Projects which build upon `bat` may want to provide *modified* themes (and cache, and .bin files) to work around features that `bat` doesn't have yet (e.g. #1745) and forcefully override e.g. `$BAT_THEME` with their modified theme.  These tools may wish to provide two themes -- one for light mode, and one for dark mode.\r\n\r\n## Libraries and Other Prior Work\r\n\r\nThere are several projects that may be directly usable, or usable for inspiration and mechanism, for auto-detecting a light or dark terminal.\r\n\r\n### `termbg`\r\n\r\nRust library that claims to do exactly what's needed.\r\n\r\nHowever, it has at least one bug on macOS for Terminal.app: https://github.com/dalance/termbg/issues/8\r\n\r\nhttps://github.com/dalance/termbg\r\n\r\n### `rust-dark-light`\r\n\r\nRust project, not sure how well it works or what systems are supported.\r\n\r\nhttps://github.com/frewsxcv/rust-dark-light\r\n\r\n### `termenv`\r\n\r\nWhile written in Go, this is a whole library for manipulating colors, and also features UNIX- and Windows-compatible light/dark mode detection.\r\n\r\nIn particular, it ha",
+    "reactions": 38,
+    "created_at": "2021-07-21T08:19:18Z",
+    "updated_at": "2024-11-13T19:10:52Z",
+    "labels": [
+      "feature-request",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/1746",
+    "html_url": "https://github.com/sharkdp/bat/issues/1746",
+    "author_login": "zachriggle",
+    "author_profile": "https://github.com/zachriggle",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 490,
+    "title": "Add a theme that uses terminal colors",
+    "body": "I spent a lot of time to customize my terminal named colors, and I wish there was a bat theme that uses them so it doesn’t look bad in my terminal.\r\n\r\nThe benefit is that it provides a backup theme that works across terminals if no other theme works with the terminal theme.",
+    "reactions": 26,
+    "created_at": "2019-01-31T14:55:20Z",
+    "updated_at": "2019-07-16T19:41:24Z",
+    "labels": [
+      "help wanted",
+      "question",
+      "themes"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/490",
+    "html_url": "https://github.com/sharkdp/bat/issues/490",
+    "author_login": "ariasuni",
+    "author_profile": "https://github.com/ariasuni",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 976,
+    "title": "Gruvbox theme",
+    "body": "Hi! thanks for the amazing tool :)\r\n\r\nI wanted to know if there's a plan to support gruvbox. On my end, I'm using it for everything and would like to keep my colors homogeneous. I'm also looking into implementing it myself but wanted to know if any one has it already beforehand :)\r\n\r\nCheers!",
+    "reactions": 21,
+    "created_at": "2020-05-05T13:19:04Z",
+    "updated_at": "2023-10-12T08:08:48Z",
+    "labels": [
+      "help wanted",
+      "good first issue",
+      "themes"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/976",
+    "html_url": "https://github.com/sharkdp/bat/issues/976",
+    "author_login": "ghost",
+    "author_profile": "https://github.com/ghost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 2751,
+    "title": "wrapping by word would be awesome",
+    "body": "Been using bat for two years, huge fan :pray: \r\n\r\nAn additional `word` option to the `--wrap` flag would be great to avoid splitting the words in two when wrapping long lines. Like in most code editors offer.",
+    "reactions": 18,
+    "created_at": "2023-10-29T21:36:23Z",
+    "updated_at": "2026-03-03T03:18:51Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/2751",
+    "html_url": "https://github.com/sharkdp/bat/issues/2751",
+    "author_login": "Keksoj",
+    "author_profile": "https://github.com/Keksoj",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 2057,
+    "title": "output shell completion script by `bat --completion <shell>` command",
+    "body": "Currently the autocompletion script comes only with the source.\r\n\r\nA better approach, would be something like `bat --completion=bash`.\r\n\r\nHere is my current `bash_completion` script executed at login:\r\n\r\n```bash\r\nsource <($HOME/.local/bin/helm completion bash)\r\nsource <($HOME/.local/bin/kustomize completion bash)\r\nsource <($HOME/.local/bin/pip completion --bash)\r\nsource <($HOME/.local/bin/stern --completion=bash)\r\nsource <($HOME/.local/node/bin/npm completion)\r\nsource $HOME/.local/bat/autocomplete/bat.bash # this can become `bat --completion=bash` \r\n```",
+    "reactions": 15,
+    "created_at": "2022-02-02T15:24:57Z",
+    "updated_at": "2025-01-08T01:05:12Z",
+    "labels": [
+      "feature-request",
+      "packaging/tooling"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/2057",
+    "html_url": "https://github.com/sharkdp/bat/issues/2057",
+    "author_login": "tigerinus",
+    "author_profile": "https://github.com/tigerinus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 3082,
+    "title": "Adding Catppuccin Bat Themes",
+    "body": "Good day!\r\n\r\nI think it would be great to add [Catppuccin themes](https://github.com/catppuccin/bat) to the standard **`bat`** _`package`_.\r\n\r\n[Catppuccin](https://github.com/catppuccin) repositories have over **20k** ⭐️ on GitHub.\r\n\r\nI understand that adding a custom theme is not too difficult, but it might be challenging for new users.\r\n\r\nI believe it’s time to bring **Bat** and **Catppuccin** together! 👍",
+    "reactions": 14,
+    "created_at": "2024-09-05T10:03:13Z",
+    "updated_at": "2025-05-31T13:51:16Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/3082",
+    "html_url": "https://github.com/sharkdp/bat/issues/3082",
+    "author_login": "ucomru",
+    "author_profile": "https://github.com/ucomru",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 1104,
+    "title": "Default theme compatible with light/dark terminals",
+    "body": "Hi! 👋\r\nFirst of all, thanks for making such a great tool!\r\n\r\nOne reason preventing me from using `bat` much is because there's no theme that's readable on both light and dark terminals. For instance, the default theme shows text as white, which is invisible on a white background.\r\n\r\nI think this might be fairly common use case, as macOS' default terminal theme automatically switches between light/dark as the system theme changes.\r\n\r\nI wonder if there's any plans of making the default theme compatible with both types of terminals? I think one major improvement would be to show text in the default text color, instead of white.\r\n\r\nI'd be happy to help if this would seem reasonable.",
+    "reactions": 14,
+    "created_at": "2020-07-08T20:52:49Z",
+    "updated_at": "2022-09-06T21:13:19Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/1104",
+    "html_url": "https://github.com/sharkdp/bat/issues/1104",
+    "author_login": "hoffa",
+    "author_profile": "https://github.com/hoffa",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 1102,
+    "title": "WinGet-based installation",
+    "body": "It would be really great to be able to install `bat` on Windows through the [windows package manager, `winget`](https://docs.microsoft.com/en-us/windows/package-manager/winget/).",
+    "reactions": 14,
+    "created_at": "2020-07-07T21:53:03Z",
+    "updated_at": "2023-09-01T18:01:04Z",
+    "labels": [
+      "help wanted",
+      "packaging/tooling",
+      "windows"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/1102",
+    "html_url": "https://github.com/sharkdp/bat/issues/1102",
+    "author_login": "zkat",
+    "author_profile": "https://github.com/zkat",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 680,
+    "title": "bat -p Segfaults on macOS Catalina",
+    "body": "I get the same segfault when installed via Homebrew as well as `cargo install bat`\r\n\r\n```\r\n > uname -a\r\nDarwin Armstrong.localdomain 19.0.0 Darwin Kernel Version 19.0.0: Wed Sep 25 20:18:50 PDT 2019; root:xnu-6153.11.26~2/RELEASE_X86_64 x86_64\r\n\r\n > bat --version\r\nbat 0.12.1\r\n```\r\n\r\nSteps to reproduce:\r\n\r\n```\r\nbat -p # with any input\r\n```\r\n\r\n```\r\nProcess:               bat [4763]\r\nPath:                  /Users/USER/*/bat\r\nIdentifier:            bat\r\nVersion:               0\r\nCode Type:             X86-64 (Native)\r\nParent Process:        fish [713]\r\nResponsible:           alacritty [711]\r\nUser ID:               501\r\n\r\nDate/Time:             2019-10-08 11:24:34.261 -0700\r\nOS Version:            Mac OS X 10.15 (19A583)\r\nReport Version:        12\r\nBridge OS Version:     4.0 (17P572)\r\nAnonymous UUID:        6CC6A47B-39EF-88AF-67D4-0C1D3FCFDFF0\r\n\r\n\r\nTime Awake Since Boot: 730 seconds\r\n\r\nSystem Integrity Protection: disabled\r\n\r\nCrashed Thread:        0  Dispatch queue: com.apple.main-thread\r\n\r\nException Type:        EXC_BAD_ACCESS (SIGSEGV)\r\nException Codes:       EXC_I386_GPFLT\r\nException Note:        EXC_CORPSE_NOTIFY\r\n\r\nTermination Signal:    Segmentation fault: 11\r\nTermination Reason:    Namespace SIGNAL, Code 0xb\r\nTerminating Process:   exc handler [4763]\r\n\r\nApplication Specific Information:\r\ndyld2 mode\r\n\r\nThread 0 Crashed:: Dispatch queue: com.apple.main-thread\r\n0   bat                           \t0x00000001017970c2 match_at + 1250\r\n1   bat                           \t0x000000010179d360 onig_search_with_param + 2160\r\n2   bat                           \t0x000000010176d6b1 onig::Regex::search_with_param::h4a2ba9521397b8df + 145\r\n3   bat                           \t0x000000010174cf93 syntect::parsing::parser::ParseState::parse_line::ha082d257fdc53148 + 3411\r\n4   bat                           \t0x0000000101759f0a syntect::easy::HighlightLines::highlight::hc4ee6d0038f87c5c + 42\r\n5   bat                           \t0x000000010170ce3b _$LT$bat..printer..InteractivePrinter$u20$as$u20$bat..printer..Printer$GT$::print_line::hf1d17cfd22dd316e + 971\r\n6   bat                           \t0x00000001016fc43a bat::controller::Controller::run::h6430c3ee59245cfc + 2618\r\n7   bat                           \t0x0000000101711e6f bat::main::h5ed4543155eda5e6 + 8207\r\n8   bat                           \t0x00000001016e2fe6 std::rt::lang_start::_$u7b$$u7b$closure$u7d$$u7d$::h18bdc78d30f51494 + 6\r\n9   bat                           \t0x0000000101938a78 std::panicking::try::do_call::h8ffcb2a43dbb732c + 24\r\n10  bat                           \t0x000000010193f6bf __rust_maybe_catch_panic + 31\r\n11  bat                           \t0x00000001019393ee std::rt::lang_start_internal::ha688fd553625ef6f + 542\r\n12  bat                           \t0x0000000101712b79 main + 41\r\n13  libdyld.dylib                 \t0x00007fff72d5c405 start + 1\r\n\r\nThread 0 crashed with X86 Thread State (64-bit):\r\n  rax: 0x0000000000000000  rbx: 0x0000000000000010  rcx: 0x0000000101adb570  rdx: 0x00007ffeee52f900\r\n  rdi: 0x0000",
+    "reactions": 13,
+    "created_at": "2019-10-08T18:31:01Z",
+    "updated_at": "2019-12-14T00:47:29Z",
+    "labels": [
+      "bug",
+      "help wanted",
+      "upstream-error"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/680",
+    "html_url": "https://github.com/sharkdp/bat/issues/680",
+    "author_login": "hazel-ocean",
+    "author_profile": "https://github.com/hazel-ocean",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 5,
+    "title": "Add option to disable line numbers",
+    "body": "... and Git modification-markers.",
+    "reactions": 12,
+    "created_at": "2018-04-21T11:39:29Z",
+    "updated_at": "2024-03-03T04:59:26Z",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/5",
+    "html_url": "https://github.com/sharkdp/bat/issues/5",
+    "author_login": "sharkdp",
+    "author_profile": "https://github.com/sharkdp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 523,
+    "title": "Add highlighting for manpages?",
+    "body": "I would like to use `bat` as my `MANPAGER`. I am not a fan of `most(1)`, my current alternative is using `nvim(1)` with the `:Man!` command.",
+    "reactions": 12,
+    "created_at": "2019-03-09T20:50:07Z",
+    "updated_at": "2021-05-29T14:19:57Z",
+    "labels": [
+      "help wanted",
+      "question",
+      "syntax-highlighting"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/523",
+    "html_url": "https://github.com/sharkdp/bat/issues/523",
+    "author_login": "LunarLambda",
+    "author_profile": "https://github.com/LunarLambda",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 2,
+    "title": "Add support for reading from stdin?",
+    "body": "Also, allow `-` as a path argument",
+    "reactions": 12,
+    "created_at": "2018-04-21T11:37:30Z",
+    "updated_at": "2018-05-07T21:30:25Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/2",
+    "html_url": "https://github.com/sharkdp/bat/issues/2",
+    "author_login": "sharkdp",
+    "author_profile": "https://github.com/sharkdp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 158,
+    "title": "Use PAGER environment variable instead of 'less'",
+    "body": "`bat` sould use pager name from `PAGER` environment variable, and only use `less` if `PAGER` is unset.",
+    "reactions": 9,
+    "created_at": "2018-05-28T16:21:37Z",
+    "updated_at": "2019-06-06T21:37:26Z",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/158",
+    "html_url": "https://github.com/sharkdp/bat/issues/158",
+    "author_login": "notramo",
+    "author_profile": "https://github.com/notramo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 1551,
+    "title": "Release binary for aarch64-apple-darwin",
+    "body": "Awesome project :) Could you please release a binary for aarch64-apple-darwin (M1 Macs)?\r\n\r\nI've compiled from source and that works well though would be handy to have a ready made binary for download",
+    "reactions": 8,
+    "created_at": "2021-02-24T02:54:29Z",
+    "updated_at": "2024-12-15T07:15:20Z",
+    "labels": [
+      "feature-request",
+      "packaging/tooling"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/1551",
+    "html_url": "https://github.com/sharkdp/bat/issues/1551",
+    "author_login": "jpillora",
+    "author_profile": "https://github.com/jpillora",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 29,
+    "title": "Automatic paging",
+    "body": "First off, this is nice :).\r\n\r\nHave you thought about adding git-style automatic paging to it? If the lines fit on one screen, it would not do paging (like the current behavior). But as soon as it's more than one screen, it could automatically page.\r\n\r\nThat's one of the things that git got right IMO.",
+    "reactions": 8,
+    "created_at": "2018-05-01T02:33:26Z",
+    "updated_at": "2018-05-05T07:01:31Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/29",
+    "html_url": "https://github.com/sharkdp/bat/issues/29",
+    "author_login": "robinst",
+    "author_profile": "https://github.com/robinst",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 23,
+    "title": "Filter to only include hunks?",
+    "body": "First: congrats on the release, and props for creatively putting together the pieces that make this work!\r\n\r\nAnyway: It'd be really neat if this could be used as an alternative to the default `pager` in Git -- this is REALLY nice-looking, and I'd love to use this as a pager. Would you be open to a PR or implementing yourself a feature to filter out everything that's not a hunk in a diff? I'm not sure if this should be a special way to process `diff`/`patch` files or just integrated with `libgit2` directly -- the latter is probably easier, since you're already using `libgit2` as a dependency.",
+    "reactions": 8,
+    "created_at": "2018-04-30T20:31:03Z",
+    "updated_at": "2020-04-25T12:01:45Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/23",
+    "html_url": "https://github.com/sharkdp/bat/issues/23",
+    "author_login": "ErichDonGubler",
+    "author_profile": "https://github.com/ErichDonGubler",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 448,
+    "title": "Section about \"Integration with other tools\" (fzf, fd, find, git, ..)",
+    "body": "We should add a \"Integration with other tools\" section to the README to document some of the ways in which `bat` can be combined with other tools:\r\n\r\n- [x] Use `bat` as a `--preview` program with `fzf`.\r\n- [x] Execute `bat` on the search results of `fd`/`find` via `fd pattern -X bat`\r\n- [x] Combine it with `git show` to view older versions of files: `git show v0.6.0:src/main.rs | bat -l rs`\r\n- [x] Use it with `xclip` to copy a file to the console\r\n- [x] Continuously monitor a growing file with `tail -f some-file.ext | bat -l ext --paging=never` with syntax highlighting.\r\n- [x] Combine with `git diff --name-only` (see #940)\r\n- etc.",
+    "reactions": 7,
+    "created_at": "2018-12-14T19:32:24Z",
+    "updated_at": "2021-02-27T10:47:42Z",
+    "labels": [
+      "help wanted",
+      "documentation"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/448",
+    "html_url": "https://github.com/sharkdp/bat/issues/448",
+    "author_login": "sharkdp",
+    "author_profile": "https://github.com/sharkdp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 237,
+    "title": "zcat like functionality",
+    "body": "It would be great if bat would detect if a file or stream is gzipped and would display it like zcat does.",
+    "reactions": 7,
+    "created_at": "2018-08-30T13:52:39Z",
+    "updated_at": "2021-08-05T18:43:40Z",
+    "labels": [
+      "feature-request",
+      "question"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/237",
+    "html_url": "https://github.com/sharkdp/bat/issues/237",
+    "author_login": "RPDiep",
+    "author_profile": "https://github.com/RPDiep",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 175,
+    "title": "highlight individual line",
+    "body": "Now that bat supports displaying a range of lines I would like to have bat be able to highlight one line.\r\n\r\nMy use case has to do with utilizing bat as a preview command in a fuzzy finder like [fzf](https://github.com/junegunn/fzf) or [skim](https://github.com/lotabout/skim).\r\n\r\nHere is what we can do currently with bat: ![fzf](https://thumbs.gfycat.com/ShabbyHealthyChrysomelid-size_restricted.gif)\r\n(I'm just using a copy of preview.sh I've put up [here](https://gist.github.com/tskinn/0ed07b1c43968807b24e0e585ae58ce2))\r\n\r\nSo how can or should this be done? Invert the colors of the line? Does syntec api have something that makes this easy? Or should we just manipulate the grid portion of the display like the line number or insert an arrow in that gutter?\r\n\r\nAgain I'd be happy to work on it but would like some input before I do.\r\n",
+    "reactions": 7,
+    "created_at": "2018-06-23T18:56:23Z",
+    "updated_at": "2019-02-08T07:54:01Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/175",
+    "html_url": "https://github.com/sharkdp/bat/issues/175",
+    "author_login": "tskinn",
+    "author_profile": "https://github.com/tskinn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 241,
+    "title": "Snap package for Ubuntu",
+    "body": "Please create Snap package and maintain\r\nhttps://tutorials.ubuntu.com/tutorial/create-your-first-snap#0",
+    "reactions": 6,
+    "created_at": "2018-08-31T08:04:37Z",
+    "updated_at": "2018-09-03T19:52:46Z",
+    "labels": [
+      "help wanted",
+      "packaging/tooling"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/241",
+    "html_url": "https://github.com/sharkdp/bat/issues/241",
+    "author_login": "KindDragon",
+    "author_profile": "https://github.com/KindDragon",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 2699,
+    "title": "Syntax autodetect based on file content",
+    "body": "Hi!\r\nIn current implementation, bat currently detects the language of a file by its extension name and its first line, and may fail to detect and highlight files without extension or stdin. A solution for such cases is to guess the language according to the file content. This approach is used in editors like [VSCode](http://github.com/microsoft/vscode-languagedetection).\r\n\r\nI've tried implementing this autodetecting feature for bat. See https://github.com/ruihe774/bat/tree/guesslang. In this implementation, bat probes the first few (kilo)bytes and detects the language using the model from [guesslang](https://github.com/yoeo/guesslang), which is also used in VSCode, if the file extension detection and first line detection failed. It works fairly well and you could have a try. I'm wondering if you are interested in this feature and whether this can be merged into upstream.",
+    "reactions": 6,
+    "created_at": "2023-10-06T09:40:37Z",
+    "updated_at": "2025-03-16T10:31:16Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/2699",
+    "html_url": "https://github.com/sharkdp/bat/issues/2699",
+    "author_login": "ruihe774",
+    "author_profile": "https://github.com/ruihe774",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 2115,
+    "title": "`man` page doesn't get colorized if the default theme's changed",
+    "body": "**Describe the bug you encountered:**\r\nI tried playing with multiple options, but as soon as I change the default theme to anything else, colorization on `man` pages break.\r\n\r\nI tried setting theme to `ansi`, `base16`, `base16-256`, `OneHalfDark`, and `1337`. I also set `--color=always`, but that didn't help either even though I explicitly specify the language as `man` while piping into `bat`.\r\n\r\nThis can be reproduced by invoking `bat` on `bat`'s help itself: `bat --help | bat -l man`. Highlighting works with the default theme, but not with others -- only a few words get highlighted.\r\n\r\n...\r\n\r\n**What did you expect to happen instead?**\r\nSyntax highlighting on the `man` page just as it functions with the default theme.\r\n...\r\n\r\n\r\n**How did you install `bat`?**\r\n\r\nI used Scoop to install `bat`.\r\n\r\n---\r\n\r\n**bat version and environment**\r\nI use PowerShell 7.2.1 that supports Unicode by default and Windows Terminal that has `xterm-256` terminal capabilities.\r\n\r\nThis the output on running `bat --help | bat -l man --diagnostic`:\r\n\r\n#### Software version\r\n\r\nbat 0.20.0 (0655ecf)\r\n\r\n#### Operating system\r\n\r\nWindows 6.2.9200\r\n\r\n#### Command-line\r\n\r\n```bash\r\nC:\\Users\\anike\\scoop\\apps\\bat\\current\\bat.exe -l man --diagnostic\r\n```\r\n\r\n#### Environment variables\r\n\r\n```bash\r\nSHELL=<not set>\r\nPAGER=<not set>\r\nLESS=<not set>\r\nLANG=<not set>\r\nLC_ALL=<not set>\r\nBAT_PAGER=<not set>\r\nBAT_CACHE_PATH=<not set>\r\nBAT_CONFIG_PATH=<not set>\r\nBAT_OPTS=<not set>\r\nBAT_STYLE=<not set>\r\nBAT_TABS=<not set>\r\nBAT_THEME=<not set>\r\nXDG_CONFIG_HOME=<not set>\r\nXDG_CACHE_HOME=<not set>\r\nCOLORTERM=<not set>\r\nNO_COLOR=<not set>\r\nMANPAGER=<not set>\r\n```\r\n\r\n#### Config file\r\n\r\n```\r\n# This is `bat`s configuration file. Each line either contains a comment or\r\n# a command-line option that you want to pass to `bat` by default. You can\r\n# run `bat --help` to get a list of all possible configuration options.\r\n\r\n# Specify desired highlighting theme (e.g. \"TwoDark\"). Run `bat --list-themes`\r\n# for a list of all available themes\r\n# --theme=\"ansi\"\r\n\r\n# Enable this to use italic text on the terminal. This is not supported on all\r\n# terminal emulators (like tmux, by default):\r\n--italic-text=always\r\n\r\n# Uncomment the following line to disable automatic paging:\r\n#--paging=never\r\n\r\n# Uncomment the following line if you are using less version >= 551 and want to\r\n# enable mouse scrolling support in `bat` when running inside tmux. This might\r\n# disable text selection, unless you press shift.\r\n--pager=\"less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse\"\r\n\r\n# Syntax mappings: map a certain filename pattern to a language.\r\n#   Example 1: use the C++ syntax for Arduino .ino files\r\n#   Example 2: Use \".gitignore\"-style highlighting for \".ignore\" files\r\n#--map-syntax \"*.ino:C++\"\r\n#--map-syntax \".ignore:Git Ignore\"\r\n\r\n--style=changes,header,header-filesize\r\n--color=always\r\n```\r\n\r\n#### Compile time information\r\n\r\n- Profile: release\r\n- Target triple: x86_64-pc-windows-msvc\r\n- Family: windows\r\n- OS: windows\r\n- Archit",
+    "reactions": 6,
+    "created_at": "2022-03-10T14:10:27Z",
+    "updated_at": "2025-01-03T06:44:15Z",
+    "labels": [
+      "bug",
+      "help wanted",
+      "syntax-highlighting",
+      "upstream-error"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/2115",
+    "html_url": "https://github.com/sharkdp/bat/issues/2115",
+    "author_login": "icy-comet",
+    "author_profile": "https://github.com/icy-comet",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 2106,
+    "title": "GLIBC 2.29 required by bat_0.20.0_amd64.deb",
+    "body": "Hi,\r\n\r\nI've just installed _bat_0.20.0_amd64.deb_ successfully on my Debian 10.\r\n\r\nHowever, I cannot run _bat_ utility now as I get the following blocking error messages:\r\n```\r\nbat: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29' not found (required by bat)\r\nbat: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.29' not found (required by bat)\r\n```\r\n\r\nIf I'm not wrong, I need package _libc6-dev_>=2.29 but in Debian 10 there is only 2.28.\r\n\r\n- Am I correct please?\r\n- Are the functionalities of GLIBC 2.29 essential to the program or could the latter be built with an older version?\r\n- Maybe dependencies could be explicitly specified somewhere in the GitHub, especially when a breaking upgrade is required?\r\n\r\n**NB**: I've never experienced issues when installing and launching previous _bat_ versions on my Debian 10.\r\n\r\nThanks in advance and keep the good work with this great utility :)",
+    "reactions": 6,
+    "created_at": "2022-03-02T21:28:41Z",
+    "updated_at": "2022-09-11T02:41:30Z",
+    "labels": [
+      "help wanted",
+      "packaging/tooling"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/2106",
+    "html_url": "https://github.com/sharkdp/bat/issues/2106",
+    "author_login": "l0f4r0",
+    "author_profile": "https://github.com/l0f4r0",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 845,
+    "title": "bat 0.13 release",
+    "body": "Changes since 0.12.1: https://github.com/sharkdp/bat/compare/v0.12.1...master\r\n\r\n- [x] Write release notes (according to the usual format https://github.com/sharkdp/bat/releases/tag/v0.12.0)\r\n- [x] Check for outdated dependencies (https://deps.rs/repo/github/sharkdp/bat)\r\n- [x] Run cargo update to update dependencies to the latest compatible (minor) version.\r\n- [x] Run `cargo fmt`\r\n- [x] Update syntaxes and themes (`assets/create.sh`).\r\n- [x] Update README (features, usage, languages, ..).\r\n- [x] Update man page.\r\n- [x] Review `-h`/`--help` text.\r\n- [x] Update version in `Cargo.toml`. Run `cargo build` to update `Cargo.lock`. Update the version in all `README` files (translations).\r\n- [x] Run `cargo install -f --path .` and locally test the new release\r\n- [x] `cargo publish --dry-run --allow-dirty`.\r\n- [x] `git tag vX.Y.Z; git push --tags`\r\n- [x] publish to crates.io by cloning a fresh repo and calling `cargo publish`.\r\n- [x] Inform package maintainers about the update:\r\n    - https://www.archlinux.org/packages/community/x86_64/bat/\r\n\r\n\r\nSee also: [My release checklist for Rust programs](https://dev.to/sharkdp/my-release-checklist-for-rust-programs-1m33)",
+    "reactions": 6,
+    "created_at": "2020-02-28T09:25:37Z",
+    "updated_at": "2020-03-24T21:39:23Z",
+    "labels": [
+      "help wanted",
+      "packaging/tooling"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/845",
+    "html_url": "https://github.com/sharkdp/bat/issues/845",
+    "author_login": "sharkdp",
+    "author_profile": "https://github.com/sharkdp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 172,
+    "title": "no way to add a theme without blowing away languages?",
+    "body": "It would be really nice to be able to either add a theme to the existing themes, or at least be able to create your own set of themes without losing all of the languages/syntaxes....\r\n\r\nI'll admit I may be doing something wrong.\r\n\r\nInstalled bat via homebrew. Followed instructions to create appropriate theme directory and added a theme. Couldn't reinit cache without creating a syntax directory. Reiniting cache then made it so I had just the two themes I had added, and no languages....",
+    "reactions": 6,
+    "created_at": "2018-06-22T18:09:30Z",
+    "updated_at": "2018-08-19T11:29:16Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/172",
+    "html_url": "https://github.com/sharkdp/bat/issues/172",
+    "author_login": "kaolin",
+    "author_profile": "https://github.com/kaolin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 48,
+    "title": "Syntax highlighting for JSON",
+    "body": "I am using version 0.2.2 on Linux and apparently `bat` does not colorize `.json` files.",
+    "reactions": 6,
+    "created_at": "2018-05-03T07:11:39Z",
+    "updated_at": "2025-04-09T15:16:31Z",
+    "labels": [
+      "feature-request",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/48",
+    "html_url": "https://github.com/sharkdp/bat/issues/48",
+    "author_login": "avdv",
+    "author_profile": "https://github.com/avdv",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 1216,
+    "title": "Help out in upstream projects (our dependencies)",
+    "body": "*With all the recent news about Hacktoberfest I thought it would be a good idea to point out good beginner issues that would be actually helpful for `bat`. In the past years, I have actually experienced Hacktoberfest as a really great event - both as a contributor as well as a maintainer.*\r\n\r\n`bat` relies on *huge* number of other projects: we have approximately 170 Rust `crates` that we depend on (directly or indirectly), and we include approximately 65 submodules with syntaxes and themes.\r\n\r\nNaturally, some of the reported bugs on our issue tracker are actually bugs in one of these upstream components:\r\n\r\n[List of issues labeled with `upstream-error`](https://github.com/sharkdp/bat/issues?q=is%3Aopen+is%3Aissue+label%3Aupstream-error).\r\n\r\nIt seems like Hacktoberfest would be a great motivation to give something back to the projects we rely on. This could be a bugfix for one of the things listed above, but could also be a regular contribution to one of these projects. In terms of importance for `bat`, the following projects would probably be the most prominent ones:\r\n- [`syntect`](https://github.com/trishume/syntect) - syntax highlighting (Rust)\r\n- [`sublimehq/Packages`](https://github.com/sublimehq/Packages/) - Sublime Text syntaxes (config)\r\n- [`less`](https://github.com/gwsw/less) - pager (C)\r\n- [`oniguruma`](https://github.com/kkos/oniguruma) - regular expression library (C)\r\n- [`clap`](https://github.com/clap-rs/clap) - command line argument handling (Rust)\r\n- [`assert_cmd`](https://github.com/assert-rs/assert_cmd) - command-line integration testing (Rust)\r\n- [`ansi_term`](https://github.com/ogham/rust-ansi-term) - ANSI handling (Rust)\r\n- [`console`](https://github.com/mitsuhiko/console) - Terminal handling (Rust)",
+    "reactions": 5,
+    "created_at": "2020-10-03T19:04:21Z",
+    "updated_at": "2022-02-07T20:41:16Z",
+    "labels": [
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/1216",
+    "html_url": "https://github.com/sharkdp/bat/issues/1216",
+    "author_login": "sharkdp",
+    "author_profile": "https://github.com/sharkdp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 210,
+    "title": "Add windows build to releases?",
+    "body": "Since bat seems to support colors in Windows 10, would it be possible to add windows binaries to the releases page with each version?",
+    "reactions": 5,
+    "created_at": "2018-08-21T11:17:40Z",
+    "updated_at": "2018-08-31T22:56:38Z",
+    "labels": [
+      "help wanted",
+      "packaging/tooling"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/210",
+    "html_url": "https://github.com/sharkdp/bat/issues/210",
+    "author_login": "LippyBoy",
+    "author_profile": "https://github.com/LippyBoy",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 208,
+    "title": "feature request: add BAT_STYLE in the same vein as BAT_THEME",
+    "body": "I suppose you may already have this in mind but I didn't see a tracking issue for it so I'm adding one just in case.\r\n\r\nThis would be to avoid silly mistakes such as the one in https://github.com/sharkdp/bat/issues/173",
+    "reactions": 5,
+    "created_at": "2018-08-21T06:00:59Z",
+    "updated_at": "2018-09-12T20:40:57Z",
+    "labels": [
+      "feature-request",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/208",
+    "html_url": "https://github.com/sharkdp/bat/issues/208",
+    "author_login": "sanga",
+    "author_profile": "https://github.com/sanga",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 54,
+    "title": "Text wrapping",
+    "body": "Is there any plan for text wrapping? The output right now is *so* polished, lines too long look pretty out-of-place. Definitely understand not wrapping by default, but having a flag for it would be pretty chill I think.",
+    "reactions": 5,
+    "created_at": "2018-05-03T21:25:40Z",
+    "updated_at": "2018-05-16T06:43:03Z",
+    "labels": [
+      "feature-request"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/54",
+    "html_url": "https://github.com/sharkdp/bat/issues/54",
+    "author_login": "rivertam",
+    "author_profile": "https://github.com/rivertam",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 52,
+    "title": "Provide a man page",
+    "body": "Offer a linux manual page for utility description.",
+    "reactions": 5,
+    "created_at": "2018-05-03T16:05:46Z",
+    "updated_at": "2018-08-28T20:13:23Z",
+    "labels": [
+      "help wanted",
+      "documentation"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/52",
+    "html_url": "https://github.com/sharkdp/bat/issues/52",
+    "author_login": "jsamr",
+    "author_profile": "https://github.com/jsamr",
+    "already_resurrected": false
+  }
+]

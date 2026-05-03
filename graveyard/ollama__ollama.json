@@ -1,0 +1,2429 @@
+[
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6564,
+    "title": "add Qwen2-VL/Qwen2.5-VL",
+    "body": "SOTA light weight vision model\r\n[https://github.com/QwenLM/Qwen2-VL](https://github.com/QwenLM/Qwen2-VL)\r\n\r\nllama.cpp issue [#9246](https://github.com/ggerganov/llama.cpp/issues/9246)",
+    "reactions": 276,
+    "created_at": "2024-08-30T06:38:18Z",
+    "updated_at": "2025-05-29T17:01:14Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6564",
+    "html_url": "https://github.com/ollama/ollama/issues/6564",
+    "author_login": "FelisDwan",
+    "author_profile": "https://github.com/FelisDwan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10143,
+    "title": "Llama 4 support",
+    "body": "I know that it has only been a couple of hours since Llama 4 model family has been released. However I believe it is good practive to ping the repo about when its support on Ollama will be available 😄 \n\nLooking very forward to inference with this new very long context multimodal mixture of experts model family on Ollama\n\nofficial release: https://ai.meta.com/blog/llama-4-multimodal-intelligence/\n\ncheers \n",
+    "reactions": 193,
+    "created_at": "2025-04-05T22:59:10Z",
+    "updated_at": "2025-05-05T23:15:51Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10143",
+    "html_url": "https://github.com/ollama/ollama/issues/10143",
+    "author_login": "UmutAlihan",
+    "author_profile": "https://github.com/UmutAlihan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2415,
+    "title": "Provide logits or logprobs in the API",
+    "body": "Feature request:\r\nHow can i get logits (probabilites of each next token), during generation, just like I can do it in Open AI API (logprobs)? This feature will be helpfull for apps, that use logprobs to measure model avareness and confidence. ",
+    "reactions": 158,
+    "created_at": "2024-02-08T21:02:45Z",
+    "updated_at": "2025-11-26T09:59:14Z",
+    "labels": [
+      "feature request",
+      "api"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2415",
+    "html_url": "https://github.com/ollama/ollama/issues/2415",
+    "author_login": "freQuensy23-coder",
+    "author_profile": "https://github.com/freQuensy23-coder",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 305,
+    "title": "OpenAI API compatibility",
+    "body": "Any chance you would consider mirroring OpenAI's API specs and output? e.g., /completions and /chat/completions. That way, it could be a drop-in replacement for the Python openai package by changing out the url.",
+    "reactions": 152,
+    "created_at": "2023-08-07T22:36:36Z",
+    "updated_at": "2024-10-13T12:17:48Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/305",
+    "html_url": "https://github.com/ollama/ollama/issues/305",
+    "author_login": "handrew",
+    "author_profile": "https://github.com/handrew",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6748,
+    "title": "Support Mistral's new visual model: Pixtral-12b-240910",
+    "body": "Mistral AI just dropped Pixtral, their 12b model with vision support.\r\n\r\n- https://github.com/mistralai/mistral-common/releases/tag/v1.4.0\r\n- https://www.reddit.com/r/LocalLLaMA/comments/1fe3x1z/mistral_dropping_a_new_magnet_link/",
+    "reactions": 132,
+    "created_at": "2024-09-11T08:24:58Z",
+    "updated_at": "2026-02-10T03:25:09Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6748",
+    "html_url": "https://github.com/ollama/ollama/issues/6748",
+    "author_login": "awaescher",
+    "author_profile": "https://github.com/awaescher",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9827,
+    "title": "mistral-small v3.1",
+    "body": "Hi community, would be great to support this one, just released:\nhttps://mistral.ai/news/mistral-small-3-1\n\nhttps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Base-2503\nhttps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503",
+    "reactions": 129,
+    "created_at": "2025-03-17T19:01:15Z",
+    "updated_at": "2025-04-15T10:20:13Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9827",
+    "html_url": "https://github.com/ollama/ollama/issues/9827",
+    "author_login": "FelikZ",
+    "author_profile": "https://github.com/FelikZ",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3370,
+    "title": "databricks-dbrx",
+    "body": "### What model would you like?\r\nDatabricks just released a new model that is supposed to perform better than mistral. IMO would be a good addition\r\n\r\nhttps://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm\r\n\r\nhttps://huggingface.co/databricks/dbrx-instruct\r\n\r\n_No response_",
+    "reactions": 115,
+    "created_at": "2024-03-27T13:39:40Z",
+    "updated_at": "2024-04-18T11:24:09Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3370",
+    "html_url": "https://github.com/ollama/ollama/issues/3370",
+    "author_login": "Sparkenstein",
+    "author_profile": "https://github.com/Sparkenstein",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11382,
+    "title": "kimi k2 support",
+    "body": "https://huggingface.co/moonshotai/Kimi-K2-Instruct\nBest opensource model available yet",
+    "reactions": 108,
+    "created_at": "2025-07-11T18:46:02Z",
+    "updated_at": "2025-09-15T10:38:24Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11382",
+    "html_url": "https://github.com/ollama/ollama/issues/11382",
+    "author_login": "olumolu",
+    "author_profile": "https://github.com/olumolu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3582,
+    "title": "Add Tokenize and Detokenize Endpoints to Ollama Server",
+    "body": "### What are you trying to do?\r\n\r\nI would like to propose the addition of tokenize and detokenize endpoints to the Ollama server. This feature is crucial for the Ollama client interfaces (such as lollms) to effectively prepare prompts and accurately estimate the number of tokens for the LLMs. Currently, the client uses tiktoken for tokenization, which is not optimal since the token distribution depends on the model. While this can work with chatgpt compatible models, it may fail to correctly estimate the number of tokens, leading to suboptimal token computing and, in some cases, errors when the number of requested tokens exceeds the capacity of the LLM.\r\n\r\n### How should we solve this?\r\n\r\nIntroduce two new endpoints, one for tokenization and another for detokenization, to the Ollama server:\r\n\r\nTokenize Endpoint:\r\n- Input: Raw text, model name\r\n- Output: List of tokens\r\n\r\nDetokenize Endpoint:\r\n- Input: List of tokens, model name\r\n- Output: Raw text\r\n\r\nThese endpoints should return the right tokens or text depending on the model currently in use..\r\n\r\nThe tokenization endpoint should provide accurate token counting tailored to the specific LLM being used. This will ensure optimal token computing and help avoid potential errors caused by exceeding the capacity of the LLM.\r\n\r\n### What is the impact of not solving this?\r\n\r\nWithout these endpoints, users might have to continue relying on inefficient or suboptimal solutions for tokenizing and detokenizing text data.\r\n\r\n\r\n\r\n### Anything else?\r\n\r\nInclude documentation and examples demonstrating how to use these new functionalities effectively. Providing comprehensive guidance will help users quickly adopt these features and enhance the overall user experience.",
+    "reactions": 108,
+    "created_at": "2024-04-10T19:48:04Z",
+    "updated_at": "2025-08-22T12:29:24Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3582",
+    "html_url": "https://github.com/ollama/ollama/issues/3582",
+    "author_login": "ParisNeo",
+    "author_profile": "https://github.com/ParisNeo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3749,
+    "title": "Rerankers and Embeddings",
+    "body": "Hello from the agentic AI crowd, other than that Ollama does not have concurrent model abilities, is it possible to get Ollama to run Rerankers (like Cohere and Jina) or text embeddings (SentenceTransformers e.g. SBERT) for applications that does not directly use LLMs?",
+    "reactions": 105,
+    "created_at": "2024-04-19T07:23:34Z",
+    "updated_at": "2025-01-11T15:44:54Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3749",
+    "html_url": "https://github.com/ollama/ollama/issues/3749",
+    "author_login": "BradKML",
+    "author_profile": "https://github.com/BradKML",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3336,
+    "title": "ollama.ai certificate has expired, not possible to download models",
+    "body": "### What is the issue?\n\nThe ollama.ai certificate has expired today, ollama now can't download models:\r\n\r\n```\r\nollama run mistral\r\npulling manifest \r\nError: pull model manifest: Get \"https://registry.ollama.ai/v2/library/mistral/manifests/latest\": tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2024-03-25T08:28:33+01:00 is after 2024-03-25T07:17:47Z\r\n```\n\n### What did you expect to see?\n\nYou should be able to pull models using the `ollama` command.\n\n### Steps to reproduce\n\nTry to pull a model.\n\n### Are there any recent changes that introduced the issue?\n\n_No response_\n\n### OS\n\nLinux\n\n### Architecture\n\namd64\n\n### Platform\n\n_No response_\n\n### Ollama version\n\n0.1.29\n\n### GPU\n\nNvidia\n\n### GPU info\n\n_No response_\n\n### CPU\n\n_No response_\n\n### Other software\n\n_No response_",
+    "reactions": 97,
+    "created_at": "2024-03-25T07:32:52Z",
+    "updated_at": "2024-06-28T01:42:40Z",
+    "labels": [
+      "bug"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3336",
+    "html_url": "https://github.com/ollama/ollama/issues/3336",
+    "author_login": "psy-q",
+    "author_profile": "https://github.com/psy-q",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 12701,
+    "title": "DeepSeek OCR",
+    "body": "HF: https://huggingface.co/deepseek-ai/DeepSeek-OCR\n\nGH: https://github.com/deepseek-ai/DeepSeek-OCR",
+    "reactions": 91,
+    "created_at": "2025-10-20T09:15:44Z",
+    "updated_at": "2025-11-28T13:50:35Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/12701",
+    "html_url": "https://github.com/ollama/ollama/issues/12701",
+    "author_login": "asitwere",
+    "author_profile": "https://github.com/asitwere",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2874,
+    "title": "Support Qwen VL",
+    "body": "Could you please support Qwen VL model",
+    "reactions": 90,
+    "created_at": "2024-03-02T06:53:40Z",
+    "updated_at": "2025-05-15T21:44:34Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2874",
+    "html_url": "https://github.com/ollama/ollama/issues/2874",
+    "author_login": "justStarG",
+    "author_profile": "https://github.com/justStarG",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 986,
+    "title": "Uninstall ollama from linux",
+    "body": "Here's a general guideline on how to uninstall it:\r\n\r\n1. Delete the Ollama binary:\r\n   Use the `rm` command to remove the Ollama binary. For example:\r\n   ```\r\n   sudo rm /usr/local/bin/ollama\r\n   ```\r\n\r\n2. If the script created a systemd service, disable and remove it:\r\n   If the script created a systemd service for Ollama, you should disable and remove it using the following commands:\r\n   ```\r\n   sudo systemctl stop ollama\r\n   sudo systemctl disable ollama\r\n   sudo rm /etc/systemd/system/ollama.service\r\n   sudo systemctl daemon-reload\r\n   ```\r\n\r\n3. Remove any created user and group (if applicable):\r\n   The script might have created a user and group named \"ollama.\" You can remove them using the following commands:\r\n   ```\r\n   sudo userdel ollama\r\n   sudo groupdel ollama\r\n   ```\r\n",
+    "reactions": 88,
+    "created_at": "2023-11-03T11:54:38Z",
+    "updated_at": "2026-03-19T14:03:04Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/986",
+    "html_url": "https://github.com/ollama/ollama/issues/986",
+    "author_login": "sheecegardezi",
+    "author_profile": "https://github.com/sheecegardezi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9999,
+    "title": "[ENHANCE] Add Ubuntu Support for AMD Ryzen AI 9 HX 370 w/ Radeon 890M (gfx1150)",
+    "body": "## Description\nI'm testing a new AMD Ryzen AI 9 HX 370 APU with integrated Radeon 890M graphics (LLVM target gfx1150) on Ubuntu 24.04. This GPU supports dynamic memory allocation (1-16GB), making it promising for local LLM inference. However, Ollama currently lacks native support for this architecture.\n\n## Environment\nOS: Ubuntu 24.04 LTS  \nROCm: 6.10.5\nOllama: 0.6.2 (official .deb)\nGPU: Radeon 890M (gfx1150, 16GB dynamic VRAM)\nMemory: 64GB DDR5\n\nVerify GPU detection via rocminfo:\n```bash\nROCk module version 6.10.5 is loaded\n=====================\nHSA System Attributes\n=====================\nRuntime Version:         1.14\nRuntime Ext Version:     1.6\nSystem Timestamp Freq.:  1000.000000MHz\nSig. Max Wait Duration:  18446744073709551615 (0xFFFFFFFFFFFFFFFF) (timestamp count)\nMachine Model:           LARGE\nSystem Endianness:       LITTLE\nMwaitx:                  DISABLED\nDMAbuf Support:          YES\n\n==========\nHSA Agents\n==========\n*******\nAgent 1\n*******\n  Name:                    AMD Ryzen AI 9 HX 370 w/ Radeon 890M\n  Uuid:                    CPU-XX\n  Marketing Name:          AMD Ryzen AI 9 HX 370 w/ Radeon 890M\n  Vendor Name:             CPU\n  Feature:                 None specified\n  Profile:                 FULL_PROFILE\n  Float Round Mode:        NEAR\n  Max Queue Number:        0(0x0)\n  Queue Min Size:          0(0x0)\n  Queue Max Size:          0(0x0)\n  Queue Type:              MULTI\n  Node:                    0\n  Device Type:             CPU\n  Cache Info:\n    L1:                      49152(0xc000) KB\n  Chip ID:                 0(0x0)\n  ASIC Revision:           0(0x0)\n  Cacheline Size:          64(0x40)\n  Max Clock Freq. (MHz):   4367\n  BDFID:                   0\n  Internal Node ID:        0\n  Compute Unit:            24\n  SIMDs per CU:            0\n  Shader Engines:          0\n  Shader Arrs. per Eng.:   0\n  WatchPts on Addr. Ranges:1\n  Memory Properties:\n  Features:                None\n  Pool Info:\n    Pool 1\n      Segment:                 GLOBAL; FLAGS: FINE GRAINED\n      Size:                    48928408(0x2ea9698) KB\n      Allocatable:             TRUE\n      Alloc Granule:           4KB\n      Alloc Recommended Granule:4KB\n      Alloc Alignment:         4KB\n      Accessible by all:       TRUE\n    Pool 2\n      Segment:                 GLOBAL; FLAGS: EXTENDED FINE GRAINED\n      Size:                    48928408(0x2ea9698) KB\n      Allocatable:             TRUE\n      Alloc Granule:           4KB\n      Alloc Recommended Granule:4KB\n      Alloc Alignment:         4KB\n      Accessible by all:       TRUE\n    Pool 3\n      Segment:                 GLOBAL; FLAGS: KERNARG, FINE GRAINED\n      Size:                    48928408(0x2ea9698) KB\n      Allocatable:             TRUE\n      Alloc Granule:           4KB\n      Alloc Recommended Granule:4KB\n      Alloc Alignment:         4KB\n      Accessible by all:       TRUE\n    Pool 4\n      Segment:                 GLOBAL; FLAGS: COARSE GRAINED\n      Size:                    48928408(0x2ea9698) KB\n      Allocatable",
+    "reactions": 77,
+    "created_at": "2025-03-26T15:04:44Z",
+    "updated_at": "2026-03-01T06:51:26Z",
+    "labels": [
+      "feature request",
+      "amd"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9999",
+    "html_url": "https://github.com/ollama/ollama/issues/9999",
+    "author_login": "liuchuan01",
+    "author_profile": "https://github.com/liuchuan01",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1053,
+    "title": "Requesting support for basic auth or API key authentication",
+    "body": "It would be great to have some sort of authentication in front of the ollama api. Currently I´m using Nginx Proxy Manager to add a Access List to prevent unauthorized access but a standard way implemented into Ollama itself would be great for all developers that are integrating Ollama into there software.",
+    "reactions": 75,
+    "created_at": "2023-11-09T07:51:37Z",
+    "updated_at": "2025-07-07T16:58:10Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1053",
+    "html_url": "https://github.com/ollama/ollama/issues/1053",
+    "author_login": "sebiweise",
+    "author_profile": "https://github.com/sebiweise",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 8249,
+    "title": "DeepSeek v3",
+    "body": "https://huggingface.co/deepseek-ai/DeepSeek-V3-Base\r\nhttps://huggingface.co/deepseek-ai/DeepSeek-V3\r\nKindly make it available to ollama so we can test..\r\nModel paper\r\nhttps://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf\r\nhttps://x.com/deepseek_ai/status/1872242657348710721",
+    "reactions": 69,
+    "created_at": "2024-12-26T15:13:45Z",
+    "updated_at": "2025-02-18T07:31:55Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/8249",
+    "html_url": "https://github.com/ollama/ollama/issues/8249",
+    "author_login": "olumolu",
+    "author_profile": "https://github.com/olumolu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11563,
+    "title": "Support for zai-org/GLM-4.5 (Thinking & Non-Thinking Modes + Tool Use)",
+    "body": "Hi Ollama team,\n\nI’d like to request support for the [zai-org/GLM-4.5](https://huggingface.co/zai-org/GLM-4.5) model and its FP8 variant [zai-org/GLM-4.5-FP8](https://huggingface.co/zai-org/GLM-4.5-FP8). These are hybrid reasoning models that provide two distinct modes:\n\n- **Thinking mode**: for complex reasoning and tool usage\n\n- **Non-thinking mode**: for fast, immediate responses\n\nIt would be great if Ollama could support both modes and the model’s **tool use capabilities**. The FP8 version would also be valuable for users seeking optimized performance and reduced memory usage.\n\nThanks for considering this request!",
+    "reactions": 68,
+    "created_at": "2025-07-29T01:38:07Z",
+    "updated_at": "2025-10-04T15:11:38Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11563",
+    "html_url": "https://github.com/ollama/ollama/issues/11563",
+    "author_login": "zytoh0",
+    "author_profile": "https://github.com/zytoh0",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4386,
+    "title": "Support tools in OpenAI-compatible API",
+    "body": "Support the `tools` and `tool_choice` parameters in the OpenAI-compatible API. Currently these are not supported https://github.com/ollama/ollama/blob/4ec7445a6f678b6efc773bb9fa886d7c9b075577/docs/openai.md#supported-request-fields\r\n\r\nI believe `llama.cpp` is used internally by Ollama, and this has support for tools and tool_choice https://github.com/abetlen/llama-cpp-python#function-calling so the implementation in Ollama can hopefully leverage this.\r\n\r\nHaving the tools parameter implemented in Ollama (or llama.cpp and surfacing this) would standardize all downstream packages (e.g. https://github.com/BerriAI/litellm , https://github.com/jackmpcollins/magentic) on a single prompt and implementation, which will make it more robust.\r\n\r\nI would use this to improve support for local LLMs in https://github.com/jackmpcollins/magentic\r\n\r\nRelated issues\r\n- https://github.com/ollama/ollama/issues/305\r\n- https://github.com/ollama/ollama/issues/1729\r\n- https://github.com/ollama/ollama/issues/3165",
+    "reactions": 66,
+    "created_at": "2024-05-12T23:22:48Z",
+    "updated_at": "2025-06-28T01:08:38Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4386",
+    "html_url": "https://github.com/ollama/ollama/issues/4386",
+    "author_login": "jackmpcollins",
+    "author_profile": "https://github.com/jackmpcollins",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 8873,
+    "title": "pull model manifest: 500",
+    "body": "C:\\Windows\\System32>ollama -v\nollama version is 0.5.7\n\nC:\\Windows\\System32>ollama run deepseek-r1:1.5b\npulling manifest\nError: pull model manifest: 500: {\"errors\":[{\"code\":\"INTERNAL_ERROR\",\"message\":\"internal error\"}]}\n\n\nWhat error is this and how do I solve it?",
+    "reactions": 65,
+    "created_at": "2025-02-06T08:23:09Z",
+    "updated_at": "2025-11-18T14:16:34Z",
+    "labels": [
+      "networking"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/8873",
+    "html_url": "https://github.com/ollama/ollama/issues/8873",
+    "author_login": "auserwn",
+    "author_profile": "https://github.com/auserwn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11621,
+    "title": "Qwen3-Coder missing Tools and FIM support in template",
+    "body": "### What is the issue?\n\nAs per https://github.com/QwenLM/Qwen3-Coder/blob/main/README.md, both Tool calling and FIM usage are supported\n\nCurrent template - https://ollama.com/library/qwen3-coder:30b/blobs/c6a614465b37\n\n### Relevant log output\n\n```shell\n\n```\n\n### OS\n\n_No response_\n\n### GPU\n\n_No response_\n\n### CPU\n\n_No response_\n\n### Ollama version\n\n_No response_",
+    "reactions": 65,
+    "created_at": "2025-08-01T07:37:07Z",
+    "updated_at": "2025-11-15T01:25:34Z",
+    "labels": [
+      "bug"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11621",
+    "html_url": "https://github.com/ollama/ollama/issues/11621",
+    "author_login": "d1g1t",
+    "author_profile": "https://github.com/d1g1t",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11673,
+    "title": "ollama run gpt-oss:20b Error: template: :3: function \"currentDate\" not defined",
+    "body": "### What is the issue?\n\n`ollama run gpt-oss:20b`\n`Error: template: :3: function \"currentDate\" not defined`\n\n### Relevant log output\n\n```shell\n\n```\n\n### OS\n\n_No response_\n\n### GPU\n\n_No response_\n\n### CPU\n\n_No response_\n\n### Ollama version\n\n_No response_",
+    "reactions": 65,
+    "created_at": "2025-08-05T17:35:51Z",
+    "updated_at": "2025-08-07T09:49:34Z",
+    "labels": [
+      "bug"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11673",
+    "html_url": "https://github.com/ollama/ollama/issues/11673",
+    "author_login": "LaptopDev",
+    "author_profile": "https://github.com/LaptopDev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4510,
+    "title": "Would it be possible for Ollama to support re-rank models?",
+    "body": "I am using Ollama for my projects and it's been great. However, when using some AI app platform, like dify, build RAG app, rerank is nessesary. It's possible for Ollama to support rerank models.\n\n\n",
+    "reactions": 63,
+    "created_at": "2024-05-18T04:05:07Z",
+    "updated_at": "2026-04-26T14:52:50Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4510",
+    "html_url": "https://github.com/ollama/ollama/issues/4510",
+    "author_login": "lyfuci",
+    "author_profile": "https://github.com/lyfuci",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9659,
+    "title": "Compatibility with new OpenAI responses API",
+    "body": "OpenAI just announced the responses API:\nhttps://www.youtube.com/live/hciNKcLwSes\nhttps://platform.openai.com/docs/guides/responses-vs-chat-completions\n\nThey are not currently deprecating chat completions, however.\nI'm curious what you think about a compatibility layer with the Responses API, or if you're going to stick with chat completions compatibility only.",
+    "reactions": 59,
+    "created_at": "2025-03-11T19:24:45Z",
+    "updated_at": "2025-12-12T00:03:22Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9659",
+    "html_url": "https://github.com/ollama/ollama/issues/9659",
+    "author_login": "pamelafox",
+    "author_profile": "https://github.com/pamelafox",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 707,
+    "title": "127.0.0.1:11434: bind: address already in use",
+    "body": "When I run `ollama serve` I get\r\n\r\n`Error: listen tcp 127.0.0.1:11434: bind: address already in use`\r\n\r\nAfter checking what's running on the port with `sudo lsof -i :11434`\r\n\r\nI see that ollama is already running\r\n\r\n`ollama  2233 ollama    3u  IPv4  37563      0t0  TCP localhost:11434 (LISTEN)`\r\n\r\nI killed the process and ran the serve command again and got the same error. So it seems that it tries to start the server twice.",
+    "reactions": 59,
+    "created_at": "2023-10-05T06:15:02Z",
+    "updated_at": "2025-11-22T02:48:52Z",
+    "labels": [
+      "question"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/707",
+    "html_url": "https://github.com/ollama/ollama/issues/707",
+    "author_login": "Nivek92",
+    "author_profile": "https://github.com/Nivek92",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1431,
+    "title": "[WSL 2] Exposing ollama via 0.0.0.0 on local network",
+    "body": "Hello! Just spent the last 3 or so hours struggling to figure this out and thought I'd leave my solution here to spare the next person who tries this out as well.\r\n\r\nBasically, I was trying to run `ollama serve` in WSL 2 (setup was insanely quick and easy) and then access it on my local network.\r\n\r\nHowever, when I tried to do this, it wouldn't access ollama in WSL 2, I was able to access it via `127.0.0.1:11434`, but not `0.0.0.0:11434`, despite following the [excellent documentation](https://github.com/jmorganca/ollama/blob/main/docs/faq.md) and setting the `OLLAMA_HOST` and `OLLAMA_ORIGINS` environment variables didn't help me.\r\n\r\nAfter much digging and debugging, I discovered that by default, `WSL 2 has a virtualized ethernet adapter with its own unique IP address.` - [Microsoft Documentation](https://learn.microsoft.com/en-us/windows/wsl/networking) \r\n\r\n**NOTE**\r\nIts important to keep in mind that I haven't actually tried this solution myself from scratch, this is my recollection of steps I took over the last several hours to get this to work, anyone encountering the same problem I did please feel free to post what did / didn't work.\r\n\r\nMy solution to get this working and accessible on my network was as follows:\r\n\r\n1. Get the IP of the WSL 2 virtualized ethernet adapter which can be done by running `ifconfig` in WSL 2 and getting the IP from the `eth0` field, it should be under `inet`,\r\n```\r\n$ ifconfig\r\neth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500\r\n        inet 170.20.138.60\r\n```\r\nin this case, the IP address we'll be using is **170.20.138.60**\r\n2. In `/etc/systemd/system/ollama.service.d/environment.conf`, set `OLLAMA_HOST` to this new IP address, in this example it should look something like this,\r\n`/etc/systemd/system/ollama.service.d/environment.conf`\r\n```\r\n[Service]\r\nEnvironment=\"OLLAMA_HOST=170.20.138.60:11434\"\r\nEnvironment=\"OLLAMA_ORIGINS=*\"\r\n```\r\nYou'll want to restart your ollama service at this point with\r\n```\r\nsudo systemctl daemon-reload\r\nsudo systemctl restart ollama\r\n```\r\n3. At this point, your ollama service should be pointed at your WSL 2 virtualized ethernet adapter and the next step is to create a port proxy in order to talk to the WSL 2 virtual machine over your network. Open a Powershell window in administrator mode. For reference, [serverfault thread](https://serverfault.com/questions/1088746/how-to-access-service-running-on-host-from-wsl2-connection-refused) \r\n```\r\nNew-NetFireWallRule -DisplayName 'WSL firewall unlock' -Direction Outbound -LocalPort 11434 -Action Allow -Protocol TCP\r\n\r\nNew-NetFireWallRule -DisplayName 'WSL firewall unlock' -Direction Inbound -LocalPort 11434 -Action Allow -Protocol TCP\r\n```\r\n\r\nand with the WSL firewall rules in place you should be able to run the following to make a port proxy\r\n\r\n```\r\nnetsh interface portproxy add v4tov4 listenport=11434 listenaddress=0.0.0.0 connectport=11434 connectaddress=170.20.138.60\r\n```\r\n\r\nand BAM! You should now be able to access the ollama instance",
+    "reactions": 56,
+    "created_at": "2023-12-08T05:04:09Z",
+    "updated_at": "2026-01-29T07:23:53Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1431",
+    "html_url": "https://github.com/ollama/ollama/issues/1431",
+    "author_login": "bocklucas",
+    "author_profile": "https://github.com/bocklucas",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10309,
+    "title": "Support for OpenAI Responses API (for Codex CLI compatibility)",
+    "body": "The new [OpenAI Codex CLI](https://github.com/openai/codex) uses OpenAI’s [/v1/responses endpoint](https://platform.openai.com/docs/guides/responses-vs-chat-completions), enabling agent-like functionality directly from the terminal. Currently, Ollama’s OpenAI compatibility layer only supports the /chat/completions endpoint. This would allow developers to point Codex CLI directly to Ollama.",
+    "reactions": 53,
+    "created_at": "2025-04-16T23:33:52Z",
+    "updated_at": "2025-09-03T00:13:41Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10309",
+    "html_url": "https://github.com/ollama/ollama/issues/10309",
+    "author_login": "vmotta8",
+    "author_profile": "https://github.com/vmotta8",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2637,
+    "title": "Integrated AMD GPU support",
+    "body": "Opening a new issue (see https://github.com/ollama/ollama/pull/2195) to track support for integrated GPUs. I have a AMD 5800U CPU with integrated graphics. As far as i did research ROCR lately does support integrated graphics too.\r\n\r\nCurrently Ollama seems to ignore iGPUs in general.",
+    "reactions": 52,
+    "created_at": "2024-02-21T14:56:12Z",
+    "updated_at": "2025-12-23T17:30:07Z",
+    "labels": [
+      "feature request",
+      "amd"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2637",
+    "html_url": "https://github.com/ollama/ollama/issues/2637",
+    "author_login": "DocMAX",
+    "author_profile": "https://github.com/DocMAX",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11340,
+    "title": "Add SmolLM3 model",
+    "body": "Blog: https://huggingface.co/blog/smollm3\nBase model: https://hf.co/HuggingFaceTB/SmolLM3-3B-Base\nInstruct and reasoning model: https://hf.co/HuggingFaceTB/SmolLM3-3B",
+    "reactions": 52,
+    "created_at": "2025-07-09T09:04:21Z",
+    "updated_at": "2025-09-15T10:32:33Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11340",
+    "html_url": "https://github.com/ollama/ollama/issues/11340",
+    "author_login": "Dalibor-P",
+    "author_profile": "https://github.com/Dalibor-P",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 358,
+    "title": "Parallel requests",
+    "body": "the app is amazing but the problem is If I want to create a multiagent from one api, I need to create a Queue system, as it can reply only to one request at a time, is there a way to improve this or do I have to implement a Queue system?\r\n\r\n\r\nI just started here so sorry for any mistake, ;)",
+    "reactions": 48,
+    "created_at": "2023-08-16T09:15:52Z",
+    "updated_at": "2025-03-05T19:53:29Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/358",
+    "html_url": "https://github.com/ollama/ollama/issues/358",
+    "author_login": "youssef02",
+    "author_profile": "https://github.com/youssef02",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 738,
+    "title": "AMD GPU & ROCm support",
+    "body": "I have a 7900XT and would definitely love to have ROCm support. It seems like it might be coming with https://github.com/jmorganca/ollama/pull/667?\r\n\r\nI couldn't find a dedicated issue for this so I'm creating this one to track it.\r\n\r\nEdit: For those interested in this feature, follow https://github.com/jmorganca/ollama/pull/814.",
+    "reactions": 47,
+    "created_at": "2023-10-08T14:53:24Z",
+    "updated_at": "2024-06-14T17:29:05Z",
+    "labels": [
+      "feature request",
+      "amd"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/738",
+    "html_url": "https://github.com/ollama/ollama/issues/738",
+    "author_login": "deadmeu",
+    "author_profile": "https://github.com/deadmeu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 7889,
+    "title": "Remove macOS menu bar icon",
+    "body": "Can we please get the ability to turn off the macOS menu bar icon? ",
+    "reactions": 43,
+    "created_at": "2024-11-30T09:20:15Z",
+    "updated_at": "2026-03-06T08:15:35Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/7889",
+    "html_url": "https://github.com/ollama/ollama/issues/7889",
+    "author_login": "rosmur",
+    "author_profile": "https://github.com/rosmur",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3137,
+    "title": "Is there any plans/milestones for implementing function calling?",
+    "body": "Is there a roadmap for implementing function calling/tools? \r\nI'm happy to help if pointed in the right direction :) \r\nThanks!",
+    "reactions": 41,
+    "created_at": "2024-03-14T10:42:57Z",
+    "updated_at": "2024-07-26T00:51:01Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3137",
+    "html_url": "https://github.com/ollama/ollama/issues/3137",
+    "author_login": "chumpblocckami",
+    "author_profile": "https://github.com/chumpblocckami",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2417,
+    "title": "Tools support in ChatCompletion endpoints",
+    "body": "We'd love tools support so we can use ollama with our existing OpenAI-using apps. Not sure if that's possible across the board with all models.",
+    "reactions": 41,
+    "created_at": "2024-02-08T22:17:27Z",
+    "updated_at": "2024-06-25T04:30:24Z",
+    "labels": [
+      "feature request",
+      "compatibility"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2417",
+    "html_url": "https://github.com/ollama/ollama/issues/2417",
+    "author_login": "pamelafox",
+    "author_profile": "https://github.com/pamelafox",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 327,
+    "title": "Embedding model support",
+    "body": "Add embedding models to use primarily with `/api/embeddings`\r\n\r\n* `instructor-xl`\r\n* `bge-large`\r\n* `all-MiniLM-L6-v2`\r\n\r\nSee the full [leaderboard](https://huggingface.co/spaces/mteb/leaderboard)",
+    "reactions": 40,
+    "created_at": "2023-08-11T03:53:45Z",
+    "updated_at": "2024-02-21T02:37:30Z",
+    "labels": [
+      "feature request",
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/327",
+    "html_url": "https://github.com/ollama/ollama/issues/327",
+    "author_login": "jmorganca",
+    "author_profile": "https://github.com/jmorganca",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3189,
+    "title": "Add support for amd Radeon 780M gfx1103 - override works",
+    "body": "### What are you trying to do?\n\nPlease support GPU acceleration using \"AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics\" on Linux (Ubuntu 22.04).\r\n\r\nNewer notebooks are shipped with AMD 7840U and support setting VRAM from 1GB to 8GB in the bios. With GPU acceleration only 1 vCPU is used and user experience with 7B models is quite good.\r\n\r\nNot working (\"amdgpu [0] gfx1103 is not supported\"):\r\n\r\n```\r\nOLLAMA_LLM_LIBRARY=\"rocm_v60000\" /usr/bin/ollama serve\r\ntime=2024-03-17T03:02:49.566+01:00 level=INFO source=images.go:806 msg=\"total blobs: 20\"\r\ntime=2024-03-17T03:02:49.566+01:00 level=INFO source=images.go:813 msg=\"total unused blobs removed: 0\"\r\ntime=2024-03-17T03:02:49.566+01:00 level=INFO source=routes.go:1110 msg=\"Listening on 127.0.0.1:11434 (version 0.1.29)\"\r\ntime=2024-03-17T03:02:49.566+01:00 level=INFO source=payload_common.go:112 msg=\"Extracting dynamic libraries to /tmp/ollama3117537729/runners ...\"\r\ntime=2024-03-17T03:02:51.423+01:00 level=INFO source=payload_common.go:139 msg=\"Dynamic LLM libraries [rocm_v60000 cpu_avx cpu_avx2 cuda_v11 cpu]\"\r\ntime=2024-03-17T03:02:51.424+01:00 level=INFO source=gpu.go:77 msg=\"Detecting GPU type\"\r\ntime=2024-03-17T03:02:51.424+01:00 level=INFO source=gpu.go:191 msg=\"Searching for GPU management library libnvidia-ml.so\"\r\ntime=2024-03-17T03:02:51.427+01:00 level=INFO source=gpu.go:237 msg=\"Discovered GPU libraries: []\"\r\ntime=2024-03-17T03:02:51.427+01:00 level=INFO source=cpu_common.go:11 msg=\"CPU has AVX2\"\r\ntime=2024-03-17T03:02:51.427+01:00 level=INFO source=amd_linux.go:50 msg=\"AMD Driver: 6.3.6\"\r\ntime=2024-03-17T03:02:51.427+01:00 level=INFO source=amd_linux.go:88 msg=\"detected amdgpu versions [gfx1103]\"\r\ntime=2024-03-17T03:02:51.430+01:00 level=WARN source=amd_linux.go:114 msg=\"amdgpu [0] gfx1103 is not supported by /tmp/ollama3117537729/rocm [gfx1030 gfx1100 gfx1101 gfx1102 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942]\"\r\ntime=2024-03-17T03:02:51.430+01:00 level=WARN source=amd_linux.go:116 msg=\"See https://github.com/ollama/ollama/blob/main/docs/troubleshooting.md for HSA_OVERRIDE_GFX_VERSION usage\"\r\ntime=2024-03-17T03:02:51.430+01:00 level=INFO source=amd_linux.go:127 msg=\"all detected amdgpus are skipped, falling back to CPU\"\r\ntime=2024-03-17T03:02:51.430+01:00 level=INFO source=routes.go:1133 msg=\"no GPU detected\"\r\n```\r\n\r\nMy current workaround is to force gfx1102 (no issues so far):\r\n\r\n```\r\nHSA_OVERRIDE_GFX_VERSION=\"11.0.2\" OLLAMA_LLM_LIBRARY=\"rocm_v60000\" /usr/bin/ollama serve\r\ntime=2024-03-17T03:04:54.436+01:00 level=INFO source=images.go:806 msg=\"total blobs: 20\"\r\ntime=2024-03-17T03:04:54.436+01:00 level=INFO source=images.go:813 msg=\"total unused blobs removed: 0\"\r\ntime=2024-03-17T03:04:54.437+01:00 level=INFO source=routes.go:1110 msg=\"Listening on 127.0.0.1:11434 (version 0.1.29)\"\r\ntime=2024-03-17T03:04:54.437+01:00 level=INFO source=payload_common.go:112 msg=\"Extracting dynamic libraries to /tmp/ollama2902102366/runners ...\"\r\ntime=2024-03-17T03:04:56.315+01:00 level=INFO source=payload_comm",
+    "reactions": 37,
+    "created_at": "2024-03-17T02:29:13Z",
+    "updated_at": "2026-03-11T20:27:49Z",
+    "labels": [
+      "feature request",
+      "linux",
+      "windows",
+      "amd"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3189",
+    "html_url": "https://github.com/ollama/ollama/issues/3189",
+    "author_login": "thomas-0816",
+    "author_profile": "https://github.com/thomas-0816",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 335,
+    "title": "Model import/export",
+    "body": "When using large models like Llama2:70b, the download files are quite big.\r\nAs a user with multiple local systems, having to `ollama pull` on every device means that much more bandwidth and time spent.\r\nIt would be great if we could download the model once and then export/import it to other ollama clients in the office without pulling it from the internet.\r\n\r\nExample:\r\nOn the first device, we would do:\r\n\r\n`ollama pull llama2:70b`\r\n\r\n`ollama export llama2:70b /Volumes/MyUSB/llama2_70b-local.ollama_model` \r\n\r\n\r\n\r\nThen we would take MyUSB over to another device and do:\r\n\r\n`ollama import /Volumes/MyUSB/llama2_70b-local.ollama_model` \r\n\r\n`ollama run llama2:local-70b` or `ollama run llama2-local:70b` or even just `ollama run llama2_70b-local`\r\n\r\nI'm obviously not sure about the naming structure here, but I hope I've conveyed the problem and thought process.\r\n\r\nThanks for the fantastic project!",
+    "reactions": 37,
+    "created_at": "2023-08-11T19:26:46Z",
+    "updated_at": "2026-04-17T14:32:10Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/335",
+    "html_url": "https://github.com/ollama/ollama/issues/335",
+    "author_login": "mikeroySoft",
+    "author_profile": "https://github.com/mikeroySoft",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3165,
+    "title": "Support \"tool\" role in messages",
+    "body": "### What are you trying to do?\n\nThe new Herme 2 Pro model recommends results from function calling to come in messages with the role \"tool\", eg:\r\n\r\n```\r\n<|im_start|>tool\r\n<tool_response>...result here...</tool_response>\r\n<|im_end|>\r\n```\r\n\r\nThe chat api doesn't support messages with a role \"tool\" - treats it as a bad request.\n\n### How should we solve this?\n\nAccepting the \"tool\" role in messages API would make life easier for those using Hermes Pro - and any future models that are likely to be based off the same open data sets.\r\n\r\nThis has implications for how templating works in Ollama - it may even require a total rethink of templates.\n\n### What is the impact of not solving this?\n\nNot solving it means that users have to create their own templates and use Ollama's `raw` option, which negates some of the joy of using Ollama in the first place.\r\n\r\nI truly believe function calling and building local agents is one area where Ollama really could excel, if the experience of doing so is made totally painless.\n\n### Anything else?\n\nRepo of Hermes Pro function calling with prompting/templating instructions:\r\nhttps://github.com/NousResearch/Hermes-Function-Calling",
+    "reactions": 32,
+    "created_at": "2024-03-15T09:42:21Z",
+    "updated_at": "2025-06-22T17:41:38Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3165",
+    "html_url": "https://github.com/ollama/ollama/issues/3165",
+    "author_login": "aaronrussell",
+    "author_profile": "https://github.com/aaronrussell",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 808,
+    "title": "Grammar-guided generation support",
+    "body": "Thoughts on introducing a straightforward way for a Modelfile to point to a grammar and thread that through to sampling/inference?",
+    "reactions": 32,
+    "created_at": "2023-10-16T20:35:30Z",
+    "updated_at": "2024-08-07T16:58:37Z",
+    "labels": [
+      "feature request",
+      "feedback wanted"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/808",
+    "html_url": "https://github.com/ollama/ollama/issues/808",
+    "author_login": "tmc",
+    "author_profile": "https://github.com/tmc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9812,
+    "title": "AMD RX9070/9070XT support",
+    "body": "It seems that RX9070 and 9070XT has been supported after ROCm 6.3.1[^6.3.1Support] with LLVM target ```gfx1200``` and\n ```gfx1201```[^llvm_target], please help to update the ROCm support.\n\n[^6.3.1Support]: https://github.com/ROCm/ROCm/issues/4485\n[^llvm_target]: https://github.com/ROCm/ROCm/pull/4162",
+    "reactions": 31,
+    "created_at": "2025-03-17T09:38:30Z",
+    "updated_at": "2025-10-18T20:49:26Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9812",
+    "html_url": "https://github.com/ollama/ollama/issues/9812",
+    "author_login": "9suns",
+    "author_profile": "https://github.com/9suns",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6237,
+    "title": "Ollama Product Stance on Grammar Feature / Outstanding PRs",
+    "body": "Hello,\r\n\r\nThis isn't a feature request, but it's the best category I could pick. This is really a question around merging PRs for exposing an existing feature to users of Ollama that are being ignored or declined without good context. I'm asking this to get more public visibility from the Ollama team on grammar features, specifically those implemented and existing in llama.cpp.\r\n\r\nI understand Ollama provides json schemas functionality as a way to direct and control the output from models, another popular approach is the use of GBNF / Grammar, which is supported and implemented in llama.cpp currently. Several PRs have been submitted to expose this feature to Ollama users, and have been either sitting idle or closed. This particular point is going to continue to surface and make noise (there was a large help thread in the Discord started today) until Ollama makes a clear and public statement on this issue. If Ollama as a product has decided not to give users this choice, and is saying if you want to use or test this feature it must be done outside of Ollama, then you need to let us (the community) know. If there is some problem with the way the community is exposing this feature in the PRs, then again just let us know so we can fix it. I understand as a contributor it can be hard to understand why a product does not want to give users more choices and options, and I think Ollama needs to clearly state why this choice has been made for the product.\r\n\r\nThis is not a post to talk about which approach between GBNF and json is better or worse - this is a post to clarify that there is community demand for the ability to use this feature in Ollama, and Ollama apparently actively rejecting the inclusion of it based on what I have to assume are product calls the community does not have visibility on. I hope this post will end that lack of clarity for all involved, so we all will know Ollama's stance and as a community we can stop bringing this up and submitting additional PRs. If anyone wants to start a more technical post and provide data on why one approach can be better than another, I welcome you to do so and link it to this topic.\r\n\r\nMy simple personal example is this. As a newer Ollama user I actually would like to try out both approaches to see which one works better for me and my product. Right now in Ollama I simply cannot, and from appearances (which can be deceiving) it appears that what's stopping me from testing these both in Ollama is a simple code change to expose the feature in llama.cpp to me. _(**edit**: It was brought to my attention that Ollama actually uses GBNF internally to enforce json syntax, so the only thing that's really missing is exposing this feature to the end user to customize or use different grammar.)_\r\n\r\nThere might be more, but for reference here are some links to other discussions about this topic as well as a link to Discord thread from earlier today. Thanks to the Ollama team for taking a look at this and helping ali",
+    "reactions": 30,
+    "created_at": "2024-08-07T16:47:55Z",
+    "updated_at": "2026-03-19T17:13:45Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6237",
+    "html_url": "https://github.com/ollama/ollama/issues/6237",
+    "author_login": "Kinglord",
+    "author_profile": "https://github.com/Kinglord",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2416,
+    "title": "`/v1/embeddings` OpenAI compatible API endpoint",
+    "body": "Your blog post mentions you're considering it. We'd love it so that we can point our RAG apps at ollama. Thanks!",
+    "reactions": 28,
+    "created_at": "2024-02-08T22:16:03Z",
+    "updated_at": "2024-07-29T20:13:23Z",
+    "labels": [
+      "feature request",
+      "compatibility",
+      "embeddings"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2416",
+    "html_url": "https://github.com/ollama/ollama/issues/2416",
+    "author_login": "pamelafox",
+    "author_profile": "https://github.com/pamelafox",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6972,
+    "title": "Feature Request: LLaMA 3.2 Vision Support",
+    "body": "It would be nice if `ollama` could support LLaMA 3.2 Vision\r\n\r\nhttps://huggingface.co/meta-llama/Llama-3.2-11B-Vision\r\n\r\n![image](https://github.com/user-attachments/assets/322997ba-6cea-4a93-a2de-35650c4f2381)\r\n\r\n",
+    "reactions": 26,
+    "created_at": "2024-09-26T02:58:49Z",
+    "updated_at": "2024-11-07T19:01:27Z",
+    "labels": [
+      "feature request",
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6972",
+    "html_url": "https://github.com/ollama/ollama/issues/6972",
+    "author_login": "tuanlda78202",
+    "author_profile": "https://github.com/tuanlda78202",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 5091,
+    "title": "KV Cache Quantization",
+    "body": "It would be good if the KV Key cache type could be set in Ollama.\r\n\r\nllama.cpp allows you to set the Key cache type which can improve memory usage as the KV store increases in size, especially when running models like Command-R(+) that don't have GQA.\r\n\r\nIf we were able to change the KV Key cache type from f16 to q8_0 we would get around a 50% reduction in the memory used by the KV cache/context, some folks are saying that with IQ quants you can go as low as Q4_0 for the KV keys without issues using 75%~ less memory.\r\n\r\nhttps://github.com/ggerganov/llama.cpp/blob/43b35e38ba371f9a7faa6dca4c5d1e8f698ffd87/examples/server/README.md?plain=1#L74C156-L76C1\r\n\r\nFrom what I've read changing the cache type for the Key from F16 to Q4_0 has little to no impact on quality.\r\n\r\nSee also - https://www.reddit.com/r/LocalLLaMA/comments/1dalkm8/memory_tests_using_llamacpp_kv_cache_quantization/\r\n\r\n## PR is up: https://github.com/ollama/ollama/pull/6279",
+    "reactions": 26,
+    "created_at": "2024-06-17T00:55:27Z",
+    "updated_at": "2024-12-06T08:27:37Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/5091",
+    "html_url": "https://github.com/ollama/ollama/issues/5091",
+    "author_login": "sammcj",
+    "author_profile": "https://github.com/sammcj",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1890,
+    "title": "A way to update all downloaded models",
+    "body": "I'd like to have a way to update all downloaded models.\r\nRight now I have to pull each model separately.",
+    "reactions": 26,
+    "created_at": "2024-01-10T10:03:21Z",
+    "updated_at": "2026-01-08T07:32:52Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1890",
+    "html_url": "https://github.com/ollama/ollama/issues/1890",
+    "author_login": "Zig1375",
+    "author_profile": "https://github.com/Zig1375",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2022,
+    "title": "List available models",
+    "body": "Hi. The API allows me to list the local models. Is there a way to list all available models (those we can find in the website of ollama?\r\nI need that for the models zoo to make it easy for users of lollms with ollama backend to install the models.\r\n\r\nI prefer this rather than having to scrape the website to get the latest list of models.",
+    "reactions": 25,
+    "created_at": "2024-01-16T20:14:24Z",
+    "updated_at": "2025-02-14T16:47:51Z",
+    "labels": [
+      "feature request",
+      "ollama.com"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2022",
+    "html_url": "https://github.com/ollama/ollama/issues/2022",
+    "author_login": "ParisNeo",
+    "author_profile": "https://github.com/ParisNeo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 403,
+    "title": "Ollama Windows version",
+    "body": "I saw it is coming but didn't mention when? Would be great if you pinned this issue as more people use Windows & ollama has such a great dx.\r\n\r\nThe project looks absolutely brilliant. Would love to use text (gpt-4) & code (copilot) locally.",
+    "reactions": 24,
+    "created_at": "2023-08-24T05:23:02Z",
+    "updated_at": "2024-05-23T11:31:34Z",
+    "labels": [
+      "feature request",
+      "windows"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/403",
+    "html_url": "https://github.com/ollama/ollama/issues/403",
+    "author_login": "deadcoder0904",
+    "author_profile": "https://github.com/deadcoder0904",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2732,
+    "title": "Provide model context length in API",
+    "body": "Hi guys, love Ollama and contributing to the ecosystem by building [Enchanted](https://github.com/AugustDev/enchanted). \r\n\r\nOne important thing that is currently missing from `/api/show` API is the context length that model supports. For all RAG applications this is essential to know and it seems that in the future models will support greatly varied context lengths. \r\n\r\nIt would be great to include this metadata into API and as well as [Ollama library](https://ollama.com/library). \r\n\r\nExample of `/api/show` response for Gemma contains no clues of context length.\r\n```\r\n{\r\n  \"license\": \"...\",\r\n  \"modelfile\": \"# Modelfile generated by \\\"ollama show\\\"\\n# To build a new Modelfile based on this one, replace the FROM line with:\\n# FROM gemma:7b\\n\\nFROM /Users/wpc/.ollama/models/blobs/sha256:456402914e838a953e0cf80caa6adbe75383d9e63584a964f504a7bbb8f7aad9\\nTEMPLATE \\\"\\\"\\\"<start_of_turn>user\\n{{ if .System }}{{ .System }} {{ end }}{{ .Prompt }}<end_of_turn>\\n<start_of_turn>model\\n{{ .Response }}<end_of_turn>\\n\\\"\\\"\\\"\\nPARAMETER repeat_penalty 1\\nPARAMETER stop \\\"<start_of_turn>\\\"\\nPARAMETER stop \\\"<end_of_turn>\\\"\",\r\n  \"parameters\": \"repeat_penalty                 1\\nstop                           \\\"<start_of_turn>\\\"\\nstop                           \\\"<end_of_turn>\\\"\",\r\n  \"template\": \"<start_of_turn>user\\n{{ if .System }}{{ .System }} {{ end }}{{ .Prompt }}<end_of_turn>\\n<start_of_turn>model\\n{{ .Response }}<end_of_turn>\\n\",\r\n  \"details\": {\r\n    \"parent_model\": \"\",\r\n    \"format\": \"gguf\",\r\n    \"family\": \"gemma\",\r\n    \"families\": [\r\n      \"gemma\"\r\n    ],\r\n    \"parameter_size\": \"9B\",\r\n    \"quantization_level\": \"Q4_0\"\r\n  }\r\n}\r\n```",
+    "reactions": 24,
+    "created_at": "2024-02-24T13:54:53Z",
+    "updated_at": "2024-06-29T22:49:39Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2732",
+    "html_url": "https://github.com/ollama/ollama/issues/2732",
+    "author_login": "gluonfield",
+    "author_profile": "https://github.com/gluonfield",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 153,
+    "title": "Control model cache location (set ollama directory to something other than ~/.ollama) ",
+    "body": "It would be useful to configure the location where models are cached, so models could be downloaded and stored on external storage.",
+    "reactions": 24,
+    "created_at": "2023-07-21T00:13:40Z",
+    "updated_at": "2023-10-27T16:50:42Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/153",
+    "html_url": "https://github.com/ollama/ollama/issues/153",
+    "author_login": "weaversam8",
+    "author_profile": "https://github.com/weaversam8",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10456,
+    "title": "how can i disable thinking mode?",
+    "body": "qwen3 has thinking mode but i dont need it..\n\nhow can i disable it?",
+    "reactions": 23,
+    "created_at": "2025-04-29T02:01:13Z",
+    "updated_at": "2026-02-03T14:39:08Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10456",
+    "html_url": "https://github.com/ollama/ollama/issues/10456",
+    "author_login": "codeMonkey-shin",
+    "author_profile": "https://github.com/codeMonkey-shin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 746,
+    "title": "Support multi-modal models",
+    "body": "This is one of the best open source multi modals based on llama 7 currently. It would nice to be able to host it in ollama. \r\nhttps://llava-vl.github.io/",
+    "reactions": 23,
+    "created_at": "2023-10-10T01:14:13Z",
+    "updated_at": "2024-03-06T13:12:22Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/746",
+    "html_url": "https://github.com/ollama/ollama/issues/746",
+    "author_login": "arian81",
+    "author_profile": "https://github.com/arian81",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 8529,
+    "title": "feat: OpenAI reasoning_content compatibility",
+    "body": "The current thinking model outputs XML tags to distinguish between thinking and answering, and we need the `reasoning_content` feature",
+    "reactions": 22,
+    "created_at": "2025-01-22T04:09:25Z",
+    "updated_at": "2025-05-29T13:27:14Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/8529",
+    "html_url": "https://github.com/ollama/ollama/issues/8529",
+    "author_login": "EntropyYue",
+    "author_profile": "https://github.com/EntropyYue",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 5425,
+    "title": "Does having the default quant type being Q4_0 (a legacy format) on the model hub still make sense?",
+    "body": "The Ollama model hub still has the default quant type of Q4_0 which is a legacy format that under-performs compared to K-quants (Qn_K, e.g. Q4_K_M, Q6_K, Q5_K_L etc...).\r\n\r\n- Would it perhaps make sense to change the default quant to Q4_K_M for future models uploaded to the hub?\r\n\r\nReference\r\n\r\n- https://github.com/ggerganov/llama.cpp/wiki/Feature-matrix (Note that the legacy quant types don't even appear on the feature matrix).\r\n- https://github.com/ggerganov/llama.cpp/wiki/Tensor-Encoding-Schemes\r\n- https://www.reddit.com/r/LocalLLaMA/comments/1ba55rj/overview_of_gguf_quantization_methods/\r\n- https://github.com/ggerganov/llama.cpp/discussions/406#discussioncomment-6176448\r\n- https://github.com/ggerganov/llama.cpp/discussions/2094\r\n- https://huggingface.co/datasets/christopherthompson81/quant_exploration\r\n\r\n![image](https://github.com/ollama/ollama/assets/862951/201f324e-d27e-4fd9-b6d4-408699191685)\r\n\r\n<img width=\"684\" alt=\"image\" src=\"https://github.com/ollama/ollama/assets/862951/2ab178bb-399e-4fb6-a628-9e60ffb694ab\">\r\n\r\n![image](https://github.com/ollama/ollama/assets/862951/5b8b200f-a68e-4178-a3a8-43f81fb7753b)\r\n\r\n<img width=\"949\" alt=\"image\" src=\"https://github.com/ollama/ollama/assets/862951/520fcec7-1808-4893-ae02-401fee430e6e\">\r\n\r\n\r\n(Sorry if an issue already exists for this - if it did my search-foo let me down)\r\n",
+    "reactions": 22,
+    "created_at": "2024-07-02T01:28:02Z",
+    "updated_at": "2024-12-29T19:18:56Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/5425",
+    "html_url": "https://github.com/ollama/ollama/issues/5425",
+    "author_login": "sammcj",
+    "author_profile": "https://github.com/sammcj",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11669,
+    "title": "Please release a Linux desktop app like the existing Windows and macOS versions.",
+    "body": "",
+    "reactions": 21,
+    "created_at": "2025-08-05T16:34:32Z",
+    "updated_at": "2025-09-01T19:33:56Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11669",
+    "html_url": "https://github.com/ollama/ollama/issues/11669",
+    "author_login": "HY1lon",
+    "author_profile": "https://github.com/HY1lon",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 8414,
+    "title": "[Feature] Support Intel GPUs",
+    "body": "Ollama had supported by the PR https://github.com/ollama/ollama/pull/2458 merged to support Intel GPU.\r\nBut the function disappears now.\r\n\r\nI see there are several issues and opened PRs for Intel GPU. But they are too old.\r\n\r\nI want to draft PRs to support Intel GPU: dGPU & iGPU (since 11th Core) by including llama.cpp SYCL backend.\r\nThis issue is created to trace the development work and reduce the duplicated work in the future.\r\n",
+    "reactions": 20,
+    "created_at": "2025-01-14T04:58:03Z",
+    "updated_at": "2025-10-10T01:04:55Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/8414",
+    "html_url": "https://github.com/ollama/ollama/issues/8414",
+    "author_login": "NeoZhangJianyu",
+    "author_profile": "https://github.com/NeoZhangJianyu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3735,
+    "title": "Can you support llama3?",
+    "body": "https://llama.meta.com/llama3/",
+    "reactions": 20,
+    "created_at": "2024-04-18T16:06:36Z",
+    "updated_at": "2024-04-19T21:40:53Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3735",
+    "html_url": "https://github.com/ollama/ollama/issues/3735",
+    "author_login": "ICLXL",
+    "author_profile": "https://github.com/ICLXL",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4051,
+    "title": "Enable Flash Attention on GGML/GGUF (feature now merged into llama.cpp)",
+    "body": "Flash Attention has landed in llama.cpp (https://github.com/ggerganov/llama.cpp/pull/5021).\r\n\r\nThe tldr; is simply to pass the -fa flag to llama.cpp’s server.\r\n\r\n- Can we please have an Ollama server env var to pass this flag to the underlying llama.cpp server?\r\n\r\nalso a related idea - perhaps there could be a way to pass arbitrary flags down to llama.cpp so that hints like this can be easily enabled? (E.g. `OLLAMA_LLAMA_EXTRA_ARGS=-fa,—something-else`",
+    "reactions": 19,
+    "created_at": "2024-04-30T13:06:47Z",
+    "updated_at": "2024-07-18T14:46:21Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4051",
+    "html_url": "https://github.com/ollama/ollama/issues/4051",
+    "author_login": "sammcj",
+    "author_profile": "https://github.com/sammcj",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3027,
+    "title": "`/v1/completions` OpenAI compatible api",
+    "body": "This is more flexible than the chat based one, in case you want to do completitions and not chatting, is that okay? Or you want to have more fine grained control.",
+    "reactions": 19,
+    "created_at": "2024-03-09T20:25:20Z",
+    "updated_at": "2024-07-02T23:01:46Z",
+    "labels": [
+      "feature request",
+      "compatibility"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3027",
+    "html_url": "https://github.com/ollama/ollama/issues/3027",
+    "author_login": "Kreijstal",
+    "author_profile": "https://github.com/Kreijstal",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10492,
+    "title": "Disable Thinking Mode",
+    "body": "With the advent of qwen3, I feel that ollama can add a new parameter when using python calls to control whether the model thinks or not, I hope it can be realized, thank you",
+    "reactions": 19,
+    "created_at": "2025-04-30T01:30:35Z",
+    "updated_at": "2025-08-16T09:56:51Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10492",
+    "html_url": "https://github.com/ollama/ollama/issues/10492",
+    "author_login": "ChenDianWzh",
+    "author_profile": "https://github.com/ChenDianWzh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4074,
+    "title": "Grammar Guided response from model.",
+    "body": "Llama.cpp already has an implementation of grammars. Adding this to the ollama API, would bring more flexibility. This would also help in making reliable agentic llms.",
+    "reactions": 19,
+    "created_at": "2024-05-01T09:56:11Z",
+    "updated_at": "2024-12-05T00:42:43Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4074",
+    "html_url": "https://github.com/ollama/ollama/issues/4074",
+    "author_login": "NeevJewalkar",
+    "author_profile": "https://github.com/NeevJewalkar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1070,
+    "title": "API for models on `ollama.com`",
+    "body": "Hi I was wondering if you could add a way to either search for, or get a list of models available to pull off ollama.ai.\r\n\r\nCurrently the https://ollama.ai/library endpoint serves model information as HTML, it would be better if it was served as JSON so it could be better integrated into software",
+    "reactions": 19,
+    "created_at": "2023-11-10T04:23:05Z",
+    "updated_at": "2024-11-21T17:25:46Z",
+    "labels": [
+      "feature request",
+      "ollama.com"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1070",
+    "html_url": "https://github.com/ollama/ollama/issues/1070",
+    "author_login": "danemadsen",
+    "author_profile": "https://github.com/danemadsen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 976,
+    "title": "Suggestion: Option to \"Save / Cache model in RAM\" for faster switching",
+    "body": "Hi, thank you all so much for the amazing project. \r\n\r\nToday I was testing out using multiple models at the same and the switch is surprisingly acceptable.\r\nI symlinked my models to my HDD. The initial load for each model is slow, but once it's loaded, I can use & switch back and forth between models with only a few seconds delay.\r\n\r\nThrough out the usage & switching process I noticed that's Ollama isn't using any of my RAM at all. Maybe if we could have the option to cache frequently switched models we could improve the switching time to be even faster.",
+    "reactions": 19,
+    "created_at": "2023-11-02T22:26:57Z",
+    "updated_at": "2024-05-14T19:57:49Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/976",
+    "html_url": "https://github.com/ollama/ollama/issues/976",
+    "author_login": "ziontee113",
+    "author_profile": "https://github.com/ziontee113",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 12734,
+    "title": "ROCM: 7.x.x support",
+    "body": "Im writing this as more of a \"Bug Report\" as it could be either/or. All of the information only mentions the Depreciated 6.x ROCM SDK. But that doesnt officially support GFX1200/GFX1201. \n\nPlease add support for ROCM 7.x, as without it ollama doesnt properly support newer AMD products.\n\n---\nSystem used for testing\n\nOS: Archlinux\nROCM: 7.0.2\nGPU: AMD RX 9070XT\n",
+    "reactions": 17,
+    "created_at": "2025-10-22T05:11:59Z",
+    "updated_at": "2026-03-11T20:23:10Z",
+    "labels": [
+      "feature request",
+      "amd"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/12734",
+    "html_url": "https://github.com/ollama/ollama/issues/12734",
+    "author_login": "EndlessEden",
+    "author_profile": "https://github.com/EndlessEden",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2430,
+    "title": "`/v1/models` OpenAI compatibility API",
+    "body": "It's great to have OpenAI compatibility API! \r\nUnfortunately many applications require additional endpoints to work properly.\r\nNamely `v1/models` (https://platform.openai.com/docs/api-reference/models) with list of available models is the one most frequently missing.",
+    "reactions": 17,
+    "created_at": "2024-02-09T17:12:03Z",
+    "updated_at": "2024-07-02T18:50:57Z",
+    "labels": [
+      "feature request",
+      "compatibility"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2430",
+    "html_url": "https://github.com/ollama/ollama/issues/2430",
+    "author_login": "emsi",
+    "author_profile": "https://github.com/emsi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2319,
+    "title": "Distrubuted LLM support ?",
+    "body": "I have 3 x PC with 3090 and 1 x PC with 4090. Currently i am running ollama using my 4090 and it is working great for loading different models on the go, but the bottle neck is loading larger models and bigger context windows on the 24gb vram. It would be great to have something like pedals or MPI on llama.cpp. \r\n\r\nIDEA:\r\nMaybe having ollama slave running on my 3 x pc with 3090 holding the distributed llm and if the ollama server/serve on my 4090 PC needs to load the large models then use the 3090's to increase vram to 96gb\r\n\r\nThis will help increase the bottleneck of consumer hardware and also help businesses utilize resources when idle for LLM's.  \r\n ",
+    "reactions": 16,
+    "created_at": "2024-02-02T05:04:03Z",
+    "updated_at": "2024-10-02T01:25:47Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2319",
+    "html_url": "https://github.com/ollama/ollama/issues/2319",
+    "author_login": "Donno191",
+    "author_profile": "https://github.com/Donno191",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 5794,
+    "title": "Expose model capabilities via /api/tags and /v1/models[/model]",
+    "body": "It would be convenient if the capabilities of a model (completion, tools, insert, \\<future caps\\>) were made available so that clients can adjust API calls.",
+    "reactions": 15,
+    "created_at": "2024-07-19T12:00:49Z",
+    "updated_at": "2025-06-06T10:43:32Z",
+    "labels": [
+      "feature request",
+      "api"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/5794",
+    "html_url": "https://github.com/ollama/ollama/issues/5794",
+    "author_login": "rick-github",
+    "author_profile": "https://github.com/rick-github",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9216,
+    "title": "Speculative Decoding for faster inference.",
+    "body": "[llama.cpp](https://github.com/ggml-org/llama.cpp/pull/2926) supports speculative decoding.\nWhich loads the main model and a draft/smaller model which runs at lower latency.\n\nwill it be implemented in ollama?\nis it in your future plans?\n\ni saw a PR which was [rejected](https://github.com/ollama/ollama/pull/8134)\n\nbut it was because of backend rewrites. But it has already been done right? then why not add speculative decoding?\n\n",
+    "reactions": 14,
+    "created_at": "2025-02-19T09:57:36Z",
+    "updated_at": "2025-05-16T22:37:50Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9216",
+    "html_url": "https://github.com/ollama/ollama/issues/9216",
+    "author_login": "Meshwa428",
+    "author_profile": "https://github.com/Meshwa428",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6007,
+    "title": "Qwen2 tool calling support",
+    "body": "Please support the API tool calling capability of Qwen2. By the way, if I want to implement the API tool calling capability of Qwen2 in Ollma myself, can I make it? What shall I do?\r\n thank you!!!",
+    "reactions": 14,
+    "created_at": "2024-07-27T04:54:19Z",
+    "updated_at": "2024-10-14T05:23:57Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6007",
+    "html_url": "https://github.com/ollama/ollama/issues/6007",
+    "author_login": "jiandandema",
+    "author_profile": "https://github.com/jiandandema",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2790,
+    "title": "Function calling with OpenAI API",
+    "body": "https://ollama.com/joefamous/firefunction-v1\r\n\r\nhttps://platform.openai.com/docs/guides/function-calling",
+    "reactions": 12,
+    "created_at": "2024-02-27T22:26:04Z",
+    "updated_at": "2024-07-26T00:52:48Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2790",
+    "html_url": "https://github.com/ollama/ollama/issues/2790",
+    "author_login": "codearranger",
+    "author_profile": "https://github.com/codearranger",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1142,
+    "title": "Add support for llamacpp min_p sampler",
+    "body": "https://github.com/ggerganov/llama.cpp/pull/3841\r\n![obraz](https://github.com/jmorganca/ollama/assets/13521338/26509c9f-31a1-4544-8d8b-f3418e73a06c)\r\n\r\nIt supposed to give better results compared to top_k, top_p. I tried to add this  min_p - parameter to llama options, but it was unrecognized. ",
+    "reactions": 12,
+    "created_at": "2023-11-15T19:28:55Z",
+    "updated_at": "2024-07-27T21:37:42Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1142",
+    "html_url": "https://github.com/ollama/ollama/issues/1142",
+    "author_login": "JoseConseco",
+    "author_profile": "https://github.com/JoseConseco",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 7886,
+    "title": "Classify tool call vs. content earlier and stream to user",
+    "body": "https://github.com/ollama/ollama/issues/5796#issuecomment-2508374342",
+    "reactions": 12,
+    "created_at": "2024-11-30T01:41:42Z",
+    "updated_at": "2025-05-27T01:55:27Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/7886",
+    "html_url": "https://github.com/ollama/ollama/issues/7886",
+    "author_login": "ParthSareen",
+    "author_profile": "https://github.com/ParthSareen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4448,
+    "title": "Streaming Chat Completion via OpenAI API should support stream option to include Usage",
+    "body": "In streaming mode the OpenAI chat completion has a new parameter to include Usage information after the Chunks. You just add a `{ \"include_usage\": true }` to the request.\r\n\r\nThen the final chunks will look like this:\r\n\r\n```\r\n...\r\ndata: {\"id\":\"chatcmpl-9P4UJf7DEdyXVro2VOMRMT9qKR0bC\",\"object\":\"chat.completion.chunk\",\"created\":1715762479,\"model\":\"gpt-3.5-turbo-0125\",\"system_fingerprint\":null,\"choices\":[{\"index\":1,\"delta\":{},\"logprobs\":null,\"finish_reason\":\"stop\"}],\"usage\":null}\r\ndata: {\"id\":\"chatcmpl-9P4UJf7DEdyXVro2VOMRMT9qKR0bC\",\"object\":\"chat.completion.chunk\",\"created\":1715762479,\"model\":\"gpt-3.5-turbo-0125\",\"system_fingerprint\":null,\"choices\":[{\"index\":2,\"delta\":{},\"logprobs\":null,\"finish_reason\":\"stop\"}],\"usage\":null}\r\ndata: {\"id\":\"chatcmpl-9P4UJf7DEdyXVro2VOMRMT9qKR0bC\",\"object\":\"chat.completion.chunk\",\"created\":1715762479,\"model\":\"gpt-3.5-turbo-0125\",\"system_fingerprint\":null,\"choices\":[],\"usage\":{\"prompt_tokens\":24,\"completion_tokens\":58,\"total_tokens\":82}}\r\ndata: [DONE]\r\n```\r\n\r\nThe final chunk contains no choices, but a `usage`:\r\n\r\n```\r\n\"usage\":{\"prompt_tokens\":24,\"completion_tokens\":58,\"total_tokens\":82}\r\n```\r\n\r\nThis usage is over all the generations from this stream.",
+    "reactions": 12,
+    "created_at": "2024-05-15T08:43:18Z",
+    "updated_at": "2026-02-01T18:16:35Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4448",
+    "html_url": "https://github.com/ollama/ollama/issues/4448",
+    "author_login": "odrobnik",
+    "author_profile": "https://github.com/odrobnik",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3182,
+    "title": "Add \"Stop\" command",
+    "body": "### What are you trying to do?\n\nollama is great!  There is a ollama serve / start, however it doesn't have stop.  There's already a big (closed) issue on how to stop it from autostarting on reboot, and it's OS dependent.  If you can create the service with the ollama cli, then you should be able to stop the service / disable the service with the CLI.  Personally I don't want to run the service all the time, unless i'm utilizing it.\n\n### How should we solve this?\n\nadd an ollama stop command\n\n### What is the impact of not solving this?\n\nthere's going to continue to be people asking how to stop the service in issues, \n\n### Anything else?\n\nNope - thanks for a great program!",
+    "reactions": 12,
+    "created_at": "2024-03-16T17:41:51Z",
+    "updated_at": "2024-05-18T03:21:22Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3182",
+    "html_url": "https://github.com/ollama/ollama/issues/3182",
+    "author_login": "haydonryan",
+    "author_profile": "https://github.com/haydonryan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3002,
+    "title": "Disable Chat History/Logging Option",
+    "body": "Please add a setting to disable chat history/logging option and consider to have this disabled by default. This can increase privacy from preventing others to see what they asked the AI in the past.\r\n\r\nWould especially be useful feature for Users and users management\r\nhttps://github.com/ollama/ollama/issues/2863",
+    "reactions": 12,
+    "created_at": "2024-03-08T13:53:27Z",
+    "updated_at": "2024-05-18T18:51:58Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3002",
+    "html_url": "https://github.com/ollama/ollama/issues/3002",
+    "author_login": "trymeouteh",
+    "author_profile": "https://github.com/trymeouteh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1701,
+    "title": "Create uninstall script",
+    "body": "Hello, it would be nice to have an uninstall script to automate the uninstall process specified here: https://github.com/jmorganca/ollama/blob/main/docs/linux.md#uninstall adding a PR to this issue with something i made that I'd like to contribute.\r\n\r\nHappy Holidays! :)",
+    "reactions": 12,
+    "created_at": "2023-12-25T03:47:26Z",
+    "updated_at": "2025-12-14T19:29:04Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1701",
+    "html_url": "https://github.com/ollama/ollama/issues/1701",
+    "author_login": "vtrenton",
+    "author_profile": "https://github.com/vtrenton",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 680,
+    "title": "Is there a way to change the download/run directory? ",
+    "body": "On Linux, I want to download/run it from a directory with more space than /usr/share/",
+    "reactions": 12,
+    "created_at": "2023-10-02T20:58:02Z",
+    "updated_at": "2026-02-10T16:09:14Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/680",
+    "html_url": "https://github.com/ollama/ollama/issues/680",
+    "author_login": "improvethings",
+    "author_profile": "https://github.com/improvethings",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 193,
+    "title": "Ability to download LLAMA2 70b",
+    "body": "",
+    "reactions": 12,
+    "created_at": "2023-07-24T16:44:44Z",
+    "updated_at": "2023-08-05T13:03:50Z",
+    "labels": [
+      "feature request",
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/193",
+    "html_url": "https://github.com/ollama/ollama/issues/193",
+    "author_login": "plannaAlain",
+    "author_profile": "https://github.com/plannaAlain",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10535,
+    "title": "Image generation API",
+    "body": "Would-it be awesome if ollama can be extended to support images generation models through an OpenAI compatible /images/generations API ?\n\nWith Flux.1, Stable Diffusion 3, Lumina Image 2.0 and DeepSeek Janus Pro models.",
+    "reactions": 11,
+    "created_at": "2025-05-02T13:29:13Z",
+    "updated_at": "2025-06-03T13:31:12Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10535",
+    "html_url": "https://github.com/ollama/ollama/issues/10535",
+    "author_login": "SuperPat45",
+    "author_profile": "https://github.com/SuperPat45",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 7536,
+    "title": "[Feature Request] OpenCL 3.0 support",
+    "body": "OpenCL 3.0 looks more supported in community drivers, including in mobile environments using like freedreno driver using rusticl or zink driver.\r\n\r\nA opencl 3.0 support can open doors for run on mobile devices with postmarket or in some cases run on top of vulkan using zink or angle (android), it's can too provide support for Intel GPUs",
+    "reactions": 11,
+    "created_at": "2024-11-06T22:48:03Z",
+    "updated_at": "2026-02-09T16:04:28Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/7536",
+    "html_url": "https://github.com/ollama/ollama/issues/7536",
+    "author_login": "EliasTheGrandMasterOfMistakes",
+    "author_profile": "https://github.com/EliasTheGrandMasterOfMistakes",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1259,
+    "title": "Missing logprob",
+    "body": "For some reason, there are no way to get logprob of a completion to measure or visualise network performance, it would be nice to have to be able to build advanced tools for network debugging.",
+    "reactions": 11,
+    "created_at": "2023-11-24T04:18:38Z",
+    "updated_at": "2025-01-07T19:25:15Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1259",
+    "html_url": "https://github.com/ollama/ollama/issues/1259",
+    "author_login": "ex3ndr",
+    "author_profile": "https://github.com/ex3ndr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10473,
+    "title": "Add support for enable_thinking=True",
+    "body": "In Qwen3, enable_thinking=True disables the <think> part. It would be useful to allow its use in programmatic calls, without the need to include it in the prompt.\n\nSpecifically, I would suggest:\n1) Having a command line switch\n2) CLI command\n3) Make the examples below working:\n\n```\nimport openai\n\nclient = openai.OpenAI( ... )\n\nresponse = client.chat.completions.create(\n    model=\"qwen3\",\n    messages=[{\"role\": \"user\", \"content\": \"Hello\"}],\n    extra_body={\"options\": {\"enable_thinking\": False}}\n)\n```\n\n```\nimport ollama\n\nresponse = ollama.chat(\n    model='qwen3',\n    messages=[{'role': 'user', 'content': 'Hello'}],\n    options={'enable_thinking': False}\n)\n\n```",
+    "reactions": 10,
+    "created_at": "2025-04-29T14:04:08Z",
+    "updated_at": "2025-06-03T10:38:58Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10473",
+    "html_url": "https://github.com/ollama/ollama/issues/10473",
+    "author_login": "lknik",
+    "author_profile": "https://github.com/lknik",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2598,
+    "title": "Add ROCm support on windows",
+    "body": "Users with Radeon cards would like to be able to take advantage of the new native windows app and not have to resort to WSL2 to get support for their AMD GPUs.",
+    "reactions": 10,
+    "created_at": "2024-02-19T20:32:43Z",
+    "updated_at": "2024-03-27T05:51:10Z",
+    "labels": [
+      "feature request",
+      "amd"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2598",
+    "html_url": "https://github.com/ollama/ollama/issues/2598",
+    "author_login": "dhiltgen",
+    "author_profile": "https://github.com/dhiltgen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2387,
+    "title": "[FEATURE]`search` command for the CLI app.",
+    "body": "Currently, one has to look for the models available in the website (https://ollama.ai/library) so that it can be installed using\r\n```bash\r\nollama run <MODEL>\r\n```\r\nOR \r\n```bash\r\nollama pull <MODEL>\r\n```\r\nIt would be better if there is a `search` command in the CLI app itself such that it can be used to search for models in the repository, similar to `pacman -Ss` command in arch linux.",
+    "reactions": 10,
+    "created_at": "2024-02-07T12:59:41Z",
+    "updated_at": "2025-03-04T07:20:33Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2387",
+    "html_url": "https://github.com/ollama/ollama/issues/2387",
+    "author_login": "rumbleFTW",
+    "author_profile": "https://github.com/rumbleFTW",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10241,
+    "title": "Add support for ROCm 6.4",
+    "body": "https://github.com/ROCm/ROCm/releases/tag/rocm-6.4.0#release-highlights",
+    "reactions": 10,
+    "created_at": "2025-04-11T21:25:06Z",
+    "updated_at": "2025-12-09T21:24:28Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10241",
+    "html_url": "https://github.com/ollama/ollama/issues/10241",
+    "author_login": "codeliger",
+    "author_profile": "https://github.com/codeliger",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9633,
+    "title": "Support for AMD 9000 GPUs",
+    "body": "Hi,\n\nI am raising this issue to gather more data on when the recently released AMD 9000 Serries cards will be supported.\n\nI searched for this topic in the issues, but did not find relevant details, so apologies if this is a duplicate and please direct me to the correct thread/issue.\n\nThanks in advance,\nGreg",
+    "reactions": 10,
+    "created_at": "2025-03-10T20:36:05Z",
+    "updated_at": "2025-07-05T21:03:41Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9633",
+    "html_url": "https://github.com/ollama/ollama/issues/9633",
+    "author_login": "gergob",
+    "author_profile": "https://github.com/gergob",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 5982,
+    "title": "Ollama is amazing!!",
+    "body": "This really isn't an issue but I just wanted to say that everyone who works on and maintains this project is doing incredible work! Thank you so much for all of the countless hours and hard work you put into making Ollama. \r\n\r\nI was a little shocked to see the project has over 900 issues at the time of this writing and I just want to hopefully encourage you all. You truly are doing important work and this project means a lot to a lot of people! \r\n\r\nGod speed.\r\n\r\nCheers,\r\nRobert",
+    "reactions": 10,
+    "created_at": "2024-07-26T12:41:49Z",
+    "updated_at": "2024-08-25T18:42:26Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/5982",
+    "html_url": "https://github.com/ollama/ollama/issues/5982",
+    "author_login": "robertguss",
+    "author_profile": "https://github.com/robertguss",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4140,
+    "title": "Add binary support for Nvidia Jetson Nano- JetPack 4",
+    "body": "Hi folks, I have been experimenting with attempting to get GPU acceleration working on the older (but still nice!) Jetson Nano Developer Kit hardware with Ollama.  I have both the 2gb and 4gb RAM versions.  I've been unable to get it working, due to this situation:\r\n\r\nNvidia only provides JetPack 4.6 for these devices, which is based on Ubuntu 18.04, and contains built-in CUDA 10.2.  The GPU is an old Maxwell generation, `sm_53`, which needs to be added to `gen_common.sh`, no problem there.  \r\n\r\nI install Go 1.22, and Cmake 2.29 successfully, and add to `.profile` - All good there too.\r\n\r\nHowever, the challenge becomes `gcc`:  Ollama (and llama.cpp from what I gather) require gcc-11, however, CUDA 10.2 is not supported past gcc-8.  The JetPack / Ubuntu distribution includes gcc-7.5 out-of-the-box.  So attempting to build Ollama from source (because I need to add `sm_53` in gen_common.sh) results in errors, and fails of course.  I can upgrade to gcc-11 rather easily, and then a build will actually complete, but CUDA and the GPU are not usable, and it falls back to CPU inferencing.\r\n\r\nAny ideas on how to overcome the chicken and egg scenario, or, build *only* the actual CUDA bits with gcc-7.5 but the rest of Ollama/Llama.cpp with gcc-11 ?\r\n\r\nI actually tried injecting `update-alternatives --set gcc /usr/bin/gcc-7` into `gen_linux.sh` just before the CUDA bits, but that didn't work as the build is looping through components and some of the next bits need to go back to gcc-11 😄 \r\n\r\nThanks!",
+    "reactions": 10,
+    "created_at": "2024-05-03T21:06:53Z",
+    "updated_at": "2026-02-09T02:19:26Z",
+    "labels": [
+      "feature request",
+      "nvidia"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4140",
+    "html_url": "https://github.com/ollama/ollama/issues/4140",
+    "author_login": "dtischler",
+    "author_profile": "https://github.com/dtischler",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2361,
+    "title": "Linux installer default path",
+    "body": "For some reason, the author decided that it'd be good to install to `/usr/local/bin`, `/usr/bin`, or even `/bin` - systemwide.\r\n\r\n```\r\nfor BINDIR in /usr/local/bin /usr/bin /bin; do\r\n    echo $PATH | grep -q $BINDIR && break || continue\r\ndone\r\n\r\nstatus \"Installing ollama to $BINDIR...\"\r\n```\r\n\r\nAnd then there's the systemd unit and system user, that point to `/usr/share/ollama`.\r\n\r\nObjectively, there is a better place to install stuff that isn't managed by system package manager in linux and that's the `/opt` directory.\r\n\r\nWould it be possible to rewrite the installer script to utilise `/opt/ollama` as the basedir for everything ollama? Apropriate link in `/usr/local/bin` to `/opt/ollama` would suffice to make the application available systemwide.",
+    "reactions": 10,
+    "created_at": "2024-02-05T10:11:29Z",
+    "updated_at": "2026-01-24T16:49:21Z",
+    "labels": [
+      "feature request",
+      "linux",
+      "install"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2361",
+    "html_url": "https://github.com/ollama/ollama/issues/2361",
+    "author_login": "arabek",
+    "author_profile": "https://github.com/arabek",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 278,
+    "title": "ollama + LlamaIndex",
+    "body": "Verry nice and easy to use Ollama.\r\n\r\nIs it planned to use it with LlamaIndex ?\r\nIt would be verry nice to index our local documents (and others) ;-)",
+    "reactions": 10,
+    "created_at": "2023-08-04T09:08:16Z",
+    "updated_at": "2023-09-22T04:12:44Z",
+    "labels": [
+      "feature request",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/278",
+    "html_url": "https://github.com/ollama/ollama/issues/278",
+    "author_login": "jowamedia",
+    "author_profile": "https://github.com/jowamedia",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 259,
+    "title": "Enable GPU support on Linux",
+    "body": "I have built from source ollama. But when I pass a sentence to the model, it does not use GPU. The machine has 64G RAM and Tesla T4 GPU.",
+    "reactions": 10,
+    "created_at": "2023-08-02T18:48:22Z",
+    "updated_at": "2024-04-01T18:28:24Z",
+    "labels": [
+      "feature request",
+      "linux"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/259",
+    "html_url": "https://github.com/ollama/ollama/issues/259",
+    "author_login": "S1LV3RJ1NX",
+    "author_profile": "https://github.com/S1LV3RJ1NX",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1669,
+    "title": "Feature Request: Add RSS feed to Blog",
+    "body": "Hi! I am not sure if this is the right place for feature requests for the [Blog](https://ollama.ai/blog), but I did not find any other place where this would have been applicable — if I am wrong here I am sorry!\r\n\r\nRegarding the feature request: It would be great to have a RSS feed for the blog to keep up with updates around the project. Would that be possible to implement?",
+    "reactions": 9,
+    "created_at": "2023-12-22T09:57:23Z",
+    "updated_at": "2025-03-28T14:00:03Z",
+    "labels": [
+      "feature request",
+      "ollama.com"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1669",
+    "html_url": "https://github.com/ollama/ollama/issues/1669",
+    "author_login": "puresick",
+    "author_profile": "https://github.com/puresick",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9784,
+    "title": "Increase the environment variable OLLAMA_NUM_THREAD",
+    "body": "Scenario: I want to set num_thread to 6 for all models, which is currently only possible by creating custom models\nSuggestion: Add the OLLAMA_NUM_THREAD variable similar to OLLAMA_FLASH_ATTENTION to allow num_thread to be set for all models at once",
+    "reactions": 9,
+    "created_at": "2025-03-15T12:00:40Z",
+    "updated_at": "2025-05-27T16:44:41Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9784",
+    "html_url": "https://github.com/ollama/ollama/issues/9784",
+    "author_login": "Hunter6324",
+    "author_profile": "https://github.com/Hunter6324",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6377,
+    "title": "Full(er) JSON Schema support for tool calling",
+    "body": "Currently `parameters` in tool definition is a very limited subset of a JSON Schema. This makes it non-compatible with OpenAI (https://github.com/ollama/ollama/issues/6155) and it general it makes it really hard to use it because you cannot pass JSON Schema as `parameters` but have to manually map to the API structure tool definition expects. Good enough if you are manually making a tool definition, but hard if you have automatic process to generate JSON Schema (for example, I use https://github.com/invopop/jsonschema Go package to generate JSON Schema from Go struct automatically, which works great with other API providers like OpenAI).\r\n\r\nSo I would suggest that API is relaxed to get embedded JSON Schema and not just fixed structure it currently allows.",
+    "reactions": 9,
+    "created_at": "2024-08-15T20:06:35Z",
+    "updated_at": "2025-10-07T20:50:00Z",
+    "labels": [
+      "feature request",
+      "api"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6377",
+    "html_url": "https://github.com/ollama/ollama/issues/6377",
+    "author_login": "mitar",
+    "author_profile": "https://github.com/mitar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2776,
+    "title": "Support custom install dir in Windows installer",
+    "body": "Hi,\r\nIs there an option to install the windows app NOT on C:\\ drive ?\r\n\r\ne.g.: E:\\Program Files\\.....\r\n\r\n",
+    "reactions": 9,
+    "created_at": "2024-02-27T09:02:28Z",
+    "updated_at": "2024-10-30T16:24:33Z",
+    "labels": [
+      "feature request",
+      "windows"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2776",
+    "html_url": "https://github.com/ollama/ollama/issues/2776",
+    "author_login": "olexx",
+    "author_profile": "https://github.com/olexx",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1457,
+    "title": "How to add MOE model Mistral 8x7B",
+    "body": "Here is the model not sure how to add it to ollama \r\nhttps://huggingface.co/mattshumer/mistral-8x7b-chat",
+    "reactions": 9,
+    "created_at": "2023-12-11T01:18:31Z",
+    "updated_at": "2023-12-13T22:15:11Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1457",
+    "html_url": "https://github.com/ollama/ollama/issues/1457",
+    "author_login": "SabareeshGC",
+    "author_profile": "https://github.com/SabareeshGC",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4757,
+    "title": "please add support for AMD RX 580",
+    "body": "please continue upgrading AMD gpu support adding RX 580 to the supported GPUs, I think this will expand the ollama accessibility",
+    "reactions": 8,
+    "created_at": "2024-05-31T21:51:22Z",
+    "updated_at": "2024-05-31T22:08:24Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4757",
+    "html_url": "https://github.com/ollama/ollama/issues/4757",
+    "author_login": "eliabexp",
+    "author_profile": "https://github.com/eliabexp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11021,
+    "title": "Native Text-to-Speech (TTS) model support",
+    "body": "**📣 Hello Ollama team!**\n\nI’m excited about Ollama’s vision and would love to contribute by helping add **native Text‑to‑Speech (TTS)**  support. I noticed a couple of related feature requests already:\n\n* **Issue #3265**\n* **Issue #7353**\n\nHere’s a rough plan of what I’d be glad to tackle — happy to refine this based on your needs:\n\n### Proposed TTS Integration Roadmap\n\n#### 1. **Model Loading &amp; Metadata**\n\n* Extend support for audio-generation models (e.g. Coqui TTS, Bark, Dia, Orpheus TTS)\n* Detect TTS model formats (GGUF / specialized metadata headers) and load appropriate components\n\n#### 2. **Audio output handling**\n\n* Most modern TTS models already **embed a vocoder** and produce waveform/audio directly.\n* Ollama would only need to:\n\n  * Capture the raw audio output (WAV/MP3/flac).\n  * Stream it through REST and CLI APIs.\n  * Optionally perform format conversion (e.g. to standard WAV/MP3 for clients).\n\n#### 3. API & CLI support\n\n* Implement `POST /v1/audio/speech` endpoint — consistent with OpenAI API.\n* Support **non-streaming responses** initially:\n\n  * Return `audio/mp3`, `audio/wav` or `audio/flac` as standard response.\n* Design API and CLI to be **future-compatible with streaming responses**, if supported by models.\n* CLI example:\n\n  ```text\n  ollama tts run <model> --text \"Hello\"\n  # optional future flag: --stream\n  ```\n\n#### 4. **Dependencies &amp; Packaging**\n\n* Bundle or list required audio libs (PyTorch/TensorFlow, CUDA vocoder utils)\n* Support cross-platform binary builds (Linux/macOS/Windows)\n\n#### 5. **Testing &amp; Benchmarks**\n\n* Unit tests comparing generated audio to reference samples.\n* Benchmark end-to-end latency on typical hardware.\n\n#### 6. **Docs &amp; Example Models**\n\n* Update docs with TTS usage examples\n* Add a sample TTS model to Ollama registry (e.g. Coqui or ChatTTS)\n\n\nLet me know if it makes sense to:\n\n* Expand one of the existing issues (#5424 or #7353)\n* Convert this into a detailed design proposal or spike PR\n* Assign a “good-first-task” to get the ball rolling\n* Start with a **draft PR** adding the basic `/v1/audio/speech` endpoint with minimal CLI/REST support (targeting e.g. Dia TTS model first).\n\nPlease let me know which option makes the most sense.\n\nThanks for building such a strong local inference tool — I’m excited to help it *speak*! 🎙️",
+    "reactions": 8,
+    "created_at": "2025-06-08T20:59:39Z",
+    "updated_at": "2025-06-10T18:29:49Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11021",
+    "html_url": "https://github.com/ollama/ollama/issues/11021",
+    "author_login": "v-byte-cpu",
+    "author_profile": "https://github.com/v-byte-cpu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10576,
+    "title": "No: the context field is deprecated and will be removed in a future version of Ollama",
+    "body": "Hi Ollama Team 👋\n\nThank you for all your work. Ollama has been a game-changer for local LLM development. I'm a long-time user, first time poster. \n\nI'm writing to request that the context field in API requests not be deprecated without a viable replacement, or at least be maintained in some backward-compatible form. I understand from routes.go that it may be removed soon:\n\nollama/server/routes.go\n\n\t\tvar b bytes.Buffer\n\t\tif req.Context != nil {\n\t\t\tslog.Warn(\"the context field is deprecated and will be removed in a future version of Ollama\")\n\t\t\ts, err := r.Detokenize(c.Request.Context(), req.Context)\n\t\t\tif err != nil {\n\t\t\t\tc.JSON(http.StatusInternalServerError, gin.H{\"error\": err.Error()})\n\t\t\t\treturn\n\t\t\t}\n\t\t\tb.WriteString(s)\n\t\t}\n\t\t\nFor my use case (developing known context states and lookback branching), the context field is essential for controlled memory injection. It enables me to simulate a working memory buffer that persists across inference calls without relying on full transcript replay. Transcript replay does not create the same known contexts reliably. \n\nWhy this matters:\n\n* The context field allows precise semantic anchoring of prior model state across prompts.\n\n* Alternatives like appending to messages or managing the entire conversation history externally are less efficient, more error-prone and hopelessly unique.\n\n* Structured memory is a critical building block for agentic systems and intentional AI modules.\n\nFeature Request:\n\nIf the current context implementation is slated for removal due to architecture changes or internal refactoring, could the team please consider:\n\n* Keeping context in a deprecated-but-working state until a clear replacement exists.\n\n* Offering an alternative mechanism, such as memory, sequence id or embedding_buffer field, designed explicitly for injecting reusable internal state. (Please. Allow restarting from the same contextual place is critical.)\n\nHappy to provide more technical detail on my use case if helpful and deeply appreciate your time and consideration.\n\n\nKind Regards,\nWizardMiner\n",
+    "reactions": 8,
+    "created_at": "2025-05-05T20:48:32Z",
+    "updated_at": "2025-07-26T09:51:22Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10576",
+    "html_url": "https://github.com/ollama/ollama/issues/10576",
+    "author_login": "WizardMiner",
+    "author_profile": "https://github.com/WizardMiner",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9254,
+    "title": "Add support for opentelemetry tracing",
+    "body": "Facilitate troubleshooting key server side latency phases by instrumenting and exporting API request trace spans.\n\nThis is complementary to #3144 for adding prometheus metric export. However, there's great overlap in how both can be implemented.\n\n### High level design for the tracing MVP\n\n* Use  [opentelemetry-go-contrib/exporters/autoexport](https://github.com/open-telemetry/opentelemetry-go-contrib/tree/main/exporters/autoexport) for initialising trace exporter based on established [opentelemetry environment variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/).\n    * This will add support for otlp, console/stdout, and noop exporters by default. It could be extended easily by adding additional dependencies on exporters from the [opentelemetry registry](https://opentelemetry.io/ecosystem/registry/?language=go).\n    * Note, the same library can be used to initalise a metric reader and prometheus /metrics endpoint for #3144 as well as otlp, noop, and console/stdout readers.\n\n* Use  [opentelemetry-go-contrib/instrumentation/github.com/gin-gonic/gin/otelgin](https://github.com/open-telemetry/opentelemetry-go-contrib/tree/main/instrumentation/github.com/gin-gonic/gin/otelgin)  to add routing middleware in `server/routes.go`. This provides both traces and  metrics, depending on which exporters have been initialized.\n\n* Use opentelemetry's default trace context propagation to nest spans under a parent trace if present in the API request. This would be the case if client libraries use trace propagation and/or are running in an environment that initiates tracing downstream (like Cloud Run). This is default out of the box with opentelemetry golang libraries.\n\n* Extend handlers in `server/routes.go` to capture MVP spans using [opentelemetry-go](https://github.com/open-telemetry/opentelemetry-go). I'd suggest starting with phases already reported in API responses like  `load_duration` and `eval_duration` and expanding from there.\n  * Use [SpanRecorder](https://github.com/open-telemetry/opentelemetry-go/blob/main/sdk/trace/tracetest/recorder.go) to verify that expected traces have been added within `routes_test.go`.\n  * Alternatively (or in addition), register an [InMemoryExporter](https://github.com/open-telemetry/opentelemetry-go/blob/main/sdk/trace/tracetest/exporter.go) with `autoexport` and verify it captured expected spans after exercising some routes.\n\n* Document how to enable trace exports under https://github.com/ollama/ollama/tree/main/docs. We could also create a full\n  example either with the console exporter or exporting to a second container with an opentelemetry-collector.\n\n### Future follow up\n\n* Set trace span attributes per [semantic conventions for GenAI spans](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-spans/)\n* Use [instrumentation/net/http/otelhttp](https://github.com/open-telemetry/opentelemetry-go-contrib/tree/main/instrumentation/net/http/otelhttp) to add child trace spans for ou",
+    "reactions": 8,
+    "created_at": "2025-02-20T15:39:03Z",
+    "updated_at": "2026-05-01T04:19:53Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9254",
+    "html_url": "https://github.com/ollama/ollama/issues/9254",
+    "author_login": "ibl-g",
+    "author_profile": "https://github.com/ibl-g",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4361,
+    "title": "Feature request: to document all the environmental variables which are used as configuration parameters for ollama",
+    "body": "Hello everyone. As days go by ollama grows older and becoming more and more mature, I see a lot of features are added which are relying on some environmental variable to be set in order to control the behavior and benefit from it. Previously I knew of / used just couple of such environmental variables:\r\n\r\n* CUDA_VISIBLE_DEVICES - was setting it to empty string to force ollama to use CPU inference instead of GPU (had my own reasons)\r\n* OLLAMA_HOST - to my limited understanding, this defines what IP to bind when ollama starts its API server. By default I think it binds to 127.0.0.1 which is it safe in terms of unwanted intruders, but makes it impossible to use from some other machine within the network, and if you want to share your ollama you usually set it to 0.0.0.0 - so it binds to all the IP addresses which are known to localhost\r\n\r\nWith some [recent release](https://github.com/ollama/ollama/releases) where parallel inference was introduced, I can see few more environmental variables are now considered:\r\n\r\n* OLLAMA_NUM_PARALLEL - number of parallel workers to process simultaneous requests (1 by default)\r\n* OLLAMA_MAX_LOADED_MODELS - max number of different models which can be simultaneously loaded (1 by default)\r\n* OLLAMA_MAX_QUEUE - the queue length,  defines number of requests that might be sitting there and waiting for being picked up (512 by default)\r\n* OLLAMA_MAX_VRAM - defines the max VRAM that ollama can use, if user wants to limit the usage for some reason (unlimited by default)\r\n\r\nI can see some efforts are being made to gather all the work with such env variables to be done from a single place (https://github.com/ollama/ollama/blob/main/server/envconfig/config.go). Just wanted to mention that all ollama users will benefit a lot from having all these env parameters to be clearly documented somewhere on a start page.",
+    "reactions": 8,
+    "created_at": "2024-05-11T13:18:20Z",
+    "updated_at": "2026-01-11T18:06:29Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4361",
+    "html_url": "https://github.com/ollama/ollama/issues/4361",
+    "author_login": "kha84",
+    "author_profile": "https://github.com/kha84",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3869,
+    "title": "API for FIM tasks",
+    "body": "Some models support fill-in-the-middle, which is very useful for things like code completion. It'd be great if this was exposed as a model-agnostic API, just like `api/chat`.\r\n\r\nI understand that not all models support this, so it might be a good idea to expose whether this is supported in the model info API too.",
+    "reactions": 8,
+    "created_at": "2024-04-24T06:59:02Z",
+    "updated_at": "2024-07-16T21:37:33Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3869",
+    "html_url": "https://github.com/ollama/ollama/issues/3869",
+    "author_login": "boswelja",
+    "author_profile": "https://github.com/boswelja",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3853,
+    "title": "support 128k context length phi3",
+    "body": "I might be misinterpreting, but it looks like only the 4k context length phi3 model is supported currently: https://ollama.com/library/phi3\r\n\r\n(at least without downloading the weights separately and creating a Modelfile)",
+    "reactions": 8,
+    "created_at": "2024-04-23T20:20:45Z",
+    "updated_at": "2024-06-04T06:35:29Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3853",
+    "html_url": "https://github.com/ollama/ollama/issues/3853",
+    "author_login": "lostmygithubaccount",
+    "author_profile": "https://github.com/lostmygithubaccount",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 3674,
+    "title": "can we have a flatpak or snap app",
+    "body": "### What are you trying to do?\r\n\r\nI think having a flatpak or snap app makes more sense i know snap is also good for commend line application.\r\n### How should we solve this?\r\n\r\nhttps://docs.flatpak.org/en/latest/first-build.html\r\nhttps://discourse.flathub.org/\r\nhttps://snapcraft.io/store\r\nhttps://forum.snapcraft.io/\r\n\r\n### What is the impact of not solving this?\r\n\r\nThere are more than millions and millions of users using immutable distros and steam deck steam os and chrome os chromebook.\r\n\r\n### Anything else?\r\n\r\n_No response_",
+    "reactions": 8,
+    "created_at": "2024-04-16T16:34:57Z",
+    "updated_at": "2025-01-15T07:43:21Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/3674",
+    "html_url": "https://github.com/ollama/ollama/issues/3674",
+    "author_login": "olumolu",
+    "author_profile": "https://github.com/olumolu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2623,
+    "title": "JSON without newline grammar",
+    "body": "I'd like to have a variant of the JSON grammar that forbids newlines from the output. Sometimes when you activate JSON grammar, the model will spit out an endless series of newlines. It'd be nice to have a version of the JSON grammar that forbids newlines (and probably whitespace outside of strings) to prevent this from happening.",
+    "reactions": 8,
+    "created_at": "2024-02-21T02:53:38Z",
+    "updated_at": "2024-12-05T00:50:54Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2623",
+    "html_url": "https://github.com/ollama/ollama/issues/2623",
+    "author_login": "Xe",
+    "author_profile": "https://github.com/Xe",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1007,
+    "title": "Context Shifting To Increase Speed Dramatically",
+    "body": "koboldcpp v1.48.1 now has implemented this feature, and apparently it increased the speed dramatically because it doesn't have to reprocess previous context to generate a new response.\r\n\r\nCould you look into implement this feature to Ollama as well?\r\n\r\nhttps://github.com/LostRuins/koboldcpp/releases/tag/v1.48.1\r\n\r\n\"Context Shifting (A.K.A. EvenSmarterContext) - This feature utilizes KV cache shifting to automatically remove old tokens from context and add new ones without requiring any reprocessing. So long as you use no memory/fixed memory and don't use world info, you should be able to avoid almost all reprocessing between consecutive generations even at max context. This does not consume any additional context space, making it superior to SmartContext.\"\r\n\r\nThanks!",
+    "reactions": 8,
+    "created_at": "2023-11-05T16:47:13Z",
+    "updated_at": "2024-05-22T19:01:48Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1007",
+    "html_url": "https://github.com/ollama/ollama/issues/1007",
+    "author_login": "chigkim",
+    "author_profile": "https://github.com/chigkim",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 651,
+    "title": "Ability to configure embeddings dimension size",
+    "body": "Moving from `OllamaEmbeddings(model=\"llama2:13b\")` to `OllamaEmbeddings(model=\"llama2:7b\")`, I am now getting a shape mismatch in my embeddings:\r\n\r\n```none\r\nValueError: shapes (4096,) and (5120,) not aligned: 4096 (dim 0) != 5120 (dim 0)\r\n```\r\n\r\nSo the `7b` embeddings is slightly smaller (4096) than `13b` embeddings (5120).  Is there an argument or parameter I can use to control the embedding size?\r\n\r\nI would like to artificially switch `7b` to use 5120, so I can not rebuild my vector store.",
+    "reactions": 7,
+    "created_at": "2023-09-29T22:26:15Z",
+    "updated_at": "2025-09-24T12:40:35Z",
+    "labels": [
+      "feature request",
+      "embeddings"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/651",
+    "html_url": "https://github.com/ollama/ollama/issues/651",
+    "author_login": "jamesbraza",
+    "author_profile": "https://github.com/jamesbraza",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 14409,
+    "title": "Model request for Qwen3.5-35B-A3B local version",
+    "body": "Model request for Qwen3.5-35B-A3B local version",
+    "reactions": 7,
+    "created_at": "2026-02-25T04:55:53Z",
+    "updated_at": "2026-02-27T18:39:31Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/14409",
+    "html_url": "https://github.com/ollama/ollama/issues/14409",
+    "author_login": "MattJColes",
+    "author_profile": "https://github.com/MattJColes",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 12436,
+    "title": "Option to disable all Cloud and remote Search features",
+    "body": "I understand why Ollama added remote model loading, cloud hosting, and search support. It helps finance development and provides convenience for many users.\n\nHowever, a core reason for using Ollama is strong privacy and the guarantee of running models locally without any unwanted remote connections (except explicitly configured tool calls). For users with this priority, it would be very valuable to have a configuration option that completely disables all remote/cloud features.\n\nI’m aware that without a login or token these features do not activate. Still, an explicit “local-only” mode would act as a safeguard.\n\nExample:\nA second admin, a misconfiguration, or buggy software might introduce a token or cloud model without my knowledge.\n\nEven if unintentional and non-malicious, this could break the privacy expectation.\n\nAn explicit toggle/setting to enforce local-only operation would provide additional peace of mind for privacy-conscious users.",
+    "reactions": 7,
+    "created_at": "2025-09-28T08:10:42Z",
+    "updated_at": "2025-10-12T12:36:08Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/12436",
+    "html_url": "https://github.com/ollama/ollama/issues/12436",
+    "author_login": "dragetd",
+    "author_profile": "https://github.com/dragetd",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 12003,
+    "title": "Only show downloaded models in airplane mode",
+    "body": "Dear Team,\n\nthe GUI is wonderful but is missing some important features.\n\nIn the Airplane mode only available (Downloaded) models should be shown.\n\nAswell:\n- Setting a default model language\n- Disable and enable thinking",
+    "reactions": 7,
+    "created_at": "2025-08-21T07:58:51Z",
+    "updated_at": "2025-10-07T19:23:16Z",
+    "labels": [
+      "feature request",
+      "app"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/12003",
+    "html_url": "https://github.com/ollama/ollama/issues/12003",
+    "author_login": "DevGonzi",
+    "author_profile": "https://github.com/DevGonzi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10971,
+    "title": "[Qwen-2.5vl] Support Video Attachments for conversation",
+    "body": "Qwen-2.5vl supports video and on their [huggingface](https://huggingface.co/spaces/Qwen/Qwen2.5-VL-32B-Instruct) they also have a demo mode for this if you want to try it out.\n\nHere's an example model for reference and ollama already has this up on its repository https://huggingface.co/Qwen/Qwen2.5-VL-32B-Instruct\n\nI believe there is some torch level wiring required to feed a video into the model, is this something Ollama can support?\n\nBasically making it possible for us with Ollama's API attach a 'video' input to a message, similar to how we do images.",
+    "reactions": 7,
+    "created_at": "2025-06-04T15:59:05Z",
+    "updated_at": "2025-08-11T22:50:01Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10971",
+    "html_url": "https://github.com/ollama/ollama/issues/10971",
+    "author_login": "Notbici",
+    "author_profile": "https://github.com/Notbici",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10313,
+    "title": "Is bitnet-b1.58-2B-4T-gguf available?",
+    "body": "\n### question\nI'm trying to use bitnet-b1.58-2B-4T-gguf, but I get the following error.\n\n\n### shell\n```\nollama run hf.co/microsoft/bitnet-b1.58-2B-4T-gguf\nError: unable to load model: /Users/bjm/.ollama/models/blobs/sha256-13939ce5030319a35db346e5dba7a3a3bd599dfc18b113a2a97446ff964714c5\n```\n\n### link\n[bitnet-b1.58-2B-4T-gguf](https://huggingface.co/microsoft/bitnet-b1.58-2B-4T-gguf/tree/main)",
+    "reactions": 7,
+    "created_at": "2025-04-17T02:44:02Z",
+    "updated_at": "2025-04-30T16:40:53Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10313",
+    "html_url": "https://github.com/ollama/ollama/issues/10313",
+    "author_login": "boojongmin",
+    "author_profile": "https://github.com/boojongmin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 10155,
+    "title": "Feature Request:Always use the GPU",
+    "body": "If you try to run a model that exceeds the VRAM capacity on the GPU, it will fall back to the CPU, which is inefficient.\n\nIf system memory fallback is available, models will run faster on the GPU using system memory fallback.\n\nEven when limiting system memory to 4GB and running the model with other services that use llama.cpp, the model was much faster using the GPU's very slow virtual memory than on the CPU.\n\nA force GPU environment variable is required that will return an error if you try to run a model that exceeds the VRAM capacity without system memory fallback.",
+    "reactions": 7,
+    "created_at": "2025-04-07T01:40:45Z",
+    "updated_at": "2025-04-24T19:57:46Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/10155",
+    "html_url": "https://github.com/ollama/ollama/issues/10155",
+    "author_login": "yukkuriTV",
+    "author_profile": "https://github.com/yukkuriTV",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 8528,
+    "title": "don't show the thinking process",
+    "body": "When I use DeepSeek-R1, the thinking process shown does not make sense to me, I only want to see the final result.\n\n![Image](https://github.com/user-attachments/assets/d56c95ba-1fbc-4a4a-83e0-4ae1d7899325)",
+    "reactions": 7,
+    "created_at": "2025-01-22T03:40:56Z",
+    "updated_at": "2026-03-06T16:54:32Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/8528",
+    "html_url": "https://github.com/ollama/ollama/issues/8528",
+    "author_login": "sunburst-yz",
+    "author_profile": "https://github.com/sunburst-yz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 7276,
+    "title": "bitnet is more energy efficient than llama.cpp",
+    "body": "https://github.com/microsoft/BitNet?tab=readme-ov-file\r\n\r\nCan ollama switch to that to save more power.",
+    "reactions": 7,
+    "created_at": "2024-10-20T12:54:20Z",
+    "updated_at": "2024-10-24T18:24:04Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/7276",
+    "html_url": "https://github.com/ollama/ollama/issues/7276",
+    "author_login": "olumolu",
+    "author_profile": "https://github.com/olumolu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6362,
+    "title": "Honor/use amdgpu.gttsize Kernel parameter to use all unified memory for AMD APU",
+    "body": "Hi,\r\n\r\nI do have a feature request.\r\n\r\n**System**\r\n- Ollama v0.3.6\r\n- Fedora 40 (Kernel 6.10.3)\r\n- AMD APU Ryzen 7840u / 780m\r\n- 64 GB RAM\r\n- ROCM 6.1.1\r\n\r\n**Info**\r\nKernel 6.10.3 supports setting amdgpu.gttsize to values like 32768 which I think works around the issue many have with an AMD APU. They can only set a few values for GPU memory in their BIOS mostly not more than 8 GB. Since the memory is always the same pool, it would be nice if Ollama offloaded compute to the GPU in such cases as well.\r\n\r\n**Example:**\r\nBios GPU memory allocation set to auto\r\namdgpu.gttsize=32768\r\n\r\n--> ollama run gemma2:27b \"Tell me a joke\"\r\n\r\nThis runs at 100% on the CPU as the model is 16GB\r\n\r\nOn the other hand, running (./llama-bench) an even bigger model directly with llama.cpp on the GPU works:\r\n\r\n> | model                                         |            size |     params | backend    | ngl |             test |                     t/s |\r\n> | llama 8x7B Q4_K - Medium       |  48.25 GiB |    91.80 B  | ROCm      |  99 |         pp512 |     81.32 ± 0.36 |\r\n\r\n\r\n**Conclusion**\r\nPlease support the unified memory. I do know that the speed will be in numerous instances not good, but it beats pure CPU compute in performance and thermal output. I do this as a hobby, so tinkering is part of the game. If I recall correctly before using all memory + GPU did only work with the llama.cpp Vulcan backend but as they now support it for the GPU as well (at least that is my perception) would be nice to have it in Ollama as well. Please also correct me if I am wrong - maybe this is already possible, then please point me in the right direction.\r\n\r\n\r\n\r\n",
+    "reactions": 7,
+    "created_at": "2024-08-14T15:41:28Z",
+    "updated_at": "2025-12-23T17:30:09Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6362",
+    "html_url": "https://github.com/ollama/ollama/issues/6362",
+    "author_login": "mymistake",
+    "author_profile": "https://github.com/mymistake",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 5798,
+    "title": "ollama save model to file and ollama load model from file",
+    "body": "In docker you can save images and load them from tar.gz files. example: \r\n\r\n```bash\r\ndocker pull ollama/ollama:0.2.5\r\ndocker save ollama/ollama:0.2.5 | gzip > ollama_0.2.5.tar.gz\r\ndocker load --input ollama_0.2.5.targ.gz\r\n```\r\n\r\nCould we have a similar loop of managing models example:\r\n```bash\r\nollama pull llama3:latest\r\nollama save llama3:latest | gzip > llama3.latest.tar.gz\r\nollama load --input llama3.latest.tar.gz\r\n```\r\n\r\n\r\n",
+    "reactions": 7,
+    "created_at": "2024-07-19T18:20:09Z",
+    "updated_at": "2024-07-26T21:14:40Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/5798",
+    "html_url": "https://github.com/ollama/ollama/issues/5798",
+    "author_login": "cruzanstx",
+    "author_profile": "https://github.com/cruzanstx",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4764,
+    "title": "ollama stop [id of running model]",
+    "body": "Sometimes, when i use external tools with ollama, some model continue to run after application exit.\r\n\r\nIt can be usefull to have a command like this\r\n\r\n```bash\r\nollama stop [id of running model]\r\n```\r\n",
+    "reactions": 7,
+    "created_at": "2024-06-01T10:30:29Z",
+    "updated_at": "2024-09-11T23:37:01Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4764",
+    "html_url": "https://github.com/ollama/ollama/issues/4764",
+    "author_login": "mrdev023",
+    "author_profile": "https://github.com/mrdev023",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4582,
+    "title": "Add Alpaca to 'Community Integrations'",
+    "body": "Hi, I've been working on this app called [Alpaca](https://github.com/Jeffser/Alpaca), it's an Ollama client that uses GTK and Adwaita, it's meant for Gnome users, it comes with an integrated Ollama instance.\r\n\r\nIt's available only on [Flathub](https://flathub.org/apps/com.jeffser.Alpaca) right now.",
+    "reactions": 7,
+    "created_at": "2024-05-23T02:37:48Z",
+    "updated_at": "2024-12-25T04:25:14Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4582",
+    "html_url": "https://github.com/ollama/ollama/issues/4582",
+    "author_login": "Jeffser",
+    "author_profile": "https://github.com/Jeffser",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4477,
+    "title": "Expose Max threads as an environment variable or set ollama to use all the cores/threads a CPU provides",
+    "body": "After seeing https://github.com/ollama/ollama/issues/2929, I'm having the same issue.  As I'm using both open-webui and enchanted on IOS, queries are only using half of the CPU on my EPYC 7302P.\r\n\r\nI know you can set a /parameter when using the CLI, but I want to set this as default for serving. Alternately, is there a reason that ollama isn't using the all the available  threads _on_ of the host CPU? Seems like something that _could_ be the default.\r\n\r\nThat said, it would be awesome to expose this as an environment variable option, for those who don't want to use the whole CPU (eg if you're running this on your desktop, while coding).",
+    "reactions": 7,
+    "created_at": "2024-05-16T20:20:30Z",
+    "updated_at": "2025-02-13T09:37:02Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4477",
+    "html_url": "https://github.com/ollama/ollama/issues/4477",
+    "author_login": "haydonryan",
+    "author_profile": "https://github.com/haydonryan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4228,
+    "title": "Mixtral 8x22b template update",
+    "body": "If we look here https://ollama.com/library/mixtral:8x22b/blobs/c43332387573 . template is  `[INST] {{ if .System }}{{ .System }} {{ end }}{{ .Prompt }} [/INST]`\r\n\r\nif we look here https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1/commit/95d063951382d47385fe7b36e202b68639e5c066 template have more options\r\n```\r\n\"template\": \"{{bos_token}}{% set user_messages = messages | selectattr('role', 'equalto', 'user') | list %}{% for message in messages %}{% if message['role'] == 'user' %}{% if message == user_messages[-1] %}{% if tools %}{{'[AVAILABLE_TOOLS]'+ tools|string + '[/AVAILABLE_TOOLS]'}}{% endif %}{{ '[INST]' + message['content'] + '[/INST]' }}{% else %}{{ '[INST]' + message['content'] + '[/INST]' }}{% endif %}{% elif message['role'] == 'assistant' %}{{ ' ' + message['content'] + ' ' + eos_token}}{% elif message['role'] == 'tool_results' %}{{'[TOOL_RESULTS]' + message['content']|string + '[/TOOL_RESULTS]'}}{% elif message['role'] == 'tool_calls' %}{{'[TOOL_CALLS]' + message['content']|string + eos_token}}{% endif %}{% endfor %}\"\r\n```\r\n\r\nIn description https://ollama.com/library/mixtral:8x22b say `It is natively capable of function calling` but in template no have support it. Look like need add `TOOL_RESULTS`, `TOOL_CALLS`, `AVAILABLE_TOOLS`\r\n\r\nMaybe need some updates?",
+    "reactions": 7,
+    "created_at": "2024-05-07T13:43:09Z",
+    "updated_at": "2024-07-23T17:39:30Z",
+    "labels": [
+      "feature request",
+      "ollama.com"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4228",
+    "html_url": "https://github.com/ollama/ollama/issues/4228",
+    "author_login": "slavonnet",
+    "author_profile": "https://github.com/slavonnet",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2840,
+    "title": "Plans for Ollama Go library?",
+    "body": "The Ollama team has recently released native client libraries for JS (https://github.com/ollama/ollama-js) and Python (https://github.com/ollama/ollama-python).\r\n\r\nAre there plans to develop a similar native Go library?\r\n",
+    "reactions": 7,
+    "created_at": "2024-02-29T17:30:56Z",
+    "updated_at": "2024-05-17T22:53:04Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2840",
+    "html_url": "https://github.com/ollama/ollama/issues/2840",
+    "author_login": "eliben",
+    "author_profile": "https://github.com/eliben",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1536,
+    "title": "Ability to keep a model in memory for longer",
+    "body": "is there a way to  keep the model in memory or gpu memory ?",
+    "reactions": 7,
+    "created_at": "2023-12-15T02:45:45Z",
+    "updated_at": "2025-01-18T05:04:20Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1536",
+    "html_url": "https://github.com/ollama/ollama/issues/1536",
+    "author_login": "helloimcx",
+    "author_profile": "https://github.com/helloimcx",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1476,
+    "title": "Add parameters for continuous batching and parallel flags",
+    "body": "Llama.cpp server supports [continuous batching and running requests in parallel](https://github.com/ggerganov/llama.cpp/tree/master/examples/server) which can be super effective to make things way more efficient specifically when running smaller models.\r\n\r\nI can contribute this feature if the project maintainers think it's a good addition.",
+    "reactions": 7,
+    "created_at": "2023-12-11T22:39:52Z",
+    "updated_at": "2023-12-22T03:33:50Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1476",
+    "html_url": "https://github.com/ollama/ollama/issues/1476",
+    "author_login": "YourTechBud",
+    "author_profile": "https://github.com/YourTechBud",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1266,
+    "title": "Add a stop/restart command",
+    "body": "When I setup/launch `ollama` the manual way, I can launch the server with `serve` command but don't have a easy way to stop/restart it (so I need to kill the process). It would be great to have dedicated command for theses actions.",
+    "reactions": 7,
+    "created_at": "2023-11-24T15:49:43Z",
+    "updated_at": "2024-04-08T14:45:30Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1266",
+    "html_url": "https://github.com/ollama/ollama/issues/1266",
+    "author_login": "davlgd",
+    "author_profile": "https://github.com/davlgd",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 1118,
+    "title": "Verbose request logs for `ollama serve`",
+    "body": "It can be hard to debug what kind of requests `ollama serve` is receiving when using SDKs or other tooling with it. A way to log full requests would be helpful for this.",
+    "reactions": 7,
+    "created_at": "2023-11-14T04:05:32Z",
+    "updated_at": "2024-01-28T23:22:36Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/1118",
+    "html_url": "https://github.com/ollama/ollama/issues/1118",
+    "author_login": "jmorganca",
+    "author_profile": "https://github.com/jmorganca",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 308,
+    "title": "Homebrew cask",
+    "body": "Allow installing from the GitHub releases via `brew install --cask ollama`",
+    "reactions": 7,
+    "created_at": "2023-08-08T19:13:43Z",
+    "updated_at": "2024-03-11T19:39:58Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/308",
+    "html_url": "https://github.com/ollama/ollama/issues/308",
+    "author_login": "jmorganca",
+    "author_profile": "https://github.com/jmorganca",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 169,
+    "title": "How to enter multiline text",
+    "body": "How to enter multiline text?\r\nWhen I hit enter, the input prompt teminates. In ChatGPT I can hit SHIFT enter to begin a new line but not with ollama.\r\nEven pasting multiline text works in  ChatGPT but not with ollama.\r\n\r\nA workaround seems to be to pipe text files in - see #161 \r\n\r\nShouldn't there be a multiline mode or something? Like https://github.com/ggerganov/llama.cpp/issues/1382 ",
+    "reactions": 7,
+    "created_at": "2023-07-22T00:50:05Z",
+    "updated_at": "2025-07-08T20:23:43Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/169",
+    "html_url": "https://github.com/ollama/ollama/issues/169",
+    "author_login": "abulka",
+    "author_profile": "https://github.com/abulka",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 5356,
+    "title": "allow for num_ctx parameter in the openai API compatibility",
+    "body": "The OpenAI compatibility module does not allow for setting the number of tokens window (num_ctx) via API call dynamically instead of having to adjust the Modelfile each time we want to use another context window.\r\n\r\nTherefore it would be great to have in the OpenAI compatibility. I can also try a PR for this.\r\n\r\nThanks a lot for this wonderful project! :-)",
+    "reactions": 6,
+    "created_at": "2024-06-28T10:04:14Z",
+    "updated_at": "2026-04-04T05:50:20Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/5356",
+    "html_url": "https://github.com/ollama/ollama/issues/5356",
+    "author_login": "PabloRMira",
+    "author_profile": "https://github.com/PabloRMira",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6267,
+    "title": "add openbmb MiniCPM-V-2_6",
+    "body": "add openbmb MiniCPM-V-2_6\r\nhttps://huggingface.co/openbmb/MiniCPM-V-2_6-gguf/tree/main",
+    "reactions": 6,
+    "created_at": "2024-08-08T23:14:34Z",
+    "updated_at": "2024-09-14T00:43:50Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6267",
+    "html_url": "https://github.com/ollama/ollama/issues/6267",
+    "author_login": "insinfo",
+    "author_profile": "https://github.com/insinfo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 13294,
+    "title": "Ollama Cloud Support Deepseek 3.2",
+    "body": "",
+    "reactions": 6,
+    "created_at": "2025-12-02T04:41:54Z",
+    "updated_at": "2025-12-09T14:19:50Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/13294",
+    "html_url": "https://github.com/ollama/ollama/issues/13294",
+    "author_login": "a112121788",
+    "author_profile": "https://github.com/a112121788",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11768,
+    "title": "Access Ollama Turbo through the local Ollama API",
+    "body": "Ollama currently offers two access methods: the locally deployed Ollama that can be accessed without an API key, and Ollama turbo which requires an API key for access. My suggestion is to add a method for calling locally deployed Ollama without requiring an API key, which would allow Ollama to automatically call Ollama Turbo when needed. The reasons are as follows:\n\n1. The unified API enables third-party developers to support all Ollama features with minimal code modifications.\n2. Not requiring API keys enhances security for third-party applications. This avoids unsafe practices such as developers writing API keys directly into their code.\n3. Increasing the installation rate and usability of Ollama. The adoption of Ollama by third-party applications will lead to higher installation rates of Ollama itself. This is because even users who don’t download local models still need to deploy a local instance of Ollama for proxy purposes when using turbo. In the future, Ollama can achieve minimum operability by pre-installing an open-source small local model, such as Qwen3 in 1.7B or 4B parameter sizes.\n4. To better serve developers. According to current App Store guidelines, macOS applications that require users to input API Keys are most likely to be rejected during Apple’s review process, while iOS applications do not face this limitation. If Ollama adopts this approach, developers won’t need to have macOS users enter API Keys. Previously, macOS developers had to relay requests through their own web servers, which is more costly and requires higher technical capabilities.\n\nThe specific method I’m proposing is that Ollama should determine whether the model called by the user is available locally. If not, and when the user has turbo access, it should automatically call the turbo model. This way, users don’t need to input Ollama’s turbo in third-party applications and can use them directly. Ollama could then include settings that allow users to configure whether a specific application is allowed to access turbo. The specific design for this can be considered by Ollama itself.",
+    "reactions": 6,
+    "created_at": "2025-08-07T02:18:19Z",
+    "updated_at": "2025-09-21T23:00:10Z",
+    "labels": [
+      "feature request",
+      "cloud"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11768",
+    "html_url": "https://github.com/ollama/ollama/issues/11768",
+    "author_login": "owenzhao",
+    "author_profile": "https://github.com/owenzhao",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 11118,
+    "title": "Add Token Usage Tracking (Total Tokens Processed)",
+    "body": "I’d like to request a feature that enables users to track the total number of tokens processed by a locally running Ollama instance. This includes both input and output tokens across all sessions.\n\n### Why is this useful?\n\nHelps developers monitor resource usage and optimize application performance.\n\nUseful for research, billing estimates, and keeping track of large language model usage over time.\n\nAligns with functionality seen in platforms like OpenAI (e.g., token usage dashboards).\n\n### Suggested implementation options:\n\nAdd a CLI command like:\n\n`ollama stats`\n\nWhich could output:\n\n```\nTotal input tokens: 123456\nTotal output tokens: 789012\n```\n\nOr expose it via an API endpoint like:\n\n`GET /api/stats`\n\nOptional: Include per-model or per-session breakdown.\n\n### Alternative Workarounds (Currently Required):\n\nManually track tokens using an external tokenizer (e.g., Hugging Face).\n\nParse and log all input/output text from API calls, then tokenize offline.\n\n### Conclusion:\n\nThis feature would provide great transparency and utility to users who run Ollama models regularly, especially in production or research environments. Thank you for considering this!\n\n",
+    "reactions": 6,
+    "created_at": "2025-06-18T16:29:04Z",
+    "updated_at": "2025-08-11T22:47:36Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/11118",
+    "html_url": "https://github.com/ollama/ollama/issues/11118",
+    "author_login": "har256b",
+    "author_profile": "https://github.com/har256b",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 9831,
+    "title": "Any news on Pixtral 12B support?",
+    "body": "Any news on Pixtral 12B support?",
+    "reactions": 6,
+    "created_at": "2025-03-17T20:19:39Z",
+    "updated_at": "2025-10-26T23:25:49Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/9831",
+    "html_url": "https://github.com/ollama/ollama/issues/9831",
+    "author_login": "PeterTucker",
+    "author_profile": "https://github.com/PeterTucker",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 7239,
+    "title": "Add Tab-Enabled Autocomplete for Local Model Parameters in Ollama CLI",
+    "body": "It would greatly enhance usability if the Ollama CLI supported tab-autocomplete for model names when using commands like `run`, `show`, `list`, etc. For example:\r\n\r\n```bash\r\n# This would autocomplete to something like `llama3.2`, based on the locally available models.\r\nollama run lla<TAB>\r\n```\r\n\r\nImplementing this across all commands where model names are parameters would improve efficiency and user experience. \r\nThank you!",
+    "reactions": 6,
+    "created_at": "2024-10-17T11:20:14Z",
+    "updated_at": "2025-02-01T00:54:34Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/7239",
+    "html_url": "https://github.com/ollama/ollama/issues/7239",
+    "author_login": "lucianoayres",
+    "author_profile": "https://github.com/lucianoayres",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 6880,
+    "title": "Feature Request: Support logprobs before GTA 6 comes out",
+    "body": "\r\nhttps://github.com/ollama/ollama/pull/1640#issuecomment-2352584858 AND https://github.com/ollama/ollama/issues/2415#issuecomment-2361193021",
+    "reactions": 6,
+    "created_at": "2024-09-19T18:02:17Z",
+    "updated_at": "2025-01-07T19:25:00Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6880",
+    "html_url": "https://github.com/ollama/ollama/issues/6880",
+    "author_login": "iurimatias",
+    "author_profile": "https://github.com/iurimatias",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 5989,
+    "title": "Tools should support streaming=true",
+    "body": "When the stream=true, ollama doesn't return tool request in the final \"done\" message, instead it returns it just part by part as if it was a regular reply. \r\n\r\nAt that, we have no way to determine it was a tool request, because ollama doesn't change the role to \"tool\" and it's just \"assistant\". Due to that we can not hide the tool call code from users, as we can't recognize it's a tool request and not a usual reply, until we get the final \"done\" message that says \"done_reason='stop'\". Which is also not a good way to detect that.\r\n\r\nAnd in addition to that, final \"done\" message doesn't carry the tool request field if the stream=true, as it does when stream=false. The field is just absent.\r\n\r\nBoth of these obviously make no sense. It would make sense to:\r\n1. In case of streaming reply there should be a special role in the message that prints a tool request, like, role='tool' or anything.\r\n2. In any case, tools request should be presented in the final \"done\" message, so it could be taken from there as it can be when stream=false right now.\r\n\r\nI would suggest the best way is to drop streaming flag internally when you return tool request, as streaming is totally unneeded here, we need to see content for users live but we do not to see function calling live as we never show it to users and we can't execute it partially.\r\n\r\nSo you just need to return the tool call in a single \"done\" object when the model produces a tool request. \r\n\r\nMore lyrics: \r\nThe reason why we can not just disable streaming for using tools is because tools are supposed to be called spontaneously during the chat, whenever _model_ decides it needs a tool and requests it. \r\n\r\nIt means, that this process happens during a regular chat and we can not predict when the model will require a tool request.\r\n\r\n\r\n",
+    "reactions": 6,
+    "created_at": "2024-07-26T15:51:44Z",
+    "updated_at": "2024-09-04T04:23:18Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/5989",
+    "html_url": "https://github.com/ollama/ollama/issues/5989",
+    "author_login": "drazdra",
+    "author_profile": "https://github.com/drazdra",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 981,
+    "title": "Add message history to the `/generate` API",
+    "body": "Add a new `messages` field to the `/generate` API that takes an array of past messages in the conversation history. This field can replace `context` (although, we will continue to support both for now).",
+    "reactions": 5,
+    "created_at": "2023-11-03T00:11:26Z",
+    "updated_at": "2023-12-04T23:01:07Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/981",
+    "html_url": "https://github.com/ollama/ollama/issues/981",
+    "author_login": "BruceMacD",
+    "author_profile": "https://github.com/BruceMacD",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 8335,
+    "title": "Make flash attention configurable via UI or enable by default",
+    "body": "Hi, I love Ollama, excellent work. It makes using LLMs really beginner friendly, but does impose any limits on power usage.\r\n\r\nI recently learned about flash attention and found out from reading the FAQ that Ollama supports this. As flash attention is important to support large contexts and can speed up models considerably, it would be great if the option to enable flash attention would be more easily accessible.\r\n\r\nI am on Windows, and the Ollama Server has a small icon in the notification area. It would be great if you could add a checkbox to enable flash attention and set the KV cache quantization there.",
+    "reactions": 5,
+    "created_at": "2025-01-07T11:10:17Z",
+    "updated_at": "2026-04-11T16:40:49Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/8335",
+    "html_url": "https://github.com/ollama/ollama/issues/8335",
+    "author_login": "HDembinski",
+    "author_profile": "https://github.com/HDembinski",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 142,
+    "title": "Persist conversation histories",
+    "body": "It would be really fun and useful to have a `docker ps`-like persistence of each session \r\n\r\n```\r\nSESSION_ID  MODEL   CREATED AT        LAST CHAT      SUMMARY\r\nasdfasdfasd llama2  50 minutes ago    1 minute ago   Explorations with Waluigi\r\nqwfdsqwefd  llama2  30 minutes ago    20 minutes ago Mario is Mean\r\n```\r\n\r\nThis would also provide a basis for syncing them around. I'd really like to be able to continue a chat from one computer on another! \r\n\r\nThen eventually maybe even something like https://github.com/jmorganca/ollama/pull/69 could be expanded to all history or a subset of it. ",
+    "reactions": 5,
+    "created_at": "2023-07-20T16:56:56Z",
+    "updated_at": "2024-01-25T20:14:11Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/142",
+    "html_url": "https://github.com/ollama/ollama/issues/142",
+    "author_login": "nathanleclaire",
+    "author_profile": "https://github.com/nathanleclaire",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4170,
+    "title": "OLLAMA_NUM_PARALLEL cannot be the solution.",
+    "body": "You don't actually need this setting.\r\nOllama should actually know on its own how many parallel requests it can handle.\r\n\r\nBecause Ollama should know what hardware and corresponding performance is available. This information can be analyzed.\r\n\r\nFor example, if you send several requests where you already know in advance how much performance a request will consume, then an error message should come from the API \"No further requests can be processed by the model due to the installed hardware.\" Then you could provide some good information on what you could do to avoid this or in the task you could say how much performance is required for each additional request so that a reasonably \"fast\" answer comes back.\r\n\r\n",
+    "reactions": 5,
+    "created_at": "2024-05-05T14:23:14Z",
+    "updated_at": "2025-12-22T15:06:19Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4170",
+    "html_url": "https://github.com/ollama/ollama/issues/4170",
+    "author_login": "KevinKrueger",
+    "author_profile": "https://github.com/KevinKrueger",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2369,
+    "title": "Provide settings for allowed origins in Mac OS app",
+    "body": "hey there - been developing on a UI that calls the ollama server, and therefore needs its CORS origin to be allowed.\r\n\r\nThis issue (https://github.com/ollama/ollama/issues/300#issuecomment-1826434144) provided support for CORS origins to be configured when starting the server via command line by passing an environment variable (thank you!)\r\n\r\nThis requirement would cause friction for users who just run ollama via the mac app. Can we provide some kind of GUI setting for allowing origins in the mac app?\r\n\r\nThanks!\r\n\r\n",
+    "reactions": 5,
+    "created_at": "2024-02-06T06:03:51Z",
+    "updated_at": "2024-03-11T21:25:39Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2369",
+    "html_url": "https://github.com/ollama/ollama/issues/2369",
+    "author_login": "jemstelos",
+    "author_profile": "https://github.com/jemstelos",
+    "already_resurrected": false
+  }
+]

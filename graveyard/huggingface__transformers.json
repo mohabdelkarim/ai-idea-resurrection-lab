@@ -1,0 +1,1653 @@
+[
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 5421,
+    "title": "What to do about this warning message: \"Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertForSequenceClassification\"",
+    "body": "```\r\nmodel = AutoModelForSequenceClassification.from_pretrained(\"bert-base-uncased\")\r\n```\r\n\r\nreturns this warning message:\r\n```\r\nSome weights of the model checkpoint at bert-base-uncased were not used when initializing BertForSequenceClassification: ['cls.predictions.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.decoder.weight', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.LayerNorm.bias']\r\n- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPretraining model).\r\n- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).\r\nSome weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['classifier.weight', 'classifier.bias']\r\nYou should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.\r\n```\r\n\r\nThis just started popping up with v.3 so I'm not sure what is the recommended action to take here.  Please advise if you can.  Basically, any of my code using the `AutoModelFor<X>` is throwing up this warning now.\r\n\r\nThanks.\r\n",
+    "reactions": 112,
+    "created_at": "2020-07-01T01:31:55Z",
+    "updated_at": "2024-07-23T19:32:30Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/5421",
+    "html_url": "https://github.com/huggingface/transformers/issues/5421",
+    "author_login": "ohmeow",
+    "author_profile": "https://github.com/ohmeow",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4658,
+    "title": "Add upcoming GPT-3 model",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n\r\nThe GPT-3 paper just landed on ArXiv: https://arxiv.org/abs/2005.14165.\r\n\r\nWould be great to integrate it into Transformers, whenever models are available.\r\n\r\n> Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model. GPT-3 achieves strong performance on many NLP datasets, including translation, question-answering, and cloze tasks, as well as several tasks that require on-the-fly reasoning or domain adaptation, such as unscrambling words, using a novel word in a sentence, or performing 3-digit arithmetic. At the same time, we also identify some datasets where GPT-3's few-shot learning still struggles, as well as some datasets where GPT-3 faces methodological issues related to training on large web corpora. Finally, we find that GPT-3 can generate samples of news articles which human evaluators have difficulty distinguishing from articles written by humans. We discuss broader societal impacts of this finding and of GPT-3 in general.\r\n\r\n## Open source status\r\n\r\n* [x] GitHub repository is available: [here](https://github.com/openai/gpt-3)\r\n* [ ] the model implementation is available: (give details)\r\n* [ ] the model weights are available: (give details)\r\n* [ ] who are the authors: (mention them, if possible by @gh-username)\r\n",
+    "reactions": 92,
+    "created_at": "2020-05-29T01:00:46Z",
+    "updated_at": "2025-05-20T11:47:59Z",
+    "labels": [
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4658",
+    "html_url": "https://github.com/huggingface/transformers/issues/4658",
+    "author_login": "stefan-it",
+    "author_profile": "https://github.com/stefan-it",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2831,
+    "title": "Installation Error - Failed building wheel for tokenizers",
+    "body": "# 🐛 Bug\r\n\r\n## Information\r\n\r\nModel I am using (Bert, XLNet ...): N/A\r\n\r\nLanguage I am using the model on (English, Chinese ...): N/A\r\n\r\nThe problem arises when using:\r\n* [X] the official example scripts: (give details below)\r\n\r\nProblem arises in transformers installation on Microsoft Windows 10 Pro, version 10.0.17763 \r\n\r\nAfter creating and activating the virtual environment, installing transformers is not possible, because the following error occurs:\r\n\r\n\"error: can not find Rust Compiler\"\r\n\"ERROR: Failed building wheel for tokenizers\"\r\nFailed to build tokenizers\r\nERROR: Could not build wheels for tokenizers which use PEP 517 and cannot be installed d\r\n\r\nThe tasks I am working on is:\r\n[X ] transformers installation\r\n\r\n## To reproduce\r\n\r\nSteps to reproduce the behavior:\r\n\r\n1. From command line interface, create and activate a virtual environment by following the steps in this URL: https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/\r\n2. Install transformers from source, by following the example in the topic From Source on this URL: https://github.com/huggingface/transformers\r\n\r\n<!-- If you have code snippets, error messages, stack traces please provide them here as well.\r\n     Important! Use code tags to correctly format your code. See https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting\r\n     Do not use screenshots, as they are hard to read and (more importantly) don't allow others to copy-and-paste your code.-->\r\n\r\n```\r\n-m pip --version\r\n-m pip install --upgrade pip\r\n-m pip install --user virtualenv\r\n-m venv env\r\n.\\env\\Scripts\\activate\r\npip install transformers\r\n\r\nERROR: Command errored out with exit status 1:\r\n   command: 'c:\\users\\vbrandao\\env\\scripts\\python.exe' 'c:\\users\\vbrandao\\env\\lib\\site-packages\\pip\\_vendor\\pep517\\_in_process.py' build_wheel 'C:\\Users\\vbrandao\\AppData\\Local\\Temp\\tmpj6evjmze'\r\n       cwd: C:\\Users\\vbrandao\\AppData\\Local\\Temp\\pip-install-sza2_lmj\\tokenizers\r\n  Complete output (10 lines):\r\n  running bdist_wheel\r\n  running build\r\n  running build_py\r\n  creating build\r\n  creating build\\lib\r\n  creating build\\lib\\tokenizers\r\n  copying tokenizers\\__init__.py -> build\\lib\\tokenizers\r\n  running build_ext\r\n  running build_rust\r\n  error: Can not find Rust compiler\r\n  ----------------------------------------\r\n  ERROR: Failed building wheel for tokenizers\r\nFailed to build tokenizers\r\nERROR: Could not build wheels for tokenizers which use PEP 517 and cannot be installed directly\r\n\r\n```\r\n\r\n\r\n\r\n## Expected behavior\r\n\r\n<!-- A clear and concise description of what you would expect to happen. -->\r\n\r\nInstallation of transformers should be complete.\r\n\r\n## Environment info\r\n<!-- You can run the command `python transformers-cli env` and copy-and-paste its output below.\r\n     Don't forget to fill out the missing fields in that output! -->\r\n     \r\n- `transformers` version: N/A - installation step\r\n- Platform: Command Line Interface / Virtual Env\r\n- Python vers",
+    "reactions": 84,
+    "created_at": "2020-02-12T19:52:28Z",
+    "updated_at": "2025-01-04T05:19:14Z",
+    "labels": [
+      "wontfix",
+      "Core: Tokenization",
+      "Installation"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2831",
+    "html_url": "https://github.com/huggingface/transformers/issues/2831",
+    "author_login": "victorlongo",
+    "author_profile": "https://github.com/victorlongo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 6113,
+    "title": "🌟 BigBird",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n\r\nPaper : https://arxiv.org/pdf/2007.14062.pdf\r\n\r\nAbstract : \r\n> Transformers-based models, such as BERT, have been one of the most successful deep learning\r\nmodels for NLP. Unfortunately, one of their core limitations is the quadratic dependency\r\n(mainly in terms of memory) on the sequence length due to their full attention mechanism.\r\nTo remedy this, we propose, BigBird, a sparse attention mechanism that reduces this\r\nquadratic dependency to linear. We show that BigBird is a universal approximator of\r\nsequence functions and is Turing complete, thereby preserving these properties of the\r\nquadratic, full attention model. Along the way, our theoretical analysis reveals some of the\r\nbenefits of having O(1) global tokens (such as CLS), that attend to the entire sequence\r\nas part of the sparse attention mechanism. The proposed sparse attention can handle\r\nsequences of length up to 8x of what was previously possible using similar hardware. As\r\na consequence of the capability to handle longer context, BigBird drastically improves\r\nperformance on various NLP tasks such as question answering and summarization. We also\r\npropose novel applications to genomics data.\r\n\r\n\r\n## Open source status\r\n\r\n* [ ] the model implementation is available: *No*\r\n* [ ] the model weights are available: *No*\r\n* [ ] who are the authors: *?*\r\n",
+    "reactions": 76,
+    "created_at": "2020-07-29T01:45:45Z",
+    "updated_at": "2021-05-07T07:56:49Z",
+    "labels": [
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/6113",
+    "html_url": "https://github.com/huggingface/transformers/issues/6113",
+    "author_login": "astariul",
+    "author_profile": "https://github.com/astariul",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2341,
+    "title": "\"Reformer: The Efficient Transformer\" looks awesome. I'd love to see it in the library.",
+    "body": "# 🌟New model addition\r\n\r\n## Model description\r\nEfficient Transformer with locality-sensitive hashing and reversible layers\r\nhttps://openreview.net/forum?id=rkgNKkHtvB\r\n<!-- Important information -->\r\n\r\n## Open Source status\r\n\r\n* [. ] the model implementation is available: (give details)\r\nThere is an implementation from google\r\nhttps://github.com/google/trax/blob/master/trax/models/research/reformer.py\r\n* [ ] the model weights are available: (give details)\r\n* [. ] who are the authors: (mention them)\r\nNikita Kitaev, Lukasz Kaiser, Anselm Levskaya\r\n\r\n## Additional context\r\n\r\n<!-- Add any other context about the problem here. -->\r\n",
+    "reactions": 62,
+    "created_at": "2019-12-27T06:29:22Z",
+    "updated_at": "2020-05-31T15:42:34Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2341",
+    "html_url": "https://github.com/huggingface/transformers/issues/2341",
+    "author_login": "Alan-Lee123",
+    "author_profile": "https://github.com/Alan-Lee123",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 17611,
+    "title": "SSLError: HTTPSConnectionPool(host='huggingface.co', port=443)",
+    "body": "I'm trying in python:\r\n\r\nfrom sentence_transformers import SentenceTransformer\r\nsbert_model = SentenceTransformer('all-MiniLM-L6-v2')\r\n\r\nand I get this error:\r\n\r\nSSLError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/sentence-transformers/all-MiniLM-L6-v2 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate in certificate chain (_ssl.c:1091)')))\r\n\r\nI have no proxy, just getting direct to internet !!!\r\n",
+    "reactions": 57,
+    "created_at": "2022-06-08T15:46:00Z",
+    "updated_at": "2026-03-01T21:51:12Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/17611",
+    "html_url": "https://github.com/huggingface/transformers/issues/17611",
+    "author_login": "alexsomoza",
+    "author_profile": "https://github.com/alexsomoza",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4857,
+    "title": "sentencepiece==0.1.92 causing segmentation fault",
+    "body": "# 🐛 Bug\r\n\r\n## Information\r\n\r\n`transformers==2.9.1`\r\n`torch==1.4.0`\r\n\r\nStarting from today,\r\nI notice newly released `sentencepiece==0.1.92` causing segmentation fault while calling torch functions.\r\nDowngrade to `sentencepiece==0.1.91` solve it.\r\n",
+    "reactions": 52,
+    "created_at": "2020-06-09T00:19:26Z",
+    "updated_at": "2020-11-10T13:40:57Z",
+    "labels": [
+      "dependencies"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4857",
+    "html_url": "https://github.com/huggingface/transformers/issues/4857",
+    "author_login": "boy2000-007man",
+    "author_profile": "https://github.com/boy2000-007man",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 1370,
+    "title": "considerd to add albert?",
+    "body": "## 🚀 Feature\r\n\r\n<!-- A clear and concise description of the feature proposal. Please provide a link to the paper and code in case they exist. -->\r\n\r\n## Motivation\r\n\r\n<!-- Please outline the motivation for the proposal. Is your feature request related to a problem? e.g., I'm always frustrated when [...]. If this is related to another GitHub issue, please link here too. -->\r\n\r\n## Additional context\r\n\r\n<!-- Add any other context or screenshots about the feature request here. -->",
+    "reactions": 39,
+    "created_at": "2019-09-29T02:21:47Z",
+    "updated_at": "2020-01-12T08:39:03Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/1370",
+    "html_url": "https://github.com/huggingface/transformers/issues/1370",
+    "author_login": "fengzuo97",
+    "author_profile": "https://github.com/fengzuo97",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 1617,
+    "title": "Add T5 model",
+    "body": "# 🌟New model addition\r\n\r\n## Model description\r\n\r\nGoogle released paper + code + dataset + pre-trained model about their new **T5**, beating state-of-the-art in 17/24 tasks.\r\n\r\n[Paper link](https://arxiv.org/pdf/1910.10683.pdf)\r\n\r\n## Open Source status\r\n\r\n* [x] the model implementation and weights are available: [Official codebase](https://github.com/google-research/text-to-text-transfer-transformer)\r\n",
+    "reactions": 31,
+    "created_at": "2019-10-24T09:25:37Z",
+    "updated_at": "2020-02-14T20:54:52Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/1617",
+    "html_url": "https://github.com/huggingface/transformers/issues/1617",
+    "author_login": "astariul",
+    "author_profile": "https://github.com/astariul",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 473,
+    "title": "GPT as a Language Model",
+    "body": "I am interested to use GPT as Language Model to assign Language modeling score (Perplexity score) of a sentence.  Here is what I am using \r\n```import torch\r\nimport math\r\nfrom pytorch_pretrained_bert import OpenAIGPTTokenizer, OpenAIGPTModel, OpenAIGPTLMHeadModel\r\n# Load pre-trained model (weights)\r\nmodel = OpenAIGPTLMHeadModel.from_pretrained('openai-gpt')\r\nmodel.eval()\r\n# Load pre-trained model tokenizer (vocabulary)\r\ntokenizer = OpenAIGPTTokenizer.from_pretrained('openai-gpt')\r\n\r\ndef score(sentence):\r\n    tokenize_input = tokenizer.tokenize(sentence)\r\n    tensor_input = torch.tensor([tokenizer.convert_tokens_to_ids(tokenize_input)])\r\n    loss=model(tensor_input, lm_labels=tensor_input)\r\n    return math.exp(loss)\r\n\r\n\r\na=['there is a book on the desk',\r\n                'there is a plane on the desk',\r\n                        'there is a book in the desk']\r\nprint([score(i) for i in a])\r\n21.31652459381952, 61.45907380241148, 26.24923942649312\r\n```\r\nIs it the right way to score a sentence ?\r\n",
+    "reactions": 30,
+    "created_at": "2019-04-11T18:02:25Z",
+    "updated_at": "2021-06-10T08:40:22Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/473",
+    "html_url": "https://github.com/huggingface/transformers/issues/473",
+    "author_login": "mdasadul",
+    "author_profile": "https://github.com/mdasadul",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4142,
+    "title": "New model addition: Blender (Facebook chatbot)",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n- Dialogue response generation model for multiturn conversations, open-sourced by Facebook (28 April 2020)\r\n- 3 models: 90m, 2.7b and 9.4b parameters\r\n- New state-of-the-art \"in terms of engagingness and humanness measurements\"\r\n- Blog post: https://parl.ai/projects/blender/\r\n- Paper: https://arxiv.org/abs/2004.13637\r\n- Code: Included in Facebook dialogue framework ParlAI https://github.com/facebookresearch/ParlAI\r\n\r\n## Open source status\r\n\r\n* [ ] the model implementation is available:\r\n- possibly yes, together with the weights\r\n* [x] the model weights are available:\r\n- Need to install ParlAI (https://github.com/facebookresearch/ParlAI). Model weights are then downloaded when running `python parlai/scripts/safe_interactive.py -t blended_skill_talk -mf zoo:blender/blender_3B/model`. Compare https://github.com/facebookresearch/ParlAI/tree/master/parlai/zoo/blender\r\n* [x] who are the authors: (mention them, if possible by @gh-username)\r\n\r\n- Facebook AI Research: \r\n    - Stephen Roller, Emily Dinan, Jason Weston\r\n    - and Naman Goyal, Da Ju, Mary Williamson, Yinhan Liu, Jing Xu, Myle Ott,Kurt Shuster, Eric M. Smith, Y-Lan Boureau, ",
+    "reactions": 24,
+    "created_at": "2020-05-04T07:54:13Z",
+    "updated_at": "2020-08-22T05:34:30Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4142",
+    "html_url": "https://github.com/huggingface/transformers/issues/4142",
+    "author_login": "trianxy",
+    "author_profile": "https://github.com/trianxy",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 1950,
+    "title": "word or sentence embedding from BERT model",
+    "body": "How can I extract embeddings for a sentence or a set of words directly from pre-trained models (Standard BERT)? For example, I am using Spacy for this purpose at the moment where I can do it as follows:\r\n\r\nsentence vector:\r\n`sentence_vector = bert_model(\"This is an apple\").vector`\r\n\r\nword_vectors:\r\n```\r\nwords = bert_model(\"This is an apple\")\r\nword_vectors = [w.vector for w in words]\r\n```\r\n\r\nI am wondering if this is possible directly with huggingface pre-trained models (especially BERT).\r\n\r\n\r\n\r\n",
+    "reactions": 24,
+    "created_at": "2019-11-26T13:54:48Z",
+    "updated_at": "2021-02-17T11:06:19Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/1950",
+    "html_url": "https://github.com/huggingface/transformers/issues/1950",
+    "author_login": "ghost",
+    "author_profile": "https://github.com/ghost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4847,
+    "title": "Add optimal model size and stopping time feature",
+    "body": "# 🚀 Feature request\r\n\r\nThe [calculator](https://huggingface.co/calculator/) blog post presented an automated way to find scaling laws with model size and compute budget on language modeling tasks. Adding it to the library would help save on training costs by picking an optimal model size and training time.\r\n\r\n## Motivation\r\n\r\nEstimating how big of a model to use and how long to train for is more of an art than a science. An automated tool to perform that task would allow researchers and practitioners to concentrate on the the high-level parts of their projects as opposed to parameter tweaking.\r\n\r\n## Your contribution\r\n\r\nI can submit a PR with my existing work, probably integrating it within `Trainer` and/or [`knocknock`](https://github.com/huggingface/knockknock).\r\n",
+    "reactions": 23,
+    "created_at": "2020-06-08T12:53:29Z",
+    "updated_at": "2021-06-09T18:18:33Z",
+    "labels": [
+      "Discussion",
+      "wontfix",
+      "High-Level feature",
+      "Ex: LM (Pretraining)"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4847",
+    "html_url": "https://github.com/huggingface/transformers/issues/4847",
+    "author_login": "TevenLeScao",
+    "author_profile": "https://github.com/TevenLeScao",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 7019,
+    "title": "Proposal: Offset based Token Classification utilities ",
+    "body": "# 🚀 Feature request\r\n\r\nHi. So we work a lot with span annotations on text that isn't tokenized and want a \"canonical\" way to work with that. I have some ideas and rough implementations, so I'm looking for feedback on if this belongs in the library, and if the proposed implementation is more or less good. \r\n\r\nI also think there is a good chance that everything I want exists, and the only solution needed is slightly clearer documentation. I should hope that's the case and happy to document if someone can point me in the right direction. \r\n\r\n\r\n## The Desired Capabilities\r\n\r\nWhat I'd like is a canonical way to:\r\n* Tokenize the examples in the dataset\r\n* Align my annotations with the output tokens (see notes below) \r\n* Have the tokens and labels correctly padded to the max length of an example in the batch or max_sequence_length\r\n* Have a convenient function that returns predicted offsets  \r\n\r\n### Some Nice To Haves\r\n* It would be nice if such a utility internally handled tagging schemes like IOB BIOES internally and optionally exposed them in the output or \"folded\" them to the core entities. \r\n* It would be nice if there was a recommended/default strategy implemented for handling examples that are longer then the max_sequence_length\r\n* It would be amazing if we could pass labels to the tokenizer and have the alignment happen in Rust (in parallel). But I don't know Rust and I have a sense this is complicated so I won't be taking that on myself, and assuming that this is happening in Python. \r\n\r\n\r\n## Current State and what I'm missing \r\n\r\n* The docs and examples for Token Classification assume that the [text is pre-tokenized](https://github.com/huggingface/transformers/blob/1b76936d1a9d01cf99a086a3718060a64329afaa/examples/token-classification/utils_ner.py#L110).  \r\n* For a word that has a label and is tokenized to multiple tokens, [it is recommended](https://github.com/huggingface/transformers/blob/1b76936d1a9d01cf99a086a3718060a64329afaa/examples/token-classification/utils_ner.py#L116)  to place the label on the first token and \"ignore\" the following tokens \r\n   * However it is not clear where that recommendation came from, and it has [edge cases that seem quite nasty](https://github.com/huggingface/transformers/issues/5077#issuecomment-668384357) \r\n* The [example pads all examples to max_sequence_length](https://github.com/huggingface/transformers/blob/1b76936d1a9d01cf99a086a3718060a64329afaa/examples/token-classification/utils_ner.py#L167)  which is a big performance hit (as opposed to bucketing by length and padding dynamically) \r\n* The example loads the entire dataset at once in memory. I'm not sure if this is a real problem or I'm being nitpicky, but I think \"the right way\" to do this would be to lazy load a batch or a few batches. \r\n\r\n### Alignment\r\nThe path to align tokens to span annotations  is by using the return_offsets_mapping flag on the tokenizer (which is awesome!). \r\nThere are probably a few strategies, I've been using this\r\nI use log",
+    "reactions": 23,
+    "created_at": "2020-09-08T19:43:43Z",
+    "updated_at": "2020-11-21T21:53:07Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/7019",
+    "html_url": "https://github.com/huggingface/transformers/issues/7019",
+    "author_login": "talolard",
+    "author_profile": "https://github.com/talolard",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 5088,
+    "title": "Image GPT",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n\r\nOpenAI just announced Image GPT: https://openai.com/blog/image-gpt/\r\n\r\nAlthough image rendering would be out of scope for Transformers, the RGB generation would still be in scope and it would be best to port the weights to a `GPT2LMModel`.\r\n\r\nHowever, it's not immediately clear here how the tokenization is implemented in the downloaded model. (no separate `vocab.json`)\r\n\r\n## Open source status\r\n\r\n* [ ] the model implementation is available: https://github.com/openai/image-gpt\r\n* [ ] the model weights are available: see README above\r\n* [ ] who are the authors: @openai\r\n",
+    "reactions": 21,
+    "created_at": "2020-06-17T19:10:43Z",
+    "updated_at": "2020-11-01T03:10:16Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/5088",
+    "html_url": "https://github.com/huggingface/transformers/issues/5088",
+    "author_login": "minimaxir",
+    "author_profile": "https://github.com/minimaxir",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2633,
+    "title": "Details on T5's current integration status ",
+    "body": "Hi all,\r\n\r\nRegarding Google's T5 model, here is a quick summary of the status:\r\n* the core model is in the library and some people have started to use it, but:\r\n  - while the operations are identical or very similar (einsum vs. matmul), there is quite a significantly higher relative error between this model's PT hidden-state and the mesh-tensorflow hidden-state (in particular compared to our previous TF => PT model conversions).\r\n  - our guess is that this comes for a combination of bfloat16 vs. fp32, einsum+model parallelism vs. matmul, plus the fact that we are not masking the hidden-states at each layer as the original implementation do (this should not matter much though).\r\n  - as a consequence, we are waiting to be able to confirm it's performances on a GLUE fine-tuning before having a wider communication on its addition to the library.\r\n* the full integration with GLUE tests requires a few features that we still need to add:\r\n  - a decoding mechanism,\r\n  - a pre/post-processing for GLUE to use it in text-to-text setting, and\r\n  - a model parallelism feature\r\n^^ we plan to work on these in February (from the more general view of having better encoder-decoder support in the library).\r\n\r\ncc @julien-c @LysandreJik @sshleifer @patrickvonplaten",
+    "reactions": 21,
+    "created_at": "2020-01-24T18:55:32Z",
+    "updated_at": "2020-03-31T21:32:45Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2633",
+    "html_url": "https://github.com/huggingface/transformers/issues/2633",
+    "author_login": "thomwolf",
+    "author_profile": "https://github.com/thomwolf",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 7540,
+    "title": "Difference between CLS hidden state and pooled_output",
+    "body": "Hi,\r\n\r\nThe first ouput of the TFBertModel is last_hidden_state. And I assume the CLS embdding is the first element of this object, so last_hidden_state [0]?\r\n\r\nBut then you have also the pooled_output. In the docs it is written that this comes from a linear layer on top.\r\n\r\n1. This comes originally from the pre training. Can I imagine that this model for pre training is something like the BertForSequenceClassification?\r\n2. Can this pooled_output be fine_tune when you fine tuning the weights of the BERT Model? I assume that this will be fixed and just the hidden states are fine tunable?",
+    "reactions": 20,
+    "created_at": "2020-10-02T15:03:43Z",
+    "updated_at": "2021-01-10T13:54:20Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/7540",
+    "html_url": "https://github.com/huggingface/transformers/issues/7540",
+    "author_login": "datistiquo",
+    "author_profile": "https://github.com/datistiquo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 3627,
+    "title": "Failing to load saved TFBertModel",
+    "body": "TF version: 2.2.0-rc1\r\ntransformers version: 2.7.0\r\n\r\n\r\n`import tensorflow as tf`\r\n`import transformers`\r\n`print(tf.__version__)`\r\n`print(transformers.__version__)`\r\n`MAX_LEN = 10`\r\n`model_path = 'saved_model/temp_model'`\r\n`ids = tf.keras.layers.Input((MAX_LEN,), dtype=tf.int32)`\r\n`mask = tf.keras.layers.Input((MAX_LEN,), dtype=tf.int32)`\r\n`token_type_ids = tf.keras.layers.Input((MAX_LEN,), dtype=tf.int32)`\r\n`base_model = transformers.TFBertModel.from_pretrained(\"bert-base-cased\"`\r\n                `, output_hidden_states=False)`\r\n`base_output = base_model([ids, mask, token_type_ids])`\r\n`seq_out, _ = base_output[0], base_output[1]`\r\n`base_model.trainable = False`\r\n`model = tf.keras.models.Model(inputs=[ids, mask, token_type_ids], outputs=[seq_out])`\r\n`model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])`\r\n`print(model.summary())`\r\n`model.save(model_path)`\r\n`model = tf.keras.models.load_model(model_path)`\r\n\r\nModel load fails with the following error:\r\n\r\n\r\nTraceback (most recent call last):\r\n  File \"/Users/sourabhmaity/anaconda3/lib/python3.7/site-packages/tensorflow/python/util/nest.py\", line 378, in assert_same_structure\r\n    expand_composites)\r\nTypeError: The two structures don't have the same nested structure.\r\n\r\nFirst structure: type=dict str={'input_ids': TensorSpec(shape=(None, 5), dtype=tf.int32, name='input_ids')}\r\n\r\nSecond structure: type=list str=[TensorSpec(shape=(None, 10), dtype=tf.int32, name='inputs/0'), TensorSpec(shape=(None, 10), dtype=tf.int32, name='inputs/1'), TensorSpec(shape=(None, 10), dtype=tf.int32, name='inputs/2')]\r\n\r\nMore specifically: The two namedtuples don't have the same sequence type. First structure type=dict str={'input_ids': TensorSpec(shape=(None, 5), dtype=tf.int32, name='input_ids')} has type dict, while second structure type=list str=[TensorSpec(shape=(None, 10), dtype=tf.int32, name='inputs/0'), TensorSpec(shape=(None, 10), dtype=tf.int32, name='inputs/1'), TensorSpec(shape=(None, 10), dtype=tf.int32, name='inputs/2')] has type list\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"temp.py\", line 29, in <module>\r\n    model = tf.keras.models.load_model(model_path)\r\n  File \"/Users/sourabhmaity/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/saving/save.py\", line 190, in load_model\r\n    return saved_model_load.load(filepath, compile)\r\n  File \"/Users/sourabhmaity/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/saving/saved_model/load.py\", line 116, in load\r\n    model = tf_load.load_internal(path, loader_cls=KerasObjectLoader)\r\n  File \"/Users/sourabhmaity/anaconda3/lib/python3.7/site-packages/tensorflow/python/saved_model/load.py\", line 604, in load_internal\r\n    export_dir)\r\n  File \"/Users/sourabhmaity/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/saving/saved_model/load.py\", line 188, in __init__\r\n    super(KerasObjectLoader, self).__init__(*args, **kwargs)\r\n  File \"/User",
+    "reactions": 20,
+    "created_at": "2020-04-04T15:21:26Z",
+    "updated_at": "2023-09-23T06:52:46Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/3627",
+    "html_url": "https://github.com/huggingface/transformers/issues/3627",
+    "author_login": "sourabhXIII",
+    "author_profile": "https://github.com/sourabhXIII",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 3961,
+    "title": "There are some warnings when I used AdamW and pytorch1.5.",
+    "body": "# 🐛 Bug\r\n\r\n## Information\r\npytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:\r\n        add_(Number alpha, Tensor other)\r\nConsider using one of the following signatures instead:\r\n        add_(Tensor other, *, Number alpha)\r\n",
+    "reactions": 18,
+    "created_at": "2020-04-25T05:20:37Z",
+    "updated_at": "2020-07-28T09:07:50Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/3961",
+    "html_url": "https://github.com/huggingface/transformers/issues/3961",
+    "author_login": "ghost",
+    "author_profile": "https://github.com/ghost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 6243,
+    "title": "Implement DeLighT: Very Deep and Light-weight Transformers",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\nDeLight, that delivers similar or better performance than transformer-based models with significantly fewer parameters. DeLighT more efficiently allocates parameters both (1) within each Transformer block using DExTra, a deep and light-weight transformation and (2) across blocks using block-wise scaling, that allows for shallower and narrower DeLighT blocks near the input and wider and deeper DeLighT blocks near the output. Overall, DeLighT networks are 2.5 to 4 times deeper than standard transformer models and yet have fewer parameters and operation\r\nhttps://arxiv.org/pdf/2008.00623.pdf\r\n\r\n<!-- Important information -->\r\n\r\n## Open source status\r\n\r\n* [X] the model implementation is available: (give details)\r\n\r\nIt is available at https://github.com/sacmehta/delight\r\n\r\n* [ ] the model weights are available: (give details)\r\n* [X] who are the authors: (mention them, if possible by @gh-username)\r\n@sacmehta",
+    "reactions": 17,
+    "created_at": "2020-08-04T16:27:59Z",
+    "updated_at": "2020-10-11T11:26:05Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/6243",
+    "html_url": "https://github.com/huggingface/transformers/issues/6243",
+    "author_login": "bratao",
+    "author_profile": "https://github.com/bratao",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 3050,
+    "title": "Should be able to turn off logging",
+    "body": "# 🚀 Feature request\r\n\r\nWhen doing a simple pipeline, I want to supress:\r\n```\r\nDownloading: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████| 230/230 [00:00<00:00, 136kB/s]\r\nconvert squad examples to features: 100%|█████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 241.08it/s]\r\nadd example index and unique id: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 7037.42it/s]\r\n```\r\n## Motivation\r\n\r\n<!-- Please outline the motivation for the proposal. Is your feature request\r\n     related to a problem? e.g., I'm always frustrated when [...]. If this is related\r\n     to another GitHub issue, please link here too. -->\r\n\r\n## Your contribution\r\n\r\nMy code is pretty straightforward:\r\n```\r\n    args = parse_args()\r\n    f = open(args.text_path, \"r\")\r\n    context = f.read()\r\n    # print(context)\r\n\r\n    tokenizer = AutoTokenizer.from_pretrained(args.model)\r\n    model = AutoModelForQuestionAnswering.from_pretrained(args.model)\r\n\r\n    qa = pipeline('question-answering',\r\n                  model='distilbert-base-uncased-distilled-squad', tokenizer='bert-base-cased')\r\n    response = qa(context=context,\r\n                  question=args.question)\r\n\r\n    print(response['answer'])\r\n```",
+    "reactions": 17,
+    "created_at": "2020-02-27T14:57:39Z",
+    "updated_at": "2024-05-16T15:13:02Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/3050",
+    "html_url": "https://github.com/huggingface/transformers/issues/3050",
+    "author_login": "shamoons",
+    "author_profile": "https://github.com/shamoons",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 7333,
+    "title": "Cannot import transformers with TF version 2.1.0",
+    "body": "The installation README says that transformers library requires Tensorflow version >2.0, but I can't seem to import the latest transformers 3.2 release even with Tensorflow v2.1. \r\n\r\n```\r\n>>> import transformers\r\nwandb: WARNING W&B installed but not logged in.  Run `wandb login` or set the WANDB_API_KEY env variable.\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"/Users/amog/dev/ray/lib/python3.7/site-packages/transformers/__init__.py\", line 121, in <module>\r\n    from .pipelines import (\r\n  File \"/Users/amog/dev/ray/lib/python3.7/site-packages/transformers/pipelines.py\", line 47, in <module>\r\n    from .modeling_tf_auto import (\r\n  File \"/Users/amog/dev/ray/lib/python3.7/site-packages/transformers/modeling_tf_auto.py\", line 45, in <module>\r\n    from .modeling_tf_albert import (\r\n  File \"/Users/amog/dev/ray/lib/python3.7/site-packages/transformers/modeling_tf_albert.py\", line 24, in <module>\r\n    from .activations_tf import get_tf_activation\r\n  File \"/Users/amog/dev/ray/lib/python3.7/site-packages/transformers/activations_tf.py\", line 53, in <module>\r\n    \"swish\": tf.keras.activations.swish,\r\nAttributeError: module 'tensorflow_core.python.keras.api._v2.keras.activations' has no attribute 'swish'\r\n```\r\n\r\nUpgrading to TF 2.2 works fine, but I think this should be made more clear in the docs.\r\n\r\ncc @jplu @sgugger \r\n## Environment info\r\n<!-- You can run the command `transformers-cli env` and copy-and-paste its output below.\r\n     Don't forget to fill out the missing fields in that output! -->\r\n     \r\n- `transformers` version: 3.2.0\r\n- Platform: Mac OS\r\n- Python version: 3.7.7\r\n- PyTorch version (GPU?):\r\n- Tensorflow version (GPU?): 2.1.0. On CPU only.\r\n- Using GPU in script?:\r\n- Using distributed or parallel set-up in script?:\r\n\r\n### Who can help\r\n<!-- Your issue will be replied to more quickly if you can figure out the right person to tag with @\r\n If you know how to use git blame, that is the easiest way, otherwise, here is a rough guide of **who to tag**.\r\n Please tag fewer than 3 people.\r\n \r\n albert, bert, GPT2, XLM: @LysandreJik \r\n tokenizers: @mfuntowicz\r\n Trainer: @sgugger\r\n Speed and Memory Benchmarks: @patrickvonplaten\r\n Model Cards: @julien-c\r\n Translation: @sshleifer\r\n Summarization: @sshleifer\r\n TextGeneration: @TevenLeScao \r\n examples/distillation: @VictorSanh\r\n nlp datasets: [different repo](https://github.com/huggingface/nlp)\r\n rust tokenizers: [different repo](https://github.com/huggingface/tokenizers)\r\n Text Generation: @TevenLeScao\r\n blenderbot: @mariamabarham\r\n Bart: @sshleifer\r\n Marian: @sshleifer\r\n T5: @patrickvonplaten\r\n Longformer/Reformer: @patrickvonplaten\r\n TransfoXL/XLNet: @TevenLeScao \r\n examples/seq2seq: @sshleifer\r\n examples/bert-loses-patience: @JetRunner\r\n tensorflow: @jplu\r\n examples/token-classification: @stefan-it\r\n documentation: @sgugger\r\n -->\r\n\r\n## Information\r\n\r\nModel I am using (Bert, XLNet ...):\r\n\r\nThe problem arises when using:\r\n* [ ] the official example scripts: (give detai",
+    "reactions": 16,
+    "created_at": "2020-09-23T00:01:24Z",
+    "updated_at": "2021-04-25T15:04:56Z",
+    "labels": [
+      "wontfix",
+      "TensorFlow",
+      "Should Fix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/7333",
+    "html_url": "https://github.com/huggingface/transformers/issues/7333",
+    "author_login": "amogkam",
+    "author_profile": "https://github.com/amogkam",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 7328,
+    "title": "Add PRADO model",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\nPRADO is a model made by google, performing as bert with 100x less parameters\r\n\r\n[link to the paper](https://www.aclweb.org/anthology/D19-1506.pdf)\r\n[git to the model code](https://github.com/tensorflow/models/tree/master/research/sequence_projection)\r\n\r\n## Open source status\r\n\r\n* [X] the model implementation is available: (give details)\r\n* [ ] the model weights are available: (give details)\r\n* [X] who are the authors: (mention them, if possible by @gh-username)\r\nPrabhu Kaliamoorthi / Sujith Ravi / Zornitsa Kozareva\r\n",
+    "reactions": 16,
+    "created_at": "2020-09-22T20:33:36Z",
+    "updated_at": "2021-01-03T13:23:31Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/7328",
+    "html_url": "https://github.com/huggingface/transformers/issues/7328",
+    "author_login": "ierezell",
+    "author_profile": "https://github.com/ierezell",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 3192,
+    "title": "Provide comprehensive guide & best-practices for run_language_modeling.py",
+    "body": "# 🚀 Feature request\r\n\r\nProvide comprehensive guide for running scripts included in the repository, especially `run_language_modeling.py` it's parameters and model configurations.\r\n\r\n\r\n## Motivation\r\n\r\n1. Current version has `argparse` powered help, from which a lot of parameters seem to be either mysterious or have variable runtime behaviour (i.e `tokenizer_name` is sometimes path and the value that user provides is expected to provide different data for different models, ie. for Roberta and BERT). Again, when it comes to `tokenizer_name` - it claims that `If both are None, initialize a new tokenizer.`, which does not work at all, i.e when you use RoBERTa model. It should handle the training of the new tokenizer on provided `train_data` right away.\r\n\r\n1. There are bunch of parameters that are critical to run the script at all (!), which are not even mentioned here https://huggingface.co/blog/how-to-train or even in the notebook https://colab.research.google.com/github/huggingface/blog/blob/master/notebooks/01_how_to_train.ipynb, i.e:\r\nfor Roberta, without `\"max_position_embeddings\": 514,` in config, the script crashes with:\r\n    ```\r\n    CUDA error: device-side assert triggered\r\n    ```\r\n    I had to dig into github to see some unresolved issues around this case and try out a few solutions before the script finally executed (https://github.com/huggingface/transformers/issues/2877).\r\n\r\n1. Models with LM heads will train even though the head output size is different than vocab size of the tokenizer - the script should warn the user or (better) raise an exception in such scenarios.\r\n\r\n1. Describe how the input dataset should look like. Is it required to have one sentence per-line or one article per line or maybe one paragraph per line? \r\n\r\n1. Using multi-GPU on single machine and parameter `--evaluate_during_training` crashes the script -why? It might be worth an explanation. It's probably also a bug (https://github.com/huggingface/transformers/issues/1801).\r\n\r\n1. Those are just from the top of my head - I will update this issue once I come up with more or maybe someone else will also add something to this thread.\r\n\r\nGiven the number of issues currently open, I suspect that I'm not the only one that struggles with the example script. **The biggest problem here is that running it without proper configuration might really cost a lot, but the script will still execute, yielding garbage model.**\r\n\r\nMoreover - by improving the docs and providing best practices guide, you can enable many people with even better toolkit for their research and business.\r\n\r\n",
+    "reactions": 15,
+    "created_at": "2020-03-09T17:29:51Z",
+    "updated_at": "2020-08-08T21:35:56Z",
+    "labels": [
+      "wontfix",
+      "Ex: LM (Finetuning)",
+      "Ex: LM (Pretraining)"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/3192",
+    "html_url": "https://github.com/huggingface/transformers/issues/3192",
+    "author_login": "marrrcin",
+    "author_profile": "https://github.com/marrrcin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 5428,
+    "title": "How to use (and preferably finetune) BART for text infilling? ",
+    "body": "[Here](https://huggingface.co/transformers/model_doc/bart.html#bartforconditionalgeneration) is shown how to use BART for simple mask filling (one <mask> token = one generated token), but how to use it for text infilling? The BART paper states that the model was pretrained on such task so it should be possible.\r\n\r\nIs the only solution to simply take the `facebook/bart-large` model for summarization and finetune it on a dataset with <mask> tokens or is there a better way?\r\n",
+    "reactions": 15,
+    "created_at": "2020-07-01T09:27:05Z",
+    "updated_at": "2020-09-19T18:56:48Z",
+    "labels": [
+      "Help wanted",
+      "wontfix",
+      "Examples"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/5428",
+    "html_url": "https://github.com/huggingface/transformers/issues/5428",
+    "author_login": "tomaszgarbus",
+    "author_profile": "https://github.com/tomaszgarbus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 1407,
+    "title": "GPT-2 Training on non-english text",
+    "body": "## ❓ Questions & Help\r\n\r\nI wish to train a GPT-2 in different languages, like Portuguese and maybe some programming languages like C++ (and play with token predictions).\r\n\r\nBut I could not find any examples of how to take an X dataset (like c++ source files), create the tokens from it and train a GPT-2 to predict new tokens from the knowledge of this X dataset.\r\n\r\nIs this even possible? (if yes, how could one do this?) \r\n\r\nThanks!",
+    "reactions": 15,
+    "created_at": "2019-10-02T23:32:58Z",
+    "updated_at": "2021-03-12T04:55:51Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/1407",
+    "html_url": "https://github.com/huggingface/transformers/issues/1407",
+    "author_login": "angelorodem",
+    "author_profile": "https://github.com/angelorodem",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 6751,
+    "title": "Add Language Agnostic Bert Sentence Embedding",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\nGoogle released a new model LaBSe, which is a Language agnostic Bert sentence embedding with 109 language support. \r\n\r\nhttps://ai.googleblog.com/2020/08/language-agnostic-bert-sentence.html?utm_source=Deep+Learning+Weekly&utm_campaign=cdb8afedb7-EMAIL_CAMPAIGN_2019_04_24_03_18_COPY_01&utm_medium=email&utm_term=0_384567b42d-cdb8afedb7-72940109\r\n\r\nThe model is also hosted on tfhub as well:https://tfhub.dev/google/LaBSE/1\r\n\r\n<!-- Important information -->\r\n\r\n## Open source status\r\n\r\n* [ ] the model implementation is available: (https://arxiv.org/abs/2007.01852)\r\n* [ ] the model weights are available: https://tfhub.dev/google/LaBSE/1\r\n* [ ] who are the authors: (mention them, if possible by @gh-username)\r\n",
+    "reactions": 14,
+    "created_at": "2020-08-26T18:52:51Z",
+    "updated_at": "2021-01-17T08:40:55Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/6751",
+    "html_url": "https://github.com/huggingface/transformers/issues/6751",
+    "author_login": "alexcleu",
+    "author_profile": "https://github.com/alexcleu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4332,
+    "title": "Extractive Text Summarization",
+    "body": "# 🚀 Feature request\r\nWhile the abstractive text summarization with T5 and Bart already achieve impressive results, it would be great to add support for state-of-the-art **extractive** text summarization, such as the recent [MatchSum](https://github.com/maszhongming/MatchSum) which outperforms [PreSum](https://github.com/nlpyang/PreSumm) by a significant margin.\r\n\r\n<!-- A clear and concise description of the feature proposal.\r\n     Please provide a link to the paper and code in case they exist. -->\r\n\r\n## Motivation\r\nThe Bart-based summarization is already pretty awesome.\r\nHowever, I recently got this summary with Bart from a Bill Gates article:\r\n\r\n> \"We are seeing more and more people get sick and dying, and this is a good thing, but it also means that we have less time to prepare for the future.\"\r\n\r\nIt seems to me, that the extractive methods are still \"less risky\" while they can also achieve great results.\r\n\r\n\r\nSo adding an easy way to access one of the extractive methods, for example the new [MatchSum](https://github.com/maszhongming/MatchSum) algorithm, which also now released the pre-trained models for CNN/DM, would be really awesome!",
+    "reactions": 14,
+    "created_at": "2020-05-13T06:54:17Z",
+    "updated_at": "2020-07-22T10:52:38Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4332",
+    "html_url": "https://github.com/huggingface/transformers/issues/4332",
+    "author_login": "timsuchanek",
+    "author_profile": "https://github.com/timsuchanek",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 900,
+    "title": "SpanBERT support",
+    "body": "Hi,\r\n\r\nI think the new *SpanBERT* model should also be supported in `pytorch-transformers` 😅\r\n\r\n> We present SpanBERT, a pre-training method that is designed to better represent and predict spans of text.\r\n\r\nPaper can be found [here](https://arxiv.org/abs/1907.10529).\r\n\r\nModel is currently not released yet, I'll update this issue here whenever the model is available :)",
+    "reactions": 14,
+    "created_at": "2019-07-25T09:02:22Z",
+    "updated_at": "2019-11-18T09:20:06Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/900",
+    "html_url": "https://github.com/huggingface/transformers/issues/900",
+    "author_login": "stefan-it",
+    "author_profile": "https://github.com/stefan-it",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 537,
+    "title": "New GPT2 tokenizer no longer encodes Unicode characters properly in Python 3",
+    "body": "In commit 5afa497cbfc53c679a9b22997b6312fad57ee2f8, you changed `token.encode('utf-8')` to simply `token`.\r\n\r\nThis would make the code compatible with Python 2, but now it breaks in Python 3. You'll get a KeyError when you try to encode a Unicode character that requires more than 1 byte in UTF-8 encoding. For example, this raises a KeyError in Python 3:\r\n\r\n```python\r\nfrom pytorch_pretrained_bert.tokenization_gpt2 import GPT2Tokenizer\r\ntokenizer = GPT2Tokenizer.from_pretrained('gpt2')\r\ntokenizer.encode('你')\r\n```\r\n\r\nI think what you want to do is:\r\n\r\n```python\r\nif sys.version_info[0] == 2:\r\n    token = ''.join(self.byte_encoder[ord(b)] for b in token)\r\nelse:\r\n    token = ''.join(self.byte_encoder[b] for b in token.encode('utf-8'))\r\n```",
+    "reactions": 13,
+    "created_at": "2019-04-26T05:24:02Z",
+    "updated_at": "2019-10-18T15:11:06Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/537",
+    "html_url": "https://github.com/huggingface/transformers/issues/537",
+    "author_login": "alasdairtran",
+    "author_profile": "https://github.com/alasdairtran",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 26143,
+    "title": "storing & logging gradient norm in trainer",
+    "body": "### Feature request\r\n\r\nstore and log gradient norm in trainer\r\n\r\n### Motivation\r\n\r\nGradient norm is an important metric but currently the gradient norm is discarded during clipping. \r\n\r\n### Your contribution\r\n\r\nI checked and all of the following grad_norm_clip functions return the gradient norm. We can get gradient norm without extra compute by storing the return value, and we can then log it. If this sounds good i am happy to prepare a PR.\r\n\r\nhttps://github.com/huggingface/transformers/blob/32ec7345f2d752c294ddf5aff495b657c9cd9d3b/src/transformers/trainer.py#L1918-L1936",
+    "reactions": 13,
+    "created_at": "2023-09-13T13:33:50Z",
+    "updated_at": "2024-03-19T02:37:05Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/26143",
+    "html_url": "https://github.com/huggingface/transformers/issues/26143",
+    "author_login": "shijie-wu",
+    "author_profile": "https://github.com/shijie-wu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4048,
+    "title": "Why is the pooler output used for sequence classification (if it does not represent the input semantic well)?",
+    "body": "# ❓ Questions & Help\r\n\r\n## Details\r\nIn the [documentation](https://huggingface.co/transformers/model_doc/bert.html#tfbertmodel) of `TFBertModel`, it is stated that the `pooler_output` is not a good semantic representation of input (emphasis mine):\r\n\r\n> `pooler_output (tf.Tensor of shape (batch_size, hidden_size))`:\r\n> Last layer hidden-state of the first token of the sequence (classification token) further processed by a Linear layer and a Tanh activation function. The Linear layer weights are trained from the next sentence prediction (classification) objective during Bert pretraining. **This output is usually not a good summary of the semantic content of the input, you’re often better with averaging or pooling the sequence of hidden-states for the whole input sequence.**\r\n\r\nHowever, if we look at the [source code][1] of `TFBertForSequenceClassification`, we see that it's the pooler output which is used for classification of input sequence:\r\n\r\n```python\r\n        outputs = self.bert(inputs, **kwargs)\r\n\r\n        pooled_output = outputs[1]\r\n\r\n        pooled_output = self.dropout(pooled_output, training=kwargs.get(\"training\", False))\r\n        logits = self.classifier(pooled_output)\r\n```\r\n**I was wondering why this is the case, and doesn't this contradict what is stated in the documentation?**\r\n\r\nFYI, to try the approach suggested in the documentation (i.e. averaging or pooling hidden state), I also created two custom classifiers where one of them is using only the `CLS` token representation, i.e. `outputs[0][:,0]`, and the other is using the concatenation of `CLS` token representation and the average of last hidden state, i.e. `mean(outputs[0], axis=1)`. However, in the experiments on my dataset, both performed poorly (around 73% validation accuracy, with 99% train accuracy) compared to using the built-in `TFBertForSequenceClassification` (which achieved around 79% validation accuracy, with 99% train accuracy). \r\n\r\nEven I tried the concatenation of `CLS` token representation for all the last four layers (as suggested in BERT paper); however, it also performed poorly (around 70% validation accuracy, with 99% train accuracy).\r\n\r\nI am (almost) certain that my implementation is correct; however, I include it here for reference:\r\n\r\n```python\r\nconfig = BertConfig.from_pretrained(\"dbmdz/bert-base-german-cased\",\r\n                                    num_labels=len(le.classes_),\r\n                                    output_hidden_states=True)\r\ntokenizer = BertTokenizer.from_pretrained(\"dbmdz/bert-base-german-cased\")\r\nbert_model = TFBertModel.from_pretrained(\"dbmdz/bert-base-german-cased\",\r\n                                         config=config,\r\n                                         trainable=True)\r\nseq_max_len = 128\r\n\r\ninput_ids_layer = tf.keras.layers.Input(shape=(seq_max_len,), dtype='int32')\r\nattention_mask_layer = tf.keras.layers.Input(shape=(seq_max_len,), dtype='int32')\r\ninputs = [input_ids_layer, attention_mask_layer]\r\noutputs = bert_model(inputs)\r\n\r",
+    "reactions": 13,
+    "created_at": "2020-04-28T15:51:16Z",
+    "updated_at": "2022-09-08T09:53:15Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4048",
+    "html_url": "https://github.com/huggingface/transformers/issues/4048",
+    "author_login": "mkaze",
+    "author_profile": "https://github.com/mkaze",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 928,
+    "title": "ERNIE 2.0 ?",
+    "body": "Latest NLP Language Model.:)\r\n\r\n[ERNIE 2.0](https://arxiv.org/pdf/1907.12412.pdf?source=post_page)",
+    "reactions": 13,
+    "created_at": "2019-07-31T04:25:52Z",
+    "updated_at": "2019-10-07T04:32:07Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/928",
+    "html_url": "https://github.com/huggingface/transformers/issues/928",
+    "author_login": "MuruganR96",
+    "author_profile": "https://github.com/MuruganR96",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 751,
+    "title": "Slower and more memory hungry than the TensorFlow BERT?",
+    "body": "Hi pytorch-pretrained-BERT developers,\r\n\r\nI have been using TensorFlow BERT since it came out, recently I wanted to switch to PyTorch because it is a great library. For this, I did a bunch of tests to compare training specs between Google's TF BERT and your implementation. To my surprise, this is a lot slower and can only afford small batch size before OOM error. I really want to know if this is a correct observation because I was really hoping to transition to PyTorch.\r\n\r\nHere is my setup:\r\n1. Custom size of 3 layer by 320 hidden dimension.\r\n2. English uncased vocab.\r\n3. Sequence length is set to be constant 125.\r\n4. Running on Tesla P40.\r\n5. Running finetune_on_pregenerated.py\r\n6. I changed finetune_on_pregenerated.py a little to just initialize a blank model of my size.\r\n\r\nSpeed difference:\r\n* TensorFlow: 809 sentences/s on 1 GPU.\r\n* TensorFlow: 2350 sentences/s on 4 GPUs.\r\n* PyTorch: 275 sentences/s on 1 GPU.\r\n* PyTorch: 991 sentences/s on 4 GPUs.\r\n\r\nMemory:\r\n* My P40 has 22GB memory.\r\n* TensorFlow can run batch size of 1000 or more (didn't probe upper limit).\r\n* PyTorch is OOM for batch size 250 or above. OK with 125.\r\n* I ran 30 epochs on a test data set of only 17MB. It shouldn't be a data loading problem.\r\n\r\nI want to know if there is anything that I could have done wrong?\r\n\r\nThank you very much!\r\nn",
+    "reactions": 13,
+    "created_at": "2019-07-03T00:30:47Z",
+    "updated_at": "2021-03-06T09:36:08Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/751",
+    "html_url": "https://github.com/huggingface/transformers/issues/751",
+    "author_login": "nuwapi",
+    "author_profile": "https://github.com/nuwapi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 7937,
+    "title": "Your example code for WNUT NER produces array indexing ValueError",
+    "body": "## Environment info\r\n<!-- You can run the command `transformers-cli env` and copy-and-paste its output below.\r\n     Don't forget to fill out the missing fields in that output! -->\r\n     \r\n- `transformers` version: 3.4\r\n- Platform: Google Colab\r\n- Python version: 3.6.9\r\n- PyTorch version (GPU?): 1.6.0\r\n- Tensorflow version (GPU?):\r\n- Using GPU in script?: No\r\n- Using distributed or parallel set-up in script?: No\r\n\r\n### Who can help\r\n<!-- Your issue will be replied to more quickly if you can figure out the right person to tag with @\r\n If you know how to use git blame, that is the easiest way, otherwise, here is a rough guide of **who to tag**.\r\n Please tag fewer than 3 people.\r\n \r\n albert, bert, GPT2, XLM: @LysandreJik \r\n tokenizers: @mfuntowicz\r\n Trainer: @sgugger\r\n Speed and Memory Benchmarks: @patrickvonplaten\r\n Model Cards: @julien-c\r\n Translation: @sshleifer\r\n Summarization: @sshleifer\r\n TextGeneration: @TevenLeScao \r\n examples/distillation: @VictorSanh\r\n nlp datasets: [different repo](https://github.com/huggingface/nlp)\r\n rust tokenizers: [different repo](https://github.com/huggingface/tokenizers)\r\n Text Generation: @TevenLeScao\r\n blenderbot: @mariamabarham\r\n Bart: @sshleifer\r\n Marian: @sshleifer\r\n T5: @patrickvonplaten\r\n Longformer/Reformer: @patrickvonplaten\r\n TransfoXL/XLNet: @TevenLeScao \r\n examples/seq2seq: @sshleifer\r\n examples/bert-loses-patience: @JetRunner\r\n tensorflow: @jplu\r\n examples/token-classification: @stefan-it\r\n documentation: @sgugger\r\n -->\r\n@stefan-it, @sgugger\r\n## Information\r\n\r\nModel I am using (Bert, XLNet ...): DistilBERT\r\n\r\nThe problem arises when using:\r\n* [x] the official example scripts: (give details below)\r\n* [ ] my own modified scripts: (give details below)\r\n\r\nThe tasks I am working on is:\r\n* [ ] an official GLUE/SQUaD task: (give the name)\r\n* [ ] my own task or dataset: (give details below)\r\n\r\n## To reproduce\r\n\r\nI'm trying to run the example code Advanced Guides --> Fine-tuning with custom datasets --> [Token Classification with W-NUT Emerging Entities](https://huggingface.co/transformers/custom_datasets.html#token-classification-with-w-nut-emerging-entities).\r\n\r\nSteps to reproduce the behavior:\r\n\r\n1. I already have a [Google CoLab notebook with your code](https://colab.research.google.com/drive/1i5N7Xc-i91bqXmcp9hamt5q3a_5a-ZnZ?usp=sharing).\r\n2. I use the `tokenizer` with `max_length=64`, which is typically my \"best practice\" choice. Note that if I set `max_length=None`, everything runs successfully.\r\n```python\r\nmax_length = 64\r\nencodings = tokenizer(texts, is_split_into_words=True, max_length=max_length, return_offsets_mapping=True, padding=True, truncation=True)\r\n```\r\n3. When I run `encode_tags()` on the WNUT data, I get a ValueError\r\n```python\r\nlabels = encode_tags(tags, encodings)\r\n     11         # set labels whose first offset position is 0 and the second is not 0\r\n---> 12         doc_enc_labels[(arr_offset[:,0] == 0) & (arr_offset[:,1] != 0)] = doc_labels\r\n     13         encoded_labels.append(doc_enc_l",
+    "reactions": 12,
+    "created_at": "2020-10-20T20:17:05Z",
+    "updated_at": "2024-07-12T18:58:10Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/7937",
+    "html_url": "https://github.com/huggingface/transformers/issues/7937",
+    "author_login": "githubrandomuser2017",
+    "author_profile": "https://github.com/githubrandomuser2017",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 3774,
+    "title": "Making Simple whitespace tokenizer and then using that tokenizer to make a language model from scratch?",
+    "body": "# ❓ How can I make a whitespace tokenizer and use it to build a language model from scratch using transformers.\r\n\r\n<!-- The GitHub issue tracker is primarly intended for bugs, feature requests,\r\n     new models and benchmarks, and migration questions. For all other questions,\r\n     we direct you to Stack Overflow (SO) where a whole community of PyTorch and\r\n     Tensorflow enthusiast can help you out. Make sure to tag your question with the\r\n     right deep learning framework as well as the huggingface-transformers tag: \r\n     https://stackoverflow.com/questions/tagged/huggingface-transformers \r\n     \r\n     If your question wasn't answered after a period of time on Stack Overflow, you\r\n     can always open a question on GitHub. You should then link to the SO question \r\n     that you posted.\r\n     -->\r\n\r\n## Details\r\n\r\nI am trying to make a language model usingtransformer from scratch , For that I want to build a tokenizer that tokenize a text data using whitespace only, nothing else. It should generate a vocab file that does not have any special character , just the words seperated by whitespace and than I want to use that tokenizer to build a language model from scratch using https://huggingface.co/blog/how-to-train. \r\n\r\nI don't want my tokenizer to generate vocabs that have any kind of special characters viz \"##\" in front of words and any accents in my vocab. \r\n\r\nI know there are tokenizers that give good results for language model like bpe and word peice. but I have a requirement where I just want to use whitespace tokenizer only for training a language model. \r\n\r\nThanks and Regards\r\n<!-- Description of your issue -->\r\n\r\n<!-- You should first ask your question on SO, and only if\r\n     you didn't get an answer ask it here on GitHub. -->\r\n**A link to original question on Stack Overflow**: ",
+    "reactions": 12,
+    "created_at": "2020-04-13T13:09:32Z",
+    "updated_at": "2023-05-08T03:09:21Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/3774",
+    "html_url": "https://github.com/huggingface/transformers/issues/3774",
+    "author_login": "ishaansharma",
+    "author_profile": "https://github.com/ishaansharma",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 27670,
+    "title": "Min P style sampling - an alternative to Top P/TopK",
+    "body": "### Feature request\r\n\r\nThis is a sampler method already present in other LLM inference backends that aims to simplify the truncation process & help accomodate for the flaws/failings of Top P & Top K. \r\n**Min P**.\r\n\r\n![image](https://github.com/huggingface/transformers/assets/66376113/53113071-20ed-43bf-a8ae-c9f083840d96)\r\n\r\nWhat Min P is doing is simple: we are setting a minimum percentage value that a token must reach to be considered during sampling. However, this is not a hard limit. The minimum will 'scale' based on the top token's probability. So, if you have a Min P value of 0.1 (for example), that would mean your base Min P requirement is 10%. So if your top token is 25%, that means it will only consider tokens that have at least 2.5% probability.\r\n\r\nThis method subjectively seems to improve results across the board with no noticeable downside, and has been merged into the following FOSS LLM backends:\r\n- [llama.cpp](https://github.com/ggerganov/llama.cpp/pull/3841)\r\n- [vllm](https://github.com/vllm-project/vllm/pull/1642)\r\n- [text-generation-webui](https://github.com/oobabooga/text-generation-webui/pull/4701) (through both the HF loaders and llama-cpp-python)\r\n\r\nI would suggest a default of 0.05.\r\n\r\n### Motivation\r\n\r\nI noticed certain 'flaws' in the popular Top P sampling method:\r\n- When the model does not have sufficient confidence/concentration on the next token candidate(s), it's possible for the sampler to consider many tokens that are _highly_ unlikely compared to the few choices it has confidence in.\r\n- Top K helps limit the amount of 'low confidence' tokens period as a supplement to Top P, but this often comes at a cost of token choice diversity (often arbitrarily).\r\n- In addition to this, Top P can sometimes cut reasonable tokens. What if there's a 90.1% probability token, followed by a 9% probability token? A Top P value of 0.90 would completely gloss over the 9% token in this instance.\r\n\r\n![image](https://github.com/huggingface/transformers/assets/66376113/42bb3624-2600-41d7-a9b9-e2c4a25cab52)\r\n\r\nFor this reason I made Min P which seems to have positive reception across the board.\r\n\r\n### Your contribution\r\n\r\nI may consider making a PR for this.",
+    "reactions": 12,
+    "created_at": "2023-11-23T13:06:27Z",
+    "updated_at": "2024-05-09T13:37:45Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/27670",
+    "html_url": "https://github.com/huggingface/transformers/issues/27670",
+    "author_login": "kalomaze",
+    "author_profile": "https://github.com/kalomaze",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 26209,
+    "title": "minimum learning rate should be allowed to set in lr schedulers",
+    "body": "### Feature request\r\n\r\nIn current lr schedulers provided in `optimization.py`, the minimum learning rate is always `0.0`. \r\nWe could add one more input parameter like \"min_lr\" to let user defind the minimum learning rate. \r\n\r\nTake `_get_linear_schedule_with_warmup_lr_lambda` as an example:\r\nOriginal: \r\n```\r\ndef _get_linear_schedule_with_warmup_lr_lambda(current_step: int, *, num_warmup_steps: int, num_training_steps: int):\r\n    if current_step < num_warmup_steps:\r\n        return float(current_step) / float(max(1, num_warmup_steps))\r\n    return max(0.0, float(num_training_steps - current_step) / float(max(1, num_training_steps - num_warmup_steps)))\r\n```\r\nWe can change it into: \r\n\r\n```\r\ndef _get_linear_schedule_with_warmup_lr_lambda(current_step: int, *, num_warmup_steps: int, num_training_steps: int, min_lr: float = 0.0):\r\n    if current_step < num_warmup_steps:\r\n        return float(current_step) / float(max(1, num_warmup_steps))\r\n    return max(min_lr, float(num_training_steps - current_step) / float(max(1, num_training_steps - num_warmup_steps)))\r\n```\r\n\r\n### Motivation\r\n\r\nIn some papers, they mentioned about their lr scheduling. Take [LIMA](http://arxiv.org/abs/2305.11206) as an example:\r\n\r\n```\r\nWithout warmup steps, we set the initial learning rate to 1e − 5 and linearly decaying to 1e − 6 by the end of training.\r\n```\r\n\r\nTo reproduce the experiment using their recipe, I need to rewrite the scheduler (and the all related functions like get_scheduler/create_scheduler) in the trainer, that makes the code really ugly.\r\nSo I think it might be good to have this kind of feature to make trainer more flexible. \r\n\r\n### Your contribution\r\n\r\nI can submit a PR for this feature. ",
+    "reactions": 12,
+    "created_at": "2023-09-18T07:23:59Z",
+    "updated_at": "2024-03-26T12:57:43Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/26209",
+    "html_url": "https://github.com/huggingface/transformers/issues/26209",
+    "author_login": "annahung31",
+    "author_profile": "https://github.com/annahung31",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 20055,
+    "title": "Model resources contribution",
+    "body": "Hi friends! 👋\r\n\r\nThere are a lot of cool existing resources for how to do *x* with *x* model, and we’d like to showcase and aggregate these resources on a model’s documentation. This’ll help users see how they can get started with a model for their own tasks since we know a lot of users check out the model documentation first. Take a look at a completed [resource section](https://huggingface.co/docs/transformers/main/en/model_doc/distilbert#resources) for DistilBERT as an example.\r\n\r\nI’ve identified the top 20 models by pageviews, and now I’d like to open it up to the community if anyone is interested in helping!\r\n\r\nAnyone can contribute; you just need to comment and claim one of the models on this [list](https://github.com/huggingface/transformers/issues/19848). Contributing is super easy:\r\n\r\n1. Once you've claimed a model from the list, collect the existing resources from:\r\n- the Hugging Face [blog](https://huggingface.co/blog)\r\n- relevant materials from the 🤗 Hugging Face [Course](https://huggingface.co/course/chapter1/1)\r\n- the Hugging Face [example scripts](https://github.com/huggingface/transformers/tree/main/examples) and [notebooks](https://github.com/huggingface/transformers/tree/main/notebooks)\r\n- @NielsRogge's Transformers Tutorials [repository](https://github.com/NielsRogge/Transformers-Tutorials)\r\n- @philschmid's [blog](https://www.philschmid.de/)\r\n- [notebooks](https://huggingface.co/docs/transformers/community) from the community ❤️\r\n\r\n2. Organize the resources by model tasks or applications (like inference or deployment):\r\n- Use the corresponding icons for each task (you can find the names for each icon [here](https://github.com/huggingface/doc-builder/blob/19ba9da2556294f1777c865793d13e9ea47f8716/kit/src/lib/PipelineIcon.svelte#L42-L71)):\r\n   ```\r\n   <PipelineTag pipeline=”name-of-task”/>\r\n   ```\r\n- For certain categories, you can just do: 🚀 Deploy, ⚡️ Inference, or ⚗️ Optimization, etc.\r\n- For community resources, add the 🌎 emoji at the end to indicate it’s not an official Hugging Face resource.\r\n- Use this DistilBERT [file](https://github.com/huggingface/transformers/pull/19930/files) as a template. You can copy and paste the intro text and just replace DistilBERT with the name of the model you're working on.\r\n    \r\n3. Open a Pull Request with the new resources for your chosen model and ping me for a review (if you’re just getting started with contributing to an open-source project, check out @merveenoyan's awesome [GitHub Contribution Guide](https://www.notion.so/19411c29298644df8e9656af45a7686d)).\r\n\r\n4. Congratulations, you just merged a PR into 🤗 Transformers, and your contribution will now help anyone who is looking at the model docs! 🎉\r\n\r\nIf you have any questions or need any help, don’t hesitate to ping me! 🤗❤️",
+    "reactions": 12,
+    "created_at": "2022-11-03T23:45:30Z",
+    "updated_at": "2023-12-29T19:45:51Z",
+    "labels": [
+      "Help wanted",
+      "Good First Issue",
+      "Good First Documentation Issue"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/20055",
+    "html_url": "https://github.com/huggingface/transformers/issues/20055",
+    "author_login": "stevhliu",
+    "author_profile": "https://github.com/stevhliu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2708,
+    "title": "Can't pickle local object using the finetuning example.",
+    "body": "I was testing out the finetuning example from the repo:\r\n\r\n`python run_lm_finetuning.py --train_data_file=\"finetune-output/KantText.txt\" --output_dir=\"finetune-output/hugkant\" --model_type=gpt2 --model_name_or_path=gpt2 --do_train --block_size=128`\r\n\r\nWhile saving the checkpoint, it gives the following error:\r\n\r\n```\r\n\r\nTraceback (most recent call last):\r\n  File \"run_lm_finetuning.py\", line 790, in <module>\r\n    main()\r\n  File \"run_lm_finetuning.py\", line 740, in main\r\n    global_step, tr_loss = train(args, train_dataset, model, tokenizer)\r\n  File \"run_lm_finetuning.py\", line 398, in train\r\n    torch.save(scheduler.state_dict(), os.path.join(output_dir, \"scheduler.pt\"))\r\n  File \"D:\\Software\\Python\\lib\\site-packages\\torch\\serialization.py\", line 209, in save\r\n    return _with_file_like(f, \"wb\", lambda f: _save(obj, f, pickle_module, pickle_protocol))\r\n  File \"D:\\Software\\Python\\lib\\site-packages\\torch\\serialization.py\", line 134, in _with_file_like\r\n    return body(f)\r\n  File \"D:\\Software\\Python\\lib\\site-packages\\torch\\serialization.py\", line 209, in <lambda>\r\n    return _with_file_like(f, \"wb\", lambda f: _save(obj, f, pickle_module, pickle_protocol))\r\n  File \"D:\\Software\\Python\\lib\\site-packages\\torch\\serialization.py\", line 282, in _save\r\n    pickler.dump(obj)\r\nAttributeError: Can't pickle local object 'get_linear_schedule_with_warmup.<locals>.lr_lambda'\r\n```",
+    "reactions": 12,
+    "created_at": "2020-02-01T22:48:47Z",
+    "updated_at": "2022-03-22T07:52:43Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2708",
+    "html_url": "https://github.com/huggingface/transformers/issues/2708",
+    "author_login": "Normand-1024",
+    "author_profile": "https://github.com/Normand-1024",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2274,
+    "title": "AttributeError: 'GPT2LMHeadModel' object has no attribute 'generate'",
+    "body": "## 🐛 Bug\r\n\r\n<!-- Important information -->\r\n\r\nThe example script `run_generation.py` is broken with the error message `AttributeError: 'GPT2LMHeadModel' object has no attribute 'generate'`\r\n\r\n\r\n## To Reproduce\r\n\r\nSteps to reproduce the behavior:\r\n\r\n1. In a terminal, cd to `transformers/examples` and then `python run_generation.py --model_type=gpt2 --model_name_or_path=gpt2`\r\n2. After the model binary is downloaded to cache, enter anything when prompted \"`Model prompt >>>`\"\r\n3. And then you will see the error:\r\n\r\n```\r\nTraceback (most recent call last):\r\n  File \"run_generation.py\", line 236, in <module>\r\n    main()\r\n  File \"run_generation.py\", line 216, in main\r\n    output_sequences = model.generate(\r\n  File \"C:\\Anaconda3\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 585, in __getattr__\r\n    type(self).__name__, name))\r\nAttributeError: 'GPT2LMHeadModel' object has no attribute 'generate'\r\n```\r\n\r\n<!-- If you have a code sample, error messages, stack traces, please provide it here as well. -->\r\n\r\n## Expected behavior\r\n\r\n<!-- A clear and concise description of what you expected to happen. -->\r\n\r\n## Environment\r\n\r\n* OS: Windows 10\r\n* Python version: 3.7.3\r\n* PyTorch version: 1.3.1\r\n* PyTorch Transformers version (or branch): 2.2.2\r\n* Using GPU ? N/A\r\n* Distributed of parallel setup ? N/A\r\n* Any other relevant information:\r\n\r\nI'm running the latest version of `run_generation.py`. Here is the permanent link: https://github.com/huggingface/transformers/blob/ce50305e5b8c8748b81b0c8f5539a337b6a995b9/examples/run_generation.py\r\n\r\n## Additional context\r\n\r\n<!-- Add any other context about the problem here. -->\r\n",
+    "reactions": 12,
+    "created_at": "2019-12-23T03:05:15Z",
+    "updated_at": "2020-03-13T13:09:42Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2274",
+    "html_url": "https://github.com/huggingface/transformers/issues/2274",
+    "author_login": "jsh9",
+    "author_profile": "https://github.com/jsh9",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 35983,
+    "title": "Add support for context parallelism",
+    "body": "### Feature request\n\nLong context models like [Qwen/Qwen2.5-7B-Instruct-1M](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-1M) have support for up to 1M tokens. However, fine-tuning such models in `transformers` leads to OOM errors and special methods like Ring Attention are needed. A similar issue arises during inference, where generating on a 1M prefill gives OOM.\n\nIt would be very exciting to have support for _context parallelism_ where in each layer we split the KQV computation across GPUs. \n\nAs far as an API goes, having something like `attn_implemention=\"ring\"` in `from_pretrained()` would likely be the simplest way to support this feature.\n\nLinks to papers and code:\n\n* Ring Attention: https://arxiv.org/abs/2310.01889\n* Reference code: https://github.com/zhuzilin/ring-flash-attention/blob/main/ring_flash_attn/adapters/hf_adapter.py\n* Picotron code: https://github.com/huggingface/picotron/blob/main/picotron/context_parallel/context_parallel.py\n\n### Motivation\n\nThe main motivation is two-fold: to support fine-tuning large context models and to enable online RL methods like GRPO to scale better in TRL (where we generate potentially large CoTs during training)\n\n### Your contribution\n\nHappy to review / test the feature on TRL side",
+    "reactions": 11,
+    "created_at": "2025-01-31T11:00:02Z",
+    "updated_at": "2025-11-21T13:11:06Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/35983",
+    "html_url": "https://github.com/huggingface/transformers/issues/35983",
+    "author_login": "lewtun",
+    "author_profile": "https://github.com/lewtun",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 6159,
+    "title": "OSError: Unable to load weights from pytorch checkpoint file. ",
+    "body": "Hello,\r\n\r\nWhen I am trying to load the `Roberta-large` pre-trained model, I get the following error:\r\n\r\n```python\r\nmodel_RobertaForMultipleChoice = RobertaForMultipleChoice.from_pretrained('roberta-large', output_hidden_states = True)\r\n\r\nOUT:\r\nOSError: Unable to load weights from pytorch checkpoint file. If you tried to load a PyTorch model from a TF 2.0 checkpoint, please set from_tf=True. \r\n```\r\n\r\nHow can I solve this issue? Thank you,",
+    "reactions": 11,
+    "created_at": "2020-07-30T18:35:08Z",
+    "updated_at": "2021-07-02T12:57:45Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/6159",
+    "html_url": "https://github.com/huggingface/transformers/issues/6159",
+    "author_login": "h56cho",
+    "author_profile": "https://github.com/h56cho",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4399,
+    "title": "Pipeline for question generation",
+    "body": "# 🚀 Feature request\r\n\r\nI can see there are pipelines for question answering, text summarisation and text generation. In my field I'm researching how question generation can be used in education research. I would love to see this pipeline added. I imagine it's a variation of question answering and text summarisation.\r\n\r\nThe paper 'Question Generation by Transformers' by Kettip Kriangchaivech, Artit Wangperawong and provides a good overview of using the SQUAD data set using questions as the output sequence with reference questions and contexts.\r\n\r\nArtit also has an implementation called text2text https://github.com/artitw/text2text\r\n\r\n\r\n## Motivation\r\n\r\nIt would be useful to have an official pipeline part of the hunggingface library for this use case.\r\n\r\n## Your contribution\r\n\r\nI'm happy to contribute some funds to pay some developers if need be but I don't have enough Python technical expertise to contribute an PRs myself.\r\n",
+    "reactions": 11,
+    "created_at": "2020-05-16T05:01:39Z",
+    "updated_at": "2020-12-12T20:44:44Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4399",
+    "html_url": "https://github.com/huggingface/transformers/issues/4399",
+    "author_login": "danielduckworth",
+    "author_profile": "https://github.com/danielduckworth",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2536,
+    "title": "Universal Sentence Encoder",
+    "body": "# 🌟New model addition\r\n\r\n## Model description\r\n\r\nEncoder of greater-than-word length text trained on a variety of data.\r\n\r\n## Open Source status\r\n\r\n* [ ] the model implementation is available: see paper https://arxiv.org/abs/1803.11175\r\n\r\n* [ ] the model weights are available: available from tfhub: https://tfhub.dev/google/universal-sentence-encoder/4\r\n* [ ] who are the authors: Google\r\n\r\n## Additional context\r\n\r\nStandard for sentence embedding, but would like to compare to other methods without having to rely on Tensorflow hub.",
+    "reactions": 11,
+    "created_at": "2020-01-15T22:15:28Z",
+    "updated_at": "2023-02-23T03:27:10Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2536",
+    "html_url": "https://github.com/huggingface/transformers/issues/2536",
+    "author_login": "rdisipio",
+    "author_profile": "https://github.com/rdisipio",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 414,
+    "title": "Help with implementing strides into features for multi-label classifier",
+    "body": "As you might know, BERT has a maximum wordpiece token sequence length of 512. \r\nThe SQuAD example actually uses strides to account for this: https://github.com/google-research/bert/issues/27\r\nI want to implement something like what Jacob Devlin described in that post for Kaushal's multi-label BERT classifier: https://medium.com/huggingface/multi-label-text-classification-using-bert-the-mighty-transformer-69714fa3fb3d\r\n\r\nWhat I did was basically just copy and edit a bit the doc_stride functions from the SQuAD example in huggingface into Kaushal's code: https://colab.research.google.com/drive/1aqcIdm2Pn2rvmWHvOSEMUTzw_CNmoseA\r\n\r\nHowever, this is excruciatingly slow, I don't know if it's an issue of stride length?\r\n\r\nAlso, I'm not sure how to implement the thing about reshaping the combined minibatches and getting predictions from there. \r\n\r\nAnyone who has tried to adapt BERT for longer texts, could you please help?\r\n\r\nThanks\r\n",
+    "reactions": 11,
+    "created_at": "2019-03-27T06:36:34Z",
+    "updated_at": "2023-03-13T15:08:19Z",
+    "labels": [
+      "Help wanted",
+      "Discussion",
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/414",
+    "html_url": "https://github.com/huggingface/transformers/issues/414",
+    "author_login": "alvin-leong",
+    "author_profile": "https://github.com/alvin-leong",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2803,
+    "title": "Support DeepSpeed for language modeling finetuning",
+    "body": "# 🚀 Feature request\r\n\r\nhttps://github.com/microsoft/DeepSpeed\r\n\r\nThis was just released, and given the code flow in `run_language_modeling.py` it seems like it would not be too difficult to drop-in, and it has a permissible license (MIT).\r\n\r\nHowever, given the dependencies and difficulty installing them, it would likely have to be done in a separate file.\r\n\r\n## Motivation\r\n\r\n![](https://i.kym-cdn.com/entries/icons/mobile/000/006/360/gottago.jpg)",
+    "reactions": 10,
+    "created_at": "2020-02-10T19:07:24Z",
+    "updated_at": "2020-04-18T00:50:34Z",
+    "labels": [
+      "wontfix",
+      "Ex: LM (Finetuning)",
+      "Ex: LM (Pretraining)",
+      "External"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2803",
+    "html_url": "https://github.com/huggingface/transformers/issues/2803",
+    "author_login": "minimaxir",
+    "author_profile": "https://github.com/minimaxir",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 32944,
+    "title": "clarify the label shifting behavior of llama models when `labels` is given.",
+    "body": "### Feature request\n\ni believe `labels` in the training of causal LMs means the value to predict at time `n`, i.e., the next token. in other words, i'd assume, if `labels` is given, it should be already shifted by one in the data loader w.r.t. the `input_ids`.\r\n\r\n\r\nhowever, in `LlamaForCausalLM.forward()`, i found the labels are always shifted, silently.\r\n\r\nhttps://github.com/huggingface/transformers/blob/f1d822ba337499d429f832855622b97d90ac1406/src/transformers/models/llama/modeling_llama.py#L1205-L1210\r\n\r\n```python\r\n\r\n        Args:\r\n            labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*):\r\n                Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,\r\n                config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored\r\n                (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.\r\n\r\n```\r\n\r\n...\r\n\r\n```python\r\n\r\n\r\n        if labels is not None:\r\n            # Shift so that tokens < n predict n\r\n            shift_logits = logits[..., :-1, :].contiguous()\r\n            shift_labels = labels[..., 1:].contiguous()\r\n            # Flatten the tokens\r\n            loss_fct = CrossEntropyLoss()\r\n            shift_logits = shift_logits.view(-1, self.config.vocab_size)\r\n            shift_labels = shift_labels.view(-1)\r\n            # Enable model parallelism\r\n            shift_labels = shift_labels.to(shift_logits.device)\r\n            loss = loss_fct(shift_logits, shift_labels)\r\n\r\n```\r\n\r\ni found it quite unexpected hence calling it \"silently\". as this is for a causal LM, shouldn't it be not shifting the labels by default? in modeling GPT2, this is at least documented explicitly.\r\n\r\nhttps://github.com/huggingface/transformers/blob/f1d822ba337499d429f832855622b97d90ac1406/src/transformers/models/gpt2/modeling_gpt2.py#L1309-1314\r\n\r\nin gemma2, it has the same behavior and no explicit mentioning in the docstring.\r\n\r\nhttps://github.com/huggingface/transformers/blob/f1d822ba337499d429f832855622b97d90ac1406/src/transformers/models/gemma2/modeling_gemma2.py#L978-L982\r\n\r\ni think at least we should force the docstring to mention this, if making a change is too dangerous at this point. \n\n### Motivation\n\ni didn't expect this behavior and used my data loader, which does the shifting already, as i believe that is what `labels` should mean. as a result, i ended up finetuning a model to predict the next next token, which outputted gibberish.\r\n\r\n\n\n### Your contribution\n\n- hopefully leaving this issue helps communication across users\r\n- i can make a one line change in the docstring.\r\n- not sure how exactly, but if this potential misunderstanding could be checked, it'd be great. technically, we can check if the labels are already shifted. though i don't know where is the best place for this.",
+    "reactions": 10,
+    "created_at": "2024-08-22T15:54:02Z",
+    "updated_at": "2026-03-13T13:32:44Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/32944",
+    "html_url": "https://github.com/huggingface/transformers/issues/32944",
+    "author_login": "keunwoochoi",
+    "author_profile": "https://github.com/keunwoochoi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 30704,
+    "title": "KV cache with CPU offloading",
+    "body": "### Feature request\n\nI would like to contribute a KV cache implementation that only keeps a couple of layers on the GPU: the current layer in the forward pass as well as prefetching the next layer. The KV cache for the rest of the layers are on the CPU which usually has much larger capacity. Once the forward pass is done with a layer, the corresponding KV cache is evicted back to the CPU. It will be fetched again during the generation of the next token. This is all implemented in [this gist](https://gist.github.com/n17s/c0c6251ecb569a0c8efb0b0ec4b59e15) which can be used as a drop-in replacement for the `transformers.cache_utils.DynamicCache` class.\n\n### Motivation\n\nPerforming inference with large language models on very long contexts can easily run out of GPU memory. The vast majority of the memory is consumed by the KV cache. The KV cache is indexed by layer and accessed sequentially by layer index during the forward pass. This gives us both a natural segmentation of the KV cache by layer index as well as a clear pattern for prefetching and eviction. When we do the forward pass on layer k, we evict layer k-1 and prefetch layer k+1. Thus, there are always at most 2 layers of KV cache in GPU memory.\r\n\r\nThe overlap of I/O and compute is not perfect. For example, for a 7b parameter model on a single H100 I am getting 12 tokens/sec with my KV cache vs. 16 tokens/sec with the standard KV cache for a context size of 8k tokens. However, the standard KV cache goes out of memory at a context size of 128k tokens while mine still works.\n\n### Your contribution\n\nI have provided an initial implementation in [this gist](https://gist.github.com/n17s/c0c6251ecb569a0c8efb0b0ec4b59e15). Not sure what is the right way to integrate it. Could be a new class, or an option for DynamicCache, or an automatic fallback when we are about to go out of memory, not sure. I'm also not very familiar with the PR process, since this is my first issue, so maybe it would be better if someone from the HF team can shepherd this through.",
+    "reactions": 10,
+    "created_at": "2024-05-08T00:45:43Z",
+    "updated_at": "2024-08-01T12:42:09Z",
+    "labels": [
+      "Feature request",
+      "Cache"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/30704",
+    "html_url": "https://github.com/huggingface/transformers/issues/30704",
+    "author_login": "n17s",
+    "author_profile": "https://github.com/n17s",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 7677,
+    "title": "Batch and smart batch support for pipelines.",
+    "body": "# 🚀 Feature request\r\n\r\n## Motivation\r\nI want to use `TextClassificationPipeline` to classify a large number of texts.\r\nThe naive approach is:\r\n\r\n```python\r\nmodel = AutoModelForSequenceClassification.from_pretrained(model_dir)\r\ntokenizer = AutoTokenizer.from_pretrained(model_dir)\r\npipeline = TextClassificationPipeline(\r\n    model=model,\r\n    tokenizer=tokenizer,\r\n    framework=\"pt\",\r\n    device=0,\r\n)\r\nresults = pipeline(unlabeled_text_list)\r\n```\r\n\r\nBut this gives me CUDA OOM error when `unlabeled_text_list` is long.\r\n\r\nWhat about adding batch support that lets you specify the batch size and maybe also support for multiprocessing tokenization?\r\n\r\nWhen possible smart batching would be nice. See this: https://github.com/UKPLab/sentence-transformers/issues/454#issuecomment-699496454\r\n\r\nWhat do you think?",
+    "reactions": 10,
+    "created_at": "2020-10-09T13:16:50Z",
+    "updated_at": "2020-12-19T08:30:34Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/7677",
+    "html_url": "https://github.com/huggingface/transformers/issues/7677",
+    "author_login": "PhilipMay",
+    "author_profile": "https://github.com/PhilipMay",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4777,
+    "title": "The purpose of files merges.txt, special_tokens_map.json, training_args.bin and add_tokens.json",
+    "body": "Good evening!\r\n\r\nAfter I have my RoBERTa model pre-trained, I get the list of the following files:\r\n`merges.txt`, `special_tokens_map.json`, `training_args.bin`. I have also seen if you add extra tokens to the tokenizer, the file `add_tokens.json` appears. Could I ask to clarify the meaning of the first three files - how they are used and what they contain? And also how can I add extra tokens when pre-training RoBERTa or any BERT-type model? Million of thanks in advance!\r\n\r\nBe safe,\r\nAkim",
+    "reactions": 10,
+    "created_at": "2020-06-04T23:03:15Z",
+    "updated_at": "2023-03-30T09:59:50Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4777",
+    "html_url": "https://github.com/huggingface/transformers/issues/4777",
+    "author_login": "Aktsvigun",
+    "author_profile": "https://github.com/Aktsvigun",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4476,
+    "title": "Tokenizer encode to have an option to overflow from left",
+    "body": "# 🚀 Feature request\r\n\r\nCurrent tokenizer encode variants ( encode, batch_encode, batch_encode_plus) handle longer sequences than max_length by overflowing tokens from the right hand side and thus restricting the length to max_length. This feature request is to allow an option for the tokenizer encode methods to overflow tokens from the left hand side as well.\r\n\r\n\r\n## Motivation\r\n\r\nFor problems dealing with dialog, if one were to train an intent classification or next sentence prediction model and the dialog was longer than max_length, one would like to throw away the tokens from the beginning of the conversation as they are less relevant than the more recent messages.\r\n\r\nThis motivates the need for a encoder that works well with dialog data where more recent tokens are more valuable.\r\n\r\n## Your contribution\r\n\r\nI could change the function `truncate_sequences` by adding a new truncation_strategy option that will truncate from left. But want to get feedback from the Huggingface team about this proposal.\r\n",
+    "reactions": 10,
+    "created_at": "2020-05-20T04:44:50Z",
+    "updated_at": "2023-06-14T02:00:14Z",
+    "labels": [
+      "wontfix",
+      "High-Level feature",
+      "Core: Tokenization"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4476",
+    "html_url": "https://github.com/huggingface/transformers/issues/4476",
+    "author_login": "misrasaurabh1",
+    "author_profile": "https://github.com/misrasaurabh1",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 3660,
+    "title": "Exception: process 0 terminated with signal SIGKILL",
+    "body": "# ❓ Questions & Help\r\n\r\ni was using this notebook : https://www.kaggle.com/theoviel/bert-pytorch-huggingface-with-tpu-multiprocessing \r\n\r\nto finetune huggingface’s xlm roberta base model on jigsaw multilingual (ongoing kaggle competition)\r\n\r\nthis is my first time with torch xla and TPU multiprocessing…!\r\n\r\nthe code i am trying is exactly this one : https://pastebin.com/fS94MKYc   on a kaggle kernel which gives TPU v3-8\r\n\r\nbut even for batch_size = 8 i see my jupyter notebook crashes after giving this error message : **Your notebook tried to allocate more memory than is available. It has restarted.**\r\n\r\nwhere i can see other people are using same model with even batch_size = 64\r\n\r\nfull error message looks like this :\r\n\r\n\r\n```\r\n---------------------------------------------------------------------------\r\nException                                 Traceback (most recent call last)\r\n<timed exec> in <module>\r\n\r\n/opt/conda/lib/python3.6/site-packages/torch_xla/distributed/xla_multiprocessing.py in spawn(fn, args, nprocs, join, daemon, start_method)\r\n    180         join=join,\r\n    181         daemon=daemon,\r\n--> 182         start_method=start_method)\r\n\r\n/opt/conda/lib/python3.6/site-packages/torch/multiprocessing/spawn.py in start_processes(fn, args, nprocs, join, daemon, start_method)\r\n    156 \r\n    157     # Loop on join until it returns True or raises an exception.\r\n--> 158     while not context.join():\r\n    159         pass\r\n    160 \r\n\r\n/opt/conda/lib/python3.6/site-packages/torch/multiprocessing/spawn.py in join(self, timeout)\r\n    106                 raise Exception(\r\n    107                     \"process %d terminated with signal %s\" %\r\n--> 108                     (error_index, name)\r\n    109                 )\r\n    110             else:\r\n\r\nException: process 0 terminated with signal SIGKILL\r\n```\r\n   \r\nsame problem is occuring also when i try bert base multilingual of huggingface.\r\nso i am not understanding exactly where in my code i need to make change so that it can work? it seems like the problem is not with the batch size but something else that i am unable to catch.please help,thanks in advance",
+    "reactions": 10,
+    "created_at": "2020-04-06T16:48:43Z",
+    "updated_at": "2021-08-26T13:15:08Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/3660",
+    "html_url": "https://github.com/huggingface/transformers/issues/3660",
+    "author_login": "mobassir94",
+    "author_profile": "https://github.com/mobassir94",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 3513,
+    "title": "Adding mbart-large-cc25",
+    "body": "# 🌟 New model addition\r\nMultilingual BART model implemented in fairseq introduced by FAIR\r\n\r\n## Model description\r\nThis issue is to request adding mBART model existing as a part of fairseq lib. \r\n\r\n[Link to the fairseq description of the model](https://github.com/pytorch/fairseq/tree/master/examples/mbart\r\n)\r\n[Link to the mBART paper](https://arxiv.org/abs/2001.08210)\r\n\r\nMultilingually pretrained BART checkpoint.\r\n\r\n<!-- Important information -->\r\nThe model code follows the original BART model code which is already a part of ```transformers``` repo. However, it introduces a couple more features like multilingual denoising and translation from pretrained BART. \r\n\r\n## Open source status\r\n\r\n- [x] _the model implementation is available: (give details)_\r\n[Link to the PR adding mBART to the fairseq](https://github.com/pytorch/fairseq/commit/5e79322b3a4a9e9a11525377d3dda7ac520b921c) \r\nThis PR shows the main pieces that were added to the fairseq to make mBART work considering BART  which is already existing in the codebase. However, a few additional mBART commits were added afterward.\r\n\r\n- [x] _the model weights are available: (give details)_\r\n[Link to the weights](https://github.com/pytorch/fairseq/tree/master/examples/mbart#pre-trained-models)\r\n\r\n- [x] _who are the authors: (mention them, if possible by @gh-username)_\r\nFacebook AI Research (@MultiPath)",
+    "reactions": 10,
+    "created_at": "2020-03-29T12:32:30Z",
+    "updated_at": "2020-07-07T17:23:01Z",
+    "labels": [
+      "Help wanted",
+      "Documentation",
+      "New model",
+      "seq2seq",
+      "translation"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/3513",
+    "html_url": "https://github.com/huggingface/transformers/issues/3513",
+    "author_login": "MaksymDel",
+    "author_profile": "https://github.com/MaksymDel",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2693,
+    "title": "Input file format for examples/run_lm_finetuning.py",
+    "body": "# ❓ Questions & Help\r\n\r\n<!-- The GitHub issue tracker is primarly intended for bugs, feature requests,\r\n     new models and benchmarks, and migration questions. For all other questions,\r\n     we direct you to Stack Overflow (SO) where a whole community of PyTorch and\r\n     Tensorflow enthusiast can help you out. Make sure to tag your question with the\r\n     right deep learning framework as well as the huggingface-transformers tag: \r\n     https://stackoverflow.com/questions/tagged/huggingface-transformers \r\n     \r\n     If your question wasn't answered after a period of time on Stack Overflow, you\r\n     can always open a question on GitHub. You should then link to the SO question \r\n     that you posted.\r\n     -->\r\n\r\n## Details\r\n<!-- Description of your issue -->\r\n\r\nI wanted to employ the `examples/run_lm_finetuning.py` from the transformers repository on a pretrained Bert model. However, from following the documentation it is not evident how a corpus file should be structured (apart from referencing the Wiki-2 dataset). I've tried\r\n\r\n- One document per line (multiple sentences)\r\n- One sentence per line. Documents are separated by a blank line (this I found in some older pytorch-transformers documentation)\r\n\r\nBy looking at the code of `examples/run_lm_finetuning.py` it is not directly evident how sequence pairs for the Next Sentence Prediction objective are formed. Would the --line-by-line option help here? I'd be grateful, if someone could give me some hints how a text corpus file should look like.\r\n\r\nMany thanks and cheers,\r\n\r\nnminds\r\n\r\n<!-- You should first ask your question on SO, and only if\r\n     you didn't get an answer ask it here on GitHub. -->\r\n**A link to original question on Stack Overflow**: \r\n[SO link](https://stackoverflow.com/questions/60001698/how-exactly-should-the-input-file-be-formatted-for-the-language-model-finetuning)",
+    "reactions": 10,
+    "created_at": "2020-01-31T10:41:34Z",
+    "updated_at": "2020-07-18T05:22:37Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2693",
+    "html_url": "https://github.com/huggingface/transformers/issues/2693",
+    "author_login": "nminds",
+    "author_profile": "https://github.com/nminds",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2008,
+    "title": "Expand run_lm_finetuning.py to all models",
+    "body": "## 🚀 Feature\r\n\r\n[run_lm_finetuning.py](https://github.com/huggingface/transformers/blob/b0ee7c7df3d49a819c4d6cef977214bd91f5c075/examples/run_lm_finetuning.py) is a very useful tool for finetuning many models the library provided. But it doesn't cover all the models. Currently available models are:\r\n\r\n- gpt2\r\n- openai-gpt\r\n- bert\r\n- roberta\r\n- distilbert\r\n- camembert\r\n\r\nAnd not available ones:\r\n\r\n- ctrl\r\n- xlm\r\n- xlnet\r\n- transfo-xl\r\n- albert\r\n\r\n## Motivation\r\n\r\nMost important part of such a library is that it can be easily finetuned. `run_lm_finetuning.py` gives us that opportunity but why say no more :)\r\n",
+    "reactions": 10,
+    "created_at": "2019-11-30T22:19:57Z",
+    "updated_at": "2020-11-01T16:29:42Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2008",
+    "html_url": "https://github.com/huggingface/transformers/issues/2008",
+    "author_login": "iedmrc",
+    "author_profile": "https://github.com/iedmrc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 7417,
+    "title": "Add adapter support",
+    "body": "# 🚀 Feature request\r\n\r\nAdd [adapter](https://arxiv.org/abs/1902.00751) support to transformers.\r\n\r\n## Motivation\r\n\r\nAdapters are great time-and-memory-savers for multitask use cases and would be a great addition to this library. Some very kind folks added support for them ([AdapterHub](https://adapterhub.ml/)) on top of transformers library but unfortunately in order to use it one needs to use their [fork](https://github.com/Adapter-Hub/adapter-transformers) which is slightly inconvenient.\r\n\r\n## Your contribution\r\n\r\nThey've done the integration already so I hope it's straightforward. I've posted [an issue](https://github.com/Adapter-Hub/adapter-transformers/issues/65) on their end as well and would be happy to help in any way I can.\r\n",
+    "reactions": 9,
+    "created_at": "2020-09-28T05:21:13Z",
+    "updated_at": "2021-03-01T06:06:06Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/7417",
+    "html_url": "https://github.com/huggingface/transformers/issues/7417",
+    "author_login": "salimmj",
+    "author_profile": "https://github.com/salimmj",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 31474,
+    "title": "Quantization support for heads and embeddings",
+    "body": "### Feature request\n\nHi! I’ve been researching LLM quantization recently ([this paper](https://arxiv.org/abs/2405.14852)), and noticed a potentially improtant issue that arises when using LLMs with 1-2 bit quantization.\r\n\r\n### Problem description :mag:\r\n\r\nTransformers supports several great ways for quantizing transformer ‘body’, but it seems that there is no built-in way\r\nto quantize embeddings and/or lm head.\r\n\r\nThe reason why this is important is that some of the recent LLMs have very large vocabularies, and as a result,\r\ntheir embeddings and heads can get massive. For instance, [Llama 3](https://huggingface.co/meta-llama/Meta-Llama-3-8B)\r\nhas 128K token vocabulary, [Qwen 2](https://huggingface.co/Qwen/Qwen2-72B-Instruct) has over 150K, [Gemma 2b](https://huggingface.co/google/gemma-2b) has 256K\r\n\r\nAs a result, if you load NF4 or AQLM quantized models, their **embeddings can take up 50% or more of the model footprint**. \r\nThis is even more critical for lower bitwidth quantization:\r\n\r\n![https://galqiwi.ru/persistent/2024-06-18/embed-1.png](https://galqiwi.ru/persistent/2024-06-18/embed-1.png)\r\n\r\n### Feature Request :rocket:\r\n\r\nIt would be great if transformers had a flag to quantize embeddings and heads using some of the existing quantization methods. One simple way would be to use LLM.int8 or NF4 by Tim Dettmers since transformers already supports this.\r\n\r\nI’ve investigated how quantizing embeddings with these methods affects common models. Below is model perplexity for [Llama 3 8B using AQLM+PV 2-bit quantization](https://huggingface.co/ISTA-DASLab/Meta-Llama-3-8B-AQLM-PV-2Bit-1x16). I measured three configurations: fp16 embeddings, int8 embeddings and NF4 embeddings with the same parameters that transformers uses for linear layers.\r\n\r\n![https://galqiwi.ru/persistent/2024-06-18/emb_v3.png](https://galqiwi.ru/persistent/2024-06-18/emb_v3.png)\r\n![https://galqiwi.ru/persistent/2024-06-18/head_v3.png](https://galqiwi.ru/persistent/2024-06-18/head_v3.png)\r\n\r\nThe values represent perplexity on [WikiText-2 test set](https://huggingface.co/datasets/Salesforce/wikitext/viewer/wikitext-2-v1)\r\nmeasured with the same protocol used in [GPTQ](https://arxiv.org/abs/2210.17323) / [AQLM](https://arxiv.org/abs/2401.06118)\r\n/ [QuIP#](https://arxiv.org/pdf/2402.04396.pdf) papers.\r\nThe code for these measurements can be found [here](https://gist.github.com/galqiwi/cb896f39052d1f4f718cb772040f3088).\r\n\r\nOverall, 8-bit compression looks nearly lossless, the increase in perplexity does not exceed the error you get when \r\nquantizing the transformer with the same LLM int8 codec. In turn, NF4 introduces some error (within 0.05 for Llama 3),\r\nbut I would argue that this trade-off makes sense for low memory applications. Also, embeddings appear\r\neasier to quantize than heads.\r\n\r\n### Implementation details :gear:\r\n\r\nThere are multiple obstacles on the way to implementing this feature:\r\n#### No support for mixed quantization\r\nCurrently, transformers does not support quantiz",
+    "reactions": 9,
+    "created_at": "2024-06-18T11:56:34Z",
+    "updated_at": "2026-02-18T14:33:03Z",
+    "labels": [
+      "Feature request",
+      "Quantization"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/31474",
+    "html_url": "https://github.com/huggingface/transformers/issues/31474",
+    "author_login": "galqiwi",
+    "author_profile": "https://github.com/galqiwi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 29512,
+    "title": "feat: GaLore support",
+    "body": "### Feature request\n\nSupport for the GaLore training strategy, which allows full-weights training of 7B models on consumer 24Gb cards like RTX 4090.\r\n\r\nArxiv: https://arxiv.org/abs/2403.03507\r\nImplementation: https://github.com/jiaweizzhao/GaLore\n\n### Motivation\n\nThis is another step towards democratizing LLM. And it's awesome!\n\n### Your contribution\n\nI am teapot",
+    "reactions": 9,
+    "created_at": "2024-03-07T12:14:29Z",
+    "updated_at": "2024-03-19T10:40:24Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/29512",
+    "html_url": "https://github.com/huggingface/transformers/issues/29512",
+    "author_login": "kristaller486",
+    "author_profile": "https://github.com/kristaller486",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2702,
+    "title": "DistilBERT does not support token type ids, but the tokenizers produce them",
+    "body": "```Python\r\n>>> tokenizer = transformers.AutoTokenizer.from_pretrained(\"distilbert-base-uncased-distilled-squad\")\r\n>>> tokenized = tokenizer.encode_plus(\"I ate a clock yesterday.\", \"It was very time consuming.\")\r\n>>> tokenized\r\n{'input_ids': [101, 1045, 8823, 1037, 5119, 7483, 1012, 102, 2009, 2001, 2200, 2051, 15077, 1012, 102],\r\n 'token_type_ids': [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],\r\n 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}\r\n\r\n>>> model = transformers.AutoModel.from_pretrained(\"distilbert-base-uncased-distilled-squad\")\r\n>>> model(**tokenized)\r\nTypeError: forward() got an unexpected keyword argument 'token_type_ids'\r\n```\r\n\r\nIn contrast, RoBERTa also does not support token type ids, but its forward method still takes the parameter, and its tokenizer produces type ids that are all zero.",
+    "reactions": 9,
+    "created_at": "2020-02-01T01:03:37Z",
+    "updated_at": "2023-01-14T14:57:21Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2702",
+    "html_url": "https://github.com/huggingface/transformers/issues/2702",
+    "author_login": "dirkgr",
+    "author_profile": "https://github.com/dirkgr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 1356,
+    "title": "GPT and BERT pretrained models in French",
+    "body": "## 🚀 Need for GPT and BERT pretrained models in French\r\n\r\nAll models are in English only and the multilingual models are quite poor\r\n\r\n## Motivation\r\n\r\nApplications like tools for writers and linguists need fully dedicated language support\r\n\r\n## Additional context\r\n\r\nThe computation cost to pretrain models in French is still high and it’s difficult for individuals to afford it, I would be glad to take a part of the burden",
+    "reactions": 9,
+    "created_at": "2019-09-27T16:01:31Z",
+    "updated_at": "2020-11-25T18:43:30Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/1356",
+    "html_url": "https://github.com/huggingface/transformers/issues/1356",
+    "author_login": "mauceri",
+    "author_profile": "https://github.com/mauceri",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 699,
+    "title": "Fine tuning GPT-2 for LM objective function",
+    "body": "I'm looking for finetuning GPT-2 parameters for a custom piece of text, so that the weights are tuned for this piece of text, building from the initial model.\r\n\r\nThe script here does it for the original tensorflow implementation:  https://github.com/nshepperd/gpt-2 , could you please give me suggestions on how to do this finetuning from the Pytorch version and subsequently use it for text generation? It'd be of great help, thanks!",
+    "reactions": 9,
+    "created_at": "2019-06-19T07:21:08Z",
+    "updated_at": "2019-10-13T22:00:31Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/699",
+    "html_url": "https://github.com/huggingface/transformers/issues/699",
+    "author_login": "bakszero",
+    "author_profile": "https://github.com/bakszero",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4688,
+    "title": "Compressive Transformer",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n\r\n<table>\r\n    <tr><th>Title</th><td>Compressive Transformers for Long-Range Sequence Modelling (ICLR '20)</td></tr>\r\n    <tr><th>arXiv</th><td><a href=\"https://arxiv.org/pdf/1911.05507.pdf\">1911.05507</a></td></tr>\r\n    <tr><th>Blog</th><td><a href=\"https://deepmind.com/blog/article/A_new_model_and_dataset_for_long-range_memory\">A new model and dataset for long-range memory</a></td></tr>\r\n</table>\r\n\r\n__Compressive Transformer__ is an attentive sequence model which __compresses past memories__ for long-range sequence learning. The idea is similar to [Transformer-XL](https://arxiv.org/pdf/1901.02860.pdf). However, the memories are compressed in __Compressive Transformer__, making it leverage longer past memories compared to __Transformer-XL__.\r\n\r\n## Open source status\r\n\r\n- [ ] the model implementation is available\r\n- [ ] the model weights are available\r\n- [ ] who are the authors",
+    "reactions": 8,
+    "created_at": "2020-05-30T13:12:24Z",
+    "updated_at": "2020-08-29T09:18:17Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4688",
+    "html_url": "https://github.com/huggingface/transformers/issues/4688",
+    "author_login": "stvhuang",
+    "author_profile": "https://github.com/stvhuang",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2157,
+    "title": "How to find the  corresponding download models from Amazon?",
+    "body": "## ❓ Questions & Help\r\n\r\nAs we know, the TRANSFORMER could easy auto-download models by the pretrain( ) function.\r\nAnd the pre-trained BERT/RoBerta model are stored at the path of \r\n./cach/.pytorch/.transformer/....\r\n\r\nBut,  all the name of the download models are like this:\r\n\r\nd9fc1956a01fe24af529f239031a439661e7634e6e931eaad2393db3ae1eff03.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda.json\r\n\r\nIt's not readable and hard to distinguish which model is I wanted. \r\n\r\nIn another word,  if I want to find the pretrained  model of  'uncased_L-12_H-768_A-12', I can't finde which one is ?\r\n\r\nThanks for your answering. \r\n\r\n",
+    "reactions": 8,
+    "created_at": "2019-12-13T01:34:56Z",
+    "updated_at": "2023-02-26T01:12:37Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2157",
+    "html_url": "https://github.com/huggingface/transformers/issues/2157",
+    "author_login": "PantherYan",
+    "author_profile": "https://github.com/PantherYan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 856,
+    "title": "manually download models",
+    "body": "ERROR:pytorch_transformers.modeling_utils:Couldn't reach server at 'https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json' to download pretrained model configuration file.\r\nERROR:pytorch_transformers.modeling_utils:Couldn't reach server at 'https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-pytorch_model.bin' to download pretrained weights.\r\nERROR:pytorch_transformers.tokenization_utils:Couldn't reach server to download vocabulary.\r\n\r\nhow can I point to these 2 files if I manually download these two to some path?",
+    "reactions": 8,
+    "created_at": "2019-07-22T05:31:09Z",
+    "updated_at": "2021-12-03T03:04:44Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/856",
+    "html_url": "https://github.com/huggingface/transformers/issues/856",
+    "author_login": "Arvedek",
+    "author_profile": "https://github.com/Arvedek",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 728,
+    "title": "UnicodeDecodeError:",
+    "body": "Traceback (most recent call last):\r\n  File \"run_classifier_br.py\", line 1061, in <module>\r\n    main()\r\n  File \"run_classifier_br.py\", line 772, in main\r\n    tokenizer = BertTokenizer.from_pretrained(args.bert_model, do_lower_case=args.do_lower_case)\r\n  File \"/home/luwei/anaconda3/lib/python3.6/site-packages/pytorch_pretrained_bert/tokenization.py\", line 197, in from_pretrained\r\n    tokenizer = cls(resolved_vocab_file, *inputs, **kwargs)\r\n  File \"/home/luwei/anaconda3/lib/python3.6/site-packages/pytorch_pretrained_bert/tokenization.py\", line 97, in __init__\r\n    self.vocab = load_vocab(vocab_file)\r\n  File \"/home/luwei/anaconda3/lib/python3.6/site-packages/pytorch_pretrained_bert/tokenization.py\", line 56, in load_vocab\r\n    token = reader.readline()\r\n  File \"/home/luwei/anaconda3/lib/python3.6/codecs.py\", line 321, in decode\r\n    (result, consumed) = self._buffer_decode(data, self.errors, final)\r\nUnicodeDecodeError: 'utf-8' codec can't decode byte 0x80 in position 0: invalid start byte\r\n",
+    "reactions": 8,
+    "created_at": "2019-06-26T08:39:21Z",
+    "updated_at": "2024-09-19T01:24:18Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/728",
+    "html_url": "https://github.com/huggingface/transformers/issues/728",
+    "author_login": "ZhaoxinRuc",
+    "author_profile": "https://github.com/ZhaoxinRuc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 43979,
+    "title": "Call to contributions: refactor output tracing in transformers",
+    "body": "Following #43590 that updates 112 models, we want to finish migrating all models to the standardized output collection interface. So, this is a call to contributors to open PRs to link to this meta-issue and learn about the codebase! \n\nTwo decorators replace the old manual boilerplate:\n\n- **`@capture_outputs`**: goes on the base model forward. Automatically collects `hidden_states`/`attentions` via hooks on submodules declared in `_can_record_outputs`. Removes the need for explicit `output_attentions`/`output_hidden_states`/`return_dict` handling.\n- **`@can_return_tuple`**: goes on wrapper forwards (`ForCausalLM`, etc.). Handles `return_dict` only without hook installation.\n\n### How to refactor a model\n\n1. Add `_can_record_outputs = {\"hidden_states\": DecoderLayer, \"attentions\": Attention}` on the `PreTrainedModel` subclass. Use **class references**, not strings\n2. Add `@capture_outputs` on the base model forward (the one with the layer loop)\n3. Add `@can_return_tuple` on higher-level forwards\n4. Drop `output_attentions`, `output_hidden_states`, `return_dict` from signatures\n5. Remove parameter resolution lines and manual collection loops\n6. Decoder layers return `hidden_states` directly; attention always returns `(attn_output, attn_weights)`\n\nYou can use `llama`, `mistral`, or `qwen2` as reference implementations. Modern agents are of some help in this issue, but correctly placing the decorators can be tricky. \n\n### Models to update\n\nPlease claim one or several models by commenting before starting. One PR per model (or small group of related models) could be ideal, for instance!\n\nAs of today here's the remaining list of models: \n\n- [ ] `bark`\n- [ ] `beit`\n- [ ] `bit`\n- [ ] `blip_2`\n- [ ] `bloom`\n- [ ] `canine`\n- [ ] `codegen`\n- [ ] `colqwen2`\n- [ ] `cpmant`\n- [ ] `ctrl`\n- [ ] `cvt`\n- [ ] `dab_detr`\n- [ ] `dac`\n- [ ] `data2vec`\n- [ ] `deberta`\n- [ ] `deberta_v2`\n- [ ] `decision_transformer`\n- [ ] `depth_anything`\n- [ ] `depth_pro`\n- [ ] `dinat`\n- [ ] `donut`\n- [ ] `dpr`\n- [ ] `efficientnet`\n- [ ] `encodec`\n- [ ] `falcon`\n- [ ] `falcon_mamba`\n- [ ] `fastspeech2_conformer`\n- [ ] `flaubert`\n- [ ] `flava`\n- [ ] `fnet`\n- [ ] `focalnet`\n- [ ] `fsmt`\n- [ ] `funnel`\n- [ ] `glpn`\n- [ ] `gpt2`\n- [ ] `gpt_neo`\n- [ ] `gpt_neox_japanese`\n- [ ] `gptj`\n- [ ] `granite_speech`\n- [ ] `grounding_dino`\n- [ ] `hgnet_v2`\n- [ ] `hiera`\n- [ ] `hubert`\n- [ ] `ibert`\n- [ ] `imagegpt`\n- [ ] `kyutai_speech_to_text`\n- [ ] `led`\n- [ ] `levit`\n- [ ] `lilt`\n- [ ] `llama4`\n- [ ] `longformer`\n- [ ] `longt5`\n- [ ] `luke`\n- [ ] `lxmert`\n- [ ] `mamba`\n- [ ] `mamba2`\n- [ ] `mask2former`\n- [ ] `maskformer`\n- [ ] `megatron_bert`\n- [ ] `mgp_str`\n- [ ] `mimi`\n- [ ] `mm_grounding_dino`\n- [ ] `mobilenet_v1`\n- [ ] `mobilenet_v2`\n- [ ] `mobilevit`\n- [ ] `mobilevitv2`\n- [ ] `moshi`\n- [ ] `mpnet`\n- [ ] `mpt`\n- [ ] `mra`\n- [ ] `mt5`\n- [ ] `mvp`\n- [ ] `nystromformer`\n- [ ] `omdet_turbo`\n- [ ] `oneformer`\n- [ ] `openai`\n- [ ] `patchtsmixer`\n- [ ] `patchtst`\n- [ ] `perceiver`\n- [ ] `pix2struct`\n- [",
+    "reactions": 8,
+    "created_at": "2026-02-13T15:02:46Z",
+    "updated_at": "2026-03-17T14:20:18Z",
+    "labels": [
+      "Help wanted",
+      "Good First Issue"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/43979",
+    "html_url": "https://github.com/huggingface/transformers/issues/43979",
+    "author_login": "molbap",
+    "author_profile": "https://github.com/molbap",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 32470,
+    "title": "Enhancing Hugging Face Models with Tensor Parallelism for Large-Scale Model Support 🚀",
+    "body": "### Feature request\n\n## Description\r\n\r\nThis feature proposal aims to update Hugging Face's support for tensor parallelism (TP) to accommodate the increasing size and complexity of models such as [LLaMA 3.1](https://scontent-ssn1-1.xx.fbcdn.net/v/t39.2365-6/453304228_1160109801904614_7143520450792086005_n.pdf?_nc_cat=108&ccb=1-7&_nc_sid=3c67a6&_nc_ohc=PC3CtquZIecQ7kNvgFOxUn_&_nc_ht=scontent-ssn1-1.xx&oh=00_AYAqF6Xje_dLZR94A1h9NDZWJ-kLjEEsGF0_H-dKHJNoFQ&oe=66B815C7), [Nemotron-4-340B-Instruct](https://build.nvidia.com/nvidia/nemotron-4-340b-instruct), and others, which have surpassed the capabilities of current training frameworks like TRL + DeepSpeed.\r\n\r\nCurrently, the Hugging Face codebase is outdated concerning these advancements. Although parallelism requires careful customization based on hardware setup, dataset size, sequence length, and model size, implementing TP across many Hugging Face models is crucial.\r\n\r\n## Proposal\r\n\r\nWith the introduction of tensor parallelism in [PyTorch 2.0](https://pytorch.org/docs/stable/distributed.tensor.parallel.html), the previous method of creating processes per device and model in the [Megatron](https://github.com/NVIDIA/Megatron-LM) style is no longer efficient.\r\n\r\n### Key Changes:\r\n\r\n1. **Refactoring Code for TP:**\r\n   - Remove the use of `kwargs` in favor of more straightforward TP implementations, as PyTorch parallel plans do not accommodate `kwargs`.\r\n   - Refactor PyTorch models to incorporate TP effectively.\r\n\r\n2. **Current Limitations:**\r\n   - Existing implementations, such as in [modeling_llama](https://github.com/huggingface/transformers/blob/3d8bd11942cec26851c80c01aa5e8403542ca50b/src/transformers/models/llama/modeling_llama.py#L292), are not trainable and are incompatible with `torch.compile` for inference optimization.\r\n   \r\n3. **Future Integration:**\r\n   - As models scale to large sizes, 8-way Tensor Parallel is becoming standard.\r\n   - This change would enable `Accelerate` to later support TP + FSDP (Fully Sharded Data Parallel), which many users could benefit from.\r\n\r\n## Personal Contribution\r\n\r\nI have personally developed code that allows LLaMA to run entirely with TP, observing that it handles longer token sequences with less memory than FSDP. However, I have not submitted a pull request due to the need for comprehensive code refactoring.\r\n\r\n## Call to Action\r\n\r\nIf Hugging Face acknowledges this need, I am willing to contribute further if there is an overarching plan for abstraction and integration.\n\n### Motivation\n\n## Motivation\r\n\r\nThe motivation behind this proposal is to address the limitations and frustrations experienced when using Hugging Face with the current parallelism approaches, especially for large-scale models like LLaMA 3.1 and Nemotron-4-340B-Instruct. As models grow in complexity, existing frameworks struggle to support efficient training and inference.\r\n\r\n### Current Issues with Existing Solutions:\r\n\r\n- **[NVIDIA Megatron-LM](https://github.com/NVIDIA/Megatron-LM)**: Lack",
+    "reactions": 8,
+    "created_at": "2024-08-06T14:47:44Z",
+    "updated_at": "2025-02-18T13:05:48Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/32470",
+    "html_url": "https://github.com/huggingface/transformers/issues/32470",
+    "author_login": "SeungyounShin",
+    "author_profile": "https://github.com/SeungyounShin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 27027,
+    "title": "Count of tokens seen during training in Trainer",
+    "body": "### Feature request\n\nThe `Trainer` API should track and log the number of tokens seen during training.\r\n\r\nWhile it sometimes could (maybe?) be possible to back out the number of tokens seen from the FLOS, or by iterating over the whole dataset, it would make a lot of sense for the Trainer API to track the number of tokens seen (and it shouldn't be necessary to completely iterate over a model's training loop just to compute the count of tokens, which is the only current implementation of any token-related metric in Trainer, [`Trainer.num_tokens()`](https://github.com/huggingface/transformers/blob/acc394c4f5e1283c19783581790b3dc3105a3697/src/transformers/trainer.py#L1180)).\r\n\r\nThis can't currently be implemented in a CallBack, because callbacks don't have access to the training data (only the trainer state).\n\n### Motivation\n\nNumber of tokens seen is an essential metric tracked in nearly every LLM training run. It is widely considered one of the fundamental drivers of model quality (tokens seen during training is reported for nearly every major LLM release). It seems that any language model developer using Hugging Face would like to know this metric for their training runs -- it maybe even more important and useful than the FLOS, and perhaps as important as the number of gradient steps. \r\n\r\nIn any case, it's an extremely useful number to have, and it must be tracked during training as the model consumes examples.\n\n### Your contribution\n\nI'm willing to contribute this but would like some guidance on the overall design first.\r\n\r\nIn particular, here's what I think a reasonable implementation would include:\r\n\r\n- Add a `global_tokens_seen` or similar to the `TrainerState`. This would add only a single integer value to the `TrainerState`.\r\n- Increment this during `Trainer._inner_training_loop()`\r\n- Probably add this information to the logging outputs\r\n\r\nWhat do the folks at HF think about that?",
+    "reactions": 8,
+    "created_at": "2023-10-23T18:38:51Z",
+    "updated_at": "2023-11-15T18:19:09Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/27027",
+    "html_url": "https://github.com/huggingface/transformers/issues/27027",
+    "author_login": "jpgard",
+    "author_profile": "https://github.com/jpgard",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 6491,
+    "title": "Whole Word Masking Implementation",
+    "body": "# 🚀 Feature request\r\n\r\nCurrently, training the models from scratch like Roberta do not support whole word masking (e.g., language modeling examples). Only pre-trained models are available. Is it possible to include whole word masking in the input layers?\r\n\r\n## Motivation\r\n\r\nWhole word masking leads to performance boosts. So, adding this feature would be useful if someone wants to train the models from scratch.",
+    "reactions": 8,
+    "created_at": "2020-08-14T17:54:35Z",
+    "updated_at": "2020-10-23T08:08:46Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/6491",
+    "html_url": "https://github.com/huggingface/transformers/issues/6491",
+    "author_login": "luffycodes",
+    "author_profile": "https://github.com/luffycodes",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 5720,
+    "title": "TypeError: To be compatible with tf.contrib.eager.defun, Python functions must return zero or more Tensors; in compilation of <function tf_if_stmt.<locals>.error_checking_body at 0x7f55400e3c80>, found return value of type <class 'tensorflow.python.keras.losses.MeanSquaredError'>, which is not a Tensor.",
+    "body": "INFO:tensorflow:Error reported to Coordinator: in converted code:\r\n\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/transformers/trainer_tf.py:511 _forward  *\r\n        per_example_loss, _ = self._run_model(features, labels, True)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/transformers/trainer_tf.py:534 _run_model  *\r\n        outputs = self.model(features, labels=labels, training=training)[:2]\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/base_layer.py:778 __call__\r\n        outputs = call_fn(cast_inputs, *args, **kwargs)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/transformers/modeling_tf_roberta.py:530 call  *\r\n        loss = self.compute_loss(labels, reshaped_logits)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/transformers/modeling_tf_utils.py:135 compute_loss  *\r\n        if shape_list(logits)[1] == 1:\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/autograph/operators/control_flow.py:918 if_stmt\r\n        basic_symbol_names, composite_symbol_names)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/autograph/operators/control_flow.py:956 tf_if_stmt\r\n        error_checking_orelse)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/util/deprecation.py:507 new_func\r\n        return func(*args, **kwargs)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/ops/control_flow_ops.py:1174 cond\r\n        return cond_v2.cond_v2(pred, true_fn, false_fn, name)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/ops/cond_v2.py:83 cond_v2\r\n        op_return_value=pred)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/framework/func_graph.py:983 func_graph_from_py_func\r\n        expand_composites=True)\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/util/nest.py:568 map_structure\r\n        structure[0], [func(*x) for x in entries],\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/util/nest.py:568 <listcomp>\r\n        structure[0], [func(*x) for x in entries],\r\n    /data0/liuyongkang/.conda/envs/tf2/lib/python3.7/site-packages/tensorflow_core/python/framework/func_graph.py:943 convert\r\n        (str(python_func), type(x)))\r\n\r\n    TypeError: To be compatible with tf.contrib.eager.defun, Python functions must return zero or more Tensors; in compilation of <function tf_if_stmt.<locals>.error_checking_body at 0x7f55400e3c80>, found return value of type <class 'tensorflow.python.keras.losses.MeanSquaredError'>, which is not a Tensor.",
+    "reactions": 8,
+    "created_at": "2020-07-13T19:01:11Z",
+    "updated_at": "2023-03-06T21:28:17Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/5720",
+    "html_url": "https://github.com/huggingface/transformers/issues/5720",
+    "author_login": "Misoknisky",
+    "author_profile": "https://github.com/Misoknisky",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 5597,
+    "title": "DPR model examples / notebook / pipeline",
+    "body": "# 🚀 Feature request\r\n\r\n<!-- A clear and concise description of the feature proposal.\r\n     Please provide a link to the paper and code in case they exist. -->\r\nAn notebook or own script in the examples folders would be pretty nice for the new DPR model, implemented by @lhoestq \r\nMaybe an implementation to the pipeline would be cool too\r\n\r\n## Motivation\r\n\r\n<!-- Please outline the motivation for the proposal. Is your feature request\r\n     related to a problem? e.g., I'm always frustrated when [...]. If this is related\r\n     to another GitHub issue, please link here too. -->\r\n\r\nSuch an notebook or script would make it easier to train an custom dpr model\r\n\r\n## Your contribution\r\n\r\n<!-- Is there any way that you could help, e.g. by submitting a PR?\r\n     Make sure to read the CONTRIBUTING.MD readme:\r\n     https://github.com/huggingface/transformers/blob/master/CONTRIBUTING.md -->\r\n\r\nI did not read the paper and had no closer look to the code, but with some advice I could try to start an PR\r\n",
+    "reactions": 8,
+    "created_at": "2020-07-08T11:47:50Z",
+    "updated_at": "2020-09-13T17:12:36Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/5597",
+    "html_url": "https://github.com/huggingface/transformers/issues/5597",
+    "author_login": "flozi00",
+    "author_profile": "https://github.com/flozi00",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4942,
+    "title": "Dataloader in Trainer num_workers > 0",
+    "body": "# ❓ Questions & Help\r\n\r\nI notice that when doing inference/training with a pre-trained language model in a Trainer, only one worker is used. For training it's not a problem as the batch size is usually small, however, for inference, I can largely increase it.\r\n\r\nHowever, it seems that https://github.com/huggingface/transformers/blob/master/src/transformers/trainer.py#L263 only supports num_workers=0. I tried to modified it manually and put num_workers=10, but no effect.\r\n\r\nAm I doing something wrong in my reasoning?\r\n\r\nThanks for your help!",
+    "reactions": 8,
+    "created_at": "2020-06-11T20:14:18Z",
+    "updated_at": "2020-10-18T05:15:09Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4942",
+    "html_url": "https://github.com/huggingface/transformers/issues/4942",
+    "author_login": "diegoantognini",
+    "author_profile": "https://github.com/diegoantognini",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4197,
+    "title": "AutoTokenizer not able to load saved Roberta Tokenizer ",
+    "body": "# 🐛 Bug\r\n\r\n## Information\r\n\r\nModel I am using (Bert, XLNet ...): Roberta\r\n\r\nLanguage I am using the model on (English, Chinese ...): English\r\n\r\nThe problem arises when using:\r\n* [x] the official example scripts: (give details below)\r\n* [x] my own modified scripts: (give details below)\r\n\r\nI'm trying to run `run_language_modelling.py` with my own tokenizer\r\n\r\nThe tasks I am working on is:\r\n* [ ] an official GLUE/SQUaD task: (give the name)\r\n* [x] my own task or dataset: (give details below)\r\n\r\n## To reproduce\r\n\r\nSteps to reproduce the behavior:\r\n\r\n```\r\n!pip install transformers --upgrade\r\n\r\nfrom transformers import AutoTokenizer\r\nmy_tokenizer = AutoTokenizer.from_pretrained(\"distilroberta-base\")\r\n!mkdir my_tokenizer\r\nmy_tokenizer.save_pretrained(\"my_tokenizer\")\r\nmy_tokenizer2 = AutoTokenizer.from_pretrained(\"./my_tokenizer\")\r\n```\r\n\r\n### Stack Trace:\r\n```\r\n---------------------------------------------------------------------------\r\nOSError                                   Traceback (most recent call last)\r\n/usr/local/lib/python3.6/dist-packages/transformers/configuration_utils.py in get_config_dict(cls, pretrained_model_name_or_path, pretrained_config_archive_map, **kwargs)\r\n    246                 resume_download=resume_download,\r\n--> 247                 local_files_only=local_files_only,\r\n    248             )\r\n\r\n4 frames\r\n/usr/local/lib/python3.6/dist-packages/transformers/file_utils.py in cached_path(url_or_filename, cache_dir, force_download, proxies, resume_download, user_agent, extract_compressed_file, force_extract, local_files_only)\r\n    260         # File, but it doesn't exist.\r\n--> 261         raise EnvironmentError(\"file {} not found\".format(url_or_filename))\r\n    262     else:\r\n\r\nOSError: file ./my_tokenizer/config.json not found\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nOSError                                   Traceback (most recent call last)\r\n<ipython-input-16-b699c4abfe8e> in <module>()\r\n      3 get_ipython().system('mkdir my_tokenizer')\r\n      4 my_tokenizer.save_pretrained(\"my_tokenizer\")\r\n----> 5 my_tokenizer2 = AutoTokenizer.from_pretrained(\"./my_tokenizer\")\r\n\r\n/usr/local/lib/python3.6/dist-packages/transformers/tokenization_auto.py in from_pretrained(cls, pretrained_model_name_or_path, *inputs, **kwargs)\r\n    184         config = kwargs.pop(\"config\", None)\r\n    185         if not isinstance(config, PretrainedConfig):\r\n--> 186             config = AutoConfig.from_pretrained(pretrained_model_name_or_path, **kwargs)\r\n    187 \r\n    188         if \"bert-base-japanese\" in pretrained_model_name_or_path:\r\n\r\n/usr/local/lib/python3.6/dist-packages/transformers/configuration_auto.py in from_pretrained(cls, pretrained_model_name_or_path, **kwargs)\r\n    185         \"\"\"\r\n    186         config_dict, _ = PretrainedConfig.get_config_dict(\r\n--> 187             pretrained_model_name_or_path, pretrained_config_archive_map=ALL_PRETRAINED_CONFIG_ARCHIVE_MAP, **kwargs\r\n    188         )\r\n    189 \r\n\r\n/usr/local/lib/p",
+    "reactions": 8,
+    "created_at": "2020-05-07T13:09:16Z",
+    "updated_at": "2020-07-25T02:39:04Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4197",
+    "html_url": "https://github.com/huggingface/transformers/issues/4197",
+    "author_login": "noncuro",
+    "author_profile": "https://github.com/noncuro",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2814,
+    "title": "Repository with recipes how to pretrain model from scratch on my own data",
+    "body": "# 🚀 Feature request\r\n\r\nIt would very useful to have documentation on how to train different models, not necessarily with the use of transformers, but  with use external libs (like original BERT, fairseq, etc) \r\n\r\nMaybe another repository with readmes or docs with recipes from those who already pretrain their model in order to reproduce procedure for other languages or domain.\r\nThere are many external resources (blogs, articles in arxiv) but without any details and very often they are not reproducible.\r\n\r\n## Motivation \r\nHave a proven recipe for training the model. Make it easy for others to train a custom model. The community will easily train language or domain-specific models.\r\nMore models available in transformers library.\r\n\r\n\r\nThere are many issues related to this:\r\n* https://github.com/huggingface/transformers/issues/1283\r\n* https://github.com/huggingface/transformers/issues/2301\r\n* https://github.com/huggingface/transformers/issues/1672\r\n* https://github.com/huggingface/transformers/issues/1714\r\n* https://github.com/huggingface/transformers/issues/1638\r\n* https://github.com/huggingface/transformers/issues/2279\r\n* https://github.com/huggingface/transformers/issues/1108\r\n* https://github.com/huggingface/transformers/issues/1175\r\n* https://github.com/huggingface/transformers/issues/1381\r\n* https://github.com/huggingface/transformers/issues/1547\r\n* https://github.com/huggingface/transformers/issues/1999\r\n* #1908\r\n* #417\r\n* #170\r\n\r\n\r\n",
+    "reactions": 8,
+    "created_at": "2020-02-11T16:04:52Z",
+    "updated_at": "2020-12-12T20:44:41Z",
+    "labels": [
+      "wontfix",
+      "Documentation"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2814",
+    "html_url": "https://github.com/huggingface/transformers/issues/2814",
+    "author_login": "ksopyla",
+    "author_profile": "https://github.com/ksopyla",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2514,
+    "title": "T5 Masked LM -- pre-trained model import?",
+    "body": "## ❓ Questions & Help\r\n\r\nHi, thanks for merging the T5 model! However it is not clear to me how to use the pretrained model for masked language modeling. It appears that the model example only returns a hidden state, or `T5WithLMHeadModel` which is not clear what this is doing -- it tends to return the same token for me in all locations. \r\n\r\nMy understanding of the T5 paper was that one could add input tags like `<extra_id_0>` and receive multi-token masked responses in the decoder. Has this functionality been replicated in the codebase? And if not, do you think it possible to add it -- or do you have pointers to the community to try to add this ourselves?\r\n\r\nUnfortunately, the T5 documentation for this use case is also not great. Which is too bad because multi-token masked responses seems like a great feature of the T5 model. Testing and inference for masked language modeling is simple for BERT and variants, but does not support multi-token responses. \r\n",
+    "reactions": 8,
+    "created_at": "2020-01-13T19:15:59Z",
+    "updated_at": "2022-10-05T20:08:43Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2514",
+    "html_url": "https://github.com/huggingface/transformers/issues/2514",
+    "author_login": "moscow25",
+    "author_profile": "https://github.com/moscow25",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2479,
+    "title": "Implement Layer-wise Relevance Propagation (LRP) for prediction explanation",
+    "body": "## 🚀 Feature\r\n\r\nExample Code: \r\nhttps://github.com/lena-voita/the-story-of-heads/blob/master/lib/layers/attn.py#L154\r\n\r\n## Motivation\r\n\r\nThe motivation is prediction explainability to be able to generate pictures like: \r\n![image](https://user-images.githubusercontent.com/1810412/72099957-b5fc3a00-32ef-11ea-8740-0d050809ea48.png)\r\nor\r\n![image](https://user-images.githubusercontent.com/1810412/72100012-d1674500-32ef-11ea-92ef-44917e08bf0b.png)\r\n\r\nmore motivation: http://www.heatmapping.org/slides/2019_ICCV.pdf\r\n",
+    "reactions": 8,
+    "created_at": "2020-01-09T19:53:07Z",
+    "updated_at": "2020-09-24T12:05:14Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2479",
+    "html_url": "https://github.com/huggingface/transformers/issues/2479",
+    "author_login": "lapolonio",
+    "author_profile": "https://github.com/lapolonio",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 1465,
+    "title": "Multilabel Classification with TFBertForSequenceClassification",
+    "body": "I'm currently trying to train a multi label classifier, but in my trained model I'm get the same output no matter the input that I put in. \r\n\r\nI've modified the TFBertForSequenceClassification class to include a sigmoid activation output layer as shown below:\r\n\r\n```\r\nclass TFBertForMultilabelClassification(TFBertPreTrainedModel):\r\n\r\n    def __init__(self, config, *inputs, **kwargs):\r\n        super(TFBertForMultilabelClassification, self).__init__(config, *inputs, **kwargs)\r\n        self.num_labels = config.num_labels\r\n\r\n        self.bert = TFBertMainLayer(config, name='bert')\r\n        self.dropout = tf.keras.layers.Dropout(config.hidden_dropout_prob)\r\n        self.classifier = tf.keras.layers.Dense(config.num_labels,\r\n                                                kernel_initializer=get_initializer(config.initializer_range),\r\n                                                name='classifier',\r\n                                                activation='sigmoid')\r\n\r\n    def call(self, inputs, **kwargs):\r\n        outputs = self.bert(inputs, **kwargs)\r\n\r\n        pooled_output = outputs[1]\r\n\r\n        pooled_output = self.dropout(pooled_output, training=kwargs.get('training', False))\r\n        logits = self.classifier(pooled_output)\r\n\r\n        outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here\r\n\r\n        return outputs  # logits, (hidden_states), (attentions)\r\n```\r\n\r\nHere is a method which converts my InputExamples to InputFeatures for BERT:\r\n```\r\ndef convert_examples_to_features(examples, tokenizer, label_list, max_seq_length):\r\n    \"\"\"Converts examples to features using specified tokenizer\r\n\r\n    Args:\r\n        examples (list): Examples to convert.\r\n        tokenizer (obj): The tokenzier object.\r\n        label_list (list): A list of all the labels.\r\n        max_sequence_length (int): Maximum length of a sequence\r\n\r\n    Returns:\r\n        tf.Dataset: A tensorflow dataset.\r\n    \"\"\"\r\n\r\n    features = []\r\n    for ex_index, example in enumerate(examples):\r\n\r\n        # Encode inputs using tokenizer\r\n        inputs = tokenizer.encode_plus(\r\n            example.text_a[:max_seq_length],\r\n            add_special_tokens=True,\r\n            max_length=max_seq_length,\r\n            truncate_first_sequence=True \r\n        )\r\n        input_ids, token_type_ids = inputs[\"input_ids\"], inputs[\"token_type_ids\"]\r\n\r\n        # The mask has 1 for real tokens and 0 for padding tokens. Only real tokens are attended to.\r\n        attention_mask = [1] * len(input_ids)\r\n\r\n        # Zero-pad up to the sequence length.\r\n        padding_length = max_seq_length - len(input_ids)\r\n        input_ids = input_ids + ([0] * padding_length)\r\n        attention_mask = attention_mask + ([0] * padding_length)\r\n        token_type_ids = token_type_ids + ([0] * padding_length)\r\n\r\n        # Create features and add to feature list\r\n        features.append(\r\n                InputFeatures(input_ids=input_ids,\r\n                              attention_mask=attention_mask,\r\n",
+    "reactions": 8,
+    "created_at": "2019-10-08T23:02:21Z",
+    "updated_at": "2021-03-14T18:40:54Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/1465",
+    "html_url": "https://github.com/huggingface/transformers/issues/1465",
+    "author_login": "johnwu0604",
+    "author_profile": "https://github.com/johnwu0604",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 1305,
+    "title": "Dataset format and Best Practices For Language Model Fine-tuning",
+    "body": "## ❓ Questions & Help\r\n\r\nHi, thanks for making this code base available!\r\n\r\nI have two questions, one on the input format of for fine-tuning the language model on custom dataset, and one on (unreasonably-)long data preprocessing time. Thanks in advance for any help!\r\n\r\n- I'm trying to fine-tune the BERT Model on an extra dataset, and am using the `run_lm_finetuning.py` script in the `examples/` directory. However, I'm having trouble locating instructions on the proper format of the input data. There used to be some instructions in the `examples/lm_finetuning/` directory, but they seem deprecated now.\r\n\r\n- As a start, I followed the `run_lm_finetuning.py` example and changed nothing but `--train_data_file` argument with a bigger text file (arbitrary format). The training, however, hangs on the data preprocessing part for about 10 hours, and the last standard output is shown below.\r\n\r\n```\r\npytorch_transformers.tokenization_utils -   Token indices sequence length is longer than the specified maximum sequence length for this model (164229992 > 512). Running this sequence through the model will result in indexing errors\r\n```",
+    "reactions": 8,
+    "created_at": "2019-09-20T15:12:26Z",
+    "updated_at": "2019-12-01T14:07:47Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/1305",
+    "html_url": "https://github.com/huggingface/transformers/issues/1305",
+    "author_login": "HanGuo97",
+    "author_profile": "https://github.com/HanGuo97",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 788,
+    "title": "bert-large config file",
+    "body": "Here is the config file I download from path in modelling for bert large, \r\n{\r\n  \"attention_probs_dropout_prob\": 0.1, \r\n  \"directionality\": \"bidi\", \r\n  \"hidden_act\": \"gelu\", \r\n  \"hidden_dropout_prob\": 0.1, \r\n  \"hidden_size\": 1024, \r\n  \"initializer_range\": 0.02, \r\n  \"intermediate_size\": 4096, \r\n  \"max_position_embeddings\": 512, \r\n  \"num_attention_heads\": 16, \r\n  \"num_hidden_layers\": 24, \r\n  \"pooler_fc_size\": 768, \r\n  \"pooler_num_attention_heads\": 12, \r\n  \"pooler_num_fc_layers\": 3, \r\n  \"pooler_size_per_head\": 128, \r\n  \"pooler_type\": \"first_token_transform\", \r\n  \"type_vocab_size\": 2, \r\n  \"vocab_size\": 28996\r\n}\r\n\r\nI am wondering what are the following params for? I can't find them in the modelling file and the checkpoint I download.\r\n\r\n\"pooler_fc_size\": 768, \r\n\"pooler_num_attention_heads\": 12, \r\n\"pooler_num_fc_layers\": 3, \r\n\"pooler_size_per_head\": 128, \r\n\"pooler_type\": \"first_token_transform\", ",
+    "reactions": 8,
+    "created_at": "2019-07-15T13:52:49Z",
+    "updated_at": "2019-09-20T15:02:12Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/788",
+    "html_url": "https://github.com/huggingface/transformers/issues/788",
+    "author_login": "desperadoola",
+    "author_profile": "https://github.com/desperadoola",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 582,
+    "title": "Add GPT-2 Bigger Model",
+    "body": "OpenAI just release the next biggest version of their language model.  I think to add the new model, one needs to use the conversion script from TF to Pytorch and then save the model as another option in PRETRAINED_MODEL_ARCHIVE_MAP.",
+    "reactions": 8,
+    "created_at": "2019-05-04T00:00:49Z",
+    "updated_at": "2019-07-16T18:17:23Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/582",
+    "html_url": "https://github.com/huggingface/transformers/issues/582",
+    "author_login": "Eric-Wallace",
+    "author_profile": "https://github.com/Eric-Wallace",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 5918,
+    "title": "Add Fast Transformers - Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n\r\nThe Fast Transformers repo introduces a fast transformer model based on work to improve attention published in two papers:\r\n\r\n- Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention (https://arxiv.org/abs/2006.16236)\r\n- Fast Transformers with Clustered Attention (https://arxiv.org/abs/2007.04825)\r\n\r\n## Open source status\r\n\r\n* [X] the model implementation is available: (give details)\r\nhttps://github.com/idiap/fast-transformers\r\n\r\n* [x] the model weights are available: (give details)\r\n* [X] who are the authors: (mention them, if possible by @gh-username)\r\n@angeloskath",
+    "reactions": 7,
+    "created_at": "2020-07-20T16:44:56Z",
+    "updated_at": "2024-03-01T10:55:35Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/5918",
+    "html_url": "https://github.com/huggingface/transformers/issues/5918",
+    "author_login": "bratao",
+    "author_profile": "https://github.com/bratao",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 36755,
+    "title": "Add Gemma 3 For Sequence Classification",
+    "body": "### Feature request\n\nHello, I was wondering when will you add support for Gemma3Config for sequence generation as currently only GemmaConfig and Gemma2Config are supported\n\n### Motivation\n\nThis would be extremely beneficial given that Gemma 2 2B Instruct excels as a sequence classifier. I would expect Gemma 3 4B to be even more performant. \n\n### Your contribution\n\nI already did something to finetune Gemma 3 1B by using Gemma2ForSequenceClassification:\nIn the \"modeling_gemma2.py\", I import the Gemma 3 text model class as follows:\nfrom ..gemma3.modeling_gemma3 import Gemma3TextModel\n\nand then in \"Gemma2ForSequenceClassification\" class in the same file, I change this line:\nself.model = Gemma2Model(config)\nto\nself.model = Gemma3TextModel(config)",
+    "reactions": 7,
+    "created_at": "2025-03-16T18:09:11Z",
+    "updated_at": "2025-07-21T09:03:21Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/36755",
+    "html_url": "https://github.com/huggingface/transformers/issues/36755",
+    "author_login": "AhmedHashish123",
+    "author_profile": "https://github.com/AhmedHashish123",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 8669,
+    "title": "Make signature of `compute_metrics` parameter in Trainer class more flexible",
+    "body": "# 🚀 Feature request\r\n\r\nCurrent typing signature for the `compute_metrics` parameter in the `Trainer` class is:\r\n\r\n```python\r\nclass Trainer:\r\n    ...\r\n    def __init__(\r\n        ...\r\n        compute_metrics: Optional[Callable[[EvalPrediction], Dict]] = None,\r\n        ...\r\n```\r\n\r\nAs it is described now in with the Python typing system, the only parameter that you can pass to the function is `EvalPrediction`, containing the model predictions to calculate the metrics. I propose to make the function signature of `compute_metrics` a little bit more flexible, for example:\r\n\r\n```python\r\n        compute_metrics: Optional[Callable[[EvalPrediction, Optional[Any]], Dict]] = None,\r\n```\r\nor \r\n```python\r\n        compute_metrics: Optional[Callable[[EvalPrediction, Optional[Dict]], Dict]] = None,\r\n```\r\n\r\nso users can pass an extra argument -e.g. a Dict- with additional information that can be used in the function.\r\n\r\nSolution is not perfect in the sense that the typing system check of IDEs will scream when already defined functions in current user projects, pass a single parameter (see example below) as I haven't found a way of assigning a default value to the `Optional` in the `Callable` signature; using the `Ellipsis` is not possible either unless I've missed something (comments are welcome on this!!!)\r\n\r\n## Motivation\r\n\r\nFor some models, I had to either pass some extra arguments to perform the metrics calculation or to access remote services to retrieve some additional data. The current typing signature for `compute_metrics` does not allow to pass these extra params so I had to do dirty workarounds.\r\n\r\n```python\r\nfrom abc import ABC\r\nfrom typing import Optional, Callable, Dict, Any\r\n\r\n\r\ndef g(a:int):\r\n    print(f\"a in g: {a}\")\r\n    return {}\r\n\r\n\r\ndef h(a:int, b: Optional[int] = None):\r\n    print(f\"a in h: {a}\")\r\n    if b:\r\n        print(f\"b passed to g: {b}\")\r\n    return {}\r\n\r\n\r\nclass Dummy(ABC):\r\n\r\n    def __init__(self, f: Optional[Callable[[int, Optional[Any]], Dict]] = None):\r\n        self.f = f\r\n\r\n    def test_f(self):\r\n        if self.f:\r\n            print(f\"Calling {self.f}\")\r\n            if self.f.__name__ == \"g\":\r\n                self.f(1)  # <- here the typing system screams a bit\r\n            elif self.f.__name__ == \"h\":\r\n                self.f(2,3)\r\n            else:\r\n                print(\"Not calling anything\")\r\n\r\n\r\nif __name__ == '__main__':\r\n    o = Dummy(g)\r\n    o.test_f()\r\n\r\n    o = Dummy(h)\r\n    o.test_f()\r\n\r\n```\r\n## Contribution\r\n\r\nIf someone else has had similar needs, you think this is a good idea, or you have better suggestion, I can provide a PR for this.",
+    "reactions": 7,
+    "created_at": "2020-11-19T19:56:16Z",
+    "updated_at": "2022-09-22T00:17:22Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/8669",
+    "html_url": "https://github.com/huggingface/transformers/issues/8669",
+    "author_login": "francisco-perez-sorrosal",
+    "author_profile": "https://github.com/francisco-perez-sorrosal",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 8473,
+    "title": "Support fp16 for inference",
+    "body": "# 🚀 Feature request - support fp16 inference\r\n\r\nRight now most models support mixed precision for model training, but not for inference. Naively calling `model= model.haf()` makes the model generate junk instead of valid results for text generation, even though mixed-precision works fine in training. \r\n\r\nIf there's a way to make the model produce stable behavior at 16-bit precision at inference, the throughput can potentially double on most modern GPUS. \r\n\r\n## Motivation\r\n\r\nDouble the speed is always attractive, especially since transformers are compute-intensive. \r\n\r\n",
+    "reactions": 7,
+    "created_at": "2020-11-11T21:06:59Z",
+    "updated_at": "2021-10-01T06:14:14Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/8473",
+    "html_url": "https://github.com/huggingface/transformers/issues/8473",
+    "author_login": "urimerhav",
+    "author_profile": "https://github.com/urimerhav",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 5538,
+    "title": "Easier way to download pretrained model files to local",
+    "body": "# ❓ Questions & Help\r\n\r\n<!-- The GitHub issue tracker is primarily intended for bugs, feature requests,\r\n     new models and benchmarks, and migration questions. For all other questions,\r\n     we direct you to Stack Overflow (SO) where a whole community of PyTorch and\r\n     Tensorflow enthusiast can help you out. Make sure to tag your question with the\r\n     right deep learning framework as well as the huggingface-transformers tag: \r\n     https://stackoverflow.com/questions/tagged/huggingface-transformers \r\n     \r\n     If your question wasn't answered after a period of time on Stack Overflow, you\r\n     can always open a question on GitHub. You should then link to the SO question \r\n     that you posted.\r\n     -->\r\n\r\n## Details\r\n<!-- Description of your issue -->\r\nIs there any why we can save vocab and models files to local without having to run the following code with cache_dir parameter. What i am asking is some utility or some endpoint from where we could get a tar of all model files.\r\n```\r\nfrom transformers import BartTokenizer, BartForSequenceClassification\r\ntokenizer = BartTokenizer.from_pretrained('facebook/bart-large',cache_dir='path/to/local_dir')\r\nmodel = BartForSequenceClassification.from_pretrained('facebook/bart-large',cache_dir='path/to/local_dir')\r\n```\r\nThe reason for such a requirement is, we run our code in VMs where there is no internet access, so we have to run the code in our local for every model and save files. It would be helpful if there is a easier way to download all the files for pretrained models as a tar or zip file.\r\n\r\n<!-- You should first ask your question on SO, and only if\r\n     you didn't get an answer ask it here on GitHub. -->\r\n",
+    "reactions": 7,
+    "created_at": "2020-07-06T09:35:31Z",
+    "updated_at": "2022-04-18T15:57:44Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/5538",
+    "html_url": "https://github.com/huggingface/transformers/issues/5538",
+    "author_login": "m0hit-aggarwal",
+    "author_profile": "https://github.com/m0hit-aggarwal",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 8083,
+    "title": "FastFormers into transformers",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n\r\nWe just open-sourced [FastFormers](https://arxiv.org/abs/2010.13382) which are our SustaiNLP 2020 systems (FastFormers: Highly Efficient Transformer Models for Natural Language Understanding [paper](https://arxiv.org/abs/2010.13382)).\r\n\r\nCurrently, we are hosting this on our repository, but would like to merge it back to the transformers repository as an example.\r\nour repo - https://github.com/microsoft/fastformers\r\n\r\nFor the purpose of the shared task, this is purely implemented with SuperGLUE data set.\r\nSo, it's dependent on Alex Wang(@W4ngatang)'s SuperGLUE data processing pipeline.\r\nAlso, many parts of the implementations are based on Alex'.\r\n(https://github.com/W4ngatang/transformers/tree/superglue)\r\n\r\nWhat would be the best way to merge this back?\r\n\r\n## Open source status\r\n\r\n* [x] the model implementation is available: https://github.com/microsoft/fastformers/blob/main/examples/fastformers/run_superglue.py\r\n* [x] the model weights are available: demo systems are uploaded. https://github.com/microsoft/fastformers/releases/tag/v0.1-model\r\n* [x] who are the authors: @ykim362 \r\n",
+    "reactions": 6,
+    "created_at": "2020-10-27T04:51:44Z",
+    "updated_at": "2021-09-22T21:35:58Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/8083",
+    "html_url": "https://github.com/huggingface/transformers/issues/8083",
+    "author_login": "ykim362",
+    "author_profile": "https://github.com/ykim362",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4166,
+    "title": "Tapas",
+    "body": "# 🌟 New model addition\r\n\r\n## Model descriptin\r\n\r\nTapas extends Bert architecture and is a transformer-based Table QA model\r\n\r\nPaper: https://arxiv.org/abs/2004.02349\r\n\r\n## Open source status\r\n\r\n* [X] the model implementation is available: (give details)\r\nhttps://github.com/google-research/tapas\r\n* [X] the model weights are available: (give details)\r\nThe pretrained weights and data for fine-tuning are linked in the repository readme\r\n\r\n* [x] who are the authors:\r\n@thomasmueller-google is one of the authors",
+    "reactions": 6,
+    "created_at": "2020-05-05T20:31:08Z",
+    "updated_at": "2020-10-14T08:25:09Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4166",
+    "html_url": "https://github.com/huggingface/transformers/issues/4166",
+    "author_login": "flozi00",
+    "author_profile": "https://github.com/flozi00",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 943,
+    "title": "Is pytorch-transformers useful for training from scratch on a custom dataset?",
+    "body": "Hello, \r\n\r\nI'm looking into the great repo, and I'm wondering if there is a feature that could allow me to train a, let's say, gpt2 model on a custom dataset of sequences. \r\n\r\nIs it already provided in your codebase and features ? Otherwise I'll tinker with code on my own. \r\n\r\nThanks in advance and again, great job for the repo which is super useful.",
+    "reactions": 6,
+    "created_at": "2019-08-01T13:30:17Z",
+    "updated_at": "2019-11-13T20:21:30Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/943",
+    "html_url": "https://github.com/huggingface/transformers/issues/943",
+    "author_login": "Caselles",
+    "author_profile": "https://github.com/Caselles",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2140,
+    "title": "return_tokens_mapped_to_origin not working",
+    "body": "## 🐛 Bug\r\n\r\nModel I am using: **Bert**\r\nLanguage I am using the model on: **English**\r\n\r\n## To Reproduce\r\nCall `bertTokenizer.tokenize(\"text\", return_tokens_mapped_to_origin=True)`\r\nResult:\r\n\r\n> TypeError: _tokenize() got an unexpected keyword argument 'return_tokens_mapped_to_origin'\r\n\r\n## Expected behavior\r\nThe official documentation mentions a \"return_tokens_mapped_to_origin\" optional parameter that when set to True should return the index of each token in the initial given text.\r\nhttps://huggingface.co/transformers/main_classes/tokenizer.html?highlight=return_tokens_mapped_to_origin#transformers.PreTrainedTokenizer.tokenize\r\n\r\n\r\n## Environment\r\n\r\n* OS: macOS Mojave\r\n* Python version: 3.7\r\n* PyTorch version: 1.3.0\r\n* PyTorch Transformers version (or branch): 2.2.1\r\n* Using GPU ? No\r\n\r\n## Additional context\r\nIn the source code this parameter is never used outside of the doc comment, neither in the base class nor in its implementations.",
+    "reactions": 6,
+    "created_at": "2019-12-11T13:19:11Z",
+    "updated_at": "2020-03-13T21:09:42Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2140",
+    "html_url": "https://github.com/huggingface/transformers/issues/2140",
+    "author_login": "alessiocancian",
+    "author_profile": "https://github.com/alessiocancian",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 1769,
+    "title": "[XLM-R] by Facebook AI Research",
+    "body": "# 🌟New model addition\r\n\r\n## Model description\r\n\r\nYesterday, Facebook has released _open source_ its new NLG model called **XLM-R** (XLM-RoBERTa) on [arXiv](https://arxiv.org/abs/1911.02116). This model uses self-supervised training techniques to achieve state-of-the-art performance in **cross-lingual understanding**, a task in which a model is trained in one language and then used with other languages without additional training data. Our model improves upon previous multilingual approaches by incorporating **more training data and languages** — including so-called low-resource languages, which lack extensive labeled and unlabeled data sets.\r\n\r\n## Open Source status\r\n\r\n* [ ] the model implementation is available: [here](https://github.com/pytorch/fairseq/blob/master/fairseq/models/roberta/model.py) under the **XLMRModel** Python class (row 198)\r\n* [ ] the model weights are available: **Yes**, [here](https://github.com/pytorch/fairseq/blob/master/examples/xlmr/README.md) more details\r\n* [ ] who are the authors: **FacebookAI Research** (Alexis Conneau, Kartikay Khandelwal, Naman Goyal, Vishrav Chaudhary, Guillaume Wenzek, Francisco Guzmán, Edouard Grave, Myle Ott, Luke Zettlemoyer, Veselin Stoyanov)\r\n\r\n## Additional context\r\n\r\nFacebook says these two sentences about this new model in their [blog](https://ai.facebook.com/blog/-xlm-r-state-of-the-art-cross-lingual-understanding-through-self-supervision/?__xts__[0]=68.ARAEwOOYcfFnZxSeyb88a9qwrCTeTF8aO869NMP3lKL7Xp6aYnOGmS1j9jO6wYt89qDPAiHkpVboO3nuo_GhLR2GM8uVTx2q8m3HFehnIkQjn96QtyD33FxpHipTbT4hC1bohM6Y8tNQirCLKZ28VTRiHBbEpgEP1cr9NuwRUkyVfS0KcQpXv0GFLRFQt4MJvU-nnmrMbBN56MXQ7pi3IGHLVmanXhJbgQFJu7Utq80xa8EGVR3b5SqAZgN6yL7jVwKkcYpnHVdgdJJ6dLdXRm46xK03XbxxrL8ghktmSxXyzhykfPEo_akj0u06syf3HYBsZReDdF178xiEZIgn_2VXIA&__tn__=-UK-R):\r\n\r\n> XLM-R represents an important step toward our vision of providing the best possible experience on our platforms for everyone, regardless of what language they speak\r\n\r\n> We hope to improve the performance of multilingual models created by the research community, particularly systems that use self-supervised training methods to better understand low-resource languages.\r\n\r\n> XLM-R has been trained on **2.5T of data** across **100 languages** data filtered from Common Crawl",
+    "reactions": 6,
+    "created_at": "2019-11-08T08:07:35Z",
+    "updated_at": "2020-05-07T13:07:14Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/1769",
+    "html_url": "https://github.com/huggingface/transformers/issues/1769",
+    "author_login": "TheEdoardo93",
+    "author_profile": "https://github.com/TheEdoardo93",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 4967,
+    "title": "Add Linformer model",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n\r\n### Linformer: Self-Attention with Linear Complexity\r\n\r\nPaper published June 9th on ArXiv: https://arxiv.org/abs/2006.04768\r\n\r\nLarge transformer models have shown extraordinary success in achieving state-of-the-art results in many natural language processing applications. However, training and deploying these models can be prohibitively costly for long sequences, as the standard self-attention mechanism of the Transformer uses O(n²) time and space with respect to sequence length. In this paper, we demonstrate that the self-attention mechanism can be approximated by a low-rank matrix. We further exploit this finding to propose a new self-attention mechanism, which reduces the overall self-attention complexity from O(n²) to O(n) in both time and space. The resulting linear transformer, the **Linformer**, performs on par with standard Transformer models, while being much more memory- and time-efficient. \r\n\r\n## Open source status\r\n\r\n* [ ] the model implementation is available: (give details)\r\n* [ ] the model weights are available: (give details)\r\n* [x] who are the authors: Sinong Wang, Belinda Z. Li, Madian Khabsa, Han Fang, Hao Ma",
+    "reactions": 5,
+    "created_at": "2020-06-12T23:09:34Z",
+    "updated_at": "2020-12-02T10:36:43Z",
+    "labels": [
+      "wontfix",
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/4967",
+    "html_url": "https://github.com/huggingface/transformers/issues/4967",
+    "author_login": "AaronFriel",
+    "author_profile": "https://github.com/AaronFriel",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 2001,
+    "title": "GPT2: how to construct batch for Language Modeling",
+    "body": "I am a little confused about how to prepare input bathces for GPT2LMHeadModel. I want to use GPT2 as an LM. For instance, I want to generate probability distributions over the vocabulary at each timestep, as well as computing the perplexities of sentences. It is important to note that I am working with sentences and not documents, so I will have to pad the inputs in the batch.\r\n\r\n```python\r\nfrom transformers import GPT2Tokenizer, GPT2LMHeadModel\r\n\r\n# Prepare model\r\ntokenizer = GPT2Tokenizer.from_pretrained('gpt2')\r\nmodel = GPT2LMHeadModel.from_pretrained('gpt2')\r\nmodel.eval()\r\nmodel.to('cuda')\r\n\r\n# input sentences\r\nbatch = ['this is a sentence.',\r\n        'this is another sentence.',\r\n        'this is another even longer sentence.']\r\n```\r\n\r\n## Question 1: Special tokens\r\na) Do I have to add a bos token id on my own or is it handled internally by GPT2Tokenizer? Same for the eos token.\r\n```\r\n# tokenize\r\ntokens = [tokenizer.encode(x) for x in batch]\r\n\r\n# add BOS and EOS\r\ntokens = [[tokenizer.bos_token_id] + x + [tokenizer.eos_token_id]  for x in tokens]\r\n```\r\n```\r\n[[50256, 428, 318, 257, 6827, 13, 50256],\r\n [50256, 428, 318, 1194, 6827, 13, 50256],\r\n [50256, 428, 318, 1194, 772, 2392, 6827, 13, 50256]]\r\n```\r\nb) `tokenizer.encode(x)` gives me a warning \"This tokenizer does not make use of special tokens. Input is returned with no modification.\" I replaced it with `tokenizer.convert_tokens_to_ids(tokenizer.tokenize(x, add_prefix_space=True))` and the warning went away, but I am not sure what is the difference. Which tokenization should I use?\r\n\r\nc) By looking at the properties of an instance of GPT2Tokenizer, I see that `bos_token` and `eos_token` are the same. Is this correct?\r\n\r\n\r\n## Question 2: Padding\r\nI want to pad based on the longest sentence in the batch. This is how I usually do it.\r\n```\r\nbatch = pad_sequence([torch.LongTensor(x) for x in tokens], batch_first=True).to('cuda')\r\n```\r\n```\r\ntensor([[50256,   428,   318,   257,  6827,    13, 50256,     0,     0],\r\n        [50256,   428,   318,  1194,  6827,    13, 50256,     0,     0],\r\n        [50256,   428,   318,  1194,   772,  2392,  6827,    13, 50256]])\r\n```\r\na) What id does the model expect for the padded tokens? Do I have to pass the token id as an argument to the model or the tokenizer or you have a predifined one?\r\n\r\n\r\n## Question 3: Model input\r\nHow is GPT2 made aware of the padded steps? For instance for an RNN I would do something like this:\r\n```\r\nlengths = (batch != 0).sum(-1) # tensor([7, 7, 9])\r\npacked = pack_padded_sequence(x, lengths, batch_first=True)\r\nout_packed, hn = rnn(packed)\r\n```\r\nbut for GPT2 I havent found an example. The only ones i found are with batch size 1. So something like this wont work as expected:\r\n```\r\noutputs = model(x, labels=x)  # labels are shifted inside the model, right?\r\nloss, logits = outputs[:2]\r\n```\r\n---\r\n# Update\r\nSo there are still things unclear, but from reading other issues this is my current understanding:\r\n - GPT2 has no padding token, as it w",
+    "reactions": 5,
+    "created_at": "2019-11-29T20:28:13Z",
+    "updated_at": "2022-12-08T15:15:33Z",
+    "labels": [
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/2001",
+    "html_url": "https://github.com/huggingface/transformers/issues/2001",
+    "author_login": "cbaziotis",
+    "author_profile": "https://github.com/cbaziotis",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 5425,
+    "title": "[Quick poll] Give your opinion on the future of 🤗 transformers",
+    "body": "The 🤗 transformers library is at a crossroad 🚏 and could evolve in many directions, from teaching to research & applications.\r\n\r\nWe made a quick poll to get your opinion.\r\n\r\nIf you have 2-3 minutes and want to participate in shaping the future of the library 👉 https://docs.google.com/forms/d/e/1FAIpQLSeKWNE1SyaSvqLYxWQxTA_XeRCVm3_ohmr3UXJgpIxzZhSXlg/viewform\r\n\r\n(please reply in the above feedback form rather than to this thread)",
+    "reactions": 5,
+    "created_at": "2020-07-01T08:07:59Z",
+    "updated_at": "2020-09-06T23:57:50Z",
+    "labels": [
+      "Discussion",
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/5425",
+    "html_url": "https://github.com/huggingface/transformers/issues/5425",
+    "author_login": "thomwolf",
+    "author_profile": "https://github.com/thomwolf",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 29524,
+    "title": "Adding new decoding strategy \"DoLa\" into the `model.generate()` function",
+    "body": "### Feature request\n\nPaper: https://openreview.net/pdf?id=Th6NyL07na\r\nCode: https://github.com/voidism/DoLa\r\n\r\nDoLa (**D**ecoding by C**o**ntrasting **La**yers) is a new decoding strategy that can make LLM decoding more factual. \r\nThe key idea is to obtain the next-token distribution by contrasting the differences in logits obtained from projecting the later layers versus earlier layers to the vocabulary space, exploiting the fact that factual knowledge in an LLMs has generally been shown to be localized to particular transformer layers. \r\n\r\nThe paper has been peer-reviewed and accepted at the ICLR 2024 conference.\n\n### Motivation\n\nThe decoding strategy was proven useful in a variety of tasks, including TruthfulQA, Chain-of-thought reasoning, and instruction following, as shown in the experiments of [the paper](https://openreview.net/pdf?id=Th6NyL07na)\r\n\r\nFor example, the performance on StrategyQA/GSM8K/TruthfulQA and VicunaQA is shown as follows:\r\n| Model          | StrategyQA | GSM8K | TruthfulQA |\r\n|----------------|-------|-------|-----------------------|\r\n| LLaMa-7B       | 60.1  | **10.8**  | 26.9                  |\r\n| + DoLa         | **64.1**  | 10.5  | **40.8**              |\r\n| LLaMa-13B      | 66.6  | 16.7  | 32.4                  |\r\n| + DoLa         | **67.6**  | **18.0**  | **44.6**              |\r\n| LLaMa-33B      | 69.9  | 33.8  | 31.7                  |\r\n| + DoLa         | **72.1**  | **35.5**  | **49.1**              |\r\n| LLaMa-65B      | 70.5  | 51.2  | 34.8                  |\r\n| + DoLa         | **72.9**  | **54.0**  | **49.2**              |\r\n\r\n<img width=\"361\" alt=\"image\" src=\"https://github.com/huggingface/transformers/assets/26344602/d3ac5abb-a18c-4167-8ded-fa2e38acbf67\"> _Vicuna QA results_\r\n\r\nCurrently, the code is open-source in a [separated repo](https://github.com/voidism/DoLa), which is a little bit difficult for people to use.\r\nIt would be much more convenient for people to use this decoding method if it's merged into the transformers package.\n\n### Your contribution\n\nI have implemented the DoLa decoding method based on a fork from the latest transformers `(4.39.0.dev0)` package. The code is here: https://github.com/voidism/transformers-dola/\r\n\r\nThe method doesn't rely on any external modules or modification to model architectures, so it can be easily incorporated into the transformers package mainly by modifying [src/transformers/generation/utils.py](https://github.com/voidism/transformers-dola/tree/main/src/transformers/generation/utils.py)\r\n\r\nThis implementation does NOT need to modify any of the model architectures of LLMs like LLaMA, so it will be quite easy to merge. And it can be directly used by any other models like Mistral/Gemma as well.\r\n\r\nI can submit a PR for this request feature ASAP.\r\n",
+    "reactions": 5,
+    "created_at": "2024-03-07T20:15:58Z",
+    "updated_at": "2024-07-09T16:37:40Z",
+    "labels": [
+      "Feature request",
+      "Generation"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/29524",
+    "html_url": "https://github.com/huggingface/transformers/issues/29524",
+    "author_login": "voidism",
+    "author_profile": "https://github.com/voidism",
+    "already_resurrected": false
+  }
+]

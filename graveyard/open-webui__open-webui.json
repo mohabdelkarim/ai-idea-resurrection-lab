@@ -1,0 +1,960 @@
+[
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 483,
+    "title": "feat: OAuth/OIDC ",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nAdd feature to enable account creation via OAuth/OIDC\r\n\r\n**Describe the solution you'd like**\r\nIntegrating ollama-webui with auth providers such as Authentik, Keycloak, etc\r\n\r\n**Describe alternatives you've considered**\r\nN/A\r\n\r\n**Additional context**\r\nBeing able to create a local account as an admin upon initialization should remain, but afterwards the admin account should be able to add the relevant information to change the default login page to redirect to a self-hosted OAuth/OIDC provider",
+    "reactions": 83,
+    "created_at": "2024-01-15T17:18:39Z",
+    "updated_at": "2025-02-14T04:05:41Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/483",
+    "html_url": "https://github.com/open-webui/open-webui/issues/483",
+    "author_login": "Kryszn0",
+    "author_profile": "https://github.com/Kryszn0",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 8706,
+    "title": "Better <think> block rendering for DeepSeek-R1 and similar",
+    "body": "**Is your feature request related to a problem? Please describe.**  \nCurrently, when reasoning LLMs return a `<think>` block as part of their output, it is rendered in the same way as regular text responses… just surrounded by the unfortunate <think> tags. This makes it difficult to visually distinguish between the reasoning process and the final answer. Additionally, lengthy `<think>` blocks can clutter the interface and reduce readability for users who primarily want to focus on the final output.\n\n**Describe the solution you'd like**  \nI propose that the `<think>` block be rendered distinctly from the normal response, with a visual differentiation (e.g., a shaded background, a border, or an indented box). Furthermore, the `<think>` block should be collapsible, allowing users to expand or hide it as needed. By default, the block could be collapsed, with an indicator to expand it for users who are interested in understanding the detailed reasoning process.\n\n**Describe alternatives you've considered**  \n1. Using a toggle option in the settings to enable or disable `<think>` block rendering entirely. \n2. Highlighting `<think>` blocks with simple visual markers (e.g., italics or a different font) instead of full collapsibility.\n\n**Additional context**  \nThis enhancement would make the UI more user-friendly, especially for users who want a clean response while still having the option to delve into the reasoning when needed. Here’s a simple example mockup of how it might look:\n\n- Collapsed `<think>` block: `[+] Reasoning available. Click to expand.`  \n- Expanded `<think>` block: A visually distinct, bordered box containing the detailed reasoning.\n",
+    "reactions": 76,
+    "created_at": "2025-01-21T03:38:37Z",
+    "updated_at": "2025-02-25T15:50:17Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/8706",
+    "html_url": "https://github.com/open-webui/open-webui/issues/8706",
+    "author_login": "coder543",
+    "author_profile": "https://github.com/coder543",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 16935,
+    "title": "feat: Support new Image Generation base64 with OpenRouter",
+    "body": "### Check Existing Issues\n\n- [x] I have searched the existing issues and discussions.\n\n### Problem Description\n\nWith the first Image Generation model on OpenRouter would be nice to support it when adding OpenRouter API under settings -> Images\n\nhttps://openrouter.ai/docs/features/multimodal/image-generation\n\nImage Generation Model: google/gemini-2.5-flash-image-preview\n\n### Desired Solution you'd like\n\n1. Set OpenRouter API under settings -> Images with google/gemini-2.5-flash-image-preview\n2. Finally outputs Image in chat\n\n### Alternatives Considered\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "reactions": 70,
+    "created_at": "2025-08-26T18:47:13Z",
+    "updated_at": "2025-11-06T06:40:37Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/16935",
+    "html_url": "https://github.com/open-webui/open-webui/issues/16935",
+    "author_login": "sFritsch09",
+    "author_profile": "https://github.com/sFritsch09",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1293,
+    "title": "feat: better RAG",
+    "body": "**Is your feature request related to a problem? Please describe.**\n\nThe document-based RAG feature shows a glimpse of how useful it can be. Unfortunately for most practical applications, data is not sitting in a single self contained file:\n\n- Source code repos span multiple files\n- Cloud services like Jira, GitHub, Wordpress, Slack, etc. have REST APIs/webhooks and exporting data to a flat file is clunky and not always possible\n- Structured data sources like MySQL or MongoDB databases\n\n**Describe the solution you'd like**\n- Generalize the Documents tab to Data Sources\n- Keep the Document option as a Data Source\n- Allow a Folder to be a Data Source, and recursively include all its containing files\n- Allow for an API connector to connect common cloud tools like Slack, Jira, GitHub, Notion\n- Allow for database connectors like MySQL, MongoDB so folks can enter a connection string and access the data\n- Allow for generic REST API so folks can connect their own services\n\n**Describe alternatives you've considered**\n- Exporting from the sources to a flat file, then uploading the flat file\n\n**Additional context**\n- Happy to help if the team decides to do this\n- Better to do it one step at a time, since each new Data Source adds incremental value to the tool",
+    "reactions": 70,
+    "created_at": "2024-03-25T11:04:54Z",
+    "updated_at": "2025-02-16T01:39:22Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1293",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1293",
+    "author_login": "zachrattner",
+    "author_profile": "https://github.com/zachrattner",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 9488,
+    "title": "Thinking doesn't showing for Deepseek R1 via API (external connection)",
+    "body": "### I connected to Deepseek R1 via its API, but it only shows the final result instead of the thinking steps. Open WebUI version 0.5.10\n![Image](https://github.com/user-attachments/assets/a481d1a9-e986-4ebb-a619-658a671213cc)",
+    "reactions": 58,
+    "created_at": "2025-02-06T10:10:29Z",
+    "updated_at": "2025-03-12T08:04:13Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/9488",
+    "html_url": "https://github.com/open-webui/open-webui/issues/9488",
+    "author_login": "drshliapa",
+    "author_profile": "https://github.com/drshliapa",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 10887,
+    "title": "500: Internal Error",
+    "body": "I upgraded to version 0.5.17 and all I see is 500: Internal Error now, nothing else. Clearing the cache, reinstalling with --force-reinstall didn't fix it. ",
+    "reactions": 51,
+    "created_at": "2025-02-27T12:34:00Z",
+    "updated_at": "2025-06-16T14:15:37Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/10887",
+    "html_url": "https://github.com/open-webui/open-webui/issues/10887",
+    "author_login": "peter-ch",
+    "author_profile": "https://github.com/peter-ch",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 668,
+    "title": "feat: LDAP User management",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nUsers should be managed via LDAP, similar to [Portainer](https://docs.portainer.io/admin/settings/authentication/ldap)\r\n\r\n**Describe the solution you'd like**\r\nLDAP user management implemented\r\n\r\n**Describe alternatives you've considered**\r\n- OAUTH\r\n- Microsoft Active directory\r\n\r\nI believe LDAP is the best starting point\r\n\r\n**Additional context**\r\n\r\n\r\nOne key feature of `ollama-webui` is its ability to have users, but without LDAP this doesn't have same network level utility. \r\n",
+    "reactions": 48,
+    "created_at": "2024-02-07T08:16:45Z",
+    "updated_at": "2024-12-09T02:12:28Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/668",
+    "html_url": "https://github.com/open-webui/open-webui/issues/668",
+    "author_login": "this-josh",
+    "author_profile": "https://github.com/this-josh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1437,
+    "title": "feat: Tier 1 support for LocalAI",
+    "body": "LocalAI is similar to ollama, but aims to be a complete replacement for OpenAI, already including TTS, STT, and image generation (all of which which open webui use).  It would be great to have tier 1 support for this.",
+    "reactions": 36,
+    "created_at": "2024-04-05T22:40:41Z",
+    "updated_at": "2025-05-24T22:50:54Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1437",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1437",
+    "author_login": "lee-b",
+    "author_profile": "https://github.com/lee-b",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 529,
+    "title": "feat: collections/docs for modelfiles with models",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nIt's frustrating having to mention documents manually every time.\r\n\r\n**Describe the solution you'd like**\r\nIt would be nice to have a RAG integration inside the Modelfiles definition.\r\nOpenAI and their GPTs allow users to activate RAG and upload documents upon creation of a new GPT.\r\nIt would be really amazing to have such a feature ;)",
+    "reactions": 36,
+    "created_at": "2024-01-19T14:59:08Z",
+    "updated_at": "2024-10-13T20:18:35Z",
+    "labels": [
+      "enhancement",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/529",
+    "html_url": "https://github.com/open-webui/open-webui/issues/529",
+    "author_login": "racso-dev",
+    "author_profile": "https://github.com/racso-dev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 8478,
+    "title": "feat: Allow reranker to be accessed via API instead of local model",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\n\r\nCurrently, the reranker model used in RAG can only be run locally after being pulled. However, there are now many MaaS providers offering rerankers. I would like to use reranker models via API within open-webui, which would make the server much lighter.\r\n\r\n**Describe the solution you'd like**\r\n\r\nAlthough the OpenAI API does not have a reranker API, there is a widely used API pattern for rerankers in MaaS, such as `/v1/rerank`, used by projects like siliconflow, xinference, and api-for-open-llm.\r\n\r\nLike this:\r\n```\r\ncurl --request POST \\\r\n  --url https://api.siliconflow.cn/v1/rerank \\\r\n  --header 'Authorization: Bearer <token>' \\\r\n  --header 'Content-Type: application/json' \\\r\n  --data '{\r\n  \"model\": \"BAAI/bge-reranker-v2-m3\",\r\n  \"query\": \"Apple\",\r\n  \"documents\": [\r\n    \"apple\",\r\n    \"banana\",\r\n    \"fruit\",\r\n    \"vegetable\"\r\n  ],\r\n  \"top_n\": 4,\r\n  \"return_documents\": false,\r\n  \"max_chunks_per_doc\": 1024,\r\n  \"overlap_tokens\": 80\r\n}'\r\n```\r\n\r\nThanks",
+    "reactions": 30,
+    "created_at": "2025-01-11T08:19:20Z",
+    "updated_at": "2025-05-10T15:34:34Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/8478",
+    "html_url": "https://github.com/open-webui/open-webui/issues/8478",
+    "author_login": "GrayXu",
+    "author_profile": "https://github.com/GrayXu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 715,
+    "title": "feat: Improvments to Collections RAG",
+    "body": "**Describe the solution you'd like**\r\nCollecting data from a wide range on docs and giving relevant info to a LLM is one of the most common ways to use RAG.\r\nThere is 1 point wich would improve the experience using RAG over collections:\r\n\r\r\n- Users should also be able to create collections for themselves (or their group, for the future if users can be a part of a groud e.g. HR, Finance etc.), not only admins for all users.\r\n- ~~For Collections it would be good to identify whehre the llm citates from to have a \"source: \" mentioned in the message. (Metadata like the name of the document is sored in the backend rag file)~~ <- Already implemented \r\n\r\n",
+    "reactions": 24,
+    "created_at": "2024-02-12T10:44:04Z",
+    "updated_at": "2025-07-23T01:24:32Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/715",
+    "html_url": "https://github.com/open-webui/open-webui/issues/715",
+    "author_login": "jannikstdl",
+    "author_profile": "https://github.com/jannikstdl",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 8719,
+    "title": "Add `/api/v1/embeddings` endpoint for 100% OpenAI compatibility",
+    "body": "# Feature Request\n\nHello! I want to use OpenWebUI through the API Key provided by the interface.\n\n![Image](https://github.com/user-attachments/assets/7a866677-1815-4b10-8d09-58d2bec922bc)\n\nI use LiteLLM for 100% OpenAI compatibility and for my use case, I need the users can call an embeddings model registered in LiteLLM. However the endpoint `/api/embeddings` doesn't exist in `/api/v1/`:\n\n![Image](https://github.com/user-attachments/assets/1d3b5860-c0c6-4305-8605-9d9e9a2f5a74)\n\n![Image](https://github.com/user-attachments/assets/304240f3-f586-426f-88c0-559c1dae2f39)\n\n It would be wonderful if you can add it so anyone can use OpenWebUI as a 100% OpenAI compatible API. \n\nWould that be possible?\n\n---\n\n**Is your feature request related to a problem? Please describe.**\nNo, I just want that OpenWebUI can be used as API also.\n\n**Describe the solution you'd like**\nCreate `/api/v1/embeddings` that call the `/openai/embeddings` endpoint.\n\n**Describe alternatives you've considered**\nThis endpoint should call the endpoint `/openai/embeddings`. That's it:\n\n![Image](https://github.com/user-attachments/assets/d0336a3f-2fe6-4608-b665-e8d69a78d52a)\n\n\n**Additional context**\nIn past versions (`0.4.*`) I was able to call `/openai/embeddings` endpoint using my API key, but now that's not allowed anymore\n",
+    "reactions": 22,
+    "created_at": "2025-01-21T16:28:55Z",
+    "updated_at": "2025-06-05T07:44:08Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/8719",
+    "html_url": "https://github.com/open-webui/open-webui/issues/8719",
+    "author_login": "hdnh2006",
+    "author_profile": "https://github.com/hdnh2006",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 8262,
+    "title": "feat: native desktop app",
+    "body": "needed for real time push notifications.\r\n\r\nfor both desktop & mobile\r\n\r\n- [ ] should have an option to switch between multiple servers (think slack/discord)\r\n- [ ] should handle real-time notifications (just like slack/discord)\r\n\r\nrelated: https://github.com/open-webui/open-webui/issues/470\r\n\r\nhttps://github.com/open-webui/app",
+    "reactions": 20,
+    "created_at": "2025-01-02T08:57:28Z",
+    "updated_at": "2026-04-14T02:40:30Z",
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/8262",
+    "html_url": "https://github.com/open-webui/open-webui/issues/8262",
+    "author_login": "tjbck",
+    "author_profile": "https://github.com/tjbck",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1331,
+    "title": "feat: Volume, Speech Rate, and Pitch Controls for Text-to-Speech (TTS) Output",
+    "body": "**Problem Description:**\r\nThe current version of Open WebUI lacks the necessary customization options for the text-to-speech (TTS) output, including volume control, speech rate adjustment, pitch adjustment, and audio playback functionality for speaking out notifications. These limitations hinder the user experience and accessibility of the text-to-speech (TTS) feature.\r\n\r\n**Describe the solution you'd like:**\r\nI propose the implementation of the following features to enhance the TTS output customization:\r\n1. A volume control slider to adjust the volume of the TTS output.\r\n2. A \"Speech Rate\" slider to adjust the speed of the TTS output.\r\n3. A \"Pitch\" slider enabling users to modify the voice pitch of the TTS output.\r\n4. An option to enable or disable audio playback for speaking out notifications.\r\n\r\n**Alternative solution:**\r\nOffer predefined volume, speed, & pitch options instead of a slider for a simpler interface.\r\n\r\n**Alternatives Considered:**\r\nManually adjusting the device's overall volume or utilizing third-party applications to manipulate speech output and volume settings represents a workaround. However, this solution proves to be inconvenient for users, necessitating the addition of these much-needed features within Open WebUI.\r\n\r\n**Additional Context:**\r\nThis feature request focuses on improving the text-to-speech (TTS) feature's accessibility and overall user experience. Implementing these requested features, including volume, speed, and pitch adjustments, will significantly enhance user satisfaction and convenience. It's crucial to maintain compatibility with existing features, ensuring this customization suite does not adversely impact any existing functionalities or behaviors.",
+    "reactions": 19,
+    "created_at": "2024-03-28T02:28:41Z",
+    "updated_at": "2025-11-21T09:54:28Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1331",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1331",
+    "author_login": "silentoplayz",
+    "author_profile": "https://github.com/silentoplayz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 3097,
+    "title": "enh: Allow setting TTS voice selection per model",
+    "body": "Have integrated openedai-speech, and now realized that an amazing change would be to have the ability to set specific voices when creating new models.",
+    "reactions": 16,
+    "created_at": "2024-06-12T19:00:35Z",
+    "updated_at": "2026-01-09T15:05:29Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/3097",
+    "html_url": "https://github.com/open-webui/open-webui/issues/3097",
+    "author_login": "oss001",
+    "author_profile": "https://github.com/oss001",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 470,
+    "title": "feat: package as executable (desktop app)",
+    "body": "Ideally we would want something like Ollama\r\n\r\nMaybe we could use https://pyinstaller.org/en/stable/",
+    "reactions": 16,
+    "created_at": "2024-01-13T23:45:32Z",
+    "updated_at": "2025-01-09T03:25:54Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/470",
+    "html_url": "https://github.com/open-webui/open-webui/issues/470",
+    "author_login": "tjbck",
+    "author_profile": "https://github.com/tjbck",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 6378,
+    "title": "enh: open-webui:slim docker image",
+    "body": "",
+    "reactions": 14,
+    "created_at": "2024-10-24T21:04:31Z",
+    "updated_at": "2025-04-13T04:03:01Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/6378",
+    "html_url": "https://github.com/open-webui/open-webui/issues/6378",
+    "author_login": "tjbck",
+    "author_profile": "https://github.com/tjbck",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 3620,
+    "title": "enh/issue: performance optimisation",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nThe performance of long chat threads is really bad. I don't know if it is a browser client side issue or an issue on the server side.\r\n\r\n**Describe the solution you'd like**\r\nA performance fix would be great, but even the ability to do a shallow clone where only the last context window or so of the chat is cloned would help.\r\n\r\n**Describe alternatives you've considered**\r\nI am resorting to starting a fresh chat with memory items added and trying to use the prompt to pick up where the last chat left off.\r\n\r\n**Additional context**\r\nI have tried a few different browsers, but the best fix so far has been to start a new chat and try my best to get it back on roughly the same track.",
+    "reactions": 14,
+    "created_at": "2024-07-04T01:40:52Z",
+    "updated_at": "2025-06-25T09:41:25Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/3620",
+    "html_url": "https://github.com/open-webui/open-webui/issues/3620",
+    "author_login": "vertago1",
+    "author_profile": "https://github.com/vertago1",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 521,
+    "title": "feat: Add CSS classes to elements for custom themes",
+    "body": "### **Is your feature request related to a problem? Please describe.**\r\nThe current implementation of themes requires complex css selectors that will break as soon as the base styles are modified making them extremely hard to maintain. eg. the current rose-pine theme uses selectors such as:\r\n```css\r\n.rose-pine\r\n\t.text-white.bg-gray-100.dark\\:text-gray-800.dark\\:bg-gray-600.disabled.transition.rounded-lg.p-1.mr-0\\.5.w-7.h-7.self-center {\r\n\tbackground-color: #6e6a86;\r\n\ttransition: background-color 0.2s ease-out linear;\r\n}\r\n```\r\nIn order to change simple properties. If styling got changed in the base, these selectors would instantly be invalidated and break the theme.\r\n\r\n### **Describe the solution you'd like**\r\nI propose that to all important elements that should be possible to select with css there should either be accessibility attributes, id's or classes added so that it's a whole lot easier to create and maintain alternative themes.\r\n\r\n---\r\n\r\nI'm open to create a fix for this myself with a pull request if people are interested.",
+    "reactions": 14,
+    "created_at": "2024-01-18T23:24:39Z",
+    "updated_at": "2025-03-03T22:53:29Z",
+    "labels": [
+      "enhancement",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/521",
+    "html_url": "https://github.com/open-webui/open-webui/issues/521",
+    "author_login": "SethBurkart123",
+    "author_profile": "https://github.com/SethBurkart123",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 126,
+    "title": "feat: backend support for TTS (Bark, etc.)",
+    "body": "Is it possible to have a native support for Bark TTS or langchain version of it since we already have that microphone prompt?",
+    "reactions": 13,
+    "created_at": "2023-11-22T01:58:52Z",
+    "updated_at": "2024-09-27T22:57:29Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/126",
+    "html_url": "https://github.com/open-webui/open-webui/issues/126",
+    "author_login": "oliverbob",
+    "author_profile": "https://github.com/oliverbob",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 2058,
+    "title": "feat: multi-user chat (team chat/discussion) ",
+    "body": "#1962\r\n\r\n- [ ] Channels (think Discord or Slack), @ model id to get a response from a model.\r\n- [ ] Direct Messages/Group Chats",
+    "reactions": 12,
+    "created_at": "2024-05-07T18:49:35Z",
+    "updated_at": "2024-12-30T04:22:50Z",
+    "labels": [
+      "enhancement",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/2058",
+    "html_url": "https://github.com/open-webui/open-webui/issues/2058",
+    "author_login": "tjbck",
+    "author_profile": "https://github.com/tjbck",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1398,
+    "title": "feat: CA truststore support",
+    "body": "# Bug Report\r\n\r\n## Description\r\n\r\nWhen you run the docker image in an enterprise context, based on the company policy, you may have SSL interception in order to anlyse the traffic\r\n\r\n**Bug Summary:**\r\nImpossible to add some CA to the internal trustore used to make the REST API request\r\n\r\n**Steps to Reproduce:**\r\nneed to have SSL interception enable on your laptop that breaks the SSL chain\r\n\r\n**Expected Behavior:**\r\nPossibility to add CA to the used truststore\r\n\r\n**Actual Behavior:**\r\n\r\nCA can't be added\r\n\r\n## Environment\r\n\r\n- **Windows 11 running docker image ghcr.io/open-webui/open-webui:main\r\n- **Browser Chrome\r\n\r\n## Reproduction Details\r\n\r\n**Confirmation:**\r\n\r\n- [* ] I have read and followed all the instructions provided in the README.md.\r\n- [* ] I am on the latest version of both Open WebUI and Ollama.\r\n- [* ] I have included the browser console logs.\r\n- [ *] I have included the Docker container logs.\r\n\r\n## Logs and Screenshots\r\n\r\n**Browser Console Logs:**\r\n{\r\n    \"detail\": \"Something went wrong :/\\nHTTPSConnectionPool(host='api.openai.com', port=443): Max retries exceeded with url: /v1/images/generations (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)')))\"\r\n}\r\n\r\n**Docker Container Logs:**\r\nINFO:     172.17.0.1:50270 - \"GET /ollama/api/tags HTTP/1.1\" 200 OK\r\n\r\nINFO:apps.openai.main:get_all_models()\r\n\r\nERROR:apps.openai.main:Connection error: Cannot connect to host api.openai.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)')]\r\n\r\nINFO:apps.openai.main:models: {'data': []}\r\n\r\nINFO:apps.openai.main:get_all_models()\r\n\r\nERROR:apps.openai.main:Connection error: Cannot connect to host api.openai.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)')]\r\n\r\nINFO:apps.openai.main:models: {'data': []}\r\n\r\nINFO:     172.17.0.1:50270 - \"GET /openai/api/models HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50270 - \"GET /litellm/api/v1/models HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50294 - \"GET /_app/immutable/nodes/8.0396dff0.js HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50298 - \"GET /ollama/api/version HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50304 - \"GET /ollama/api/version HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50304 - \"GET /ollama/urls HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50304 - \"GET /ollama/api/version HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50304 - \"GET /litellm/api/model/info HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50316 - \"GET /api/config HTTP/1.1\" 200 OK\r\n\r\nINFO:     172.17.0.1:50316 - \"GET /api/v1/auths/ HTTP/1.1\" 200 OK\r\n\r\nINFO:apps.ollama.main:get_all_models()\r\n\r\nINFO:     172.17.0.1:50316 - \"GET /ollama/api/tags HTTP/1.1\" 200 OK\r\n\r\nINFO:apps.openai.main:get_all_models()\r\n\r\nERROR:apps.openai.main:C",
+    "reactions": 12,
+    "created_at": "2024-04-02T13:23:25Z",
+    "updated_at": "2025-02-13T22:57:49Z",
+    "labels": [
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1398",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1398",
+    "author_login": "GillesBodart",
+    "author_profile": "https://github.com/GillesBodart",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 4158,
+    "title": "bug: [object Object] error when sending subsequent messages to the chat.",
+    "body": "# Bug Report\r\n\r\n## Description\r\n\r\n**Bug Summary:**\r\nWhen using Open WebUI with an OpenAI API key, sending a second message in the chat occasionally results in no response. Refreshing the browser shows an error with the content [object Object]. Sometimes, it regenerates another response or duplicates the chat.\r\n\r\n**Steps to Reproduce:**\r\n1. Launch Open WebUI with an OpenAI API key.\r\n2. Send a message in the chat.\r\n3. Wait for the response.\r\n4. Send a second message.\r\n5. Observe the response, or lack thereof.\r\n6. Refresh the browser to see if an error occurs.\r\n\r\n**Expected Behavior:**\r\nThe application should respond to the second message without any issues and should not throw errors or duplicate chat entries.\r\n\r\n**Actual Behavior:**\r\nSometimes the application does not respond after sending the second message. A page refresh yields an error showing [object Object]. Other times, it generates another response or duplicates the chat.\r\n\r\n## Environment\r\n\r\n- **Open WebUI Version:** 0.3.10\r\n- **Ollama (if applicable):** Not using ollama\r\n\r\n- **Operating System:** Server is running Debian 12, Clients Windows 11 and Arch \r\n- **Browser (if applicable):** Tested in Chrome 127.0.6533.73 and Firefox 128.0.3\r\n\r\n## Reproduction Details\r\n\r\n**Confirmation:**\r\n\r\n- [x] I have read and followed all the instructions provided in the README.md.\r\n- [x] I am on the latest version of both Open WebUI and Ollama.\r\n- [x] I have included the browser console logs.\r\n- [x] I have included the Docker container logs.\r\n\r\n## Logs and Screenshots\r\n\r\n**Browser Console Logs:**\r\nI have recorded the issue on this [jam](https://jam.dev/c/3eaea634-9ebc-4cf5-af94-dce1b191e406), console logs and network requests can be checked here.\r\n\r\n**Docker Container Logs:**\r\n[Include relevant Docker container logs, if applicable]\r\nDid not see anything relevant on the logs far away than the 500s that can be checked on the jam. Anyways here they are on [pastebin](https://pastebin.com/6Vud3hwD) (my public ip obfuscated and will be destroyed in 6 months)\r\n\r\n**Screenshots (if applicable):**\r\n![image](https://github.com/user-attachments/assets/9766f690-38c1-4242-a5c4-3014308fac0a)\r\n\r\n## Installation Method\r\n\r\nI have installed the app with the following docker-compose file:\r\n```yml\r\nservices:\r\n  open-webui:\r\n    container_name: open-webui\r\n    image: ghcr.io/open-webui/open-webui:main\r\n    restart: always\r\n    environment:\r\n      - OPENAI_API_KEY=my-api-key\r\n    volumes:\r\n      - open-webui:/app/backend/data\r\n    networks:\r\n      - proxy-network\r\n\r\nvolumes:\r\n  open-webui:\r\n\r\nnetworks:\r\n  proxy-network:\r\n    external: true\r\n```\r\n\r\n## Additional Information\r\n\r\nThe issue can be reproduced consistently but does not occur every time. I've attempted testing in both Chrome and Firefox, including clean versions without extensions. I also have tested seveal models from OpenAI (4o, 4o-mini and 3.5-turbo) and happens on all of them.\r\n\r\n## Note\r\n\r\nIf the bug report is incomplete or does not follow the provided instructions",
+    "reactions": 11,
+    "created_at": "2024-07-27T23:50:13Z",
+    "updated_at": "2024-08-14T19:59:30Z",
+    "labels": [
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/4158",
+    "html_url": "https://github.com/open-webui/open-webui/issues/4158",
+    "author_login": "fracergu",
+    "author_profile": "https://github.com/fracergu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1162,
+    "title": "feat: relative path support",
+    "body": "# Bug Report\r\nwebui docker images do not support relative path. \r\n## Description\r\nfor xample, i want to start webui at localhost:8080/webui/, does the image parameter support the relative path configuration?\r\n",
+    "reactions": 11,
+    "created_at": "2024-03-14T08:59:21Z",
+    "updated_at": "2024-12-21T13:03:40Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1162",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1162",
+    "author_login": "hahchenchen",
+    "author_profile": "https://github.com/hahchenchen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 10562,
+    "title": "feat: Enhance Folder Management with \"New Chat in Folder\" and \"Create Subfolder\" Options",
+    "body": "# Feature Request\n\n## Important Notes\n\n- **Before submitting a report**: Please check the Issues or Discussions section to see if a similar issue or feature request has already been posted. It's likely we're already tracking it! If you’re unsure, start a discussion post first. This will help us efficiently focus on improving the project.\n\n- **Collaborate respectfully**: We value a constructive attitude, so please be mindful of your communication. If negativity is part of your approach, our capacity to engage may be limited. We’re here to help if you’re open to learning and communicating positively. Remember, Open WebUI is a volunteer-driven project managed by a single maintainer and supported by contributors who also have full-time jobs. We appreciate your time and ask that you respect ours.\n\n- **Contributing**: If you encounter an issue, we highly encourage you to submit a pull request or fork the project. We actively work to prevent contributor burnout to maintain the quality and continuity of Open WebUI.\n\n- **Bug reproducibility**: If a bug cannot be reproduced with a `:main` or `:dev` Docker setup, or a pip install with Python 3.11, it may require additional help from the community. In such cases, we will move it to the \"issues\" Discussions section due to our limited resources. We encourage the community to assist with these issues. Remember, it’s not that the issue doesn’t exist; we need your help!\n\nNote: Please remove the notes above when submitting your post. Thank you for your understanding and support!\n\n---\n\n**Is your feature request related to a problem? Please describe.**\n> **While folders are available in Open WebUI, I've found that I don't utilize them as much as I'd like to because the current workflow requires me to start a chat and then manually drag and drop it into a designated folder. This can be inconvenient, and I'd like for that process to be simplified.**\n\n**Describe the solution you'd like**\n> **I would like to see two new options added to a folder's 3-dots menu:**\n> 1. `New Chat in Folder`: **This option would enable users to initiate a new chat directly within a selected folder, eliminating the need for manual drag-and-drop operations.**\n> 2. `Create Subfolder`: **This option would allow users to create a new folder within an existing folder, facilitating nested folder structures.**\n\n![Image](https://github.com/user-attachments/assets/9d88d5ac-a36c-45a4-baa9-fbf10dc61cd0)\n\n**Describe alternatives you've considered**\n> **Current folder management requires manually moving chats between folders or navigating to the top-level folder management section to create subfolders. Having these options directly within the folder menu would provide a more efficient and user-friendly experience.**\n\n**Additional context**\n> These features would improve user productivity by simplifying folder management and allowing users to more efficiently organize their chats. **Note**, while these are features that **already exist** within Open WebUI",
+    "reactions": 11,
+    "created_at": "2025-02-22T06:19:49Z",
+    "updated_at": "2025-08-21T10:20:59Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/10562",
+    "html_url": "https://github.com/open-webui/open-webui/issues/10562",
+    "author_login": "silentoplayz",
+    "author_profile": "https://github.com/silentoplayz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1081,
+    "title": "feat: smarter ollama load balancing",
+    "body": "right now it just uses `random.choices`, refer to my comment here: https://github.com/open-webui/open-webui/blob/8ed5759d0e9424f87d01fe3f8013116c4ba2004f/backend/apps/ollama/main.py#L39",
+    "reactions": 11,
+    "created_at": "2024-03-07T05:11:40Z",
+    "updated_at": "2025-04-13T04:05:43Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1081",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1081",
+    "author_login": "tjbck",
+    "author_profile": "https://github.com/tjbck",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 5866,
+    "title": "bug: Front-End fails silently once JWT Token expires",
+    "body": "# Bug Report\r\n\r\n## Installation Method\r\nDocker\r\n\r\n## Environment\r\n\r\n- **Open WebUI Version:** v0.3.30\r\n- **Operating System:**  Ubuntu 22.04.4 LTS (GNU/Linux 6.5.0-1017-aws x86_64)\r\n- **Browser (if applicable):** Chrome 128\r\n\r\n**Confirmation:**\r\n\r\n- [x] I have read and followed all the instructions provided in the README.md.\r\n- [x] I am on the latest version of both Open WebUI and Ollama.\r\n- [x] I have included the browser console logs.\r\n- [] I have included the Docker container logs.\r\n- [x] I have provided the exact steps to reproduce the bug in the \"Steps to Reproduce\" section below.\r\n\r\n## Expected Behavior:\r\nOnce the JWT Token, issued by SSO Auth or direct login has expired and a 401 - Unauthorized response is received, front-end should either display a notification to the user or redirect to Login page\r\n\r\n## Actual Behavior:\r\nOnce the JWT Token expired and a 401 - Unauthorized response was received, front-end DID NOT display a notification to the user or redirect to Login page.\r\nInstead the UI became unresponsive as the user was allowed to click on different UI elements with no changes.\r\nThe front-end is failing silently.\r\n\r\n## Description\r\n**Bug Summary:**\r\nWhen JWT Token has expired and a 401 - Unauthorized response is received, front-end does not display a notification to the user or redirect to Login page\r\n\r\n## Reproduction Details\r\n**Steps to Reproduce:**\r\n* Open open-webui in two tabs\r\n* Log out in second tab\r\n* Go to first tab and click on some UI elements. The UI shows a blank screen and does not prompt user to re-authenticate or be redirected to Login page\r\n\r\n## Logs and Screenshots\r\n\r\n**Browser Console Logs:**\r\n```\r\nindex.ts:121 GET https://webui-poc.stinternal.com/api/v1/users/user/settings 401 (Unauthorized)\r\n{detail: '401 Unauthorized'}\r\nChat.svelte:128 Uncaught (in promise) 401 Unauthorized\r\n```\r\n\r\n**Docker Container Logs:**\r\nN/A\r\n\r\n**Screenshots/Screen Recordings (if applicable):**\r\nN/A\r\n\r\n## Additional Information\r\n```\r\n    environment:\r\n      - ENABLE_OAUTH_SIGNUP=true\r\n      - OAUTH_MERGE_ACCOUNTS_BY_EMAIL=true\r\n      - ENABLE_LOGIN_FORM=false\r\n      - ENABLE_COMMUNITY_SHARING=false\r\n      - ENABLE_OLLAMA_API=false\r\n      - ENABLE_OPENAI_API=true\r\n      - OPENAI_API_BASE_URL=http://pipelines:9099\r\n      - OPENAI_API_KEY=\r\n      - OAUTH_CLIENT_ID=\r\n      - OAUTH_CLIENT_SECRET=\r\n      - OPENID_PROVIDER_URL=\r\n      - OAUTH_PROVIDER_NAME=Okta SSO\r\n      - OAUTH_SCOPES=openid profile email\r\n      - ENV=prod\r\n      - GLOBAL_LOG_LEVEL=INFO\r\n      - WEBUI_AUTH=true\r\n      - ENABLE_RAG_WEB_LOADER_SSL_VERIFICATION=true\r\n      - ENABLE_ADMIN_EXPORT=false\r\n      - JWT_EXPIRES_IN=86400\r\n      - SCARF_NO_ANALYTICS=true\r\n      - DO_NOT_TRACK=true\r\n      - ANONYMIZED_TELEMETRY=false\r\n      - WEBUI_SESSION_COOKIE_SECURE=true\r\n      - RAG_EMBEDDING_MODEL_TRUST_REMOTE_CODE=false\r\n```\r\n",
+    "reactions": 10,
+    "created_at": "2024-10-01T22:52:16Z",
+    "updated_at": "2025-06-06T13:21:44Z",
+    "labels": [
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/5866",
+    "html_url": "https://github.com/open-webui/open-webui/issues/5866",
+    "author_login": "ramanbuttar-st",
+    "author_profile": "https://github.com/ramanbuttar-st",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1397,
+    "title": "feat: external DB support",
+    "body": "",
+    "reactions": 10,
+    "created_at": "2024-04-02T11:19:38Z",
+    "updated_at": "2024-11-14T13:34:39Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1397",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1397",
+    "author_login": "tjbck",
+    "author_profile": "https://github.com/tjbck",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 886,
+    "title": "feat: Ollama embeddings support",
+    "body": "Can you add the option to use ollama embeddings with customized models (such as nomic-embed-text...)\r\nAlongside the native implementation.\r\n",
+    "reactions": 10,
+    "created_at": "2024-02-24T14:28:15Z",
+    "updated_at": "2025-03-10T10:24:57Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/886",
+    "html_url": "https://github.com/open-webui/open-webui/issues/886",
+    "author_login": "Gyro0o",
+    "author_profile": "https://github.com/Gyro0o",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 596,
+    "title": "feat: Support ollama's keep_alive request parameter",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nOllama unloads models after 5 minutes by default. A new parameter, `keep_alive`, allows the user to set a custom value.\r\nIt would be nice to have an option in the UI where a value for this parameter can be set.\r\n\r\nHere is the relevant PR: [#2146](https://github.com/ollama/ollama/pull/2146)",
+    "reactions": 10,
+    "created_at": "2024-01-29T20:26:08Z",
+    "updated_at": "2025-05-04T11:21:08Z",
+    "labels": [
+      "enhancement",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/596",
+    "html_url": "https://github.com/open-webui/open-webui/issues/596",
+    "author_login": "zehDonut",
+    "author_profile": "https://github.com/zehDonut",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1360,
+    "title": "feat: modularity",
+    "body": "**Describe the solution you'd like**\r\nEstablish modular design, requirement, process, security, best practice, etc. With all of the innovation surrounding LLM technology, software like [code execution](https://github.com/open-webui/open-webui/issues/1321) & [extended RAG](https://github.com/open-webui/pipelines/issues/15) can be extremely beneficial but not without capacity and security considerations. Candidates like [open-interpreter](https://github.com/OpenInterpreter/open-interpreter) and [self-operating-computer](https://github.com/OthersideAI/self-operating-computer) are exciting!\r\n\r\nMy hope is that we can keep the core of Open-WebUI secure, lightweight, and performant. One solution may be modularity. I'd love to see capability like _code execution_ available as an opt-in module with logical and secure separation. If we can establish guidelines for **Open-WebUI Modules**, this can simplify the development of future modules.\r\n",
+    "reactions": 9,
+    "created_at": "2024-03-30T00:22:36Z",
+    "updated_at": "2024-09-22T00:18:14Z",
+    "labels": [
+      "enhancement",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1360",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1360",
+    "author_login": "ghost",
+    "author_profile": "https://github.com/ghost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1096,
+    "title": "feat: User Permission Toggle for RAG Document Access",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nYes, the current options for user account permissions in the `Users` tab of the `Admin Settings` in the `Admin Panel` are lacking. Specifically, while users can call upon admin uploaded documents and ask questions about them in the context of Retrieval-Augmented Generation (RAG), there is no user permission toggle to control access to these documents for the RAG feature on user accounts. This could pose a potential security risk to unaware admins about this potential leakage of their vital information.\r\n\r\n**Describe the solution you'd like**\r\nI would like a user permission toggle for admin uploaded document access within the `Users` tab of the `Admin Settings` in the `Admin Panel`. This will allow admins to better control and secure their uploaded documents from potential leakage or unauthorized access.\r\n\r\n**Describe alternatives you've considered**\r\nN/A\r\n\r\n**Additional context**\r\nAdding this feature will provide consistency in managing user permissions across core features of Open WebUI. Additionally, it will improve the security of admin uploaded documents and provide admins with more control over their information.\r\n\r\n**Benefits**\r\n* Security: By adding a user permission toggle for document access in RAG, admins can better control and secure their uploaded documents from potential leakage or unauthorized access.\r\n* Consistency: Consistent user experience for managing user permissions across core features of Open WebUI.\r\n\r\n**Implementation**\r\n* Add a new user permission toggle for admin uploaded document access within the `Users` tab of the `Admin Settings` in the `Admin Panel`.\r\n* The proposed name for this toggle is `Allow RAG Document Access`.\r\n* *Marginalizing the ease of use benefit to a lesser degree, as restricting access to documents per user on a per user level could be a potential future enhancement.*\r\n\r\n![image](https://github.com/open-webui/open-webui/assets/50341825/a72a76a9-5f21-407c-a3e8-c14cc762195b)",
+    "reactions": 9,
+    "created_at": "2024-03-08T03:51:51Z",
+    "updated_at": "2024-06-08T05:24:53Z",
+    "labels": [
+      "enhancement",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1096",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1096",
+    "author_login": "silentoplayz",
+    "author_profile": "https://github.com/silentoplayz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 7509,
+    "title": "issue/enh: STT retrofeeds to mic during call",
+    "body": "## Installation Method\r\n\r\nDocker\r\n\r\n## Environment\r\n\r\n- **Open WebUI Version:** v0.4.6\r\n- **Ollama (if applicable):** v0.4.6\r\n\r\n- **Operating System:** Fedora 41\r\n- **Browser (if applicable):** Firefox 133.0\r\n\r\n**Confirmation:**\r\n\r\n- [x] I have read and followed all the instructions provided in the README.md.\r\n- [x] I am on the latest version of both Open WebUI and Ollama.\r\n- [ ] I have included the browser console logs.\r\n- [ ] I have included the Docker container logs.\r\n- [x] I have provided the exact steps to reproduce the bug in the \"Steps to Reproduce\" section below.\r\n\r\n## Expected Behavior:\r\n\r\nHave a conversation over call feature with the model of your choice using speakers and mic, no headsets\r\n\r\n## Actual Behavior:\r\n\r\nThe model receives first sentence from user and keeps looping its own voice until user stops the call\r\n\r\n## Description\r\n\r\n**Bug Summary:**\r\nSTT retrofeeds model voice while on speakers\r\n\r\n## Reproduction Details\r\n\r\n**Steps to Reproduce:**\r\n- Open a new conversation with any model\r\n- Click the call feature\r\n- Give initial request\r\n- See how the conversation continues on its own until you stop the call feature\r\n\r\n## Logs and Screenshots\r\n\r\n**Screenshots/Screen Recordings (if applicable):**\r\n![Screenshot_20241201_133001](https://github.com/user-attachments/assets/d1da0d1a-3957-4fec-b9ae-8585e8e98bd9)\r\n![Screenshot_20241201_133043](https://github.com/user-attachments/assets/2547f869-6db9-4e07-838a-3586393d4b84)\r\n\r\n## Additional info\r\n\r\nThis is reproducible using openedai-speech configuration also.",
+    "reactions": 8,
+    "created_at": "2024-12-01T11:45:20Z",
+    "updated_at": "2025-03-28T03:11:07Z",
+    "labels": [
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/7509",
+    "html_url": "https://github.com/open-webui/open-webui/issues/7509",
+    "author_login": "Pekkari",
+    "author_profile": "https://github.com/Pekkari",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 5763,
+    "title": "enh: allow to use S3 for uploaded files",
+    "body": "**Is your feature request related to a problem? Please describe.**\n\n@tjbck clarified Postgres can be used for metadata (Open WebUI config and user chat history) at https://github.com/open-webui/helm-charts/issues/83#issuecomment-2379241585 except for user uploaded files.\n\n**Describe the solution you'd like**\nIt would be great to support to use S3 for uploaded files. Thanks! ☺️\n\n**Describe alternatives you've considered**\nUse EBS or EFS for uploaded files.\n\n**Additional context**\nNone\n",
+    "reactions": 8,
+    "created_at": "2024-09-27T13:48:26Z",
+    "updated_at": "2025-05-19T12:53:49Z",
+    "labels": [
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/5763",
+    "html_url": "https://github.com/open-webui/open-webui/issues/5763",
+    "author_login": "hongbo-miao",
+    "author_profile": "https://github.com/hongbo-miao",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1725,
+    "title": "feat: rename models + descriptions",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nEven though the model names on the menu are pretty straightforward, over time, it's easy to forget what these models are used for.\r\n\r\n**Describe the solution you'd like**\r\nAdd nicknames to replace model names, displaying the model name when a nickname isn't set.\r\nWhen a nickname is set, the model name will appear in the hover information on the right side.\r\n![imagine](https://github.com/open-webui/open-webui/assets/30385417/6f0ec6ba-4051-4331-a8ba-7a5e443c0cba)\r\n\r\n\r\n**Describe alternatives you've considered**\r\n\r\n\r\n**Additional context**\r\nAdditionally, implement a five-star rating system or categories/tags for easier future reference.\r\n",
+    "reactions": 8,
+    "created_at": "2024-04-24T16:47:55Z",
+    "updated_at": "2026-04-12T21:16:23Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1725",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1725",
+    "author_login": "PasserDreamer",
+    "author_profile": "https://github.com/PasserDreamer",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 573,
+    "title": "feat: token counting according to model's context size",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\n\r\nI believe a crucial feature would be to have an idea of the context size of the conversation with a model. In this way, the user is aware of how much more the chat can continue.\r\n\r\nAs of now, it seems there is no \"official\" way to pull a model's context size from Ollama via its API. The issue has been raised and tracked here [1].\r\n\r\nI guess this issue can track the advancement of the API endpoint on Ollama's side as well.\r\n\r\n[1]: https://github.com/ollama/ollama/issues/1473\r\n\r\n**Describe the solution you'd like**\r\nA clear and concise description of what you want to happen.\r\n\r\n**Describe alternatives you've considered**\r\nA clear and concise description of any alternative solutions or features you've considered.\r\n\r\n**Additional context**\r\nAdd any other context or screenshots about the feature request here.\r\n",
+    "reactions": 8,
+    "created_at": "2024-01-25T16:16:24Z",
+    "updated_at": "2025-12-18T20:22:44Z",
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/573",
+    "html_url": "https://github.com/open-webui/open-webui/issues/573",
+    "author_login": "peperunas",
+    "author_profile": "https://github.com/peperunas",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1611,
+    "title": "enhancement: better error handling",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nI'm using this tool on CPU only, and with certain prompts I get some kind of timeout.\r\nThis usually happens when I upload a document to get a summary. I assume the context might be too long.\r\nBut I do not get any feedback in the UI. \r\nEven when the CPU finished processing, the UI is stuck on this: (Image uploaded)\r\n![image](https://github.com/open-webui/open-webui/assets/14896478/1db8e070-73b9-4721-b7bd-a9662da75a71)\r\nUI is kind of stuck. Opening and closing the thread just shows the initial prompt and no answer at all.\r\n\r\n**Describe the solution you'd like**\r\nI would love to get some kind of error message if the prompt cannot be resolved. Ideally with the steps needed to make it work.\r\n\r\n\r\n",
+    "reactions": 7,
+    "created_at": "2024-04-19T06:54:31Z",
+    "updated_at": "2025-05-24T22:52:51Z",
+    "labels": [
+      "enhancement",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1611",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1611",
+    "author_login": "almostserious",
+    "author_profile": "https://github.com/almostserious",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1392,
+    "title": "feat: DALL-E Compatibility Improvements",
+    "body": "Some feature requests from issues I've run into during my own usage of DALL-E via this project:\r\n\r\n- API feature implementation\r\n  - [ ] DALL-E 3's API has two image quality options: `standard` and `hd`, but there is no way to select which one is used.\r\n  - We should support multiple image generation for DALL-E 2/3.\r\n    - [ ] For DALL-E 2, the `n` parameter (`1≤n≤10`) controls how many images can be generated.\r\n    - [ ] For DALL-E 3, the `n` parameter must be `1`, but we can request more images in parallel.\r\n- User-experience related\r\n  - [ ] The DALL-E 2/3 API does not take a `steps` parameter, but it is visible in the UI, pre-set to 50, which may cause confusion.\r\n  - [ ] DALL-E 3 can only take 3 resolutions (`1024x1024`, `1024x1792`, or `1792x1024`) but the resolution input is free-form, which may cause confusion.\r\n  - [ ] DALL-E settings are not preserved, and there does not seem to be a way to preserve them between Docker container restarts. The API key and API settings are both wiped, even when passing in the API key environment variable and ensuring the volume is mounted correctly.\r\n- Prompt-revision related \r\n   - [ ]  DALL-E 3 \"automatically re-writes the prompts for safety reasons\" but it is possible to disable this via the string provided in the API guidelines. We could make this an option.\r\n   - [ ] We should show what the prompt used for the image was, which is provided by the API response.\r\n\r\n\r\nRelated: [DALL-E API Documentation](https://platform.openai.com/docs/guides/images?context=node)",
+    "reactions": 7,
+    "created_at": "2024-04-02T07:14:25Z",
+    "updated_at": "2025-11-21T09:54:42Z",
+    "labels": [
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1392",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1392",
+    "author_login": "tusing",
+    "author_profile": "https://github.com/tusing",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 797,
+    "title": "feat: static share url to chat",
+    "body": "At present, open-webui can share chat messages to [openwebui](https://openwebui.com/). Is it possible to add an option to consolidate chat messages into a single static URL for sharing with others (similar to chatgpt)? By visiting this static URL, users would be able to view all the chat messages.",
+    "reactions": 7,
+    "created_at": "2024-02-19T08:28:54Z",
+    "updated_at": "2024-04-07T07:39:35Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/797",
+    "html_url": "https://github.com/open-webui/open-webui/issues/797",
+    "author_login": "7a6ac0",
+    "author_profile": "https://github.com/7a6ac0",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 460,
+    "title": "feat: editable rag params",
+    "body": "I've just been trying out the new Rag mode with some different PDFs and one test I did was add in the game rules for a board game called \"Valor & Victory\" and then quizzed several LLMs about the sequence of play.\r\n\r\nThey all seemed to get confused and completely miss out the \"Move\" phase and outright claimed it didn't exist! \r\n\r\nI think the problem may like with these langchain parameters:\r\n\r\nCHUNK_SIZE = 1500\r\nCHUNK_OVERLAP = 100\r\n\r\nFrom a quick read it seems the CHUNK_SIZE parameter is on the high side.\r\n\r\nIm not sure if this was a deliberate decision or not but it would be nice to allow us to control this.\r\n\r\nI've no idea how to edit this in the Docker image either or otherwise I would have happily tried a few different chunk sizes to see if there was any improvement on similar documents. ",
+    "reactions": 7,
+    "created_at": "2024-01-12T20:27:01Z",
+    "updated_at": "2024-09-03T09:48:03Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/460",
+    "html_url": "https://github.com/open-webui/open-webui/issues/460",
+    "author_login": "jukofyork",
+    "author_profile": "https://github.com/jukofyork",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 446,
+    "title": "feat: granular permissions, and user groups",
+    "body": "In the admin dashboard, it would be nice if we can add a feature to hide/disable/enable (not just delete) a model.\r\n\r\nReason:\r\n\r\nOne organization has a private model that they don't want to share with other users or organizations.\r\n\r\nOr perhaps, let's provide a convenient way for organizations to access only allowed models via: Groups or organization.\r\n\r\nFor instance if a news entity will be accessing the UI, it is very impractical for them to see the medical models from a hospital. Also, it is not a good alternative to have a separate UI for them.",
+    "reactions": 7,
+    "created_at": "2024-01-10T10:29:52Z",
+    "updated_at": "2024-06-08T05:21:00Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/446",
+    "html_url": "https://github.com/open-webui/open-webui/issues/446",
+    "author_login": "oliverbob",
+    "author_profile": "https://github.com/oliverbob",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 3441,
+    "title": "enh: allow image/document message edit",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nI'm always frustrated when I cannot reference documents and URLs while I am writing or editing a message. Currently, this functionality is only available when the message edit window is empty, which disrupts the writing flow and limits flexibility.\r\n\r\n**Describe the solution you'd like**\r\nI would like to have the ability to reference documents and URLs seamlessly at any point during the message composition or editing process, not just when the message edit window is empty.\r\n\r\n**Describe alternatives you've considered**\r\nAn alternative could be to introduce a specific toolbar or shortcut that allows users to insert references to documents and URLs regardless of the state of the message edit window.\r\n\r\n**Additional context**\r\nThis feature would greatly enhance the user experience, particularly for users like me who are often working on complex documents and need to reference multiple sources fluidly. It would save time and make the writing process more efficient and less cumbersome.",
+    "reactions": 6,
+    "created_at": "2024-06-25T19:12:58Z",
+    "updated_at": "2025-05-24T22:53:28Z",
+    "labels": [
+      "enhancement",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/3441",
+    "html_url": "https://github.com/open-webui/open-webui/issues/3441",
+    "author_login": "bannert1337",
+    "author_profile": "https://github.com/bannert1337",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1844,
+    "title": "feat: add users from admin panel",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nI'm a teacher in middle school, and I want to create multiple users in batches.\r\n\r\n**Describe the solution you'd like**\r\nadding users in batches, and handle multiple requests in parallel when multiple users are in use at the same time",
+    "reactions": 6,
+    "created_at": "2024-04-29T04:23:17Z",
+    "updated_at": "2025-02-24T07:07:47Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1844",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1844",
+    "author_login": "FruitTea2015",
+    "author_profile": "https://github.com/FruitTea2015",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 665,
+    "title": "feat: openai api compatible model presets (profiles)",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nAs the modelfiles from the hub are pretty good, it would be nice if we could use also them with external models from openAI api compatible services.\r\n\r\n**Describe the solution you'd like**\r\nOption A:\r\nWhen adding a modelfile, we could check that it should use a model from the external provider and select it.\r\nOption B:\r\nWhen selecting a modelfile, we should be able to exchange then the actual model to one from the external service.\r\n\r\n**Describe alternatives you've considered**\r\nSetting the default prompt according to the modelfile works for now, just the profile pick and name is wrong and the extra settings.\r\n\r\n**Additional context**\r\nMy ollama instance has limited vram available. External services can provide bigger models. I think it would be good if the same characters would be usable when using an external service.\r\n",
+    "reactions": 6,
+    "created_at": "2024-02-06T20:05:26Z",
+    "updated_at": "2024-05-26T10:19:52Z",
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/665",
+    "html_url": "https://github.com/open-webui/open-webui/issues/665",
+    "author_login": "keriati",
+    "author_profile": "https://github.com/keriati",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 277,
+    "title": "enh: improve accessibility against WCAG 2.1",
+    "body": "I am grateful for this fantastic and potentially accessible solution.\n\nWhile using the web UI with a screen reader, I've noticed that many of the buttons are unlabeled. Adhering to the Web Content Accessibility Guidelines (WCAG) 2.1 would significantly enhance the accessibility and inclusivity of this project, making its benefits more universally available.",
+    "reactions": 5,
+    "created_at": "2023-12-25T03:10:27Z",
+    "updated_at": "2024-06-03T21:02:47Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "non-core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/277",
+    "html_url": "https://github.com/open-webui/open-webui/issues/277",
+    "author_login": "jooyoungseo",
+    "author_profile": "https://github.com/jooyoungseo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 3023,
+    "title": "enh: add TTS playback options",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nCurrently TTS playback is not stopping when it should from a QoL standpoint.\r\nI will list some areas where the playback should be stopped or continued.\r\n\r\n**Describe the solution you'd like**\r\n\r\n- stop TTS playback when starting a new voice recording\r\n- stop TTS playback when regenerating\r\n- stop TTS playback when leaving the chat window (creating new chat, accessing settings/admin panel, switching to other chats, deleting chat)\r\n\r\n**Describe alternatives you've considered**\r\nDuring TTS playback the user can switch chats and access settings/admin panel, without stopping the playback. A floating player should be displayed on top of the screen, allowing the user to pause, resume or stop the TTS playback. The player should also act as a progress bar with the ability to forward or rewind the playback.\r\n\r\n**Additional context**\r\nAdd any other context or screenshots about the feature request here.",
+    "reactions": 5,
+    "created_at": "2024-06-11T12:38:47Z",
+    "updated_at": "2026-01-07T22:28:01Z",
+    "labels": [
+      "enhancement",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/3023",
+    "html_url": "https://github.com/open-webui/open-webui/issues/3023",
+    "author_login": "bannert1337",
+    "author_profile": "https://github.com/bannert1337",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 2134,
+    "title": "feat: RTL support",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nTo enable multi-lingual support for Arabic , hebrew , Farsi etc most apps have RTL capabilities.\r\nThis is needed for optimal experience for these languages\r\n\r\n**Describe the solution you'd like**\r\nThe CSS implementation needs to know that certain languages should have a RTL layout\r\n\r\n\r\n",
+    "reactions": 5,
+    "created_at": "2024-05-09T08:54:52Z",
+    "updated_at": "2025-05-01T12:45:47Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/2134",
+    "html_url": "https://github.com/open-webui/open-webui/issues/2134",
+    "author_login": "liorkesos",
+    "author_profile": "https://github.com/liorkesos",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 1065,
+    "title": "feat: System-wide Light/Dark Mode Theme Setting",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nYes, the feature request is related to the problem of manually switching between light and dark modes on different applications, which can be frustrating and challenging for many users, including those with visual impairments or sensitivities to certain light levels. Specifically, the issue lies in the current manual theme selection feature in Open WebUI, which does not incorporate the user's system light/dark mode setting.\r\n\r\n**Describe the solution you'd like**\r\nThe proposed solution is to add a new theme option labeled `System` in Open WebUI. This option will enable Open WebUI to automatically switch between light and dark modes based on the user's systems setting. This feature would improve accessibility for users with visual impairments or sensitivities to certain light levels and reduce the need for manual intervention. Enabling the `System` theme by default upon the first sign up for Open WebUI (the admin account) would better suit the needs of those users and provide a consistent user experience across all applications. Additionally, this would allow users to immediately experience the benefits of the system-wide light/dark mode theme setting without having to manually change their settings.\r\n\r\n**Describe alternatives you've considered**\r\nAn alternative solution considered is manually switching themes within Open WebUI. However, this approach would not provide a consistent user experience across all applications and would require manual intervention.\r\n\r\n**Additional context**\r\nIncorporating the system's light/dark mode setting into Open WebUI's theme settings would provide a more seamless and accessible user experience for all users. This feature would be particularly beneficial for those users who have visual impairments or sensitivities to certain light levels. By automatically switching between light and dark modes based on the user's system setting, Open WebUI can provide a more user-friendly and accessible platform for all users.",
+    "reactions": 5,
+    "created_at": "2024-03-06T20:02:59Z",
+    "updated_at": "2025-03-25T05:52:44Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/1065",
+    "html_url": "https://github.com/open-webui/open-webui/issues/1065",
+    "author_login": "silentoplayz",
+    "author_profile": "https://github.com/silentoplayz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 696,
+    "title": "feat: image generation integration",
+    "body": "**Feature request Summary**\r\nAnalogous to ChatGPT's integration of mixed models, I would like to have a single place for AI requests.\r\n1, connect ollama webui via openAI api to dall-e 3 image generation\r\n2, be able to connect ollama webui to other image generation models which run locally\r\n\r\nExample of how dall-e image generation is presented in chatGPT interface:\r\n![dall-e](https://github.com/ollama-webui/ollama-webui/assets/17550607/dc45cf7e-7f19-45e9-a636-d07fa1d0edec)\r\n\r\n\r\n",
+    "reactions": 5,
+    "created_at": "2024-02-10T10:02:01Z",
+    "updated_at": "2024-08-01T12:42:46Z",
+    "labels": [
+      "enhancement",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/696",
+    "html_url": "https://github.com/open-webui/open-webui/issues/696",
+    "author_login": "raphaelmaenle",
+    "author_profile": "https://github.com/raphaelmaenle",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 679,
+    "title": "feat: support openai embeddings for rag",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nIt would be great to have support for OpenAI's embedding models. As of now, to the best of my knowledge, only local embeddings are supported.\r\n\r\nLink: https://platform.openai.com/docs/guides/embeddings",
+    "reactions": 5,
+    "created_at": "2024-02-08T12:30:43Z",
+    "updated_at": "2024-09-07T17:52:38Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/679",
+    "html_url": "https://github.com/open-webui/open-webui/issues/679",
+    "author_login": "peperunas",
+    "author_profile": "https://github.com/peperunas",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 609,
+    "title": "feat: monitoring dashboard",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nIn serving multi-models, I'd like to see the GPU metrics through UI.\r\n\r\n**Describe the solution you'd like**\r\nI have done some experiments in my repo [OllamaStack](https://github.com/yeahdongcn/OllamaStack), but the metrics couldn't reflect enough information, and the whole setup is somewhat complicated.\r\n\r\n**Describe alternatives you've considered**\r\nN/A\r\n\r\n**Additional context**\r\nN/A\r\n",
+    "reactions": 5,
+    "created_at": "2024-01-31T08:09:26Z",
+    "updated_at": "2024-04-10T23:07:28Z",
+    "labels": [
+      "enhancement",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/609",
+    "html_url": "https://github.com/open-webui/open-webui/issues/609",
+    "author_login": "yeahdongcn",
+    "author_profile": "https://github.com/yeahdongcn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 526,
+    "title": "feat: cancel model download",
+    "body": "I want to have a stop download button at the end of the progressbar in the model download setting . thanks",
+    "reactions": 5,
+    "created_at": "2024-01-19T05:57:12Z",
+    "updated_at": "2024-03-24T23:20:22Z",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/526",
+    "html_url": "https://github.com/open-webui/open-webui/issues/526",
+    "author_login": "hemangjoshi37a",
+    "author_profile": "https://github.com/hemangjoshi37a",
+    "already_resurrected": false
+  }
+]

@@ -1,0 +1,339 @@
+[
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 10,
+    "title": "add to package repositories",
+    "body": "It'd be nice to at least get it into Ubuntu and homebrew. Sadly, I think either one of those will be quite difficult since Rust isn't packaged in either one of them.\n\nThe lowest hanging fruit is the Archlinux User Repository (AUR).\n\nFedora is getting Rust packaged soon, so that may be plausible.\n\nSadly, we may need to live with binaries distributed here for the time being.\n",
+    "reactions": 68,
+    "created_at": "2016-09-21T18:06:57Z",
+    "updated_at": "2022-08-02T19:10:11Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/10",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/10",
+    "author_login": "BurntSushi",
+    "author_profile": "https://github.com/BurntSushi",
+    "already_resurrected": true
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 176,
+    "title": "support searching across multiple lines",
+    "body": "Say for example I'm trying to find instances of `click` that reside in a `listeners` block, like so:\n\n```\nlisteners: {\n    foo: ...\n    click: ....\n}\n```\n\nAccording to the Rust regex docs, I should be able to do: `rg '(?s)listeners.+click'`, but this doesn't seem to work. Does ripgrep not support multiline regex?\n",
+    "reactions": 61,
+    "created_at": "2016-10-13T21:31:20Z",
+    "updated_at": "2021-12-01T14:11:33Z",
+    "labels": [
+      "enhancement",
+      "libripgrep"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/176",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/176",
+    "author_login": "isobit",
+    "author_profile": "https://github.com/isobit",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 129,
+    "title": "maximum line length",
+    "body": "I'd like `ripgrep` to have the ability to either hide or trim lines that are very long. Some lines take up my entire screen and are borderline useless to look at. It's possible that finding an intelligent way to shorten them would be best, since my guess is that the actual matched text is much smaller than the full line. However, this is harder to implement.\n\nI don't think this should be enabled by default. It seems a little surprising for `ripgrep` to hide lines like that. In general, I like the work flow of, \"run a search, see huge lines, confirm that I don't care about them and run ripgrep again with an option to hide them.\" It may however be plausible to enable this limit if results are being dumped to a terminal (we already enable colors, line numbers and file headings).\n",
+    "reactions": 48,
+    "created_at": "2016-09-28T17:47:19Z",
+    "updated_at": "2017-03-13T01:21:29Z",
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "libripgrep"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/129",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/129",
+    "author_login": "BurntSushi",
+    "author_profile": "https://github.com/BurntSushi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 34,
+    "title": "Add an option similar to -o, --only-matching",
+    "body": "With grep you can print only the matched parts of the files. The option is described like this in the grep manpage:\n\n```\n-o, --only-matching\n       Print only the matched (non-empty) parts of a matching line, with each such part on a separate output line.\n```\n\nA more powerful option, would something similar to `--replace`, but that doesn't print the non matched part of the text. \n",
+    "reactions": 31,
+    "created_at": "2016-09-23T20:38:39Z",
+    "updated_at": "2017-07-13T00:16:37Z",
+    "labels": [
+      "enhancement",
+      "libripgrep"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/34",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/34",
+    "author_login": "dzamlo",
+    "author_profile": "https://github.com/dzamlo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 225,
+    "title": "support searching compressed files using in-process decompression",
+    "body": "I'd like to use ripgrep for grepping log files, because it's faster then grep. But my logs are gzipped, and if I `zcat | rg` them I'll loose log filenames in output.\r\n\r\nAlso, would be great if bzip2 and xz decompressors will be supported too with automatic archive type detection.",
+    "reactions": 27,
+    "created_at": "2016-11-08T18:15:04Z",
+    "updated_at": "2018-02-21T05:17:47Z",
+    "labels": [
+      "question",
+      "icebox"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/225",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/225",
+    "author_login": "danbst",
+    "author_profile": "https://github.com/danbst",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 86,
+    "title": "invoke a pager to display results",
+    "body": "Just tried the tool, it's great (as is the blostpost btw). I'm usually using `grep -r foo | less -R` for searching (with an alias to get colored output), since there might be several pages of results; `rg` coloring is nice but is lost if piped into a pager. Would it make sense to invoke a pager automatically if the tool detects that its output is not piped?\n",
+    "reactions": 27,
+    "created_at": "2016-09-25T17:07:40Z",
+    "updated_at": "2025-10-24T18:39:07Z",
+    "labels": [
+      "enhancement",
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/86",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/86",
+    "author_login": "c-cube",
+    "author_profile": "https://github.com/c-cube",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 665,
+    "title": "Option to print file paths as file URLs",
+    "body": "Printing file paths as `file` URLs is very handy since you can click on them and the file will open. This happens in Konsole at least.",
+    "reactions": 22,
+    "created_at": "2017-11-06T21:18:34Z",
+    "updated_at": "2023-09-25T18:56:21Z",
+    "labels": [
+      "enhancement",
+      "question"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/665",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/665",
+    "author_login": "sanmai-NL",
+    "author_profile": "https://github.com/sanmai-NL",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 6,
+    "title": "add support for mercurial",
+    "body": "Mercurial is widely used enough that we should probably support it. Mercurial will actually be harder to do correctly than git, because an `.hgignore` file can support both regexes and globs. An `.hgignore` file can also specify _subincludes_, which include ignore patterns in a sub-directory (as opposed to `git`, which will read `.gitignore` files in sub-directories automatically).\n\nThankfully, `ripgrep` translates all globs to regexes, so we should be able to support Mercurial without too much trouble.\n\nSee: `hg help hgignore` and `hg help patterns`.\n",
+    "reactions": 20,
+    "created_at": "2016-09-16T22:08:24Z",
+    "updated_at": "2024-12-05T21:14:29Z",
+    "labels": [
+      "enhancement",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/6",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/6",
+    "author_login": "BurntSushi",
+    "author_profile": "https://github.com/BurntSushi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 958,
+    "title": "Option for outputting absolute paths",
+    "body": "It would be great if ripgrep had an option that would change the output file paths to be absolute instead of relative.",
+    "reactions": 17,
+    "created_at": "2018-06-21T11:39:08Z",
+    "updated_at": "2025-02-14T07:09:19Z",
+    "labels": [
+      "question",
+      "wontfix"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/958",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/958",
+    "author_login": "SigmundVik",
+    "author_profile": "https://github.com/SigmundVik",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 95,
+    "title": "fulltext search",
+    "body": "One of the things I've wanted `ripgrep` to do from before I even started writing it was fulltext search. General fulltext search is hard, but I wonder how far we can get by focusing on fulltext search _for code_.\n\nI know there are some tools out there already that aspire to do this:\n- [CodeSearch](https://github.com/google/codesearch), which is based on Russ Cox's excellent [trigram index](https://swtch.com/~rsc/regexp/regexp4.html) article.\n- [Hound](https://github.com/etsy/hound) (which is also based on Cox's write up).\n\nI'd like to start collecting use cases for functionality like this. In particular, most of the technical problems are already solved. Obviously, we have `ripgrep` and we have a lighting fast [data structure for representing an inverted index](https://github.com/BurntSushi/fst) already (indeed, it's the same as what Lucene uses internally). I think the key problems remaining are figuring out the user interaction story. Some things off the top of my head:\n- Does such a tool belong in `ripgrep`? Can use of an index be done seamlessly while still being a top notch general purpose search tool?\n- What specific things does it do that make _code_ search in particular better? Do we need parsers for every language?\n- How is an out-of-band index maintained? Does a user need to manually update? Is it a daemon that watches directories for file notification and update itself automatically? How do we know if an index is out-of-date?\n\nAnyway, I'd like to start thinking about this. I don't know when I'll start on an implementation, but it'd be good to get ideas from other folks.\n",
+    "reactions": 17,
+    "created_at": "2016-09-26T00:19:35Z",
+    "updated_at": "2021-02-01T22:52:15Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/95",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/95",
+    "author_login": "BurntSushi",
+    "author_profile": "https://github.com/BurntSushi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 411,
+    "title": "Way to report total count of matches?",
+    "body": "Is there a way to print the total count of matches? I can pipe the output to a line counter, but then I don't get the actual matches printed.",
+    "reactions": 14,
+    "created_at": "2017-03-19T09:29:25Z",
+    "updated_at": "2024-02-28T14:11:08Z",
+    "labels": [
+      "help wanted",
+      "question"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/411",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/411",
+    "author_login": "elirnm",
+    "author_profile": "https://github.com/elirnm",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 162,
+    "title": "libripgrep",
+    "body": "This is a tracking issue for the concept known as \"libripgrep.\"\r\n\r\nIn fact, \"libripgrep\" probably won't ever be a thing unto itself. Instead, there will be several independent crates that together make up the thing one might think of as \"libripgrep.\" Most of this work is already done. Here's a list:\r\n- [memchr](https://crates.io/crates/memchr) - Fast single byte search.\r\n- [walkdir](https://crates.io/crates/walkdir) - Recursive directory iterator.\r\n- [utf8-ranges](https://crates.io/crates/utf8-ranges) - Generate utf8 automata.\r\n- [regex-syntax](https://crates.io/crates/regex-syntax) - A regex parser (including literal extraction helpers).\r\n- [regex](https://crates.io/crates/regex) - The regex engine itself.\r\n- [globset](https://crates.io/crates/globset) - Regex based glob matching, including glob-set matching.\r\n- [grep](https://crates.io/crates/grep) - Blazing fast line-by-line search. This is where all of the inner literal optimizations happen. (INCOMPLETE.)\r\n- [ignore](https://crates.io/crates/ignore) - Recursively traverse a directory while respecting ignore files and file types.\r\n- parallel directory iterator - Iterate over files in parallel, applying ignore rules. (**This is now done and part of the `ignore` crate.**)\r\n\r\n`grep` is incomplete because it exposes only the most basic line-by-line\r\nsearch. For example, it doesn't handle inverted matching, context handling,\r\nline counts or anything other than \"which line matches this regex.\" Still,\r\nthere is considerable regex-specific work in here around literal matching and\r\nother optimizations. The rest of the aforementioned work is done in `ripgrep`\r\nproper. Ideally, all of that should get moved out into the `grep` crate. This\r\nis predominantly a _design_ task, because searching is inextricably tied to\r\nprinting, which means the API for all of these features is quite complex.\r\n\r\n`gitignore` is a reasonably light wrapper around the `globset` crate. The hope\r\nis that a future `hgignore` crate would be too. Nevertheless, the semantics are\r\ntricky enough that it's worth it to put it into its own crate.\r\n\r\nA parallel directory iterator is something I want because so much time is spent\r\nin handling all of the ignore rules. If we can apply parallelism to that, I\r\nkind of expect that we'll get a nice win. Whether a parallel directory iterator\r\ncan be design out-of-tree or not still isn't clear. In particular, it's not\r\nclear how coupled this needs to be with respecting ignore rules.\r\n\r\n---\r\n\r\nIn any case, I don't really have the bandwidth to do the design work required to manage contributions from others toward this goal quite yet. I kind of think they're big enough that I would like to at least do the initial work on them.\r\n",
+    "reactions": 9,
+    "created_at": "2016-10-11T00:42:59Z",
+    "updated_at": "2018-08-20T11:10:20Z",
+    "labels": [
+      "enhancement",
+      "libripgrep"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/162",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/162",
+    "author_login": "BurntSushi",
+    "author_profile": "https://github.com/BurntSushi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 26,
+    "title": "add -l / --files-with-matches option?",
+    "body": "I use the `-l` option to grep / ack / ag / etc quite a lot to list files containing matches for further processing in a shell pipeline. Does it seem reasonable as a thing to add to ripgrep?\n",
+    "reactions": 9,
+    "created_at": "2016-09-23T18:32:38Z",
+    "updated_at": "2016-09-25T18:53:31Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/26",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/26",
+    "author_login": "Roguelazer",
+    "author_profile": "https://github.com/Roguelazer",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 1872,
+    "title": "Add \"replace\" text field in --json output that contains replace string for respective matches",
+    "body": "Currently ``rg --json`` provides full text of every match in submatch array item's ``match.text`` field. This ticket is to request addition of ``replace.text`` field in submatch array items. The ``replace.text`` fields will only get added if user passed the replace flag ``-r`` and the replace string. For usual searches without replace (``-r``), replace.text will not get added & the json output will be same as it is today.\r\n\r\nMotivation: This will allow using ``rg --json`` to become a real alternative to Vim's internal search-and-replace functionality ``:%s/<match_pattern>/<replace_pattern>/g`` that is based on legacy vim regex format. Given the start-end position of submatches are known, developers would just need replacement text information to delete ``match.text`` from text files, and replace it with ``replace.text``. Given its in a clean json format, it would be easier to allow batch processing, replace an occurrence of interest, and even selectively rollback* easily. The same information can be used in other tools/scripts as well to do search-and-replace. Moreover, currently there is no way of doing this using ``rg`` with Vim & just having it integrated as a search tool makes it less preferred over vim's built in regex engine because: users will have to learn new regex syntax that they cannot use for capture group based complex text replace. This will force a user to either learn both syntaxes (vim regex, and rust regex), or just stick with vim regex (thus limiting adoption of ``rg``). Having this feature will also bring the power of pcre2 search and replace to Vim.\r\n\r\n\\* Selective rollback is different from undo. Undo by its very nature is LIFO, whereas selective rollback can be in any order the user wishes (without having to undo all steps after it). It's easy to build something like that in Vim with information asked in this ticket.\r\n\r\n> NOTE: If you decide to add this, then please cover those corners where entire line is a match, and no submatches are printed.",
+    "reactions": 8,
+    "created_at": "2021-05-26T06:56:11Z",
+    "updated_at": "2025-09-20T01:08:29Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/1872",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/1872",
+    "author_login": "poetaman",
+    "author_profile": "https://github.com/poetaman",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 676,
+    "title": "Request: Binaries for ARM / Raspberry Pi",
+    "body": "Ripgrep is so fast and lightweight that it really seems like it would shine on low-resources devices like the Raspberry Pi. Unfortunately, the current binaries don't include an ARM compatible release. Additionally, the process for cross-compiling with Rust from OSX to ARM seems [more complicated than I anticipated](https://github.com/Ragnaroek/rust-on-raspberry-docker) (at least compared to Go), and installing Rust on the Pi seems like a little more work than I'd hope for just to be able to install ripgrep.\r\n\r\nIf there's any way the `armv7-unknown-linux-gnueabihf` target could be added as one of the binaries you provide for easy download, I bet it would see a decent amount of use from fellow Raspberry Pi users.  As someone unfamiliar with Rust, trying to figure out rustup and cross compiling is currently taking up a lot of my day, and a simple `wget` and `tar xzf` certainly sounds appealing.",
+    "reactions": 8,
+    "created_at": "2017-11-12T20:11:39Z",
+    "updated_at": "2018-03-18T22:27:07Z",
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "question"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/676",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/676",
+    "author_login": "n8henrie",
+    "author_profile": "https://github.com/n8henrie",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 152,
+    "title": "preserve order of input files in output without sacrificing parallelism",
+    "body": "There should be a way to tell rg to preserve the order of input files specified on the command line in the output.\n\nE.g., if I'm searching a bunch of files which are in chronological order, I want the output to be in chronological order.\n",
+    "reactions": 8,
+    "created_at": "2016-10-05T23:14:59Z",
+    "updated_at": "2021-06-23T16:36:40Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/152",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/152",
+    "author_login": "jikamens",
+    "author_profile": "https://github.com/jikamens",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 539,
+    "title": "add decompression support on Unix systems",
+    "body": "@wavexx [Suggests farming out decompression to established stream decompressors](https://github.com/BurntSushi/ripgrep/issues/225#issuecomment-312873930). I am somewhat attracted to this path since it will cover a lot of use cases, and at least on the face of things, seems relatively easy to implement. If this turns out to be a much larger project than I anticipated, then the trade off may no longer make sense. The intention is to support decompression on all supported platforms, so we don't want to invest a bunch of work in a Unix-only option.\r\n\r\nI'm not sure when I personally will have time to work on this, but as long as it's easy to maintain, I'm not intrinsically opposed to farming this out to another process. Note that the core search code can work on *any* arbitrary thing that implements [`io::Read`](https://doc.rust-lang.org/std/io/trait.Read.html), which means the glue code required for this should be pretty limited. There's already an example of this at play for encoding support, where any supported encoding is first transcoded to UTF-8 before being searched. The scope of that addition was pretty much limited to [implementing `io::Read`](https://github.com/BurntSushi/ripgrep/blob/master/src/decoder.rs) and doesn't require touching any of the core search code.\r\n\r\nIf someone else wanted to work on this, I'd be happy to mentor it. I haven't thought about it too much, but I think these are probably the high level steps one needs to take:\r\n\r\n* Come up with a way of detecting when a certain type of decompressor is needed. It's probably sufficient to use the file extension as a first pass, although one should consider special cases like `.tar.gz` (probably by skipping them at first, but maybe eventually trying to read `tar` archives as well).\r\n* Implement glue code that takes as input a command that executes stream decompression on a specific file path and outputs an implementation of `io::Read` that is suitable to pass to the `io::Read` searcher.\r\n* Think about what a path forward looks like for replacing out-of-process decompression with in-process decompression. For example, if and when Rust gets a native gzip decompression library that is suitable for use (maybe it already is), then how could it be used to replace use of, say, the `gzip` command seamlessly? This will be important for eventually migrating to cross platform decompression support.\r\n* Give some thought to Windows support. It doesn't actually seem like this is inherently Windows-incompatible, but may favor Unix systems by virtue of the tooling typically available in a Unix environment.\r\n* Initially ignore any and all decompression on `stdin`. Callers can invoke their own decompressor in this case easily enough that we shouldn't do anything smart. (A future path might add a flag to force decompression of a specific format.)",
+    "reactions": 7,
+    "created_at": "2017-07-04T13:51:31Z",
+    "updated_at": "2019-04-17T18:10:04Z",
+    "labels": [
+      "enhancement",
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/539",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/539",
+    "author_login": "BurntSushi",
+    "author_profile": "https://github.com/BurntSushi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 51,
+    "title": "Color customization",
+    "body": "We should definitely try to support customizing colors in the output similar to how `ag` does it. Currently they support 3 color customizations, as per [this issue](https://github.com/ggreer/the_silver_searcher/issues/90):\n- `--colors-match`\n- `--colors-path`\n- `--colors-line-number`\n\nImplementing the part where we set colors based on an argument is not particularly hard (just a matter of translating user input to `term::Attr` enums). Parsing input in the bash terminal format like `ag` does was not difficult to implement. However, this limits Windows usage because we don't have an easy translation between those colors.\n\nHow should we go about supporting these color customizations for both Linux, Mac and Windows?\n",
+    "reactions": 7,
+    "created_at": "2016-09-24T04:57:24Z",
+    "updated_at": "2018-02-22T21:18:21Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/51",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/51",
+    "author_login": "eugene-bulkin",
+    "author_profile": "https://github.com/eugene-bulkin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "BurntSushi/ripgrep",
+    "issue_number": 40,
+    "title": "deprecate .rgingore, switch to .ignore",
+    "body": "As discussed between myself and @ggreer: https://news.ycombinator.com/item?id=12568822 Yay cooperation!\n",
+    "reactions": 6,
+    "created_at": "2016-09-24T00:37:51Z",
+    "updated_at": "2016-09-24T05:33:44Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/BurntSushi/ripgrep/issues/40",
+    "html_url": "https://github.com/BurntSushi/ripgrep/issues/40",
+    "author_login": "BurntSushi",
+    "author_profile": "https://github.com/BurntSushi",
+    "already_resurrected": false
+  }
+]

@@ -1,0 +1,712 @@
+[
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 1516,
+    "title": "[Feature Request] : Support for Würstchen",
+    "body": "Here is the model card: https://huggingface.co/warp-ai/wuerstchen\r\nworking demo : https://huggingface.co/spaces/warp-ai/Wuerstchen\r\nI was able to run this space locally, the model seems good and is extremely fast. \r\nThere is a dedicated pipeline in the new diffusers 0.21.0 too.",
+    "reactions": 39,
+    "created_at": "2023-09-14T14:56:34Z",
+    "updated_at": "2026-02-19T23:34:01Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/1516",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/1516",
+    "author_login": "syddharth",
+    "author_profile": "https://github.com/syddharth",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 5549,
+    "title": "please support svdquant",
+    "body": "### Feature Idea\n\nhttps://hanlab.mit.edu/projects/svdquant\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 34,
+    "created_at": "2024-11-09T05:58:49Z",
+    "updated_at": "2024-12-09T02:09:49Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/5549",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/5549",
+    "author_login": "wodsoe",
+    "author_profile": "https://github.com/wodsoe",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 9173,
+    "title": "Qwen-image support",
+    "body": "### Feature Idea\n\nhttps://huggingface.co/Qwen/Qwen-Image\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 29,
+    "created_at": "2025-08-04T16:34:06Z",
+    "updated_at": "2025-08-05T06:39:02Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/9173",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/9173",
+    "author_login": "mliand",
+    "author_profile": "https://github.com/mliand",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11041,
+    "title": "Request to Support Z-Image Controlnet",
+    "body": "### Feature Idea\n\nAlibaba-PAI just released a new Controlnet model for Z-Image-Turbo (https://huggingface.co/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union). But I think ComfyUI doesn’t support it yet. When I tried to load it, I got this error:\n\n<img width=\"1545\" height=\"778\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/4f0bf498-2387-4fc0-ae07-7d04cc4239f4\" />\n\n```\ngot prompt\nerror could not detect control model type.\nerror checkpoint does not contain controlnet or t2i adapter data F:\\AI\\Stability Matrix\\Models\\ControlNet\\Z-Image-Turbo-Fun-Controlnet-Union.safetensors\n!!! Exception during processing !!! ERROR: controlnet file is invalid and does not contain a valid controlnet model.\nTraceback (most recent call last):\n  File \"F:\\AI\\ComfyUI-Nightly\\ComfyUI\\execution.py\", line 510, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, hidden_inputs=hidden_inputs)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\AI\\ComfyUI-Nightly\\ComfyUI\\execution.py\", line 324, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, hidden_inputs=hidden_inputs)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"F:\\AI\\ComfyUI-Nightly\\ComfyUI\\execution.py\", line 298, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n  File \"F:\\AI\\ComfyUI-Nightly\\ComfyUI\\execution.py\", line 286, in process_inputs\n    result = f(**inputs)\n             ^^^^^^^^^^^\n  File \"F:\\AI\\ComfyUI-Nightly\\ComfyUI\\nodes.py\", line 815, in load_controlnet\n    raise RuntimeError(\"ERROR: controlnet file is invalid and does not contain a valid controlnet model.\")\nRuntimeError: ERROR: controlnet file is invalid and does not contain a valid controlnet model.\n```\n\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 26,
+    "created_at": "2025-12-02T09:33:21Z",
+    "updated_at": "2025-12-03T02:39:31Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11041",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11041",
+    "author_login": "jprsyt5",
+    "author_profile": "https://github.com/jprsyt5",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 7530,
+    "title": "New Model: HiDream-I1-Full",
+    "body": "### Feature Idea\n\n[HiDream-I1-Full](https://huggingface.co/HiDream-ai/HiDream-I1-Full)\n\n![Image](https://github.com/user-attachments/assets/cae93231-642b-4184-ac58-01aec6c3eaae)\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 26,
+    "created_at": "2025-04-08T02:31:30Z",
+    "updated_at": "2025-06-19T08:42:41Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/7530",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/7530",
+    "author_login": "tiptinker",
+    "author_profile": "https://github.com/tiptinker",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 6375,
+    "title": "Add support for Nvidia cosmos models",
+    "body": "### Feature Idea\n\nAdd support for new Nvidia cosmos diffusion video generation models (without guardrails hopefully)\r\n\r\nhttps://huggingface.co/collections/nvidia/cosmos-6751e884dc10e013a0a0d8e6\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 19,
+    "created_at": "2025-01-07T06:21:03Z",
+    "updated_at": "2025-01-18T23:25:36Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/6375",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/6375",
+    "author_login": "rombodawg",
+    "author_profile": "https://github.com/rombodawg",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11285,
+    "title": "Please support Z-Image-Turbo-Fun-Controlnet-Union-2.0",
+    "body": "### Feature Idea\n\nA new model for Z image model control that supports both control and inpainting.\n\nhttps://huggingface.co/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union-2.0\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 18,
+    "created_at": "2025-12-12T09:13:15Z",
+    "updated_at": "2026-02-19T23:31:48Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11285",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11285",
+    "author_login": "bubbliiiing",
+    "author_profile": "https://github.com/bubbliiiing",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11857,
+    "title": "please support ZhipuAI/GLM-Image",
+    "body": "### Custom Node Testing\n\n- [ ] I have tried disabling custom nodes and the issue persists (see [how to disable custom nodes](https://docs.comfy.org/troubleshooting/custom-node-issues#step-1%3A-test-with-all-custom-nodes-disabled) if you need help)\n\n### Your question\n\nplease support ZhipuAI/GLM-Image:\n\n[https://huggingface.co/zai-org/GLM-Image](https://huggingface.co/zai-org/GLM-Image)\n\nthanks.\n\n\n\n### Logs\n\n```powershell\n\n```\n\n### Other\n\n_No response_",
+    "reactions": 18,
+    "created_at": "2026-01-14T01:29:40Z",
+    "updated_at": "2026-02-17T15:33:04Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11857",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11857",
+    "author_login": "jpg1024",
+    "author_profile": "https://github.com/jpg1024",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 4355,
+    "title": "add support for InstantX/FLUX.1-dev-Controlnet-Union",
+    "body": "### Feature Idea\n\nhttps://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union-alpha\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 17,
+    "created_at": "2024-08-14T12:54:42Z",
+    "updated_at": "2024-11-16T07:44:57Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/4355",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/4355",
+    "author_login": "geroldmeisinger",
+    "author_profile": "https://github.com/geroldmeisinger",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 3734,
+    "title": "[Feature] Support for SD3 ControlNet",
+    "body": "Chads from InstantX (who created InstantID) has made several ControlNet for SD3-Medium, including:\r\n* [InstantX/SD3-Controlnet-Canny](https://huggingface.co/InstantX/SD3-Controlnet-Canny)\r\n* [InstantX/SD3-Controlnet-Pose](https://huggingface.co/InstantX/SD3-Controlnet-Pose)\r\n* [InstantX/SD3-Controlnet-Tile](https://huggingface.co/InstantX/SD3-Controlnet-Tile)\r\n* [InstantX/SD3-Controlnet-Inpainting](https://huggingface.co/InstantX/SD3-Controlnet-Inpainting)\r\n\r\nTheir implementation can be found at https://github.com/huggingface/diffusers/pull/8566",
+    "reactions": 16,
+    "created_at": "2024-06-15T19:30:21Z",
+    "updated_at": "2024-06-29T09:06:19Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/3734",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/3734",
+    "author_login": "Fannovel16",
+    "author_profile": "https://github.com/Fannovel16",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 6648,
+    "title": "Add support for Lumina-Image-2.0",
+    "body": "### Feature Idea\n\nhttps://huggingface.co/Alpha-VLLM/Lumina-Image-2.0\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 16,
+    "created_at": "2025-01-30T14:10:29Z",
+    "updated_at": "2025-02-14T06:01:41Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/6648",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/6648",
+    "author_login": "GalaxyTimeMachine",
+    "author_profile": "https://github.com/GalaxyTimeMachine",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 4307,
+    "title": "Support flux1-bnb-nf4",
+    "body": "### Feature Idea\n\nreference https://github.com/lllyasviel/stable-diffusion-webui-forge/discussions/981\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 15,
+    "created_at": "2024-08-11T07:22:24Z",
+    "updated_at": "2025-03-09T21:16:26Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/4307",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/4307",
+    "author_login": "bananasss00",
+    "author_profile": "https://github.com/bananasss00",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 3435,
+    "title": "Comfyui support for Story Diffusion",
+    "body": "Hi, can we get ComfyUI support for this new amazing work https://github.com/HVision-NKU/StoryDiffusion? What would be the vram requirement for this?",
+    "reactions": 14,
+    "created_at": "2024-05-09T22:46:45Z",
+    "updated_at": "2025-02-10T11:30:37Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/3435",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/3435",
+    "author_login": "MaxTran96",
+    "author_profile": "https://github.com/MaxTran96",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 12985,
+    "title": "Feedback on update frequency and stability",
+    "body": "### Custom Node Testing\n\n- [ ] I have tried disabling custom nodes and the issue persists (see [how to disable custom nodes](https://docs.comfy.org/troubleshooting/custom-node-issues#step-1%3A-test-with-all-custom-nodes-disabled) if you need help)\n\n### Your question\n\nFirst of all, thanks for all the work being put into ComfyUI. \nHowever, the current update frequency is becoming difficult to manage. There are often multiple updates in a single day (sometimes three or more through the desktop app), and with the latest updates several things broke — including nodes and basic features like copy/paste, user session on restart, nodes map nothing working\n\nFrequent updates are great for development, but for users who rely on ComfyUI in active workflows, stability is far more important than constant changes.\n\nIt might help the community if the project focused more on stability and compatibility rather than pushing multiple updates per day. For example:\n\nFewer releases but with more testing\n\nA more stable release channel\n\nBetter compatibility checks with popular nodes before updates\n\nRight now many users end up with broken nodes or workflows after updating, which disrupts productivity.\n\nAgain, I really appreciate the work being done on ComfyUI — this feedback is meant to help make the experience more stable for everyday users.\n\n### Logs\n\n```powershell\n\n```\n\n### Other\n\n_No response_",
+    "reactions": 13,
+    "created_at": "2026-03-16T04:23:38Z",
+    "updated_at": "2026-04-26T11:42:18Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/12985",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/12985",
+    "author_login": "arunaero2025",
+    "author_profile": "https://github.com/arunaero2025",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11821,
+    "title": "Please support Qwen-Image-2512-Fun-ControlNet-Union and Z-Image-Turbo-Fun-Controlnet-Union-2.1...2601",
+    "body": "### Feature Idea\n\nLoad fron this https://modelscope.cn/models/PAI/Qwen-Image-2512-Fun-Controlnet-Union\n\n******2601***************\nhttps://huggingface.co/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union-2.1\nhttps://huggingface.co/alibaba-pai/Qwen-Image-2512-Fun-Controlnet-Union\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 13,
+    "created_at": "2026-01-12T10:40:05Z",
+    "updated_at": "2026-02-14T03:23:54Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11821",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11821",
+    "author_login": "thaivb",
+    "author_profile": "https://github.com/thaivb",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11136,
+    "title": "🌟 LongCat-Image-Edit",
+    "body": "I apologize, but I received harassing emails because of this, and I must close this issue.\n\nhttps://github.com/comfyanonymous/ComfyUI/issues/11136#issuecomment-3692734013",
+    "reactions": 11,
+    "created_at": "2025-12-06T03:14:34Z",
+    "updated_at": "2025-12-26T11:38:41Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11136",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11136",
+    "author_login": "juntaosun",
+    "author_profile": "https://github.com/juntaosun",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 9781,
+    "title": "Hunyuan image 2.1 support",
+    "body": "### Feature Idea\n\n肯定会有的吧~\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 11,
+    "created_at": "2025-09-09T09:43:40Z",
+    "updated_at": "2025-09-10T11:59:59Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/9781",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/9781",
+    "author_login": "zwukong",
+    "author_profile": "https://github.com/zwukong",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 794,
+    "title": "feat: LoRA as prompt",
+    "body": "Hi!\r\n\r\nAs we know, in A1111 webui, LoRA(and LyCORIS) is used as prompt.\r\nIMHO, LoRA as a prompt (as well as node) can be convenient. \r\n\r\n## Simplicity\r\n\r\nWhen using many LoRAs(e.g. for character, fashion, background, etc), it becomes easily bloated.\r\n\r\n<img width=\"606\" alt=\"스크린샷 2023-06-25 오후 11 23 29\" src=\"https://github.com/comfyanonymous/ComfyUI/assets/28584151/9afd563d-c6ee-495e-8d18-40192552553b\">\r\n\r\nText prompts can reduce this.\r\n\r\n## Sharability\r\n\r\nPeople tend to share EXIF in A1111 format. \r\nText prompt is good for copy-and-paste.\r\nSometimes what users want is getting started as rapid as possible.\r\nThat's because they are so excited by new ideas that just checking out the result ASAP has higher priority.\r\n\r\n## Experiment\r\n\r\nUsers of ComfyUI are more hard-core than those of A1111.\r\nThey experiment a lot.\r\nIn many cases, text is faster to edit (with autocompletion or text editors).\r\nFor example, on A1111 webui, I use find-and-replace feature in VSCode for automatically replacing multiple LoRA weights at once.\r\nWhat's more, I \"generate\" a text of list of LoRA with specific weights and additional args from a simple script(like .js, .py, or .sh) for experiments.\r\nThis practice saves time a lot and thus essential in my workflow.\r\n \r\n## Conclusion\r\n\r\nI like node-based workflow.\r\nBut things especially like LoRA can benefit us by being prompt.\r\nPrompt grammar is DSL, and well-defined DSL becomes really productive.\r\n\r\nHow do you think?\r\n\r\nThank you :)",
+    "reactions": 11,
+    "created_at": "2023-06-25T14:35:07Z",
+    "updated_at": "2024-10-30T17:33:17Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/794",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/794",
+    "author_login": "jjangga0214",
+    "author_profile": "https://github.com/jjangga0214",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 4230,
+    "title": "[Announcement] Execution Model Inversion PR Will Be Merged Soon",
+    "body": "PR 2666, \"Execution Model Inversion\", <https://github.com/comfyanonymous/ComfyUI/pull/2666> (*aka the PR that adds the core engine necessary for things like in-workflow for loops*), will be merged **Next Week**! This is final public notice to please test this PR ASAP!\r\n\r\nIf you are a nodepack author, especially if your pack monkeypatches the core or touches complex execution logic, please test compatibility asap!\r\nWe're hoping for a smooth merge that doesn't break anything for anyone here!\r\n\r\n### What does this mean for regular users?\r\n\r\nInitially, if all goes well: Nothing! Everything should continue to work exactly the same as it does.\r\n\r\nIn time: this opens up a much more powerful core execution engine that nodepack authors can take advantage of, and then in turn workflow authors can use to make much more complex workflows.\r\nGuill has a demo pack here: <https://github.com/BadCafeCode/execution-inversion-demo-comfyui>\r\n\r\nI've attached to this announcement a couple gifs showing demo nodes implementing a primitive for loop and a primitive list accumulator, examples of the types of new tools that will be made available in ComfyUI thanks to this PR.\r\n\r\n*This post has also been sent to Reddit <https://new.reddit.com/r/comfyui/comments/1ekz6sd/comfyui_announcement_pr_2666_execution_model/>*\r\n\r\n(If you're excited about the new possibilities here, be sure to thank @guill for this amazing PR!)\r\n![loopy](https://github.com/user-attachments/assets/953c76e2-91b2-4dad-8348-f981fd948e39)\r\n![accum](https://github.com/user-attachments/assets/abc88f61-8474-4c67-930d-0b62ad419645)\r\n\r\n",
+    "reactions": 10,
+    "created_at": "2024-08-05T21:18:53Z",
+    "updated_at": "2024-08-15T15:54:39Z",
+    "labels": [
+      "Feature",
+      "Needs Testing"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/4230",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/4230",
+    "author_login": "mcmonkey4eva",
+    "author_profile": "https://github.com/mcmonkey4eva",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 4373,
+    "title": "Forge now supports lora for NF4",
+    "body": "### Feature Idea\n\nforge now supports lora for NF4，I hope ComfyUI can also support it\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 10,
+    "created_at": "2024-08-15T13:23:52Z",
+    "updated_at": "2025-04-16T16:51:47Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/4373",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/4373",
+    "author_login": "FLYleoYBQ",
+    "author_profile": "https://github.com/FLYleoYBQ",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11786,
+    "title": "The new UI is an absolute disaster - How to revert this mess?",
+    "body": "### Custom Node Testing\n\n- [x] I have tried disabling custom nodes and the issue persists (see [how to disable custom nodes](https://docs.comfy.org/troubleshooting/custom-node-issues#step-1%3A-test-with-all-custom-nodes-disabled) if you need help)\n\n### Your question\n\nCan someone please explain how to forcefully bring back the old UI (v0.3.70 style) without being stuck on an outdated backend?\nThe new UI is a laggy, buggy sack of manure. The \"Beta\" version isn't any better - it looks like hot garbage. What is the obsession with these massive, oversized elements? Compensating for something?\nThese \"modern\" UI choices make large workflows completely unusable. It’s bloated, unresponsive, and feels like a massive step backward. While the core generation engine has improved, the interface has become a total train wreck.\nStop fixing what wasn't broken and give me a way to use the classic, functional layout.\nAAAAAAAAAAAAAAAAAAA!!!\n\n### Logs\n\n```powershell\n\n```\n\n### Other\n\nPersonal opinion:\nI hate these \"designers\". Hire new ones.",
+    "reactions": 9,
+    "created_at": "2026-01-10T15:30:50Z",
+    "updated_at": "2026-02-10T18:29:43Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11786",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11786",
+    "author_login": "ghost",
+    "author_profile": "https://github.com/ghost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 624,
+    "title": "+ frame selection",
+    "body": "standard for node graph is : left dragging in the canvas = frame selection\r\nbut LMB is used to scroll canvas\r\nso suggested change is: MMB to scroll canvas (every mouse has a clickable scroll wheel these days)\r\nand LMB on canvas = drag a frame to select nodes.",
+    "reactions": 8,
+    "created_at": "2023-05-06T00:24:59Z",
+    "updated_at": "2025-10-30T05:47:57Z",
+    "labels": [
+      "Feature",
+      "Frontend"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/624",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/624",
+    "author_login": "laurentopia",
+    "author_profile": "https://github.com/laurentopia",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 9217,
+    "title": "Group nodes are not working after update to 0.3.49",
+    "body": "### Custom Node Testing\n\n- [x] I have tried disabling custom nodes and the issue persists (see [how to disable custom nodes](https://docs.comfy.org/troubleshooting/custom-node-issues#step-1%3A-test-with-all-custom-nodes-disabled) if you need help)\n\n### Expected Behavior\n\nGive me back the group node plz.\n\n\n\n\n\n### Actual Behavior\n\ni can ungroup, but can't create a new group. It's not in the menu.\n\n![Image](https://github.com/user-attachments/assets/4ef3d9bc-1a0a-459b-80b1-9a12fb0c9405)\n\n### Steps to Reproduce\n\nTest the group node\n\n### Debug Logs\n\n```powershell\nThere is nothing in the log\n```\n\n### Other\n\n_No response_",
+    "reactions": 8,
+    "created_at": "2025-08-07T04:11:14Z",
+    "updated_at": "2025-08-16T06:06:51Z",
+    "labels": [
+      "Feature",
+      "bug-cop:non-blocking"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/9217",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/9217",
+    "author_login": "m8rr",
+    "author_profile": "https://github.com/m8rr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 10134,
+    "title": "Support for Kandinsky 5.0 models (2B and19B T2V/I2V models and a 6B T2I model - All apache 2.0 licensed) ?",
+    "body": "### Feature Idea\n\nCurrently they have released the Lite version which is a 2B parameter T2V model. Soon they will release their larger model.\nhttps://huggingface.co/collections/ai-forever/kandinsky-50-t2v-lite-68d71892d2cc9b02177e5ae5\n\n### Existing Solutions\n\nhttps://github.com/ai-forever/Kandinsky-5/tree/main/comfyui\n\n### Other\n\nThe text encoder is Qwen 2.5VL 7B. the same as Qwen Image. The VAE is HunyuanVideo VAE. The only thing to code might be for the DiT",
+    "reactions": 8,
+    "created_at": "2025-10-01T05:18:18Z",
+    "updated_at": "2026-02-03T07:09:44Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/10134",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/10134",
+    "author_login": "MeiYi-dev",
+    "author_profile": "https://github.com/MeiYi-dev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11926,
+    "title": "Flux2 diffusers LoRA format",
+    "body": "### Feature Idea\n\nare you still planning on supporting diffusers LoRA? \n\nIf so, some keys have to be added here to support the Flux2 model family. More people might care about this now, after the Klein model releases.\n\nhttps://github.com/Comfy-Org/ComfyUI/blame/7ac999bf3069b06648a749212f59237080a75591/comfy/utils.py#L574\n\nYou can find a full list of keys here:\nhttps://github.com/huggingface/diffusers/blob/cb9f124657ee2107ec9a4901b823a427e0fd6468/scripts/convert_flux2_to_diffusers.py#L267\n\nI *think* it's only a few keys missing in the single blocks, because the double blocks remained largely unchanged since Flux1.\n\n### Existing Solutions\n\nExternal conversion, but this is non-trivial because of the QKV-fusion.\n\n### Other\n\n_No response_",
+    "reactions": 7,
+    "created_at": "2026-01-17T07:50:13Z",
+    "updated_at": "2026-01-20T23:50:53Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11926",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11926",
+    "author_login": "dxqb",
+    "author_profile": "https://github.com/dxqb",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11910,
+    "title": "qwen image 2512 fun controlnet support",
+    "body": "### Feature Idea\n\nplease add support for this:\nhttps://huggingface.co/alibaba-pai/Qwen-Image-2512-Fun-Controlnet-Union\n\nseem like a Z-image fun-controlnet-union\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 7,
+    "created_at": "2026-01-16T12:19:06Z",
+    "updated_at": "2026-02-14T03:23:54Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11910",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11910",
+    "author_login": "tester4488",
+    "author_profile": "https://github.com/tester4488",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11640,
+    "title": "NVFP4 supoort",
+    "body": "### Feature Idea\n\nblack forest labs have released multiple models in NVFP4  format:\nhttps://huggingface.co/black-forest-labs/FLUX.2-dev-NVFP4\nhttps://huggingface.co/black-forest-labs/FLUX.1-dev-NVFP4\nhttps://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev-NVFP4\nalso lightx2v:\nhttps://huggingface.co/lightx2v/Wan-NVFP4\n\nsupport for this in comfy would be awesome and greatly appreciated.\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 7,
+    "created_at": "2026-01-05T12:04:09Z",
+    "updated_at": "2026-01-16T09:02:00Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11640",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11640",
+    "author_login": "soopasteve89-oss",
+    "author_profile": "https://github.com/soopasteve89-oss",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11265,
+    "title": "Integrated manager is bad",
+    "body": "### Custom Node Testing\n\n- [ ] I have tried disabling custom nodes and the issue persists (see [how to disable custom nodes](https://docs.comfy.org/troubleshooting/custom-node-issues#step-1%3A-test-with-all-custom-nodes-disabled) if you need help)\n\n### Your question\n\nThe integrated manager is soo bad cant find the packages to install when dragging a workflow\nAlso searching for that node does not find the correct package, the previous version v0.3.76 was better.\n\nWhy do u guys release a version without testing anything?\n\n### Logs\n\n```powershell\n\n```\n\n### Other\n\n_No response_",
+    "reactions": 7,
+    "created_at": "2025-12-11T13:16:33Z",
+    "updated_at": "2026-01-27T11:35:22Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11265",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11265",
+    "author_login": "GitResetHard",
+    "author_profile": "https://github.com/GitResetHard",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 6110,
+    "title": "Can you add  something like \"block swap\" for hunyuanvideo like how kijai wrapper did witch can saves more vram while sampling.",
+    "body": "### Feature Idea\n\nsomething like \"block swap\" like kijai wrapper did,that wold saves more vram while sampling.\n\n### Existing Solutions\n\nkijai hunyuanvideo wrapper had something like that.it can swap blocks and lowering the vram comsuming while sampling.\r\n![M`3M064IY1~DI 5UF`S5$_V](https://github.com/user-attachments/assets/064baedb-6ed2-4500-8409-a8bb17a7b84f)\r\n\n\n### Other\n\n_No response_",
+    "reactions": 7,
+    "created_at": "2024-12-19T05:09:25Z",
+    "updated_at": "2025-02-27T09:09:04Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/6110",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/6110",
+    "author_login": "sd2530615",
+    "author_profile": "https://github.com/sd2530615",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 5314,
+    "title": "[Feature Request] CtrLoRA support!",
+    "body": "### Feature Idea\n\n\r\nhttps://github.com/xyfJASON/ctrlora\r\n![image](https://github.com/user-attachments/assets/26ef835d-65bc-44f9-891d-99bf151f3cf5)\r\n\r\n\r\nSimilar to Lora, CtrLora can create a ControlNet Lora in a short time (1 hour) with a small number of datasets (1000). \r\n\r\nIt works very well in practice and is easy to train. Here is a test I did.\r\n\r\n![image](https://github.com/user-attachments/assets/970dce99-4870-4242-b96d-bebddc7554e6)\r\n\r\n![image](https://github.com/user-attachments/assets/8a4ece34-b2a8-4365-9d15-61ac76693228)\r\n\r\n![image](https://github.com/user-attachments/assets/6cd0e219-2188-403a-9105-442bd06f0f71)\r\n\r\n\r\n![image](https://github.com/user-attachments/assets/31dd2f53-054b-47ea-b2a8-aacf63a73132)\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 7,
+    "created_at": "2024-10-21T18:34:53Z",
+    "updated_at": "2024-11-26T14:48:32Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/5314",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/5314",
+    "author_login": "toyxyz",
+    "author_profile": "https://github.com/toyxyz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 757,
+    "title": "Consistency.",
+    "body": "It would be nice to have more consistency throughout the interface and follow node graph standards.\r\n\r\n1. ctrl+d is usually duplicate node, never \"load default graph\"\r\n2. link extremity usually snaps when the mouse cursor is a few pixels around #in\r\n3. when pulling a link, all incompatible #in dim out\r\n4. panning is usually middle mouse drag, because then it doesn't conflict with node move or link pull, also it's more consistent with scrollwheel zoom\r\n5. when clicking on a number field, the common behavior is that field is selected, this allows overwrite of value without drag slide",
+    "reactions": 7,
+    "created_at": "2023-06-09T19:43:51Z",
+    "updated_at": "2025-10-30T05:47:50Z",
+    "labels": [
+      "Feature",
+      "Frontend"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/757",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/757",
+    "author_login": "laurentopia",
+    "author_profile": "https://github.com/laurentopia",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 10563,
+    "title": "Emu3.5 support",
+    "body": " \nMatches Gemini 2.5 Flash Image (Nano Banana) on image generation/editing, and outperforms on interleaved generation tasks.😄 @comfyanonymous \n\n ",
+    "reactions": 6,
+    "created_at": "2025-10-31T05:28:10Z",
+    "updated_at": "2025-12-18T19:23:57Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/10563",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/10563",
+    "author_login": "zwukong",
+    "author_profile": "https://github.com/zwukong",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11016,
+    "title": "Ovis-Image support?",
+    "body": "### Feature Idea\n\nhttps://github.com/AIDC-AI/Ovis-Image\nhttps://huggingface.co/AIDC-AI/Ovis-Image-7B\n\noptimized for complex text render\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 5,
+    "created_at": "2025-12-01T06:08:30Z",
+    "updated_at": "2025-12-02T05:59:03Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11016",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11016",
+    "author_login": "DorotaLuna",
+    "author_profile": "https://github.com/DorotaLuna",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 8026,
+    "title": "ACE-Step Support APG and guidance interval to reduce vocal oversaturated",
+    "body": "### Feature Idea\n\nAPG see: https://github.com/ace-step/ACE-Step/blob/3e208ea67cc7ecf6885e88cb0d120a77299e7937/acestep/apg_guidance.py#L33\n\nguidance interval see: https://github.com/ace-step/ACE-Step/blob/3e208ea67cc7ecf6885e88cb0d120a77299e7937/acestep/pipeline_ace_step.py#L1087\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 5,
+    "created_at": "2025-05-09T13:31:41Z",
+    "updated_at": "2025-05-14T00:46:31Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/8026",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/8026",
+    "author_login": "ChuxiJ",
+    "author_profile": "https://github.com/ChuxiJ",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 12481,
+    "title": "Add native support for LLMs",
+    "body": "### Feature Idea\n\nHello, can you add native nodes for support of LLMs, like gemma, qwen, maybe others. They can be used as prompt enhancers, smart modifiers of prompt or other parameters image captioners etc. There are already the same models used as encoders , so maybe it will be not so hard to just add a LLM inference node\n\n### Existing Solutions\n\nThere are extensions, that mostly use open ai compatible endpoints, that make them generally useless if the llm server on the same machine\n\nThere are few extensions with inference inside them, it's still would be nice to see native comfy ui support:\n- https://github.com/alexcong/ComfyUI_QwenVL\n- https://github.com/1038lab/ComfyUI-QwenVL\n- https://github.com/SXQBW/ComfyUI-Qwen-Omni",
+    "reactions": 5,
+    "created_at": "2026-02-16T03:37:51Z",
+    "updated_at": "2026-03-01T16:50:13Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/12481",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/12481",
+    "author_login": "light-and-ray",
+    "author_profile": "https://github.com/light-and-ray",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 8689,
+    "title": "Flux + `--fast fp16_accumulation` + SageAttention 2 + `torch.compile` -> output noise",
+    "body": "### Custom Node Testing\n\n- [x] I have tried disabling custom nodes and the issue persists (see [how to disable custom nodes](https://docs.comfy.org/troubleshooting/custom-node-issues#step-1%3A-test-with-all-custom-nodes-disabled) if you need help)\n\n### Your question\n\nSee https://github.com/thu-ml/SageAttention/issues/162#issuecomment-3011178387 . Also confirmed at https://github.com/woct0rdho/triton-windows/issues/120#issuecomment-2872851207 , https://github.com/woct0rdho/triton-windows/issues/134 .\n\nThis is not exactly an issue of ComfyUI, but let me note it here in case someone else runs into it.\n\n### Logs\n\n```powershell\nPS C:\\ComfyUI> python main.py --fast fp16_accumulation --use-sage-attention\nCheckpoint files will always be loaded safely.\nTotal VRAM 16384 MB, total RAM 32458 MB\npytorch version: 2.7.1+cu128\nxformers version: 0.0.30\nEnabled fp16 accumulation.\nSet vram state to: NORMAL_VRAM\nDevice: cuda:0 NVIDIA GeForce RTX 3080 Ti Laptop GPU : cudaMallocAsync\nUsing sage attention\nPython version: 3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]\nComfyUI version: 0.3.42\nComfyUI frontend version: 1.23.4\n[Prompt Server] web root: C:\\Python312\\Lib\\site-packages\\comfyui_frontend_package\\static\nSuccessfully imported spandrel_extra_arches: support for non commercial upscale models.\nComfyUI-GGUF: Partial torch compile only, consider updating pytorch\n\nImport times for custom nodes:\n   0.0 seconds: C:\\ComfyUI\\custom_nodes\\websocket_image_save.py\n   0.0 seconds: C:\\ComfyUI\\custom_nodes\\ComfyUI-GGUF\n\nContext impl SQLiteImpl.\nWill assume non-transactional DDL.\nNo target revision found.\ncomfyui-embedded-docs package not found\nStarting server\n\nTo see the GUI go to: http://127.0.0.1:8188\ngot prompt\nUsing xformers attention in VAE\nUsing xformers attention in VAE\nVAE load device: cuda:0, offload device: cpu, dtype: torch.bfloat16\ngguf qtypes: F32 (466), Q4_K (266), Q5_K (38), BF16 (10)\nmodel weight dtype torch.float16, manual cast: None\nmodel_type FLUX\nUsing scaled fp8: fp8 matrix mult: False, scale input: False\nRequested to load FluxClipModel_\nloaded completely 9.5367431640625e+25 4903.231597900391 True\nCLIP/text encoder model load device: cuda:0, offload device: cpu, current: cuda:0, dtype: torch.float16\nclip missing: ['text_projection.weight']\nRequested to load Flux\nloaded completely 8740.139394470214 6646.607666015625 True\n100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:10<00:00,  5.04s/it]\nRequested to load AutoencodingEngine\nloaded completely 206.85391998291016 159.87335777282715 True\nPrompt executed in 30.79 seconds\n```\n\n### Other\n\nRelevant package versions: torch 2.7.1+cu128, sageattention 2.1.1, triton-windows 3.3.1, ComfyUI bd951a7\n\nWorkflow: [flux_reproduce.json](https://github.com/user-attachments/files/20938343/flux_reproduce.json)",
+    "reactions": 5,
+    "created_at": "2025-06-27T03:27:53Z",
+    "updated_at": "2025-10-14T05:08:41Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/8689",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/8689",
+    "author_login": "woct0rdho",
+    "author_profile": "https://github.com/woct0rdho",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 8303,
+    "title": "Phantom (base on wan2.1) support",
+    "body": "### Feature Idea\n\n> Phantom is a unified video generation framework for single and multi-subject references, built on existing text-to-video and image-to-video architectures. It achieves cross-modal alignment using text-image-video triplet data by redesigning the joint text-image injection model. Additionally, it emphasizes subject consistency in human generation while enhancing ID-preserving video generation.\n\nhttps://github.com/Phantom-video/Phantom\n\nAlthough it was supported in wanwrapper of kijai, I think it would be great to have comfyui native support that we can use GGUF version to reduce VRAM consumption and other features.\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
+    "reactions": 5,
+    "created_at": "2025-05-27T16:08:25Z",
+    "updated_at": "2025-05-31T01:29:31Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/8303",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/8303",
+    "author_login": "cheezecrisp",
+    "author_profile": "https://github.com/cheezecrisp",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 7377,
+    "title": "Everything is 100 times slower, and no images load on the latest update",
+    "body": "### Your question\n\non v0.3.26 everything reacted the way it should, but after updating to v0.3.27, everything goes slow, images don't load, even on PreviewImage and SaveImage nodes or in the MTB browser.\n\n### Logs\n\n```powershell\n\n```\n\n### Other\n\n_No response_",
+    "reactions": 5,
+    "created_at": "2025-03-25T08:23:30Z",
+    "updated_at": "2025-05-21T11:31:17Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/7377",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/7377",
+    "author_login": "Victorcangil",
+    "author_profile": "https://github.com/Victorcangil",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 6831,
+    "title": "[Request] cudaMallocAsync support for checkPoolLiveAllocations for use in FBCache + Compile model max-autotune mode",
+    "body": "### Your question\n\nWhen using FBCache + Compiler, if compile model is set to max-autotune, KSampler will crash with the following error: cudaMallocAsync does not yet support checkPoolLiveAllocations\n\nSteps to replicate\nLaunch comfyUI (by default it seems to launch with cudaMallocAsync)\nInstall wavespeed and/ or teacache\nAdd their FBCache node and *compiler*\nSet compiler to autotune (if using wavespeed compiler, in the [mode] box type max-autotune)\n                                          If using teacache node, set mode to max-autotune\nLink everything to KSampler\nLoad SDXL Model\nGenerate image\n\nGet error\n\n![Image](https://github.com/user-attachments/assets/28773844-a39f-4b16-ba27-fdf314fe223c)\n\nPytorch 2.6.0+cu12.6\n\n### Logs\n\n```powershell\n# ComfyUI Error Report\n## Error Details\n- **Node ID:** 477\n- **Node Type:** KSampler\n- **Exception Type:** RuntimeError\n- **Exception Message:** cudaMallocAsync does not yet support checkPoolLiveAllocations. If you need it, please file an issue describing your use case.\n## Stack Trace\n\n  File \"F:\\Project\\ComfyUI\\execution.py\", line 327, in execute\n    output_data, output_ui, has_subgraph = get_output_data(obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb)\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"F:\\Project\\ComfyUI\\custom_nodes\\Comfy-WaveSpeed\\first_block_cache.py\", line 101, in new_get_output_data\n    out = get_output_data(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"F:\\Project\\ComfyUI\\execution.py\", line 202, in get_output_data\n    return_values = _map_node_over_list(obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"F:\\Project\\ComfyUI\\execution.py\", line 174, in _map_node_over_list\n    process_inputs(input_dict, i)\n\n  File \"F:\\Project\\ComfyUI\\execution.py\", line 163, in process_inputs\n    results.append(getattr(obj, func)(**inputs))\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"F:\\Project\\ComfyUI\\nodes.py\", line 1540, in sample\n    return common_ksampler(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise=denoise)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"F:\\Project\\ComfyUI\\nodes.py\", line 1507, in common_ksampler\n    samples = comfy.sample.sample(model, noise, steps, cfg, sampler_name, scheduler, positive, negative, latent_image,\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"F:\\Project\\ComfyUI\\custom_nodes\\comfyui-impact-pack\\modules\\impact\\sample_error_enha",
+    "reactions": 5,
+    "created_at": "2025-02-16T22:41:39Z",
+    "updated_at": "2025-12-17T06:52:44Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/6831",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/6831",
+    "author_login": "ryanull24",
+    "author_profile": "https://github.com/ryanull24",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 6271,
+    "title": "ability to disable copypaste with middleclick or clear paste buffer",
+    "body": "### Feature Idea\n\nas a blender user im extremely used to using middle mouse to pan around the node workflow, but if i had copied something it pasted every time i pan, its very annoying. if there was a way to remove that from the keybinding settings that would be awesome, ir if you cant do that, have a method to clear the copy/paste buffer so you since it retains the buffer even after restart.\n\n### Existing Solutions\n\nnan\n\n### Other\n\nnan",
+    "reactions": 5,
+    "created_at": "2024-12-29T21:00:19Z",
+    "updated_at": "2025-10-30T05:46:20Z",
+    "labels": [
+      "Feature",
+      "Frontend"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/6271",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/6271",
+    "author_login": "jurassicjordan",
+    "author_profile": "https://github.com/jurassicjordan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 4695,
+    "title": "Load OneTrainer Flux LoRas and DoRas",
+    "body": "### Feature Idea\r\n\r\nIt looks like the Flux branch for OneTrainer is nearing completion - and the results are looking great! However, it seems as though ComfyUI cannot load the resulting .safetensors file. Attached is a text file with all of the keys of the resulting DoRa.\r\n\r\n[no-work.txt](https://github.com/user-attachments/files/16822683/no-work.txt)\r\n\r\n\r\n### Existing Solutions\r\n\r\n_No response_\r\n\r\n### Other\r\n\r\n_No response_",
+    "reactions": 5,
+    "created_at": "2024-08-30T23:21:15Z",
+    "updated_at": "2024-10-08T23:04:44Z",
+    "labels": [
+      "Feature"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/4695",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/4695",
+    "author_login": "ejektaflex",
+    "author_profile": "https://github.com/ejektaflex",
+    "already_resurrected": false
+  }
+]

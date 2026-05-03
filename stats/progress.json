@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-05-03T07:51:29",
-  "total_resurrections": 5,
-  "total_repos_covered": 1,
-  "average_impact_score": 5.6,
+  "last_updated": "2026-05-03T08:34:41",
+  "total_resurrections": 6,
+  "total_repos_covered": 2,
+  "average_impact_score": 5.5,
   "average_effort_hours": 120.0,
   "top_tags": [
     "terraform",

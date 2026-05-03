@@ -1,0 +1,790 @@
+[
+  {
+    "repo": "rails/rails",
+    "issue_number": 25208,
+    "title": "Drop jQuery as a dependency",
+    "body": "We should now be able to write our data-remote, data-confirm, XHR wrapping, and the few other hooks we rely on using vanilla JavaScript. Things have progressed well enough for that. This is not a verdict on jQuery. There are still plenty of other reasons for someone to want to use that, but it needn't be part of the default stack any more.\n\n//cc @sstephenson @javan\n",
+    "reactions": 768,
+    "created_at": "2016-05-31T11:09:23Z",
+    "updated_at": "2017-07-31T13:06:34Z",
+    "labels": [
+      "railties",
+      "attached PR",
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/25208",
+    "html_url": "https://github.com/rails/rails/issues/25208",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 41750,
+    "title": "Dependency on mimemagic 0.3.x no longer valid",
+    "body": "The gem mimemagic (see https://github.com/minad/mimemagic/issues/97 & https://github.com/minad/mimemagic/issues/98 ) has resolved a licensing issue today by yanking all builds prior to 0.4.0, but Rails itself (activestorage) has a dependency on `mimemagic (~> 0.3.2)`.\r\n\r\nWould it be possible to release new patches of 6.1 (and others?) that relax this dependency to include 0.4.x?\r\n\r\n### Steps to reproduce\r\n\r\nAttempt to install any version of Rails!\r\n\r\n### Expected behavior\r\n\r\nGem will install\r\n\r\n### Actual behavior\r\n\r\n> Your bundle is locked to mimemagic (0.3.5), but that version could not be found\r\n> in any of the sources listed in your Gemfile. If you haven't changed sources,\r\n> that means the author of mimemagic (0.3.5) has removed it. You'll need to update\r\n> your bundle to a version other than mimemagic (0.3.5) that hasn't been removed\r\n> in order to install.\r\n\r\n### System configuration\r\n**Rails version**: 6.1.3\r\n\r\n**Ruby version**: 3.0.0\r\n",
+    "reactions": 162,
+    "created_at": "2021-03-24T12:02:38Z",
+    "updated_at": "2021-04-27T02:00:08Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/41750",
+    "html_url": "https://github.com/rails/rails/issues/41750",
+    "author_login": "pedantic-git",
+    "author_profile": "https://github.com/pedantic-git",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 32790,
+    "title": "Folder with active storage",
+    "body": "I try to use ActiveStorage to store my images. With paperclip, in S3 bucket we can have product/id_image/*.png. But with ActiveStorage, all is at the root and in the variants folder.\r\n\r\nAny pan to hierarchy this with folder, at least one folder by model ? Because brows in FTP with several images is very slow.",
+    "reactions": 122,
+    "created_at": "2018-05-02T07:36:46Z",
+    "updated_at": "2021-05-19T22:40:36Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/32790",
+    "html_url": "https://github.com/rails/rails/issues/32790",
+    "author_login": "kaluznyo",
+    "author_profile": "https://github.com/kaluznyo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 50452,
+    "title": "Add structured logging next to developer logging",
+    "body": "When you want to aggregate the data from your Rails application into a data analysis platform, it's a real pain trying to parse the developer-focused log lines that Rails spits out by default. In addition to these log lines, which are great in development and for manual inspection, we should add structured json logging on a per-request basis that can easily be digested by analytics.\r\n\r\nBoth Shopify and 37signals have been using in-house structured logging for a long time, so extracting something from those battle-tested scenarios is the path we intend to go.\r\n\r\ncc @Jeremy @rafaelfranca ",
+    "reactions": 114,
+    "created_at": "2023-12-27T00:26:24Z",
+    "updated_at": "2025-11-28T13:13:43Z",
+    "labels": [
+      "railties"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/50452",
+    "html_url": "https://github.com/rails/rails/issues/50452",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 33596,
+    "title": "MySQL schema/migration should default to CHARSET=utf8mb4",
+    "body": "Right now we're defaulting to the 3-char utf8 that leads to pain and suffering. We should default to CHARSET=utf8mb4. We should probably also default to COLLATION=utf8mb4.",
+    "reactions": 110,
+    "created_at": "2018-08-13T00:52:26Z",
+    "updated_at": "2018-11-19T20:36:18Z",
+    "labels": [
+      "activerecord",
+      "pinned"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/33596",
+    "html_url": "https://github.com/rails/rails/issues/33596",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 21948,
+    "title": "CSRF protection prevents some webkit users from submitting forms",
+    "body": "Hi,\n\nWe've recently been investigating reports from our users that they are unable to submit forms.\n\nUpon investigation it appears that browsers can get in a state where Rail's CSRF (Cross-Site Request Forgery) protection stops the form being submitted.\n## To reproduce\n\nIt's possible to produce a minimal Rails app which has this problem:\n\n``` bash\nrails new csrf-test\ncd csrf-test\nbundle exec rails generate scaffold Test test:string\nbundle exec rake db:migrate\nbundle exec rails server\n```\n#### How to replicate it on mobile Safari (tested on iOS9):\n- Load a page containing a form (will be http://localhost:3000/tests/new in this example).\n- Quit Safari by double-tap the home button and swipe up.\n- Open Safari from the home screen. You should see the same page with the form.\n- Submit the form.\n\nYou will see the Rails invalid authenticity token error- this is a \"The change you wanted was rejected\" message in production, or an `ActionController::InvalidAuthenticityToken` in development. I've also made [a video that follows theese steps](https://www.youtube.com/watch?v=bKDu0qMT4HM).\n#### How to replicate on Desktop Safari (tested on Safari 9.0 on OSX)\n- Go to 'Safari' > 'Preferences...' > 'General' and set 'Safari opens with:' to 'All windows from last session'. \n- Load a page containing a form (will be http://localhost:3000/tests/new in this example).\n- Quit Safari (with CMD+Q)\n- Open Safari. You should see the same page with the form.\n- Submit the form.\n\nThis problem seems to happen regardless if:\n- the app is served HTTP or HTTPS\n- the app's environment is `development` or `production`\n- the browser is manually quit by the user, or quit by the OS (to save memory)\n\nI have also been able to replicate on Chrome on Android. I haven't yet been able to replicate it on Chrome and Firefox on OSX using their 'restore tabs' options like I did in Safari. There may be other browsers that are affected.\n## What's happening\n\nLooking at the Rails logs, and the cookie submitted by the browser I believe that the browsers are caching the page, but clearing session cookies. This means the form has a `authenticity_token` parameter, but the Rails session cookie has been cleared so has no corresponding `_csrf_token`.\n\nHere is a annotated log showing this:\n\n``` log\n# Browser loads the form for the first time\nStarted GET \"/tests/new\" for 127.0.0.1 at 2015-10-13 09:23:18 +0100\n  ActiveRecord::SchemaMigration Load (0.1ms)  SELECT \"schema_migrations\".* FROM \"schema_migrations\"\nProcessing by TestsController#new as HTML\n  Rendered tests/_form.html.erb (37.0ms)\n  Rendered tests/new.html.erb within layouts/application (41.4ms)\nCompleted 200 OK in 256ms (Views: 243.3ms | ActiveRecord: 0.3ms)\n\n# (Asset requests ommited)\n\n# Browser quits, clearing session cookies\n# Browser re-opens, reloads the page from cache without doing a request\n\n# Browser posts the form:\nStarted POST \"/tests\" for 127.0.0.1 at 2015-10-13 09:23:37 +0100\nProcessing by TestsController#create as HTML\n  Parameters: {\"",
+    "reactions": 105,
+    "created_at": "2015-10-13T09:00:15Z",
+    "updated_at": "2022-12-22T16:55:42Z",
+    "labels": [
+      "needs feedback",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/21948",
+    "html_url": "https://github.com/rails/rails/issues/21948",
+    "author_login": "zetter",
+    "author_profile": "https://github.com/zetter",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 13971,
+    "title": "ActiveRecord enum: use validation if exists instead of raising ArgumentError",
+    "body": "Regarding [ActiveRecord::Enum](http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html), assume you had something like\n\n``` ruby\nclass Project < ActiveRecord::Base\n  enum color: [:blue, :green, :red]\n  validates :color, inclusion: { in: [:blue, :green, :red] }\nend\n```\n\nCurrently, if a \"bad\" value (say, \"orange\") is passed in, [an `ArgumentError` is raised](https://github.com/amrnt/rails/blob/b8302bcfdaec2a9e7658262d6feeb535c572922d/activerecord/lib/active_record/enum.rb#L87).\n\nIt would be nice if the validation was preferred (with the `ArgumentError` as a fallback if there was no validation on that attribute) so that you'd be able to return a nicer error on the object later via the standard means:\n\n``` ruby\nobject.errors.messages\n# => {:color=>[\"is not included in the list\"]} kind of thing\n```\n",
+    "reactions": 98,
+    "created_at": "2014-02-07T22:48:04Z",
+    "updated_at": "2023-09-03T23:42:29Z",
+    "labels": [
+      "activerecord",
+      "enum"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/13971",
+    "html_url": "https://github.com/rails/rails/issues/13971",
+    "author_login": "tjschuck",
+    "author_profile": "https://github.com/tjschuck",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 43998,
+    "title": "Rails cashes with Ruby 3.1.0 release",
+    "body": "### Steps to reproduce\r\n\r\n```ruby\r\nruby -v\r\n# => ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [arm64-darwin21]\r\n\r\nrails new test-app\r\ncd test-app\r\nrails s\r\n```\r\n\r\n### Expected behavior\r\nCreate a new rails app and serve it.\r\n\r\n### Actual behavior\r\nCrashes during the project creation process:\r\n```bash\r\n...\r\n         run  bundle binstubs bundler\r\n       rails  importmap:install\r\nCalling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated. Please call `DidYouMean.correct_error(error_name, spell_checker)' instead.\r\nrails aborted!\r\nRails::Engine is abstract, you cannot instantiate it directly.\r\n/Users/erik/Code/test-app/config/application.rb:3:in `<main>'\r\n/Users/erik/Code/test-app/Rakefile:4:in `<main>'\r\nbin/rails:4:in `<main>'\r\n...\r\n```\r\n\r\nFurthermore, `test-app` gets generated, but cannot be served:\r\n```bash\r\nCalling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated. Please call `DidYouMean.correct_error(error_name, spell_checker)' instead.\r\n[WARNING] Could not load command \"rails/commands/server/server_command\". Error: Rails::Engine is abstract, you cannot instantiate it directly..\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.0/lib/rails/railtie.rb:246:in `initialize'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.0/lib/rails/railtie.rb:184:in `new'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.0/lib/rails/railtie.rb:184:in `instance'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.0/lib/rails/railtie.rb:223:in `method_missing'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/activesupport-7.0.0/lib/active_support/descendants_tracker.rb:90:in `descendants'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/activesupport-7.0.0/lib/active_support/callbacks.rb:923:in `block in define_callbacks'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/activesupport-7.0.0/lib/active_support/callbacks.rb:920:in `each'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/activesupport-7.0.0/lib/active_support/callbacks.rb:920:in `define_callbacks'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.0/lib/rails/engine.rb:427:in `<class:Engine>'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.0/lib/rails/engine.rb:349:in `<module:Rails>'\r\n/Users/erik/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.0/lib/rails/engine.rb:11:in `<main>'\r\n... \r\n```\r\n\r\n### System configuration\r\n**Rails version**: 7.0.0\r\n\r\n**Ruby version**: ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [arm64-darwin21]\r\n",
+    "reactions": 86,
+    "created_at": "2021-12-25T20:49:26Z",
+    "updated_at": "2022-01-08T20:53:39Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/43998",
+    "html_url": "https://github.com/rails/rails/issues/43998",
+    "author_login": "ghost",
+    "author_profile": "https://github.com/ghost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 36546,
+    "title": "Misleading deprecation warning when referencing ActionController::Base",
+    "body": "### Steps to reproduce\r\n- Create a new app with Rails 6.0.0.rc1.\r\n- Add a reference to `ActionController::Base` to `config/application.rb`.\r\n- Run `bundle install`.\r\n- Run `rails environment`.\r\n- Run `cat log/development.log`.\r\n\r\n### Expected behavior\r\nThe `development.log` file should be empty.\r\n\r\n### Actual behavior\r\nThe log file contains the following deprecation warning:\r\n\r\n```\r\nDEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper and ActionText::TagHelper.\r\n\r\nBeing able to do this is deprecated. Autoloading during initialization is going\r\nto be an error condition in future versions of Rails.\r\n\r\nReloading does not reboot the application, and therefore code executed during\r\ninitialization does not run again. So, if you reload ActionText::ContentHelper, for example,\r\nthe expected changes won't be reflected in that stale Module object.\r\n\r\nThese autoloaded constants have been unloaded.\r\n\r\nPlease, check the \"Autoloading and Reloading Constants\" guide for solutions.\r\n (called from <main> at /Users/\r\nUSER/Projects/rails-app-test/config/environment.rb:5)\r\n```\r\n\r\nA few thoughts:\r\n- Referencing `ActionController::Base` from an initializer may be poor form, but that is neither documented nor indicated by the warning.\r\n- I cannot tell whether ActionText's helper modules are *intentionally* passing through the autoloader.  Most Rails code *doesn't seem to*, but maybe Engine code is exceptional?\r\n- Tracking down what was causing these autoloads was tricky, involving monkeypatches to `ActiveSupport::Dependencies` and direct edits to the Rails source files loaded by Bundler.\r\n\r\n(I have filed a related bug with another project, including a detailed outline of the observed causal chain.  rollbar/rollbar-gem/issues/880)\r\n\r\n### System configuration\r\n**Rails version**: 6.0.0.rc1\r\n**Ruby version**: 2.6.3\r\n",
+    "reactions": 73,
+    "created_at": "2019-06-24T05:48:05Z",
+    "updated_at": "2021-05-31T14:54:35Z",
+    "labels": [
+      "activesupport",
+      "railties",
+      "docs"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/36546",
+    "html_url": "https://github.com/rails/rails/issues/36546",
+    "author_login": "pvande",
+    "author_profile": "https://github.com/pvande",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 31673,
+    "title": "Rails does not work with pg 1.0.0",
+    "body": "### Steps to reproduce\r\n1. Ensure `gem \"pg\"` is in `Gemfile`\r\n2. `bundle update`\r\n3. `rails s`\r\n\r\n### Expected behavior\r\nRails server should run\r\n\r\n### Actual behavior\r\n> /.../gems/activerecord-5.1.4/lib/active_record/connection_adapters/connection_specification.rb:188:in `rescue in spec': Specified 'postgresql' for database adapter, but the gem is not loaded. Add `gem 'pg'` to your Gemfile (and ensure its version is at the minimum required by ActiveRecord). (Gem::LoadError)\r\n\r\n### System configuration\r\n**Rails version**:  5.1.4\r\n**Ruby version**: 2.4.3\r\n\r\nThe issue appears to be caused by this line: https://github.com/rails/rails/blob/15ef55efb591e5379486ccf53dd3e13f416564f6/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb#L4",
+    "reactions": 72,
+    "created_at": "2018-01-11T09:12:03Z",
+    "updated_at": "2018-12-31T13:25:00Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/31673",
+    "html_url": "https://github.com/rails/rails/issues/31673",
+    "author_login": "thomasfedb",
+    "author_profile": "https://github.com/thomasfedb",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 30296,
+    "title": "Dear Active Record",
+    "body": "I've been using Active Record for two days now and... who do you think you are? \r\n\r\nWhat kind of wizardry do you think you're capable of? What gives you the right to do such magical things on my behalf?\r\n\r\nIn any case, I love you.\r\n\r\nYours truly,\r\nSam",
+    "reactions": 68,
+    "created_at": "2017-08-17T16:13:28Z",
+    "updated_at": "2017-11-23T16:28:35Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/30296",
+    "html_url": "https://github.com/rails/rails/issues/30296",
+    "author_login": "snayrouz",
+    "author_profile": "https://github.com/snayrouz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 50453,
+    "title": "Add a default LSP for better editor/IDE support in Rails 8",
+    "body": "@tenderlove made [a very compelling argument](https://www.youtube.com/watch?v=GnqRMQ0iQTg&t=33m40s) for including an official Rails LSP in the framework at Rails World. Let's make it so.\r\n\r\nShopify is doing work in https://github.com/Shopify/ruby-lsp-rails.",
+    "reactions": 67,
+    "created_at": "2023-12-27T00:33:27Z",
+    "updated_at": "2024-05-15T01:11:03Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/50453",
+    "html_url": "https://github.com/rails/rails/issues/50453",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 25197,
+    "title": "Provide form_with as a new alternative to form_for/form_tag",
+    "body": "`form_tag` and `form_for` provide two very similiar interfaces to much of the same thing. We should unify that usage and subsequent calls to field tags. Additionally, there are several deficiencies with the current helpers that I'd like to solve at the same time, now that we will have a new form method to change defaults with:\n1. Don't set DOM id or classes on the form or the fields any more. It frequently created duplicate ids and its not used often enough to warrant being a default behavior. You can easily add the id or class if need be.\n2. Don't require HTML tags, like class and id, to be wrapped in a html: {} key. There aren't a high likelihood of conflict and it complicates the default cases.\n3. Allow form fields that do not correspond to model attributes. This makes it easier to mix and match a form with some fields that correspond to a model and others that will trigger other behaviors (like sending a welcome email).\n4. Make remote: true the default. Full-page changes after submissions are rough. When using Turbolinks, a normal redirect will generate a Turbolinks.visit() call, and otherwise there's SJR. (We could consider having config.action_view.forms_remote_by_default that you could set to false, for people going old school).\n\nExamples:\n\n``` ruby\n# Passing model: @post will 1) set scope: :post, 2) set url: url_for(@post)\nform_with(model: @post) do |form|\n  form.text_field :title # Will reference @post.title as normal\n  form.text_area :description, \"Overwrite @post.description if present, if not, it will still work\"\n\n  form.submit\nend\n\nform_with(scope: :post, url: posts_path) do |form|\n  form.text_field :title # post[title]\n  form.text_area :description, \"Overwrite @post.description or ignore if it's not present\"\n\n  form.submit\nend\n\n# Submits title=X&description=Y\nform_with(url: different_path, class: 'something', id: 'specific') do |form|\n  form.text_field :title, 'This has is the value of the title'\n\n  form.text_area :description, class: 'No value has been supplied here'\n\n  form.fields(:permission) do |fields|\n    # on/off instead of positional parameters for setting values\n    fields.check_box :admin, on: 'yes', off: 'no'\n  end\n\n  form.select :category, Post::CATEGORIES, blank: 'None'\n  form.select :author_id, Person.all.collect { |p| [ p.name, p.id ] }, blank: 'Pick someone'\n\n  form.submit\nend\n```\n\nThere's still a fair amount of design work to deal with, especially around the FormOptionsHelper. We should move away from positional parameters entirely and replace them with named ones. But we should also try to cut down on needless options and pick better defaults. And finally we should simply drop a lot of the overly-specialized select option methods.\n\nNote: For 5.x, form_for and form_tag should just be soft deprecations, no warnings. Then we can deprecate with a warning, perhaps, in Rails 6.x.\n",
+    "reactions": 67,
+    "created_at": "2016-05-30T15:32:51Z",
+    "updated_at": "2021-06-08T19:22:17Z",
+    "labels": [
+      "actionview",
+      "pinned"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/25197",
+    "html_url": "https://github.com/rails/rails/issues/25197",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 41757,
+    "title": "New mimemagic version licensed under MIT",
+    "body": "Following up on #41750 and #41751. Thanks to the efforts by @jellybob there is potentially a new version of mimemagic, see https://github.com/jellybob/mimemagic/pull/3. The library will read the mime database at runtime from the database file if the file is present on the system. The database can usually be installed with the system package manager. With this approach it is compliant to release the gem as MIT licensed again. We could release this version as 0.3.7. However it is still expected that there is some disruption to be caused by the new installation method; and also depending on if 0.3.6 is yanked once again or kept around.\r\n\r\nSince you seem to be working on another solution (comment by @georgeclaghorn https://github.com/rails/rails/issues/41750#issuecomment-805977682 and comment by @rafaelfranca https://github.com/rails/rails/pull/41751#issuecomment-806074978) it would be good to hear your opinion on this.\r\n\r\nSee also https://github.com/rails/marcel/issues/23 and https://github.com/rails/marcel/pull/26.",
+    "reactions": 67,
+    "created_at": "2021-03-25T09:07:06Z",
+    "updated_at": "2021-03-26T20:04:51Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/41757",
+    "html_url": "https://github.com/rails/rails/issues/41757",
+    "author_login": "minad",
+    "author_profile": "https://github.com/minad",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 33677,
+    "title": "Replace use of whitelist with allowlist and blacklist with denylist",
+    "body": "Per https://twitter.com/dhh/status/1032050325513940992, I'd like for Rails to set a good example and tone by using better terminology when we can. An easy fix would be to replace our use of whitelist with allowlist and blacklist with denylist.\r\n\r\nWe can even just use them as verbs directly, as we do with the former terms. So something is allowlisted or denylisted.\r\n\r\nI took a quick look and it seems like this change is mostly about docs. We only have one piece of the code that I could find on a search that uses the term whitelist with `enforce_raw_sql_whitelist`. Need to consider whether we need an alias and a deprecation for that.",
+    "reactions": 61,
+    "created_at": "2018-08-21T23:48:12Z",
+    "updated_at": "2019-04-12T13:52:45Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/33677",
+    "html_url": "https://github.com/rails/rails/issues/33677",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 31419,
+    "title": "ActiveStorage: Allow access to backing file from Service API",
+    "body": "### Steps to reproduce\r\n\r\nCurrently with the `ActiveStorage::Service` api you can only get a link through the `url` method which, for most services, gives back a public URL that expires in some timeframe. It would be very useful if there was a `file` method that returned the backing file object from the service so that you have more flexibility in how you can expose those files.\r\n\r\n### System configuration\r\n**Rails version**: 5.2.0.beta2\r\n",
+    "reactions": 61,
+    "created_at": "2017-12-12T18:07:45Z",
+    "updated_at": "2020-03-31T03:47:40Z",
+    "labels": [
+      "stale",
+      "activestorage"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/31419",
+    "html_url": "https://github.com/rails/rails/issues/31419",
+    "author_login": "jduff",
+    "author_profile": "https://github.com/jduff",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 33741,
+    "title": "Active Storage + validations",
+    "body": "### Steps to reproduce\r\n\r\nCreate model like:\r\n\r\n```ruby\r\nclass Project < ApplicationRecord\r\n  has_one_attached :attachment\r\nend\r\n```\r\n\r\nThere is no way to validate if the attachment is present or check its content type, etc. If you need - you need to write own `validates :some_method` code.\r\n\r\n### Expected behavior\r\n\r\nShould be easy, as with other validations. So I've created a gem https://github.com/igorkasyanchuk/active_storage_validations to help me with it.\r\n\r\nGem allows to write something like:\r\n\r\n```ruby\r\nvalidates :attachment, attached: true, content_type: { in: 'application/pdf', message: 'is not a PDF' }\r\n```\r\n\r\nIf possible I'm ready to prepare it for merge into Rails repo under your guidance. \r\n\r\n### Actual behavior\r\n\r\nWe have to write own `validates :some_method` code.\r\n\r\n### System configuration\r\nRails 5.2+ (or any where active_storage is added)\r\nRuby 2.3+\r\n",
+    "reactions": 59,
+    "created_at": "2018-08-28T19:46:12Z",
+    "updated_at": "2025-02-04T23:01:46Z",
+    "labels": [
+      "activestorage"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/33741",
+    "html_url": "https://github.com/rails/rails/issues/33741",
+    "author_login": "igorkasyanchuk",
+    "author_profile": "https://github.com/igorkasyanchuk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 50480,
+    "title": "Add DB-backed Action Cable adapter as new default in Rails 8",
+    "body": "Out of the box, Action Cable will only work with a single process setup using the in-memory adapter. If you run multiple processes, let alone multiple app servers, you have to add Redis to the mix or be running PostgreSQL. Redis is great, but it's another moving part, and PostgreSQL is also lovely, but it's only one out of our 3 supported databases. Action Cable should work with multiple processes out of the box regardless of which of the supported databases you use.\r\n\r\nFor ONCE #1, we built a tiny Active Record-based cable adapter, which works for both MySQL and SQLite. Plan is to extract this and add it in as the new default.",
+    "reactions": 59,
+    "created_at": "2023-12-29T13:40:28Z",
+    "updated_at": "2024-09-12T17:30:34Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/50480",
+    "html_url": "https://github.com/rails/rails/issues/50480",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 50442,
+    "title": "Solid Queue should be the default Active Job backend for Rails 8",
+    "body": "[Solid Queue](https://github.com/basecamp/solid_queue) should be the default Active Job backend for Rails 8 since it supports all our major databases and enables someone to run jobs in production without either additional dependencies (like Redis), using database-specific backends (like Good Job), or using commercially-restrained backends (like Sidekiq).\r\n\r\nThe necessary tables should be setup by default as part of rails new. The user should not have to do any configuration whatsoever to be able to deploy their application in production with Solid Queue as the job runner. We also need to figure out a standardized setup for running the worker jobs, especially as part of the default Dockerfile setup.\r\n\r\nYou should be able to avoid this using `--skip-solid-queue` or just `--skip-solid`.\r\n\r\ncc @rosa",
+    "reactions": 58,
+    "created_at": "2023-12-26T22:04:32Z",
+    "updated_at": "2024-09-09T11:34:10Z",
+    "labels": [
+      "activejob"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/50442",
+    "html_url": "https://github.com/rails/rails/issues/50442",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 43472,
+    "title": "Rails standardized error reporting interface",
+    "body": "### Context\r\n\r\nA very common pattern when dealing with exceptions is to report them asynchronously to the developer and continue with some fallback. E.g.\r\n\r\n```ruby\r\nbegin\r\n  do_something\r\nrescue SomethingIsBroken => error\r\n  MyErrorReportingService.notify(error)\r\n  some_fallback_code_or_value\r\nend\r\n```\r\n\r\nAn example in Rails is [in `ActiveSupport::Cache::RedisCacheStore` we simply log handled errors](https://github.com/rails/rails/blob/46bb4dee09e9a3dc7db2cfded2221212fdf183ff/activesupport/lib/active_support/cache/redis_cache_store.rb#L58-L62).\r\n\r\nThat is the kind of errors you'd want reported to your error monitoring service so that even though the error is not directly breaking the user experience, you are alerted early that some part of your infrastructure is no longer working, and might take action, or that some edge case is causing a degraded experience.\r\n\r\nAnother example is [the recent `ActiveSupport::Notifications` handling of exceptions raised by `finish`](https://github.com/rails/rails/pull/43282).\r\nIn such case the most appropriate behaviour could be to swallow the exception, as to not interrupt the notification chain, but to report it to the application developer.\r\n\r\nIn application code it's easy because you know where to send the exception report, but in libraries and frameworks, usually the best you can do is log the error. But people usually don't look at logs unless they know something is happening.\r\n\r\n### Introducing a standard interface for error reporting services\r\n\r\nSince the vast majority of Rails application out there do setup an error reporting service (Sentry, Airbrake, Errbit, HoneyBadger, and plenty others), \r\nI believe there's an opportunity for Rails to provide a generic interface to report errors, with an adapter API to allow using the service of your choice. \r\nIn other term, introducing an Active Job or Active Support Cache for error reporting.\r\n\r\nThere would be several upsides to this.\r\n\r\n#### Reporting the errors handled by Rails\r\n\r\nWhen Rails handles an error like in the examples listed above, it could report them properly to the developer, instead of logging them where no-one will see.\r\n\r\n#### Reporting warnings\r\n\r\nSimilarly [there are places in Rails were we emit warnings](https://github.com/rails/rails/blob/46bb4dee09e9a3dc7db2cfded2221212fdf183ff/activerecord/lib/active_record/railtie.rb#L156), but they aren't easy to notice.\r\nMany error reporting service have some kind of `severity` attribute, so Rails could report these as exceptions with `severity: warning`.\r\n\r\n#### Simplified collection of unhandled errors\r\n\r\nThe hooking mechanism would be simplified. The various error reporting gems out there are doing a lot of work to hook into Rack / Sidekiq / Resque etc.\r\nIt's brittle and hard to maintain and setup. It's also often not covering all entry points such as `rails runner` being invoked from a crontab, etc.\r\n\r\nIf Rails was in charge of collecting unhandled errors, it could do it more easily, likely as part ",
+    "reactions": 54,
+    "created_at": "2021-10-15T14:54:06Z",
+    "updated_at": "2021-11-19T15:29:29Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/43472",
+    "html_url": "https://github.com/rails/rails/issues/43472",
+    "author_login": "byroot",
+    "author_profile": "https://github.com/byroot",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 37270,
+    "title": "Rails 6 inconsistently overrides ActiveJob queue_adapter setting with TestAdapter",
+    "body": "### Summary\r\n\r\nLike many folks, I set this in my `config/environments/test.rb` file:\r\n\r\n```ruby\r\nconfig.active_job.queue_adapter = :inline  \r\n```\r\n\r\nThe reason I do this is to have easy-to-test, deterministic behavior of any potentially async delayed jobs triggered by the application. Under Rails 5, all of my tests (children of `ActiveSupport::TestCase` and `ActionDispatch::SystemTestCase` alike) would respect this queue adapter. However, under Rails 6, any built-in Rails test case that includes `ActiveJob::TestHelper` will also override this setting for all descendants of `ActiveJob::Base` ([relevant source](https://github.com/rails/rails/blob/master/activejob/lib/active_job/test_helper.rb#L39-L41)).\r\n\r\nThe net effect of this is that my `perform_later` and `deliver_later` calls to jobs aren't being fired synchronously (or, in fact, at all) during my system tests, which is leading to test failures upon upgrading to Rails 6.\r\n\r\n### Steps to reproduce\r\n\r\nHere are two tests that demonstrates the problem:\r\n\r\n```ruby\r\nrequire \"test_helper\"\r\n\r\nclass JobTest < ActiveSupport::TestCase\r\n  class SomeJob < ActiveJob::Base\r\n    cattr_accessor :job_ran\r\n\r\n    def perform\r\n      @@job_ran = true\r\n    end\r\n  end\r\n\r\n  def test_some_job\r\n    assert_equal :inline, Rails.application.config.active_job.queue_adapter\r\n    assert_equal ActiveJob::QueueAdapters::InlineAdapter, SomeJob.queue_adapter.class\r\n\r\n    SomeJob.perform_later\r\n\r\n    assert_equal true, SomeJob.job_ran\r\n  end\r\nend\r\n\r\nclass JobSystemTest < ActionDispatch::SystemTestCase\r\n  class OtherJob < ActiveJob::Base\r\n    cattr_accessor :job_ran\r\n\r\n    def perform\r\n      @@job_ran = true\r\n    end\r\n  end\r\n\r\n  def test_other_job\r\n    assert_equal :inline, Rails.application.config.active_job.queue_adapter\r\n    assert_equal ActiveJob::QueueAdapters::InlineAdapter, OtherJob.queue_adapter.class\r\n\r\n    OtherJob.perform_later\r\n\r\n    assert_equal true, OtherJob.job_ran\r\n  end\r\nend\r\n```\r\n\r\n### Expected behavior\r\n\r\nI would expect the behavior to have remained as it did under Rails 5, where the `active_job.queue_adapter` setting would be respected for all of Rails' test types.\r\n\r\n### Actual behavior\r\n\r\nThe first test, which descends from `ActiveSupport::TestCase` will pass and behave as it did under Rails 5. However, the second test, descending from from `ActionDispatch::SystemTestCase` will now fail under Rails 6, because `OtherJob`'s `queue_adapter` will have been reset by `ActiveJob::TestHelper` to be an instance of `TestAdapter`\r\n\r\n```\r\nJobSystemTest#test_other_job [/Users/justin/code/testdouble/present/test/lib/job_test.rb:33]:\r\n--- expected\r\n+++ actual\r\n@@ -1 +1 @@\r\n-ActiveJob::QueueAdapters::InlineAdapter\r\n+ActiveJob::QueueAdapters::TestAdapter\r\n```\r\n\r\n### System configuration\r\n**Rails version**: 6.0.0 as well as [6-0-stable](https://github.com/rails/rails/tree/2bc6a948a2f46f8cf2d44506af1be235691c84b5), as of today.\r\n\r\n**Ruby version**: ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-darwin18]\r\n\r\n",
+    "reactions": 53,
+    "created_at": "2019-09-23T05:29:13Z",
+    "updated_at": "2024-12-21T17:28:56Z",
+    "labels": [
+      "activejob"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/37270",
+    "html_url": "https://github.com/rails/rails/issues/37270",
+    "author_login": "searls",
+    "author_profile": "https://github.com/searls",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 34245,
+    "title": "Thanks!",
+    "body": "Rails 1.0 made me so productive and happy and it made app development feel effortless. I'm just writing this to say thank you: to 37signals, to DHH, to all of the contributors, and all of the ecosystem developers over the years. You didn't have to make this an open source project. You didn't have to contribute time and materials and your lives, but you did.\r\n\r\nLearning Ruby on Rails was one of the best career decisions I ever made. Not only was it a fantastic piece of tech, even at version 1.0, but it forced me to learn and consider a slew of subjects and practices with which I might have never engaged otherwise. It also freed up my time to concentrate on things that mattered.\r\n\r\nI have moved on in my career and don't do any Rails development these days, although there are times I wish I still did. To those of you who still keep the lights on, Thank You!\r\n\r\nFeel free to close this issue.\r\n\r\n### Steps to reproduce\r\n\r\n1. Start using Ruby on Rails in 2005.\r\n2. Fall in love with the simplicity and start building your dream app.\r\n3. Open the door to users earlier than expected.\r\n\r\n### Expected behavior\r\n1. Productivity.\r\n2. Praise for getting so much done in such a short time.\r\n3. Learn about the aesthetics of good software design from a lot of really smart people.\r\n4. Overnight success.\r\n\r\n### Actual behavior\r\n3 out of 4 ain't bad.\r\n",
+    "reactions": 50,
+    "created_at": "2018-10-17T18:31:12Z",
+    "updated_at": "2021-07-28T13:23:56Z",
+    "labels": [
+      "With reproduction steps",
+      "ready"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/34245",
+    "html_url": "https://github.com/rails/rails/issues/34245",
+    "author_login": "harrylove",
+    "author_profile": "https://github.com/harrylove",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 38560,
+    "title": "[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called",
+    "body": "### Steps to reproduce\r\n\r\n```zsh\r\nrails new testapp -d postgresql\r\ncd testapp\r\nrails g scaffold post title body:text\r\nrails db:migrate\r\nrails c\r\nirb(main):001:0> Post.create(title: \"This is a test 1\", body:  \"This is a body 1\")\r\n```\r\n\r\n### Expected behavior\r\n\r\nI would expect to get a response saying that the Post was successfully created.\r\n\r\n### Actual behavior\r\n\r\n```text\r\nobjc[18501]: +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called.\r\nobjc[18501]: +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called. We cannot safely call it or ignore it in the fork() child process. Crashing instead. Set a breakpoint on objc_initializeAfterForkError to debug.\r\n```\r\n\r\n### System configuration\r\n**Rails version**:  Rails 6.0.2.1\r\n\r\n**Ruby version**:  ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-darwin19]\r\n",
+    "reactions": 39,
+    "created_at": "2020-02-24T04:01:51Z",
+    "updated_at": "2025-10-09T03:30:00Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/38560",
+    "html_url": "https://github.com/rails/rails/issues/38560",
+    "author_login": "conradwt",
+    "author_profile": "https://github.com/conradwt",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 26158,
+    "title": "The listen gem breaks my laptop",
+    "body": "### Steps to reproduce\r\n1. Create a new rails app\r\n2. Run it on a Mac with a bad processor\r\n### Expected behavior\r\n\r\nMy laptop should work fine - processes should stay under the 700-something limit that Apple set.\r\n### Actual behavior\r\n\r\nWhen running my Rails app on a Macbook Air with 1.8 ghz of cpu (I know... getting a new computer when they release the new Pro's), I have been getting a \"System ran out of resources, can't fork any processes\" error in all of my applications (or, they just quietly failed). Finally, I opened Activity Monitor and was able to find more then 500 `fsevent_watch` processes running (my computer has a maximum of 700 processes total). Doing a Google Search, I stumbled upon the [rb-fsevent gem]. Looking at my `Gemfile.lock`, I was able to track it down to the listen gem.\r\n\r\nI'm unable to tell if it is an issue with the listen gem itself, or @fnx's implementation in Rails (see #22254), but it seems like it's more likely the implementation is broken.\r\n### Suggested Fix\r\n\r\nI'm unable to tell if it is an issue with the listen gem itself, or @fnx's implementation in Rails (see #22254), but it seems like it's more likely the implementation is broken.\r\n\r\nI would make sure that the listen gem is opt-in, especially on systems with low process limits (IIRC, there's a command that allows you to check this). \r\n### Temporary Workaround\r\n\r\nIf your computer is currently showing a \"System ran out of resources, can't fork any processes\" error, reboot it (logging in and out might work, but I haven't tested that). You probably won't be able to save most of your work (if your software forks a process in order to save).\r\n\r\nTo remove the gem for a more permanent fix\r\n\r\n1. Remove the listen and spring-watcher-listen gems.\r\n2. In your environments/development.rb file, comment out this line:\r\n\r\n``` ruby\r\n# Use an evented file watcher to asynchronously detect changes in source code,\r\n# routes, locales, etc. This feature depends on the listen gem.\r\n# config.file_watcher = ActiveSupport::EventedFileUpdateChecker\r\n```\r\n### System configuration\r\n\r\n**Rails version**:\r\nRails 5.0.0\r\n**Ruby version**:\r\nruby 2.3.0p0\r\n",
+    "reactions": 31,
+    "created_at": "2016-08-14T03:08:46Z",
+    "updated_at": "2021-02-08T03:41:17Z",
+    "labels": [
+      "activesupport",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/26158",
+    "html_url": "https://github.com/rails/rails/issues/26158",
+    "author_login": "benaubin",
+    "author_profile": "https://github.com/benaubin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 48372,
+    "title": "Rails 6.1.x `rails new; rake assets:precompile` is broken",
+    "body": "### Steps to reproduce\r\n\r\n```\r\nmkdir -p /tmp/79de2b03fd57b181232892d89e7e9920; cd /tmp/79de2b03fd57b181232892d89e7e9920\r\nrails _6.1.7.3_ new myapp --database=postgresql\r\ncd myapp\r\nRAILS_ENV=production SECRET_KEY_BASE=asdf bundle exec rake assets:precompile assets:clean\r\n```\r\n\r\n\r\n### Expected behavior\r\n\r\nIt precompiles fine\r\n\r\n### Actual behavior\r\n\r\n```\r\nCompiling...\r\nCompilation failed:\r\nnode:internal/process/promises:289\r\n            triggerUncaughtException(err, true /* fromPromise */);\r\n            ^\r\n\r\nError: Cannot find package '@babel/plugin-proposal-private-methods' imported from /private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/babel-virtual-resolve-base.js\r\n    at new NodeError (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:203:5)\r\n    at packageResolve (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:873:9)\r\n    at moduleResolve (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:902:20)\r\n    at defaultResolve (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:985:15)\r\n    at resolve (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:999:12)\r\n    at resolve (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/config/files/import-meta-resolve.js:13:10)\r\n    at tryImportMetaResolve (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/config/files/plugins.js:123:45)\r\n    at resolveStandardizedNameForImport (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/config/files/plugins.js:145:19)\r\n    at resolveStandardizedName (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/config/files/plugins.js:154:12)\r\n    at loadPlugin (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/config/files/plugins.js:47:20)\r\n    at loadPlugin.next (<anonymous>)\r\n    at createDescriptor (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/@babel/core/lib/config/config-descriptors.js:139:16)\r\n    at createDescriptor.next (<anonymous>)\r\n    at step (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/gensync/index.js:261:32)\r\n    at evaluateAsync (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/gensync/index.js:291:5)\r\n    at /private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/gensync/index.js:44:11\r\n    at Array.forEach (<anonymous>)\r\n    at Function.async (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/gensync/index.js:43:15)\r\n    at Function.all (/private/tmp/79de2b03fd57b181232892d89e7e9920/myapp/node_modules/gensync/index.js:216:13)\r\n    at Generator.next (<anonymous>)\r\n    at createDescriptors (/private/tmp/79de2b03fd57b181232892d89e7",
+    "reactions": 28,
+    "created_at": "2023-06-01T22:32:07Z",
+    "updated_at": "2024-03-27T22:57:19Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/48372",
+    "html_url": "https://github.com/rails/rails/issues/48372",
+    "author_login": "schneems",
+    "author_profile": "https://github.com/schneems",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 38695,
+    "title": "Schema Dump missing \"IF NOT EXISTS\" in create schema statement",
+    "body": "### Steps to reproduce\r\n<!-- (Guidelines for creating a bug report are [available\r\nhere](https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#creating-a-bug-report)) -->\r\n\r\n1) Add `public` as one of the searchable schemas to `schema_search_path` in `database.yml`\r\n  - e.g. `schema_search_path: auditing,other,public`\r\n2) set `config.active_record.schema_format = :sql` in `application.rb\r\n\r\n### Expected behavior\r\n<!-- Tell us what should happen -->\r\nBecause default schemas like `public` already exist, the `CREATE SCHEMA` statement should only attempt to create schemas that don't already exist:\r\n\r\n```SQL\r\nCREATE SCHEMA IF NOT EXISTS auditing;\r\nCREATE SCHEMA IF NOT EXISTS other;\r\nCREATE SCHEMA IF NOT EXISTS public;\r\n```\r\n\r\n\r\n### Actual behavior\r\n<!-- Tell us what happens instead -->\r\nOnly a `CREATE SCHEMA` statement is dumped. This causes errors because `public` will always already exist\r\n\r\nstructure.sql:\r\n```SQL\r\nCREATE SCHEMA auditing;\r\nCREATE SCHEMA other;\r\nCREATE SCHEMA public;\r\n```\r\nerror:\r\n```bash\r\n[samps@samps-dus rails-app]$ rails test\r\n\r\npsql:/home/samps/sites/DownUnderSports/rails-app/db/structure.sql:16: ERROR:  schema \"public\" already exists\r\nrails aborted!\r\nfailed to execute:\r\npsql -v ON_ERROR_STOP=1 -q -X -f /home/samps/sites/DownUnderSports/rails-app/db/structure.sql down_under_sports_six_test\r\n\r\nPlease check the output above for any errors and make sure that `psql` is installed in your PATH and has proper permissions.\r\n```\r\n\r\nThe only way to avoid this problem is to explicitly set *which* schema(s) to dump, or explicitly set `:all`\r\n\r\n### System configuration\r\n**Rails version**: 6.0.2.1\r\n\r\n**Ruby version**: ruby 2.6.5p114 (2019-10-01 revision 67812) [x86_64-linux]\r\n\r\n\r\n### Other Notes\r\nIt seems to me, personally, `schema_search_path` causing my other, direct-access-only schemas not to be dumped is not only completely unexpected, but the wrong direction for rails to take; and `:all` should be the default since it's the path of least surprise and also the safest method to not cause people to unknowingly lose data.\r\n\r\nIf people _want_ to exclude specific schemas, they can set the schemas they want using `config.active_record.dump_schemas` to only include the ones they want or to use `:schema_search_path` if that's how they actually want it to be handled. `schema_search_path` should *only* be used to do what it is actually for by default: setting which objects can be found without a schema qualification; not to exclude schemas from my structure.sql\r\n",
+    "reactions": 25,
+    "created_at": "2020-03-10T19:31:28Z",
+    "updated_at": "2021-07-01T18:56:45Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/38695",
+    "html_url": "https://github.com/rails/rails/issues/38695",
+    "author_login": "SampsonCrowley",
+    "author_profile": "https://github.com/SampsonCrowley",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 36218,
+    "title": "Add Search to guides.rubyonrails.org website ",
+    "body": "Adding a Search ability to the guides.rubyonrails.org site would make things a lot easier to find,  especially for new users.   I asked about doing this on Twitter in [this post](https://twitter.com/tonydehnke/status/1126176658619191296) and @excid3 suggested Algolia for that.  The company responded saying that would like to do that.\r\n\r\nHow could we go about doing a PR for the site itself to add their search to the rubyonrails.org site now?\r\n\r\nHere is the documentation for adding their JS snippet - from the same [twitter thread](https://twitter.com/adavid128/status/1126199987967332353)\r\n",
+    "reactions": 21,
+    "created_at": "2019-05-08T19:45:52Z",
+    "updated_at": "2022-08-16T23:29:44Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/36218",
+    "html_url": "https://github.com/rails/rails/issues/36218",
+    "author_login": "tonydehnke",
+    "author_profile": "https://github.com/tonydehnke",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 35501,
+    "title": "Actioncable Webpacker compilation issues with Rails 6 in production",
+    "body": "### Steps to reproduce\r\n1. Generate a new rails 6 app (`rails new myapp`) with all the defaults\r\n1. Generate a new channel `bin/rails g channel test`\r\n1. Boot the app in development to confirm the websocket is connecting as expected\r\n1. Deploy the app to Heroku\r\n\r\n### Expected behavior\r\nThe websocket connection is successful and there are no console errors\r\n\r\n### Actual behavior\r\nConsole error `Uncaught TypeError: r is not a function` in action_cable.js.\r\nIn my source map the error points to the following line https://github.com/rails/rails/blob/master/actioncable/app/assets/javascripts/action_cable.js#L21\r\n\r\n### My Theories\r\n\r\nIt seems that webpacker compiles this file incorrectly (only in production) and doesn't seem to like that the variable is named `_typeof`. I can see there are distinct differences in how the file is compiled in production vs dev (these differences cause dev to work and prod to throw the aforementioned error)\r\n\r\nIf I revert back to the yarn package `actioncable` vs `@rails/actioncable` and I revert my `consumer.js` file to use the old import syntax, everything works fine.\r\n\r\nThings I already tried to fix this:\r\n\r\n1. Ensure the node version between dev and production were identical (I am currently running node 11.x)\r\n1. Ensuring my actioncable (and other rails packages) were correctly set to their beta2 versions.\r\n1. Upgraded my webpacker version to the latest release in the Gemfile and the latest yarn package in package.json\r\n\r\nIf my bug is accurate, it stands to reason that perhaps it is not possible to deploy Rails 6 with actioncable in a production environment with the default generated files. I am curious if anyone has shipped a working actioncable feature on a brand new Rails 6 beta2 project with the default files and generators.\r\n\r\n### System configuration\r\n**Rails version:** 6.0.0.beta2\r\n**Ruby version:** 2.6.1",
+    "reactions": 21,
+    "created_at": "2019-03-06T18:10:59Z",
+    "updated_at": "2020-12-11T16:41:48Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/35501",
+    "html_url": "https://github.com/rails/rails/issues/35501",
+    "author_login": "terracatta",
+    "author_profile": "https://github.com/terracatta",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 34237,
+    "title": "Postgres default function values do not get loaded on create",
+    "body": "### Steps to reproduce\r\n\r\n**1. Create a model**\r\n\r\n```Ruby\r\nclass Order < ApplicationRecord\r\nend\r\n```\r\n\r\n**2. Create a migration with a DB function as `default`.**\r\n\r\n```Ruby\r\nclass CreateOrders < ActiveRecord::Migration[5.2]\r\n  def change\r\n    create_table :orders do |t|\r\n      t.string :uuid, default: -> { \"gen_random_uuid()\" }\r\n      t.references :user\r\n      t.references :product\r\n      t.text :comment\r\n\r\n      t.timestamps\r\n    end\r\n  end\r\nend\r\n```\r\n\r\n`rails db:migrate`\r\n\r\n**3. Create a new order**\r\n\r\n`rails console`\r\n\r\n```\r\norder = Order.create(user_id: 1, product_id: 1)\r\n```\r\n\r\n### Expected behavior\r\nI expect `create` to set `uuid` (by the postgres default) **and** for it to set the new `uuid` value into the `order` AR instance, as it does with the `id`.\r\n\r\n```\r\n> order\r\n# =>\r\n# +----+--------------------------------------+---------+------------+---------+----------------+----------------+\r\n# | id | uuid                                 | user_id | product_id | comment | created_at     | updated_at     |\r\n# +----+--------------------------------------+---------+------------+---------+----------------+----------------+\r\n# | 1  | bec94fe0-f7c3-4ede-8b25-c4bce702ec00 | 1       | 1          |         | 2018-10-17 ... | 2018-10-17 ... |\r\n# +----+--------------------------------------+---------+------------+---------+----------------+----------------+\r\n```\r\n\r\n### Actual behavior\r\nThe `uuid` does get set in the db, but it is not returned into the `order` instance.\r\n\r\n```\r\n> order\r\n# =>\r\n# +----+------+---------+------------+---------+----------------+----------------+\r\n# | id | uuid | user_id | product_id | comment | created_at     | updated_at     |\r\n# +----+------+---------+------------+---------+----------------+----------------+\r\n# | 1  |      | 1       | 1          |         | 2018-10-17 ... | 2018-10-17 ... |\r\n# +----+------+---------+------------+---------+----------------+----------------+\r\n```\r\n\r\n### Current workaround\r\n\r\nCalling `order.reload` does then retrieve the values set by postgres. Other workarounds are [described in this issue](https://github.com/rails/rails/issues/21627)\r\n\r\n```\r\n> order\r\n# =>\r\n# +----+--------------------------------------+---------+------------+---------+----------------+----------------+\r\n# | id | uuid                                 | user_id | product_id | comment | created_at     | updated_at     |\r\n# +----+--------------------------------------+---------+------------+---------+----------------+----------------+\r\n# | 1  | bec94fe0-f7c3-4ede-8b25-c4bce702ec00 | 1       | 1          |         | 2018-10-17 ... | 2018-10-17 ... |\r\n# +----+--------------------------------------+---------+------------+---------+----------------+----------------+\r\n```\r\n\r\n### Background\r\n\r\n[This issue already describes](https://github.com/rails/rails/issues/21627) this bug, but the issue was initially a request to support functional defaults, which has since been implemented.\r\n\r\nThis quote from the discussion summarizes it pretty ",
+    "reactions": 20,
+    "created_at": "2018-10-17T08:38:08Z",
+    "updated_at": "2022-02-17T23:22:39Z",
+    "labels": [
+      "activerecord",
+      "stale",
+      "PostgreSQL"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/34237",
+    "html_url": "https://github.com/rails/rails/issues/34237",
+    "author_login": "davegson",
+    "author_profile": "https://github.com/davegson",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 24055,
+    "title": "Inconsistent results with #or in ActiveRecord::Relation with respect to documentation",
+    "body": "According to documentation:\nhttps://github.com/rails/rails/blob/c577657f6de64b743b12a21108dc9cc5cfc35098/activerecord/lib/active_record/relation/query_methods.rb#L650\n\nIn order to use #or Neither relation may have a #limit, #offset, or #distinct set.\n\nBut, I could use all of the above like:\n\n```\n>> Post.where(id: 1).distinct.or(Post.where(id: 2).distinct)\n=> SELECT DISTINCT \"posts\".* FROM \"posts\" WHERE (\"posts\".\"id\" = ? OR \"posts\".\"id\" = ?)  [[\"id\", 1], [\"id\", 2]]\n```\n\nOR \n\n```\n>> Post.where(id: 1).limit(1).or(Post.where(id: 2).limit(1))\n=> SELECT  \"posts\".* FROM \"posts\" WHERE (\"posts\".\"id\" = ? OR \"posts\".\"id\" = ?) LIMIT ?  [[\"id\", 1], [\"id\", 2], [\"LIMIT\", 1]]\n```\n\nNot sure if this is intended behaviour to support #limit, #offset, or #distinct.\n\nIf yes, then we need to improve the documentation about above use case.\nIf no, then should it be considered as bug?\n\nI would be happy to look into it and send PR for either case.\nBut, wanted to confirm first for the intended behaviour.\n",
+    "reactions": 19,
+    "created_at": "2016-03-04T14:59:02Z",
+    "updated_at": "2023-05-03T10:31:22Z",
+    "labels": [
+      "activerecord",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/24055",
+    "html_url": "https://github.com/rails/rails/issues/24055",
+    "author_login": "abhishekjain16",
+    "author_profile": "https://github.com/abhishekjain16",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 33209,
+    "title": "LoadError when multiple threads try to load the same namespaced class",
+    "body": "### Version Information\r\nRuby: `ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin17]`\r\nRails: `Rails 5.2.0`\r\n\r\n### Steps to reproduce\r\n- Create brand new rails project using `rails new awesome_application`\r\n- Create a directory called `app/models/deep` and a file called `app/models/deep/beep.rb` with the following beautifully succinct code:\r\n```\r\nmodule Deep\r\n  Class Beep\r\n  end\r\nend\r\n```\r\n- Open up the rails console and run `Deep::Beep` - all good!\r\n- Close and open up the rails console again and run `2.times { |i| Thread.new { Rails.application.executor.wrap { Deep::Beep } } }` - oh no! Sometimes fails with:\r\n```\r\n.../activesupport-5.2.0/lib/active_support/dependencies.rb:452: warning: already initialized constant Deep\r\n.../activesupport-5.2.0/lib/active_support/dependencies.rb:452: warning: previous definition of Deep was here\r\n#<Thread:0x00007fd4795428b0@(irb):1 run> terminated with exception (report_on_exception is true):\r\nTraceback (most recent call last):\r\n\t5: from (irb):1:in `block (2 levels) in irb_binding'\r\n\t4: from .../activesupport-5.2.0/lib/active_support/execution_wrapper.rb:87:in `wrap'\r\n\t3: from (irb):1:in `block (3 levels) in irb_binding'\r\n\t2: from .../activesupport-5.2.0/lib/active_support/dependencies.rb:193:in `const_missing'\r\n\t1: from .../bootsnap-1.3.0/lib/bootsnap/load_path_cache/core_ext/active_support.rb:43:in `load_missing_constant'\r\n.../activesupport-5.2.0/lib/active_support/dependencies.rb:510:in `load_missing_constant': Unable to autoload constant Deep::Beep, expected .../app/models/deep/beep.rb to define it (LoadError)\r\n```\r\n\r\n### Why does this happen?\r\nThere is a race condition where two threads will concurrently run the `const_missing` method for the `Deep` module, and both will run the `autoload_module!` method and create two **separate** `Deep` module objects on each thread - I believe it should be a single object for any given module.\r\n\r\nThen, one of the threads will load the `Beep` class into its local module object using `require_or_load` (which is mutexed globally with `Dependencies.load_interlock`) and continue happily, while the other will run `require_or_load`, determine that `Beep` is already loaded, and then raise `LoadError` because its local module (`from_mod` in the source code) does **not** have the `Beep` class defined on it.",
+    "reactions": 17,
+    "created_at": "2018-06-24T12:49:23Z",
+    "updated_at": "2024-02-02T07:44:22Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/33209",
+    "html_url": "https://github.com/rails/rails/issues/33209",
+    "author_login": "DimitriosLisenko",
+    "author_profile": "https://github.com/DimitriosLisenko",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 43531,
+    "title": "--javascript option causes support for tailwind styled scaffold templates not to be installed",
+    "body": "### Steps to reproduce\r\n\r\n```\r\n(rm -rf depot; \\\r\nrails new depot -j esbuild --css tailwind; \\\r\ncd depot; \\\r\nbin/rails generate scaffold Product title:string; \\\r\ngrep class app/views/products/show.html.erb)\r\n```\r\n\r\n### Expected behavior\r\nThe generated view should contain class attributes utilizing tailwind classes.\r\n\r\n### Actual behavior\r\nNo class attribute are defined\r\n\r\nAdditionally, errors are produced when generating the tailwind class:\r\n\r\n```diff\r\n         rails  css:install:tailwind\r\n  Build into app/assets/builds\r\n         exist  app/assets/builds\r\n     identical  app/assets/builds/.keep\r\n- File unchanged! The supplied flag value not found!  app/assets/config/manifest.js\r\n  Stop linking stylesheets automatically\r\n        gsub  app/assets/config/manifest.js\r\n- File unchanged! The supplied flag value not found!  .gitignore\r\n- File unchanged! The supplied flag value not found!  .gitignore\r\n  Remove app/assets/stylesheets/application.css so build output can take over\r\n        remove  app/assets/stylesheets/application.css\r\n  Add stylesheet link tag in application layout\r\n- File unchanged! The supplied flag value not found!  app/views/layouts/application.html.erb\r\n        append  Procfile.dev\r\n  Add bin/dev to start foreman\r\n     identical  bin/dev\r\n  Install Tailwind (+PostCSS w/ autoprefixer)\r\n        create  tailwind.config.js\r\n        create  app/assets/stylesheets/application.tailwind.css\r\n           run  yarn add tailwindcss@latest postcss@latest autoprefixer@latest from \".\"\r\n```\r\n\r\nNote: no errors are produced, and class attributes making use of tailwind classes are added if the `-j esbuild` option is removed from the `rails` command in the test case above.\r\n\r\n### Analysis/commentary\r\n\r\nThe tailwindcss_rails gem has a nice feature whereby it provides Tailwind styled scaffold templates: https://github.com/rails/tailwindcss-rails/pull/71\r\n\r\nRails, by default, will install tailwindcss_rails via `tailwindcss:install` **unless the js option is specified**, see:\r\n\r\nhttps://github.com/rails/rails/blob/83808166e6c659fccb4019ab936c5714ff5277f2/railties/lib/rails/generators/app_base.rb#L326-L330\r\n\r\nThis was added with the following commit:\r\nhttps://github.com/rails/rails/commit/83808166e6c659fccb4019ab936c5714ff5277f2#diff-a83245368df35c610a37260d0a51041de89211857d47cfd0b2d1301a11709164R409-R412\r\n\r\nLikely one of the following two options will need to be done to fix this problem:\r\n\r\n  * `css:install:tailwind` (and therefore, cssbundling-rails) will install tailwindcss_rails in addition to what it is currently doing\r\n  * rails will need to install both cssbundling-rails and tailwindcss_rails \r\n\r\nEither way, the errors produced by `css:install:tailwind` should be addressed.\r\n\r\n### System configuration\r\n**Rails version**:\r\nRails 7.0.0.alpha2\r\n\r\n**Ruby version**:\r\nruby 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-linux]\r\n",
+    "reactions": 15,
+    "created_at": "2021-10-25T20:59:37Z",
+    "updated_at": "2022-03-22T02:00:19Z",
+    "labels": [
+      "railties",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/43531",
+    "html_url": "https://github.com/rails/rails/issues/43531",
+    "author_login": "rubys",
+    "author_profile": "https://github.com/rubys",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 25198,
+    "title": "has_many and nested attributes",
+    "body": "### Steps to reproduce\n- A Customer model has `accepts_nested_attributes_for :phones` and `has_many :phones`.\n- The Phone model has `belongs_to :customer`\n\nWhen creating a customer with phone attributes, the validations prevent the number (and customer) from being created.\n\nPlease see both of these repos:\n- [Rails 4.2.6](https://github.com/deanperry/rails-bug-4.2.6)\n- [Rails 5.0.0.rc1](https://github.com/deanperry/rails-bug-5.0.0.rc1)\n\nRails 4.2.6 works without an issue.\n\nIf I disable validations in the controller when saving the customer (by changing `@customer.save` to  `@customer.save(validate: false)`), both models save and work as expected\n### Expected behavior\n\nThe customer should be saved. The phone should also be saved linked to the customer\n### Actual behavior\n\nThe customer and phone fails to save and throws a validation error\n![screen shot 2016-05-30 at 17 49 35](https://cloud.githubusercontent.com/assets/425200/15654774/f6fb8068-268e-11e6-9df5-a55f2478d426.png)\n### System configuration\n\n**Rails version**: 5.0.0.rc1\n\n**Ruby version**: 2.3.1\n",
+    "reactions": 15,
+    "created_at": "2016-05-30T16:53:06Z",
+    "updated_at": "2022-05-27T18:06:54Z",
+    "labels": [
+      "activerecord",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/25198",
+    "html_url": "https://github.com/rails/rails/issues/25198",
+    "author_login": "deanpcmad",
+    "author_profile": "https://github.com/deanpcmad",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 37092,
+    "title": "Active Record locks connections to threads that checked them out",
+    "body": "### Steps to reproduce\r\n\r\n```rb\r\nrequire \"active_record\"\r\n\r\nActiveRecord::Base.establish_connection(\r\n  adapter:          \"sqlite3\",\r\n  database:         \":memory:\",\r\n  pool:             5, # default\r\n  checkout_timeout: 5, # default\r\n)\r\n\r\nthreads = 10.times.map do\r\n  Thread.new do\r\n    ActiveRecord::Base.connection.execute \"SELECT 1\"\r\n  end\r\nend\r\n\r\nthreads.each(&:join)\r\n```\r\n\r\n### Expected behavior\r\n\r\nI expected the above code to complete without errors.\r\n\r\nThe connection pool is intentionally smaller than the number of threads, but since we're executing cheap queries, I expected connections to be immediately checked back into the pool, so that other threads can use them.\r\n\r\n### Actual behavior\r\n\r\nI get connection timeout from 6 threads:\r\n\r\n```\r\nActiveRecord::ConnectionTimeoutError: could not obtain a connection\r\nfrom the pool within 5.000 seconds (waited 5.001 seconds);\r\nall pooled connections were in use\r\n```\r\n\r\nThis is because, once Active Record checks out a connection, it **locks** it to the thread that checked it out, so only that thread can continue to use it. Once the main thread + 4 other threads checked out their 5 connections, the other 6 threads didn't have any connections available.\r\n\r\n### Current workarounds\r\n\r\nHistorically, Active Record users have been recommended to either\r\n\r\n1. clear out active connections with `AR::Base.clear_active_connections!`\r\n2. manually check out the connection with `AR::Base.connection_pool.with_connection { ... }`\r\n\r\nIn Rails, this has been managed automatically. Originally, there was a `ConnectionManagement` middleware that called `AR::Base.clear_active_connections!` after each request, releasing locked connections back into the pool. Today, this is surprisingly done by [AR::QueryCache](https://github.com/rails/rails/blob/01cc0c183dfa7e4235cd58aa4f41deef215b8ebe/activerecord/lib/active_record/query_cache.rb#L43), which makes it appear as if though this functionality is only needed for query caching, when in fact it affects Active Record usage in general.\r\n\r\nIn other web frameworks such as [Sinatra](https://github.com/janko/sinatra-activerecord/blob/0f079e6000d2b3b00c642ab9af971466e401ba90/lib/sinatra/activerecord.rb#L33), you need to call manually `AR::Base.clear_active_connections!` after each request. In background jobs, it's recommended to use `AR::Base.connection_pool.with_connection { ... }`.\r\n\r\n### Rationale\r\n\r\nI believe Active Record's connection pool should automatically check connections back into the pool after queries are finished, available for any other thread to use it. Basically, what `AR::Base.connection_pool.with_connection { ... }` does.\r\n\r\nThis is how Sequel's connection pool works. If we run the same script using Sequel, it will complete without errors:\r\n\r\n```rb\r\nrequire \"sequel\"\r\n\r\nDB = Sequel.sqlite(max_connections: 5, pool_timeout: 5)\r\n\r\nthreads = 10.times.map do\r\n  Thread.new do\r\n    DB.run \"SELECT 1\"\r\n  end\r\nend\r\n\r\nthreads.each(&:join)\r\n```\r\n\r\nI believe this change would reduc",
+    "reactions": 14,
+    "created_at": "2019-08-30T19:44:56Z",
+    "updated_at": "2024-03-07T21:06:28Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/37092",
+    "html_url": "https://github.com/rails/rails/issues/37092",
+    "author_login": "janko",
+    "author_profile": "https://github.com/janko",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 41221,
+    "title": "Action Text with Sprockets",
+    "body": "The turbo-rails gem works with sprockets or webpacker.\n\n@dhh mentioned in tweets and interviews that he is considering Rails 7 to not offer webpacker by default. \n\nTailwind-rails gem is another step into webpacker free plain old rails.\n\nTherefore it makes sense in my opinion to also change actiontexts install routine to support sprockets in case webpacker is not installed.\n\nIs this worth investigating?\nWould pull requests be welcome?\n\nCheers Bijan",
+    "reactions": 13,
+    "created_at": "2021-01-23T18:47:56Z",
+    "updated_at": "2021-07-02T23:35:40Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/41221",
+    "html_url": "https://github.com/rails/rails/issues/41221",
+    "author_login": "gobijan",
+    "author_profile": "https://github.com/gobijan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 39352,
+    "title": "ActiveStorage attach() expecting to return ActiveStorage::Blob",
+    "body": "### Steps to reproduce\r\n\r\nAttach any file using the .attach method provided by ActiveStorage, and it will simply return true or false if saved successfully.\r\n\r\neg.\r\n\r\n```\r\n  def create_file\r\n    for file in create_file_params[:attachments]\r\n      @record.attachments.attach(file)\r\n    end\r\n  end\r\n```\r\n\r\n### Expected behavior\r\n\r\nI expect attach method to return an instance of ActiveStorage::Blob if saved successfully, with generated saved ID of model,  so I can use for additional behaviour.  eg.  Adding event in user timeline.\r\n\r\nIf unsuccessfully saved, should return nil.\r\n\r\n### Actual behavior\r\n\r\nattach returns true\r\n\r\n### System configuration\r\n\r\nRails 6.0.3\r\nRuby 2.6.6\r\n\r\n",
+    "reactions": 13,
+    "created_at": "2020-05-19T14:58:32Z",
+    "updated_at": "2022-02-15T08:53:13Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/39352",
+    "html_url": "https://github.com/rails/rails/issues/39352",
+    "author_login": "acetinick",
+    "author_profile": "https://github.com/acetinick",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 43906,
+    "title": "Rails 7 assets:precompile webpack not found",
+    "body": "\r\nI have a Rails 6.1/Ruby 3.0.3 app where I ran bundle update rails, upgraded yarn versions, and ran rails app:update.\r\nThis worked fine locally with no issues.  I then pushed to production where one of the steps is 'rails assets:precompile'\r\nThis command fails with:\r\n\r\n```\r\nCompiling...\r\nCompilation failed:\r\nyarn run v1.22.17\r\ninfo Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.\r\n\r\nerror Command \"webpack\" not found.\r\n```\r\n\r\nIf I revert back to Rails version 6.1.4.4 the command works perfectly fine and compiles assets.\r\n",
+    "reactions": 12,
+    "created_at": "2021-12-16T23:11:54Z",
+    "updated_at": "2023-12-17T04:25:49Z",
+    "labels": [
+      "asset pipeline",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/43906",
+    "html_url": "https://github.com/rails/rails/issues/43906",
+    "author_login": "jason-hobbs",
+    "author_profile": "https://github.com/jason-hobbs",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 38767,
+    "title": "[guides] Explain how to use Webpacker for Javascript, or mention it exists",
+    "body": "For now, there is no mention of Webpack in the official guides – neither on edge guides – except for Ruby on Rails 6 release notes and upgrade guide. The documentation of the Webpacker gem is quite good, but a newcomer to Rails wouldn't know at first that he needs to have a look to it.\r\n\r\nSpecifically, it would be good to have a mention of Webpack in the following guides:\r\n* The Asset Pipeline\r\n* Working with JavaScript in Rails\r\n\r\nIn case of more than a simple mention, there could be a quite thorough explanation of the current state of the recommended use of the Rails asset pipeline together with Webpack – e.g. use asset pipeline for normal CSS and images, and use Webpack for JS. It would be good also to mention that Turbolinks and UJS are (now) just Yarn packages.\r\n\r\nAlso, because of Webpack, Rails now depend on having a JS runtime on your computer and Yarn. This is briefly mentionned in the Getting Started guide, section Starting up the Web Server, but it could be more explicit in the Installing Rails part.",
+    "reactions": 12,
+    "created_at": "2020-03-19T15:18:18Z",
+    "updated_at": "2020-09-04T09:51:15Z",
+    "labels": [
+      "docs",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/38767",
+    "html_url": "https://github.com/rails/rails/issues/38767",
+    "author_login": "vdegove",
+    "author_profile": "https://github.com/vdegove",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 35540,
+    "title": "ActiveStorage fails to make an url inside Sidekiq's workers",
+    "body": "### Steps to reproduce\r\nQuite a lot. And I doubt it really makes sense, because there's quite a lot stuff inside(Sidekiq, ActionCable) which is not related to the issue directly.\r\n\r\n### Expected behavior\r\n\r\nActiveStorage makes url for image_tag in Sidekiq's worker as normally.\r\n\r\n### Actual behavior\r\nActiveStorage ignores all the possible configs and uses the default host (example.org)\r\nIn my opinion, it is caused by `ActiveStorage::Current` which sets the host to request's host.\r\nUnfortunately, in a worker we don't have a request anymore. So it requests all the expected images from example.org with predictable result :(\r\n\r\nFinally, I got `service_url` working, but this type of url is not the result I expected.\r\nGot service_url working by \r\n\r\n```\r\n       ActiveStorage::Current.set(host: \"https://mydomain.com\") do\r\n         avatar = message.user.avatar.service_url\r\n       end\r\n```\r\nWhen I use rails_blob_path from this issue: [https://github.com/rails/rails/issues/31581](https://github.com/rails/rails/issues/31581), it makes url which is not being converted to rails/active_storage/representations and just stays as 'dead' link to rails/active_storage/blob/*.\r\n\r\n### System configuration\r\n**Rails version**: 5.2.1\r\n\r\n**Ruby version**: 2.5.1\r\n",
+    "reactions": 12,
+    "created_at": "2019-03-08T20:56:47Z",
+    "updated_at": "2023-01-17T01:19:22Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/35540",
+    "html_url": "https://github.com/rails/rails/issues/35540",
+    "author_login": "a-ta-ta",
+    "author_profile": "https://github.com/a-ta-ta",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 33195,
+    "title": "Behavior of scopes with subqueries",
+    "body": "### Steps to reproduce\r\ndownload this project https://github.com/caiammm/rails_5_active_record_sub_queries\r\nset up the project\r\n\r\nconsider the following scopes:\r\n```\r\n  scope :latest_by_article, -> {\r\n    where(id: Comment.select(\"DISTINCT ON (article_id) id\").\r\n    order(\"article_id, comments.created_at DESC\"))\r\n  }\r\n```\r\n```\r\n  scope :latest_by_article_with_unscoped, -> {\r\n    where(id: Comment.unscoped.select(\"DISTINCT ON (article_id) id\").\r\n    order(\"article_id, comments.created_at DESC\"))\r\n  }\r\n```\r\n\r\nin rails console:\r\n```\r\nputs Comment.where(article_id: [1,2]).latest_by_article.to_sql\r\n```\r\n\r\n```\r\nputs Comment.where(article_id: [1,2]).latest_by_article_with_unscoped.to_sql\r\n```\r\n\r\n### Expected behavior\r\nThe first where clause (`where(article_id: [1,2])`) won't affect the subqueries from either scope. \r\n\r\n```\r\nSELECT \"comments\".* \r\nFROM \"comments\" \r\n==> WHERE \"comments\".\"article_id\" IN (1, 2) \r\nAND \"comments\".\"id\" IN (\r\n  SELECT DISTINCT ON (article_id) id \r\n  FROM \"comments\" \r\n  ORDER BY article_id, comments.created_at DESC\r\n)\r\n```\r\n\r\n### Actual behavior\r\nThe outer where clause (`where(article_id: [1,2])`) affects the subquery in the latest_by_article scope.\r\n\r\n```\r\nSELECT \"comments\".* \r\nFROM \"comments\" \r\n==> WHERE \"comments\".\"article_id\" IN (1, 2) \r\nAND \"comments\".\"id\" IN (\r\n  SELECT DISTINCT ON (article_id) id \r\n  FROM \"comments\" \r\n  ==> WHERE \"comments\".\"article_id\" IN (1, 2) \r\n  ORDER BY article_id, comments.created_at DESC\r\n)\r\n```\r\n### System configuration\r\n**Rails version**:\r\n5.2.0\r\n**Ruby version**:\r\nruby 2.3.5p376",
+    "reactions": 12,
+    "created_at": "2018-06-22T19:31:00Z",
+    "updated_at": "2021-11-29T17:55:16Z",
+    "labels": [
+      "activerecord",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/33195",
+    "html_url": "https://github.com/rails/rails/issues/33195",
+    "author_login": "caiammm",
+    "author_profile": "https://github.com/caiammm",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 31209,
+    "title": "The construct \"where.not\" doesn't respect boolean algebra",
+    "body": "### Steps to reproduce\r\n\r\nWhen two predicates A and B are given to a `where` clause, Rails combines them using `AND`, which is the expected behavior. \r\n```ruby\r\nModel.where(col1: 1, col2: 2).to_sql\r\n\r\n# => SELECT \"models\".* FROM \"models\" WHERE \"models\".\"col1\" = 1 AND \"models\".\"col2\" = 2\r\n```\r\n\r\nWhen the clause is negated (using `where.not`), Rails distributes the `NOT` to every predicate before combining them using `AND`. Why? \r\n\r\n```ruby\r\nModel.where.not(col1: 1, col2: 2).to_sql\r\n\r\n# => SELECT \"models\".* FROM \"models\" WHERE (\"models\".\"col1\" != 1) AND (\"models\".\"col2\" != 2)\r\n```\r\n\r\n### Expected behavior\r\n\r\n`NOT(A AND B)` = `NOT(A) OR NOT(B)` \r\n\r\nIn my example, the query should look like:\r\n```sql\r\nSELECT \"models\".* FROM \"models\" WHERE (\"models\".\"col1\" != 1) OR (\"models\".\"col2\" != 2)\r\n```\r\n\r\n### Actual behavior\r\n\r\n`NOT(A AND B)` = `NOT(A) AND NOT(B)` (wrong)\r\n\r\nIt's worth noting that the correct behavior can still be obtained by writing SQL directly:\r\n\r\n```ruby\r\nModel.where.not('\"models\".\"col1\" = 1 AND \"models\".\"col2\" = 2').to_sql\r\n# => SELECT \"models\".* FROM \"models\" WHERE (NOT (\"models\".\"col1\" = 1 AND \"models\".\"col2\" = 2))\r\n```\r\n\r\nIt makes the construct `where.not(...)` behave very differently depending on the kind of arguments which are passed to it.\r\n\r\nThe culprit seems to be located here : https://github.com/rails/rails/blob/be81b5066074fee8126144d072c6132b93d1fe39/activerecord/lib/active_record/relation/where_clause.rb#L74\r\n\r\n### System configuration\r\n**Rails version**: 5.1.4\r\n\r\n**Ruby version**: MRI 2.4.2\r\n ",
+    "reactions": 11,
+    "created_at": "2017-11-23T14:18:49Z",
+    "updated_at": "2023-09-30T15:54:47Z",
+    "labels": [
+      "activerecord",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/31209",
+    "html_url": "https://github.com/rails/rails/issues/31209",
+    "author_login": "fterrazzoni",
+    "author_profile": "https://github.com/fterrazzoni",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 47047,
+    "title": "ActiveStorage::FileNotFoundError due to upload after commit",
+    "body": "We were getting `ActiveStorage::FileNotFoundError`s spuriously and are fairly confident that this is a race condition in the way ActiveStorage handles uploads and attachment.\r\n\r\n### Steps to reproduce\r\nIn the [rails guides](https://guides.rubyonrails.org/active_storage_overview.html#has-one-attached), the recommended set up for a controller that attaches a file to a model is as follows:\r\n\r\n```ruby\r\nclass SignupController < ApplicationController\r\n  def create\r\n    user = User.create!(user_params)\r\n    redirect_to root_path\r\n  end\r\n\r\n  private\r\n  def user_params\r\n    params.require(:user).permit(:email_address, :password, :avatar)\r\n  end\r\nend\r\n```\r\n\r\nWhen using this recommended set up Rails will upload the file [_after committing_](https://github.com/rails/rails/blob/18707ab17fa492eb25ad2e8f9818a320dc20b823/activestorage/lib/active_storage/attached/model.rb#L77) the creation and attachment of the `Blob` to the model.\r\nWithin the same thread this is not a problem because the hook will obviously wait until the upload is finished and other code runs that might depend on that file.\r\nHowever since the `Blob` and `Attachment` are already committed in the database, parallel processes like integrations polling for updates, or even just users clicking on the entity at just the wrong moment, will already see the attachment and try to download it causing an `ActiveStorage::FileNotFoundError`.\r\n\r\n### Expected behavior\r\nBefore the file is actually uploaded, the `User` should not be committed to the database.\r\nFor updates, the `Attachment` should not be committed to the database before upload is finished.\r\n\r\n### Actual behavior\r\nThe new user is committed with the `Blob` attached before the file is uploaded. Other requests or background tasks can find that `User` causing an `ActiveStorage::FileNotFoundError` when they try to download the avatar.\r\n\r\n### Our workaround\r\nRewriting the controller like this solves the problem as the file is uploaded before the change is committed to the database:\r\n_Edit:_ The original version of the workaround that I posted broke presence-validation. With this updated variant, we still just assign `nil` to the `avatar`, if the param is not sent, so displaying form errors still works normally.\r\n\r\n```ruby\r\nclass SignupController < ApplicationController\r\n  def create\r\n    user = User.new(user_params.except(:avatar)) # Note this change, to avoid creating the attachment twice.\r\n    user.avatar = try_create_and_upload_blob!(user_params.fetch(:avatar, nil))\r\n\r\n    user.save!\r\n    redirect_to root_path\r\n  end\r\n\r\n  private\r\n  def user_params\r\n    params.require(:user).permit(:email_address, :password, :avatar)\r\n  end\r\n\r\n  # This can also be put somewhere as a static method for reuse in different controllers.\r\n  def try_create_and_upload_blob!(uploaded_file)\r\n    return nil if uploaded_file.blank?\r\n    ActiveStorage::Blob.create_and_upload!(\r\n      io: uploaded_file.to_io,\r\n      filename: uploaded_file.original_filename,\r\n    )\r\n  end\r\nend\r\n``",
+    "reactions": 10,
+    "created_at": "2023-01-18T10:16:33Z",
+    "updated_at": "2024-10-10T17:19:40Z",
+    "labels": [
+      "docs",
+      "stale",
+      "activestorage"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/47047",
+    "html_url": "https://github.com/rails/rails/issues/47047",
+    "author_login": "sbungartz",
+    "author_profile": "https://github.com/sbungartz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 43976,
+    "title": "Active Text / Active Storage: vips.so.42: cannot open shared object file: No such file or directory",
+    "body": "### Steps to reproduce\r\nI encountered this error while following DHH's youtube video \"Rails 7: The Demo\" at 9:10. I have a fresh install of Ubuntu 20.04 and RoR. I got the same error on another computer with a freshly installed Ubuntu and RoR.  Here are the steps:\r\n1) Install action_text and add a rich_text_area to a form.\r\n2) Run rails server\r\n3) add some text and image to the rich text and hit submit (just like in the video)\r\n\r\n### Expected behavior\r\ncontents of form get saved normally along with image getting uploaded.\r\n\r\n### Actual behavior\r\nRails server quits and I see the following error:\r\n\r\n```\r\n...\r\n...\r\n#<Thread:0x00007fd7113596f8 /home/dynamic/.rvm/gems/ruby-3.0.2/gems/actionpack-7.0.0/lib/action_controller/metal/live.rb:340 run> terminated with exception (report_on_exception is true):\r\n/home/dynamic/.rvm/gems/ruby-3.0.2/gems/ffi-1.15.4/lib/ffi/library.rb:145:in `block in ffi_lib': Could not open library 'vips.so.42': vips.so.42: cannot open shared object file: No such file or directory. (LoadError)\r\nCould not open library 'libvips.so.42': libvips.so.42: cannot open shared object file: No such file or directory\r\n\tfrom /home/dynamic/.rvm/gems/ruby-3.0.2/gems/ffi-1.15.4/lib/ffi/library.rb:99:in `map'\r\n\tfrom /home/dynamic/.rvm/gems/ruby-3.0.2/gems/ffi-1.15.4/lib/ffi/library.rb:99:in `ffi_lib'\r\n\tfrom /home/dynamic/.rvm/gems/ruby-3.0.2/gems/ruby-vips-2.1.4/lib/vips.rb:573:in `<module:Vips>'\r\n\tfrom /home/dynamic/.rvm/gems/ruby-3.0.2/gems/ruby-vips-2.1.4/lib/vips.rb:570:in `<main>'\r\n...\r\n...\r\n```\r\n\r\n### System configuration\r\n**Rails version**: 7.0.0\r\n\r\n**Ruby version**: 3.0.3\r\n\r\n### What fixed the issue:\r\nI installed ImageMagick and libvips: `sudo apt install imagemagick libvips` and the error went away and everything works normally. It took me a long time to figure that out. I hope there is a more appropriate error message when ImageMagick and libvips are not installed on the computer. The error message should clearly ask the user to install ImageMagick to proceed. This will save a lot of frustration and time.\r\n",
+    "reactions": 10,
+    "created_at": "2021-12-22T22:57:41Z",
+    "updated_at": "2022-11-10T20:18:20Z",
+    "labels": [
+      "stale",
+      "activestorage"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/43976",
+    "html_url": "https://github.com/rails/rails/issues/43976",
+    "author_login": "overdrivemachines",
+    "author_profile": "https://github.com/overdrivemachines",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 35044,
+    "title": "ActiveStorage \"Parent\" Model Callback",
+    "body": "### Steps to reproduce\r\nUpdate the attachment on a record that has_one_attached.\r\n\r\n### Expected behavior\r\n\"Parent\" record should receive some sort of callback, so that any operations that should happen when the \"parent\" is updated can happen.\r\n\r\nExample:  There should be an activity feed item created when a user changes their profile picture.\r\n\r\nRight now there is no means of detecting in the model that the attachment changed... user.changed? is false, user.avatar.changed? is false, user.avatar.blob.changed? is false, and the User model's ActiveRecord callbacks are not called (I don't expect the normal callbacks, like after_save, to be called, really, but there should be _some_ means of knowing the attachment changed).\r\n\r\n### Actual behavior\r\nThe attachment is updated with no way of knowing that in the model that has the attachment.\r\n\r\n### System configuration\r\n**Rails version**: 5.2.2\r\n\r\n**Ruby version**: 2.5.3\r\n",
+    "reactions": 10,
+    "created_at": "2019-01-24T19:07:35Z",
+    "updated_at": "2021-06-16T19:43:47Z",
+    "labels": [
+      "stale",
+      "activestorage"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/35044",
+    "html_url": "https://github.com/rails/rails/issues/35044",
+    "author_login": "jasonivers",
+    "author_profile": "https://github.com/jasonivers",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 45542,
+    "title": "ActiveRecord: Bad handling of already loaded middle association in Associations::Preloaders::ThroughAssociation",
+    "body": "### Steps to reproduce\r\n<!-- (Guidelines for creating a bug report are [available\r\nhere](https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#creating-a-bug-report)) -->\r\n\r\n<!-- Paste your executable test case created from one of the scripts found [here](https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#create-an-executable-test-case) below: -->\r\n```ruby\r\n# frozen_string_literal: true\r\n\r\nrequire \"bundler/inline\"\r\n\r\ngemfile(true) do\r\n  source \"https://rubygems.org\"\r\n\r\n  gem \"activerecord\", \"7.0.2.4\"\r\n  gem \"sqlite3\"\r\nend\r\n\r\nrequire \"active_record\"\r\nrequire \"logger\"\r\n\r\n# This connection will do for database-independent bug reports.\r\nActiveRecord::Base.establish_connection(adapter: \"sqlite3\", database: \":memory:\")\r\nActiveRecord::Base.logger = Logger.new(STDOUT)\r\n\r\nActiveRecord::Schema.define do\r\n  create_table :cards, force: true do |t|\r\n    t.references :card_data\r\n  end\r\n\r\n  create_table :card_data, force: true do |t|\r\n    t.references :player\r\n  end\r\n\r\n  create_table :players, force: true do |t|\r\n    t.references :active_club\r\n  end\r\n\r\n  create_table :teams, force: true do |t|\r\n    t.string :type\r\n  end\r\nend\r\n\r\nclass Card < ActiveRecord::Base\r\n  belongs_to :card_data\r\n  has_one :player, through: :card_data\r\n  has_one :active_club, through: :player\r\nend\r\n\r\nclass CardData < ActiveRecord::Base\r\n  belongs_to :player\r\nend\r\n\r\nclass Player < ActiveRecord::Base\r\n  belongs_to :active_club, class_name: 'Club' # NB: if class_name: 'Team' this works\r\nend\r\n\r\nclass Team < ActiveRecord::Base\r\nend\r\n\r\nclass Club < Team\r\nend\r\n\r\nplayer = Player.create!\r\ncard_data = CardData.create!(player:)\r\ncard = Card.create!(card_data:)\r\n\r\ncard.reload.player # NB: if removed this works\r\n::ActiveRecord::Associations::Preloader.new(records: [card], associations: :active_club).call.then(&:first)\r\n```\r\n\r\n### Expected behavior\r\nThe association should be loaded properly\r\n\r\n### Actual behavior\r\n```\r\n/Users/adrien/.rvm/gems/ruby-3.1.1@sorare/gems/activerecord-7.0.2.4/lib/active_record/associations/preloader/through_association.rb:31:in `block (2 levels) in records_by_owner': undefined method `[]' for nil:NilClass (NoMethodError)\r\n\r\n              source_records_by_owner[record]\r\n                                     ^^^^^^^^\r\n\tfrom /Users/adrien/.rvm/gems/ruby-3.1.1@sorare/gems/activerecord-7.0.2.4/lib/active_record/associations/preloader/through_association.rb:30:in `each'\r\n\tfrom /Users/adrien/.rvm/gems/ruby-3.1.1@sorare/gems/activerecord-7.0.2.4/lib/active_record/associations/preloader/through_association.rb:30:in `flat_map'\r\n\tfrom /Users/adrien/.rvm/gems/ruby-3.1.1@sorare/gems/activerecord-7.0.2.4/lib/active_record/associations/preloader/through_association.rb:30:in `block in records_by_owner'\r\n\tfrom /Users/adrien/.rvm/gems/ruby-3.1.1@sorare/gems/activerecord-7.0.2.4/lib/active_record/associations/preloader/through_association.rb:14:in `each'\r\n\tfrom /Users/adrien/.rvm/gems/ruby-3.1.1@sorare/gems/activerecord-7.0.2.4/lib/active_record/associations/pr",
+    "reactions": 8,
+    "created_at": "2022-07-07T13:57:01Z",
+    "updated_at": "2023-02-21T21:49:22Z",
+    "labels": [
+      "activerecord",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/45542",
+    "html_url": "https://github.com/rails/rails/issues/45542",
+    "author_login": "such",
+    "author_profile": "https://github.com/such",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 51319,
+    "title": "`ActiveRecord::Migration::check_all_pending!` resets connection pool when in use in other threads",
+    "body": "This might not be a bug per se, but is unexpected behaviour that was exposed in our specific use case.\r\n\r\n### Steps to reproduce\r\n<!-- (Guidelines for creating a bug report are [available\r\nhere](https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#creating-a-bug-report)) -->\r\n\r\nIn production, we have a bunch of custom internal health-checks exposed via a controller endpoint that are pinged every 20s or so, one of which is a check for pending migrations. Up until recently we were using `ActiveRecord::Migration::check_pending!` which took an optional connection argument and would use it to access the migration context (presumably releasing the connection back into the pool immediately after) to check for pending migrations.\r\n\r\nThis method [has been deprecated in favour of `check_all_pending!`](https://github.com/rails/rails/commit/03379d1f599653d100dff9fbf3ce4434a930b915) and [was recently removed on `main`](https://github.com/rails/rails/commit/02f66fe3e25cef2b0dec8bca26e777fe788af35c). To comply with this (since we run against Rails edge) we ended up replacing `check_pending!` with `check_all_pending!` (which doesn't take any arguments) in the respective health-check. After deploying this change we started seeing this error intermittently:\r\n\r\n```\r\nActiveRecord::ConnectionNotEstablished:  No connection pool for 'ActiveRecord::Base' found.\r\n```\r\n\r\nAfter some debugging we found that it was due to `check_all_pending!` [using a temporary pool under the hood](https://github.com/rails/rails/blob/0dc84e2e7d942dcaac3bd75414ae55bfad9bb18a/activerecord/lib/active_record/tasks/database_tasks.rb#L542-L549), meaning it would establish a new connection for its checks, then establish another one once done, resetting the connection pool object each time. This meant that other threads (we're currently running `puma` with `3` threads) that attempted to retrieve the current (cached) pool during this time (to then retrieve a connection) would fail to find it and raise here:\r\nhttps://github.com/rails/rails/blob/0dc84e2e7d942dcaac3bd75414ae55bfad9bb18a/activerecord/lib/active_record/connection_adapters/abstract/connection_handler.rb#L224\r\n\r\nWe've considered that maybe this specific health-check setup is a bit unconventional, but given that I can find [some public repos utilising this method the same way](https://github.com/search?q=ActiveRecord%3A%3AMigration.check_all_pending%21+language%3ARuby&type=code&l=Ruby), I thought I'd open this up for discussion to see if there's any chance of changing / extending the implementation or even just warning against its use outside of something like a rake task so others don't run into a similar issue.\r\n\r\n<!-- Paste your executable test case created from one of the scripts found [here](https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#create-an-executable-test-case) below: -->\r\n\r\n```ruby\r\n# frozen_string_literal: true\r\n\r\nrequire \"bundler/inline\"\r\n\r\ngemfile(true) do\r\n  source \"https://rubygems.o",
+    "reactions": 6,
+    "created_at": "2024-03-13T05:17:22Z",
+    "updated_at": "2025-10-09T01:49:08Z",
+    "labels": [
+      "activerecord",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/51319",
+    "html_url": "https://github.com/rails/rails/issues/51319",
+    "author_login": "joshuay03",
+    "author_profile": "https://github.com/joshuay03",
+    "already_resurrected": false
+  }
+]

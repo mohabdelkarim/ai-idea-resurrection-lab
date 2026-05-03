@@ -1,0 +1,371 @@
+[
+  {
+    "repo": "babel/babel",
+    "issue_number": 8741,
+    "title": "[Feature Request] Add Support for const enum in TS",
+    "body": "## Feature Request\r\nIn the [docs](https://babeljs.io/docs/en/babel-plugin-transform-typescript), it says that:\r\n\r\n> Does not support `const enum`s because those require type information to compile.\r\n\r\nI don't believe that this is true. Babel should be able to transpile `const enum`s into objects, which will achieve the same functionality as typescript, through different transpiled output.\r\n\r\nGiven this code:\r\n\r\n```ts\r\nconst enum Direction { Left, Right, Down, Up }\r\nconsole.log(Direction.Down)\r\n```\r\n\r\n`tsc` would compile this to:\r\n```js\r\nconsole.log(2)\r\n```\r\n\r\nI propose that Babel compiles the enum to:\r\n\r\n```js\r\nconst Direction = {\r\n  Left: 0,\r\n  Right: 1,\r\n  Down: 2,\r\n  Up: 3\r\n}\r\nconsole.log(Direction.Down)\r\n```\r\n\r\nWhich functions the same as the `tsc` output.\r\n\r\nA minifier like `terser`/`uglify` is able to transpile that output ☝️ to the same as the `tsc` output.",
+    "reactions": 161,
+    "created_at": "2018-09-20T16:29:33Z",
+    "updated_at": "2021-11-03T04:03:25Z",
+    "labels": [
+      "area: typescript",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/8741",
+    "html_url": "https://github.com/babel/babel/issues/8741",
+    "author_login": "calebeby",
+    "author_profile": "https://github.com/calebeby",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 11216,
+    "title": "No \"exports\" main resolved in @babel/helper-compilation-targets/package.json",
+    "body": "## Bug Report\r\n**Current Behavior**\r\nSince an update to node 13.10.1 I have a problem while building an application with `babel-loader`:\r\n```\r\nError [ERR_PACKAGE_PATH_NOT_EXPORTED]: No \"exports\" main resolved in node_modules/@babel/helper-compilation-targets/package.json\r\n```\r\n\r\n**Expected behavior/code**\r\nIt should build correctly\r\n\r\n**Babel Configuration (babel.config.js, .babelrc, package.json#babel, cli command, .eslintrc)**\r\n- Filename: `babel.config.js`\r\n\r\n```js\r\nconst baseConfig = {\r\n  presets: [\r\n    [\r\n      '@babel/preset-env',\r\n      {\r\n        useBuiltIns: 'entry',\r\n        corejs: 3,\r\n      },\r\n    ],\r\n    '@babel/preset-react',\r\n    '@babel/preset-flow',\r\n    '@babel/preset-typescript',\r\n  ],\r\n  plugins: [\r\n    'react-hot-loader/babel',\r\n    'babel-plugin-styled-components',\r\n    ['@babel/plugin-proposal-class-properties', { loose: true }],\r\n    '@babel/plugin-syntax-dynamic-import',\r\n    isTesting && 'babel-plugin-dynamic-import-node-babel-7',\r\n  ].filter(Boolean),\r\n};\r\n\r\nmodule.exports = {\r\n  sourceType: 'unambiguous',\r\n  ...baseConfig,\r\n  plugins: [\r\n    'idx',\r\n    '@babel/plugin-syntax-import-meta',\r\n    '@babel/plugin-proposal-json-strings',\r\n    [\r\n      '@babel/plugin-proposal-decorators',\r\n      {\r\n        legacy: true,\r\n      },\r\n    ],\r\n    '@babel/plugin-proposal-function-sent',\r\n    '@babel/plugin-proposal-export-namespace-from',\r\n    '@babel/plugin-proposal-numeric-separator',\r\n    '@babel/plugin-proposal-optional-chaining',\r\n    '@babel/plugin-proposal-throw-expressions',\r\n    'babel-plugin-macros',\r\n    [\r\n      require.resolve('babel-plugin-module-resolver'),\r\n      {\r\n        root: ['./'],\r\n        alias: {\r\n          'react-router-dom': './packages/components/Router',\r\n          '@@react-router-dom': './node_modules/react-router-dom',\r\n        },\r\n      },\r\n    ],\r\n  ],\r\n  env: {\r\n    test: {\r\n      plugins: [\r\n        ...baseConfig.plugins,\r\n        '@babel/plugin-transform-modules-commonjs',\r\n      ],\r\n    },\r\n  },\r\n};\r\n\r\n```\r\n\r\n**Environment**\r\n```\r\n  System:\r\n    OS: macOS Mojave 10.14.6\r\n  Binaries:\r\n    Node: 13.10.1 - /usr/local/bin/node\r\n    Yarn: 1.22.0 - /usr/local/bin/yarn\r\n    npm: 6.14.2 - /usr/local/bin/npm\r\n  Monorepos:\r\n    Yarn Workspaces: 1.22.0\r\n  npmPackages:\r\n    @babel/core: ^7.8.3 => 7.8.3\r\n    @babel/plugin-proposal-class-properties: ^7.8.3 => 7.8.3\r\n    @babel/plugin-proposal-decorators: ^7.8.3 => 7.8.3\r\n    @babel/plugin-proposal-export-namespace-from: ^7.8.3 => 7.8.3\r\n    @babel/plugin-proposal-function-sent: ^7.8.3 => 7.8.3\r\n    @babel/plugin-proposal-json-strings: ^7.8.3 => 7.8.3\r\n    @babel/plugin-proposal-numeric-separator: ^7.8.3 => 7.8.3\r\n    @babel/plugin-proposal-optional-chaining: ^7.8.3 => 7.8.3\r\n    @babel/plugin-proposal-throw-expressions: ^7.8.3 => 7.8.3\r\n    @babel/plugin-syntax-dynamic-import: ^7.8.3 => 7.8.3\r\n    @babel/plugin-syntax-import-meta: ^7.8.3 => 7.8.3\r\n    @babel/preset-env: ^7.8.3 => 7.8.3\r\n    @babel/preset-flow: ^7.8.3 => 7.8.3\r\n    @babel/preset-react: ^7.8",
+    "reactions": 128,
+    "created_at": "2020-03-05T15:15:28Z",
+    "updated_at": "2021-03-08T04:14:53Z",
+    "labels": [
+      "area: upstream",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/11216",
+    "html_url": "https://github.com/babel/babel/issues/11216",
+    "author_login": "Drogglbecher",
+    "author_profile": "https://github.com/Drogglbecher",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 4630,
+    "title": "Are you open to allowing .babelrc.js?",
+    "body": "The only place I saw \"I'd like to use JavaScript inside .babelrc is here: #4449, so I am opening a proper issue about `.babelrc.js`.\n### Expected Behavior\n\nI would like to be able to provide:\n\n.babelrc.js\n\n``` js\nmodule.exports = {\n  plugins: [\n    [\"babel-plugin-transform-cool\", {\n      isCool: maybe => maybe ? 'yes' : 'no';\n    }]\n  ]\n};\n```\n\nAnd use the `isCool` option in the plugin like so: state.opts.isCool(true);\n### Current Behavior\n\n.babelrc only allows for JSON.\n### Possible Solution\n\nUse `babel-core` programmatically, this allows for any type of option (which may be seen as non-consistent with .babelrc).\n### Context\n\nESLint allows this, I find it easier to reason about configuration files when they are written with JavaScript: comments, easy customization with ENV variables, no context switch (This is JavaScript).\n",
+    "reactions": 102,
+    "created_at": "2016-10-01T13:08:25Z",
+    "updated_at": "2018-11-24T23:35:14Z",
+    "labels": [
+      "PR: New Feature :rocket:",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/4630",
+    "html_url": "https://github.com/babel/babel/issues/4630",
+    "author_login": "vvo",
+    "author_profile": "https://github.com/vvo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 8361,
+    "title": "[Babel 7] [Typescript] Exported Interfaces from an import are kept in the generated JS code",
+    "body": "## Bug Report\r\n\r\n**Current Behavior**\r\nIf the Typescript code exports an interfaces that was imported from other module, that interface reference is kept in the Javascript code after transpilation.\r\n\r\n**Input Code**\r\n\r\nFile A:\r\n```typescript\r\nexport interface ExportedInterface {\r\n  value: string\r\n}\r\n```\r\n\r\nFile B:\r\n```typescript\r\nimport { ExportedInterface } from './file-a';\r\nexport { ExportedInterface }\r\n\r\nexport function test(): ExportedInterface {\r\n  return { value: '1' };\r\n}\r\n```\r\n\r\n**Expected behavior/code**\r\nThe result code should not keep reference of that interface because is a type.\r\n\r\n```js\r\nexport function test() {\r\n  return {\r\n    value: '1'\r\n  };\r\n}\r\n```\r\n\r\n**Babel Configuration (.babelrc, package.json, cli command)**\r\n\r\n```js\r\n{\r\n  presets: [\r\n    ['@babel/preset-env', { modules: false }],\r\n     '@babel/preset-typescript',\r\n  ],\r\n}\r\n```\r\n\r\n**Environment**\r\n- Babel version(s): v7.0.0-beta.54\r\n- Node/npm version: Node 10.5.0/npm 6.2.0\r\n- OS: OSX 10.13.5\r\n- Monorepo no\r\n- How you are using Babel: cli (but is the same with loader)\r\n\r\n**Possible Solution**\r\nLooks like the here is a comment in the code that could be related to this issue: https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-typescript/src/index.js#L52\r\n\r\n**Additional context/Screenshots**\r\nThe generated code currently is the following one:\r\n\r\n\r\nFile A:\r\n```js\r\n// No error, the file is generated empty\r\n```\r\n\r\nFile B:\r\n```js\r\nimport { IInterface } from './test-sub';\r\nexport { IInterface };\r\nexport function test() {\r\n  return {\r\n    value: '1'\r\n  };\r\n}\r\n```",
+    "reactions": 77,
+    "created_at": "2018-07-22T20:05:02Z",
+    "updated_at": "2020-06-16T04:05:43Z",
+    "labels": [
+      "area: typescript",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/8361",
+    "html_url": "https://github.com/babel/babel/issues/8361",
+    "author_login": "manrueda",
+    "author_profile": "https://github.com/manrueda",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 8482,
+    "title": "Requires Babel “7.0.0-0” but was loaded with “6.26.3”",
+    "body": "## Bug Report\r\n\r\n**Current Behavior**\r\nKeep getting this and I've tried a bunch of solutions around the forum. This is what I'm getting:\r\n```\r\nerror: bundling failed: Error: Requires Babel \"^7.0.0-0\", but was loaded with \"6.26.3\". \r\nIf you are sure you have a compatible version of @babel/core, it is likely that something in your build process is loading the wrong version. \r\nInspect the stack trace of this error to look for the first entry that doesn't mention \"@babel/core\" or \"babel-core\" to see what is calling Babel. (While processing preset: \"C:\\Users\\Admin-ESS\\Absent\\node_modules\\@babel\\preset-env\\lib\\index.js\")\r\n\r\nat throwVersionError (C:\\Users\\Admin-ESS\\Absent\\node_modules\\@babel\\preset-env\\node_modules\\@babel\\helper-plugin-utils\\lib\\index.js:65:11) \r\nat Object.assertVersion (C:\\Users\\Admin-ESS\\Absent\\node_modules\\@babel\\preset-env\\node_modules\\@babel\\helper-plugin-utils\\lib\\index.js:13:11) \r\nat _default (C:\\Users\\Admin-ESS\\Absent\\node_modules\\@babel\\preset-env\\lib\\index.js:150:7) \r\nat C:\\Users\\Admin-ESS\\Absent\\node_modules\\@babel\\preset-env\\node_modules\\@babel\\helper-plugin-utils\\lib\\index.js:19:12 \r\nat C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:317:46 \r\nat Array.map () at OptionManager.resolvePresets (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:275:20) \r\nat OptionManager.mergePresets (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:264:10)\r\nat OptionManager.mergeOptions (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:249:14) \r\nat OptionManager.init (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:368:12) \r\nat File.initOptions (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\node_modules\\babel-core\\lib\\transformation\\file\\index.js:212:65) \r\nat new File (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\node_modules\\babel-core\\lib\\transformation\\file\\index.js:135:24) \r\nat Pipeline.transform (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\node_modules\\babel-core\\lib\\transformation\\pipeline.js:46:16) \r\nat Object.transform (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\src\\transformer.js:135:5) \r\nat Object.transformCode [as transform] (C:\\Users\\Admin-ESS\\Absent\\node_modules\\metro\\src\\JSTransformer\\worker\\index.js:253:15) \r\nat execMethod (C:\\Users\\Admin-ESS\\Absent\\node_modules\\jest-worker\\build\\child.js:92:29) \r\nat process.on (C:\\Users\\Admin-ESS\\Absent\\node_modules\\jest-worker\\build\\child.js:42:7) \r\nat process.emit (events.js:180:13) at emit (internal/child_process.js:783:12)\r\n```\r\nAnd the problem is I'm not sure what am I suppose to look for here. Any pointers would be greatly appreciated :)\r\n\r\n**Input Code**\r\nThis is what my package.json look like atm. not sure if theres any package there that ac",
+    "reactions": 69,
+    "created_at": "2018-08-16T09:29:44Z",
+    "updated_at": "2020-07-29T04:07:42Z",
+    "labels": [
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/8482",
+    "html_url": "https://github.com/babel/babel/issues/8482",
+    "author_login": "rayj10",
+    "author_profile": "https://github.com/rayj10",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 4980,
+    "title": "Add support for .babelrc.yaml",
+    "body": "This is an alternative proposal to https://github.com/babel/babel/pull/4892 (\"Add support for .babelrc.js files\").\r\n\r\n> tl;dr;\r\n>\r\n> Using YAML format can achieve anywhere from 30% to +50% reduction (lines code code) of the configuration length without compromising readability.\r\n>\r\n> In contrast to using JavaScript as a configuration format, using YAML format restricts complexity of the document to the use of [merge and anchor](#merge-and-anchor) features.\r\n\r\nI am worried that adding configuration support in JavaScript format will lead to complex configurations that are hard to read. A case in point is webpack. webpack configurations have a tendency to grow in size out of proportion, include an exceeding amount of conditional checks and merging logic.\r\n\r\nWith no disrespect to the author of the following code example, consider this configuration:\r\n\r\n* [https://github.com/davezuko/react-redux-starter-kit/blob/master/config/webpack.config.js](https://github.com/davezuko/react-redux-starter-kit/blob/2675bb29115b44c3fb077e7359fd88d5e2989d0e/config/webpack.config.js)\r\n\r\nIn the above configuration:\r\n\r\n* [There is string concatenation](https://github.com/davezuko/react-redux-starter-kit/blob/2675bb29115b44c3fb077e7359fd88d5e2989d0e/config/webpack.config.js#L31)\r\n* [Conditional setting using `__TEST__` variable](https://github.com/davezuko/react-redux-starter-kit/blob/2675bb29115b44c3fb077e7359fd88d5e2989d0e/config/webpack.config.js#L72)\r\n* [Conditional setting using `__DEV__` variable](https://github.com/davezuko/react-redux-starter-kit/blob/2675bb29115b44c3fb077e7359fd88d5e2989d0e/config/webpack.config.js#L86)\r\n* [Conditional setting using `__PROD__` variable](https://github.com/davezuko/react-redux-starter-kit/blob/2675bb29115b44c3fb077e7359fd88d5e2989d0e/config/webpack.config.js#L92)\r\n* [Filtering logic](https://github.com/davezuko/react-redux-starter-kit/blob/2675bb29115b44c3fb077e7359fd88d5e2989d0e/config/webpack.config.js#L200)\r\n\r\nIn short, there is no way see whats the resulting configuration without executing the code.\r\n\r\n> I understand that webpack and Babel face different challenges.\r\n>\r\n> However, it is not unreasonable to think that similar patterns will emerge in Babel if configuration in JavaScript format is supported.\r\n\r\nHowever, I do see an issue of repetition in `.babelrc`.\r\n\r\nLets use this configuration as an example:\r\n\r\n```json5\r\n{\r\n  \"env\": {\r\n    \"test\": {\r\n      // \"ava\" requires \"transform-es2015-modules-commonjs\"\r\n      \"plugins\": [\r\n        \"istanbul\",\r\n        \"transform-es2015-modules-commonjs\",\r\n        \"transform-export-default-name\",\r\n        \"transform-flow-strip-types\",\r\n        \"transform-async-to-generator\",\r\n        \"transform-es2015-destructuring\",\r\n        \"transform-es2015-parameters\",\r\n        [\r\n          \"transform-object-rest-spread\",\r\n          {\r\n            \"useBuiltIns\": true\r\n          }\r\n        ],\r\n        \"transform-class-properties\"\r\n      ],\r\n      \"sourceMaps\": \"inline\"\r\n    },\r\n    // Used for debuggi",
+    "reactions": 63,
+    "created_at": "2016-12-09T13:19:48Z",
+    "updated_at": "2018-05-05T14:40:20Z",
+    "labels": [
+      "i: discussion",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/4980",
+    "html_url": "https://github.com/babel/babel/issues/4980",
+    "author_login": "gajus",
+    "author_profile": "https://github.com/gajus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 8529,
+    "title": "Support babel.config.ts in TypeScript",
+    "body": "## Feature Request\r\n\r\nTools like Webpack and Gulp allow the config file to be named .ts and be written in TypeScript if `ts-node` is installed. This makes it possible to write type-safe configuration and improves the editor experience (autocompletion, validation etc).\r\n\r\nIt would be nice if Babel supported this too.",
+    "reactions": 62,
+    "created_at": "2018-08-24T16:58:03Z",
+    "updated_at": "2025-09-27T04:04:23Z",
+    "labels": [
+      "area: typescript",
+      "pkg: core",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/8529",
+    "html_url": "https://github.com/babel/babel/issues/8529",
+    "author_login": "felixfbecker",
+    "author_profile": "https://github.com/felixfbecker",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 7926,
+    "title": "No babel-cli watch mode console output after first compilation",
+    "body": "## Bug Report\r\n\r\n**Current Behavior**\r\n\r\nThe babel-cli in `--watch` mode does not output any messages following the first compilation. It seems as though the CLI is not doing anything even though files are compiling.\r\n\r\n**Input Code**\r\n\r\n```sh\r\nbabel src -d lib --watch\r\n```\r\n\r\n**Expected behavior/code**\r\n\r\nThe CLI should display an output summary after every `--watch` mode compilation.\r\n\r\n**Babel Configuration (.babelrc, package.json, cli command)**\r\n\r\nN/A.\r\n\r\n**Environment**\r\n- Babel version(s): v7.0.0-beta.41 - v7.0.0-beta.46\r\n- Node/npm version: Node 10/npm 6\r\n- OS: macOS v10.13.4\r\n- Monorepo: No\r\n- How you are using Babel: `cli`\r\n\r\n**Possible Solution**\r\n<!--- Only if you have suggestions on a fix for the bug -->\r\n\r\n**Additional context/Screenshots**\r\n\r\nThis issue began with https://github.com/babel/babel/pull/7439 in [v7.0.0-beta.41](https://github.com/babel/babel/releases/tag/v7.0.0-beta.41). The babel-cli has a new a new `--verbose` flag for seeing exactly what files were compiled, but even with the verbose output of what files are being compiled there are no subsequent summary messages. An output summary should be displayed every compilation, regardless of the `--verbose` flag.",
+    "reactions": 62,
+    "created_at": "2018-05-14T07:34:29Z",
+    "updated_at": "2020-08-24T04:10:10Z",
+    "labels": [
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/7926",
+    "html_url": "https://github.com/babel/babel/issues/7926",
+    "author_login": "jaydenseric",
+    "author_profile": "https://github.com/jaydenseric",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 4019,
+    "title": "Manage multiple babel-polyfill imports instead of throwing an exception (T7013)",
+    "body": "> Issue originally made by @alovicu\n### Bug information\n- **Babel version:** 5.1.13\n- **Node version:** 0.10.36\n- **npm version:** 1.3.6\n### Description\n\nIf a web page includes two (or more) different javascript applications and both of them import babel-polyfill, the second one that is executed throws the following exception and stops working:\n\nUncaught Error: only one instance of babel-polyfill is allowed\n\nIn these cases the second instance of polyfill should manage automatically the presence of a previous instance and, ideally, avoid the loading of the rest of the code.\n\nIn this way polyfill will be able to support the presence of multiple third party applications, designed to work independently from each other, executed asynchronously, and that have to import polyfill since they cannot assume the presence of a polyfill instance in the host page.\n",
+    "reactions": 57,
+    "created_at": "2016-01-21T09:34:37Z",
+    "updated_at": "2018-07-22T23:39:29Z",
+    "labels": [
+      "pkg: polyfill",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/4019",
+    "html_url": "https://github.com/babel/babel/issues/4019",
+    "author_login": "babel-bot",
+    "author_profile": "https://github.com/babel-bot",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 10008,
+    "title": "RFC: Rethink polyfilling story",
+    "body": "In the last three years and a half, `@babel/preset-env` has shown its full potential in reducing bundle sizes not only by not transpiling supported syntax features, but also by not including unnecessary `core-js` polyfills.\r\nCurrently Babel has three different ways to inject `core-js` polyfills in the source code:\r\n- By using `@babel/preset-env`'s `useBuiltIns: \"entry\"` option, it is possible to inject polyfills for every ECMAScript functionality not natively supported by the target browsers;\r\n- By using `useBuiltIns: \"usage\"`, Babel will only inject polyfills for unsupported ECMAScript features but _only_ if they are actually used in the input souce code;\r\n- By using `@babel/plugin-transform-runtime`, Babel will inject po<i>n</i>yfills (which are \"pure\" and don't pollute the global scope) for every used ECMAScript feature supported by `core-js`. This is usually used by library authors.\r\n\r\n> :information_source: **INFO:** Before continuing, I highly recommend reading \"[Annex B: The current relationship between Babel and `core-js`](#user-content-annex-b)\" to get a deeper understanding of the current situation!\r\n\r\nOur position in the JavaScript ecosystem allows us to push these optimizations even further. `@babel/plugin-transform-runtime` has big advantages for some users over `useBuiltIns`, but it doesn't consider target environments: it's 2020 and probably very few people need to load an `Array.prototype.forEach` polyfill.\r\nAdditionally, why should we limit this ability to automatically inject only the necessary polyfill to `core-js`? There are also DOM polyfills, Intl polyfills, and polyfills for a myriad of other web platform APIs. Additionally, not everyone wants to use `core-js`: there are many other valid ECMAScript polyfills, which have different tradeoffs (e.g. source size vs spec compliancy) and may work better for some users. \r\n\r\nWhat if the logic to inject them was not related to the actual data about the available or required polyfills, so that they can be used and developed independently?\r\n\r\n## Concepts\r\n\r\n- **Polyfill provider** is a special kind of Babel plugin that injects is used to specify which JavaScript expressions need to be polyfilled, where to load that polyfill from and how to apply it. Multiple polyfill providers can be used at the same time, so that users can load, for example, both an ECMAScript polyfill provider and a DOM-related one.\r\n  \r\n  *Polyfill providers* can expose three different methods of injecting the polyfills:\r\n    - `entry-global`, which reflects the current `useBuiltIns: \"entry\"` option of `@babel/preset-env`;\r\n    - `usage-global`, which reflects the current `useBuiltIns: \"usage\"` option of `@babel/preset-env`;\r\n    - `usage-pure`, which reflects the current polyfilling behavior of `@babel/plugin-transform-runtime`.\r\n\r\n  Every interested project should have their own polyfill provider: for example, `babel-plugin-polyfill-corejs3` or `@ungap/babel-plugin-polyfill`.\r\n\r\n## New user experience\r\n\r\nSuppose a",
+    "reactions": 53,
+    "created_at": "2019-05-21T16:36:13Z",
+    "updated_at": "2020-08-29T04:05:45Z",
+    "labels": [
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/10008",
+    "html_url": "https://github.com/babel/babel/issues/10008",
+    "author_login": "nicolo-ribaudo",
+    "author_profile": "https://github.com/nicolo-ribaudo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 15967,
+    "title": "[Bug]: Pulling of 7.22.18 is causing issues where other packages have already pinned it",
+    "body": "### 💻\n\n- [ ] Would you like to work on a fix?\n\n### How are you using Babel?\n\nbabel-loader (webpack)\n\n### Input code\n\nN/A\n\n### Configuration file name\n\n_No response_\n\n### Configuration\n\n_No response_\n\n### Current and expected behavior\n\n```\r\nnpm ERR! code ETARGET\r\nnpm ERR! notarget No matching version found for @babel/types@^7.22.18.\r\nnpm ERR! notarget In most cases you or one of your dependencies are requesting\r\nnpm ERR! notarget a package version that doesn't exist.\r\n```\n\n### Environment\n\nnode 18, npm 7\n\n### Possible solution\n\n_No response_\n\n### Additional context\n\n_No response_",
+    "reactions": 51,
+    "created_at": "2023-09-14T16:04:48Z",
+    "updated_at": "2023-12-15T04:03:34Z",
+    "labels": [
+      "i: needs triage",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/15967",
+    "html_url": "https://github.com/babel/babel/issues/15967",
+    "author_login": "GrahamCampbell",
+    "author_profile": "https://github.com/GrahamCampbell",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 8497,
+    "title": "Allow plugins to indicate dependencies on random files",
+    "body": "## Feature Request\r\n\r\nIn contexts where Babel is running alongside a filesystem watcher, there are cases where a plugin may load an arbitrary file. Take a plugin like https://www.npmjs.com/package/babel-plugin-inline-import for example. Or some usecases of babel-plugin-macros.\r\n\r\nIt would be ideal if Babel had a way for plugins to indicate that these dependencies exist, so that if callers of Babel wanted to take that into account, they could. For example, Webpack has [`.addDependency`](https://webpack.js.org/api/loaders/#this-adddependency), so that changes to that file will cause the loader to re-execute when the dependency is changed. We could easily use this API in `babel-loader` to handle this. Implementing a similar API in `@babel/cli`'s watcher wouldn't be too bad either.\r\n\r\nI don't know how other Babel wrappers would fair, but if someone wanted to help investigate that, it would certainly help. Off the top off my head we'd want to check, at the very least, if the following have ways to register additional files to watch:\r\n\r\n* Meteor\r\n* Jest\r\n* Browserify\r\n* Gulp\r\n\r\n### Edit\r\n\r\nWe may also want to include in this work logic to help us take dependency file content into account for the purposes of cache invalidation. For example, `babel-loader`'s `cacheDirectory` option will not invalidate caches, if say a `.browserlistrc` file changes `preset-env`'s plugin list: https://github.com/babel/babel-loader/issues/690",
+    "reactions": 38,
+    "created_at": "2018-08-21T00:39:06Z",
+    "updated_at": "2022-05-10T04:03:25Z",
+    "labels": [
+      "help wanted",
+      "pkg: core",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/8497",
+    "html_url": "https://github.com/babel/babel/issues/8497",
+    "author_login": "loganfsmyth",
+    "author_profile": "https://github.com/loganfsmyth",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 5261,
+    "title": "Setting sourceMaps option only works for inline SMs",
+    "body": "This is my .babelrc\r\n\r\n```\r\n{\r\n  \"presets\": [\"es2015\", \"stage-0\", \"react\"],\r\n  \"plugins\": [\"transform-decorators-legacy\", \"transform-runtime\"],\r\n  \"sourceMaps\": true,\r\n  \"retainLines\": true\r\n}\r\n```\r\n\r\nHowever when running babel source maps are not being generated:\r\n\r\n```babel app/ --copy-files --out-dir build```\r\n\r\nAdding `--source-maps true` to CLI tool forces SMs to be generated. Is it a bug?",
+    "reactions": 25,
+    "created_at": "2017-02-03T11:51:19Z",
+    "updated_at": "2022-12-22T04:03:20Z",
+    "labels": [
+      "help wanted",
+      "area: sourcemaps",
+      "pkg: cli",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/5261",
+    "html_url": "https://github.com/babel/babel/issues/5261",
+    "author_login": "pronebird",
+    "author_profile": "https://github.com/pronebird",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 4554,
+    "title": "process.send is not a function in child spawned with babel-node (ipc doesn't work)",
+    "body": "### Input Code\n\n`spawn.js`:\n\n``` es6\nimport {spawn} from 'child_process'\n\nspawn('babel-node', ['child.js'], {\n  stdio: [0, 1, 2, 'ipc']\n})\n```\n\n`child.js`:\n\n``` es6\nprocess.send({hello: 'world'})\n```\n### Babel Configuration (.bablerc, package.json, cli command)\n\n``` json\n{\n  \"presets\": [\"es2015\", \"stage-1\"]\n}\n```\n### Expected Behavior\n\nNo errors are thrown when I spawn `child.js` with `node`.\n### Current Behavior\n\nWhen I spawn `child.js` with `babel-node`, I see the following error in the console:\n\n```\nchild.js:3\nprocess.send({ hello: 'world' });\n        ^\n\nTypeError: process.send is not a function\n    at Object.<anonymous> (/Users/andy/smart-restart/child.js:1:9)\n    at Module._compile (module.js:413:34)\n    at loader (/Users/andy/.nvm/versions/node/v5.12.0/lib/node_modules/babel-cli/node_modules/babel-register/lib/node.js:146:5)\n    at Object.require.extensions.(anonymous function) [as .js] (/Users/andy/.nvm/versions/node/v5.12.0/lib/node_modules/babel-cli/node_modules/babel-register/lib/node.js:156:7)\n    at Module.load (module.js:357:32)\n    at Function.Module._load (module.js:314:12)\n    at Function.Module.runMain (module.js:447:10)\n    at /Users/andy/.nvm/versions/node/v5.12.0/lib/node_modules/babel-cli/lib/_babel-node.js:151:24\n    at Object.<anonymous> (/Users/andy/.nvm/versions/node/v5.12.0/lib/node_modules/babel-cli/lib/_babel-node.js:152:7)\n    at Module._compile (module.js:413:34)\n```\n### Context\n\nI'm the author of [smart-restart](https://github.com/jedwards1211/smart-restart).  I'm trying to get it to work when spawning the supervised process with `babel-node`.\n### Your Environment\n\n| software | version |\n| --- | --- |\n| Babel | 6.14.0 |\n| node | 5.12.0 |\n| npm | 3.8.6 |\n| Operating System | OS X 10.11.6 |\n",
+    "reactions": 14,
+    "created_at": "2016-09-23T16:01:16Z",
+    "updated_at": "2021-06-29T04:03:16Z",
+    "labels": [
+      "help wanted",
+      "outdated",
+      "pkg: node"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/4554",
+    "html_url": "https://github.com/babel/babel/issues/4554",
+    "author_login": "jedwards1211",
+    "author_profile": "https://github.com/jedwards1211",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 16500,
+    "title": "Convert remaning runtime helpers to TypeScript",
+    "body": "Our source files are mostly written in TypeScript, with the exception of most of the runtime helpers that we inject in the compiled code. Since https://github.com/babel/babel/pull/16495 all those helpers are stored in individual files and pre-transpiled, so we can move all those that are still written in JS to TypeScript.\r\n\r\nThere are some rules/instructions to follows:\r\n- Many imports currently use \"bare specifiers\", such as `import toPropertyKey from \"toPropertyKey\";`. They must be converted to relative imports **always using the `.ts` extension**, such as `import toPropertyKey from \"./toPropertyKey.ts\";`. The reason for using `.ts` even when importing `.js` files is that, when this issue will be completed, all those files will be using `.ts` anyway. If TS complain that it cannot find the types of the dependency because it's still written in JS, add `// @ts-expect-error` before the import.\r\n- The files must type-heck when running `make tscheck-helpers` (or `yarn tsc -p ./packages/babel-helpers/src/helpers/tsconfig.json`, which is equivalent)\r\n- Some of those helpers use absolutely unreadable variable names, such as https://github.com/babel/babel/blob/db3e9a6cbdaba16dc480a1f76a11b0d2ea84adc4/packages/babel-helpers/src/helpers/iterableToArrayLimit.js, because those files were \"manually minified\". No we minify helpers at build time, so we can afford to use readable variables: feel free to change them!\r\n\r\nTo coordinate this work, I split all our helpers in groups: those who want to help can leave a comment saying which group you want to work, and _then_ start working on a PR :) If you want to work on multiple groups, start by claiming **one** and then after that the PR is merged you can claim a second one (and so on).\r\n\r\nIf it is the first time that you contribute to Babel, follow these steps: (you need to have `make` and `yarn` available on your machine)\r\n1. Fork the repo\r\n1. Run `git clone https://github.com/<YOUR_USERNAME>/babel.git && cd babel`\r\n1. Run `yarn && make bootstrap`\r\n1. Wait :hourglass_flowing_sand: \r\n1. Update the code!\r\n1. Whenever you change a helper, you'll need to run `yarn gulp generate-runtime-helpers` to regenerate `./packages/babel-helpers/src/helpers-generated.ts` (this is probably not needed if you _just_ add types, but it is if you for example change variable names)\r\n1. Once you are done, you can run `make build` to re-build everything, and then `make test` to run all the tests\r\n1. Run `git push` and open a PR!\r\n\r\n---\r\n\r\n**NOTE**: Some of the helpers in this list are already written in TS, but they are failing type-checking. The task for those is to remove them from `packages/babel-helpers/src/helpers/tsconfig.json`'s `exclude` list and fix the type errors.\r\n\r\n- [x] **Legacy decorators** (@amjed-98)\r\n  - `applyDecoratedDescriptors`\r\n  - `initializerDefineProperty`\r\n  - `initializerWarningHelper`\r\n- [x] **New decorators** (@liuxingbaoyu)\r\n  - `defineAccessor`\r\n  - `identity`\r\n  - `setFunctionName` (see note above)\r\n  - `ap",
+    "reactions": 8,
+    "created_at": "2024-05-16T15:21:57Z",
+    "updated_at": "2025-04-24T04:05:01Z",
+    "labels": [
+      "help wanted",
+      "area: helpers",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/16500",
+    "html_url": "https://github.com/babel/babel/issues/16500",
+    "author_login": "nicolo-ribaudo",
+    "author_profile": "https://github.com/nicolo-ribaudo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 2960,
+    "title": "feature request: `babel --settings` for bug reports",
+    "body": "Having a command line option to dump all the presets and plugins (with versions) being used by babel would be useful. \n\nThis would help to avoid the bug report back and forth: \"provide your .babelrc or what plugins/presets you are using\", and would be less error prone. Also would be a good way to verify your own babel set up.\n\nThe format of the settings dump would be canonical and unambiguous whether .babelrc or command line flags are used. Perhaps some basic sanity checking could be done for the presets and plugins specified as well.\n",
+    "reactions": 7,
+    "created_at": "2015-11-10T16:03:31Z",
+    "updated_at": "2019-02-27T18:20:16Z",
+    "labels": [
+      "PR: New Feature :rocket:",
+      "Priority: High",
+      "help wanted",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/2960",
+    "html_url": "https://github.com/babel/babel/issues/2960",
+    "author_login": "kzc",
+    "author_profile": "https://github.com/kzc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 1088,
+    "title": "Class support should include `new.target`",
+    "body": "Expected:\n\n``` js\nclass Foo { constructor() { console.log(new.target.name); } }\nvar x = new Foo(); // \"Foo\"\n```\n\nand...\n\n``` js\nclass Bar extends Foo { constructor() { super() } }\nvar y = new Bar(); // \"Bar\"\n```\n",
+    "reactions": 6,
+    "created_at": "2015-03-26T05:17:45Z",
+    "updated_at": "2018-07-04T03:22:29Z",
+    "labels": [
+      "PR: Spec Compliance :eyeglasses:",
+      "help wanted",
+      "Has PR",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/1088",
+    "html_url": "https://github.com/babel/babel/issues/1088",
+    "author_login": "getify",
+    "author_profile": "https://github.com/getify",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 9894,
+    "title": "Module build failed (sometimes)",
+    "body": "## Bug Report\r\n\r\n**Current Behavior**\r\nHappening since I upgraded to babel 7 from babel 6.\r\nCode is transpiled correctly upon running webpack. In watch mode I can modify the source code and babel transpiles accordingly. However, after a while/sometimes babel fails to build the module, with the following error msg;\r\n```\r\nERROR in ... Component.js\r\nModule build failed (from ./node_modules/babel-loader/lib/index.js):\r\nSyntaxError: ... Component.js: Unexpected token (46:35)\r\n...\r\n...\r\n> 46 |           <h3>{place.formattedName}</h3>\r\n     |                                    ^\r\n```\r\nThere is nothing wrong with the code inputted into the transpiler. Killing webpack and run it again works fine until it happens again (without specific cause)\r\n\r\n**Input Code**\r\nJust plain simple react code that I truly know should transpile.\r\n\r\n**Expected behavior/code**\r\nShould successfully transpile in watch mode every time it builds.\r\n\r\n**Babel Configuration (.babelrc, package.json, cli command)**\r\n\r\n```js\r\nmodule.exports = function (api) {\r\n  api.cache(true)\r\n\r\n  const presets = [\r\n    \"@babel/preset-react\",\r\n    \"@babel/preset-env\",\r\n  ]\r\n\r\n  const plugins = [\r\n    [\"@babel/plugin-proposal-decorators\", { \"legacy\": true }],\r\n    \"@babel/plugin-proposal-object-rest-spread\",\r\n    [\r\n      \"react-intl\", {\r\n        \"messagesDir\": \"./translations/extractedMessages/\"\r\n      }\r\n    ]\r\n  ]\r\n\r\n  return {\r\n    presets,\r\n    plugins\r\n  }\r\n}\r\n\r\n...\r\n...\r\n\"devDependencies\": {\r\n    \"@babel/core\": \"^7.4.3\",\r\n    \"@babel/plugin-proposal-decorators\": \"^7.4.0\",\r\n    \"@babel/plugin-proposal-object-rest-spread\": \"^7.4.3\",\r\n    \"@babel/preset-env\": \"^7.4.3\",\r\n    \"@babel/preset-react\": \"^7.0.0\",\r\n    \"@fortawesome/fontawesome-pro\": \"^5.3.1\",\r\n    \"babel-loader\": \"^8.0.5\",\r\n    \"babel-plugin-react-intl\": \"^3.0.1\",\r\n    \"copy-webpack-plugin\": \"^5.0.2\",\r\n    \"css-loader\": \"^2.1.1\",\r\n    \"mini-css-extract-plugin\": \"^0.6.0\",\r\n    \"node-sass\": \"^4.11.0\",\r\n    \"nodemon\": \"^1.11.0\",\r\n    \"optimize-css-assets-webpack-plugin\": \"^5.0.1\",\r\n    \"react-intl-translations-manager\": \"^5.0.3\",\r\n    \"sass-loader\": \"^7.1.0\",\r\n    \"serialize-javascript\": \"^1.5.0\",\r\n    \"terser-webpack-plugin\": \"^1.2.3\",\r\n    \"vinyl-buffer\": \"^1.0.0\",\r\n    \"vinyl-source-stream\": \"^1.1.0\",\r\n    \"webpack\": \"^4.30.0\",\r\n    \"webpack-bundle-analyzer\": \"^3.0.2\",\r\n    \"webpack-cli\": \"^3.3.0\",\r\n    \"webpack-node-externals\": \"^1.7.2\"\r\n  }\r\n\r\n\r\nconst path = require('path')\r\nconst webpack = require('webpack')\r\nconst BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin\r\nconst CopyPlugin = require('copy-webpack-plugin')\r\nconst MiniCssExtractPlugin = require('mini-css-extract-plugin')\r\nconst TerserJSPlugin = require('terser-webpack-plugin')\r\nconst OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')\r\n\r\nmodule.exports = env => {\r\n\r\n  let specific = {}\r\n  console.log('env', env)\r\n\r\n  if (env.NODE_ENV === 'production') {\r\n    Config = require('./config/config.prod.js')\r\n  }\r\n  else if (env.NODE_ENV ",
+    "reactions": 5,
+    "created_at": "2019-04-24T14:10:34Z",
+    "updated_at": "2023-01-06T04:03:23Z",
+    "labels": [
+      "help wanted",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/9894",
+    "html_url": "https://github.com/babel/babel/issues/9894",
+    "author_login": "sebastianoblom",
+    "author_profile": "https://github.com/sebastianoblom",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 8919,
+    "title": "--config-file option does not work with @babel/cli.",
+    "body": "## Bug Report\r\n\r\n**Current Behavior**\r\n\r\n```\r\n17:33:10 [jwalton@morgana ~/benbria/node-promise-tools] (master) $ cat babelModules.js\r\nmodule.exports = {\r\n    \"presets\": [\r\n        [\"@babel/env\", { \"targets\": \"> 0.25%, not dead\", \"modules\": false }]\r\n    ]\r\n}\r\n\r\n17:33:09 [jwalton@morgana ~/benbria/node-promise-tools] (master) $ ./node_modules/.bin/babel --config-file babelModules.js -d dist/modules src\r\n{ Error: Cannot find module 'babelModules.js' from '/Users/jwalton/benbria/node-promise-tools'\r\n    at Function.module.exports [as sync] (/Users/jwalton/benbria/node-promise-tools/node_modules/@babel/core/node_modules/resolve/lib/sync.js:43:15)\r\n    at loadConfig (/Users/jwalton/benbria/node-promise-tools/node_modules/@babel/core/lib/config/files/configuration.js:158:39)\r\n    at buildRootChain (/Users/jwalton/benbria/node-promise-tools/node_modules/@babel/core/lib/config/config-chain.js:76:40)\r\n    at loadPrivatePartialConfig (/Users/jwalton/benbria/node-promise-tools/node_modules/@babel/core/lib/config/partial.js:85:55)\r\n    at loadFullConfig (/Users/jwalton/benbria/node-promise-tools/node_modules/@babel/core/lib/config/full.js:43:39)\r\n    at process.nextTick (/Users/jwalton/benbria/node-promise-tools/node_modules/@babel/core/lib/transform-file.js:48:33)\r\n    at _combinedTickCallback (internal/process/next_tick.js:132:7)\r\n    at process._tickCallback (internal/process/next_tick.js:181:9)\r\n    at Function.Module.runMain (module.js:696:11)\r\n    at startup (bootstrap_node.js:204:16) code: 'MODULE_NOT_FOUND' }\r\n\r\n```\r\n\r\n**Expected behavior**\r\n\r\nBabel should load the config file specified and use it.\r\n\r\n**Environment**\r\n- Babel version(s): 7.1.2\r\n- Node/npm version: Node 8.12.0/npm 6.4.1\r\n- OS: OSX 10.13.6\r\n- Monorepo No\r\n- How you are using Babel: CLI\r\n",
+    "reactions": 5,
+    "created_at": "2018-10-23T21:35:33Z",
+    "updated_at": "2022-11-19T04:03:24Z",
+    "labels": [
+      "help wanted",
+      "area: errors",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/8919",
+    "html_url": "https://github.com/babel/babel/issues/8919",
+    "author_login": "jwalton",
+    "author_profile": "https://github.com/jwalton",
+    "already_resurrected": false
+  },
+  {
+    "repo": "babel/babel",
+    "issue_number": 5118,
+    "title": "[7.0] Remove `babel-runtime` from babel-x packages (check if we can)",
+    "body": "### What\r\n\r\nAlmost every babel-x package right now has a dependency on `babel-runtime`.\r\n\r\nExample with babel-plugin-check-es2015-constants: https://github.com/babel/babel/blob/3c2e9c002188104c556d61136cc2a33b44b55b24/packages/babel-plugin-check-es2015-constants/package.json#L12\r\n\r\nBeing able to remove this from all packages would help save time to install (especially npm 2/yarn).\r\n\r\n> https://github.com/facebookincubator/create-react-app/issues/1397\r\n> Yarn has known issues deduplicating dependencies, sometimes failing to hoist dependencies shared between a ton of packages (such as babel-runtime) and producing installs 5 times bigger than npm: yarnpkg/yarn#2306.\r\n\r\n\r\n\r\nThe reason for doing this in the first place has to do with wanting to use built-ins like Symbol/Promise, etc which are not native to node 0.10/0.12. Now that we are on >= Node 4 we should be able to use the native ones.\r\n\r\nWe don't want to use a polyfill, so we choose to use [babel-runtime + babel-plugin-transform-runtime](http://babeljs.io/docs/plugins/transform-runtime/#technical-detailscore-js-aliasing). For more context: http://babeljs.io/docs/plugins/transform-runtime/#why\r\n\r\nI think if we don't do this there will be a babel-runtime 7.0 and that won't dedupe correctly etc or we rename to babel-runtime-internal\r\n\r\n---\r\n\r\n### How to:\r\n\r\n- [ ] Use node 4 lts\r\n- [ ] remove `transform-runtime` from the babel config\r\n- [ ] check that tests all pass\r\n- [ ] remove `babel-runtime` from the \"dependencies\" in each package's package.json and at the top level package.json\r\n- [ ] EDIT: also need to remove it here: https://github.com/babel/babel/blob/7.0/packages/babel-runtime/scripts/build-dist.js\r\n\r\n### Wins\r\n- less dependencies, use native, might be faster to run/install\r\n\r\ncc @sindresorhus, @insin since I think I recall both of you wanting a solution this even from https://github.com/babel/babel/pull/3438.",
+    "reactions": 5,
+    "created_at": "2017-01-14T19:37:08Z",
+    "updated_at": "2018-05-05T15:40:26Z",
+    "labels": [
+      "help wanted",
+      "Has PR",
+      "outdated"
+    ],
+    "url": "https://api.github.com/repos/babel/babel/issues/5118",
+    "html_url": "https://github.com/babel/babel/issues/5118",
+    "author_login": "hzoo",
+    "author_profile": "https://github.com/hzoo",
+    "already_resurrected": false
+  }
+]

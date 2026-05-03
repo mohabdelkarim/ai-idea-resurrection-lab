@@ -1,0 +1,157 @@
+[
+  {
+    "repo": "psf/requests",
+    "issue_number": 2966,
+    "title": "Consider using system trust stores by default in 3.0.0.",
+    "body": "It's been raised repeatedly, mostly by people using Linux systems, that it's annoying that requests doesn't use the system trust store and instead uses the one that certifi ships. This is an understandable position. I have some personal attachment to the certifi approach, but the other side of that argument definitely has a reasonable position too. For this reason, I'd like us to look into whether we should use the system trust store by default, and make certifi's bundle a fallback option.\n\nI have some caveats here:\n1. If we move to the system trust store, we must do so on _all_ platforms: Linux must not be its own special snowflake.\n2. We must have broad-based support for Linux and Windows.\n3. We must be able to fall back to certifi cleanly.\n\nRight now it seems like the best route to achieving this would be to use [certitude](https://github.com/python-hyper/certitude). This currently has support for dynamically generating the cert bundle OpenSSL needs directly from the system keychain on OS X. If we added Linux and Windows support to that library, we may have the opportunity to switch to using certitude.\n\nGiven @kennethreitz's bundling policy, we probably cannot unconditionally switch to certitude, because certitude depends on cryptography (at least on OS X). However, certitude could take the current privileged position that certifi takes, or be a higher priority than certifi, as an optional dependency that is used if present on the system.\n\nThoughts? This is currently a RFC, so please comment if you have opinions. /cc @sigmavirus24 @alex @kennethreitz @dstufft @glyph @reaperhulk @morganfainberg\n",
+    "reactions": 92,
+    "created_at": "2016-01-11T17:15:47Z",
+    "updated_at": "2025-05-20T00:05:04Z",
+    "labels": [
+      "Please Review",
+      "Question/Not a bug",
+      "Needs More Information"
+    ],
+    "url": "https://api.github.com/repos/psf/requests/issues/2966",
+    "html_url": "https://github.com/psf/requests/issues/2966",
+    "author_login": "Lukasa",
+    "author_profile": "https://github.com/Lukasa",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
+    "issue_number": 5710,
+    "title": "idna 3.0 version package conflict",
+    "body": "idna released version 3.0 but requests has a dependency on idna<3, this makes it impossible to keep up to date on both packages.\r\n\r\n## Expected Result\r\nI want to be able to install the latest idna package alongside the latest requests package\r\n\r\n\r\n## Actual Result\r\n\r\n```\r\nERROR: Cannot install -r requirements.txt (line 12) and idna==3.0 because these package versions have conflicting dependencies.\r\n\r\nThe conflict is caused by:\r\n\r\n    The user requested idna==3.0\r\n\r\n    requests 2.25.1 depends on idna<3 and >=2.5\r\n```\r\n\r\n## Reproduction Steps\r\n\r\ntry to run `pip install` on a requirements.txt file with \r\n```\r\nrequests==2.25.1\r\nidna==3.0\r\n```\r\n\r\n## System Information\r\n\r\nmultiple Python versions (3.6 up to 3.9) running on Docker containers inside Drone CI/CD ",
+    "reactions": 88,
+    "created_at": "2021-01-01T12:29:46Z",
+    "updated_at": "2021-10-07T20:00:26Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/psf/requests/issues/5710",
+    "html_url": "https://github.com/psf/requests/issues/5710",
+    "author_login": "naorlivne",
+    "author_profile": "https://github.com/naorlivne",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
+    "issue_number": 2766,
+    "title": "Document threading contract for Session class",
+    "body": "Right now, it's quite difficult to figure out if the Session class is threadsafe or not. The docs don't say, apart from a \"thread-safe\" bullet on the home page. Google led me to http://stackoverflow.com/questions/18188044/is-the-session-object-from-pythons-requests-library-thread-safe, whose first answer boils down to \"be very careful\".\n\nInspired by that SO author, I've been auditing the code myself, and have come to the conclusion that Session is probably not threadsafe. (The use of `self.redirect_cache` set off red flags for me.) Reading through other requests bug reports, I see maintainers recommending one Session per thread, which implies that it's not threadsafe.\n\nThe documentation should clarify this and recommend how to use Session in multithreaded programs. Possible text:\n\n```\nSession is not threadsafe. If you are using requests with an explicit Session\nobject in a multithreaded program, you should create one Session per thread.\n```\n\nIf that's accurate, let me know and I'll submit a PR.\n\nAlso, I think the \"thread-safe\" bullet should be removed from the home page, or maybe replaced by \"thread-safe in certain circumstances\".\n",
+    "reactions": 77,
+    "created_at": "2015-09-10T13:44:25Z",
+    "updated_at": "2025-11-07T00:04:58Z",
+    "labels": [
+      "Documentation"
+    ],
+    "url": "https://api.github.com/repos/psf/requests/issues/2766",
+    "html_url": "https://github.com/psf/requests/issues/2766",
+    "author_login": "gward",
+    "author_profile": "https://github.com/gward",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
+    "issue_number": 3070,
+    "title": "Consider making Timeout option required or have a default",
+    "body": "I have a feeling I'm about to get a swift education on this topic, but I've been thinking about the pros/cons of changing `requests` so that somehow there is a timeout value configured for every request.\n\nI think there are two ways to do this:\n1. Provide a default value. I know browsers have a default, so that may be a simple place to begin.\n2. Make every user configure this in every request -- bigger API breakage. Probably not the way to go.\n\nThe reason I'm thinking about this is because I've used requests for a few years now and until now I didn't realize the importance of providing a timeout. It took one of my programs hanging forever for me to realize that the default here isn't really very good for my purposes. (I'm in the process of updating all my code...)\n\nI also see that a lot of people want `Session` objects to have a timeout parameter, and this might be a way to do that as well. \n\nIf a large default were provided to all requests and all sessions, what negative impact would that have? The only thing I can think of is that some programs will get timeout exceptions where they previously hung, which seems like an improvement to me.\n## Caveat, added May 13, 2016:\n\nPlease don't use this issue to discuss adding a timeout attribute to requests. There are a number of discussions about this elsewhere (search closed issues), and we don't want that conversation to muddy this issue too. Thanks.\n",
+    "reactions": 66,
+    "created_at": "2016-03-29T16:56:50Z",
+    "updated_at": "2024-05-21T10:16:30Z",
+    "labels": [
+      "Feature Request",
+      "Breaking API Change"
+    ],
+    "url": "https://api.github.com/repos/psf/requests/issues/3070",
+    "html_url": "https://github.com/psf/requests/issues/3070",
+    "author_login": "mlissner",
+    "author_profile": "https://github.com/mlissner",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
+    "issue_number": 6432,
+    "title": "The latest version of requests (2.29.0) does not support urllib3 2.0.0",
+    "body": "## The latest version of ``requests`` (``2.29.0``) does not support ``urllib3`` ``2.0.0``\r\n\r\n``urllib3`` ``2.0.0`` was just released: https://github.com/urllib3/urllib3/releases/tag/2.0.0\r\n\r\nBut currently ``requests`` ``2.29.0`` has a range bound on it: ``<1.27 and >=1.21.1`` for ``urllib3``.\r\n\r\nIf you try to install a package that has ``urllib3==2.0.0`` as a dependency (while using the latest version of ``requests``), there will be errors:\r\n\r\n```\r\n<PACKAGE> depends on urllib3==2.0.0\r\nrequests 2.29.0 depends on urllib3<1.27 and >=1.21.1\r\n```\r\n\r\nExpecting ``requests`` to support the latest version of ``urllib3``.\r\n\r\n(For Python 3.7 or newer)\r\n",
+    "reactions": 51,
+    "created_at": "2023-04-26T17:53:09Z",
+    "updated_at": "2023-08-12T19:30:38Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/psf/requests/issues/6432",
+    "html_url": "https://github.com/psf/requests/issues/6432",
+    "author_login": "mdmintz",
+    "author_profile": "https://github.com/mdmintz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
+    "issue_number": 1198,
+    "title": "max-retries-exceeded exceptions are confusing",
+    "body": "hi,\nfor example:\n\n```\n>>> requests.get('http://localhost:1111')\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\n  File \"requests/api.py\", line 55, in get\n    return request('get', url, **kwargs)\n  File \"requests/api.py\", line 44, in request\n    return session.request(method=method, url=url, **kwargs)\n  File \"requests/sessions.py\", line 312, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"requests/sessions.py\", line 413, in send\n    r = adapter.send(request, **kwargs)\n  File \"requests/adapters.py\", line 223, in send\n    raise ConnectionError(e)\nrequests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=1111): Max retries exceeded with url: / (Caused by <class 'socket.error'>: [Errno 61] Connection refused)\n```\n\n(assuming nothing is listening on port 1111)\n\nthe exception says \"Max retries exceeded\". i found this confusing because i did not specify any retry-related params. in fact, i am unable to find any documentation about specifying the retry-count. after going through the code, it seems that urllib3 is the underlying transport, and it is called with max_retries=0 (so in fact there are no retries). and requests simply wraps the exception. so it is understandable, but it confuses the end-user (end-developer)? i think something better should be done here, especially considering that it is very easy to get this error.\n",
+    "reactions": 18,
+    "created_at": "2013-02-15T14:59:41Z",
+    "updated_at": "2018-12-27T14:25:44Z",
+    "labels": [
+      "Feature Request"
+    ],
+    "url": "https://api.github.com/repos/psf/requests/issues/1198",
+    "html_url": "https://github.com/psf/requests/issues/1198",
+    "author_login": "gabor",
+    "author_profile": "https://github.com/gabor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
+    "issue_number": 3928,
+    "title": "Drop 2.6 support",
+    "body": "Our main dependent that still supports 2.6, pip, has just dropped support (pypa/pip#4343). We are now free to do the same.",
+    "reactions": 10,
+    "created_at": "2017-03-19T07:54:02Z",
+    "updated_at": "2021-09-08T08:00:33Z",
+    "labels": [
+      "Feature Request",
+      "Planned",
+      "Minion Seal of Approval"
+    ],
+    "url": "https://api.github.com/repos/psf/requests/issues/3928",
+    "html_url": "https://github.com/psf/requests/issues/3928",
+    "author_login": "Lukasa",
+    "author_profile": "https://github.com/Lukasa",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
+    "issue_number": 3013,
+    "title": "Easy printing of Requests and Responses, two new utils?",
+    "body": "Several times now I've stumbled over cases where I would like to print the request and response objects as strings to the console. Simply to see when headers and content are sent. Seems more people than I have had this problem: http://stackoverflow.com/questions/20658572/python-requests-print-entire-http-request-raw\n\nMy suggestion: add two util methods that print requests and responses according to the HTTP spec. They are fully optional to use, and would not break backwards compatibility:\n\nTo be clear, I'm suggesting something link this be added to requests.utils:\n\n``` python\ndef print_request(req):\n    print('HTTP/1.1 {method} {url}\\n{headers}\\n\\n{body}'.format(\n        method=req.method,\n        url=req.url,\n        headers='\\n'.join('{}: {}'.format(k, v) for k, v in req.headers.items()),\n        body=req.body,\n    ))\n\ndef print_response(res):\n    print('HTTP/1.1 {status_code}\\n{headers}\\n\\n{body}'.format(\n        status_code=res.status_code,\n        headers='\\n'.join('{}: {}'.format(k, v) for k, v in res.headers.items()),\n        body=res.content,\n    ))\n```\n\nIs this a good idea?\n",
+    "reactions": 9,
+    "created_at": "2016-02-14T12:25:29Z",
+    "updated_at": "2021-09-08T18:00:54Z",
+    "labels": [
+      "Feature Request"
+    ],
+    "url": "https://api.github.com/repos/psf/requests/issues/3013",
+    "html_url": "https://github.com/psf/requests/issues/3013",
+    "author_login": "EmilStenstrom",
+    "author_profile": "https://github.com/EmilStenstrom",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
+    "issue_number": 2899,
+    "title": "requests: Support SSL_CERT_FILE environment variable",
+    "body": "Requests allows setting path to a CA certificate bundle that should be used instead of the default system one using the following environment variables: `REQUESTS_CA_BUNDLE` and `CURL_CA_BUNDLE`.\n\nhttps://github.com/kennethreitz/requests/blob/v2.8.1/requests/sessions.py#L621\n\nPlease make it also check `SSL_CERT_FILE` environment variable in the same way.  This variable is recognized by OpenSSL and is documented in PEP 476 as a way to make Python standard library https clients use non-default CA bundle file:\n\nhttps://www.python.org/dev/peps/pep-0476/#trust-database\n\nIt sounds reasonable to have a single environment variable that can be used for all Python scripts regardless of whether they are using `requests` or standard library `httplib` / `urllib*`.\n\nIn terms of the fix, a simple `or os.environ.get('SSL_CERT_FILE')` should do the trick.\n",
+    "reactions": 6,
+    "created_at": "2015-11-26T09:25:04Z",
+    "updated_at": "2021-09-08T09:00:44Z",
+    "labels": [
+      "Feature Request",
+      "Contributor Friendly"
+    ],
+    "url": "https://api.github.com/repos/psf/requests/issues/2899",
+    "html_url": "https://github.com/psf/requests/issues/2899",
+    "author_login": "thoger",
+    "author_profile": "https://github.com/thoger",
+    "already_resurrected": false
+  }
+]
