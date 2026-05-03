@@ -1,39 +1,30 @@
+use grep_matcher::Matcher;
+use grep_regex::RegexMatcher;
+use grep_searcher::Searcher;
+use grep_searcher::sinks::UTF8;
 
-   ```rust
-   use regex::Regex;
-   use ripgrep::Searcher;
-   use ripgrep::SearcherBuilder;
+fn main() {
+    // A multiline pattern: match from "listeners" up to "click" across newlines
+    // The (?s) flag makes `.` match newlines as well
+    let pattern = r"(?s)listeners.+?click";
 
-   struct MultilineSearcher {
-       regex: Regex,
-       searcher: Searcher,
-   }
+    let text = b"listeners: {
+    foo: ...
+    click: ....
+}";
 
-   impl MultilineSearcher {
-       fn new(pattern: &str) -> Self {
-           let regex = Regex::new(pattern).unwrap();
-           let searcher = SearcherBuilder::new().build().unwrap();
-           MultilineSearcher { regex, searcher }
-       }
+    let matcher = RegexMatcher::new(pattern).expect("Invalid regex pattern");
 
-       fn search(&self, text: &str) -> Vec<(usize, usize)> {
-           let mut matches = Vec::new();
-           for (start, end) in self.regex.find_iter(text) {
-               matches.push((start, end));
-           }
-           matches
-       }
-   }
+    Searcher::new()
+        .search_slice(
+            &matcher,
+            text,
+            UTF8(|line_number, line| {
+                println!("Match on line {}: {}", line_number, line.trim_end());
+                Ok(true)
+            }),
+        )
+        .expect("Search failed");
 
-   fn main() {
-       let searcher = MultilineSearcher::new("(?s)listeners.+click");
-       let text = "listeners: {
-           foo: ...
-           click: ....
-       }";
-       let matches = searcher.search(text);
-       for (start, end) in matches {
-           println!("Match found at ({}, {})", start, end);
-       }
-   }
-   ```
+    println!("Done.");
+}
