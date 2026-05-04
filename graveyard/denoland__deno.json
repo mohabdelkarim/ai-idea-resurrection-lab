@@ -360,6 +360,24 @@
   },
   {
     "repo": "denoland/deno",
+    "issue_number": 1699,
+    "title": "Add support for IndexedDB",
+    "body": "It'll be useful to have IndexedDB in Deno.\r\nRelated to #1657.",
+    "reactions": 55,
+    "created_at": "2019-02-07T07:51:29Z",
+    "updated_at": "2026-05-03T15:59:14Z",
+    "labels": [
+      "feat",
+      "web"
+    ],
+    "url": "https://api.github.com/repos/denoland/deno/issues/1699",
+    "html_url": "https://github.com/denoland/deno/issues/1699",
+    "author_login": "dsseng",
+    "author_profile": "https://github.com/dsseng",
+    "already_resurrected": false
+  },
+  {
+    "repo": "denoland/deno",
     "issue_number": 2552,
     "title": "Support importing wasm modules ",
     "body": "```\r\nimport * as foo from \"./foo.wasm\";\r\n```\r\nwhere foo will correspond to the exports of the wasm module.",
