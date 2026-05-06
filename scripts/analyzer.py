@@ -141,11 +141,11 @@ MIN_POC_CODE_LENGTH = 400       # chars — PoC shorter than this is rejected
 MIN_RFC_LENGTH = 300            # chars — RFC shorter than this is rejected
 ONE_LINE_MIN_WORDS = 10
 ONE_LINE_MAX_WORDS = 20
-MODEL_NAME = "llama-3.3-70b-versatile"
+MODEL_NAME = "meta-llama/llama-4-maverick-17b-128e-instruct"
 ANALYZER_TEMPERATURE = 0.55
 MAX_ANALYSIS_RETRIES = 4
 # Set a high token budget so the model never gets truncated mid-JSON.
-# llama-3.3-70b-versatile supports up to 32 768 output tokens on Groq.
+# llama-4-maverick supports up to 32 768 output tokens on Groq.
 MAX_TOKENS = 8192
 
 
