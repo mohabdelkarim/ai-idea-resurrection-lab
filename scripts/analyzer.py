@@ -20,8 +20,6 @@ ANALYSIS_TEMP_FILE = ".analysis_temp.json"
 _TAGS_LOWER = {tag.lower(): tag for tag in APPROVED_TECHNOLOGY_TAGS}
 
 # Maps repo slug → the language its codebase is written in.
-# Used to steer the LLM toward the correct PoC language and to override
-# any hallucinated poc_language value in _coerce_fields().
 REPO_POC_LANGUAGE: dict[str, str] = {
     "hashicorp/terraform": "go",
     "hashicorp/vault": "go",
@@ -48,150 +46,112 @@ REPO_POC_LANGUAGE: dict[str, str] = {
 }
 
 # ---------------------------------------------------------------------------
-# Prompts
+# Constants
 # ---------------------------------------------------------------------------
 
-SYSTEM_PROMPT = """You are a world-class senior software architect with 20+ years of experience
-specializing in resurrecting abandoned open-source ideas. You have deep expertise in
-distributed systems, developer tooling, APIs, and modern AI-augmented development.
-
-Your job: take a GitHub issue that was closed or abandoned years ago and produce a
-RICH, DETAILED, OPINIONATED technical resurrection analysis.
-
-Guidelines for each field:
-
-- why_it_died: 3-5 sentences. Be SPECIFIC about the technical, ecosystem, or community
-  reasons it failed. Name the exact missing pieces (e.g. "The VS Code extension API
-  lacked FileDecorationProvider until 2019"). Avoid vague statements like "it was complex".
-
-- why_2026_changes_it: 3-5 sentences. Name SPECIFIC tools, APIs, frameworks, or ecosystem
-  shifts that exist today that didn't exist when the issue was filed. Be concrete.
-  (e.g. "LLaMA 3.3 running locally, tree-sitter parsers in every editor, Rust-based
-  toolchains replacing slow Python build tools").
-
-- modern_design: 5-8 sentences describing a complete technical architecture.
-  Name the specific classes, APIs, patterns, and data flows you would use.
-  This should read like a senior engineer's architecture note, not a blog post intro.
-
-- proof_of_concept_code: Full, runnable, production-quality code (not pseudocode).
-  Must be at least 80 lines. Include imports, error handling, comments.
-  The code must directly demonstrate the core idea from the issue.
-  Use the preferred poc_language specified in the user message.
-
-- rfc_content: A structured RFC with these EXACT sections:
-  ## Summary\n## Motivation\n## Detailed Design\n## Drawbacks\n## Alternatives\n## Unresolved Questions
-  Each section must have at least 3 sentences of real content.
-
-- one_line_summary: One complete sentence (10-20 words) that captures what the feature does.
-  Must be a full, meaningful sentence — no trailing ellipsis, no cut-off mid-thought.
-
-- one_line_why: One complete sentence (10-20 words) explaining WHY it will succeed now.
-  Must be a full, meaningful sentence — no trailing ellipsis, no cut-off mid-thought.
-
-- impact_score: Integer 1-10 based SOLELY on the number of developers who would
-  directly benefit from this specific feature being implemented. Scale:
-    1  → < 100 developers  (niche internal tooling)
-    2  → ~500 developers
-    3  → ~1,000 developers
-    4  → ~5,000 developers
-    5  → ~20,000 developers
-    6  → ~100,000 developers
-    7  → ~500,000 developers
-    8  → 1M+ developers, solves a daily painful problem
-    9  → 5M+ developers across multiple ecosystems
-    10 → Changes how an entire industry writes software
-  Use the full range honestly. A niche Rust macro helper is a 2. A core
-  Python stdlib improvement touching every Python developer is an 8.
-  Do NOT let issue popularity, reaction count, or repo stars influence the score.
-  Derive it purely from: (audience size of the affected tool) × (how central
-  this feature is to daily workflow).
-
-- effort_hours: Realistic integer estimate. Do NOT default to 120 for every issue.
-  Choose based on actual complexity:
-    8-16h  → packaging, config tweaks, docs, or small CLI changes
-    24-40h → focused single-feature work with tests
-    60-80h → parser / provider / protocol changes
-    100-160h → core engine, state management, planner changes, or cross-provider work
-    200h+  → fundamental architecture changes or major new subsystems
-  Justify your number mentally against the scope. Two issues of different sizes
-  must NOT have the same effort_hours.
-
-- technology_tags: 4-6 lowercase tags directly relevant to the implementation stack.
-- poc_language: Must be one of: python, typescript, rust, go. Use the preferred language
-  provided in the user message — it reflects the repo's real implementation stack.
-- death_year: The 4-digit year the issue was last active.
-- has_poc: true if you wrote real runnable code, false otherwise.
-- rfc_needed: true if the feature requires design discussion before implementation.
-- abandoned_date: Best estimate of when activity stopped, format YYYY-MM-DD.
-
-CRITICAL RULES:
-1. impact_score MUST be an integer between 1 and 10. Use the full range — do not cluster.
-2. effort_hours MUST be a positive integer. Never 0. Never null. Never the same for all issues.
-3. one_line_summary and one_line_why MUST be complete sentences of 10-20 words, no ellipsis.
-4. proof_of_concept_code must be runnable code, NOT pseudocode or a description.
-5. rfc_content MUST contain all 6 sections listed above.
-6. Keep each prose field (why_it_died, why_2026_changes_it, modern_design) to 3-5 sentences max.
-   Do NOT write long essays — concise, specific, and technical is the goal.
-7. Respond with ONLY a valid JSON object. No markdown fences. No explanation outside JSON."""
-
-
 ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
-MIN_ANALYSIS_TEXT_LENGTH = 80   # chars — fields shorter than this are flagged
-MIN_POC_CODE_LENGTH = 400       # chars — PoC shorter than this is rejected
-MIN_RFC_LENGTH = 300            # chars — RFC shorter than this is rejected
+MIN_ANALYSIS_TEXT_LENGTH = 80
+MIN_POC_CODE_LENGTH = 400
+MIN_RFC_LENGTH = 300
 ONE_LINE_MIN_WORDS = 10
 ONE_LINE_MAX_WORDS = 20
 MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
 ANALYZER_TEMPERATURE = 0.55
-MAX_ANALYSIS_RETRIES = 4
-# Set a high token budget so the model never gets truncated mid-JSON.
-# llama-4-scout supports up to 8192 output tokens on Groq.
-MAX_TOKENS = 8192
+MAX_RETRIES = 4
+# Each individual call is small now — 2048 is plenty per call.
+MAX_TOKENS_METADATA = 2048
+MAX_TOKENS_POC = 4096
+MAX_TOKENS_RFC = 3072
 
+# ---------------------------------------------------------------------------
+# Prompts — one focused system prompt per call
+# ---------------------------------------------------------------------------
 
-def _preferred_poc_language(repo: str) -> str:
-    """Return the canonical PoC language for a given repo, defaulting to 'python'."""
-    return REPO_POC_LANGUAGE.get(repo, "python")
+# CALL 1: metadata only (no long-form text, no code)
+_SYSTEM_METADATA = """\
+You are a world-class senior software architect specialising in resurrecting abandoned
+open-source ideas.
 
+Given a GitHub issue, return ONLY a JSON object with these fields and NO others:
 
-def build_user_prompt(issue: dict[str, Any]) -> str:
-    repo = str(issue.get("repo", ""))
-    title = str(issue.get("title", ""))
-    created_at = str(issue.get("created_at", ""))
-    updated_at = str(issue.get("updated_at", ""))
-    labels = issue.get("labels", [])
-    labels_text = ", ".join(str(label) for label in labels) if isinstance(labels, list) else str(labels)
-    body = str(issue.get("body", ""))
-    preferred_language = _preferred_poc_language(repo)
+{
+  "why_it_died": "<3-5 specific sentences about why it failed>",
+  "why_2026_changes_it": "<3-5 sentences naming exact tools/APIs that exist now>",
+  "modern_design": "<5-8 sentences, architecture-level, names classes/APIs/patterns>",
+  "one_line_summary": "<single complete sentence 10-20 words>",
+  "one_line_why": "<single complete sentence 10-20 words explaining why it succeeds now>",
+  "impact_score": <integer 1-10>,
+  "effort_hours": <positive integer>,
+  "technology_tags": ["tag1", "tag2", "tag3", "tag4"],
+  "poc_language": "<python|typescript|rust|go>",
+  "death_year": <4-digit integer>,
+  "has_poc": <true|false>,
+  "rfc_needed": <true|false>,
+  "abandoned_date": "<YYYY-MM-DD>"
+}
 
-    # NOTE: reaction count is intentionally excluded from the prompt.
-    # High reaction counts bias the model toward inflated impact scores.
-    # impact_score must be derived from technical audience size, not popularity.
-    return (
-        f"ABANDONED GITHUB ISSUE TO RESURRECT:\n"
-        f"Repository: {repo}\n"
-        f"Title: {title}\n"
-        f"Originally filed: {created_at}\n"
-        f"Last activity: {updated_at}\n"
-        f"Labels: {labels_text}\n\n"
-        f"Original description from the issue author:\n"
-        f'"""{body}"""\n\n'
-        "Produce a FULL, DETAILED resurrection analysis following your system instructions.\n"
-        "For impact_score: estimate the number of developers directly affected by this "
-        "specific feature, then map that to the 1-10 scale in your instructions. "
-        "Use the full range — small ecosystem = low score, widely-used daily tool = high score.\n"
-        f"Preferred poc_language for this repository: {preferred_language}. "
-        "Use this language for proof_of_concept_code — it matches the repo's real implementation stack.\n"
-        "For effort_hours: give a REALISTIC estimate specific to this issue's complexity. "
-        "Do not use 120 as a default — justify the number based on scope.\n"
-        "IMPORTANT: Keep each prose field to 3-5 sentences. Be concise and technical.\n"
-        "Return ONLY the JSON object. No markdown. No explanation outside the JSON."
-    )
+Rules:
+- impact_score: 1-10 based SOLELY on audience size × how central the feature is.
+  Scale: 1=<100 devs, 5=~20k devs, 8=1M+ devs, 10=industry-wide.
+  Use the full range — do NOT cluster around 5 or 7.
+- effort_hours: realistic for THIS issue. 8-16h=small, 24-40h=focused, 60-80h=parser/protocol,
+  100-160h=core engine, 200h+=architecture overhaul. Never the same for all issues.
+- one_line_summary and one_line_why: complete sentences, 10-20 words, NO ellipsis.
+- poc_language: use the preferred language from the user message.
+- Keep each prose field (why_it_died, why_2026_changes_it, modern_design) to 3-5 sentences.
+- Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
+"""
+
+# CALL 2: proof-of-concept code only
+_SYSTEM_POC = """\
+You are a world-class software engineer. Write a proof-of-concept implementation.
+
+Return ONLY a JSON object:
+{
+  "proof_of_concept_code": "<full runnable code as a single string>"
+}
+
+Requirements for proof_of_concept_code:
+- Real, runnable code — NOT pseudocode or a description.
+- At least 80 lines. Include imports, error handling, comments.
+- Directly demonstrates the core idea from the issue.
+- Use the language specified in the user message.
+- Escape all special characters properly for JSON (newlines as \\n, quotes as \\", etc.).
+
+Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
+"""
+
+# CALL 3: RFC only
+_SYSTEM_RFC = """\
+You are a world-class software architect writing an RFC.
+
+Return ONLY a JSON object:
+{
+  "rfc_content": "<full RFC as a single string>"
+}
+
+Requirements for rfc_content:
+- Must contain ALL of these sections in order:
+  ## Summary
+  ## Motivation
+  ## Detailed Design
+  ## Drawbacks
+  ## Alternatives
+  ## Unresolved Questions
+- Each section must have at least 3 sentences of real technical content.
+- The value is a plain string — use \\n for newlines inside the JSON string.
+
+Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
+"""
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+def _preferred_poc_language(repo: str) -> str:
+    return REPO_POC_LANGUAGE.get(repo, "python")
+
 
 def _normalize_tags(raw_tags: list[Any]) -> list[str]:
     result: list[str] = []
@@ -212,19 +172,15 @@ def _normalize_tags(raw_tags: list[Any]) -> list[str]:
 
 
 def _safe_int(value: Any, min_val: int, max_val: int, default: int) -> int:
-    """Parse an integer from AI output, clamping to [min_val, max_val]."""
     if isinstance(value, bool):
         return default
     try:
-        parsed = int(float(str(value)))
-        return max(min_val, min(max_val, parsed))
+        return max(min_val, min(max_val, int(float(str(value)))))
     except (ValueError, TypeError):
         return default
 
 
 def _ensure_rfc_sections(rfc_text: str) -> str:
-    """If the RFC is missing required sections, append empty ones so downstream
-    renderers always get a complete document."""
     required = [
         "## Summary",
         "## Motivation",
@@ -244,7 +200,7 @@ def _strip_markdown_fences(raw: str) -> str:
     text = raw.strip()
     if text.startswith("```"):
         lines = text.split("\n")
-        inner = lines[1:] if lines[-1].strip() == "```" else lines[1:]
+        inner = lines[1:]
         if inner and inner[-1].strip() == "```":
             inner = inner[:-1]
         text = "\n".join(inner).strip()
@@ -252,7 +208,6 @@ def _strip_markdown_fences(raw: str) -> str:
 
 
 def _extract_json_block(raw: str) -> str:
-    """Find the first {...} block in raw text, even if surrounded by prose."""
     start = raw.find("{")
     end = raw.rfind("}")
     if start != -1 and end != -1 and end > start:
@@ -288,11 +243,6 @@ def _extract_raw_response(completion: Any) -> str:
 
 
 def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int]]:
-    """
-    Scan the resurrections/ folder and return a set of (repo, issue_number) tuples
-    for every issue that already has a folder (even if already_resurrected flag
-    was not yet written back to the graveyard JSON).
-    """
     base = Path(resurrection_base)
     resurrected: set[tuple[str, int]] = set()
     if not base.exists():
@@ -312,6 +262,190 @@ def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int
         except (json.JSONDecodeError, OSError, ValueError):
             continue
     return resurrected
+
+
+# ---------------------------------------------------------------------------
+# Low-level: single API call with retries
+# ---------------------------------------------------------------------------
+
+def _call_api(
+    client: Groq,
+    system_prompt: str,
+    user_prompt: str,
+    max_tokens: int,
+    call_label: str,
+) -> dict[str, Any]:
+    """
+    Call the Groq API with retries. Returns the parsed JSON dict.
+    Raises ValueError after all retries are exhausted.
+    """
+    errors: list[str] = []
+    last_was_truncated = False
+
+    for attempt in range(1, MAX_RETRIES + 1):
+        LOGGER.info("[%s] Attempt %d/%d", call_label, attempt, MAX_RETRIES)
+
+        messages: list[dict[str, str]] = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+
+        if attempt > 1 and errors:
+            hint = (
+                f"Your previous response had issues: {'; '.join(errors[-2:])}. "
+                "Fix them and return ONLY the corrected JSON object."
+            )
+            if last_was_truncated:
+                hint += (
+                    " IMPORTANT: your last response was truncated. "
+                    "Be more concise so the JSON closes properly."
+                )
+            messages.append({"role": "user", "content": hint})
+
+        try:
+            completion = client.chat.completions.create(
+                model=MODEL_NAME,
+                temperature=ANALYZER_TEMPERATURE,
+                max_tokens=max_tokens,
+                response_format={"type": "json_object"},
+                messages=messages,
+            )
+            last_was_truncated = False
+        except Exception as api_error:
+            err_str = str(api_error)
+            errors.append(f"Attempt {attempt}: API error — {err_str}")
+            LOGGER.error("[%s] API error: %s", call_label, api_error)
+            if "json_validate_failed" in err_str or "400" in err_str:
+                last_was_truncated = True
+            if attempt == MAX_RETRIES:
+                raise
+            time.sleep(2 ** attempt)
+            continue
+
+        raw = _extract_raw_response(completion)
+        cleaned = _strip_markdown_fences(raw)
+        if not cleaned.startswith("{"):
+            cleaned = _extract_json_block(raw)
+
+        try:
+            parsed = json.loads(cleaned)
+        except json.JSONDecodeError as exc:
+            msg = f"Attempt {attempt}: invalid JSON — {exc}"
+            errors.append(msg)
+            LOGGER.warning("[%s] %s", call_label, msg)
+            if attempt == MAX_RETRIES:
+                raise ValueError("; ".join(errors)) from exc
+            time.sleep(2 ** attempt)
+            continue
+
+        if not isinstance(parsed, dict):
+            errors.append(f"Attempt {attempt}: response is not a JSON object")
+            if attempt == MAX_RETRIES:
+                raise ValueError("; ".join(errors))
+            time.sleep(2 ** attempt)
+            continue
+
+        return parsed
+
+    raise ValueError(f"[{call_label}] failed after {MAX_RETRIES} attempts: {'; '.join(errors)}")
+
+
+# ---------------------------------------------------------------------------
+# Call 1: metadata
+# ---------------------------------------------------------------------------
+
+def _build_metadata_prompt(issue: dict[str, Any]) -> str:
+    repo = str(issue.get("repo", ""))
+    preferred_language = _preferred_poc_language(repo)
+    return (
+        f"ABANDONED GITHUB ISSUE TO RESURRECT:\n"
+        f"Repository: {repo}\n"
+        f"Title: {issue.get('title', '')}\n"
+        f"Originally filed: {issue.get('created_at', '')}\n"
+        f"Last activity: {issue.get('updated_at', '')}\n"
+        f"Labels: {', '.join(str(l) for l in issue.get('labels', []))}\n\n"
+        f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
+        f"Preferred poc_language for this repository: {preferred_language}.\n"
+        "Return ONLY the JSON metadata object as described in your system instructions.\n"
+        "impact_score: derive from audience size × centrality to daily workflow.\n"
+        "effort_hours: be specific to this issue's complexity, not a generic default.\n"
+        "Keep prose fields to 3-5 sentences each."
+    )
+
+
+def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]:
+    parsed["impact_score"] = _safe_int(parsed.get("impact_score"), 1, 10, 5)
+    parsed["effort_hours"] = _safe_int(parsed.get("effort_hours"), 1, 10000, 40)
+    parsed["death_year"] = _safe_int(parsed.get("death_year"), 2010, 2026, _issue_year(issue))
+    parsed["has_poc"] = bool(parsed.get("has_poc", False))
+    parsed["rfc_needed"] = bool(parsed.get("rfc_needed", False))
+    parsed["abandoned_date"] = str(issue.get("updated_at", ""))
+    parsed["technology_tags"] = _normalize_tags(parsed.get("technology_tags", []))
+    if not parsed["technology_tags"]:
+        parsed["technology_tags"] = ["open-source"]
+
+    # Enforce the repo's known language
+    repo = str(issue.get("repo", ""))
+    preferred_lang = _preferred_poc_language(repo)
+    if preferred_lang in ALLOWED_POC_LANGUAGES:
+        parsed["poc_language"] = preferred_lang
+    else:
+        lang = str(parsed.get("poc_language", "")).strip().lower()
+        parsed["poc_language"] = lang if lang in ALLOWED_POC_LANGUAGES else "python"
+
+    # Clean one-liners
+    for field in ("one_line_summary", "one_line_why"):
+        value = re.sub(r"\s+", " ", str(parsed.get(field, "")).strip())
+        value = re.sub(r"\.{2,}$", ".", value).strip()
+        words = value.split()
+        if len(words) > ONE_LINE_MAX_WORDS:
+            truncated = " ".join(words[:ONE_LINE_MAX_WORDS])
+            if not truncated.endswith("."):
+                truncated += "."
+            value = truncated
+        parsed[field] = value
+
+    return parsed
+
+
+# ---------------------------------------------------------------------------
+# Call 2: proof-of-concept code
+# ---------------------------------------------------------------------------
+
+def _build_poc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
+    repo = str(issue.get("repo", ""))
+    language = metadata.get("poc_language", _preferred_poc_language(repo))
+    return (
+        f"ISSUE: {issue.get('title', '')}\n"
+        f"Repository: {repo}\n"
+        f"Language to use: {language}\n\n"
+        f"Architecture summary:\n{metadata.get('modern_design', '')}\n\n"
+        f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
+        f"Write the full proof-of-concept in {language}. "
+        "Return ONLY a JSON object with a single key 'proof_of_concept_code' "
+        "whose value is the complete runnable code as a string.\n"
+        "The code must be at least 80 lines, include imports and error handling.\n"
+        "Escape all newlines as \\n and quotes as \\\" inside the JSON string."
+    )
+
+
+# ---------------------------------------------------------------------------
+# Call 3: RFC
+# ---------------------------------------------------------------------------
+
+def _build_rfc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
+    return (
+        f"ISSUE: {issue.get('title', '')}\n"
+        f"Repository: {issue.get('repo', '')}\n\n"
+        f"One-line summary: {metadata.get('one_line_summary', '')}\n"
+        f"Why it died: {metadata.get('why_it_died', '')}\n"
+        f"Why 2026 changes it: {metadata.get('why_2026_changes_it', '')}\n"
+        f"Modern design: {metadata.get('modern_design', '')}\n\n"
+        "Write a complete RFC with all 6 required sections. "
+        "Return ONLY a JSON object with a single key 'rfc_content' "
+        "whose value is the full RFC text as a string.\n"
+        "Use \\n for newlines inside the JSON string value."
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -338,7 +472,6 @@ REQUIRED_KEYS = {
 
 
 def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
-    """Returns (is_valid, list_of_error_messages)."""
     errors: list[str] = []
 
     missing = REQUIRED_KEYS - data.keys()
@@ -357,9 +490,7 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
     for field in ("why_it_died", "why_2026_changes_it", "modern_design"):
         value = str(data.get(field, "")).strip()
         if len(value) < MIN_ANALYSIS_TEXT_LENGTH:
-            errors.append(
-                f"{field} too short ({len(value)} chars, min {MIN_ANALYSIS_TEXT_LENGTH})"
-            )
+            errors.append(f"{field} too short ({len(value)} chars, min {MIN_ANALYSIS_TEXT_LENGTH})")
 
     for field in ("one_line_summary", "one_line_why"):
         value = re.sub(r"\s+", " ", str(data.get(field, "")).strip())
@@ -374,9 +505,7 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
     if data.get("has_poc"):
         poc = str(data.get("proof_of_concept_code", "")).strip()
         if len(poc) < MIN_POC_CODE_LENGTH:
-            errors.append(
-                f"proof_of_concept_code too short ({len(poc)} chars, min {MIN_POC_CODE_LENGTH})"
-            )
+            errors.append(f"proof_of_concept_code too short ({len(poc)} chars, min {MIN_POC_CODE_LENGTH})")
         lang = str(data.get("poc_language", "")).strip().lower()
         if lang not in ALLOWED_POC_LANGUAGES:
             errors.append(f"poc_language '{lang}' not in {ALLOWED_POC_LANGUAGES}")
@@ -384,9 +513,7 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
     if data.get("rfc_needed"):
         rfc = str(data.get("rfc_content", "")).strip()
         if len(rfc) < MIN_RFC_LENGTH:
-            errors.append(
-                f"rfc_content too short ({len(rfc)} chars, min {MIN_RFC_LENGTH})"
-            )
+            errors.append(f"rfc_content too short ({len(rfc)} chars, min {MIN_RFC_LENGTH})")
 
     tags = data.get("technology_tags", [])
     if not isinstance(tags, list) or len(tags) == 0:
@@ -396,49 +523,8 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
 
 
 # ---------------------------------------------------------------------------
-# Core analysis
+# Main entry: 3 sequential focused calls
 # ---------------------------------------------------------------------------
-
-def _coerce_fields(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]:
-    """Coerce and sanitize all fields after parsing. Never raises."""
-    parsed["impact_score"] = _safe_int(parsed.get("impact_score"), 1, 10, 5)
-    parsed["effort_hours"] = _safe_int(parsed.get("effort_hours"), 1, 10000, 40)
-    parsed["death_year"] = _safe_int(
-        parsed.get("death_year"), 2010, 2026, _issue_year(issue)
-    )
-    parsed["has_poc"] = bool(str(parsed.get("proof_of_concept_code", "")).strip())
-    parsed["rfc_needed"] = bool(parsed.get("rfc_needed", False))
-    parsed["abandoned_date"] = str(issue.get("updated_at", ""))
-    parsed["technology_tags"] = _normalize_tags(parsed.get("technology_tags", []))
-    if not parsed["technology_tags"]:
-        parsed["technology_tags"] = ["open-source"]
-
-    # Always enforce the repo's known language — overrides any hallucinated value
-    repo = str(issue.get("repo", ""))
-    preferred_lang = _preferred_poc_language(repo)
-    if preferred_lang in ALLOWED_POC_LANGUAGES:
-        parsed["poc_language"] = preferred_lang
-    else:
-        lang = str(parsed.get("poc_language", "")).strip().lower()
-        parsed["poc_language"] = lang if lang in ALLOWED_POC_LANGUAGES else "python"
-
-    rfc = str(parsed.get("rfc_content", "")).strip()
-    parsed["rfc_content"] = _ensure_rfc_sections(rfc) if rfc else ""
-
-    # Clean one-liners: strip trailing ellipsis, enforce word limit without mid-sentence cut
-    for field in ("one_line_summary", "one_line_why"):
-        value = re.sub(r"\s+", " ", str(parsed.get(field, "")).strip())
-        value = re.sub(r"\.{2,}$", ".", value).strip()
-        words = value.split()
-        if len(words) > ONE_LINE_MAX_WORDS:
-            truncated = " ".join(words[:ONE_LINE_MAX_WORDS])
-            if not truncated.endswith("."):
-                truncated += "."
-            value = truncated
-        parsed[field] = value
-
-    return parsed
-
 
 def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
     from dotenv import load_dotenv
@@ -449,115 +535,93 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
         raise EnvironmentError("GROQ_API_KEY not set in .env")
     client = Groq(api_key=api_key)
 
-    user_prompt = build_user_prompt(issue)
-    attempt_errors: list[str] = []
-    last_was_json_validate_failure = False
+    issue_id = issue.get("issue_number", "?")
 
-    for attempt in range(1, MAX_ANALYSIS_RETRIES + 1):
-        LOGGER.info("[Analyzer] Attempt %d/%d for issue #%s",
-                    attempt, MAX_ANALYSIS_RETRIES, issue.get("issue_number"))
+    # ------------------------------------------------------------------
+    # CALL 1 — metadata (all scalar fields + short prose)
+    # ------------------------------------------------------------------
+    LOGGER.info("[Analyzer #%s] Call 1/3: metadata", issue_id)
+    metadata_prompt = _build_metadata_prompt(issue)
+    metadata_raw = _call_api(
+        client, _SYSTEM_METADATA, metadata_prompt, MAX_TOKENS_METADATA, f"#{issue_id} metadata"
+    )
+    metadata = _coerce_metadata(metadata_raw, issue)
+    LOGGER.info(
+        "[Analyzer #%s] Metadata done — impact=%d effort=%dh poc=%s rfc=%s lang=%s",
+        issue_id,
+        metadata["impact_score"],
+        metadata["effort_hours"],
+        metadata["has_poc"],
+        metadata["rfc_needed"],
+        metadata["poc_language"],
+    )
 
-        messages: list[dict[str, str]] = [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_prompt},
-        ]
-
-        if attempt > 1 and attempt_errors:
-            correction = (
-                f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
-                "Fix ALL of them and return only the corrected JSON object.\n"
-                "proof_of_concept_code must be at least 80 lines of real runnable code.\n"
-                "one_line_summary and one_line_why must be complete sentences with no trailing ellipsis.\n"
-                "effort_hours must reflect the actual complexity of this specific issue.\n"
+    # ------------------------------------------------------------------
+    # CALL 2 — proof-of-concept code (only if has_poc=True)
+    # ------------------------------------------------------------------
+    if metadata["has_poc"]:
+        LOGGER.info("[Analyzer #%s] Call 2/3: proof-of-concept code", issue_id)
+        poc_prompt = _build_poc_prompt(issue, metadata)
+        poc_raw = _call_api(
+            client, _SYSTEM_POC, poc_prompt, MAX_TOKENS_POC, f"#{issue_id} poc"
+        )
+        poc_code = str(poc_raw.get("proof_of_concept_code", "")).strip()
+        if len(poc_code) < MIN_POC_CODE_LENGTH:
+            LOGGER.warning(
+                "[Analyzer #%s] PoC code too short (%d chars), marking has_poc=False",
+                issue_id, len(poc_code),
             )
-            if last_was_json_validate_failure:
-                correction += (
-                    "IMPORTANT: Your last response was truncated before the closing brace. "
-                    "Keep all prose fields (why_it_died, why_2026_changes_it, modern_design, "
-                    "rfc_content) to 3-5 sentences each. "
-                    "Do NOT write long paragraphs — be concise so the JSON closes properly."
-                )
-            messages.append({"role": "user", "content": correction})
+            poc_code = ""
+            metadata["has_poc"] = False
+        metadata["proof_of_concept_code"] = poc_code
+        LOGGER.info("[Analyzer #%s] PoC done (%d chars)", issue_id, len(poc_code))
+    else:
+        metadata["proof_of_concept_code"] = ""
+        LOGGER.info("[Analyzer #%s] Skipping PoC (has_poc=False)", issue_id)
 
-        try:
-            completion = client.chat.completions.create(
-                model=MODEL_NAME,
-                temperature=ANALYZER_TEMPERATURE,
-                max_tokens=MAX_TOKENS,
-                response_format={"type": "json_object"},
-                messages=messages,
+    # ------------------------------------------------------------------
+    # CALL 3 — RFC (only if rfc_needed=True)
+    # ------------------------------------------------------------------
+    if metadata["rfc_needed"]:
+        LOGGER.info("[Analyzer #%s] Call 3/3: RFC", issue_id)
+        rfc_prompt = _build_rfc_prompt(issue, metadata)
+        rfc_raw = _call_api(
+            client, _SYSTEM_RFC, rfc_prompt, MAX_TOKENS_RFC, f"#{issue_id} rfc"
+        )
+        rfc_text = str(rfc_raw.get("rfc_content", "")).strip()
+        rfc_text = _ensure_rfc_sections(rfc_text)
+        if len(rfc_text) < MIN_RFC_LENGTH:
+            LOGGER.warning(
+                "[Analyzer #%s] RFC too short (%d chars), marking rfc_needed=False",
+                issue_id, len(rfc_text),
             )
-            last_was_json_validate_failure = False
-        except Exception as api_error:
-            error_str = str(api_error)
-            attempt_errors.append(f"Attempt {attempt}: API error — {error_str}")
-            LOGGER.error("[Analyzer] API error: %s", api_error)
+            rfc_text = ""
+            metadata["rfc_needed"] = False
+        metadata["rfc_content"] = rfc_text
+        LOGGER.info("[Analyzer #%s] RFC done (%d chars)", issue_id, len(rfc_text))
+    else:
+        metadata["rfc_content"] = ""
+        LOGGER.info("[Analyzer #%s] Skipping RFC (rfc_needed=False)", issue_id)
 
-            if "json_validate_failed" in error_str or "400" in error_str:
-                last_was_json_validate_failure = True
-
-            if attempt == MAX_ANALYSIS_RETRIES:
-                raise
-
-            backoff = 2 ** attempt
-            LOGGER.info("[Analyzer] Waiting %ds before retry %d...", backoff, attempt + 1)
-            time.sleep(backoff)
-            continue
-
-        raw_response = _extract_raw_response(completion)
-        cleaned = _strip_markdown_fences(raw_response)
-        if not cleaned.startswith("{"):
-            cleaned = _extract_json_block(raw_response)
-
-        try:
-            parsed = json.loads(cleaned)
-        except json.JSONDecodeError as error:
-            msg = f"Attempt {attempt}: invalid JSON — {error}"
-            attempt_errors.append(msg)
-            LOGGER.warning("[Analyzer] %s", msg)
-            if attempt == MAX_ANALYSIS_RETRIES:
-                raise ValueError("; ".join(attempt_errors)) from error
-            backoff = 2 ** attempt
-            time.sleep(backoff)
-            continue
-
-        if not isinstance(parsed, dict):
-            attempt_errors.append(f"Attempt {attempt}: response is not a JSON object")
-            if attempt == MAX_ANALYSIS_RETRIES:
-                raise ValueError("; ".join(attempt_errors))
-            backoff = 2 ** attempt
-            time.sleep(backoff)
-            continue
-
-        LOGGER.info("[Analyzer] Keys returned: %s", list(parsed.keys()))
-        parsed = _coerce_fields(parsed, issue)
-        is_valid, field_errors = validate_analysis(parsed)
-        if is_valid:
-            LOGGER.info(
-                "[Analyzer] ✅ Valid analysis. impact=%d effort=%dh poc=%s",
-                parsed["impact_score"], parsed["effort_hours"], parsed["has_poc"],
-            )
-            return {"raw_response": raw_response, "analysis": parsed}
-
+    # ------------------------------------------------------------------
+    # Final validation (best-effort — never blocks the pipeline)
+    # ------------------------------------------------------------------
+    is_valid, field_errors = validate_analysis(metadata)
+    if is_valid:
+        LOGGER.info("[Analyzer #%s] ✅ Validation passed.", issue_id)
+    else:
         for err in field_errors:
-            LOGGER.warning("[Analyzer] Validation issue: %s", err)
-        attempt_errors.extend(field_errors)
+            LOGGER.warning("[Analyzer #%s] Validation warning: %s", issue_id, err)
+        LOGGER.warning(
+            "[Analyzer #%s] ⚠️  Returning best-effort result despite %d warning(s).",
+            issue_id, len(field_errors),
+        )
 
-        if attempt == MAX_ANALYSIS_RETRIES:
-            LOGGER.error(
-                "[Analyzer] ⚠️ Returning best-effort analysis after %d attempts.",
-                MAX_ANALYSIS_RETRIES,
-            )
-            return {"raw_response": raw_response, "analysis": parsed}
-
-        backoff = 2 ** attempt
-        time.sleep(backoff)
-
-    raise ValueError("Analysis failed after all retries.")
+    return {"analysis": metadata}
 
 
 # ---------------------------------------------------------------------------
-# Entry point
+# Entry point (called by runner.py)
 # ---------------------------------------------------------------------------
 
 def analyze() -> None:
@@ -582,9 +646,9 @@ def analyze() -> None:
         for issue in issues:
             if not isinstance(issue, dict):
                 continue
-
             if issue.get("already_resurrected"):
                 continue
+
             repo = str(issue.get("repo", ""))
             issue_number = int(issue.get("issue_number", 0))
             if (repo, issue_number) in already_resurrected:
