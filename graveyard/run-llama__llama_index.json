@@ -246,5 +246,23 @@
     "author_login": "jon-chuang",
     "author_profile": "https://github.com/jon-chuang",
     "already_resurrected": false
+  },
+  {
+    "repo": "run-llama/llama_index",
+    "issue_number": 16644,
+    "title": "[Feature Request]: Support for multiple schemas in SQLDatabase",
+    "body": "### Feature Description\n\nLlamaindex's SQLDatabase only supports running queries on a single schema in the db. However, some databases have multiple schemas, and it would be useful to query multiple schemas. Llamaindex itself mostly inherits SQLDatabase from Langchain. Langchain's SQLDatabase also does not support multiple schemas, and this is an [open issue](https://github.com/langchain-ai/langchain/issues/3036). There's a [user comment](https://github.com/langchain-ai/langchain/issues/3036#issuecomment-1532928608) that tries to implement a fix. I used that as a starting point to implement a llamaindex-specific solution that seems to works for me. This subclass serves as a temporary workaround to allow for querying multiple schemas:\r\n\r\n```python\r\nfrom typing import Any, List, Optional\r\nfrom sqlalchemy import MetaData, create_engine, inspect\r\nfrom sqlalchemy.engine import Engine\r\nfrom llama_index.core import SQLDatabase\r\n\r\n\r\nclass SQLDatabaseWithSchemas(SQLDatabase):\r\n    \"\"\"SQLDatabase subclass that supports multiple schemas.\"\"\"\r\n\r\n    def __init__(\r\n        self,\r\n        engine: Engine,\r\n        schemas: List[str],\r\n        metadata: Optional[MetaData] = None,\r\n        ignore_tables: Optional[List[str]] = None,\r\n        include_tables: Optional[List[str]] = None,\r\n        sample_rows_in_table_info: int = 3,\r\n        indexes_in_table_info: bool = False,\r\n        custom_table_info: Optional[dict] = None,\r\n        view_support: bool = False,\r\n        max_string_length: int = 300,\r\n    ):\r\n        \"\"\"Create engine with support for multiple schemas.\"\"\"\r\n        self._engine = engine\r\n        self._schemas = schemas\r\n        self._inspector = inspect(self._engine)\r\n\r\n        # Check if all specified schemas exist in the database\r\n        existing_schemas = set(self._inspector.get_schema_names())\r\n        if schemas:\r\n            missing_schemas = set(self._schemas) - existing_schemas\r\n            if missing_schemas:\r\n                raise ValueError(\r\n                    f\"The following schemas were not found in the database: {missing_schemas}\\n\"\r\n                    f\"Existing schemas: {', '.join(sorted(existing_schemas))}\"\r\n                )\r\n\r\n        if include_tables and ignore_tables:\r\n            raise ValueError(\"Cannot specify both include_tables and ignore_tables\")\r\n\r\n        # Inspect tables and views across multiple schemas\r\n        self._all_tables_per_schema = {}\r\n        for schema in self._schemas:\r\n            self._all_tables_per_schema[schema] = set(\r\n                self._inspector.get_table_names(schema=schema)\r\n                + (\r\n                    self._inspector.get_view_names(schema=schema)\r\n                    if view_support\r\n                    else []\r\n                )\r\n            )\r\n        self._all_tables = set(\r\n            f\"{schema}.{table}\"\r\n            for schema, tables in self._all_tables_per_schema.items()\r\n            for table in tables\r\n        )\r\n\r\n        self._include_tables = set(include_tables) if ",
+    "reactions": 5,
+    "created_at": "2024-10-22T22:13:09Z",
+    "updated_at": "2026-05-06T16:05:09Z",
+    "labels": [
+      "enhancement",
+      "triage"
+    ],
+    "url": "https://api.github.com/repos/run-llama/llama_index/issues/16644",
+    "html_url": "https://github.com/run-llama/llama_index/issues/16644",
+    "author_login": "shreyasgm",
+    "author_profile": "https://github.com/shreyasgm",
+    "already_resurrected": false
   }
 ]

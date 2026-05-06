@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-05-06T14:41:22",
-  "total_resurrections": 3,
+  "last_updated": "2026-05-06T20:27:28",
+  "total_resurrections": 4,
   "total_repos_covered": 1,
   "average_impact_score": 6.0,
-  "average_effort_hours": 53.33,
+  "average_effort_hours": 60.0,
   "top_tags": [
     "rust",
-    "regex",
     "search",
+    "regex",
     "ripgrep",
     "cli"
   ],
