@@ -141,11 +141,11 @@ MIN_POC_CODE_LENGTH = 400       # chars — PoC shorter than this is rejected
 MIN_RFC_LENGTH = 300            # chars — RFC shorter than this is rejected
 ONE_LINE_MIN_WORDS = 10
 ONE_LINE_MAX_WORDS = 20
-MODEL_NAME = "meta-llama/llama-4-maverick-17b-128e-instruct"
+MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
 ANALYZER_TEMPERATURE = 0.55
 MAX_ANALYSIS_RETRIES = 4
 # Set a high token budget so the model never gets truncated mid-JSON.
-# llama-4-maverick supports up to 32 768 output tokens on Groq.
+# llama-4-scout supports up to 8192 output tokens on Groq.
 MAX_TOKENS = 8192
 
 
@@ -294,8 +294,7 @@ def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int
     was not yet written back to the graveyard JSON).
     """
     base = Path(resurrection_base)
-    resurrected: set[tuple[str, int]] = set()
-    if not base.exists():
+    resurrected: set[tuple[str, int]] = set()\n    if not base.exists():
         return resurrected
     for child in base.iterdir():
         if not child.is_dir():
@@ -466,8 +465,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
         ]
 
         # On retry: always append a correction message so the model adjusts.
-        # This is especially important after a json_validate_failed (400) —
-        # sending the identical prompt again guarantees the same failure.
         if attempt > 1 and attempt_errors:
             correction = (
                 f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
@@ -499,15 +496,12 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
             attempt_errors.append(f"Attempt {attempt}: API error — {error_str}")
             LOGGER.error("[Analyzer] API error: %s", api_error)
 
-            # If Groq returned 400 json_validate_failed, the prompt caused truncation.
-            # Flag it so the next attempt sends a conciseness correction message.
             if "json_validate_failed" in error_str or "400" in error_str:
                 last_was_json_validate_failure = True
 
             if attempt == MAX_ANALYSIS_RETRIES:
                 raise
 
-            # Exponential backoff: 2s, 4s, 8s — prevents rate-limit exhaustion (429)
             backoff = 2 ** attempt
             LOGGER.info("[Analyzer] Waiting %ds before retry %d...", backoff, attempt + 1)
             time.sleep(backoff)
