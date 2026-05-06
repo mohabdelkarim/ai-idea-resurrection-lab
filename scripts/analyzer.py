@@ -294,7 +294,8 @@ def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int
     was not yet written back to the graveyard JSON).
     """
     base = Path(resurrection_base)
-    resurrected: set[tuple[str, int]] = set()\n    if not base.exists():
+    resurrected: set[tuple[str, int]] = set()
+    if not base.exists():
         return resurrected
     for child in base.iterdir():
         if not child.is_dir():
@@ -427,7 +428,6 @@ def _coerce_fields(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str, A
     # Clean one-liners: strip trailing ellipsis, enforce word limit without mid-sentence cut
     for field in ("one_line_summary", "one_line_why"):
         value = re.sub(r"\s+", " ", str(parsed.get(field, "")).strip())
-        # Remove trailing ellipsis if present
         value = re.sub(r"\.{2,}$", ".", value).strip()
         words = value.split()
         if len(words) > ONE_LINE_MAX_WORDS:
@@ -451,8 +451,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
     user_prompt = build_user_prompt(issue)
     attempt_errors: list[str] = []
-    # Track whether the last failure was a JSON validation error from Groq (400).
-    # If so, we adjust the prompt on the next attempt instead of sending identically.
     last_was_json_validate_failure = False
 
     for attempt in range(1, MAX_ANALYSIS_RETRIES + 1):
@@ -464,7 +462,6 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
             {"role": "user", "content": user_prompt},
         ]
 
-        # On retry: always append a correction message so the model adjusts.
         if attempt > 1 and attempt_errors:
             correction = (
                 f"Your previous response had these issues: {'; '.join(attempt_errors[-3:])}. "
