@@ -87,7 +87,7 @@
     "html_url": "https://github.com/BurntSushi/ripgrep/issues/225",
     "author_login": "danbst",
     "author_profile": "https://github.com/danbst",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "BurntSushi/ripgrep",
