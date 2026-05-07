@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-06T20:27:28",
-  "total_resurrections": 4,
+  "last_updated": "2026-05-07T20:19:44",
+  "total_resurrections": 5,
   "total_repos_covered": 1,
   "average_impact_score": 6.0,
-  "average_effort_hours": 60.0,
+  "average_effort_hours": 56.0,
   "top_tags": [
     "rust",
     "search",
     "regex",
     "ripgrep",
-    "cli"
+    "terminal"
   ],
   "hall_of_fame": [
     {
@@ -41,24 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-06",
+    "date": "2026-05-07",
     "repo": "BurntSushi/ripgrep",
-    "issue_number": 34,
-    "title": "Add an option similar to -o, --only-matching",
-    "reactions": 31,
-    "abandoned_date": "2017-07-13T00:16:37Z",
-    "one_line_why": "This feature is now feasible due to improvements in the regex crate and modern Rust ecosystem.",
+    "issue_number": 86,
+    "title": "invoke a pager to display results",
+    "reactions": 27,
+    "abandoned_date": "2025-10-24T18:39:07Z",
+    "one_line_why": "The feature is now feasible due to improved terminal libraries and pager handling in Rust, making it a central and.",
     "impact_score": 6,
     "effort_hours": 40.0,
     "has_poc": false,
     "has_rfc": true,
     "poc_language": "rust",
     "technology_tags": [
-      "ripgrep",
-      "regex",
-      "clap",
+      "terminal",
+      "pager",
       "rust"
     ],
-    "original_url": "https://github.com/BurntSushi/ripgrep/issues/34"
+    "original_url": "https://github.com/BurntSushi/ripgrep/issues/86"
   }
 }
