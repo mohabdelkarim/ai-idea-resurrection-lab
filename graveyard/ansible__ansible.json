@@ -18,7 +18,7 @@
     "html_url": "https://github.com/ansible/ansible/issues/13262",
     "author_login": "smiller171",
     "author_profile": "https://github.com/smiller171",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "ansible/ansible",
