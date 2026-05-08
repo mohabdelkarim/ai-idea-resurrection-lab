@@ -5,10 +5,10 @@
   "title": "support searching compressed files using in-process decompression",
   "reactions": 27,
   "abandoned_date": "2018-02-21T05:17:47Z",
-  "one_line_why": "Ripgrep can now efficiently search compressed files with in-process decompression, preserving file names in output.",
+  "one_line_why": "The async-compression crate and Rust async I/O make in-process decompression practical today.",
   "impact_score": 6,
-  "effort_hours": 80.0,
-  "has_poc": false,
+  "effort_hours": 72,
+  "has_poc": true,
   "has_rfc": true,
   "poc_language": "rust",
   "technology_tags": [
