@@ -2,7 +2,9 @@ name: Daily Resurrection
 
 on:
   schedule:
-    - cron: "0 19 * * *"
+    - cron: "0 9 * * *"   # 09:00 UTC — EU midday | US West Coast morning
+    - cron: "0 16 * * *"  # 16:00 UTC — EU late afternoon | US East Coast midday
+    - cron: "0 19 * * *"  # 19:00 UTC — US evening (original run kept)
   workflow_dispatch:
 
 permissions:
