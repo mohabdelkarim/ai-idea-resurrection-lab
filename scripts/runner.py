@@ -60,7 +60,7 @@ def run_step(step_name: str, fn: Callable[[], None]) -> bool:
 
 def load_latest_meta() -> dict[str, Any]:
     base = Path(RESURRECTION_BASE_FOLDER)
-    # Folders use format: YYYY-MM-DD_repo_issuenumber (e.g. 2026-05-03_burntsushi-ripgrep_176)
+    # Folders use format: YYYY-MM-DD_repo_issuenumber
     candidates = sorted(base.glob("*/meta.json"), reverse=True)
     if not candidates:
         LOGGER.warning("No resurrection meta.json files found under %s", base)
@@ -74,6 +74,49 @@ def load_latest_meta() -> dict[str, Any]:
     except Exception as error:
         LOGGER.error("Failed reading latest meta.json %s: %s", latest, error)
         return {}
+
+
+def _find_resurrection_folder(meta: dict[str, Any]) -> Path | None:
+    """
+    FIX: Locate the resurrection folder for a given meta dict.
+    Folders follow the pattern YYYY-MM-DD_<repo-slug>_<issue_number>.
+    We match by repo + issue_number from the meta, searching all subdirs,
+    so we never depend on a hardcoded 'day-{date}' pattern that doesn't exist.
+    """
+    base = Path(RESURRECTION_BASE_FOLDER)
+    if not base.exists():
+        return None
+
+    repo = str(meta.get("repo", ""))
+    issue_number = str(meta.get("issue_number", ""))
+
+    # Primary strategy: match meta.json content inside each subdir
+    for child in sorted(base.iterdir(), reverse=True):
+        if not child.is_dir():
+            continue
+        meta_path = child / "meta.json"
+        if not meta_path.exists():
+            continue
+        try:
+            child_meta = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
+            if (
+                str(child_meta.get("repo", "")) == repo
+                and str(child_meta.get("issue_number", "")) == issue_number
+            ):
+                return child
+        except (json.JSONDecodeError, OSError):
+            continue
+
+    # Fallback: the most recently sorted folder that contains a meta.json
+    candidates = sorted(base.glob("*/meta.json"), reverse=True)
+    if candidates:
+        LOGGER.warning(
+            "[ScoreCard] Exact folder match failed for %s#%s — falling back to latest folder.",
+            repo, issue_number,
+        )
+        return candidates[0].parent
+
+    return None
 
 
 def export_commit_vars(meta: dict[str, Any]) -> None:
@@ -114,12 +157,16 @@ def run_pipeline() -> None:
             LOGGER.warning("[ScoreCard] No meta found. Skipping score card.")
             return
         from score_card import generate_for_resurrection
-        date = str(meta.get("date", ""))
-        folder = Path(RESURRECTION_BASE_FOLDER) / f"day-{date}" if date else None
+        # FIX: resolve the actual folder by matching repo + issue_number in meta.json
+        # instead of the old broken pattern f"day-{date}" which never matched real folders.
+        folder = _find_resurrection_folder(meta)
         if folder and folder.exists():
             generate_for_resurrection(folder, meta)
         else:
-            LOGGER.warning("[ScoreCard] Could not find folder for date %s.", date)
+            LOGGER.warning(
+                "[ScoreCard] Could not find resurrection folder for %s#%s.",
+                meta.get("repo", "?"), meta.get("issue_number", "?"),
+            )
 
     def _stats_step() -> None:
         from stats import update_stats
