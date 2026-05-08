@@ -52,6 +52,9 @@ REPO_POC_LANGUAGE: dict[str, str] = {
 ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
 MIN_ANALYSIS_TEXT_LENGTH = 80
 MIN_POC_CODE_LENGTH = 400
+# If effort_hours <= this threshold AND has_poc=False, we force has_poc=True
+# because small/medium features should always have a proof-of-concept.
+POC_FORCE_EFFORT_THRESHOLD = 80
 MIN_RFC_LENGTH = 300
 ONE_LINE_MIN_WORDS = 10
 ONE_LINE_MAX_WORDS = 20
@@ -92,10 +95,19 @@ Given a GitHub issue, return ONLY a JSON object with these fields and NO others:
 
 Rules:
 - impact_score: 1-10 based SOLELY on audience size × how central the feature is.
-  Scale: 1=<100 devs, 5=~20k devs, 8=1M+ devs, 10=industry-wide.
-  Use the full range — do NOT cluster around 5 or 7.
-- effort_hours: realistic for THIS issue. 8-16h=small, 24-40h=focused, 60-80h=parser/protocol,
-  100-160h=core engine, 200h+=architecture overhaul. Never the same for all issues.
+  MANDATORY scale — you MUST use this distribution, not cluster at 6:
+    1-2: niche tool, <500 users affected (e.g. obscure CLI flag, edge-case config)
+    3-4: useful improvement for a subset of users (~1k-5k devs impacted)
+    5-6: notable feature, ~10k-50k devs benefit, non-critical daily workflow
+    7-8: high-impact for a large community (100k+ devs), core daily workflow
+    9-10: industry-wide, millions of devs, fundamental change to a ubiquitous tool
+  EXAMPLES: ripgrep -o flag = 4 (already exists as -o), ripgrep multiline = 6,
+    VSCode built-in feature = 8, Python type-hint syntax = 10.
+  NEVER give the same score as the previous issue in the same repo.
+  If unsure between two scores, pick the LOWER one (be conservative).
+- effort_hours: realistic for THIS issue. 8-16h=small CLI flag, 24-40h=focused feature,
+  60-80h=parser/protocol change, 100-160h=core engine rewrite, 200h+=architecture overhaul.
+  NEVER use 40h or 80h as a default — derive from actual complexity of THIS issue.
 - one_line_summary and one_line_why: complete sentences, 10-20 words, NO ellipsis.
 - poc_language: use the preferred language from the user message.
 - Keep each prose field (why_it_died, why_2026_changes_it, modern_design) to 3-5 sentences.
@@ -123,145 +135,70 @@ Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
 
 # CALL 3: RFC only
 _SYSTEM_RFC = """\
-You are a world-class software architect writing an RFC.
+You are a world-class open-source maintainer. Write a structured RFC proposal.
 
 Return ONLY a JSON object:
 {
-  "rfc_content": "<full RFC as a single string>"
+  "rfc_content": "<full RFC text as a single string>"
 }
 
-Requirements for rfc_content:
-- Must contain ALL of these sections in order:
-  ## Summary
-  ## Motivation
-  ## Detailed Design
-  ## Drawbacks
-  ## Alternatives
-  ## Unresolved Questions
-- Each section must have at least 3 sentences of real technical content.
-- The value is a plain string — use \\n for newlines inside the JSON string.
+The RFC must contain all 6 sections (use \\n for newlines inside the string):
+1. Summary
+2. Motivation
+3. Detailed Design
+4. Drawbacks
+5. Alternatives
+6. Unresolved Questions
 
+Minimum 300 words total. Be specific, technical, and actionable.
 Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
 """
 
 
 # ---------------------------------------------------------------------------
-# Helpers
+# Utility helpers
 # ---------------------------------------------------------------------------
 
 def _preferred_poc_language(repo: str) -> str:
     return REPO_POC_LANGUAGE.get(repo, "python")
 
 
-def _normalize_tags(raw_tags: list[Any]) -> list[str]:
-    result: list[str] = []
-    for raw in raw_tags:
-        if not isinstance(raw, str):
-            continue
-        key = raw.strip().lower()
-        if not key:
-            continue
-        if key in _TAGS_LOWER:
-            canonical = _TAGS_LOWER[key]
-            if canonical not in result:
-                result.append(canonical)
-        else:
-            if re.match(r'^[a-z0-9][a-z0-9 ./_-]{0,30}$', key) and key not in result:
-                result.append(key)
-    return result[:6]
-
-
 def _safe_int(value: Any, min_val: int, max_val: int, default: int) -> int:
-    if isinstance(value, bool):
-        return default
     try:
-        return max(min_val, min(max_val, int(float(str(value)))))
-    except (ValueError, TypeError):
+        result = int(value)
+        return max(min_val, min(max_val, result))
+    except (TypeError, ValueError):
         return default
-
-
-def _ensure_rfc_sections(rfc_text: str) -> str:
-    required = [
-        "## Summary",
-        "## Motivation",
-        "## Detailed Design",
-        "## Drawbacks",
-        "## Alternatives",
-        "## Unresolved Questions",
-    ]
-    result = rfc_text
-    for section in required:
-        if section.lower() not in result.lower():
-            result += f"\n\n{section}\n\n_See analysis.md for full details._"
-    return result
-
-
-def _strip_markdown_fences(raw: str) -> str:
-    text = raw.strip()
-    if text.startswith("```"):
-        lines = text.split("\n")
-        inner = lines[1:]
-        if inner and inner[-1].strip() == "```":
-            inner = inner[:-1]
-        text = "\n".join(inner).strip()
-    return text
-
-
-def _extract_json_block(raw: str) -> str:
-    start = raw.find("{")
-    end = raw.rfind("}")
-    if start != -1 and end != -1 and end > start:
-        return raw[start:end + 1]
-    return raw
 
 
 def _issue_year(issue: dict[str, Any]) -> int:
-    for key in ("updated_at", "created_at"):
-        value = str(issue.get(key, ""))
-        if value:
-            try:
-                return int(value[:4])
-            except ValueError:
-                continue
-    return 2020
+    try:
+        raw = str(issue.get("updated_at", "") or issue.get("created_at", ""))
+        return int(raw[:4])
+    except (ValueError, IndexError):
+        return 2020
 
 
-def _extract_raw_response(completion: Any) -> str:
-    choice = completion.choices[0]
-    content = getattr(choice.message, "content", "")
-    if isinstance(content, str):
-        return content
-    if isinstance(content, list):
-        segments: list[str] = []
-        for item in content:
-            if isinstance(item, dict) and isinstance(item.get("text"), str):
-                segments.append(item["text"])
-            elif hasattr(item, "text") and isinstance(item.text, str):
-                segments.append(item.text)
-        return "".join(segments).strip()
-    return str(content or "")
+def _normalize_tags(tags: Any) -> list[str]:
+    if not isinstance(tags, list):
+        return []
+    normalized: list[str] = []
+    for tag in tags:
+        tag_str = str(tag).strip().lower()
+        if tag_str in _TAGS_LOWER:
+            normalized.append(_TAGS_LOWER[tag_str])
+        elif tag_str:
+            normalized.append(tag_str)
+    return normalized[:6]
 
 
-def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int]]:
-    base = Path(resurrection_base)
-    resurrected: set[tuple[str, int]] = set()
-    if not base.exists():
-        return resurrected
-    for child in base.iterdir():
-        if not child.is_dir():
-            continue
-        meta_path = child / "meta.json"
-        if not meta_path.exists():
-            continue
-        try:
-            meta = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
-            repo = str(meta.get("repo", ""))
-            issue_number = int(meta.get("issue_number", 0))
-            if repo and issue_number:
-                resurrected.add((repo, issue_number))
-        except (json.JSONDecodeError, OSError, ValueError):
-            continue
-    return resurrected
+def _ensure_rfc_sections(text: str) -> str:
+    required = ["Summary", "Motivation", "Detailed Design", "Drawbacks",
+                "Alternatives", "Unresolved Questions"]
+    for section in required:
+        if section.lower() not in text.lower():
+            text += f"\n\n## {section}\n\nTo be defined."
+    return text
 
 
 # ---------------------------------------------------------------------------
@@ -279,75 +216,44 @@ def _call_api(
     Call the Groq API with retries. Returns the parsed JSON dict.
     Raises ValueError after all retries are exhausted.
     """
-    errors: list[str] = []
-    last_was_truncated = False
-
+    last_error: Exception = ValueError("No attempts made")
     for attempt in range(1, MAX_RETRIES + 1):
-        LOGGER.info("[%s] Attempt %d/%d", call_label, attempt, MAX_RETRIES)
-
-        messages: list[dict[str, str]] = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ]
-
-        if attempt > 1 and errors:
-            hint = (
-                f"Your previous response had issues: {'; '.join(errors[-2:])}. "
-                "Fix them and return ONLY the corrected JSON object."
-            )
-            if last_was_truncated:
-                hint += (
-                    " IMPORTANT: your last response was truncated. "
-                    "Be more concise so the JSON closes properly."
-                )
-            messages.append({"role": "user", "content": hint})
-
         try:
-            completion = client.chat.completions.create(
+            response = client.chat.completions.create(
                 model=MODEL_NAME,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
                 temperature=ANALYZER_TEMPERATURE,
                 max_tokens=max_tokens,
-                response_format={"type": "json_object"},
-                messages=messages,
             )
-            last_was_truncated = False
-        except Exception as api_error:
-            err_str = str(api_error)
-            errors.append(f"Attempt {attempt}: API error — {err_str}")
-            LOGGER.error("[%s] API error: %s", call_label, api_error)
-            if "json_validate_failed" in err_str or "400" in err_str:
-                last_was_truncated = True
-            if attempt == MAX_RETRIES:
-                raise
-            time.sleep(2 ** attempt)
-            continue
+            raw_text = response.choices[0].message.content or ""
 
-        raw = _extract_raw_response(completion)
-        cleaned = _strip_markdown_fences(raw)
-        if not cleaned.startswith("{"):
-            cleaned = _extract_json_block(raw)
+            # Strip markdown fences if the model added them
+            raw_text = re.sub(r"^```(?:json)?\s*", "", raw_text.strip(), flags=re.MULTILINE)
+            raw_text = re.sub(r"```\s*$", "", raw_text.strip(), flags=re.MULTILINE)
+            raw_text = raw_text.strip()
 
-        try:
-            parsed = json.loads(cleaned)
-        except json.JSONDecodeError as exc:
-            msg = f"Attempt {attempt}: invalid JSON — {exc}"
-            errors.append(msg)
-            LOGGER.warning("[%s] %s", call_label, msg)
-            if attempt == MAX_RETRIES:
-                raise ValueError("; ".join(errors)) from exc
-            time.sleep(2 ** attempt)
-            continue
+            parsed = json.loads(raw_text)
+            if isinstance(parsed, dict):
+                LOGGER.info("[API %s] Attempt %d succeeded.", call_label, attempt)
+                return parsed
 
-        if not isinstance(parsed, dict):
-            errors.append(f"Attempt {attempt}: response is not a JSON object")
-            if attempt == MAX_RETRIES:
-                raise ValueError("; ".join(errors))
-            time.sleep(2 ** attempt)
-            continue
+            raise ValueError(f"Expected dict, got {type(parsed).__name__}")
 
-        return parsed
+        except (json.JSONDecodeError, ValueError) as err:
+            last_error = err
+            LOGGER.warning("[API %s] Attempt %d failed: %s", call_label, attempt, err)
+            if attempt < MAX_RETRIES:
+                time.sleep(2 ** (attempt - 1))
+        except Exception as err:
+            last_error = err
+            LOGGER.error("[API %s] Attempt %d unexpected error: %s", call_label, attempt, err)
+            if attempt < MAX_RETRIES:
+                time.sleep(2 ** (attempt - 1))
 
-    raise ValueError(f"[{call_label}] failed after {MAX_RETRIES} attempts: {'; '.join(errors)}")
+    raise ValueError(f"All {MAX_RETRIES} attempts failed for {call_label}: {last_error}")
 
 
 # ---------------------------------------------------------------------------
@@ -378,6 +284,15 @@ def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str,
     parsed["effort_hours"] = _safe_int(parsed.get("effort_hours"), 1, 10000, 40)
     parsed["death_year"] = _safe_int(parsed.get("death_year"), 2010, 2026, _issue_year(issue))
     parsed["has_poc"] = bool(parsed.get("has_poc", False))
+    # Force PoC for small/medium issues (effort <= threshold) regardless of LLM decision.
+    # This prevents the model from lazily skipping code generation for feasible features.
+    effort = parsed.get("effort_hours", 999)
+    if not parsed["has_poc"] and isinstance(effort, int) and effort <= POC_FORCE_EFFORT_THRESHOLD:
+        LOGGER.info(
+            "[Coerce] Forcing has_poc=True (effort=%dh <= threshold=%dh).",
+            effort, POC_FORCE_EFFORT_THRESHOLD,
+        )
+        parsed["has_poc"] = True
     parsed["rfc_needed"] = bool(parsed.get("rfc_needed", False))
     parsed["abandoned_date"] = str(issue.get("updated_at", ""))
     parsed["technology_tags"] = _normalize_tags(parsed.get("technology_tags", []))
@@ -393,16 +308,23 @@ def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str,
         lang = str(parsed.get("poc_language", "")).strip().lower()
         parsed["poc_language"] = lang if lang in ALLOWED_POC_LANGUAGES else "python"
 
-    # Clean one-liners
+    # Clean one-liners — ensure complete sentences, no truncation mid-word
     for field in ("one_line_summary", "one_line_why"):
         value = re.sub(r"\s+", " ", str(parsed.get(field, "")).strip())
+        # Remove trailing ellipsis or dangling conjunctions before a period
+        value = re.sub(r"\s+(and|or|but|,)\s*$", ".", value, flags=re.IGNORECASE)
         value = re.sub(r"\.{2,}$", ".", value).strip()
         words = value.split()
         if len(words) > ONE_LINE_MAX_WORDS:
-            truncated = " ".join(words[:ONE_LINE_MAX_WORDS])
+            # Find the last sentence-ending word within the limit
+            truncated_words = words[:ONE_LINE_MAX_WORDS]
+            truncated = " ".join(truncated_words).rstrip(",;:")
             if not truncated.endswith("."):
                 truncated += "."
             value = truncated
+        # Ensure at least a period at the end
+        if value and not value[-1] in ".!?":
+            value += "."
         parsed[field] = value
 
     return parsed
@@ -452,29 +374,28 @@ def _build_rfc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
 # Validation
 # ---------------------------------------------------------------------------
 
-REQUIRED_KEYS = {
+REQUIRED_METADATA_KEYS = {
     "why_it_died",
     "why_2026_changes_it",
     "modern_design",
-    "proof_of_concept_code",
-    "poc_language",
-    "rfc_needed",
-    "rfc_content",
+    "one_line_summary",
+    "one_line_why",
     "effort_hours",
     "impact_score",
     "technology_tags",
-    "one_line_summary",
     "one_line_why",
-    "abandoned_date",
     "has_poc",
+    "rfc_needed",
+    "poc_language",
     "death_year",
+    "abandoned_date",
 }
 
 
 def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
     errors: list[str] = []
 
-    missing = REQUIRED_KEYS - data.keys()
+    missing = REQUIRED_METADATA_KEYS - set(data.keys())
     if missing:
         errors.append(f"Missing keys: {missing}")
         return False, errors
@@ -672,6 +593,34 @@ def analyze() -> None:
                 encoding="utf-8",
             )
             LOGGER.info("[Analyzer] Analysis saved to %s", ANALYSIS_TEMP_FILE)
+            # Mark this repo as recently used so the scanner rotates away from it.
+            try:
+                from scanner import mark_repo_used
+                mark_repo_used(repo)
+            except Exception as rot_err:
+                LOGGER.warning("[Analyzer] Could not mark repo as used: %s", rot_err)
             return
 
     LOGGER.warning("[Analyzer] No unresurrected issues found in graveyard.")
+
+
+def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int]]:
+    base = Path(resurrection_base)
+    resurrected: set[tuple[str, int]] = set()
+    if not base.exists():
+        return resurrected
+    for child in base.iterdir():
+        if not child.is_dir():
+            continue
+        meta_path = child / "meta.json"
+        if not meta_path.exists():
+            continue
+        try:
+            meta = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
+            repo = str(meta.get("repo", ""))
+            issue_number = int(meta.get("issue_number", 0))
+            if repo and issue_number:
+                resurrected.add((repo, issue_number))
+        except (json.JSONDecodeError, OSError, ValueError):
+            continue
+    return resurrected
