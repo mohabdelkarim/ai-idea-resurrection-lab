@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-08",
+  "repo": "ajeetdsouza/zoxide",
+  "issue_number": 9,
+  "title": "Add zsh completion",
+  "reactions": 63,
+  "abandoned_date": "2023-03-20T14:33:58Z",
+  "one_line_why": "Zsh completion is now feasible with clap and enhances user experience significantly.",
+  "impact_score": 6,
+  "effort_hours": 16.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "rust",
+  "technology_tags": [
+    "rust",
+    "clap",
+    "zsh",
+    "completion"
+  ],
+  "original_url": "https://github.com/ajeetdsouza/zoxide/issues/9"
+}
