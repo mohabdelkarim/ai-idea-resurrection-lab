@@ -21,6 +21,8 @@ from config import (
     MONTHS_STALE_THRESHOLD,
     REPOS_TO_SCAN,
     SCAN_PAGES_PER_REPO,
+    REPO_ROTATION_COOLDOWN_DAYS,
+    STATS_FOLDER,
 )
 
 
@@ -38,6 +40,9 @@ MAX_COMMENTS_TO_INSPECT = 12
 MIN_REACTIONS = MIN_UPVOTES  # from config
 # If reactions >= this, skip label check entirely
 HIGH_REACTIONS_OVERRIDE = HIGH_DEMAND_UPVOTES_OVERRIDE  # from config
+
+# File that tracks last-used date per repo slug
+REPO_ROTATION_FILE = Path(STATS_FOLDER) / "repo_rotation.json"
 
 # Labels that indicate an issue is already resolved / closed-as-done
 RESOLVED_LABELS = {
@@ -69,6 +74,66 @@ RESOLVED_TEXT_PATTERNS = [
     ]
 ]
 
+
+# ---------------------------------------------------------------------------
+# Repo rotation helpers
+# ---------------------------------------------------------------------------
+
+def _load_rotation() -> dict[str, str]:
+    """Load {repo_slug: last_used_date_iso} from disk."""
+    if not REPO_ROTATION_FILE.exists():
+        return {}
+    try:
+        data = json.loads(REPO_ROTATION_FILE.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _save_rotation(rotation: dict[str, str]) -> None:
+    REPO_ROTATION_FILE.parent.mkdir(parents=True, exist_ok=True)
+    REPO_ROTATION_FILE.write_text(
+        json.dumps(rotation, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+
+def _days_since_iso(date_iso: str) -> float:
+    try:
+        dt = datetime.fromisoformat(date_iso)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return (datetime.now(timezone.utc) - dt).total_seconds() / 86400
+    except ValueError:
+        return float("inf")
+
+
+def is_repo_on_cooldown(repo: str, rotation: dict[str, str]) -> bool:
+    """Return True if this repo was used too recently."""
+    last_used = rotation.get(repo)
+    if not last_used:
+        return False
+    days = _days_since_iso(last_used)
+    on_cooldown = days < REPO_ROTATION_COOLDOWN_DAYS
+    if on_cooldown:
+        LOGGER.info(
+            "[Rotation] Skipping %s — used %.1f days ago (cooldown=%d days).",
+            repo, days, REPO_ROTATION_COOLDOWN_DAYS,
+        )
+    return on_cooldown
+
+
+def mark_repo_used(repo: str) -> None:
+    """Record today as the last-used date for this repo."""
+    rotation = _load_rotation()
+    rotation[repo] = datetime.now(timezone.utc).isoformat()
+    _save_rotation(rotation)
+    LOGGER.info("[Rotation] Marked %s as used today.", repo)
+
+
+# ---------------------------------------------------------------------------
+# Graveyard helpers
+# ---------------------------------------------------------------------------
 
 @dataclass(slots=True)
 class GraveyardEntry:
@@ -296,43 +361,31 @@ def is_already_solved(repo: str, issue: dict[str, Any], token: str) -> bool:
       3. Any of the first MAX_COMMENTS_TO_INSPECT comments contains a resolved pattern.
     """
     if _has_resolved_label(issue):
-        LOGGER.info(
-            "Resolved label on issue #%s (%s) — skipping.",
-            issue.get("number"), issue.get("title", "")[:60],
-        )
         return True
 
     title = str(issue.get("title", ""))
     body = str(issue.get("body") or "")
-    if _has_resolved_signal(title + " " + body):
-        LOGGER.info(
-            "Resolved signal in issue text #%s (%s) — skipping.",
-            issue.get("number"), title[:60],
-        )
+    if _has_resolved_signal(title) or _has_resolved_signal(body):
         return True
 
-    issue_number = int(issue.get("number", 0))
-    if issue_number:
-        for comment in get_issue_comments(repo, issue_number, token):
-            comment_body = str(comment.get("body") or "")
-            if _has_resolved_signal(comment_body):
-                LOGGER.info(
-                    "Resolved signal in comment on issue #%d (%s) — skipping.",
-                    issue_number, title[:60],
-                )
-                return True
+    comments = get_issue_comments(repo, int(issue.get("number", 0)), token)
+    for comment in comments:
+        comment_body = str(comment.get("body") or "")
+        if _has_resolved_signal(comment_body):
+            return True
 
     return False
 
 
 def _get_reactions_count(issue: dict[str, Any]) -> int:
-    """Extract +1 reactions. GitHub API returns reactions.+1 directly."""
-    reactions = issue.get("reactions", {})
+    reactions = issue.get("reactions")
     if isinstance(reactions, dict):
-        # Try +1 first, then total_count as fallback
         plus_one = int(reactions.get("+1", 0))
-        if plus_one > 0:
-            return plus_one
+        heart = int(reactions.get("heart", 0))
+        hooray = int(reactions.get("hooray", 0))
+        rocket = int(reactions.get("rocket", 0))
+        if plus_one > 0 or heart > 0 or hooray > 0 or rocket > 0:
+            return plus_one + heart + hooray + rocket
         # Some older issues may only have total_count
         return int(reactions.get("total_count", 0))
     return 0
@@ -448,14 +501,28 @@ def _timestamp() -> str:
 
 
 def scan_issues() -> None:
+    """
+    Scan repos for abandoned issues, skipping any repo that was recently used
+    (within REPO_ROTATION_COOLDOWN_DAYS). This prevents the same repo from
+    being picked every single day.
+    """
     import os
     token = os.environ.get("GITHUB_TOKEN", "")
+    rotation = _load_rotation()
+
+    skipped = 0
     for repo in REPOS_TO_SCAN:
+        if is_repo_on_cooldown(repo, rotation):
+            skipped += 1
+            continue
         try:
             scan_repo(repo, token)
         except Exception as error:
             LOGGER.error("Unexpected error scanning %s: %s", repo, error)
         time.sleep(SECONDS_BETWEEN_REPOS)
+
+    if skipped:
+        LOGGER.info("[Rotation] %d repo(s) skipped due to cooldown.", skipped)
 
 
 def main() -> None:
@@ -465,8 +532,12 @@ def main() -> None:
     if not token:
         raise EnvironmentError("GITHUB_TOKEN not set")
 
+    rotation = _load_rotation()
     total = 0
     for index, repo in enumerate(REPOS_TO_SCAN):
+        if is_repo_on_cooldown(repo, rotation):
+            print(f"[{_timestamp()}] Skipping {repo} (cooldown)")
+            continue
         print(f"[{_timestamp()}] Scanning {repo}...")
         try:
             added = scan_repo(repo, token)
