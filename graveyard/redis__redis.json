@@ -46,6 +46,21 @@
   },
   {
     "repo": "redis/redis",
+    "issue_number": 5203,
+    "title": "antirez summer vacations",
+    "body": "Hi all!\r\n\r\nToday and tomorrow (2 and 3 August) are my two last days of work, since 4 and 5 is weekend, and I'll be on summertime vacations from 6 to 24, resuming 27th of August with my normal operations.\r\n\r\nSo I'll focus on releasing a new RC before the end of Friday, and will stop merging PRs if not the simplest. Work on merging PRs will be resumed once I'll be back.\r\n\r\nI'll read emails and new issues every day, for sure I'll keep staying 1h at the PC from time to time to check social networks or read hacker news or whatever, so if there is some big issue / bug / security incident, I'll be able to react, just don't expect me to comment on new things often :-D It's time to recharge.\r\n\r\nI wish you a great summertime stop if you plan to have one, enjoy!",
+    "reactions": 87,
+    "created_at": "2018-08-02T12:21:43Z",
+    "updated_at": "2021-02-02T18:28:12Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/redis/redis/issues/5203",
+    "html_url": "https://github.com/redis/redis/issues/5203",
+    "author_login": "antirez",
+    "author_profile": "https://github.com/antirez",
+    "already_resurrected": false
+  },
+  {
+    "repo": "redis/redis",
     "issue_number": 5335,
     "title": "Changing Redis master-slave replication terms with something else",
     "body": "(Note: I'll update the description here as the discussion evolves)\r\n\r\n## Background\r\n\r\nIt was asked multiple times by activists in the area of inclusiveness for Redis to migrate to a different terminology than *master-slave*, specifically one that has no reference to slavery. Personally I [do not consider the effort worthwhile](http://antirez.com/news/122), but this is my personal opinion. On the other hand different Twitter threads, especially an exchange with DHH, together with many accounts of people starting to suggest to never use Redis again, made me reflecting about a few things. Specifically I think that it could be a problem for engineers just willing to use Redis because they believe is the right too for the job, to apply it in certain workplaces, because the terminology used in Redis may be a problem. I don't want, as a result of my ideas, to create problems to the Redis community.\r\n\r\nAt the same time once I started to be more open to the possibility of renaming such terms, I started to receive private complains from *multiple* people that contribute to the project for years, that are annoyed by the fact we'll have to do work that will not change the system in any way, and that will be costly, create compatibility issues.\r\n\r\nMy idea is to find a middle ground between all those things, because there are multiple issues caused by the change of terminology:\r\n\r\n* PRs will no longer apply.\r\n* We have commands such as `INFO` and `ROLE` that reply with protocol containing the *slave* term.\r\n* There are 1500 occurrences inside the source code of the term *slave*.\r\n* People having private trees and merging things as needed will get a lot of problems.\r\n\r\nSo this change can potentially create a lot of issues. Moreover many folks on Twitter do not understand the Redis culture of backward compatibility. Redis 5 that is now release candidate is backward compatible with the *first stable version of Redis released*, to the point it's a drop in replacement. This culture traditionally made sure that upgrade operations are simple, there is no useless work to do in the client side, and so forth. This is something big to consider.\r\n\r\n## Possible soltuion\r\n\r\nYet I want to give a signal, because in a [Twitter pool I started](https://twitter.com/antirez/status/1038094104129937408) too many people asked for the terminology to be changed. While I handle the Redis community, I do not want to be its *king*, I need to serve people here. A signal however does not need to create a number of problems across the community, so this is what I propose to do.\r\n\r\n### Short term changes\r\n\r\nTo start we do the following:\r\n\r\n1. Change the documentation to refer to master-replica. If we take master, which should not offend anybody in 2018 (next year we'll see...), at least there are less things to change. Replicas is very used and is also used inside Redis Cluster already.\r\n2. Alias SLAVEOF to REPLICAOF. You can still use SLAVEOF but now there is an option.\r\n3. Refer to REPLICA",
@@ -57,6 +72,21 @@
     "html_url": "https://github.com/redis/redis/issues/5335",
     "author_login": "antirez",
     "author_profile": "https://github.com/antirez",
+    "already_resurrected": false
+  },
+  {
+    "repo": "redis/redis",
+    "issue_number": 5179,
+    "title": "maybe an optimizable point for zadd operation",
+    "body": "When we use zadd command to update the score for exists value，if the score delta is small，element rank will be no change，i think we only need change the score, while deleting and reinserting is unnecessary.\r\n\r\nTo be sure the rank is not changed, we can use current node's forward and backward pointer to access the sibling nodes, to test whether the new score is still between the score of prev and next node.\r\n\r\nThe following source code is clipped from current redis repo.\r\n\r\n```c\r\nint zsetAdd(robj *zobj, double score, sds ele, int *flags, double *newscore) {\r\n...\r\n            /* Remove and re-insert when score changes. */\r\n            if (score != curscore) {\r\n                zskiplistNode *node;\r\n                serverAssert(zslDelete(zs->zsl,curscore,ele,&node));\r\n                znode = zslInsert(zs->zsl,score,node->ele);\r\n                /* We reused the node->ele SDS string, free the node now\r\n                 * since zslInsert created a new one. */\r\n                node->ele = NULL;\r\n                zslFreeNode(node);\r\n                /* Note that we did not removed the original element from\r\n                 * the hash table representing the sorted set, so we just\r\n                 * update the score. */\r\n                dictGetVal(de) = &znode->score; /* Update score ptr. */\r\n                *flags |= ZADD_UPDATED;\r\n            }\r\n...\r\n```",
+    "reactions": 62,
+    "created_at": "2018-07-28T04:56:03Z",
+    "updated_at": "2022-06-13T09:06:37Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/redis/redis/issues/5179",
+    "html_url": "https://github.com/redis/redis/issues/5179",
+    "author_login": "pyloque",
+    "author_profile": "https://github.com/pyloque",
     "already_resurrected": false
   },
   {

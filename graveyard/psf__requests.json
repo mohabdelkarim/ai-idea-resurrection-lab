@@ -70,6 +70,21 @@
   },
   {
     "repo": "psf/requests",
+    "issue_number": 3556,
+    "title": "\"Requests is the only Non-GMO HTTP library for Python, safe for human consumption.\"",
+    "body": "GMO are safe\n",
+    "reactions": 53,
+    "created_at": "2016-09-06T08:46:00Z",
+    "updated_at": "2021-09-04T00:06:14Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/psf/requests/issues/3556",
+    "html_url": "https://github.com/psf/requests/issues/3556",
+    "author_login": "mouuff",
+    "author_profile": "https://github.com/mouuff",
+    "already_resurrected": false
+  },
+  {
+    "repo": "psf/requests",
     "issue_number": 6432,
     "title": "The latest version of requests (2.29.0) does not support urllib3 2.0.0",
     "body": "## The latest version of ``requests`` (``2.29.0``) does not support ``urllib3`` ``2.0.0``\r\n\r\n``urllib3`` ``2.0.0`` was just released: https://github.com/urllib3/urllib3/releases/tag/2.0.0\r\n\r\nBut currently ``requests`` ``2.29.0`` has a range bound on it: ``<1.27 and >=1.21.1`` for ``urllib3``.\r\n\r\nIf you try to install a package that has ``urllib3==2.0.0`` as a dependency (while using the latest version of ``requests``), there will be errors:\r\n\r\n```\r\n<PACKAGE> depends on urllib3==2.0.0\r\nrequests 2.29.0 depends on urllib3<1.27 and >=1.21.1\r\n```\r\n\r\nExpecting ``requests`` to support the latest version of ``urllib3``.\r\n\r\n(For Python 3.7 or newer)\r\n",

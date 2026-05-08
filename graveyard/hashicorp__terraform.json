@@ -4523,6 +4523,25 @@
   },
   {
     "repo": "hashicorp/terraform",
+    "issue_number": 6810,
+    "title": "Proposal: \"Actions\"",
+    "body": "This is an initial proposal for a new Terraform concept called \"actions\".\n\n_Actions_ are a representation of a (possibly-non-idempotent) action that can be taken against a provider.\nExamples include CDN cache invalidations, running arbitrary commands over SSH and running jobs in Rundeck.\n\nTerraform's existing _provisioner_ concept already provides a way to model certain actions, but it is limited in the following ways:\n- Provisioner actions can only be taken in response to the creation of a resource.\n- Provisioners do not belong to providers (see #2756) and so it's difficult to provide a good UX for actions that call into remote service APIs.\n- Provisioners cannot export results that can be used elsewhere in the configuration.  (see #610)\n\nThe first of these has been partially addressed via a design pattern around the `null_resource` resource, thus allowing provisioner actions to be run in response to certain updates too:\n\n``` hcl\nresource \"null_resource\" \"example\" {\n    # Resource is re-created each time a trigger value changes...\n    triggers = {\n        ami_id = \"${aws_instance.example.ami}\"\n    }\n\n    # ...and then the provisioners get re-run\n    provisioner \"remote-exec\" {\n        # ...\n    }\n}\n```\n\nThis proposal aims to \"pave the cowpath\" by building a first-class feature around this pattern while also attempting to address the other limitations.\n\nSome use-cases:\n- Invalidating a cache each time a resource is created _or_ updated\n- Registering a server with Chef before it's created and then un-registering it once it's destroyed (See #649)\n- Running arbitrary deployment actions with Rundeck, using the Rundeck provider\n# Actions and Events\n\nLet's consider a motivating example to start, showing one use-case for actions. In this example we are serving a simple static website from Amazon S3, with Amazon CloudFront acting as a CDN:\n\n``` hcl\nresource \"aws_s3_bucket\" \"main\" {\n  bucket = \"terraform-actions-example\"\n  acl    = \"public-read\"\n\n  website {\n    index_document = \"index.html\"\n    error_document = \"error.html\"\n  }\n}\nresource \"aws_s3_bucket_object\" \"index\" {\n  bucket       = \"${aws_s3_bucket.main.bucket}\"\n  key          = \"index.html\"\n  source       = \"${path.module}/../htdocs/index.html\"\n  etag         = \"${md5(file(\"${path.module}/../htdocs/index.html\"))}\"\n  content_type = \"text/html\"\n\n  actions = {\n    after_change = [\"aws.cloudfront_invalidate.index\"]\n  }\n}\nresource \"aws_s3_bucket_object\" \"css\" {\n  bucket       = \"${aws_s3_bucket.main.bucket}\"\n  key          = \"style.css\"\n  source       = \"${path.module}/../htdocs/style.css\"\n  etag         = \"${md5(file(\"${path.module}/../htdocs/style.css\"))}\"\n  content_type = \"text/css\"\n\n  actions = {\n    after_change = [\"aws.cloudfront_invalidate.index\"]\n  }\n}\naction \"aws_cloudfront_invalidate\" \"index\" {\n  distribution_id = \"${var.cloudfront_distribution_id}\"\n  paths = [\"${aws_s3_bucket_object.index.key}\"]\n}\naction \"aws_cloudfront_invalidate\" \"css\" {\n  distribution_id = \"${var.cloudfront_distribution_i",
+    "reactions": 21,
+    "created_at": "2016-05-20T23:24:33Z",
+    "updated_at": "2019-08-17T01:51:27Z",
+    "labels": [
+      "enhancement",
+      "core",
+      "proposal"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/6810",
+    "html_url": "https://github.com/hashicorp/terraform/issues/6810",
+    "author_login": "apparentlymart",
+    "author_profile": "https://github.com/apparentlymart",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
     "issue_number": 37976,
     "title": "S3 Backend: Support authentication via `aws login`",
     "body": "### Terraform Version\n\n```shell\n# All supported versions.\n```\n\n### Use Cases\n\nAWS recently released a \"simplified developer\" authentication workflow via the AWS CLI's `aws login` command.\nSupport this authentication mechanism in the S3 backend.\n\n### Attempted Solutions\n\nn/a\n\n### Proposal\n\nWill require an updated https://github.com/hashicorp/aws-sdk-go-base version and recompilation of the Terraform CLI.\n\n### References\n\n* [Announcement](https://aws.amazon.com/about-aws/whats-new/2025/11/console-credentials-aws-cli-sdk-authentication/)\n* [Blog post](https://aws.amazon.com/blogs/security/simplified-developer-access-to-aws-with-aws-login/)\n\nRequires AWS SDK for Go v2 [Release 2025-11-19.2](https://github.com/aws/aws-sdk-go-v2/commit/466d9d579621ec9dc2c3f4a43fa2af0717e23667) or later.\n\nRelates https://github.com/hashicorp/terraform-provider-aws/issues/45316.\nRelates https://github.com/aws/aws-sdk-go-v2/pull/3230.",

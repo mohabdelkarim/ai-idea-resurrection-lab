@@ -1,6 +1,23 @@
 [
   {
     "repo": "neovim/neovim",
+    "issue_number": 33066,
+    "title": "release checklist 0.12",
+    "body": "\n(previous: #28770)\n\n- [Release guidelines](https://github.com/neovim/neovim/blob/master/MAINTAIN.md#release-policy)\n- [Dependencies](https://github.com/neovim/neovim/blob/master/MAINTAIN.md#third-party-dependencies)\n\n# Blocking issues\n\n- finalize`vim.pos`, `vim.range`\n    - https://github.com/neovim/neovim/pull/36397\n- #35149\n\n<img width=\"446\" alt=\"image\" src=\"https://github.com/neovim/neovim/assets/1359421/032fc235-ed2e-4ce4-8198-86a9c5b20d84\">\n\n\n# Pre-release (early)\n\n- [x] ~~run `scripts/download-unicode-files.sh`~~ (utf8proc 4tw)\n- [x] Bump deps in [cmake.deps/deps.txt](https://github.com/neovim/neovim/blob/master/cmake.deps/deps.txt)\n    - [x] run `scripts/bump_deps.lua` (luajit, luv, libuv, treesitter)\n    - [x] treesitter parsers (C, Markdown, Lua, Query, Vim, Vimdoc)\n        - [x] update queries from nvim-treesitter\n    - [x] lpeg, libiconv, gettext ([neovim/deps/opt](https://github.com/neovim/deps/tree/master/opt))\n    - [x] libvterm\n    - [x] mpack\n    - [x] ~~[wintools](https://github.com/neovim/neovim/blob/9319d97679053a219b1701d70abce414d0f6a8b0/cmake.deps/deps.txt#L28-L36)~~\n- [x] check s930x CI logs for errors pertaining to big-endian systems \n\n# Pre-release\n\n- [x] Clean up `news.txt` (sorting, [phrasing](https://www.youtube.com/watch?v=Qs8Gohi1e04))\n- [x] Merge `nvim.appdata.xml` changes from the maintenance branch\n- [x] Run `scripts/release.sh`\n\n# Post-release\n\n- [ ] Push `v0.12.0` tag to https://github.com/neovim/neovim-releases/tags and run the release workflow\n- [x] For major releases, create a new `release-x.y` branch.\n    - **Bump the version in CMakeLists.txt** and set `NVIM_VERSION_PRERELEASE`.\n- [x] Move `news.txt` to `news-x.y.txt`. Recreate `news.txt` with \"skeleton\" from the old one.\n- [ ] Review [revisit-at-release issues](https://github.com/neovim/neovim/labels/revisit-at-release)\n- [ ] Newsletter https://github.com/neovim/neovim.github.io\n- [ ] Update [GitHub Sponsors page](https://github.com/sponsors/neovim) (what was done, what is planned)\n- [x] Update [roadmap](https://neovim.io/roadmap/)\n- [ ] Remove deprecated functions marked for removal (`vim.deprecate(…, '0.12')`)\n- [ ] Remove deprecated:\n    - N/A\n\n# Merge these after release\n\n- [revisit-at-release PRs](https://github.com/neovim/neovim/labels/revisit-at-release)\n\n",
+    "reactions": 198,
+    "created_at": "2025-03-26T14:28:09Z",
+    "updated_at": "2026-03-30T00:54:14Z",
+    "labels": [
+      "project-management"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/33066",
+    "html_url": "https://github.com/neovim/neovim/issues/33066",
+    "author_login": "justinmk",
+    "author_profile": "https://github.com/justinmk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
     "issue_number": 24579,
     "title": "Bram Moolenaar",
     "body": "### Problem\n\nIt's been widely reported that Bram Moolenaar, the originator of Vim and inspiration for Neovim, has passed.\r\nhttps://groups.google.com/g/vim_announce/c/tWahca9zkt4\r\n\r\nJust wondering if this could be recognised in the Neovim website somewhere?\n\n### Expected behavior\n\nMaybe a modest tribute on the Neovim website.",
@@ -31,6 +48,23 @@
     "html_url": "https://github.com/neovim/neovim/issues/18086",
     "author_login": "oxalica",
     "author_profile": "https://github.com/oxalica",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 11023,
+    "title": "release checklist",
+    "body": "Pre-release (early)\r\n\r\n- [X] Runtime updates (https://github.com/neovim/neovim/pull/14424)\r\n- [X] Bump deps in `third-party/CMakeLists.txt` \r\n  - [X] libuv (#11803)\r\n  - [X] luajit (https://github.com/neovim/neovim/pull/14096)\r\n  - [X] luv (https://github.com/neovim/neovim/pull/11092)\r\n  - [X] luarocks (https://github.com/neovim/neovim/pull/10292)\r\n  - [X] treesitter (3c2bc05)\r\n- [X] Bump [luarocks packages](https://github.com/neovim/neovim/pull/8069/files)\r\n  - [X] lua-client (https://github.com/neovim/neovim/pull/11837)\r\n- [X] Bump neovim-qt in `third-party/CMakeLists.txt` (https://github.com/neovim/neovim/pull/13004, https://github.com/neovim/neovim/pull/14514)\r\n\r\nPre-release\r\n\r\n- [X] Run `scripts/gen_api_vimdoc.py` (https://github.com/neovim/neovim/pull/13260)\r\n\r\nPost-release\r\n\r\n- [ ] Review [revisit-at-release issues](https://github.com/neovim/neovim/labels/revisit-at-release)\r\n- [x] Update [releases](https://github.com/neovim/neovim/releases)\r\n- [x] Document [breaking changes](https://github.com/neovim/neovim/wiki/Following-HEAD), if any\r\n- [ ] Newsletter (https://github.com/neovim/neovim.github.io/pull/200, https://github.com/neovim/neovim/wiki/newsletter-%2311-:-the-0.5-release)",
+    "reactions": 115,
+    "created_at": "2019-09-15T02:56:09Z",
+    "updated_at": "2021-07-02T19:00:16Z",
+    "labels": [
+      "project-management"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/11023",
+    "html_url": "https://github.com/neovim/neovim/issues/11023",
+    "author_login": "justinmk",
+    "author_profile": "https://github.com/justinmk",
     "already_resurrected": false
   },
   {
@@ -90,6 +124,23 @@
     "html_url": "https://github.com/neovim/neovim/issues/9342",
     "author_login": "LunarLambda",
     "author_profile": "https://github.com/LunarLambda",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 28770,
+    "title": "release checklist 0.11",
+    "body": "(previous: https://github.com/neovim/neovim/issues/23235)\n\n- [Release guidelines](https://github.com/neovim/neovim/blob/master/MAINTAIN.md#release-policy)\n- [Dependencies](https://github.com/neovim/neovim/blob/master/MAINTAIN.md#third-party-dependencies)\n\n# Blocking issues\n\n<img width=\"446\" alt=\"image\" src=\"https://github.com/neovim/neovim/assets/1359421/032fc235-ed2e-4ce4-8198-86a9c5b20d84\">\n\n\n# Pre-release (early)\n\n- [x] ~~run `scripts/download-unicode-files.sh`~~ (utf8proc 4tw)\n- [x] Bump deps in [cmake.deps/deps.txt](https://github.com/neovim/neovim/blob/master/cmake.deps/deps.txt)\n    - [x] run `scripts/bump_deps.lua` (luajit, luv, libuv, treesitter)\n    - [x] treesitter parsers (C, Lua, Viml, Vimdoc, Query)\n        - [x] update queries from nvim-treesitter\n    - [x] lpeg (also in `neovim/deps`)\n    - [x] libvterm (also in `neovim/deps`)\n    - [x] msgpack\n    - [ ] [wintools](https://github.com/neovim/neovim/blob/9319d97679053a219b1701d70abce414d0f6a8b0/cmake.deps/deps.txt#L28-L36)\n- [x] check s930x CI logs for errors pertaining to big-endian systems (https://github.com/neovim/neovim/pull/32927)\n\n# Pre-release\n\n- [x] Remove deprecated functions marked for removal (`vim.deprecate(…, '0.11')`) (https://github.com/neovim/neovim/pull/32938)\n- [x] Clean up `news.txt` (sorting, [phrasing](https://www.youtube.com/watch?v=Qs8Gohi1e04))\n- [x] Merge `nvim.appdata.xml` changes from the maintenance branch.\n- [x] Run `scripts/release.sh`\n\n# Post-release\n\n- [x] For major releases, create a new `release-x.y` branch.\n    - **Bump the version in CMakeLists.txt** and set `NVIM_VERSION_PRERELEASE`.\n- [x] Move `news.txt` to `news-x.y.txt` (and remove/update tags!). Recreate `news.txt` with \"skeleton\" from the old one.\n- [ ] Review [revisit-at-release issues](https://github.com/neovim/neovim/labels/revisit-at-release)\n- [x] Newsletter https://github.com/neovim/neovim.github.io\n- [x] Update [GitHub Sponsors page](https://github.com/sponsors/neovim) (what was done, what is planned)\n- [x] Update [roadmap](https://neovim.io/roadmap/)\n- [ ] Remove deprecated:\n    - N/A\n\n# Merge these after release\n\n- https://github.com/neovim/neovim/pull/32927",
+    "reactions": 94,
+    "created_at": "2024-05-16T10:35:38Z",
+    "updated_at": "2025-03-26T14:26:20Z",
+    "labels": [
+      "project-management"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/28770",
+    "html_url": "https://github.com/neovim/neovim/issues/28770",
+    "author_login": "justinmk",
+    "author_profile": "https://github.com/justinmk",
     "already_resurrected": false
   },
   {
@@ -286,6 +337,23 @@
   },
   {
     "repo": "neovim/neovim",
+    "issue_number": 7433,
+    "title": "release checklist",
+    "body": "Pre-release\r\n\r\n- [x] runtime updates\r\n- [x] run `scripts/gen_api_vimdoc.py`\r\n- [x] bump neovim-qt in [third-party/CMakeLists.txt](https://github.com/neovim/neovim/blob/master/third-party/CMakeLists.txt)\r\n\r\nPost-release\r\n\r\n- [x] review [revisit-at-release](https://github.com/neovim/neovim/labels/revisit-at-release) issues\r\n- [x] update [releases](https://github.com/neovim/neovim/releases) downloads\r\n- [x] update https://github.com/neovim/neovim/wiki/Following-HEAD\r\n- [x] if applicable, bump libuv/luarocks/busted/etc. versions\r\n- [x] craft epic newsletter",
+    "reactions": 55,
+    "created_at": "2017-10-22T23:28:19Z",
+    "updated_at": "2018-02-11T21:23:17Z",
+    "labels": [
+      "project-management"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/7433",
+    "html_url": "https://github.com/neovim/neovim/issues/7433",
+    "author_login": "justinmk",
+    "author_profile": "https://github.com/justinmk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
     "issue_number": 7895,
     "title": "init.lua as an alternative to init.vim",
     "body": "If init.lua is found in the usual places, that should be used as the user config instead of init.vim. \r\n\r\nWhat should happen if both init.lua _and_ init.vim are found? \r\n\r\n1. Should it be an error? Most deterministic, avoids users needing to understand load order.\r\n2. Should we silently ignore it, and choose only one? (But warn about this in `:checkhealth`)\r\n3. Should we load both, in a particular order?\r\n\r\nAlso the `-u` and `-S` flags should evaluate `*.lua` files automatically:\r\n\r\n    nvim -u foo.lua\r\n    nvim -S foo.lua\r\n\r\nshould work like `lua foo.lua `.",
@@ -298,6 +366,26 @@
     ],
     "url": "https://api.github.com/repos/neovim/neovim/issues/7895",
     "html_url": "https://github.com/neovim/neovim/issues/7895",
+    "author_login": "justinmk",
+    "author_profile": "https://github.com/justinmk",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 32084,
+    "title": "AI/LLM/GenAI related features",
+    "body": "This is a stub issue, will update it over time.\n\n## Problem\n\nAlthough \"AI features\" are not something we see a need for in Nvim core, I'm looking at the space and have noticed some \"primitives\" that are missing and require every plugin to reimplement things that are generally useful, even for non-AI plugins. \n\n\n## Expected behavior\n\n- ✅ Support LSP `textDocument/inlineCompletion` https://github.com/neovim/neovim/pull/33972\n- Other LSP standard events which may be useful for AI/MCP plugins:\n    - `window/showDocument`\n    - [Document open/change](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_synchronization)\n    - Diagnostics: `textDocument/publishDiagnostics`\n    - Modify/rename: `workspace/applyEdit`\n    - Progress events: `window/workDoneProgress`, [partialResults](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#partialResults)\n- ✅ Can mark a buffer or window as \"busy\" or \"in progress\".\n    - Default 'statusline' shows the busy indicator (\"spinner\"?). [#34493](https://github.com/neovim/neovim/pull/34493)\n    - https://github.com/neovim/neovim/issues/28809\n- `vim.ui` interface for showing progress. https://github.com/neovim/neovim/issues/32537\n- MCP support https://github.com/neovim/neovim/issues/35457\n- ✅ blink/highlight of a region will be helpful https://github.com/neovim/neovim/pull/32012 cc @siddhantdev\n- ✅ multiline completion https://github.com/neovim/neovim/issues/7769\n    - combine with `completeopt+=preinsert` https://github.com/neovim/neovim/pull/32251\n    - highlight `ComplMatchIns` ([not highlighted](https://github.com/neovim/neovim/pull/32251#issuecomment-2624040047) by default)",
+    "reactions": 54,
+    "created_at": "2025-01-18T02:57:27Z",
+    "updated_at": "2026-03-16T22:43:27Z",
+    "labels": [
+      "ui",
+      "lua",
+      "gsoc",
+      "ai-llm-mcp"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/32084",
+    "html_url": "https://github.com/neovim/neovim/issues/32084",
     "author_login": "justinmk",
     "author_profile": "https://github.com/justinmk",
     "already_resurrected": false
@@ -318,6 +406,24 @@
     "html_url": "https://github.com/neovim/neovim/issues/8715",
     "author_login": "g-i-o-r-g-i-o",
     "author_profile": "https://github.com/g-i-o-r-g-i-o",
+    "already_resurrected": false
+  },
+  {
+    "repo": "neovim/neovim",
+    "issue_number": 5054,
+    "title": "Replace the builtin pager",
+    "body": "- `nvim --version`: NVIM 0.1.4\n### Actual behaviour\n\nWhen doing e.g. `:map`, nvim uses the old clunky vim pager. Which cannot, for instance, _search text._ \n### Expected behaviour\n\nTotally open - I'd be happy with `:terminal less` or putting the text-to-be-paged into a readonly temporary buffer so that I can stay in Vim interfaces.\n### Steps to reproduce using `nvim -u NORC`\n1. `runtime mappings.vim`\n2. `:map`\n3. Try to find the mapping you established years ago to bump the foldlevel\n4. Despair\n",
+    "reactions": 50,
+    "created_at": "2016-07-12T17:09:32Z",
+    "updated_at": "2025-05-03T13:17:55Z",
+    "labels": [
+      "ui",
+      "messages-pager"
+    ],
+    "url": "https://api.github.com/repos/neovim/neovim/issues/5054",
+    "html_url": "https://github.com/neovim/neovim/issues/5054",
+    "author_login": "nyarly",
+    "author_profile": "https://github.com/nyarly",
     "already_resurrected": false
   }
 ]

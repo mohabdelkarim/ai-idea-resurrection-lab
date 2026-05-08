@@ -1,0 +1,57 @@
+[
+  {
+    "repo": "python/cpython",
+    "issue_number": 108219,
+    "title": "PEP 703 -- Making the Global Interpreter Lock Optional in CPython",
+    "body": "# Feature or enhancement\n\nThe steering council has [accepted](https://discuss.python.org/t/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/37075) [PEP 703](https://peps.python.org/pep-0703/). This is intended as a top-level issue to keep track of integration status.\n\nThe \"up for grabs\" list contains issues that no one is currently working on and are ready to be implemented. If you are interested in working on one of them, please comment on the specific issue and CC me (@colesbury) on related PRs.\n\n```[tasklist]\n### Up For Grabs (comment on specific issue to take)\n```\n\n```[tasklist]\n### Linked issues\n- [ ] https://github.com/python/cpython/issues/111506\n- [ ] https://github.com/python/cpython/issues/111870\n- [ ] https://github.com/python/cpython/issues/111924\n- [ ] https://github.com/python/cpython/issues/112606\n- [ ] https://github.com/python/cpython/issues/114203\n- [ ] https://github.com/python/cpython/issues/114214\n- [ ] https://github.com/python/cpython/issues/115999\n- [ ] https://github.com/python/cpython/issues/116024\n- [ ] https://github.com/python/cpython/issues/116738\n- [ ] https://github.com/python/cpython/issues/117139\n- [ ] https://github.com/python/cpython/issues/117721\n- [ ] https://github.com/python/cpython/issues/117657\n- [ ] https://github.com/python/cpython/issues/119053\n```\n\n\n<details>\n<summary>Completed Issues</summary>\n\n```[tasklist]\n### Completed Issues\n- [ ] https://github.com/python/cpython/issues/108223\n- [ ] https://github.com/python/cpython/issues/108374\n- [ ] https://github.com/python/cpython/issues/108337\n- [ ] https://github.com/python/cpython/issues/108724\n- [ ] https://github.com/python/cpython/issues/109549\n- [ ] https://github.com/python/cpython/issues/109740\n- [ ] https://github.com/python/cpython/issues/110119\n- [ ] https://github.com/pypa/packaging/issues/727\n- [ ] https://github.com/python/cpython/issues/111062\n- [ ] https://github.com/python/cpython/issues/111569\n- [ ] https://github.com/python/cpython/issues/112062\n- [ ] https://github.com/python/cpython/issues/111903\n- [ ] https://github.com/python/cpython/issues/111916\n- [ ] https://github.com/python/cpython/issues/111928\n- [ ] https://github.com/python/cpython/issues/112070\n- [ ] https://github.com/python/cpython/issues/111956\n- [ ] https://github.com/python/cpython/issues/111965\n- [ ] https://github.com/python/cpython/issues/112213\n- [ ] https://github.com/python/cpython/issues/112071\n- [ ] https://github.com/python/cpython/issues/111972\n- [ ] https://github.com/python/cpython/issues/112538\n- [ ] https://github.com/python/cpython/issues/111962\n- [ ] https://github.com/python/cpython/issues/112535\n- [ ] https://github.com/python/cpython/issues/112205\n- [ ] https://github.com/python/cpython/issues/111971\n- [ ] https://github.com/python/cpython/issues/111650\n- [ ] https://github.com/python/cpython/issues/113750\n- [ ] https://github.com/python/cpython/issues/111964\n- [ ] https://github.com/python/cpython/issues/113884\n- [ ] https://",
+    "reactions": 109,
+    "created_at": "2023-08-21T15:59:30Z",
+    "updated_at": "2025-05-20T15:52:16Z",
+    "labels": [
+      "type-feature",
+      "interpreter-core",
+      "3.13",
+      "topic-free-threading"
+    ],
+    "url": "https://api.github.com/repos/python/cpython/issues/108219",
+    "html_url": "https://github.com/python/cpython/issues/108219",
+    "author_login": "colesbury",
+    "author_profile": "https://github.com/colesbury",
+    "already_resurrected": false
+  },
+  {
+    "repo": "python/cpython",
+    "issue_number": 91420,
+    "title": "Test issue",
+    "body": "This is the first new issue on GitHub, after the migration from bugs.python.org.\r\n\r\nSee https://discuss.python.org/t/github-issues-are-now-live/14967.\r\n\r\nhttps://github.com/python/cpython/issues/91420\r\n\r\n\r\n\nhttps://github.com/python/cpython/issues/91420#tasklist-block-becf385c-44d0-409a-944b-2468fbddfb9e\n\r\n\r\n\r\n\r\n",
+    "reactions": 68,
+    "created_at": "2022-04-10T19:37:02Z",
+    "updated_at": "2025-03-03T22:21:39Z",
+    "labels": [
+      "tests"
+    ],
+    "url": "https://api.github.com/repos/python/cpython/issues/91420",
+    "html_url": "https://github.com/python/cpython/issues/91420",
+    "author_login": "ezio-melotti",
+    "author_profile": "https://github.com/ezio-melotti",
+    "already_resurrected": false
+  },
+  {
+    "repo": "python/cpython",
+    "issue_number": 89083,
+    "title": "Support UUIDv6, UUIDv7, and UUIDv8 from RFC 9562",
+    "body": "BPO | [44920](https://bugs.python.org/issue44920)\n--- | :---\nNosy | @serhiy-storchaka, @loganasherjones, @stevesimmons\n\n<sup>*Note: these values reflect the state of the issue at the time it was migrated and might not reflect the current state.*</sup>\n\n<details><summary>Show more details</summary><p>\n\nGitHub fields:\n```python\nassignee = None\nclosed_at = None\ncreated_at = <Date 2021-08-15.17:26:05.956>\nlabels = ['type-feature', 'library', '3.11']\ntitle = 'Support UUIDv6, UUIDv7, and UUIDv8 from the new version of RFC4122'\nupdated_at = <Date 2021-08-17.00:36:53.563>\nuser = 'https://github.com/stevesimmons'\n```\n\nbugs.python.org fields:\n```python\nactivity = <Date 2021-08-17.00:36:53.563>\nactor = 'loganasherjones'\nassignee = 'none'\nclosed = False\nclosed_date = None\ncloser = None\ncomponents = ['Library (Lib)']\ncreation = <Date 2021-08-15.17:26:05.956>\ncreator = 'stevesimmons'\ndependencies = []\nfiles = []\nhgrepos = []\nissue_num = 44920\nkeywords = []\nmessage_count = 2.0\nmessages = ['399624', '399647']\nnosy_count = 3.0\nnosy_names = ['serhiy.storchaka', 'loganasherjones', 'stevesimmons']\npr_nums = []\npriority = 'normal'\nresolution = None\nstage = None\nstatus = 'open'\nsuperseder = None\ntype = 'enhancement'\nurl = 'https://bugs.python.org/issue44920'\nversions = ['Python 3.11']\n```\n\n</p></details>\n\n\n<!-- gh-linked-prs -->\n### Linked PRs\n* gh-120650\n* gh-120830\n* gh-121119\n* gh-123224\n* gh-126857\n* gh-128149\n* gh-135684\n* gh-135747\n* gh-136548\n* gh-136576\n* gh-137801\n<!-- /gh-linked-prs -->\n\n### Related\n\n* https://github.com/python/cpython/issues/120878\n* https://discuss.python.org/t/rfc-4122-9562-uuid-version-7-and-8-implementation/56725/3",
+    "reactions": 50,
+    "created_at": "2021-08-15T17:26:06Z",
+    "updated_at": "2025-08-15T06:02:31Z",
+    "labels": [
+      "type-feature",
+      "stdlib"
+    ],
+    "url": "https://api.github.com/repos/python/cpython/issues/89083",
+    "html_url": "https://github.com/python/cpython/issues/89083",
+    "author_login": "9e093cb0-2321-4a2b-92c2-fa8b1591a982",
+    "author_profile": "https://github.com/9e093cb0-2321-4a2b-92c2-fa8b1591a982",
+    "already_resurrected": false
+  }
+]

@@ -160,6 +160,21 @@
   },
   {
     "repo": "eslint/eslint",
+    "issue_number": 18391,
+    "title": "📈 Tracking: ESLint v9 support",
+    "body": "👋 Hi all! With [ESLint v9 released](https://eslint.org/blog/2024/04/eslint-v9.0.0-released), many community plugins are adding support for the new major version. This is a tracking issue of ESLint v9 compatibility for the ~35 or so most popular plugins for ESLint that already support flat config. We'll keep this list updated over time.\n\n> If the plugin you're looking for isn't in this list, check [📈 Tracking: Flat Config support](https://github.com/eslint/eslint/issues/18093). This list treats flat config support as a prerequisite for full ESLint 9 support.\n\n📌 Status emoji key:\n\n<ul>\n    <li>✅ Support released!</li>\n    <li>📦 Merged; pending release</li>\n    <li>🏗️ PR was at least started</li>\n    <li>📝 Issue filed; waiting for PR</li>\n</ul>\n\n<table>\n    <thead>\n        <th>Name</th>\n        <th>Status</th>\n        <th>Issue</th>\n        <th>Commit / PR</th>\n        <th>Version</th>\n    </thead>\n    <tbody>\n        <tr>\n            <th colspan=\"5\">Plugins</th>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://github.com/nuxt/eslint\">\n                    <code>@nuxt/eslint</code>\n                </a>\n            </td>\n            <td>✅</td>\n            <td></td>\n            <td></td>\n            <td>*</td>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://github.com/typescript-eslint/typescript-eslint\">\n                    <code>@typescript-eslint</code>\n                </a>\n            </td>\n                <td>✅</td>\n            <td>\n                <a href=\"https://github.com/typescript-eslint/typescript-eslint/issues/8211\">\n                    typescript-eslint#8211\n                </a>\n            </td>\n            <td>\n                <a href=\"https://github.com/typescript-eslint/typescript-eslint/issues/9002\">\n                    typescript-eslint#9002\n                </a>\n            </td>\n            <td>8.0.0</td>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://github.com/jsx-eslint/eslint-plugin-jsx-a11y\">\n                    <code>a11y</code>\n                </a>\n            </td>\n            <td>✅</td>\n            <td>\n                <a href=\"https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/978\">\n                    a11y#978\n                </a>\n            </td>\n            <td>\n                <a href=\"https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/pull/1009\">\n                    a11y#1009\n                </a>\n            </td>\n            <td>6.10.0</td>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://github.com/angular-eslint/angular-eslint\">\n                    <code>angular</code>\n                </a>\n            </td>\n            <td>✅</td>\n            <td>\n                <a href=\"https://github.com/angular-eslint/angular-eslint/issues/1755\">\n                    angular-eslint#1755\n                </a>\n            </td>\n            <td></td>\n            <td>18.0.0</td>\n        </tr>\n        <tr>\n   ",
+    "reactions": 85,
+    "created_at": "2024-04-24T17:40:54Z",
+    "updated_at": "2026-02-17T19:10:46Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/18391",
+    "html_url": "https://github.com/eslint/eslint/issues/18391",
+    "author_login": "JoshuaKGoldberg",
+    "author_profile": "https://github.com/JoshuaKGoldberg",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
     "issue_number": 20272,
     "title": "Bug: Issues with `unified-signatures`",
     "body": "### Environment\n\nNode version: v22.14.0\nnpm version: 11.5.2\nLocal ESLint version: 9.39.0\nGlobal ESLint version: 9.39.0\nOperating System: MacOS 15.7.1\n\n\n### What parser are you using?\n\nDefault (Espree)\n\n### What did you do?\n\n## SETUP\n\n### package.json\n\n```json\n{\n  \"scripts\": {\n    \"lint\": \"eslint src\"\n  },\n  \"devDependencies\": {\n    \"@eslint/js\": \"9.39.0\",\n    \"typescript\": \"5.9.3\",\n    \"typescript-eslint\": \"8.46.2\"\n  }\n}\n```\n\n### eslint.config.mjs\n\n```js\nimport { defineConfig } from 'eslint/config';\nimport tseslint from 'typescript-eslint';\n\nexport default defineConfig(tseslint.configs.strict);\n```\n\n---\n\n## Example 1: `./src/cannot-read.ts`\n\n```ts\nexport const test: Record<string, { id: number }> = {\n    alpha: { id: 1 },\n    bravo: { id: 2 },\n    charlie: { id: 3 },\n}\n```\n\nExecute `npm run lint` and this is the error (ellipses to paraphrase):\n\n```\nOops! Something went wrong! :(\n\nESLint: 9.39.0\n\nTypeError: Cannot read properties of undefined (reading 'name')\nOccurred while linting /.../src/cannot-read.ts:1\nRule: \"@typescript-eslint/unified-signatures\"\n    at getIsTypeParameter...\n```\n\n## Example 2: `./src/not-iterable.ts`\n\n```ts\nexport function wrap<T>(items: T[]): { item: T } {\n    return { item: items[0] };\n}\n```\n\nExecute `npm run lint` and this is the error (ellipses to paraphrase):\n\n```\nOops! Something went wrong! :(\n\nESLint: 9.39.0\n\nTypeError: typeParameters.params is not iterable\nOccurred while linting /.../src/not-iterable.ts:1\nRule: \"@typescript-eslint/unified-signatures\"\n    at getIsTypeParameter...\n```\n\n### What did you expect to happen?\n\nI don't see any errors with the example codes, so I don't think eslint should generate an error. This only happened after upgrading to 9.39.0. Version 9.38.0 worked just fine so I think something in the update is broken.\n\n### What actually happened?\n\nSee above.\n\n### Link to Minimal Reproducible Example\n\nReproduction shown above.\n\n### Participation\n\n- [ ] I am willing to submit a pull request for this issue.\n\n### Additional comments\n\n_No response_",
@@ -176,6 +191,21 @@
     "html_url": "https://github.com/eslint/eslint/issues/20272",
     "author_login": "6nv",
     "author_profile": "https://github.com/6nv",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 18093,
+    "title": "📈 Tracking: Flat Config support",
+    "body": "👋 Hi all! With [flat config stabilized and ESLint v9 ~on the horizon~ _released!_](https://eslint.org/blog/2023/10/flat-config-rollout-plans), many community plugins are adding native support for flat config. The [Configuration Migration Guide](https://eslint.org/docs/latest/use/configure/migration-guide) provides docs on how to do that.\n\nThis is a tracking issue of the <strike>~50</strike> ~70 or so most popular community integrations and plugins for ESLint. We'll keep this list updated over time.\n\n> See also [📈 Tracking: ESLint v9 support](https://github.com/eslint/eslint/issues/18391) for plugins additionally supporting ESLint v9.\n\n📌 Status and Types emoji key:\n\n<ul>\n    <li>✅ Full support released!</li>\n    <li>🌗 Partial support released</li>\n    <li>📦 Merged; pending release</li>\n    <li>🏗️ PR was at least started</li>\n    <li>📝 Issue filed; waiting for PR</li>\n    <li>❌ Not supported; no issue filed</li>\n    <li>❓ Unknown</li>\n    <li>🛑 Known blocker</li>\n</ul>\n\n<table>\n    <thead>\n        <th>Name</th>\n        <th>Status</th>\n        <th>Types</th>\n        <th>Issue</th>\n        <th>Commit / PR</th>\n        <th>Version</th>\n        <th>Blocker</th>\n    </thead>\n    <tbody>\n        <tr>\n            <th colspan=\"7\">Editor Extensions</th>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://github.com/SublimeLinter/SublimeLinter-eslint\">\n                    Sublime Text\n                </a>\n            </td>\n            <td>✅</td>\n            <td><em>n/a</em></td>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://github.com/Microsoft/vscode-eslint\">\n                    VS Code\n                </a>\n            </td>\n            <td>✅</td>\n            <td><em>n/a</em></td>\n            <td>\n                <a href=\"https://github.com/microsoft/vscode-eslint/issues/1644\">\n                    vscode-eslint#1644\n                </a>\n            </td>\n            <td></td>\n            <td>3.0.5</td>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://learn.microsoft.com/en-us/visualstudio/javascript/linting-javascript?view=vs-2022\">\n                    Visual Studio\n                </a>\n            </td>\n            <td>❓</td>\n            <td><em>n/a</em></td>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://www.jetbrains.com/help/webstorm/eslint.html\">\n                    Webstorm\n                </a>\n            </td>\n            <td>✅</td>\n            <td><em>n/a</em></td>\n            <td></td>\n            <td>\n                <a href=\"https://youtrack.jetbrains.com/issue/WEB-57661\">\n                    WEB-57661\n                </a>\n            </td>\n            <td>2022.3.2</td>\n        </tr>\n        <tr>\n            <th colspan=\"7\">Plugins</th>\n        </tr>\n        <tr>\n            <td>\n                <a href=\"https://github.com/dimaMachina/graphql-eslint\">\n                    <code>@graphql-eslint</code>\n                </a>\n            <",
+    "reactions": 81,
+    "created_at": "2024-02-08T14:03:25Z",
+    "updated_at": "2026-01-14T16:56:36Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/18093",
+    "html_url": "https://github.com/eslint/eslint/issues/18093",
+    "author_login": "JoshuaKGoldberg",
+    "author_profile": "https://github.com/JoshuaKGoldberg",
     "already_resurrected": false
   },
   {
@@ -1460,6 +1490,27 @@
     "html_url": "https://github.com/eslint/eslint/issues/6074",
     "author_login": "mysticatea",
     "author_profile": "https://github.com/mysticatea",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 14098,
+    "title": "Reduce disk churn for ESLint upgrades",
+    "body": "**The version of ESLint you are using.**\r\n7.19.0 and earlier upgrades to, for example, 7.13.0\r\n\r\n**The problem you want to solve.**\r\nESLint upgrades cause significant file changes in `node_modules`. We have hit this problem multiple times, some statistics:\r\n\r\n- 7.14.0 -> 7.19.0 (5 minor versions)\r\n```\r\n3796 files changed, 162528 insertions(+), 5876 deletions(-)\r\n```\r\nhttps://chromium-review.googlesource.com/c/devtools/devtools-frontend/+/2692306\r\n- 6.8.0 -> 7.13.0 (1 major version, 13 minor versions)\r\n```\r\n8913 files changed, 125261 insertions (+), 241831 deletions (-)\r\n```\r\nhttps://chromium-review.googlesource.com/c/devtools/devtools-frontend/+/2534873\r\n- 6.0.1 -> 6.8.0 (7 minor versions)\r\n```\r\n634 files changed, 47325 insertions (+), 9376 deletions (-)\r\n```\r\nhttps://chromium-review.googlesource.com/c/devtools/devtools-frontend/+/2137384\r\n\r\nAs an effect of these ESLint upgrades, checking out repositories becomes a lot slower and disk churn increases significantly for all contributors and bots.\r\n\r\nPlease note that we are required to check in our `node_modules` for security and stability reasons. We are not allowed to make calls to external repositories in our testing infrastructure, which means we have to include the files in our repository. That said, even if you wouldn't check in your files, the effects on files changed and disk operations remain. E.g. if you gitignore your `node_modules`, ESLint upgrades would still cause significant disk churn.\r\n\r\n**Your take on the correct solution to problem.**\r\nReduce the disk churn either by dropping dependencies that cause excessive disk usage and drop dependencies that are commonly duplicated in `node_modules` trees. For example, in nearly all of our upgrades, we are observing multiple copies of `lodash` in among others `@eslint/eslintrc` or AST-like packages like `es-abstract`.\r\n\r\n**Are you willing to submit a pull request to implement this change?**\r\nI don't think this is something I can do as an external contributor, but feel free to led me/the community know if there are dependencies that could be pruned and usages can be migrated to reduce overall disk usage.",
+    "reactions": 13,
+    "created_at": "2021-02-12T15:10:49Z",
+    "updated_at": "2022-04-15T00:57:44Z",
+    "labels": [
+      "enhancement",
+      "core",
+      "accepted",
+      "archived due to age",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/14098",
+    "html_url": "https://github.com/eslint/eslint/issues/14098",
+    "author_login": "TimvdLippe",
+    "author_profile": "https://github.com/TimvdLippe",
     "already_resurrected": false
   },
   {
@@ -3381,6 +3432,28 @@
   },
   {
     "repo": "eslint/eslint",
+    "issue_number": 7101,
+    "title": "Stage 4 syntaxes in core rules",
+    "body": "`acorn`, the base of `espree`, has supported async/await and trailing function commas: [Acorn 4.0.0](https://discuss.ternjs.net/t/acorn-release-4-0-0/67)\n`espree` is going to support those, coming soon: https://github.com/eslint/espree/issues/287\n\nThen, I'm starting to modify core rules to support those.\nIn my head, the following rules need some tweaks.\n- 1st\n  - [x] #7170 no-dupe-args ... Duplicate names in non-simple parameters are illegal syntax. We need to fix our tests since Acorn has enhanced the check. (4 tests are failing now with Acorn 4.0.0)\n  - [x] #7170 no-redeclare ... Duplicate names in exports are illegal syntax. We need to fix our tests since Acorn has enhanced the check. (2 tests are failing now with Acorn 4.0.0)\n- 2nd\n  - [x] #7176 arrow-parens ... It has false positive/negative on async functions.\n  - [x] #7179 keyword-spacing ... It has false positive/negative on async functions.\n  - [x] #7178 no-extra-parens ... It should handle await expressions also by default.\n  - [x] #7175 no-unused-expressions ... It should handle await expressions also by default.\n  - [x] #7173 prefer-arrow-callback ... It has wrong autofix on async functions.\n  - [x] #7180 space-before-function-paren ... It should handle async arrow functions (as anonymous function?). `async(a) => a`.\n  - [x] #7174 space-unary-ops ... It should handle await expressions. It has handled yield expressions already.\n- 3rd\n  - [x] #7172 array-callback-return ... I think should not warn async functions as callbacks. `Promise.all(list.map(async x => { await doSomething(x) })` is legal usage.\n  - [x] #7181 comma-dangle ... It should check functions also by opt-in.\n  - [x] #7182 generator-star-spacing ... To make sure, it needs tests for async functions.\n\nChangelog:\n- `space-before-function-paren` was added.\n- `space-unary-ops` was added.\n- Sorted by priority.\n- `generator-star-spacing` was added.\n",
+    "reactions": 7,
+    "created_at": "2016-09-10T00:56:35Z",
+    "updated_at": "2019-12-08T08:11:19Z",
+    "labels": [
+      "bug",
+      "enhancement",
+      "rule",
+      "accepted",
+      "archived due to age",
+      "new syntax"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/7101",
+    "html_url": "https://github.com/eslint/eslint/issues/7101",
+    "author_login": "mysticatea",
+    "author_profile": "https://github.com/mysticatea",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
     "issue_number": 12177,
     "title": "Rule proposal: no-null (revisited)",
     "body": "Let's reopen the discussion https://github.com/eslint/eslint/issues/6701 regarding adding a `no-null` rule as part of ESLint core.\r\n\r\nCurrently this is solved by [eslint-plugin-no-null](https://github.com/nene/eslint-plugin-no-null), however it's awkward to rely on an external NPM package for such a simple and basic rule.\r\n\r\nThe previous issue was closed with the opinion:\r\n\r\n> To me this seems like a very personal preference, so I'm 👎 on inclusion in the core. This would be better as a custom rule.\r\n\r\nI'd like to offer some counterpoints:\r\n\r\n- ESLint [announced](https://eslint.org/blog/2019/01/future-typescript-eslint) that it would be replacing TSLint, which provided [no-null-keyword](https://palantir.github.io/tslint/rules/no-null-keyword/) as a core rule.  Thus, this is a gap for people migrating from TSLint.\r\n- When I worked at Microsoft, hundreds of projects used TSLint to forbid `null`\r\n- Now I work at HBO, and they apply this rule in a massive internal monorepo\r\n\r\nThus, this practice is at least somewhat mainstream.  Why is that?  (The next section is optional reading heheh.)\r\n\r\n## Why forbid `null` instead of `undefined`?\r\n\r\nMost programming languages have a \"null\" or \"nil\" value that functions...\r\n\r\n1. as the initial value for an uninitialized variable; and\r\n2. as the value of `x.y` or `x[\"y\"]` when x has no such key; and\r\n3. as a special token that developers can assign to indicate an unknown or empty state.\r\n\r\nIn JavaScript, the `undefined` value fulfills roles (1), (2) and (3).  JavaScript's `null` value is a redundant secondary token that can only be used for (3), even though its name confusingly implies otherwise.  From this perspective, the `null` value was arguably a mistake in the original JavaScript language design.  Nearly all other programming languages get along just fine with a single \"null\"/\"nil\" concept.  In actual practice, JavaScript loses no expressiveness if we always write `undefined` instead of `null`.  \r\n\r\nOne potential hitch is external libraries such as `JSON.parse(\"null\")` and some popular NPM packages that return `null` from their APIs.  However, if we relax the lint rule to allow `null` comparisons, these cases rarely produce lint errors.\r\n\r\nBy contrast, banning `undefined` values would be impossible, since `null` cannot satisfy the roles (1) and (2).\r\n\r\nOf course, it's completely valid to use `null` and `undefined` together.  But this practice requires developers to keep two concepts straight in their heads.  In TypeScript, it sometimes requires clunky type annotations like `string | null | undefined`.  Thus while using `null` is valid, and perhaps more historically idiomatic, it adds complexity without providing any significant value.\r\n",
@@ -4392,6 +4465,43 @@
     "html_url": "https://github.com/eslint/eslint/issues/3587",
     "author_login": "insin",
     "author_profile": "https://github.com/insin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 17831,
+    "title": "Change Request: Warn when `.eslintignore` detected with flat config",
+    "body": "### ESLint version\r\n\r\nv8.55.0\r\n\r\n### What problem do you want to solve?\r\n\r\nAfter migrating my repository from `.eslintrc.js` to flat config `eslint.config.js`, I was confused by some additional linting errors that showed up. I then realized these linting errors were in files that were supposed to be ignored by `.eslintignore`. After doing some digging through ESLint github issues/PRs, I found out `.eslintignore` no longer works with flat config.\r\n\r\n### What do you think is the correct solution?\r\n\r\n1. Document that `.eslintignore` no longer works in the migration guide: https://eslint.org/docs/latest/use/configure/migration-guide\r\n2. Most importantly, add an error or warning when `.eslintignore` is detected with flat config, similar to how we often show a warning when the user provides an option that has been removed/deprecated.\r\n\r\nIf we don't have automated detection for this, then inevitably a large percentage of users performing this migration will meet this same confusion, and some will forget to cleanup/delete their old `.eslintignore` file. Having an `.eslintignore` present with flat config is a recipe for confusion. I can imagine some users even trying to keep `.eslintignore` and `ignores` in `eslint.config.js` in sync because they aren't sure which they are supposed to use.\r\n\r\nIdeally, we could throw an error to disallow this mistake entirely, especially since flat config isn't considered stable yet until ESLint v9. Otherwise, we can print a warning to the console. The error/warning message would describe the replacement for this file or link to documentation on it.\r\n\r\nConcerns:\r\n1. Is there any situation in which the user would need to ignore the presence of `.eslintignore`?\r\n\r\n### Participation\r\n\r\n- [X] I am willing to submit a pull request for this change.\r\n\r\n### Additional comments\r\n\r\nAre there any other old files we should warn about to ease the migration? Should we warn when both `.eslintrc.js` and `eslint.config.js` are present?\r\n\r\n### Related\r\n\r\n* https://github.com/eslint/eslint/issues/17822\r\n* https://github.com/eslint/eslint/pull/16434\r\n* https://github.com/eslint/eslint/pull/16355",
+    "reactions": 6,
+    "created_at": "2023-12-08T22:51:34Z",
+    "updated_at": "2024-07-18T14:13:57Z",
+    "labels": [
+      "enhancement",
+      "core",
+      "archived due to age"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/17831",
+    "html_url": "https://github.com/eslint/eslint/issues/17831",
+    "author_login": "bmish",
+    "author_profile": "https://github.com/bmish",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 18845,
+    "title": "Change Request: Publish types",
+    "body": "### ESLint version\n\nHEAD\n\n### What problem do you want to solve?\n\nRight now, we're in a situation where there's a `@types/eslint` package that people use for type definitions for ESLint. This package is very popular (12M downloads per week), but it's always out of date because we don't maintain it. This continues to cause issues as we work on language plugins and the core rewrite.\r\n\r\nFurther, it can take weeks to get changes to `@types/eslint` approved([last PR](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/69957)) and deployed. Because we'll likely have more type changes as we accelerate language plugins and core rewrite work, this just doesn't seem sustainable.\n\n### What do you think is the correct solution?\n\nESLint should publish its own types.\r\n\r\nI think the easiest place to start is just to copy the type definitions from `@types/eslint` as-is and publish those as part of the `eslint` package. This will be provide a good level of compatibility for those using `@types/eslint`.\r\n\r\nWe can then easily make modifications, including references to `@eslint/core` as we go forward.\r\n\r\nIn terms of types from `eslint` and `@eslint/core`:\r\n\r\n* `@eslint/core` types will be exclusively those types that are for use in the core rewrite. This excludes API interfaces such as `ESLint` and `Linter`.\r\n* `eslint` types will be a superset of `@eslint/core` that includes API interfaces for the `eslint` package.\n\n### Participation\n\n- [X] I am willing to submit a pull request for this change.\n\n### Additional comments\n\n_No response_",
+    "reactions": 6,
+    "created_at": "2024-09-02T14:40:55Z",
+    "updated_at": "2024-09-06T19:56:38Z",
+    "labels": [
+      "enhancement",
+      "core"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/18845",
+    "html_url": "https://github.com/eslint/eslint/issues/18845",
+    "author_login": "nzakas",
+    "author_profile": "https://github.com/nzakas",
     "already_resurrected": false
   },
   {
@@ -5632,6 +5742,88 @@
     "html_url": "https://github.com/eslint/eslint/issues/6606",
     "author_login": "jonvuri",
     "author_profile": "https://github.com/jonvuri",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 14855,
+    "title": "Allow excluding class expressions in max-classes-per-file",
+    "body": "**What rule do you want to change?**\r\nAdd an option to max-classes-per-file to no longer count class expressions.\r\n\r\n**Does this change cause the rule to produce more or fewer warnings?**\r\nFewer\r\n\r\n**How will the change be implemented? (New option, new default behavior, etc.)?**\r\nNew option. Say, \"allowClassExpressions\"?\r\n\r\n**Please provide some example code that this change will affect:**\r\n\r\n```js\r\nclass VisitorFactory {\r\n    forDescriptor(descriptor) {\r\n        return class {\r\n            visit(node) {\r\n                return `Visiting ${descriptor}.`;\r\n            }\r\n        };\r\n    }\r\n}\r\n\r\n```\r\n\r\n**What does the rule currently do for this code?**\r\nCounts both class declarations and expressions no matter what.\r\n\r\n**What will the rule do after it's changed?**\r\nIf this new option is enabled, only consider class declarations.\r\n\r\n\r\n**Are you willing to submit a pull request to implement this change?**\r\nPossibly, but this was [proposed earlier](https://github.com/eslint/eslint/issues/11883) and the OP @JoshuaKGoldberg offered to submit a PR for this.\r\n\r\n\r\nAll of this text was copied from the [original issue](https://github.com/eslint/eslint/issues/11883). There was a [discussion](https://github.com/eslint/eslint/discussions/14684) about this and @nzakas suggested I open a new issue.",
+    "reactions": 5,
+    "created_at": "2021-07-29T17:06:42Z",
+    "updated_at": "2022-03-04T16:49:00Z",
+    "labels": [
+      "enhancement",
+      "rule",
+      "good first issue",
+      "accepted",
+      "archived due to age"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/14855",
+    "html_url": "https://github.com/eslint/eslint/issues/14855",
+    "author_login": "carlo-quinonez",
+    "author_profile": "https://github.com/carlo-quinonez",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 14709,
+    "title": "Change default rule schema to `schema: []` and drop support for function-style rules",
+    "body": "<!--\r\n    ESLint adheres to the Open JS Foundation Code of Conduct:\r\n    https://eslint.org/conduct\r\n\r\n    This template is for requesting a change that is not a bug fix, rule change, or new rule. If you are here for another reason, please see below:\r\n\r\n    1. To report a bug: https://eslint.org/docs/developer-guide/contributing/reporting-bugs\r\n    2. To request a rule change: https://eslint.org/docs/developer-guide/contributing/rule-changes\r\n    3. To propose a new rule: https://eslint.org/docs/developer-guide/contributing/new-rules\r\n    4. If you have any questions, please stop by our chatroom: https://eslint.org/chat\r\n\r\n    Note that leaving sections blank will make it difficult for us to troubleshoot and we may have to close the issue.\r\n-->\r\n\r\n\r\n**The problem you want to solve.**\r\n\r\nToday, rule schemas ([meta.schema](https://eslint.org/docs/developer-guide/working-with-rules#rule-basics)) are optional. This has the following effects:\r\n\r\n* If a rule does not specify a schema, nothing is enforced.\r\n* Rules with options may not have a schema specified, despite it being best practice to specify a schema for rule options. This increases the chances of developers passing invalid rule options and encountering unexpected behavior / bugs in rules. \r\n* If a rule author wants to enforce that no options are passed to their rule, they have to manually specify `schema: []`, otherwise it's possible that developers could accidentally provide useless rule options to their rule without knowing it.\r\n\r\nThere is an existing, third-party lint rule [eslint-plugin/require-meta-schema](https://github.com/not-an-aardvark/eslint-plugin-eslint-plugin/blob/master/docs/rules/require-meta-schema.md) to enforce that rules have schemas, but this rule is optional and thus not widely used.\r\n\r\n**Your take on the correct solution to problem.**\r\n\r\nChange the default rule schema to `schema: []` to enforce that no rule options are passed to rules that do not specify a schema.\r\n\r\nThis has the desirable consequence of requiring rules with options to begin specifying their schema if they did not already.\r\n\r\nThis would be a breaking change suitable for the next major release.\r\n\r\nMaking ESLint's default behavior more strict like this goes along with many recent changes to tighten validation (i.e. more [RuleTester class validation in ESLint 7](https://eslint.org/docs/user-guide/migrating-to-7.0.0#rule-tester-strict), [increased rule configuration validation in ESLint 6](https://eslint.org/docs/user-guide/migrating-to-6.0.0#rule-config-validating), etc) to improve rule usability and reduce the chance of mistakes.\r\n\r\nAnd in addition to the obvious benefits of increased rule schema usage such as reduced chance of silent mistakes/bugs, being able to rely on having rule schemas available could enable:\r\n* Improved/autogenerated documentation regarding rule options\r\n* TypeScript-style autocomplete/IntelliSense when configuring a rule\r\n\r\n**Are you willing to submit a pull request to implement th",
+    "reactions": 5,
+    "created_at": "2021-06-15T20:59:10Z",
+    "updated_at": "2024-06-25T14:14:11Z",
+    "labels": [
+      "enhancement",
+      "core",
+      "breaking",
+      "archived due to age"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/14709",
+    "html_url": "https://github.com/eslint/eslint/issues/14709",
+    "author_login": "bmish",
+    "author_profile": "https://github.com/bmish",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 12579,
+    "title": "no-underscore-dangle to check function params",
+    "body": "<!--\r\n    ESLint adheres to the [JS Foundation Code of Conduct](https://js.foundation/community/code-of-conduct).\r\n\r\n    This template is for requesting a rule change. If you are here for another reason, please see below:\r\n\r\n    1. To report a bug: https://eslint.org/docs/developer-guide/contributing/reporting-bugs\r\n    2. To propose a new rule: https://eslint.org/docs/developer-guide/contributing/new-rules\r\n    3. To request a change that is not a bug fix, rule change, or new rule: https://eslint.org/docs/developer-guide/contributing/changes\r\n    4. If you have any questions, please stop by our chatroom: https://gitter.im/eslint/eslint\r\n\r\n    Note that leaving sections blank will make it difficult for us to troubleshoot and we may have to close the issue.\r\n-->\r\n\r\n**What rule do you want to change?**\r\nno-underscore-dangle\r\n\r\n**Does this change cause the rule to produce more or fewer warnings?**\r\nMore warnings\r\n\r\n**How will the change be implemented? (New option, new default behavior, etc.)?**\r\nThe updated rule will check if param Identifiers of FunctionDeclarations and ArrowFunctionExpressions have dangling underscores. \r\n\r\nI suggest that underscore dangle in these situations is disallowed by default and can be configured using the same pattern as `\"allowAfterThis\"` and `\"allowAfterSuper\"`.\r\n\r\n**Please provide some example code that this change will affect:**\r\n\r\n<!-- Put your code examples here -->\r\n```js\r\nconst test = (_arg) => { };\r\nfunction myfunc(_arg) { };\r\n```\r\n\r\n**What does the rule currently do for this code?**\r\nNo error thrown.\r\n\r\n**What will the rule do after it's changed?**\r\nThrow an error because the function params have dangling underscores.\r\n\r\n**Are you willing to submit a pull request to implement this change?**\r\nYes",
+    "reactions": 5,
+    "created_at": "2019-11-19T19:38:29Z",
+    "updated_at": "2021-02-11T17:28:14Z",
+    "labels": [
+      "enhancement",
+      "rule",
+      "accepted",
+      "archived due to age"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/12579",
+    "html_url": "https://github.com/eslint/eslint/issues/12579",
+    "author_login": "hnipps",
+    "author_profile": "https://github.com/hnipps",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 10116,
+    "title": "[Feature request] Lint only certain lines in a file",
+    "body": "My motivation for this feature request is that the same that [precise-commits](https://github.com/nrwl/precise-commits) addresses. I want to be able to `--fix` only the lines that I've changed in a source file. `precise-commits` lays out some of the drawbacks of applying `--fix` on a particularly large file:\r\n\r\n>-  Increases the complexity and review time burden of PRs on senior team members.\r\n>-  Potentially increases the amount of time it takes to complete a PR in the first place.\r\n>-  Can block concurrent work on the same codebase and/or result in nasty merge conflicts with outstanding feature branches.\r\n\r\n> If I make a change on line 10 of a 4000 line file, I shouldn't be forced to reformat all 4000s lines (thus making me the last git user to update all of them) as part of my PR.\r\n> I should just need to reformat line 10.\r\n\r\n\r\nThis may already be possible by splicing changes and passing them to eslint's `--stdin`. Either way, consider this request a conversation starter.\r\n",
+    "reactions": 5,
+    "created_at": "2018-03-21T21:19:31Z",
+    "updated_at": "2019-06-14T08:07:36Z",
+    "labels": [
+      "enhancement",
+      "core",
+      "evaluating",
+      "archived due to age",
+      "auto closed"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/10116",
+    "html_url": "https://github.com/eslint/eslint/issues/10116",
+    "author_login": "tomkel",
+    "author_profile": "https://github.com/tomkel",
     "already_resurrected": false
   }
 ]

@@ -32,5 +32,39 @@
     "author_login": "knz",
     "author_profile": "https://github.com/knz",
     "already_resurrected": false
+  },
+  {
+    "repo": "charmbracelet/bubbletea",
+    "issue_number": 293,
+    "title": "Handle `CSI u` Input (aka fixterms)",
+    "body": "It would be nice for Bubble Tea to support the \"CSI u\" Encoding Specification as outlined in Paul Evans' seminal work [\"Fix Keyboard Input on Terminals - Please\"](http://www.leonerd.org.uk/hacks/fixterms/).\r\n\r\nReferences:\r\n* [Wezterm](https://wezfurlong.org/wezterm/config/lua/config/enable_csi_u_key_encoding.html)\r\n* [Kitty](https://sw.kovidgoyal.net/kitty/keyboard-protocol/)\r\n* [Windows Terminal](https://github.com/microsoft/terminal/issues/8719)\r\n* [iTerm2](https://iterm2.com/documentation-csiu.html)\r\n\r\nSpecial thanks to @imsnif for the suggestion.",
+    "reactions": 5,
+    "created_at": "2022-04-12T20:28:59Z",
+    "updated_at": "2024-02-14T20:26:50Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/charmbracelet/bubbletea/issues/293",
+    "html_url": "https://github.com/charmbracelet/bubbletea/issues/293",
+    "author_login": "meowgorithm",
+    "author_profile": "https://github.com/meowgorithm",
+    "already_resurrected": false
+  },
+  {
+    "repo": "charmbracelet/bubbletea",
+    "issue_number": 171,
+    "title": "Spawning editors",
+    "body": "Hi,\r\n\r\nThanks for the awesome project!\r\n\r\nQuestion: how to properly start subcommand with reuse of Stdout/Stdin?\r\n\r\nI'm doing it like so:\r\nhttps://github.com/antonmedv/llama/blob/58c042eb06a5a661a1388beb4ac09cedf2764ad0/main.go#L183-L190\r\n```go\r\nfunc (m *model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {\r\n\tif m.editMode {\r\n\t\treturn m, nil\r\n\t}\r\n```\r\n```go\r\n\t\t\t\tcmd := exec.Command(lookup([]string{\"LLAMA_EDITOR\", \"EDITOR\"}, \"less\"), filepath.Join(m.path, m.cursorFileName()))\r\n\t\t\t\tcmd.Stdin = os.Stdin\r\n\t\t\t\tcmd.Stdout = os.Stdout\r\n\t\t\t\t// Note: no Stderr as redirect `llama 2> /tmp/path` can be used.\r\n\t\t\t\tm.editMode = true\r\n\t\t\t\t_ = cmd.Run()\r\n\t\t\t\tm.editMode = false\r\n\t\t\t\treturn m, tea.HideCursor\r\n```\r\nBut what to do if a redraw is needed after cmd exits?  And is there a better way to halt the program until cmd is exited? \r\n\r\nThanks.\r\n\r\n_Originally posted by @antonmedv in https://github.com/charmbracelet/bubbletea/discussions/170_",
+    "reactions": 5,
+    "created_at": "2021-12-13T19:30:46Z",
+    "updated_at": "2022-04-12T18:14:43Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/charmbracelet/bubbletea/issues/171",
+    "html_url": "https://github.com/charmbracelet/bubbletea/issues/171",
+    "author_login": "antonmedv",
+    "author_profile": "https://github.com/antonmedv",
+    "already_resurrected": false
   }
 ]

@@ -3017,5 +3017,42 @@
     "author_login": "arp242",
     "author_profile": "https://github.com/arp242",
     "already_resurrected": false
+  },
+  {
+    "repo": "cli/cli",
+    "issue_number": 9781,
+    "title": "`gh workflow run --ref [ref]` ignoring `ref`",
+    "body": "### Describe the bug\r\n\r\n```bash\r\n$ gh --version\r\ngh version 2.59.0 (2024-10-16)\r\nhttps://github.com/cli/cli/releases/tag/v2.59.0\r\n```\r\n\r\nUsing the `ref` parameter does not seem to have any impact. A random-string `ref` gives no errors. A `ref` for an existing branch that has not yet been merged into the default branch reports 404 when trying to run a workflow that is new to that branch.\r\n\r\n### Steps to reproduce the behavior\r\n\r\n1. Create a new branch `foo`\r\n2. Create a new workflow file `bar.yml` with `workflow_dispatch` and no other triggers\r\n3. commit/push branch\r\n4. `gh workflow run bar.yml --ref foo`\r\n\r\n### Expected vs actual behavior\r\n\r\nExpected: workflow `bar.yml` runs.\r\nActual: 404: Not found.\r\n\r\n### Logs\r\n\r\nPaste the activity from your command line. Redact if needed.\r\n\r\n```bash\r\n$ GH_DEBUG=true gh workflow run bar.yml --ref foo\r\n[git remote -v]\r\n[git config --get-regexp ^remote\\..*\\.gh-resolved$]\r\n* Request at 2024-10-17 10:33:53.601824859 -0400 EDT m=+0.076128339\r\n* Request to https://api.github.com/graphql\r\n* Request took 309.171144ms\r\n* Request at 2024-10-17 10:33:53.914645102 -0400 EDT m=+0.388948592\r\n* Request to https://api.github.com/repos/[ORG]/[REPO]/actions/workflows/bar.yml\r\n* Request took 134.922376ms\r\nHTTP 404: Not Found (https://api.github.com/repos/.../bar.yml)\r\n```",
+    "reactions": 5,
+    "created_at": "2024-10-17T14:36:56Z",
+    "updated_at": "2026-04-27T17:22:43Z",
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "gh-workflow"
+    ],
+    "url": "https://api.github.com/repos/cli/cli/issues/9781",
+    "html_url": "https://github.com/cli/cli/issues/9781",
+    "author_login": "qodfathr",
+    "author_profile": "https://github.com/qodfathr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "cli/cli",
+    "issue_number": 11168,
+    "title": "Create workflow than runs on Issue and PR Creation and closes if high likelihood of spam",
+    "body": "## Description\n\nWe get a lot of spam issues and PRs. I would like to explore using https://github.com/actions/ai-inference to categorise issues as spam or not, and automatically close them.\n\n### Expected Output\n\n- A new workflow than runs on issue or PR creation. We should consider having a set of eval with good and bad issue/PR examples to have high confidence before we turn on auto-closing.\n- Create issues for potential next steps",
+    "reactions": 5,
+    "created_at": "2025-06-25T04:47:54Z",
+    "updated_at": "2025-07-21T23:49:13Z",
+    "labels": [
+      "enhancement",
+      "github_actions"
+    ],
+    "url": "https://api.github.com/repos/cli/cli/issues/11168",
+    "html_url": "https://github.com/cli/cli/issues/11168",
+    "author_login": "williammartin",
+    "author_profile": "https://github.com/williammartin",
+    "already_resurrected": false
   }
 ]

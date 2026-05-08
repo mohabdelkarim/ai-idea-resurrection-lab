@@ -719,6 +719,24 @@
   },
   {
     "repo": "pytorch/pytorch",
+    "issue_number": 3649,
+    "title": "0.3 release checklist",
+    "body": "- [x] backport some of the recent master commits\r\n  - some of them were marked 0.3 release blockers, went into master\r\n- [x] finish 0.3 blockers\r\n- [x] port over linker version script to the 0.3 branch\r\n- [x] add linker version script for TH, THNN, THC, THCUNN, THD (right now only _C is covered and that's not enough).\r\n- [x] install devtoolset3 inside the conda docker too (anaconda now moved over to gcc 7.xx which is not CUDA compatible\r\n  - [x] adjust meta.yaml files to remove libgcc and gcc entries\r\n- [x] fix the numpy version to be used when building binaries (See https://github.com/pytorch/pytorch/issues/2564)\r\n  - [x] change conda meta.yaml\r\n  - [x] change the manylinux shell script recipe\r\n- [ ] (maybe) build static fPIC openmp and link against that instead (requires recompiling gcc from source)\r\n  - this will fix the static TLS issues that people have been seeing, but it's a bit of a high-risk of being a rabbit-hole\r\n- [x] change the manylinux docker image to have cudnn7 and nccl2 and cuda9\r\n- [x] change the conda docker image to have cudnn7 and nccl2\r\n- [x] change the hashes for `patchelf` commands in the [manywheel build script](https://github.com/pytorch/builder/blob/master/manywheel/build.sh#L124) for cudnn, nccl2 and openmp\r\n- [x] add a cuda90 tracking feature for conda (similar to cuda75 and cuda80)\r\n- [x] build final wheels that are manylinux1 compatible\r\n- [x] build final conda packages (and stage them at `-c pytorch` for testing)\r\n- [x] test final binaries against [community repos](https://github.com/pytorch/builder/tree/master/test_community_repos) and do basic smoke tests\r\n- [x] do basic performance and memory regression testing\r\n  - word language model\r\n    - [x] speed\r\n    - [x] memory\r\n  - imagenet\r\n    - [x] speed\r\n    - [x] memory\r\n  - https://github.com/pytorch/benchmark\r\n    - [ ] speed\r\n    - [ ] memory\r\n- [x] manually test final binaries in CPU-only AWS instances\r\n   - cuda75 wheels\r\n   - cuda80 wheels\r\n   - cuda90 wheels\r\n   - cuda75 conda\r\n   - cuda80 conda\r\n   - cuda90 conda\r\n- [x] manually test final binaries in GPU AWS instances with only NVIDIA driver installed\r\n   - cuda75 wheels\r\n   - cuda80 wheels\r\n   - cuda90 wheels\r\n   - cuda75 conda\r\n   - cuda80 conda\r\n   - cuda90 conda\r\n- [x] Write release notes",
+    "reactions": 51,
+    "created_at": "2017-11-12T00:28:22Z",
+    "updated_at": "2018-02-03T02:53:52Z",
+    "labels": [
+      "high priority",
+      "module: binaries"
+    ],
+    "url": "https://api.github.com/repos/pytorch/pytorch/issues/3649",
+    "html_url": "https://github.com/pytorch/pytorch/issues/3649",
+    "author_login": "soumith",
+    "author_profile": "https://github.com/soumith",
+    "already_resurrected": false
+  },
+  {
+    "repo": "pytorch/pytorch",
     "issue_number": 33287,
     "title": "Round to specified decimal place",
     "body": "## 🚀 Feature\r\n`torch.round` to take an optimal argument which specifies the decimal place to which rounding should occur\r\n\r\n## Pitch\r\n`torch.round` should have the same functionality as `numpy.around`. Specifying a decimal place will round _up to_ that decimal place, using the same rounding strategy as `torch.round` currently uses. The default value of the decimal parameter should be 0 to keep current behaviour.\r\nE.g.\r\n```\r\n>>> tensor = torch.tensor([0.1234, 0.1237])\r\n>>>torch.round(tensor, decimals=3)\r\ntensor([0.123, 0.124])\r\n```\r\n\r\n## Alternatives\r\nYou can use `numpy.around` on the tensor, but I assume this has some performance hit?\r\n\n\ncc @yf225",
@@ -2029,6 +2047,26 @@
     "html_url": "https://github.com/pytorch/pytorch/issues/3194",
     "author_login": "guxd",
     "author_profile": "https://github.com/guxd",
+    "already_resurrected": false
+  },
+  {
+    "repo": "pytorch/pytorch",
+    "issue_number": 5262,
+    "title": "[feature request] efficient matmul(sparse, sparse) -> sparse",
+    "body": "Can probably be done by converting the sparse coo matrices to CSR format then calling a library somewhere.\n\ncc @vincentqb @aocsa",
+    "reactions": 10,
+    "created_at": "2018-02-15T19:17:20Z",
+    "updated_at": "2023-04-18T20:03:20Z",
+    "labels": [
+      "module: sparse",
+      "hackamonth",
+      "triaged",
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/pytorch/pytorch/issues/5262",
+    "html_url": "https://github.com/pytorch/pytorch/issues/5262",
+    "author_login": "zou3519",
+    "author_profile": "https://github.com/zou3519",
     "already_resurrected": false
   },
   {

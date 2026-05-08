@@ -1054,6 +1054,21 @@
   },
   {
     "repo": "webpack/webpack",
+    "issue_number": 5724,
+    "title": "This is not an issue! I really love Webpack ♥, thank you!",
+    "body": "",
+    "reactions": 60,
+    "created_at": "2017-09-26T23:34:12Z",
+    "updated_at": "2020-03-25T12:23:52Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/webpack/webpack/issues/5724",
+    "html_url": "https://github.com/webpack/webpack/issues/5724",
+    "author_login": "zaclummys",
+    "author_profile": "https://github.com/zaclummys",
+    "already_resurrected": false
+  },
+  {
+    "repo": "webpack/webpack",
     "issue_number": 2986,
     "title": "Remove automatic -loader module name extension",
     "body": "**I'm submitting a feature request**\n\n**Webpack version:**\n2.x\n\n**Current behavior:**\nwebpack automatically appends `-loader` to a module when the first module lookup failed\n\n**Expected/desired behavior:**\nwebpack should not append `-loader`\n\n**What is the motivation / use case for changing the behavior?**\nIt can lead to errors that are hard to understand for newcomers. I've seen it a couple of times that webpack tried to resolve the [css](https://www.npmjs.com/package/css) module as css-loader because people have just configured `loader: \"css\"`. In combination with npm@3, this can be very confusing as you may have never installed the css module by yourself.\n\nThis change would probably require a lot of webpack configs to be adjusted, but since the loader configuration has been changed in webpack@2 anyway, we should include that change as well. As a downside, the config will become a little more verbose because now everyone has to write `style-loader!css-loader`, but I think the benefit outweighs the downside by far.\n",
@@ -2520,6 +2535,23 @@
     "html_url": "https://github.com/webpack/webpack/issues/12408",
     "author_login": "lukeapage",
     "author_profile": "https://github.com/lukeapage",
+    "already_resurrected": false
+  },
+  {
+    "repo": "webpack/webpack",
+    "issue_number": 3313,
+    "title": "[Help Wanted][RFC] Spike research on Splittable ",
+    "body": "After webpack v2 releases from beta, one of our first priorities is introducing optimizations that include techniques like rollup as well as general purpose optimizer similar to babili (using program flow analysis except supporting nth level depth in commonjs, and, and es6 tree shaking and dead code elimination).\r\n\r\n@cramforce just created a library called [splittable](http://github.com/Cramforce/splittable) which uses Google Closure Compiler to perform this program flow analysis based on a dependency graph created via wrapping browserify. \r\n\r\nOn paper he claims the optimization wins are huge. \r\n\r\n## Idea\r\nCan we \"kill two birds with one stone\" by implementing this kind of optimization tool to webpack.\r\n\r\n## Challenges\r\n* Since this tool wraps browserify, we would want to take and either contribute to splittable to decouple the logic so that it could take any dep graph (such as a custom one created from webpack) and perform these optimizations. \r\n\r\n* the tool leverages the Java based gcc and not the JavaScript closure compiler, we would also need to ensure feature parity with the JS based one so that the tool could perform without the user needing the Java runtime installed. \r\n\r\n* it appears that there is mention of a native closure compiler code splitting which I do not know much about, however I would imagine we would not need the native splitting feature? Or at least determine the benefits. \r\n\r\n",
+    "reactions": 12,
+    "created_at": "2016-11-17T03:29:06Z",
+    "updated_at": "2017-08-26T12:02:08Z",
+    "labels": [
+      "inactive"
+    ],
+    "url": "https://api.github.com/repos/webpack/webpack/issues/3313",
+    "html_url": "https://github.com/webpack/webpack/issues/3313",
+    "author_login": "TheLarkInn",
+    "author_profile": "https://github.com/TheLarkInn",
     "already_resurrected": false
   },
   {

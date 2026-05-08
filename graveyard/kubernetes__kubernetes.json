@@ -476,6 +476,25 @@
   },
   {
     "repo": "kubernetes/kubernetes",
+    "issue_number": 100000,
+    "title": "There are no 6-digit issues or PRs in kubernetes/kubernetes",
+    "body": "Up until now, all issues and PRs have had 5 digits or fewer.  We should validate nothing fails when the issue or PR number is 6 digits long.",
+    "reactions": 143,
+    "created_at": "2021-03-09T10:39:22Z",
+    "updated_at": "2021-03-10T00:18:22Z",
+    "labels": [
+      "needs-sig",
+      "¯\\_(ツ)_/¯",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/100000",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/100000",
+    "author_login": "craigbox",
+    "author_profile": "https://github.com/craigbox",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
     "issue_number": 72597,
     "title": "Specify remote host for kubectl port-forward ",
     "body": "**What would you like to be added**:\r\n\r\nAccording to [the documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward), with port-forward we can specify:\r\n\r\n```\r\n$ port-forward TYPE/NAME --address [localhost] LOCAL_PORT:REMOTE_PORT\r\n```\r\n\r\n- a local port to listen on (`LOCAL_PORT` argument)\r\n- a remote port to forward data to (`REMOTE_PORT` argument)\r\n- a local IP address to listen on (`--address` flag)\r\n\r\nBut, the remote IP is always set to `127.0.0.1`. We can only redirect requests to the loopback interface of the pod.\r\n\r\nThis feature request suggests the possibility of specifying a remote host for port forwarding, in a similar fashion to `ssh -L LOCAL_PORT:REMOTE_HOST:REMOTE_PORT`.\r\n\r\nThis would redirect all requests to `LOCAL_PORT` to `REMOTE_HOST:REMOTE_PORT`, `REMOTE_HOST` being accessible only from the pod.\r\n\r\nThe port-forward command usage would change as follows:\r\n\r\n```\r\n$ port-forward TYPE/NAME [options] [LOCAL_PORT:[REMOTE_HOST:]]REMOTE_PORT [...[LOCAL_PORT_N[REMOTE_HOST_N:]:]REMOTE_PORT_N]\r\n```\r\n\r\nThis is a backwards-compatible change.\r\n\r\nExamples:\r\n\r\nListen on port 127.0.0.1:8888 locally, forwarding to 127.0.0.1:5000 in the pod\r\n\r\n```\r\nkubectl port-forward pod/mypod 8888:5000\r\n```\r\n\r\nListen on port 127.0.0.1:8888 locally, forwarding to 1.1.1.1:5000 in the pod\r\n\r\n```\r\nkubectl port-forward pod/mypod 8888:1.1.1.1:5000\r\n```\r\n\r\nListen on port 8888 on all addresses locally, forwarding to 2.2.2.2:5000 in the pod\r\n\r\n```\r\nkubectl port-forward --address 0.0.0.0 pod/mypod 8888:2.2.2.2:5000\r\n```\r\n\r\n**Why is this needed**:\r\n\r\nThis is very useful for debugging and providing network access to resources available from sidecar containers with some network-related functionality, such as VPN tunnels.\r\n\r\nMy own use case is an OpenVPN tunnel managed by a container, it would be very handy to proxy some requests from my development machine to the VPN (`tun0`) interface of the pod.",
@@ -1821,6 +1840,26 @@
   },
   {
     "repo": "kubernetes/kubernetes",
+    "issue_number": 122753,
+    "title": "DaemonSet dynamic/scaled resources based on node type",
+    "body": "### What would you like to be added?\n\n_Intro note: I've read about KEP, however, I'm merely a busy engineer that loves Kubernetes. I'm not sure I can lead my feature request through the KEP process. Please consider this as my initial reach out, if anything to have my voice heard and poll my idea to the community. If there is enough traction, I could follow up and/or someone else could lead it._\r\n\r\nI want to propose an enhancement to the DaemonSet (DS) resource management in Kubernetes. The DaemonSet, as it stands, is an invaluable feature for ensuring that each node in a cluster runs a copy of a specific pod. However, I have identified an area where its functionality could be significantly improved: dynamic and scaled resource allocation based on node type.\r\n\r\n### Current Limitation: Static Resource Definition\r\n\r\nCurrently, the resource allocation logic for DaemonSets is rather static. When defining resources for a DaemonSet, such as CPU and memory, it operates on an 'all-or-nothing' basis. This approach does not leverage the full potential of diverse node environments.\r\n\r\n### Diverse Node Environment in Current Ecosystem\r\n\r\nIn the present cloud ecosystem, there's an extensive variety of node types available. These range from nodes with as little as 1 virtual CPU to those as large as 488 CPUs offered by services like AWS. This diversity in node capabilities is not currently accounted for in the DaemonSet design.\r\n\r\n### Resource Dependence on Node Size and Pod Density\r\n\r\nThe workload resources for a DaemonSet, particularly memory and CPU, are often dependent on the number of pods running on a node. More importantly, they can also depend on the size or capacity of the node itself. For instance, a node with more CPUs and memory can, and ideally should, handle more intensive workloads.\r\n\r\n### Lack of Native Methods for Dynamic Resource Allocation\r\n\r\nAs of now, Kubernetes does not offer native methods to define resources for a DaemonSet based on the size or capacity of the node. While it is possible to categorize nodes into groups based on size, this solution is cumbersome and static. It requires significant manual intervention and does not adapt dynamically as the cluster evolves.\r\n\r\n### Existing Alternatives\r\n\r\nI acknowledge that there are existing methods to manage this challenge, such as adding nodes to different node groups and then using affinity rules to place DaemonSets with different resource requirements. However, this approach is quite tedious and complex. It requires significant manual configuration and continuous adjustment, which detracts from usability and efficiency. This method does not truly cater to the dynamic nature of resource demands in a Kubernetes environment.\r\n\r\n### Proposal: Dynamic/Scaled Resource Allocation for DaemonSets\r\n\r\nI propose the introduction of a feature that allows DaemonSets to dynamically allocate resources based on the type or capacity of the node. This feature would analyze the node's characteristics (such a",
+    "reactions": 62,
+    "created_at": "2024-01-13T00:45:26Z",
+    "updated_at": "2026-05-07T22:42:52Z",
+    "labels": [
+      "kind/feature",
+      "sig/apps",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/122753",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/122753",
+    "author_login": "wiardvanrij",
+    "author_profile": "https://github.com/wiardvanrij",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
     "issue_number": 44665,
     "title": "1.6.1 The connection to the server localhost:8080 was refused",
     "body": "\r\n\r\n**Kubernetes version v1.6.1**\r\n\r\n\r\n**Environment**:\r\n- **arm64 cavium thunder x**:\r\n- **Ubuntu 16.04.2 LTS**\r\n- **4.4.0-72-generic**\r\n\r\n**What happened**:\r\ninit kubernetes with\r\n`kubeadm init --kubernetes-version=v1.6.1 --pod-network-cidr=10.244.0.0/16\r\n`than tried\r\n`kubectl taint nodes --all  node-role.kubernetes.io/master-\r\n`and got this\r\n`The connection to the server localhost:8080 was refused - did you specify the right host or port?\r\n`\r\n\r\nor this\r\n```\r\n# kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml\r\nThe connection to the server localhost:8080 was refused - did you specify the right host or port?\r\n```\r\n\r\nor\r\n\r\n```\r\n# kubectl version\r\nClient Version: version.Info{Major:\"1\", Minor:\"6\", GitVersion:\"v1.6.1\", GitCommit:\"b0b7a323cc5a4a2019b2e9520c21c7830b7f708e\", GitTreeState:\"clean\", BuildDate:\"2017-04-03T20:44:38Z\", GoVersion:\"go1.7.5\", Compiler:\"gc\", Platform:\"linux/arm64\"}\r\nThe connection to the server localhost:8080 was refused - did you specify the right host or port?\r\n\r\n```\r\n\r\n",
@@ -2187,6 +2226,24 @@
   },
   {
     "repo": "kubernetes/kubernetes",
+    "issue_number": 36220,
+    "title": "Expose a service with LoadBalancer on non-cloud providers using custom image for the load balancer",
+    "body": "Here is one idea:\r\n\r\nWhen you are running a cluster in your bare metal infrastructure, you cannot expose a service (or anything) using the LoadBalancer for obvious reasons.\r\n\r\nWhen you are running a in a cloud provider, it uses the native load balancer (AKA Elastic Load Balancer in AWS) provisioning and configuring it.\r\n\r\nMy point is:\r\n\r\nWhy not have an extra flag in the expose command that allows you to specify the image to use as a load balancer in your bare metal cluster? E.g:\r\n```\r\nkubectl expose rc my-service --type LoadBalancer --image my-custom-ha-proxy\r\n```\r\n\r\nAnd that will deploy a container with my-custom-ha-proxy and use it on a similar way as it does for the ELB in AWS.\r\n\r\nThis came up in a conversation in the slack channel #kubernetes-users and the originator question was... \"how do I know the IP of the caller within the cluster?\" And this solution came up as you would be able to configure the x-forwarded-for header and send it to the destination service.\r\n\r\nIf this issue sounds like there is a better way of doing it... please reply on a comment and close it!",
+    "reactions": 55,
+    "created_at": "2016-11-04T10:50:54Z",
+    "updated_at": "2023-05-15T13:03:31Z",
+    "labels": [
+      "sig/network",
+      "lifecycle/rotten"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/36220",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/36220",
+    "author_login": "dgonzalez",
+    "author_profile": "https://github.com/dgonzalez",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
     "issue_number": 34377,
     "title": "Support Spark natively in Kubernetes",
     "body": "Apache Spark is a fast, in-memory data processing engine with elegant and expressive development APIs to allow data workers to efficiently execute streaming, machine learning or SQL workloads that require fast iterative access to datasets. \r\n# Concepts\r\n- Spark Application:  A spark application is what a user submits to execute his program on the spark framework.\r\n- Spark Driver: Runs the “main” program associated with a Spark application.\r\n- Spark Context: A spark context is created with a particular configuration by a spark application, and is the entry-point to the spark execution environment.\r\n- Spark Executor: One or more processes which listen to the Spark Driver and perform individual Spark Tasks as instructed by the Spark driver. \r\n- Spark Standalone mode: Spark standalone mode is lightweight cluster manager within the main spark project itself, which lets one turn up a spark cluster, i.e. individual master and worker processes.\r\n- Spark Client mode: In client mode, the driver is launched on the client machine (outside the cluster).\r\n- Spark Cluster mode: In cluster mode, the driver is launched onto the cluster, for any supported type of cluster, which is specified at the time of submitting the spark application into the cluster.\r\n- Spark Dynamic Allocation: It is a configuration flag which can be turned on. Dynamic allocation scales the number of executors based on the workload presented. Dynamic allocation of executors requires an \"external shuffle service\" when used in cluster mode.\r\n# Problem\r\n\r\nKubernetes currently supports standalone mode only. There are various efforts within the project dealing with spark-standalone such as:\r\n- [Spark Examples](https://github.com/kubernetes/kubernetes/tree/master/examples/spark)\r\n- #16517\r\n### Limitations of standalone mode\r\n\r\n![standalone](http://i.imgur.com/VE4W3QB.png)\r\n- Spark workers cannot be elastic depending on job demands easily, as the spark components cannot speak directly to kubernetes.\r\n- Since the spark-master and spark-worker aren't designed to work with a resource manager it doesn’t provide easy integration to Kubernetes features (namespace, rolling out, etc).\r\n- If several users share a standalone cluster, it is not strongly multi-tenant and isolation requires that each user has his/her own standalone cluster.\r\n- Each worker **wants** to use an entire node.  This is not resource efficient. Sharing resources between different clusters as they scale dynamically during the execution of a multi-stage spark application requires an external manager/monitor.\r\n### Native support\r\n\r\n![native](http://i.imgur.com/2Sd9whP.png)\r\n\r\nIt is possible for spark to support Kubernetes natively, which would obviate the need for standalone deployments of masters and workers.\r\n- Spark knows best about its resource requirements and if it directly accessed the kubernetes API to create workers and drivers, that would be more efficient.\r\n- We want generic resource management tools in or alongside kubernetes ",
@@ -2402,6 +2459,26 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/45398",
     "author_login": "JorritSalverda",
     "author_profile": "https://github.com/JorritSalverda",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 26299,
+    "title": "Allow auto-population of environment variables from ConfigMap",
+    "body": "The current approach for populating environment variables from ConfigMaps ends up pretty verbose. With the following ConfigMap:\n\n```\napiVersion: v1\ndata:\n  space-ships: 1\n  ship-type: battle-cruiser\n  weapon: laser-cannon\nkind: ConfigMap\nmetadata:\n  name: space-config\n```\n\nI have to manually expose each variable separately:\n\n```\napiVersion: v1\nkind: Pod\nmetadata:\n  name: space-simulator\nspec:\n  containers:\n  - name: space-simulator\n    image: foo/space-simulator\n    env:\n    - name: SPACE_SHIPS\n      valueFrom:\n        configMapKeyRef:\n          name: space-config\n          key: space-ships\n    - name: SHIP_TYPE\n      valueFrom:\n        configMapKeyRef:\n          name: space-config\n          key: ship-type\n    - name: WEAPON\n      valueFrom:\n        configMapKeyRef:\n          name: space-configs\n          key: weapon\n```\n\nThis seems unnecessary and error-prone if all I want to express is that the pod should pull all the data from the ConfigMap and populate environment variables from them.\n\nIt would be nice if this could be done in more concise manner, perhaps by introducing an `envFrom` field. For example:\n\n```\napiVersion: v1\nkind: Pod\nmetadata:\n  name: space-simulator\nspec:\n  containers:\n  - name: space-simulator\n    image: foo/space-simulator\n  - envFrom:\n      configMap: space-config\n```\n\nThe idea being that `envFrom` could support other ways of auto-population, e.g. secrets.\n",
+    "reactions": 51,
+    "created_at": "2016-05-25T20:29:11Z",
+    "updated_at": "2018-08-09T22:31:36Z",
+    "labels": [
+      "priority/important-soon",
+      "area/app-lifecycle",
+      "sig/service-catalog",
+      "area/configmap-api"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/26299",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/26299",
+    "author_login": "yissachar",
+    "author_profile": "https://github.com/yissachar",
     "already_resurrected": false
   },
   {

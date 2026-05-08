@@ -599,6 +599,23 @@
   },
   {
     "repo": "supabase/supabase",
+    "issue_number": 1432,
+    "title": "2FA via an authenticator app with TOTP",
+    "body": "# Feature request\r\n\r\n## Is your feature request related to a problem? Please describe.\r\n\r\nMy app only has 1FA which can be insecure if the user reuses their password.\r\n\r\n## Describe the solution you'd like\r\n\r\nI want an API for supporting 2FA with an authenticator app, including the easy QR code thing.\r\n\r\n## Describe alternatives you've considered\r\n\r\nA janky setup where my own server would connect to supabase to interact with the user which would require a lot of unnecessary complexity.\r\n",
+    "reactions": 8,
+    "created_at": "2021-05-05T03:58:55Z",
+    "updated_at": "2021-05-26T12:41:01Z",
+    "labels": [
+      "enhancement"
+    ],
+    "url": "https://api.github.com/repos/supabase/supabase/issues/1432",
+    "html_url": "https://github.com/supabase/supabase/issues/1432",
+    "author_login": "TheBlueOompaLoompa",
+    "author_profile": "https://github.com/TheBlueOompaLoompa",
+    "already_resurrected": false
+  },
+  {
+    "repo": "supabase/supabase",
     "issue_number": 5424,
     "title": "Custom email links",
     "body": "# Feature request\r\n\r\nWhen I invite a user to signup they receive an invitation link. This link is within the supabase.co domain. I would like to customize this link masking it with my own domain. This should increase the trust for visitors clicking on a link with a familiar domain name<img width=\"457\" alt=\"image\" src=\"https://user-images.githubusercontent.com/725324/153567052-7498141f-03d9-4f65-b565-a985a9cb7ea0.png\">",

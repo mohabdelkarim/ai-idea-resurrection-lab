@@ -101,6 +101,21 @@
   },
   {
     "repo": "huggingface/transformers",
+    "issue_number": 705,
+    "title": "Implementing XLNet in pytorch",
+    "body": "Due to the new work of [XLNet](arxiv.org/abs/1906.08237 ) and the implementation of it in tensorflow maybe we need to add this one to the current repository.\r\n\r\nhttps://github.com/zihangdai/xlnet",
+    "reactions": 54,
+    "created_at": "2019-06-20T04:26:24Z",
+    "updated_at": "2019-09-04T10:44:30Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/705",
+    "html_url": "https://github.com/huggingface/transformers/issues/705",
+    "author_login": "roholazandie",
+    "author_profile": "https://github.com/roholazandie",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
     "issue_number": 4857,
     "title": "sentencepiece==0.1.92 causing segmentation fault",
     "body": "# 🐛 Bug\r\n\r\n## Information\r\n\r\n`transformers==2.9.1`\r\n`torch==1.4.0`\r\n\r\nStarting from today,\r\nI notice newly released `sentencepiece==0.1.92` causing segmentation fault while calling torch functions.\r\nDowngrade to `sentencepiece==0.1.91` solve it.\r\n",
@@ -114,6 +129,21 @@
     "html_url": "https://github.com/huggingface/transformers/issues/4857",
     "author_login": "boy2000-007man",
     "author_profile": "https://github.com/boy2000-007man",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 6263,
+    "title": "RuntimeError: CUDA error: CUBLAS_STATUS_NOT_INITIALIZED when calling `cublasCreate(handle)`",
+    "body": "Hi, I tried to add some other embeddings in your BertEmbedding source code and then load the pretrained weights 'bert-base-chinese'. \r\nWhen I run the forward method, I got the issue\r\n'RuntimeError: CUDA error: CUBLAS_STATUS_NOT_INITIALIZED when calling `cublasCreate(handle)`'\r\nCan someone help please? Thanks a lot",
+    "reactions": 52,
+    "created_at": "2020-08-05T07:24:25Z",
+    "updated_at": "2024-11-27T00:56:34Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/6263",
+    "html_url": "https://github.com/huggingface/transformers/issues/6263",
+    "author_login": "mt324010",
+    "author_profile": "https://github.com/mt324010",
     "already_resurrected": false
   },
   {
@@ -1404,6 +1434,23 @@
     "html_url": "https://github.com/huggingface/transformers/issues/582",
     "author_login": "Eric-Wallace",
     "author_profile": "https://github.com/Eric-Wallace",
+    "already_resurrected": false
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 37495,
+    "title": "Refactor bert-based models to use global attention function",
+    "body": "### Feature request\n\nRefactoring of the attention modules in bert-based models to use global attention function\n\n### Motivation\n\nEnabling easier support of SDPA and flash attention while minimizing code duplication in Bert copies\n\n### Your contribution\n\nI already created a draft PR #37494 to outline the changes required. Would love to get feedback and would continue working on this PR if needed",
+    "reactions": 8,
+    "created_at": "2025-04-14T13:56:11Z",
+    "updated_at": "2025-12-01T15:21:44Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/37495",
+    "html_url": "https://github.com/huggingface/transformers/issues/37495",
+    "author_login": "Marcel256",
+    "author_profile": "https://github.com/Marcel256",
     "already_resurrected": false
   },
   {

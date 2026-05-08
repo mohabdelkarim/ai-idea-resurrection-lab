@@ -15,5 +15,23 @@
     "author_login": "ubolonton",
     "author_profile": "https://github.com/ubolonton",
     "already_resurrected": false
+  },
+  {
+    "repo": "starship/starship",
+    "issue_number": 528,
+    "title": "Powerline prompt",
+    "body": "## Feature Request\r\n\r\nI would like to have a prompt with PowerLine characters to make it beautiful\r\n\r\n#### Is your feature request related to a problem? Please describe.\r\n<!-- A clear and concise description of what the problem is. Ex. I have an issue when [...] -->\r\nI tried with this config\r\n\r\n```toml\r\nadd_newline = false\r\n\r\n[character]\r\nsymbol = \"\"\r\n\r\n[git_status]\r\nshow_sync_count = true\r\nprefix = \" \"\r\nsuffix = \" \"\r\nstyle = \"bg:red fg:white\"\r\n```\r\n\r\nBut it is not what i expected\r\n\r\n![image](https://user-images.githubusercontent.com/6325757/66710037-af9e0680-ed70-11e9-9d9f-e16d9c4acbc5.png)\r\n\r\n\r\n\r\n#### Describe the solution you'd like\r\n<!-- A clear and concise description of what you want to happen. Add any considered drawbacks. -->\r\n\r\nMaybe i will have to wait this issues to be solved\r\n\r\nhttps://github.com/starship/starship/pull/378\r\n\r\nhttps://github.com/starship/starship/issues/346\r\n\r\nhttps://github.com/starship/starship/issues/243\r\n\r\n#### Describe alternatives you've considered\r\n<!-- A clear and concise description of any alternative solutions or features you've considered. -->\r\nNerd Fonts shows a prompt with PowerLine on [the home page](https://www.nerdfonts.com/)\r\n[![](https://raw.githubusercontent.com/ryanoasis/nerd-fonts/gh-pages/assets/img/nerd-fonts-powerline-extra-terminal.png)](https://github.com/ryanoasis/nerd-fonts/blob/gh-pages/assets/img/nerd-fonts-powerline-extra-terminal.png)\r\n\r\n[BobTheFish](https://github.com/oh-my-fish/theme-bobthefish) is a theme that use PowerLine\r\n[![](https://cloud.githubusercontent.com/assets/53660/16141577/0134763a-3412-11e6-9cca-6040d39c8fd4.png)](https://github.com/oh-my-fish/theme-bobthefish)",
+    "reactions": 58,
+    "created_at": "2019-10-13T02:21:50Z",
+    "updated_at": "2024-07-01T04:06:39Z",
+    "labels": [
+      "✨ enhancement",
+      "🛠️ configuration"
+    ],
+    "url": "https://api.github.com/repos/starship/starship/issues/528",
+    "html_url": "https://github.com/starship/starship/issues/528",
+    "author_login": "pinage404",
+    "author_profile": "https://github.com/pinage404",
+    "already_resurrected": false
   }
 ]

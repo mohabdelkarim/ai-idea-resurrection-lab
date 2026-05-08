@@ -594,6 +594,25 @@
   },
   {
     "repo": "prometheus/prometheus",
+    "issue_number": 6878,
+    "title": "promql: Add support for .Select calls concurrency. ",
+    "body": "Hi (again) Prometheus family :wave: \r\n\r\n## Proposal\r\n\r\nWe noticed with @brancz during our investigations on query latency that `Select` calls done by PromQL are done sequentially: \r\n\r\n![image](https://user-images.githubusercontent.com/6950331/75368505-c9705e00-58b9-11ea-9313-9a8c126aa819.png)\r\n\r\nIt appears that those are subqueries required for the main (quite complex) instant query. Looks like they are done sequentially, where in our opinion they could be done concurrently. \r\nWe would like to propose:\r\n\r\n* Running independent subqueries in different goroutines.\r\n* Controlled by some `subqueryMaxConcurrency` flag.\r\n\r\nWould that make sense or lack of concurrency here is intended?\r\n\r\n**Use case. Why is this important?**\r\n* We are just waiting on one subquery to finish to start another independent subquery. We just waste time, CPU / Resources. We could do those asynchronously.  \r\n\r\ncc @roidelapluie @slrtbtfs @brian-brazil @beorn7 \r\n\r\n\r\n",
+    "reactions": 8,
+    "created_at": "2020-02-26T17:06:51Z",
+    "updated_at": "2021-11-24T23:21:27Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "component/promql"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/6878",
+    "html_url": "https://github.com/prometheus/prometheus/issues/6878",
+    "author_login": "bwplotka",
+    "author_profile": "https://github.com/bwplotka",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
     "issue_number": 17823,
     "title": "LFX Mentorship: Improving Documentation for Prometheus and OpenTelemetry Interoperability",
     "body": "## What the mentorship will explore\n\nDuring the [March–May 2025 LFX mentorship cohort](https://github.com/prometheus/prometheus/issues/15909), we conducted UX research to understand user challenges around how Prometheus handles OpenTelemetry resource attributes. One key finding was that users struggled to find clear, cohesive, and practical documentation explaining how the two systems work together.\n\nThis issue proposes continuing that work by tackling the documentation gaps problem as part of the March 2026 LFX mentorship term.\n\n## What we look for in candidates\n\nWe’re looking for contributors who:\n\n- Are interested in technical writing, documentation, or developer experience\n- Enjoy breaking down complex technical concepts into clear, approachable explanations\n- Want to contribute to and be a part of the Prometheus community, with an understanding that documentation is an ongoing responsibility rather than a one-off contribution\n\n> Prior expertise in Prometheus or OpenTelemetry is **not required**, but a willingness to learn and actively engage with both communities is important.\n\n## Expected outcome of the mentorship\n\n- Review and audit existing Prometheus and OpenTelemetry documentation related to interoperability\n- Define a prioritized documentation improvement plan together with the mentors.\n- Concrete documentation improvements submitted upstream, such as conceptual explanations, practical guides, examples, diagrams, and cross-project references.\n- Establish basic criteria or methods to evaluate documentation effectiveness during the mentorship.\n\n## Resources\n\nTo get started, applicants are encouraged to:\n\n- Familiarize themselves with Prometheus and OpenTelemetry at a high level\n- Review [outputs from the previous UX mentorship](https://github.com/prometheus-community/ux-research/tree/main/prom-otel-research), including [interviews](https://www.youtube.com/playlist?list=PLK87GQAYMTgM9Q5vjz7gIp8hW0o53FubD) and [blog posts](https://opentelemetry.io/blog/2025/ux-research-prometheus-otel/)\n- Check out existing documentation:\n   - https://prometheus.io/docs/guides/opentelemetry/\n   - https://opentelemetry.io/docs/languages/js/exporters/#prometheus (This is JavaScript-specific, but all languages have a similar page)\n   - https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md\n   - https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusremotewritereceiver/README.md\n   - https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/prometheusremotewriteexporter/README.md\n   - https://github.com/open-telemetry/prometheus-interoperability-spec/blob/main/specification.md\n   - https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/prometheusexporter/README.md",
@@ -880,6 +899,24 @@
   },
   {
     "repo": "prometheus/prometheus",
+    "issue_number": 13485,
+    "title": "[meta] Native Histograms Custom Buckets",
+    "body": "### Proposal\n\nImplementation tasks for proposal [Store and query classic histograms as native histograms with custom buckets](https://github.com/prometheus/proposals/pull/31)\n\n- [x] #13475\n- [x] #13486\n- [x] #13487 \n- [x] #13490 \n- [x] #13494 \n- [x] #13508 \n- [x] #13529 \n- [x] #13531 \n- [x] #13532 \n- [x] #14730 \n- [x] #15021 \n- [x] #15022 \n- [x] #16371 ",
+    "reactions": 6,
+    "created_at": "2024-01-28T07:58:31Z",
+    "updated_at": "2025-11-23T23:21:30Z",
+    "labels": [
+      "priority/P2",
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/13485",
+    "html_url": "https://github.com/prometheus/prometheus/issues/13485",
+    "author_login": "krajorama",
+    "author_profile": "https://github.com/krajorama",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
     "issue_number": 8860,
     "title": "promtool: junit output",
     "body": "<!--\r\n\r\n    Please do *NOT* ask support questions in Github issues.\r\n\r\n    If your issue is not a feature request or bug report use our\r\n    community support.\r\n\r\n    https://prometheus.io/community/\r\n\r\n    There is also commercial support available.\r\n\r\n    https://prometheus.io/support-training/\r\n\r\n-->\r\n## Proposal\r\n\r\nWe are using promtool for checking rule syntax as well as evaluating rule unit-tests. For this to integrate nicely in our tooling, we have created a wrapper to produce junit compatible output: https://github.com/sorend/promunit\r\n\r\nJunit compatible output is supported by many tools, in our case we use Jenkins to collect it during CI phase.\r\n\r\nOur proposal is to make promtool checks output junit (or other standard) machine-parseable test/check results.\r\n",
@@ -1031,6 +1068,48 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/5436",
     "author_login": "gouthamve",
     "author_profile": "https://github.com/gouthamve",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 13586,
+    "title": "PromQL/storage: Require selectors to always return matching results",
+    "body": "### Proposal\n\nProbably very surprising for most, there is no requirement that the storage returns matching time series for a given selector. This apparently unlocks certain more or less valid use cases, mostly around remote-read. There is a lengthy discussion in #8053. However, this behavior also prevents a lot of optimizations, and there are implications for the planned migration to UTF-8 capable names. (See [the relevant design doc](https://github.com/prometheus/proposals/blob/main/proposals/2023-11-13-utf8-migration.md) for starters, but there are implications about rewriting the results that aren't yet reflected in the design doc.)\r\n\r\nMy proposal here is to revisit the assumption that there are valid and useful use cases for selectors returning a result that doesn't match the selector. Almost four years later, we should have a pretty good picture if that is still and actually the case. The Prometheus 3 release is a good time to act on the result:\r\n- If those use cases have turned out to not be very useful after all, we can just mandate that selectors only return matching time series and unlock optimizations etc.\r\n- If those use cases have some use, but are only relevant for a very small fraction of users, we might be able to contain them behind flags or something so that we can still optimize things for the majority of users.\r\n- \"Worst case\" would be that we just have to live with the possibility that selectors return anything.\r\n\r\nI will also submit this to the dev summit because I think it warrants a broader discussion.\r\n\r\nPaging @ywwg @GiedriusS @fpetkovski @charleskorn @bwplotka as this might be relevant for you.",
+    "reactions": 5,
+    "created_at": "2024-02-15T12:17:47Z",
+    "updated_at": "2025-04-23T23:21:34Z",
+    "labels": [
+      "help wanted",
+      "component/remote storage",
+      "component/promql",
+      "component/tsdb",
+      "kind/change",
+      "kind/breaking"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/13586",
+    "html_url": "https://github.com/prometheus/prometheus/issues/13586",
+    "author_login": "beorn7",
+    "author_profile": "https://github.com/beorn7",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "issue_number": 9498,
+    "title": "endpointslice: support apiVersion discovery.k8s.io/v1",
+    "body": "Prometheus currently supports endpointslice in discovery.k8s.io/v1beta1.\r\n\r\nThat will be removed in kubernetes 2.25, so we should support both discovery.k8s.io/v1beta1 and discovery.k8s.io/v1. See #9205 for how we did this for ingress.",
+    "reactions": 5,
+    "created_at": "2021-10-13T09:13:39Z",
+    "updated_at": "2022-09-18T23:21:57Z",
+    "labels": [
+      "help wanted",
+      "kind/enhancement",
+      "component/service discovery",
+      "hacktoberfest"
+    ],
+    "url": "https://api.github.com/repos/prometheus/prometheus/issues/9498",
+    "html_url": "https://github.com/prometheus/prometheus/issues/9498",
+    "author_login": "roidelapluie",
+    "author_profile": "https://github.com/roidelapluie",
     "already_resurrected": false
   }
 ]

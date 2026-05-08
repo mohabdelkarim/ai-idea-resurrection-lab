@@ -902,6 +902,28 @@
   },
   {
     "repo": "rust-lang/rust",
+    "issue_number": 48049,
+    "title": "tracking issue for \"chalkification\"",
+    "body": "This is a place holder for various refactorings going on in the trait system aimed, ultimately, at improving efficiency and correctness. Some of the key goals include lazy normalization, better caching, and removing many of the trait-related overflow errors. I plan to flesh out details better here as we go.\r\n\r\n- [x] Remove the \"leak check\" in favor of \"universes\"\r\n    - @sgrif plans to do this; a lot of it has been done [in an older branch](https://github.com/nikomatsakis/rust/tree/chalkify-universe)\r\n    - The plan is in [this gist](https://gist.github.com/nikomatsakis/87822133b2d85ccac801e08bcb9702de).\r\n    - The primary goal here is to get the code in place so we can do a crater run, since this is not an entirely backwards compatible change (though it fixes some soundness bugs).\r\n- [x] Canonicalization + normalization query\r\n    - @nikomatsakis is working on this presently, see #48411 \r\n- [x] Integrate universes into canonicalization (https://github.com/rust-lang/rust/issues/48696)\r\n- [ ] re-remove the leak-check, which has been re-added (#59490)\r\n- [ ] implement lazy normalization (#60471)",
+    "reactions": 74,
+    "created_at": "2018-02-07T09:51:17Z",
+    "updated_at": "2022-06-17T14:06:53Z",
+    "labels": [
+      "A-trait-system",
+      "T-compiler",
+      "C-tracking-issue",
+      "S-tracking-impl-incomplete",
+      "S-tracking-needs-summary",
+      "T-types"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/48049",
+    "html_url": "https://github.com/rust-lang/rust/issues/48049",
+    "author_login": "nikomatsakis",
+    "author_profile": "https://github.com/nikomatsakis",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
     "issue_number": 62924,
     "title": "Tracking issue for map_first_last: first/last methods on BTreeSet and BTreeMap",
     "body": "<!--\r\nThank you for creating a tracking issue!\r\n\r\nTracking issues are for tracking a feature from implementation to stabilization.\r\n\r\nMake sure to include the relevant RFC for the feature if it has one.\r\n\r\nIf the new feature is small, it may be fine to skip the RFC process. In that\r\ncase, you can use use `issue = \"none\"` in your initial implementation PR. The\r\nreviewer will ask you to open a tracking issue if they agree your feature can be\r\nadded without an RFC.\r\n-->\r\n\r\nFeature gate: `#![feature(map_first_last)]`\r\n\r\n<!--\r\nInclude a short description of the feature.\r\n-->\r\n\r\n### Public API\r\n\r\n<!--\r\nFor most library features, it'd be useful to include a summarized version of the public API.\r\n(E.g. just the public function signatures without their doc comments or implementation.)\r\n-->\r\n\r\n```rust\r\nimpl<T> BTreeSet<T> {\r\n    pub fn first(&self) -> Option<&T> where T: Ord;\r\n    pub fn last(&self) -> Option<&T> where T: Ord;\r\n    pub fn pop_first(&mut self) -> Option<T> where T: Ord;\r\n    pub fn pop_last(&mut self) -> Option<T> where T: Ord;\r\n}\r\n\r\nimpl<K, V> BTreeMap<K, V> {\r\n    pub fn first_key_value(&self) -> Option<(&K, &V)> where K: Ord;\r\n    pub fn last_key_value(&self) -> Option<(&K, &V)> where K: Ord;\r\n    pub fn first_entry(&mut self) -> Option<OccupiedEntry<'_, K, V>> where K: Ord;\r\n    pub fn last_entry(&mut self) -> Option<OccupiedEntry<'_, K, V>> where K: Ord;\r\n    pub fn pop_first(&mut self) -> Option<(K, V)> where K: Ord;\r\n    pub fn pop_last(&mut self) -> Option<(K, V)> where K: Ord;\r\n}\r\n```\r\n\r\n### Steps / History\r\n\r\n<!--\r\nFor larger features, more steps might be involved.\r\nIf the feature is changed later, please add those PRs here as well.\r\n-->\r\n\r\n- [x] Implementation: #65637\r\n- [x] Changes: #70850\r\n- [x] Final commenting period (FCP)\r\n- [ ] Stabilization PR\r\n\r\n<!--\r\nOnce the feature has gone through a few release cycles and there are no\r\nunresolved questions left, the feature might be ready for stabilization.\r\n\r\nIf this feature didn't go through the RFC process, a final commenting period\r\n(FCP) is always needed before stabilization. This works as follows:\r\n\r\nA library team member can kick off the stabilization process, at which point\r\nthe rfcbot will ask all the team members to verify they agree with\r\nstabilization. Once enough members agree and there are no concerns, the final\r\ncommenting period begins: this issue will be marked as such and will be listed\r\nin the next This Week in Rust newsletter. If no blocking concerns are raised in\r\nthat period of 10 days, a stabilzation PR can be opened by anyone.\r\n-->\r\n\r\n### Unresolved Questions\r\n\r\n<!--\r\nInclude any open questions that need to be answered before the feature can be\r\nstabilised. If multiple (unrelated) big questions come up, it can be a good idea\r\nto open a separate issue for each, to make it easier to keep track of the\r\ndiscussions.\r\n\r\nIt's useful to link any relevant discussions and conclusions (whether on GitHub,\r\nZulip, or the internals forum) here.\r\n-->\r\n\r\n- [x] Naming (min/max",
@@ -1175,6 +1197,26 @@
   },
   {
     "repo": "rust-lang/rust",
+    "issue_number": 87840,
+    "title": "Tracking Issue for `#![feature(mixed_integer_ops)]`",
+    "body": "Feature gate: `#![feature(mixed_integer_ops)]`\r\n\r\n### Public API\r\n\r\n```rust\r\n// `uX` is `u8`, `u16`, `u32`, `u64`,`u128`, `usize`\r\nimpl uX {\r\n    pub const fn checked_add_signed(self, iX) -> Option<Self>;\r\n    pub const fn overflowing_add_signed(self, iX) -> (Self, bool);\r\n    pub const fn saturating_add_signed(self, iX) -> Self;\r\n    pub const fn wrapping_add_signed(self, iX) -> Self;\r\n}\r\n\r\nimpl iX {\r\n    pub const fn checked_add_unsigned(self, uX) -> Option<Self>;\r\n    pub const fn overflowing_add_unsigned(self, uX) -> (Self, bool);\r\n    pub const fn saturating_add_unsigned(self, uX) -> Self;\r\n    pub const fn wrapping_add_unsigned(self, uX) -> Self;\r\n\r\n    pub const fn checked_sub_unsigned(self, uX) -> Option<Self>;\r\n    pub const fn overflowing_sub_unsigned(self, uX) -> (Self, bool);\r\n    pub const fn saturating_sub_unsigned(self, uX) -> Self;\r\n    pub const fn wrapping_sub_unsigned(self, uX) -> Self;\r\n}\r\n```\r\n\r\n### Steps / History\r\n\r\n- [x] Implementation: #87601 \r\n- [x] Final comment period (FCP)\r\n- [x] Stabilization PR: #101555",
+    "reactions": 65,
+    "created_at": "2021-08-07T10:12:50Z",
+    "updated_at": "2022-12-07T16:43:47Z",
+    "labels": [
+      "T-libs-api",
+      "C-tracking-issue",
+      "disposition-merge",
+      "finished-final-comment-period"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/87840",
+    "html_url": "https://github.com/rust-lang/rust/issues/87840",
+    "author_login": "a1phyr",
+    "author_profile": "https://github.com/a1phyr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
     "issue_number": 91345,
     "title": "Tracking Issue for `result_option_inspect`",
     "body": "Feature gate: `#![feature(result_option_inspect)]`\n\nThis is a tracking issue for `Option::inspect` and `Result::{inspect, inspect_err}`.\n\n### Public API\n\n```rust\n// core::result\n\nimpl Result<T, E> {\n    pub fn inspect<F: FnOnce(&T)>(self, f: F) -> Self;\n    pub fn inspect_err<F: FnOnce(&E)>(self, f: F) -> Self;\n}\n\n// core::option\n\nimpl Option<T> {\n    pub fn inspect<F: FnOnce(&T)>(self, f: F) -> Self;\n}\n```\n\n### Steps / History\n\n- [x] Implementation: #91346\n- [x] Final comment period (FCP)\n- [x] Stabilization PR\n\n### Unresolved Questions\n\n- Should there be a more general [`Tap`](https://docs.rs/tap/latest/tap/tap/trait.Tap.html) trait in `std`?\n\n\n<!-- TRIAGEBOT_START -->\n\n<!-- TRIAGEBOT_ASSIGN_START -->\n\n<!-- TRIAGEBOT_ASSIGN_DATA_START$${\"user\":\"slanterns\"}$$TRIAGEBOT_ASSIGN_DATA_END -->\n\n<!-- TRIAGEBOT_ASSIGN_END -->\n<!-- TRIAGEBOT_END -->",
@@ -1191,6 +1233,28 @@
     "html_url": "https://github.com/rust-lang/rust/issues/91345",
     "author_login": "ibraheemdev",
     "author_profile": "https://github.com/ibraheemdev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 23416,
+    "title": "Tracking issue for RFC 803, \"Type ascription\"",
+    "body": "_Superseded by #101728 due to the landing of [RFC 3307](https://github.com/rust-lang/rfcs/pull/3307)_\r\n\r\nTracking issue for rust-lang/rfcs#803. Important points:\r\n- [x] Implement the `expr:Type` syntax\r\n- [ ] Ensure soundness with respect to `ref` positions:\r\n  - [ ] `let ref x = <expr>` / `let mut ref = <expr>`\r\n  - [ ] `match <expr>: Type { ref x => ... }`\r\n  - [ ] `(<expr>: Type).method_with_ref_self()`\r\n- [ ] Permit coercions like `&[1, 2, 3]: &[u8]` -- https://github.com/rust-lang/rust/issues/78248\r\n",
+    "reactions": 64,
+    "created_at": "2015-03-16T18:12:35Z",
+    "updated_at": "2022-09-12T17:01:33Z",
+    "labels": [
+      "B-RFC-approved",
+      "T-lang",
+      "B-unstable",
+      "B-RFC-implemented",
+      "C-tracking-issue",
+      "S-tracking-design-concerns"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/23416",
+    "html_url": "https://github.com/rust-lang/rust/issues/23416",
+    "author_login": "nikomatsakis",
+    "author_profile": "https://github.com/nikomatsakis",
     "already_resurrected": false
   },
   {
@@ -1246,6 +1310,25 @@
     "html_url": "https://github.com/rust-lang/rust/issues/34902",
     "author_login": "infinity0",
     "author_profile": "https://github.com/infinity0",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 48556,
+    "title": "Tracking issue for stable SIMD in Rust",
+    "body": "This is a tracking issue for [RFC 2325][rfc], adding SIMD support to stable Rust. There's a number of components here, including:\r\n\r\n[rfc]: https://github.com/rust-lang/rfcs/pull/2325\r\n\r\n* [`#[target_feature(enable = ...)]`](https://github.com/rust-lang/rust/issues/44839)\r\n* Names of accepted target features - [currently proposed](https://github.com/rust-lang/rfcs/blob/master/text/2325-stable-simd.md#the-target_feature-attribute)\r\n* [`#[cfg(target_feature = ...)]`](https://github.com/rust-lang/rust/issues/29717)\r\n* `is_target_feature_detected!` macro\r\n* `std::arch` naming and submodules\r\n\r\nThe initial implementation of this is being added in https://github.com/rust-lang/rust/pull/48513 and the next steps would be:\r\n\r\n- [ ] Adjust documentation ([see instructions on forge][doc-guide])\r\n- [ ] Stabilization PR ([see instructions on forge][stabilization-guide])\r\n\r\n[stabilization-guide]: https://forge.rust-lang.org/stabilization-guide.html\r\n[doc-guide]: https://forge.rust-lang.org/stabilization-guide.html#updating-documentation\r\n\r\n---\r\n\r\n## Known issues\r\n\r\n* [ ] [`is_target_feature_detected!` takes different arguments that `#[target_feature]`](https://github.com/rust-lang-nursery/stdsimd/issues/348)",
+    "reactions": 61,
+    "created_at": "2018-02-26T21:10:03Z",
+    "updated_at": "2024-03-10T23:13:23Z",
+    "labels": [
+      "B-RFC-approved",
+      "T-libs-api",
+      "C-tracking-issue"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/48556",
+    "html_url": "https://github.com/rust-lang/rust/issues/48556",
+    "author_login": "alexcrichton",
+    "author_profile": "https://github.com/alexcrichton",
     "already_resurrected": false
   },
   {
@@ -1332,6 +1415,30 @@
     "html_url": "https://github.com/rust-lang/rust/issues/10184",
     "author_login": "thestinger",
     "author_profile": "https://github.com/thestinger",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 74773,
+    "title": "Tracking Issue for str_split_once",
+    "body": "<!--\r\nThank you for creating a tracking issue!\r\n\r\nTracking issues are for tracking a feature from implementation to stabilization.\r\n\r\nMake sure to include the relevant RFC for the feature if it has one.\r\n\r\nIf the new feature is small, it may be fine to skip the RFC process. In that\r\ncase, you can use use `issue = \"none\"` in your initial implementation PR. The\r\nreviewer will ask you to open a tracking issue if they agree your feature can be\r\nadded without an RFC.\r\n-->\r\n\r\nFeature gate: `#![feature(str_split_once)]`\r\n\r\n<!--\r\nInclude a short description of the feature.\r\n-->\r\n\r\n### Public API\r\n\r\n<!--\r\nFor most library features, it'd be useful to include a summarized version of the public API.\r\n(E.g. just the public function signatures without their doc comments or implementation.)\r\n-->\r\n\r\n```rust\r\nimpl str {\r\n    pub fn split_once<'a, P: Pattern<'a>>(&'a self, delimiter: P) -> Option<(&'a str, &'a str)>;\r\n    pub fn rsplit_once<'a, P: Pattern<'a>>(&'a self, delimiter: P) -> Option<(&'a str, &'a str)>;\r\n}\r\n```\r\n\r\n### Steps / History\r\n\r\n<!--\r\nFor larger features, more steps might be involved.\r\nIf the feature is changed later, please add those PRs here as well.\r\n-->\r\n\r\n- [x] Implementation: #74707\r\n- [x] Final commenting period (FCP): https://github.com/rust-lang/rust/issues/74773#issuecomment-776643142\r\n- [x] Stabilization PR: #81940\r\n\r\n<!--\r\nOnce the feature has gone through a few release cycles and there are no\r\nunresolved questions left, the feature might be ready for stabilization.\r\n\r\nIf this feature didn't go through the RFC process, a final commenting period\r\n(FCP) is always needed before stabilization. This works as follows:\r\n\r\nA library team member can kick off the stabilization process, at which point\r\nthe rfcbot will ask all the team members to verify they agree with\r\nstabilization. Once enough members agree and there are no concerns, the final\r\ncommenting period begins: this issue will be marked as such and will be listed\r\nin the next This Week in Rust newsletter. If no blocking concerns are raised in\r\nthat period of 10 days, a stabilzation PR can be opened by anyone.\r\n-->\r\n\r\n### Unresolved Questions\r\n\r\n<!--\r\nInclude any open questions that need to be answered before the feature can be\r\nstabilised. If multiple (unrelated) big questions come up, it can be a good idea\r\nto open a separate issue for each, to make it easier to keep track of the\r\ndiscussions.\r\n\r\nIt's useful to link any relevant discussions and conclusions (whether on GitHub,\r\nZulip, or the internals forum) here.\r\n-->\r\n\r\n* [x] Should the method return the separator as well (`(&str, &str, &str)`)? (https://github.com/rust-lang/rust/issues/76512)\r\n  * https://github.com/rust-lang/rust/issues/74773#issuecomment-737216336\r\n\r\n",
+    "reactions": 57,
+    "created_at": "2020-07-26T11:02:19Z",
+    "updated_at": "2021-10-16T17:26:05Z",
+    "labels": [
+      "T-libs-api",
+      "B-unstable",
+      "C-tracking-issue",
+      "disposition-merge",
+      "finished-final-comment-period",
+      "A-str",
+      "Libs-Tracked",
+      "Libs-Small"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/74773",
+    "html_url": "https://github.com/rust-lang/rust/issues/74773",
+    "author_login": "matklad",
+    "author_profile": "https://github.com/matklad",
     "already_resurrected": false
   },
   {
@@ -1500,6 +1607,28 @@
     "html_url": "https://github.com/rust-lang/rust/issues/59878",
     "author_login": "emilio",
     "author_profile": "https://github.com/emilio",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 49146,
+    "title": "Tracking issue for RFC 2342, \"Allow `if` and `match` in constants\"",
+    "body": "This is a tracking issue for the RFC \"Allow `if` and `match` in constants\" (rust-lang/rfcs#2342).\r\n\r\n**Please redirect constification of specific functions or issues you want to report to fresh issues and label them appropriately with `F-const_if_match` so that this issues doesn't get flooded with ephemeral comments obscuring important developments.**\r\n\r\n**Steps:**\r\n\r\n- [x] Implement the RFC\r\n- [ ] Adjust documentation ([see instructions on forge][doc-guide])\r\n- [x] Stabilization PR ([see instructions on forge][stabilization-guide]): https://github.com/rust-lang/rust/pull/72437\r\n- [x]  `let` bindings in constants that use `&&` and `||` short circuiting operations. These are treated as `&` and `|` inside `const` and `static` items right now.\r\n\r\n[stabilization-guide]: https://forge.rust-lang.org/stabilization-guide.html\r\n[doc-guide]: https://forge.rust-lang.org/stabilization-guide.html#updating-documentation\r\n\r\n**Unresolved questions:**\r\n\r\nNone",
+    "reactions": 50,
+    "created_at": "2018-03-18T20:46:53Z",
+    "updated_at": "2021-10-13T03:33:57Z",
+    "labels": [
+      "B-RFC-approved",
+      "T-lang",
+      "C-tracking-issue",
+      "A-const-eval",
+      "disposition-merge",
+      "finished-final-comment-period"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/49146",
+    "html_url": "https://github.com/rust-lang/rust/issues/49146",
+    "author_login": "Centril",
+    "author_profile": "https://github.com/Centril",
     "already_resurrected": false
   }
 ]

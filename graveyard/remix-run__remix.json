@@ -18,6 +18,21 @@
   },
   {
     "repo": "remix-run/remix",
+    "issue_number": 425,
+    "title": "[Feature] Preact Support",
+    "body": "## Preact Support\r\n\r\n- [x] Skip `<Scripts>` diffing on the client _(change in Remix)_\r\n    - ~#390~\r\n    - ~#403~\r\n    - #422\r\n- [x] Backport `<!DOCTYPE>` hydration skipping to Preact 10 _(change in Preact)_\r\n    - preactjs/preact#3327\r\n- [ ] Land patch for `document.documentElement` replacement _(change in `preact/compat`)_\r\n    - preactjs/preact#3328",
+    "reactions": 131,
+    "created_at": "2021-11-22T16:42:40Z",
+    "updated_at": "2022-11-10T14:07:12Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/remix-run/remix/issues/425",
+    "html_url": "https://github.com/remix-run/remix/issues/425",
+    "author_login": "developit",
+    "author_profile": "https://github.com/developit",
+    "already_resurrected": false
+  },
+  {
+    "repo": "remix-run/remix",
     "issue_number": 372,
     "title": "Built-in testing?",
     "body": "Might be helpful. My idea is basically a `@remix-run/test` package with all the utilities.\r\n\r\n- Built on top of `@testing-library/react` and re-exports everything + a custom `render` that includes all providers our route components have access to when they're run + any utilities to set the loader/action data both on initial render as well as re-rendering with those values.\r\n- `@testing-library/user-event` should be built-in as well\r\n- As @sergiodxa suggested, Jest assertions for Responses\r\n- Potentially some helpers for E2E tests with Cypress and MSW 🤔 ",

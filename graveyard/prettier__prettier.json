@@ -684,6 +684,24 @@
   },
   {
     "repo": "prettier/prettier",
+    "issue_number": 54,
+    "title": "Default to template literal strings",
+    "body": "This would probably be a controversial decision but template literal strings are just better. No escaping, easy interpolation, multiline when needed, etc.\r\n\r\nThis article by @bevacqua introduced me to the idea https://ponyfoo.com/articles/template-literals-strictly-better-strings and I've been using straight template literal strings in Gatsby for the past month or so with great success. Can't imagine going back to the morass of single vs. double quotes now.",
+    "reactions": 66,
+    "created_at": "2017-01-10T20:00:44Z",
+    "updated_at": "2023-03-28T00:03:35Z",
+    "labels": [
+      "status:needs discussion",
+      "keep-unlocked"
+    ],
+    "url": "https://api.github.com/repos/prettier/prettier/issues/54",
+    "html_url": "https://github.com/prettier/prettier/issues/54",
+    "author_login": "KyleAMathews",
+    "author_profile": "https://github.com/KyleAMathews",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prettier/prettier",
     "issue_number": 736,
     "title": "Semicolon option",
     "body": "**Many modern languages don't force us to type \"semicolon / ;\" at the end of each line.**\r\nI was so happy to know that JavaScript also supports that feature.\r\nAfter switched to no semicolon style, I don't want to go back anymore.\r\nOf course, there is some special case that we need a semicolon.\r\nLuckily, VS Code is smart enough to warn me those edge cases.\r\n\r\nTherefore, I believe **a sophisticated prettier should have an option for \"no semicolon-ers\".**\r\nIt should \"off / disabled\" by default. (I know everyone still loves semicolons)",
@@ -885,6 +903,25 @@
     "html_url": "https://github.com/prettier/prettier/issues/1139",
     "author_login": "sparty02",
     "author_profile": "https://github.com/sparty02",
+    "already_resurrected": false
+  },
+  {
+    "repo": "prettier/prettier",
+    "issue_number": 5098,
+    "title": "HTML TODOs",
+    "body": "This issue tracks HTML issues that should be done before the public release.\r\n\r\n---\r\n\r\n# Please take a look at #5259, which should address this issue.\r\n\r\n---\r\n\r\nTry out the current experimental HTML support:\r\n\r\n```\r\nyarn add prettier/prettier\r\nyarn prettier filename.html \r\n```\r\n\r\nor [preview playground in #5135](https://deploy-preview-5135--prettier.netlify.com/playground/#N4Igxg9gdgLgprEAuEAeAhAEQPIGEAqAmgAoCiABABYwC2ANgHwA6UqAEvgLIAy5u3AQQDKQgLxMQUCAFoAVgGdyNQtNx0B8oROZRy5dqQGYdevak6l8AvmwEAlIZfEgArjABm0gBzaWp-fgAkvjcpAycAJ7kMMF0pKgA9EEhYX6m5pbWAHICFs4AJnDyYABOAJYADjBl0BLkkLAIMM6RfBBZMKRQ+L66+glshsZpqABGEPkRJunEDGxwdHQQ5ADuECV0+eioAEJ2DOT4lGWKJ+QcPACs5DsQZXRwJRV0AIbwAHSJs2lmQrh2gWI+Gm-hWZSg+QgK3eAHMXuRROR3C4oGBqtByAAKACU5GA5Dh7wAju8Ki55JRMS8SjCXDQmvJcQBfADcBJexIR5AA2gBdNmEuhcgDUUDgK3ImDecBZP1McMxAHJSnBpYqADTkRUAVQE0gAGobDdJCBqtS83BBFdiBS8lfIEPkzYqKi8YXAAG5lcXWuWJYrlKog-R-AFA8jyEpgZzUGAVeRIBIJFYp2EQCAwh7SF5QF50CLVMDyd6QGgJHN5gtlIvvBR1YSELK4SWkABipH2-tKlRg00S40mOkSF24DBA6pAECqNSg8mQoGpJShxGpCDnKBeHru+XHIFGJReYAA1nAYEJXWBwTDkDASi44BPwQ6SjBiAeYTQXsh3HmHROFAAHjsB7HqeQgvPS3DgnA36-g+ICuiUz7ICA1D0LuFTlLAADqZT5DAlDIF4AAME6YRADrYQeFQoZhRSPB6METiUcBEi4ZQsW+bqfrBdB-iADo0GUN53vB8hXg8ACKLgQPAvH8TALyjLh+GEUgABME63i89xXrgEA0DxKBSGKu7knA+BKeuP58XATJMkAA).\r\n\r\n---\r\n\r\n| icon | description |\r\n|-|-|\r\n| ✔️ | merged    |\r\n| 👀 | in review |\r\n| 🔜 | #5259 |\r\n| 🏃 | WIP       |\r\n\r\n---\r\n\r\nFeatures\r\n\r\n- [x] support front matter\r\n  - #5110 \r\n- [ ] support pragma\r\n  - 🔜\r\n- [x] unambiguous/XHTML-compatible output for void tags (e.g., `<br />`) ([reason](https://github.com/prettier/prettier/issues/5098#issuecomment-423711733))\r\n  - #5116\r\n- [ ] html in js template literal ([comment](https://github.com/prettier/prettier/issues/5098#issuecomment-423517702))\r\n  - 🔜\r\n- [x] whitespace-sensitive formatting ([comment](https://github.com/prettier/prettier/pull/5134#issuecomment-424269119))\r\n  - #5168\r\n- [ ] recognize CDATA ([comment](https://github.com/prettier/prettier/issues/5098#issuecomment-424972539))\r\n  - 🔜\r\n- template languages\r\n  - [ ] format interpolation `{{ js expression }}` ([comment](https://github.com/prettier/prettier/issues/5098#issuecomment-422930069))\r\n    - 🔜\r\n    - ~~maybe support [bracketSpacing](https://prettier.io/docs/en/options.html#bracket-spacing)?~~ (no, it's not supported in JSX)\r\n  - Angular\r\n    - [ ] format attribute binding syntax (`*ngIf`, `[target]`, `(target)`, `[(target)]`)\r\n      - 🔜\r\n    - [ ] format inline template (``@Component({ template: `html` })``)\r\n      - 🔜\r\n  - Vue\r\n    - [ ] format attribute binding syntax (`:class`, `v-if`, `v-bind:id`, `@click`)\r\n      - 🔜\r\n\r\nBug fixes\r\n\r\n- [x] ~~exclude comments from fragment detection~~ (outdated)\r\n  - #5100\r\n- [x] remove extra trailing newline for `<template>` ([repro](https://deploy-preview-5105--prettier.netlify.com/playground/#N4Igxg9gdgLgprEAuEAeeBbADgGwIbwB8qAJgJYBuABGPgM50C8AOiHllq8QPTkU+ZcBOIRAAaEBCwwy0OslB4ATkogB3AArKE8lHgoQyJcSABGSvGADWcGAGUslslADmyGEoCucCc7pwlGA0LFww8ZAAzPBx-CQArOgAPACELa1s",
+    "reactions": 53,
+    "created_at": "2018-09-15T15:06:02Z",
+    "updated_at": "2025-03-03T19:52:15Z",
+    "labels": [
+      "status:has pr",
+      "lang:html",
+      "locked-due-to-inactivity"
+    ],
+    "url": "https://api.github.com/repos/prettier/prettier/issues/5098",
+    "html_url": "https://github.com/prettier/prettier/issues/5098",
+    "author_login": "ikatyang",
+    "author_profile": "https://github.com/ikatyang",
     "already_resurrected": false
   },
   {

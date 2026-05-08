@@ -20,6 +20,23 @@
   },
   {
     "repo": "rails/rails",
+    "issue_number": 50446,
+    "title": "Add basic authentication generator",
+    "body": "Rails now include all the key building blocks needed to do basic authentication, but many new developers are still uncertain of how to put them together, so they end up leaning on all-in-one gems that hide the mechanics. While these gems are great, and many people enjoy using them, they should not be seen as a necessity. We can teach Rails developers how to use the basic blocks by adding a basic authentication generator that essentially works as a scaffold, but for authentication.\r\n\r\nNote: This ticket serves as a placeholder for the intention to do this work. Not as an open invitation to feature requests. Before we engage in broad discussion of what should or shouldn't be in such a generator, the core team will propose a solution first, so there's something tangible to discuss.\r\n\r\ncc @rafaelfranca ",
+    "reactions": 190,
+    "created_at": "2023-12-26T22:31:21Z",
+    "updated_at": "2025-03-16T18:56:09Z",
+    "labels": [
+      "railties"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/50446",
+    "html_url": "https://github.com/rails/rails/issues/50446",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
     "issue_number": 41750,
     "title": "Dependency on mimemagic 0.3.x no longer valid",
     "body": "The gem mimemagic (see https://github.com/minad/mimemagic/issues/97 & https://github.com/minad/mimemagic/issues/98 ) has resolved a licensing issue today by yanking all builds prior to 0.4.0, but Rails itself (activestorage) has a dependency on `mimemagic (~> 0.3.2)`.\r\n\r\nWould it be possible to release new patches of 6.1 (and others?) that relax this dependency to include 0.4.x?\r\n\r\n### Steps to reproduce\r\n\r\nAttempt to install any version of Rails!\r\n\r\n### Expected behavior\r\n\r\nGem will install\r\n\r\n### Actual behavior\r\n\r\n> Your bundle is locked to mimemagic (0.3.5), but that version could not be found\r\n> in any of the sources listed in your Gemfile. If you haven't changed sources,\r\n> that means the author of mimemagic (0.3.5) has removed it. You'll need to update\r\n> your bundle to a version other than mimemagic (0.3.5) that hasn't been removed\r\n> in order to install.\r\n\r\n### System configuration\r\n**Rails version**: 6.1.3\r\n\r\n**Ruby version**: 3.0.0\r\n",
@@ -136,6 +153,41 @@
   },
   {
     "repo": "rails/rails",
+    "issue_number": 32892,
+    "title": "Rails development mode memory leak and slowdown, also on new apps",
+    "body": "**TL;DR;** My decently sized Rails app (173 models, 208 controllers) is suffering from a continuously increasing slowdown in development mode that makes it hard to work on it. Each reload of the code takes longer than the previous one, with delays increasing to minutes after just a few reloads. I have identified a probable cause and it's also present on new apps (`rails new leakyapp`, no added gems). I haven't found a solution yet.\r\n\r\nThe issue: path and url helpers are [packaged into a module](https://github.com/rails/rails/blob/v5.2.0/actionpack/lib/action_dispatch/routing/route_set.rb#L487) and included in controllers and other classes. When you `reload!` an app, the helper methods in this module are [removed](https://github.com/rails/rails/blob/v5.2.0/actionpack/lib/action_dispatch/routing/route_set.rb#L92) and then re-added. While doing this, ruby needs to remove the methods from each class that includes the module. However each reload of the code leaves the old class instances (e.g. the controller from the previous request, etc) in memory and thus ruby needs to clean route helpers from an ever increasing amount of classes. This gets slow after a while.\r\n\r\n### Background\r\n\r\nHello,\r\n\r\nFor the past years I've been coping with an issue that Rails feels extremely slow when developing. I start the server, wait for it to boot up and open the site. It takes a minute or two before it loads. \r\n\r\nThen I have to make a change to a controller, model or other .rb file and hit reload in the browser. It takes some seconds and the changed page opens just fine. However after each following change, the reload takes longer and longer. After a few rounds, it's faster to restart the server than to wait for Rails to reload the code. I'm often waiting minutes before anything shows up again.\r\n\r\nAt first I thought the issue has something to do with [activeadmin](https://github.com/activeadmin/activeadmin/issues/5113), a properly slow gem in its own right. Since it always takes forever to reload if I make any change in the admin area, I thought the increasing slowness was just part of the package and I tolerated it for longer than I should have. Lately though it got so unbearable that I needed to find a solution.\r\n\r\nSo I started profiling. Opening on page in admin from a cold boot, I get this beautiful firegraph:\r\n\r\n<img width=\"1631\" alt=\"leak1\" src=\"https://user-images.githubusercontent.com/53387/39985157-e6e2761c-575d-11e8-982a-faa0b59a8d40.png\">\r\n\r\n(using rack-mini-profiler with `?pp=flamegraph&flamegraph_sample_rate=20`).\r\n\r\nI guess this is a relatively normal startup. I need to see if I can somehow cache sprockets and check why is Thor still there, but other than that the app loads nicely.\r\n\r\nLet's hit reload:\r\n\r\n<img width=\"1629\" alt=\"leak2\" src=\"https://user-images.githubusercontent.com/53387/39985439-f37d6e80-575e-11e8-9dfe-260d68f0ee8c.png\">\r\n\r\nThe graph follows the same shape as the previous one, just the part with sprockets is much smaller. \r\n\r\nSo far so g",
+    "reactions": 78,
+    "created_at": "2018-05-15T10:35:18Z",
+    "updated_at": "2020-07-12T06:42:17Z",
+    "labels": [
+      "actionpack",
+      "pinned"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/32892",
+    "html_url": "https://github.com/rails/rails/issues/32892",
+    "author_login": "mariusandra",
+    "author_profile": "https://github.com/mariusandra",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 50441,
+    "title": "Setup Kamal by default for new applications",
+    "body": "[Kamal](https://kamal-deploy.org) has given us the power to easily deploy Rails applications anywhere without any commercial entanglements. This should be the default path we recommend for new people getting started with Rails, so it should be configured by default. This basically just means adding kamal to the gemfile by default and running kamal init during setup. You should be able to turn this off using `--skip-kamal`.",
+    "reactions": 77,
+    "created_at": "2023-12-26T21:59:36Z",
+    "updated_at": "2024-05-14T00:32:59Z",
+    "labels": [
+      "railties"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/50441",
+    "html_url": "https://github.com/rails/rails/issues/50441",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
     "issue_number": 36546,
     "title": "Misleading deprecation warning when referencing ActionController::Base",
     "body": "### Steps to reproduce\r\n- Create a new app with Rails 6.0.0.rc1.\r\n- Add a reference to `ActionController::Base` to `config/application.rb`.\r\n- Run `bundle install`.\r\n- Run `rails environment`.\r\n- Run `cat log/development.log`.\r\n\r\n### Expected behavior\r\nThe `development.log` file should be empty.\r\n\r\n### Actual behavior\r\nThe log file contains the following deprecation warning:\r\n\r\n```\r\nDEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper and ActionText::TagHelper.\r\n\r\nBeing able to do this is deprecated. Autoloading during initialization is going\r\nto be an error condition in future versions of Rails.\r\n\r\nReloading does not reboot the application, and therefore code executed during\r\ninitialization does not run again. So, if you reload ActionText::ContentHelper, for example,\r\nthe expected changes won't be reflected in that stale Module object.\r\n\r\nThese autoloaded constants have been unloaded.\r\n\r\nPlease, check the \"Autoloading and Reloading Constants\" guide for solutions.\r\n (called from <main> at /Users/\r\nUSER/Projects/rails-app-test/config/environment.rb:5)\r\n```\r\n\r\nA few thoughts:\r\n- Referencing `ActionController::Base` from an initializer may be poor form, but that is neither documented nor indicated by the warning.\r\n- I cannot tell whether ActionText's helper modules are *intentionally* passing through the autoloader.  Most Rails code *doesn't seem to*, but maybe Engine code is exceptional?\r\n- Tracking down what was causing these autoloads was tricky, involving monkeypatches to `ActiveSupport::Dependencies` and direct edits to the Rails source files loaded by Bundler.\r\n\r\n(I have filed a related bug with another project, including a detailed outline of the observed causal chain.  rollbar/rollbar-gem/issues/880)\r\n\r\n### System configuration\r\n**Rails version**: 6.0.0.rc1\r\n**Ruby version**: 2.6.3\r\n",
@@ -166,6 +218,21 @@
     "html_url": "https://github.com/rails/rails/issues/31673",
     "author_login": "thomasfedb",
     "author_profile": "https://github.com/thomasfedb",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 50447,
+    "title": "Make Ruby 3.3 the new minimum version",
+    "body": "Let's continue to push new Ruby version adoption forward by relying on Ruby 3.3 as the baseline for Rails 8. Then drop whatever cruft we have dedicated to supporting older versions.",
+    "reactions": 69,
+    "created_at": "2023-12-26T22:35:33Z",
+    "updated_at": "2024-05-24T03:51:25Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/50447",
+    "html_url": "https://github.com/rails/rails/issues/50447",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
     "already_resurrected": false
   },
   {
@@ -315,6 +382,21 @@
   },
   {
     "repo": "rails/rails",
+    "issue_number": 40989,
+    "title": "[proposal] ActiveSearch - Rails Search ",
+    "body": "# Overview\r\n\r\nOver the last two years, I've had the pleasure of doing and re-doing our search at work 4 times. Search and information retrieval is a deep and complex field. Nevertheless, I feel like it should be easy to add a simple search to a rails website.\r\n\r\nI recently discovered that [Django already solved this problem](https://docs.djangoproject.com/en/3.1/topics/db/search/). Thus, Rails can do it too and even improve upon it.\r\n\r\n# Proposed Approach\r\n\r\nSimilar to a lot of Rails source, we already have something working in production @ [Ollie Order](https://www.ollieorder.com/). However, it can be a lot better if it was deeply integrated into rails. The recent changes that @eileencodes made to support multiple database can be key to paving support for more advanced search solution like ElasticSearch, Algolia, etc. Baking a lot of things right into ActiveRecord would be ideal.\r\n\r\nFor the first version, I'd like to focus on keeping it simple using a single database for data & searching. Most databases these days support some form of full-text search. Similar to ActiveRecord it will support the ability to use any search engine you want. Unlike ActiveRecord, it will allow users to choose the search engine per view. Different views of the same data need different search capabilities and performance (e.g. /admin/posts vs /posts will get different traffic).\r\n\r\nLet's start with a visual of a modern search:\r\n\r\n![Screen Shot 2020-12-31 at 8 33 26 AM](https://user-images.githubusercontent.com/1386966/103418404-55d75700-4b43-11eb-9afd-7084e4f9a5aa.png)\r\n(source: [Elastic App Search UI](https://www.elastic.co/enterprise-search/search-ui?q=mountain&size=n_6_n))\r\n\r\nEverything above can be accomplished by stringing together several gems. There is a natural coupling between all these components, making it a pain to integrate individually. Let's break it down:\r\n\r\n1. Filtering - doable with AR, but a gem like [Ransack](https://github.com/activerecord-hackery/ransack) makes building the UI and persisting searches in the URL far easier\r\n2. Free-text search - no AR implementation, either raw SQL or use a gem like [pg_search](https://github.com/Casecommons/pg_search)\r\n3. Ranking -  no AR implementation, either raw SQL or use a gem like [pg_search](https://github.com/Casecommons/pg_search)\r\n4. Sorting - doable with AR, but to sort by relevance see point 3\r\n5. Facets - write custom AR code to do group_bys or use a gem like [forty_facets](https://github.com/FortySource/forty_facets)\r\n6. Pagination - no AR implementation, use [Pagy](https://github.com/ddnexus/pagy) or a similar gem\r\n7. Highlighting - no AR implementation, use [pg_search](https://github.com/Casecommons/pg_search) or implement your own string lookups + annotation\r\n8. Multi-model search - search across multiple objects types, e.g. global search. No AR implementation, use [pg_search](https://github.com/Casecommons/pg_search).\r\n9. Authentication/Authorization - certain data can only be viewed if you are au",
+    "reactions": 55,
+    "created_at": "2020-12-31T17:20:21Z",
+    "updated_at": "2021-04-15T16:21:38Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/40989",
+    "html_url": "https://github.com/rails/rails/issues/40989",
+    "author_login": "yagudaev",
+    "author_profile": "https://github.com/yagudaev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
     "issue_number": 43472,
     "title": "Rails standardized error reporting interface",
     "body": "### Context\r\n\r\nA very common pattern when dealing with exceptions is to report them asynchronously to the developer and continue with some fallback. E.g.\r\n\r\n```ruby\r\nbegin\r\n  do_something\r\nrescue SomethingIsBroken => error\r\n  MyErrorReportingService.notify(error)\r\n  some_fallback_code_or_value\r\nend\r\n```\r\n\r\nAn example in Rails is [in `ActiveSupport::Cache::RedisCacheStore` we simply log handled errors](https://github.com/rails/rails/blob/46bb4dee09e9a3dc7db2cfded2221212fdf183ff/activesupport/lib/active_support/cache/redis_cache_store.rb#L58-L62).\r\n\r\nThat is the kind of errors you'd want reported to your error monitoring service so that even though the error is not directly breaking the user experience, you are alerted early that some part of your infrastructure is no longer working, and might take action, or that some edge case is causing a degraded experience.\r\n\r\nAnother example is [the recent `ActiveSupport::Notifications` handling of exceptions raised by `finish`](https://github.com/rails/rails/pull/43282).\r\nIn such case the most appropriate behaviour could be to swallow the exception, as to not interrupt the notification chain, but to report it to the application developer.\r\n\r\nIn application code it's easy because you know where to send the exception report, but in libraries and frameworks, usually the best you can do is log the error. But people usually don't look at logs unless they know something is happening.\r\n\r\n### Introducing a standard interface for error reporting services\r\n\r\nSince the vast majority of Rails application out there do setup an error reporting service (Sentry, Airbrake, Errbit, HoneyBadger, and plenty others), \r\nI believe there's an opportunity for Rails to provide a generic interface to report errors, with an adapter API to allow using the service of your choice. \r\nIn other term, introducing an Active Job or Active Support Cache for error reporting.\r\n\r\nThere would be several upsides to this.\r\n\r\n#### Reporting the errors handled by Rails\r\n\r\nWhen Rails handles an error like in the examples listed above, it could report them properly to the developer, instead of logging them where no-one will see.\r\n\r\n#### Reporting warnings\r\n\r\nSimilarly [there are places in Rails were we emit warnings](https://github.com/rails/rails/blob/46bb4dee09e9a3dc7db2cfded2221212fdf183ff/activerecord/lib/active_record/railtie.rb#L156), but they aren't easy to notice.\r\nMany error reporting service have some kind of `severity` attribute, so Rails could report these as exceptions with `severity: warning`.\r\n\r\n#### Simplified collection of unhandled errors\r\n\r\nThe hooking mechanism would be simplified. The various error reporting gems out there are doing a lot of work to hook into Rack / Sidekiq / Resque etc.\r\nIt's brittle and hard to maintain and setup. It's also often not covering all entry points such as `rails runner` being invoked from a crontab, etc.\r\n\r\nIf Rails was in charge of collecting unhandled errors, it could do it more easily, likely as part ",
@@ -326,6 +408,21 @@
     "html_url": "https://github.com/rails/rails/issues/43472",
     "author_login": "byroot",
     "author_profile": "https://github.com/byroot",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 50479,
+    "title": "Add Thruster to Docker setup to get HTTP/2, X-Sendfile, Caching by default in Rails 8",
+    "body": "Puma does not support HTTP/2 out of the box, and there does not seem to be a short-term path to that changing. That means most people have to either stick nginx or a CDN in front of their app, which means more configuration and more moving parts.\r\n\r\nAs part of developing ONCE #1, we built a tiny, no-config Go-based proxy that sits in front of Puma to provide HTTP/2, public caching, and X-Sendfile setup. You run it by starting it with `airlock puma`, and that's it, you gain those speed upgrades without any hassle. This makes it a great fit for people who just want to run their Rails app off the default Dockerfile and with a minimum of fuss.",
+    "reactions": 54,
+    "created_at": "2023-12-29T13:31:03Z",
+    "updated_at": "2024-05-14T23:28:00Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rails/rails/issues/50479",
+    "html_url": "https://github.com/rails/rails/issues/50479",
+    "author_login": "dhh",
+    "author_profile": "https://github.com/dhh",
     "already_resurrected": false
   },
   {
@@ -483,6 +580,24 @@
     "html_url": "https://github.com/rails/rails/issues/34237",
     "author_login": "davegson",
     "author_profile": "https://github.com/davegson",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rails/rails",
+    "issue_number": 26119,
+    "title": "Action Cable memory leak",
+    "body": "### Steps to reproduce\n\n``` console\n$ redis-server &\n$ git clone git@github.com:chrismccord/channelsac.git\n$ cd channelsac/rails\n$ bundle\n$ bundle exec puma -e production -w 8\n```\n\nNext, visit http://localhost:3000 and refresh the app multiple times. On our hardware, we can watch the memory grow unbounded, as seen here:\n\n![](http://i.imgur.com/jQOIhkX.gif)\n\nThis was after an apparent \"warm up\" period where Rails appeared to be lazy loading resources, but the first several dozen page loads shows oddly high memory growth. I wasn't sure if this was lazy loading or puma workers warming up, so it may be benign:\n\n![](http://i.imgur.com/3EIZjQR.gif)\n\nEither way, the memory growth appears to grow unbounded following this high growth period and is never reclaimed.\n### Expected behavior\n\nThe memory is reclaimed following connection cleanup.\n### Actual behavior\n\nMemory grows with each new connection and is not reclaimed after connections die.\n### System configuration\n\n**Rails version**:\nObserved on both Rails 5.0.0, and the `5-0-stable` branch containing this patch: \nhttps://github.com/rails/rails/pull/25615/files\n\n**Ruby version**:\n2.3.1\n\n**OS**:\nUbuntu 16.04.1 x64\n\nLet me know If I can provide more information to help diagnose further.\n",
+    "reactions": 20,
+    "created_at": "2016-08-11T14:21:44Z",
+    "updated_at": "2017-04-03T19:29:27Z",
+    "labels": [
+      "stale",
+      "actioncable"
+    ],
+    "url": "https://api.github.com/repos/rails/rails/issues/26119",
+    "html_url": "https://github.com/rails/rails/issues/26119",
+    "author_login": "chrismccord",
+    "author_profile": "https://github.com/chrismccord",
     "already_resurrected": false
   },
   {
