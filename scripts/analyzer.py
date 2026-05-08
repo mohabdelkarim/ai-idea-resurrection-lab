@@ -94,7 +94,7 @@ Given a GitHub issue, return ONLY a JSON object with these fields and NO others:
 }
 
 Rules:
-- impact_score: 1-10 based SOLELY on audience size × how central the feature is.
+- impact_score: 1-10 based SOLELY on audience size x how central the feature is.
   MANDATORY scale — you MUST use this distribution, not cluster at 6:
     1-2: niche tool, <500 users affected (e.g. obscure CLI flag, edge-case config)
     3-4: useful improvement for a subset of users (~1k-5k devs impacted)
@@ -128,7 +128,12 @@ Requirements for proof_of_concept_code:
 - At least 80 lines. Include imports, error handling, comments.
 - Directly demonstrates the core idea from the issue.
 - Use the language specified in the user message.
-- Escape all special characters properly for JSON (newlines as \\n, quotes as \\", etc.).
+- CRITICAL: You MUST escape ALL special characters for valid JSON:
+  * Newlines: use \\n (two characters: backslash + n), NEVER a literal newline
+  * Tabs: use \\t
+  * Quotes: use \\"
+  * Backslashes: use \\\\
+  The entire value must be on ONE line inside the JSON string.
 
 Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
 """
@@ -201,6 +206,53 @@ def _ensure_rfc_sections(text: str) -> str:
     return text
 
 
+def _sanitize_raw_json(raw: str) -> str:
+    """
+    Fix common LLM JSON output problems before parsing:
+    - Replace literal control characters (raw newlines, tabs, etc.) that appear
+      INSIDE JSON string values with their escaped equivalents.
+    - This handles the model emitting real newlines inside proof_of_concept_code
+      instead of the required \\n escape sequences.
+    """
+    # Strategy: scan char by char tracking whether we are inside a JSON string.
+    # When inside a string, replace unescaped control chars with JSON escapes.
+    result = []
+    in_string = False
+    i = 0
+    while i < len(raw):
+        ch = raw[i]
+        if in_string:
+            if ch == '\\':
+                # Escaped sequence — pass both chars through unchanged
+                result.append(ch)
+                i += 1
+                if i < len(raw):
+                    result.append(raw[i])
+            elif ch == '"':
+                # End of string
+                in_string = False
+                result.append(ch)
+            elif ch == '\n':
+                result.append('\\n')
+            elif ch == '\r':
+                result.append('\\r')
+            elif ch == '\t':
+                result.append('\\t')
+            elif ord(ch) < 0x20:
+                # Other control characters — replace with unicode escape
+                result.append(f'\\u{ord(ch):04x}')
+            else:
+                result.append(ch)
+        else:
+            if ch == '"':
+                in_string = True
+                result.append(ch)
+            else:
+                result.append(ch)
+        i += 1
+    return ''.join(result)
+
+
 # ---------------------------------------------------------------------------
 # Low-level: single API call with retries
 # ---------------------------------------------------------------------------
@@ -234,6 +286,9 @@ def _call_api(
             raw_text = re.sub(r"^```(?:json)?\s*", "", raw_text.strip(), flags=re.MULTILINE)
             raw_text = re.sub(r"```\s*$", "", raw_text.strip(), flags=re.MULTILINE)
             raw_text = raw_text.strip()
+
+            # Fix literal control chars inside JSON string values (e.g. raw newlines in PoC code)
+            raw_text = _sanitize_raw_json(raw_text)
 
             parsed = json.loads(raw_text)
             if isinstance(parsed, dict):
@@ -273,7 +328,7 @@ def _build_metadata_prompt(issue: dict[str, Any]) -> str:
         f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
         f"Preferred poc_language for this repository: {preferred_language}.\n"
         "Return ONLY the JSON metadata object as described in your system instructions.\n"
-        "impact_score: derive from audience size × centrality to daily workflow.\n"
+        "impact_score: derive from audience size x centrality to daily workflow.\n"
         "effort_hours: be specific to this issue's complexity, not a generic default.\n"
         "Keep prose fields to 3-5 sentences each."
     )
@@ -285,7 +340,6 @@ def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str,
     parsed["death_year"] = _safe_int(parsed.get("death_year"), 2010, 2026, _issue_year(issue))
     parsed["has_poc"] = bool(parsed.get("has_poc", False))
     # Force PoC for small/medium issues (effort <= threshold) regardless of LLM decision.
-    # This prevents the model from lazily skipping code generation for feasible features.
     effort = parsed.get("effort_hours", 999)
     if not parsed["has_poc"] and isinstance(effort, int) and effort <= POC_FORCE_EFFORT_THRESHOLD:
         LOGGER.info(
@@ -311,19 +365,16 @@ def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str,
     # Clean one-liners — ensure complete sentences, no truncation mid-word
     for field in ("one_line_summary", "one_line_why"):
         value = re.sub(r"\s+", " ", str(parsed.get(field, "")).strip())
-        # Remove trailing ellipsis or dangling conjunctions before a period
         value = re.sub(r"\s+(and|or|but|,)\s*$", ".", value, flags=re.IGNORECASE)
         value = re.sub(r"\.{2,}$", ".", value).strip()
         words = value.split()
         if len(words) > ONE_LINE_MAX_WORDS:
-            # Find the last sentence-ending word within the limit
             truncated_words = words[:ONE_LINE_MAX_WORDS]
             truncated = " ".join(truncated_words).rstrip(",;:")
             if not truncated.endswith("."):
                 truncated += "."
             value = truncated
-        # Ensure at least a period at the end
-        if value and not value[-1] in ".!?":
+        if value and value[-1] not in ".!?":
             value += "."
         parsed[field] = value
 
@@ -345,9 +396,9 @@ def _build_poc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
         f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
         f"Write the full proof-of-concept in {language}. "
         "Return ONLY a JSON object with a single key 'proof_of_concept_code' "
-        "whose value is the complete runnable code as a string.\n"
-        "The code must be at least 80 lines, include imports and error handling.\n"
-        "Escape all newlines as \\n and quotes as \\\" inside the JSON string."
+        "whose value is the complete runnable code as a single-line JSON string.\n"
+        "CRITICAL: escape ALL newlines as \\n, ALL quotes as \\\", ALL backslashes as \\\\\n"
+        "The code must be at least 80 lines and include imports and error handling."
     )
 
 
@@ -383,7 +434,6 @@ REQUIRED_METADATA_KEYS = {
     "effort_hours",
     "impact_score",
     "technology_tags",
-    "one_line_why",
     "has_poc",
     "rfc_needed",
     "poc_language",
@@ -458,9 +508,7 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
     issue_id = issue.get("issue_number", "?")
 
-    # ------------------------------------------------------------------
-    # CALL 1 — metadata (all scalar fields + short prose)
-    # ------------------------------------------------------------------
+    # CALL 1 — metadata
     LOGGER.info("[Analyzer #%s] Call 1/3: metadata", issue_id)
     metadata_prompt = _build_metadata_prompt(issue)
     metadata_raw = _call_api(
@@ -477,9 +525,7 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
         metadata["poc_language"],
     )
 
-    # ------------------------------------------------------------------
     # CALL 2 — proof-of-concept code (only if has_poc=True)
-    # ------------------------------------------------------------------
     if metadata["has_poc"]:
         LOGGER.info("[Analyzer #%s] Call 2/3: proof-of-concept code", issue_id)
         poc_prompt = _build_poc_prompt(issue, metadata)
@@ -500,9 +546,7 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
         metadata["proof_of_concept_code"] = ""
         LOGGER.info("[Analyzer #%s] Skipping PoC (has_poc=False)", issue_id)
 
-    # ------------------------------------------------------------------
     # CALL 3 — RFC (only if rfc_needed=True)
-    # ------------------------------------------------------------------
     if metadata["rfc_needed"]:
         LOGGER.info("[Analyzer #%s] Call 3/3: RFC", issue_id)
         rfc_prompt = _build_rfc_prompt(issue, metadata)
@@ -524,17 +568,15 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
         metadata["rfc_content"] = ""
         LOGGER.info("[Analyzer #%s] Skipping RFC (rfc_needed=False)", issue_id)
 
-    # ------------------------------------------------------------------
     # Final validation (best-effort — never blocks the pipeline)
-    # ------------------------------------------------------------------
     is_valid, field_errors = validate_analysis(metadata)
     if is_valid:
-        LOGGER.info("[Analyzer #%s] ✅ Validation passed.", issue_id)
+        LOGGER.info("[Analyzer #%s] Validation passed.", issue_id)
     else:
         for err in field_errors:
             LOGGER.warning("[Analyzer #%s] Validation warning: %s", issue_id, err)
         LOGGER.warning(
-            "[Analyzer #%s] ⚠️  Returning best-effort result despite %d warning(s).",
+            "[Analyzer #%s] Returning best-effort result despite %d warning(s).",
             issue_id, len(field_errors),
         )
 
