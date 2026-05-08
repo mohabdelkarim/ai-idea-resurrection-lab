@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-08",
+  "repo": "alacritty/alacritty",
+  "issue_number": 607,
+  "title": "Support multiple windows",
+  "reactions": 491,
+  "abandoned_date": "2022-12-29T15:03:07Z",
+  "one_line_why": "Multiple windows in Alacritty would improve user experience for those using window managers instead of tmux.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "technology_tags": [
+    "rust",
+    "gui",
+    "terminal emulator",
+    "window management"
+  ],
+  "original_url": "https://github.com/alacritty/alacritty/issues/607"
+}
