@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-08T16:10:05",
+  "last_updated": "2026-05-08T17:10:31",
   "total_resurrections": 8,
   "total_repos_covered": 2,
-  "average_impact_score": 5.88,
-  "average_effort_hours": 54.0,
+  "average_impact_score": 5.38,
+  "average_effort_hours": 59.5,
   "top_tags": [
     "rust",
     "ripgrep",
@@ -17,27 +17,27 @@
       "repo": "BurntSushi/ripgrep",
       "issue_number": 176,
       "title": "support searching across multiple lines",
-      "impact_score": 6,
-      "one_line_why": "Ripgrep's improved search engine and Rust's regex library make this feature feasible now.",
+      "impact_score": 8,
+      "one_line_why": "The regex-automata 0.4 crate finally makes bounded multi-line search viable without catastrophic backtracking.",
       "original_url": "https://github.com/BurntSushi/ripgrep/issues/176"
     },
     {
-      "date": "2026-05-04",
-      "repo": "BurntSushi/ripgrep",
-      "issue_number": 129,
-      "title": "maximum line length",
-      "impact_score": 6,
-      "one_line_why": "Ripgrep's new line length option improves usability for large files.",
-      "original_url": "https://github.com/BurntSushi/ripgrep/issues/129"
+      "date": "2026-05-08",
+      "repo": "alacritty/alacritty",
+      "issue_number": 607,
+      "title": "Support multiple windows",
+      "impact_score": 7,
+      "one_line_why": "Multiple windows in Alacritty would improve user experience for those using window managers instead of tmux.",
+      "original_url": "https://github.com/alacritty/alacritty/issues/607"
     },
     {
       "date": "2026-05-06",
       "repo": "BurntSushi/ripgrep",
-      "issue_number": 34,
-      "title": "Add an option similar to -o, --only-matching",
+      "issue_number": 225,
+      "title": "support searching compressed files using in-process decompression",
       "impact_score": 6,
-      "one_line_why": "This feature is now feasible due to improvements in the regex crate and modern Rust ecosystem.",
-      "original_url": "https://github.com/BurntSushi/ripgrep/issues/34"
+      "one_line_why": "The async-compression crate and Rust async I/O make in-process decompression practical today.",
+      "original_url": "https://github.com/BurntSushi/ripgrep/issues/225"
     }
   ],
   "last_resurrection": {
@@ -47,9 +47,9 @@
     "title": "Option to print file paths as file URLs",
     "reactions": 22,
     "abandoned_date": "2023-09-25T18:56:21Z",
-    "one_line_why": "This feature succeeds now due to improved terminal and editor support for file URLs.",
+    "one_line_why": "Terminal emulators like iTerm2 and WezTerm now hyperlink file:// URIs natively, making this genuinely useful.",
     "impact_score": 5,
-    "effort_hours": 16.0,
+    "effort_hours": 16,
     "has_poc": true,
     "has_rfc": false,
     "poc_language": "rust",
