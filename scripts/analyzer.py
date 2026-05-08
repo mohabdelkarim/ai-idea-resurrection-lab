@@ -103,7 +103,7 @@ Rules:
     9-10: industry-wide, millions of devs, fundamental change to a ubiquitous tool
   EXAMPLES: ripgrep -o flag = 4 (already exists as -o), ripgrep multiline = 6,
     VSCode built-in feature = 8, Python type-hint syntax = 10.
-  NEVER give the same score as the previous issue in the same repo.
+  NEVER give the same score as the previous issue in the same repo (see PREVIOUS_SCORE hint).
   If unsure between two scores, pick the LOWER one (be conservative).
 - effort_hours: realistic for THIS issue. 8-16h=small CLI flag, 24-40h=focused feature,
   60-80h=parser/protocol change, 100-160h=core engine rewrite, 200h+=architecture overhaul.
@@ -214,8 +214,6 @@ def _sanitize_raw_json(raw: str) -> str:
     - This handles the model emitting real newlines inside proof_of_concept_code
       instead of the required \\n escape sequences.
     """
-    # Strategy: scan char by char tracking whether we are inside a JSON string.
-    # When inside a string, replace unescaped control chars with JSON escapes.
     result = []
     in_string = False
     i = 0
@@ -229,7 +227,6 @@ def _sanitize_raw_json(raw: str) -> str:
                 if i < len(raw):
                     result.append(raw[i])
             elif ch == '"':
-                # End of string
                 in_string = False
                 result.append(ch)
             elif ch == '\n':
@@ -239,7 +236,6 @@ def _sanitize_raw_json(raw: str) -> str:
             elif ch == '\t':
                 result.append('\\t')
             elif ord(ch) < 0x20:
-                # Other control characters — replace with unicode escape
                 result.append(f'\\u{ord(ch):04x}')
             else:
                 result.append(ch)
@@ -251,6 +247,40 @@ def _sanitize_raw_json(raw: str) -> str:
                 result.append(ch)
         i += 1
     return ''.join(result)
+
+
+# ---------------------------------------------------------------------------
+# FIX 2: Read last impact_score per repo to prevent score repetition
+# ---------------------------------------------------------------------------
+
+def _get_last_resurrection_score(repo: str, resurrection_base: str) -> int | None:
+    """
+    Return the impact_score of the most recent resurrection for this repo,
+    or None if there are no previous resurrections for it.
+    Used to hint the LLM to avoid repeating the same score.
+    """
+    base = Path(resurrection_base)
+    if not base.exists():
+        return None
+    candidates: list[tuple[str, int]] = []
+    for child in base.iterdir():
+        if not child.is_dir():
+            continue
+        meta_path = child / "meta.json"
+        if not meta_path.exists():
+            continue
+        try:
+            meta = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
+            if str(meta.get("repo", "")) == repo:
+                score = int(meta.get("impact_score", 0))
+                # Folder name has YYYY-MM-DD prefix — sort chronologically
+                candidates.append((child.name, score))
+        except (json.JSONDecodeError, OSError, ValueError):
+            continue
+    if not candidates:
+        return None
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    return candidates[0][1]
 
 
 # ---------------------------------------------------------------------------
@@ -287,7 +317,7 @@ def _call_api(
             raw_text = re.sub(r"```\s*$", "", raw_text.strip(), flags=re.MULTILINE)
             raw_text = raw_text.strip()
 
-            # Fix literal control chars inside JSON string values (e.g. raw newlines in PoC code)
+            # Fix literal control chars inside JSON string values
             raw_text = _sanitize_raw_json(raw_text)
 
             parsed = json.loads(raw_text)
@@ -315,9 +345,15 @@ def _call_api(
 # Call 1: metadata
 # ---------------------------------------------------------------------------
 
-def _build_metadata_prompt(issue: dict[str, Any]) -> str:
+def _build_metadata_prompt(issue: dict[str, Any], previous_score: int | None = None) -> str:
     repo = str(issue.get("repo", ""))
     preferred_language = _preferred_poc_language(repo)
+    previous_score_hint = (
+        f"\nPREVIOUS_SCORE hint: the last resurrected issue from {repo} had impact_score={previous_score}."
+        f" You MUST pick a DIFFERENT score this time."
+        if previous_score is not None
+        else ""
+    )
     return (
         f"ABANDONED GITHUB ISSUE TO RESURRECT:\n"
         f"Repository: {repo}\n"
@@ -327,6 +363,7 @@ def _build_metadata_prompt(issue: dict[str, Any]) -> str:
         f"Labels: {', '.join(str(l) for l in issue.get('labels', []))}\n\n"
         f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
         f"Preferred poc_language for this repository: {preferred_language}.\n"
+        f"{previous_score_hint}\n"
         "Return ONLY the JSON metadata object as described in your system instructions.\n"
         "impact_score: derive from audience size x centrality to daily workflow.\n"
         "effort_hours: be specific to this issue's complexity, not a generic default.\n"
@@ -497,7 +534,7 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
 # Main entry: 3 sequential focused calls
 # ---------------------------------------------------------------------------
 
-def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
+def analyze_issue(issue: dict[str, Any], previous_score: int | None = None) -> dict[str, Any]:
     from dotenv import load_dotenv
     load_dotenv()
 
@@ -510,7 +547,7 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 
     # CALL 1 — metadata
     LOGGER.info("[Analyzer #%s] Call 1/3: metadata", issue_id)
-    metadata_prompt = _build_metadata_prompt(issue)
+    metadata_prompt = _build_metadata_prompt(issue, previous_score=previous_score)
     metadata_raw = _call_api(
         client, _SYSTEM_METADATA, metadata_prompt, MAX_TOKENS_METADATA, f"#{issue_id} metadata"
     )
@@ -590,6 +627,11 @@ def analyze_issue(issue: dict[str, Any]) -> dict[str, Any]:
 def analyze() -> None:
     from config import GRAVEYARD_FOLDER, RESURRECTION_BASE_FOLDER
 
+    # FIX 1: Import rotation helpers directly from scanner to enforce cooldown
+    from scanner import is_repo_on_cooldown, mark_repo_used, _load_rotation
+
+    rotation = _load_rotation()
+
     already_resurrected = _load_already_resurrected_keys(RESURRECTION_BASE_FOLDER)
     LOGGER.info("[Analyzer] %d issues already resurrected (from folders).", len(already_resurrected))
 
@@ -614,6 +656,15 @@ def analyze() -> None:
 
             repo = str(issue.get("repo", ""))
             issue_number = int(issue.get("issue_number", 0))
+
+            # FIX 1: Skip repos still in rotation cooldown
+            if is_repo_on_cooldown(repo, rotation):
+                LOGGER.info(
+                    "[Analyzer] Skipping #%d (%s) — repo is in rotation cooldown.",
+                    issue_number, repo,
+                )
+                continue
+
             if (repo, issue_number) in already_resurrected:
                 LOGGER.info(
                     "[Analyzer] Skipping #%d (%s) — resurrection folder already exists.",
@@ -621,11 +672,19 @@ def analyze() -> None:
                 )
                 continue
 
+            # FIX 2: Look up last impact_score for this repo to hint LLM for diversity
+            previous_score = _get_last_resurrection_score(repo, RESURRECTION_BASE_FOLDER)
+            if previous_score is not None:
+                LOGGER.info(
+                    "[Analyzer] Last impact_score for %s was %d — hinting LLM to use a different score.",
+                    repo, previous_score,
+                )
+
             LOGGER.info(
                 "[Analyzer] Analyzing issue #%s: %s",
                 issue.get("issue_number"), issue.get("title"),
             )
-            result = analyze_issue(issue)
+            result = analyze_issue(issue, previous_score=previous_score)
             temp_data = {
                 "issue": issue,
                 "analysis": result["analysis"],
@@ -636,14 +695,10 @@ def analyze() -> None:
             )
             LOGGER.info("[Analyzer] Analysis saved to %s", ANALYSIS_TEMP_FILE)
             # Mark this repo as recently used so the scanner rotates away from it.
-            try:
-                from scanner import mark_repo_used
-                mark_repo_used(repo)
-            except Exception as rot_err:
-                LOGGER.warning("[Analyzer] Could not mark repo as used: %s", rot_err)
+            mark_repo_used(repo)
             return
 
-    LOGGER.warning("[Analyzer] No unresurrected issues found in graveyard.")
+    LOGGER.warning("[Analyzer] No unresurrected issues found in graveyard (all repos in cooldown or exhausted).")
 
 
 def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int]]:
