@@ -81,6 +81,10 @@ MAX_ISSUES_PER_REPO = 500
 MAX_DAILY_RESURRECTIONS = 1
 SCAN_INTERVAL_DAYS = 3
 
+# How many days before a repo can be picked again by the scanner.
+# After mark_repo_used() is called, the repo is skipped for this many days.
+REPO_ROTATION_COOLDOWN_DAYS = 7
+
 APPROVED_TECHNOLOGY_TAGS = [
     "WebAssembly",
     "Rust async",
