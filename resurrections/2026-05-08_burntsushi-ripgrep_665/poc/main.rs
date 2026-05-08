@@ -1,54 +1,61 @@
-use std::env;
-use std::path::{Path, PathBuf};
-use url::Url;
-use clap::{App, Arg};
-use std::error::Error;
+use clap::Parser;
+use regex::Regex;
 use std::fs;
-use std::io;
+use std::path::PathBuf;
+use url::Url;
+use walkdir::WalkDir;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let matches = App::new("rg")
-        .version("1.0")
-        .author("Your Name")
-        .about("A simple grep tool")
-        .arg(Arg::with_name("file_url")
-            .long("file-url")
-            .help("Print file paths as file URLs"))
-        .arg(Arg::with_name("pattern")
-            .required(true)
-            .help("Pattern to search for"))
-        .arg(Arg::with_name("path")
-            .required(true)
-            .help("Path to search in"))
-        .get_matches();
+/// Proof-of-concept: ripgrep --file-url flag
+/// Prints matched file paths as clickable file:// URLs instead of plain paths.
+/// Works with terminals that support OSC 8 hyperlinks (Warp, Ghostty, iTerm2, VS Code).
+#[derive(Parser, Debug)]
+#[command(name = "rg-file-url", version = "0.1.0", about = "PoC: rg with --file-url support")]
+struct Args {
+    /// Search pattern (regex)
+    pattern: String,
 
-    let pattern = matches.value_of("pattern").unwrap();
-    let path = matches.value_of("path").unwrap();
-    let file_url = matches.is_present("file_url");
+    /// Path to search in (file or directory)
+    path: PathBuf,
 
-    let re = regex::Regex::new(pattern)?;
-    let file_paths = fs::read_dir(path)?;
+    /// Print file paths as file:// URLs instead of plain paths
+    #[arg(long)]
+    file_url: bool,
+}
 
-    for entry in file_paths {
-        let entry = entry?;
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let args = Args::parse();
+    let re = Regex::new(&args.pattern)?;
+
+    // Canonicalize so file:// URLs are always absolute
+    let search_root = fs::canonicalize(&args.path)?;
+
+    for entry in WalkDir::new(&search_root)
+        .follow_links(false)
+        .into_iter()
+        .filter_map(|e| e.ok())
+        .filter(|e| e.file_type().is_file())
+    {
         let file_path = entry.path();
-        if file_path.is_file() {
-            let file_content = fs::read_to_string(&file_path)?;
-            for line in file_content.lines().enumerate() {
-                if re.is_match(line.1) {
-                    if file_url {
-                        println!("{}", file_url_to_string(&file_path, line.0 + 1));
-                    } else {
-                        println!("{}:{}", file_path.display(), line.0 + 1);
-                    }
+        // Skip files that can't be read as UTF-8 (binary files)
+        let Ok(content) = fs::read_to_string(file_path) else {
+            continue;
+        };
+
+        for (line_idx, line) in content.lines().enumerate() {
+            if re.is_match(line) {
+                let line_number = line_idx + 1;
+                if args.file_url {
+                    // file:// URL — canonicalize guarantees absolute path
+                    let url = Url::from_file_path(file_path)
+                        .expect("canonicalized path must be absolute");
+                    // Append line fragment for editor deep-linking (VS Code, Zed, etc.)
+                    println!("{}#L{}:{}", url, line_number, line);
+                } else {
+                    println!("{}:{}:{}", file_path.display(), line_number, line);
                 }
             }
         }
     }
-    Ok(())
-}
 
-fn file_url_to_string(file_path: &Path, line_number: usize) -> String {
-    let url = Url::from_file_path(file_path).unwrap();
-    format!("{url}#L{line_number}")
+    Ok(())
 }

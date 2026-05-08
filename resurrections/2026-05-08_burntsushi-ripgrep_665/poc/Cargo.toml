@@ -1,0 +1,14 @@
+[package]
+name = "rg-file-url-poc"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "rg-file-url"
+path = "main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+regex = "1"
+url = "2"
+walkdir = "2"
