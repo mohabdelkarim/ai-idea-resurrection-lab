@@ -142,6 +142,27 @@
   },
   {
     "repo": "zellij-org/zellij",
+    "issue_number": 381,
+    "title": "Feature: ability to create layout file from current layout",
+    "body": "Hello and thank you for making Zellij! Looks awesome and I'm looking to start using it daily.\r\n\r\nOne thing that would certainly make my life easier is if I could configure zellij layout and then export the layout file so I have the same layout on my work system.\r\n\r\nCheers!",
+    "reactions": 19,
+    "created_at": "2021-04-26T09:13:41Z",
+    "updated_at": "2023-12-03T18:34:16Z",
+    "labels": [
+      "help wanted",
+      "good first issue",
+      "action",
+      "layout",
+      "hacktoberfest"
+    ],
+    "url": "https://api.github.com/repos/zellij-org/zellij/issues/381",
+    "html_url": "https://github.com/zellij-org/zellij/issues/381",
+    "author_login": "wheresvic",
+    "author_profile": "https://github.com/wheresvic",
+    "already_resurrected": false
+  },
+  {
+    "repo": "zellij-org/zellij",
     "issue_number": 1405,
     "title": "Configure keybindings at runtime",
     "body": "In addition to allowing keybindings to be configured through the configuration file, we should create a plugin that allows their configuration at runtime for the running session, as well as exporting said configuration to a configuration file for persistence across sessions.\r\n\r\nDepends on: #771",

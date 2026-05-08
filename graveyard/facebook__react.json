@@ -608,6 +608,24 @@
   },
   {
     "repo": "facebook/react",
+    "issue_number": 14920,
+    "title": "[ESLint] Feedback for 'exhaustive-deps' lint rule",
+    "body": "## Common Answers\r\n\r\n💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡\r\n\r\n**We analyzed the comments on this post to provide some guidance: https://github.com/facebook/react/issues/14920#issuecomment-471070149.**\r\n\r\n💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡\r\n\r\n----\r\n\r\n## What is this\r\n\r\nThis is a new ESLint rule that verifies the list of dependencies for Hooks like `useEffect` and similar, protecting against the stale closure pitfalls. For most cases it has an autofix. We'll add more documentation over the next weeks.\r\n\r\n![autofix demo](https://user-images.githubusercontent.com/810438/54288712-d3615a00-459f-11e9-82a6-904442995d2f.gif)\r\n\r\n\r\n## Installation\r\n\r\n```\r\nyarn add eslint-plugin-react-hooks@next\r\n# or\r\nnpm install eslint-plugin-react-hooks@next\r\n```\r\n\r\nESLint config:\r\n\r\n```js\r\n{\r\n  \"plugins\": [\"react-hooks\"],\r\n  // ...\r\n  \"rules\": {\r\n    \"react-hooks/rules-of-hooks\": 'error',\r\n    \"react-hooks/exhaustive-deps\": 'warn' // <--- THIS IS THE NEW RULE\r\n  }\r\n}\r\n```\r\n\r\nSimple test case to verify the rule works:\r\n\r\n```js\r\nfunction Foo(props) {\r\n  useEffect(() => {\r\n    console.log(props.name);\r\n  }, []); // <-- should error and offer autofix to [props.name]\r\n}\r\n``` \r\n## The lint rule complains but my code is fine!\r\n\r\n**If this new `react-hooks/exhaustive-deps` lint rule fires for you but you think your code is correct**, please post in this issue.\r\n\r\n----\r\n\r\n\r\n\r\n# BEFORE YOU POST A COMMENT\r\n\r\n**Please** include these three things:\r\n\r\n1. A CodeSandbox demonstrating a **minimal code example** that still expresses your intent (not \"foo bar\" but **actual UI pattern** you're implementing).\r\n2. An explanation of the **steps** a user does and what you expect to see on the screen.\r\n3. An explanation of the **intended API** of your Hook/component.\r\n\r\n![please](https://media1.giphy.com/media/14cNSEhRyTX8Ag/giphy.gif?cid=3640f6095c700c9b774a644a51e2089e)\r\n\r\n## But my case is simple, I don't want to include those things!\r\n\r\nIt might be simple to you — but it’s not at all simple to us. **If your comment doesn't include either of them (e.g. no CodeSandbox link), we will hide your comment** because it’s very hard to track the discussion otherwise. Thank you for respecting everyone’s time by including them.\r\n\r\nThe end goal of this thread is to find common scenarios and transform them into better docs and warnings. This can only happen when enough details are available. Drive-by comments with incomplete code snippets significantly drive down the quality of the discussion — to the point that it's not worth it.",
+    "reactions": 79,
+    "created_at": "2019-02-21T19:03:49Z",
+    "updated_at": "2022-05-04T17:12:17Z",
+    "labels": [
+      "Type: Discussion",
+      "Component: ESLint Rules"
+    ],
+    "url": "https://api.github.com/repos/facebook/react/issues/14920",
+    "html_url": "https://github.com/facebook/react/issues/14920",
+    "author_login": "gaearon",
+    "author_profile": "https://github.com/gaearon",
+    "already_resurrected": false
+  },
+  {
+    "repo": "facebook/react",
     "issue_number": 6420,
     "title": "Proposal: ReactDOMServer render to Stream",
     "body": "tl;dr: I'd like to know how much enthusiasm there is on the core React team for accepting a PR with the ability to render markup to a stream. I don't need a guarantee, of course, but I'd like to get an sense if it's something the React team might do before spending a ton of time working on it.\n### Background\n\nCurrently, server rendering is accomplished by `ReactDOMServer.renderToString` or `ReactDOMServer.renderToStaticMarkup`, which are synchronous functions that return a string. \n\nThe server render methods can be somewhat slow. Large (~500K) web pages can easily take over 100 or 200ms to render, depending on the server. Also, since node is single threaded and single-core performance has not been improving rapidly, this is not just a problem that Moore's Law will eventually solve. The slowness in turn causes two problems in production websites with large (or somewhat large) HTML pages:\n1. First, because the methods return a string, they completely render the entire component before you can return even the first byte to the browser, meaning that the browser is waiting idle while the render method is called.\n2. Second, because the methods are synchronous and node is single threaded, the server is unresponsive during rendering, which means that a large page render can easily starve out renders of smaller pages (which may only take a few ms). An asynchronous render method would let large page renders yield CPU to small pages, improving average response time.\n### Proposed Solution\n\nThe proposal is to add two methods to ReactDOMServer, both of which return a node Readable Stream.\n\n``` javascript\nStream renderToStream(ReactElement element)\nStream renderToStaticMarkupStream(ReactElement element)\n```\n\nIn terms of behavior, these methods would return a Readable Stream that outputs the same markup as `renderToString` and `renderToStaticMarkup`, respectively.\n\nThese methods could solve both problems above. A stream can begin emitting content immediately to send to the browser, keeping TTFB constant as components get larger. Streams are also inherently asynchronous, which allows large pages to not starve out smaller ones.\n\nA few months back I forked react into a library called [react-dom-stream](https://github.com/aickin/react-dom-stream) to do this exact thing, and it's been fairly well received (1,100+ stars on GitHub, though modest actual downloads on npm). There's also [a wishlist bug thread](https://github.com/facebook/react/issues/3009) on this repo about it. However, maintaining a fork is a less than desirable position, and I wonder if I can get it integrated in to the core code base.\n\nMy implementation in `react-dom-stream` is not ideal; I ended up copying basically every implementation of `mountComponent` and making the copied versions asynchronous. The benefit of this approach was that it didn't affect `renderToString` performance, but the obvious drawback was that any code changes or bug fixes would have to be performed in both forks of the code, ",
@@ -691,6 +709,43 @@
   },
   {
     "repo": "facebook/react",
+    "issue_number": 21856,
+    "title": "[DevTools] Show which hooks (names) changed in the Profiler",
+    "body": "Hooks are the preferred way for writing stateful React components, but there are a few things about them that still lag behind the class component API: profiling (since DevTools just shows “hooks changed” rather than which ones changed).\r\n\r\nBuilding on top of the initial named hooks release _and_ the experimental `enableProfilerChangedHookIndices` feature flag, the Profiler should show the “names” of hooks that changed between renders. (Because this would be expensive to eagerly calculate, we would need to add a post-processing phase to the profiler, like Chrome has, where we loaded and parsed names<sup>1</sup>.) \r\n\r\nNote that this issue will also resolve #16477.\r\n\r\n<sup>1</sup> We may only want to do this for components that are still mounted in the Fiber tree.",
+    "reactions": 64,
+    "created_at": "2021-07-12T21:06:23Z",
+    "updated_at": "2025-04-15T10:10:01Z",
+    "labels": [
+      "Component: Developer Tools",
+      "React Core Team"
+    ],
+    "url": "https://api.github.com/repos/facebook/react/issues/21856",
+    "html_url": "https://github.com/facebook/react/issues/21856",
+    "author_login": "bvaughn",
+    "author_profile": "https://github.com/bvaughn",
+    "already_resurrected": false
+  },
+  {
+    "repo": "facebook/react",
+    "issue_number": 13560,
+    "title": "Remove Factory Components",
+    "body": "We support a very unusual kind of components that look like functional components but return an *instance*.\r\n\r\n```js\r\nfunction Hello(props) {\r\n  return {\r\n    componentDidMount() {\r\n      alert('wow')\r\n    }\r\n    render() {\r\n      return <div>Hi, {this.props.name}</div>\r\n    }\r\n  };\r\n}\r\n```\r\n\r\nNote these are *not* functional components. They're pretty exotic and don't offer any practical benefits over classes. At the time they were added (I think 0.14?) it was because we thought other type systems might want to compile to a format like this instead of ES classes-like output. But that didn't happen.\r\n\r\nThere's some complexity associated with continuing to support this. Since this is more confusing than useful, I think we should deprecate them in 16.x and remove in 17.x.",
+    "reactions": 63,
+    "created_at": "2018-09-04T22:54:03Z",
+    "updated_at": "2024-06-29T16:17:35Z",
+    "labels": [
+      "Component: Reconciler",
+      "Type: Breaking Change",
+      "React Core Team"
+    ],
+    "url": "https://api.github.com/repos/facebook/react/issues/13560",
+    "html_url": "https://github.com/facebook/react/issues/13560",
+    "author_login": "gaearon",
+    "author_profile": "https://github.com/gaearon",
+    "already_resurrected": false
+  },
+  {
+    "repo": "facebook/react",
     "issue_number": 11098,
     "title": "Allow suppressing error boundary logs from intentionally thrown/caught errors",
     "body": "-----\r\n\r\n**(This is a repost of https://github.com/facebook/jest/issues/4597 by @erikras.)**\r\n\r\n----\r\n\r\n**Do you want to request a *feature* or report a *bug*?**\r\n\r\nSomewhere in between?\r\n\r\n**What is the current behavior?**\r\n\r\nWhen I'm running tests on [my library](https://github.com/erikras/redux-form), there are some behaviors that I want to test _do_ throw an error. These currently result in:\r\n\r\n```\r\nConsider adding an error boundary to your tree to customize error handling behavior.\r\nYou can learn more about error boundaries at https://fb.me/react-error-boundaries.\r\n```\r\n\r\n...being output to the console. This error is great in an application, but not so great for a library test.\r\n\r\n**What is the expected behavior?**\r\n\r\nIt would be great if I could do something like:\r\n```jsx\r\nexpect(() => {\r\n  TestUtils.renderIntoDocument(<DoSomething naughty/>)\r\n})\r\n.toThrow(/Bad developer!/)\r\n.andCatch() // <---- prevents React 16 error boundary warning\r\n```\r\n\r\n**Please provide your exact Jest configuration and mention your Jest, node, yarn/npm version and operating system.**\r\n\r\n```\r\njest@21.2.1\r\nreact@16.0.0\r\nreact-dom@16.0.0\r\n```\r\n\r\n**See also**\r\n\r\n- https://github.com/facebook/react/issues/11083\r\n- https://github.com/facebook/react/issues/10474#issuecomment-334164834\r\n",
@@ -740,6 +795,23 @@
     "html_url": "https://github.com/facebook/react/issues/14066",
     "author_login": "evolutionxbox",
     "author_profile": "https://github.com/evolutionxbox",
+    "already_resurrected": false
+  },
+  {
+    "repo": "facebook/react",
+    "issue_number": 27862,
+    "title": "React teams – Thank you for 2023",
+    "body": "It's been a long time ([2017!](https://github.com/facebook/react/issues/11940)) since we've done this, but we're reviving the tradition! The community has grown so much since then; [Stack Overflow](https://stackoverflow.com/questions/tagged/reactjs) had about 64k tagged React questions, [/r/reactjs](https://www.reddit.com/r/reactjs) had about 30k members, and [Reactiflux](https://www.reactiflux.com) about 25k members. Wild to see today that there are now 472k questions on Stack Overflow, the subreddit is at 373k subscribers, and Reactiflux at 224k members. 10x over 6 years, and the downloads on npm don't even _slightly_ compare. \r\n\r\n<img width=\"1128\" alt=\"Screenshot 2023-12-29 at 10 20 39 AM\" src=\"https://github.com/facebook/react/assets/1551487/9808f83d-a63f-45d9-b86f-16210fbc21aa\">\r\n\r\nThe list of industry-changing projects that serve or were inspired by React is too long to list. We even have a [feature-length documentary](https://www.youtube.com/watch?v=8pDqJVdNa44) of its origins now!\r\n\r\nThis year brought us a lot of great changes: A new docs site, increasing community ownership of React through a more distributed core team — shoutout in particular to Sebastian Markbåge, now at Vercel, and Dan Abramov, now at BlueSky — and of course, Server Components. Shoutout to Expo, Remix, Next, to the countless UI toolkits, state-management tools, and testing aids, the legions of components and hooks. \r\n\r\n2023 has been a rough year for tech, and neither the core team nor the ecosystem has been immune: our thoughts are with those who have been laid off, both on React teams and more widely. \r\n\r\nThank you for all that you do. Here's to 2024 🥂 To other devs reading this, I invite you to reply with your own “thank you”s; let’s show them how grateful we are! Share a story of when you interacted with someone from the team, how React has touched your life, or just express your thanks 😄",
+    "reactions": 59,
+    "created_at": "2023-12-29T15:25:29Z",
+    "updated_at": "2024-01-08T17:02:32Z",
+    "labels": [
+      "Status: Unconfirmed"
+    ],
+    "url": "https://api.github.com/repos/facebook/react/issues/27862",
+    "html_url": "https://github.com/facebook/react/issues/27862",
+    "author_login": "vcarl",
+    "author_profile": "https://github.com/vcarl",
     "already_resurrected": false
   },
   {

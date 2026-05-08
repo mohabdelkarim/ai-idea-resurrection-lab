@@ -18,6 +18,21 @@
   },
   {
     "repo": "withastro/astro",
+    "issue_number": 80,
+    "title": "💡 RFC: SSR",
+    "body": "Our current intention is to launch Astro as a static site builder. That means all pages are built to static HTML, and no support for dynamic server-side routes. \r\n\r\nBut, there seems to be a lot of community interest in supporting dynamic routes & pages. If there's enough interest and anyone willing to help us with an implementation, then I'd love to start putting together an RFC for experimental support. If we put this behind an experimental flag to start, then I don't think it interferes with our \"static site builder\" launch story.\r\n\r\nAnyone interested in helping spec out an RFC? \r\n\r\n#### Some pieces that need discussion / fleshing out:\r\n- Dynamic pages: can we borrow from Next.js's file based routing? `/pages/[id].js`, `/pages/[...id].ks`, etc.\r\n- Dynamic props: how does a page register as dynamic? Something like `getServerSideProps`?\r\n- Deploy targets: In addition to a Node.js server deployment, I really want us to have a good Cloudflare Workers story. SvelteKit too the approach of having different \"adapters\" for Node, Deno, etc. Could we do the same?",
+    "reactions": 54,
+    "created_at": "2021-04-12T05:09:47Z",
+    "updated_at": "2022-07-03T15:43:04Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/withastro/astro/issues/80",
+    "html_url": "https://github.com/withastro/astro/issues/80",
+    "author_login": "FredKSchott",
+    "author_profile": "https://github.com/FredKSchott",
+    "already_resurrected": false
+  },
+  {
+    "repo": "withastro/astro",
     "issue_number": 12824,
     "title": "React 19 + Cloudflare Adapter -> \"Bug: Uncaught ReferenceError: MessageChannel is not defined\"",
     "body": "### Astro Info\n\n```block\nAstro                    v5.1.1\r\nNode                     v22.6.0\r\nSystem                   macOS (arm64)\r\nPackage Manager          bun\r\nOutput                   server\r\nAdapter                  @astrojs/cloudflare\r\nIntegrations             @astrojs/mdx\r\n                         @astrojs/sitemap\r\n                         @astrojs/tailwind\r\n                         @astrojs/react\n```\n\n\n### If this issue only occurs in one browser, which browser is a problem?\n\n_No response_\n\n### Describe the Bug\n\noriginally shared facebook/react#31827 but I think it makes sense to be an issue here as I doubt its a react issue\r\n\r\n![image](https://github.com/user-attachments/assets/98715f11-f094-486c-8d10-5ff108e19555)\r\n\r\nIt doesn't happen during build but instead during the \"Deploying to Cloudflare's global network\" step\n\n### What's the expected result?\n\nThe error should not happen\n\n### Link to Minimal Reproducible Example\n\nhttps://github.com/phase/test-astro-react19-cf-workers (thank you @phase)\n\n### Participation\n\n- [ ] I am willing to submit a pull request for this issue.",

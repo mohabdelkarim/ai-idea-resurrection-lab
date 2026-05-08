@@ -86,6 +86,21 @@
   },
   {
     "repo": "open-webui/open-webui",
+    "issue_number": 6202,
+    "title": "feat: Allow to add website URL for RAG in collections",
+    "body": "# Feature Request\r\n\r\nCurrently it is allowed to add URL in chat and query based on that. It will be great improvement if we can create collection of URL, which can be wiki, FAQ site, product documentation etc. we can add many URLs in one collection and query based on that.\r\n\r\nBelow points can also be considered while implementation.\r\n- It will be also good if we allow basic auth/ token/key  based auth for URLs which is protected by login/private.\r\n- Integration with tools like confluence which is used by most of the companies. \r\n- we can add rescan button in collection to update the embedding with latest content of URL.\r\n- scheduled scan can be added to periodical check URLs for updated content.\r\n\r\n",
+    "reactions": 57,
+    "created_at": "2024-10-15T17:41:28Z",
+    "updated_at": "2025-12-21T13:17:29Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/6202",
+    "html_url": "https://github.com/open-webui/open-webui/issues/6202",
+    "author_login": "meetzuber",
+    "author_profile": "https://github.com/meetzuber",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
     "issue_number": 10887,
     "title": "500: Internal Error",
     "body": "I upgraded to version 0.5.17 and all I see is 500: Internal Error now, nothing else. Clearing the cache, reinstalling with --force-reinstall didn't fix it. ",
@@ -955,6 +970,28 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/526",
     "author_login": "hemangjoshi37a",
     "author_profile": "https://github.com/hemangjoshi37a",
+    "already_resurrected": false
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "issue_number": 11233,
+    "title": "issue: synchronous sqlalchemy usage blocks the event-loop, seriously harming responsiveness",
+    "body": "### Check Existing Issues\n\n- [x] I have searched the existing issues and discussions.\n\n### Installation Method\n\nGit Clone\n\n### Open WebUI Version\n\nn/a (master)\n\n### Ollama Version (if applicable)\n\n_No response_\n\n### Operating System\n\nn/a\n\n### Browser (if applicable)\n\nn/a\n\n### Confirmation\n\n- [x] I have read and followed all instructions in `README.md`.\n- [x] I am using the latest version of **both** Open WebUI and Ollama.\n- [x] I have checked the browser console logs.\n- [x] I have checked the Docker container logs.\n- [x] I have listed steps to reproduce the bug in detail.\n\n### Expected Behavior\n\nDatabase queries should be executed asynchronously when being run via async request handlers.\n\n\n### Actual Behavior\n\nDatabase queries in request handlers are executed synchronously from a asynchronous context, blocking the Python async event-loop.\n\n### Steps to Reproduce\n\nhttps://github.com/open-webui/open-webui/blob/4770285c04b81dfc3eb9ac173dfb2a8afef68105/backend/open_webui/models/chats.py#L108\nhttps://github.com/open-webui/open-webui/blob/4770285c04b81dfc3eb9ac173dfb2a8afef68105/backend/open_webui/routers/chats.py#L97-L100\n\nview those links? Do some grepping? :)\n\n### Logs & Screenshots\n\nN/A\n\n### Additional Information\n\nI am assuming a high level understanding of event-loops as they relate to async Python, but I am happy to explain where needed. Around blockage specifically, FastAPI is unable to accept connections, respond to other requests, etc, all while Python/SQLAlchemy is blocking the event loop waiting for a response from the database.\n\nI have a *_lot of empathy_* for the team & project over this, because I've had to deal with this before on closed source projects. It *sucks* there isn't more widespread knowledge about this issue, but at least there's usually three ways to solve it. In this case there's two, but I'll include all three options for the sake of completeness, and I've provided a python sample at the bottom of this issue that will demonstrate the ultimate impact of this problem, as well as how the 3 options listed can solve it.\n\n1. Convert all the async handlers to sync, and rely on FastAPI's implicit support for synchronous handlers to not block the event loop by running them in a Threadpool. (included for completeness)\n    * Pros\n        * You're already using this functionality implicitly when FastAPI is doing dependency resolution through `Depends` blocks. See the [get_session_user handler](https://github.com/open-webui/open-webui/blob/4770285c04b81dfc3eb9ac173dfb2a8afef68105/backend/open_webui/routers/auths.py#L72-L74) and its dependency, [get_current_user](https://github.com/open-webui/open-webui/blob/4770285c04b81dfc3eb9ac173dfb2a8afef68105/backend/open_webui/utils/auth.py#L152).\n    * Cons\n        * Not on the table due to `asyncio.gather` usage at the very least.\n2. Wrap all the database code in Starlette's `run_in_threadpool` method. This is what FastAPI does internally when calling synchronous handlers or doing `Depends` res",
+    "reactions": 5,
+    "created_at": "2025-03-05T17:07:41Z",
+    "updated_at": "2025-05-08T16:56:05Z",
+    "labels": [
+      "bug",
+      "enhancement",
+      "good first issue",
+      "help wanted",
+      "core",
+      "python"
+    ],
+    "url": "https://api.github.com/repos/open-webui/open-webui/issues/11233",
+    "html_url": "https://github.com/open-webui/open-webui/issues/11233",
+    "author_login": "lattwood",
+    "author_profile": "https://github.com/lattwood",
     "already_resurrected": false
   }
 ]

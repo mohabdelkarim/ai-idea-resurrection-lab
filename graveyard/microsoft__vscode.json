@@ -4273,6 +4273,21 @@
   },
   {
     "repo": "microsoft/vscode",
+    "issue_number": 100000,
+    "title": "🎉🎊🎈 Congrats on issue #100000! 🎉🎊🎈",
+    "body": "VSCode is awesome, the team is awesome, the community is awesome, and you are awesome, kudos 👏👏👏\r\n\r\n_P.S. sorry for this issue spam :)_",
+    "reactions": 122,
+    "created_at": "2020-06-12T14:07:58Z",
+    "updated_at": "2020-12-20T23:39:57Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/100000",
+    "html_url": "https://github.com/microsoft/vscode/issues/100000",
+    "author_login": "SnirBroshi",
+    "author_profile": "https://github.com/SnirBroshi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
     "issue_number": 57851,
     "title": "Marketplace is offline [workaround found!]",
     "body": "VSCode marketplace is completely down for me.\r\n\r\n\r\nhttps://marketplace.visualstudio.com/VSCode - gives me this message\r\n\r\n![image](https://user-images.githubusercontent.com/748770/45025478-82423d80-b033-11e8-8682-9f2f6d2fc6b8.png)\r\n\r\nCan you please investigate?",
@@ -4904,6 +4919,25 @@
     "html_url": "https://github.com/microsoft/vscode/issues/8171",
     "author_login": "bpasero",
     "author_profile": "https://github.com/bpasero",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 146091,
+    "title": "Explore UX for three-way merge",
+    "body": "We're exploring what it could look like to enable a three-way merge workflow in VS Code. Here are some initial ideas to get the ball rolling 👍\r\n\r\n## Prototype\r\n\r\nHere's a brief walkthrough where I set up a simple merge conflict and resolve it with a three-way merge editor:\r\n\r\nhttps://user-images.githubusercontent.com/25163139/160215589-6a275452-5f92-4341-9a00-1c57e345f120.mp4\r\n\r\n## Main views\r\n\r\nHere are some quick screenshots from the prototype above:\r\n\r\n### Entry point\r\n\r\nI've been exploring the idea of having multiple entry points from a merge conflict state. One is via the existing codelens actions (\"Preview Merge\")...\r\n\r\n<img width=\"2159\" alt=\"entry-point-codelens\" src=\"https://user-images.githubusercontent.com/25163139/160215002-a7aced62-3a47-46f1-bdd2-40b58e5f888d.png\">\r\n\r\n..and another via the SCM where there could be an icon button (icon here is just a placeholder) on the file that has conflicts:\r\n\r\n<img width=\"594\" alt=\"entry-point-scm\" src=\"https://user-images.githubusercontent.com/25163139/160215010-95fb3d4f-b84d-48d7-bb4b-32a7c943395a.png\">\r\n\r\n### Preview merge\r\n\r\nHere's what the merge editor preview could look like. Here it features a mixed layout with the branches on top and the resulting code below. The branch editors are read-only while the result editor is editable. \r\n\r\n<img width=\"2150\" alt=\"default-state\" src=\"https://user-images.githubusercontent.com/25163139/160215096-d1a858ac-d36d-4a7e-8ecb-d910a9ccf6bd.png\">\r\n\r\n### With selections\r\n\r\nHere are two examples where selections have been made. One with a selections from different conflicts on each branch:\r\n\r\n<img width=\"2154\" alt=\"with-selections\" src=\"https://user-images.githubusercontent.com/25163139/160215165-516ca50d-07ff-4360-aa11-87ecab1e3ccb.png\">\r\n\r\n...and another showing the same changes being picked on both branches:\r\n\r\n<img width=\"2158\" alt=\"accept-both-changes\" src=\"https://user-images.githubusercontent.com/25163139/160215182-9edc132e-6a33-4d7d-9a69-0c4b709bbcde.png\">\r\n\r\nFeedback and ideas welcome! \r\n\r\ncc @misolori @albertelo @lszomoru @rebornix \r\n\r\n\r\n\r\n",
+    "reactions": 110,
+    "created_at": "2022-03-26T00:02:05Z",
+    "updated_at": "2022-06-29T16:56:49Z",
+    "labels": [
+      "ux",
+      "merge-conflict",
+      "merge-editor"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/146091",
+    "html_url": "https://github.com/microsoft/vscode/issues/146091",
+    "author_login": "daviddossett",
+    "author_profile": "https://github.com/daviddossett",
     "already_resurrected": false
   },
   {
@@ -6214,6 +6248,23 @@
   },
   {
     "repo": "microsoft/vscode",
+    "issue_number": 76069,
+    "title": "Update to Electron 6",
+    "body": "This plan item is to cover the work of updating to Electron 6. We will skip Electron 5.\r\n\r\nPR: https://github.com/microsoft/vscode/pull/75802\r\n\r\nDownload:\r\n* macOS: [Download](https://az764295.vo.msecnd.net/exploration/54c6f2047b7e26f9dd6f991d9831ead1f06964b2/VSCode-darwin-exploration.zip)\r\n* Linux (DEB): [Download](https://az764295.vo.msecnd.net/exploration/54c6f2047b7e26f9dd6f991d9831ead1f06964b2/code-exploration_1.37.0-1562666970_amd64.deb)\r\n* Linux (RPM): [Download](https://az764295.vo.msecnd.net/exploration/54c6f2047b7e26f9dd6f991d9831ead1f06964b2/code-exploration-1.37.0-1562667129.el7.x86_64.rpm)\r\n* Windows: [Download](https://az764295.vo.msecnd.net/exploration/54c6f2047b7e26f9dd6f991d9831ead1f06964b2/VSCodeSetup-x64-1.37.0-exploration.exe)",
+    "reactions": 86,
+    "created_at": "2019-06-25T05:50:02Z",
+    "updated_at": "2019-11-25T09:35:36Z",
+    "labels": [
+      "plan-item"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/76069",
+    "html_url": "https://github.com/microsoft/vscode/issues/76069",
+    "author_login": "bpasero",
+    "author_profile": "https://github.com/bpasero",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
     "issue_number": 134514,
     "title": "Pause animated gifs in extension readmes",
     "body": "Apologies for opening this after #119785 was closed, but I feel common accessibility issues like this should not be ignored.\r\n\r\n- VS Code Version: 1.60.2\r\n- OS Version: MacOS 11.2\r\nSteps to Reproduce:\r\n\r\nOpen the extensions panel\r\n1. Search for comment-autocomplete (or any number of other extensions with animated gifs)\r\n2. Does this issue occur when all extensions are disabled?: Yes\r\n\r\nIt is fairly common place for extensions to include animated gifs in their readme. These then show up on the marketplace page on visualstudio.com, as well as in VSCode itself. Animated gifs can be fairly distracting for people with certain cognitive disabilities such as autism. For quite a few people, animations are so distracting, it is essentially impossible for them to read the text. This is captured in the [pause, stop, hide requirement of Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html).\r\n\r\nOne way this could be addressed is for VSC to wrap each animated gif in a little widget that adds a small pause / play toggle button in the bottom right (or left for RTL languages). There are some tools to do this out there, such as [freezeframe.js](https://ctrl-freaks.github.io/freezeframe.js/) The best solution would be only to animate when the user hovers / activates the image. Make sure to make the mechanism to start/pause keyboard accessible.",
@@ -6842,6 +6893,43 @@
   },
   {
     "repo": "microsoft/vscode",
+    "issue_number": 50249,
+    "title": "New settings editor feedback",
+    "body": "This is a general issue for discussing the new settings editor. The feedback button in Insiders links here. Please leave any feedback here!",
+    "reactions": 79,
+    "created_at": "2018-05-21T23:19:21Z",
+    "updated_at": "2018-10-13T06:12:16Z",
+    "labels": [
+      "settings-editor",
+      "under-discussion",
+      "on-testplan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/50249",
+    "html_url": "https://github.com/microsoft/vscode/issues/50249",
+    "author_login": "roblourens",
+    "author_profile": "https://github.com/roblourens",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 28344,
+    "title": "Multi-root workspace implementation Roadmap",
+    "body": "# Roadmap\r\n\r\nThe forward looking roadmap for multi root support. Work planned for the current iteration is on the corresponding iteration plan.\r\n\r\n## October \r\n\r\n### Enable extensions available on the Market place\r\n- [x] Analyze most popular extensions that use the `rootPath` and workspace settings\r\n- [ ] Engage, file issues and contribute PRs as appropriate\r\n\r\n",
+    "reactions": 79,
+    "created_at": "2017-06-09T13:28:54Z",
+    "updated_at": "2017-12-04T15:04:58Z",
+    "labels": [
+      "plan-item",
+      "workbench-multiroot"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/28344",
+    "html_url": "https://github.com/microsoft/vscode/issues/28344",
+    "author_login": "egamma",
+    "author_profile": "https://github.com/egamma",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
     "issue_number": 269737,
     "title": "Some extensions that are available on the Marketplace are showing up as \"no longer available\"",
     "body": "This is not true, see screenshots. I plan on publishing a new version of an affected extension next Monday and would like to know that the publishing will succeed.\n\n<img width=\"1110\" height=\"382\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/9c7396a5-3eeb-461c-9daf-4b2d9b72031d\" />\n\n<img width=\"1196\" height=\"465\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a3a569c0-b128-4180-a3fe-32b9bdfe2224\" />\n\nVersion: 1.104.3 (Universal)\nCommit: 385651c938df8a906869babee516bffd0ddb9829\nDate: 2025-10-02T12:30:51.747Z\nElectron: 37.3.1\nElectronBuildId: 12404162\nChromium: 138.0.7204.235\nNode.js: 22.18.0\nV8: 13.8.258.31-electron.0\nOS: Darwin arm64 24.6.0\n",
@@ -6972,6 +7060,24 @@
     "html_url": "https://github.com/microsoft/vscode/issues/58252",
     "author_login": "noraj",
     "author_profile": "https://github.com/noraj",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 92164,
+    "title": "Implement a node.js-free, sandboxed, context isolated renderer ",
+    "body": "We want to explore a model where the workbench in Electron does not access node.js APIs. In that model the Electron renderer process runs in sandboxed mode, much like any browser tab would do. Privileged code has to either move into a backend process and be accessible via IPC communication or into a preload script that exposes certain methods to the page.\r\n \r\n# July\r\n- [ ] :runner: https://github.com/microsoft/vscode/issues/154006 @bpasero @deepak1556\r\n- [ ] :runner: https://github.com/microsoft/vscode/issues/154007 @deepak1556 \r\n\r\n# Backlog\r\n- Tests: \r\n  - `common/browser`: run in `BrowserWindow` with `sandbox: true`\r\n  - `node.js/electron-browser`: run in `ELECTRON_RUN_AS_NODE`\r\n\r\n# Architecture\r\n![image](https://user-images.githubusercontent.com/900690/130733006-2ee57050-5525-4edc-8cca-8d68cd74ecd6.png)\r\n",
+    "reactions": 78,
+    "created_at": "2020-03-06T15:50:15Z",
+    "updated_at": "2022-09-05T23:27:22Z",
+    "labels": [
+      "plan-item",
+      "sandbox"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/92164",
+    "html_url": "https://github.com/microsoft/vscode/issues/92164",
+    "author_login": "egamma",
+    "author_profile": "https://github.com/egamma",
     "already_resurrected": false
   },
   {
@@ -7688,6 +7794,23 @@
   },
   {
     "repo": "microsoft/vscode",
+    "issue_number": 75103,
+    "title": "Iteration Plan for June 2019",
+    "body": "This plan captures our work in **June**. This is a 4-week iteration. We will **ship** our June Update **in early July**.\r\n\r\nWe'll focus on smaller, highly upvoted features such as improvements to the minimap, and we'll keep stabilizing and improving the remote development extensions.\r\n\r\n## Endgame\r\n\r\n- **June 24, 2019**: Endgame begins\r\n- **June 28, 2019**: Endgame done\r\n\r\nThe endgame details for this iteration are tracked in https://github.com/Microsoft/vscode/issues/75985.\r\n\r\n## Plan Items\r\n\r\nBelow is a summary of the top level plan items.\r\n\r\nLegend of annotations:\r\n\r\n| Mark                | Description                                       |\r\n| ------------------- | ------------------------------------------------- |\r\n| :runner:            | work in progress                                  |\r\n| :hand:              | blocked task                                      |\r\n| :muscle:            | stretch goal for this iteration                   |\r\n| :red_circle:        | missing issue reference                           |\r\n| :large_blue_circle: | more investigation required to remove uncertainty |\r\n| :black_circle:      | under discussion within the team                  |\r\n\r\n### UX\r\n- [ ] :runner: Iconography re-design https://github.com/Microsoft/vscode/issues/8017 @misolori\r\n\r\n### Workbench\r\n- [x] Support to hide/show status bar items contributed by extensions @bpasero https://github.com/microsoft/vscode/issues/3874\r\n- [x] Add support for indentation guides in trees https://github.com/microsoft/vscode/issues/17777 @joaomoreno\r\n- [x] Provide easy access to online services settings https://github.com/microsoft/vscode/issues/75215 @rmacfarlane\r\n\r\n### Editor\r\n- [x] :runner: Render search results in the editor minimap https://github.com/microsoft/vscode/issues/75216 @rmacfarlane\r\n\r\n### Terminal\r\n- [x] `xterm.js` improvements https://github.com/microsoft/vscode/issues/74861 @tyriar\r\n- [x] Investigate providing a clean environment for the terminal https://github.com/microsoft/vscode/issues/70248 @tyriar\r\n\r\n### Git\r\n- [x] Support watching files outside of the workspace https://github.com/microsoft/vscode/issues/41085 @joaomoreno\r\n\r\n### Languages\r\n\r\n#### CSS/HTML/JSON\r\n- [x] Adopt latest LSP improvements https://github.com/microsoft/vscode/issues/75271 @aeschli\r\n\r\n#### TS\r\n- [x] Provide support to easily use the nightly of TS inside VS Code @mjbvz https://github.com/microsoft/vscode/issues/75222\r\n\r\n### Debug\r\n- [x] Add 'Jump to Cursor' support https://github.com/Microsoft/vscode/issues/25653 @weinand @isidorn\r\n\r\n### API\r\n- API finalization: [query](https://github.com/Microsoft/vscode/issues?q=is%3Aissue+is%3Aopen+milestone%3A%22June+2019%22+label%3A%22api-finalization%22)\r\n- API proposals: [query](https://github.com/Microsoft/vscode/issues?q=is%3Aissue+is%3Aopen+milestone%3A%22June+2019%22+label%3A%22api-proposal%22+)\r\n\r\n### Extension Contributions\r\n- [ ] :runner: Improve getting started experience with the TS Lint extension https://github.com/microsof",
+    "reactions": 72,
+    "created_at": "2019-06-08T00:11:45Z",
+    "updated_at": "2019-08-18T00:18:50Z",
+    "labels": [
+      "iteration-plan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/75103",
+    "html_url": "https://github.com/microsoft/vscode/issues/75103",
+    "author_login": "kieferrm",
+    "author_profile": "https://github.com/kieferrm",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
     "issue_number": 132893,
     "title": "Explore adding a second side bar",
     "body": "This issue contains the discussion around adding a second side bar. The secondary side bar would be the next step in improving layout flexibility.\r\n\r\nA primary motivator of the second side bar is to address the scenarios expected in https://github.com/microsoft/vscode/issues/26777.\r\n\r\nThe current step is understanding the various UX options that could be used to solve the problem. Below are some notes from the current exploration.\r\n\r\n* Side bar is a loose term here. We could introduce a second panel instead which already knows how to move to multiple orientations.\r\n* Second may also be limiting. As many have pointed out, should we just allow N number of panels or side bars? Limiting the number does simplify things like keybinds and general layout management and adding too many comes at the cost of complexity that many users will find less useful.\r\n* Currently the panel and side bar solve nearly the same purpose but the panel is drawn differently. Could we adapt the panel to turn into a side bar when it is on the left or right and then make more of them?\r\n* If we go with a second side bar, is it necessary to have an activity bar?\r\n\r\nAlso adding some mockups from @misolori \r\n\r\n![image](https://user-images.githubusercontent.com/6561887/132918821-a9b4aff2-ac6f-4631-b803-2cd8284a4488.png)\r\n![image](https://user-images.githubusercontent.com/6561887/132918843-a87f9775-e4dd-47ab-be5e-79732f708472.png)\r\n![image](https://user-images.githubusercontent.com/6561887/132918864-0a58431a-2240-4026-839a-7569b09d54b4.png)\r\n![image](https://user-images.githubusercontent.com/6561887/132918880-3bc66037-8fdc-4e65-9c4b-300616412988.png)\r\n\r\n",
@@ -8116,6 +8239,24 @@
     "html_url": "https://github.com/microsoft/vscode/issues/249826",
     "author_login": "PeterStaev",
     "author_profile": "https://github.com/PeterStaev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 249326,
+    "title": "Support Harmony Next PC",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- Please search existing issues to avoid creating duplicates. -->\n\n<!-- Describe the feature you'd like. -->\nSupport Harmony Next PC",
+    "reactions": 69,
+    "created_at": "2025-05-20T02:44:41Z",
+    "updated_at": "2025-07-04T23:26:55Z",
+    "labels": [
+      "invalid",
+      "triage-needed"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/249326",
+    "html_url": "https://github.com/microsoft/vscode/issues/249326",
+    "author_login": "maxiaogood",
+    "author_profile": "https://github.com/maxiaogood",
     "already_resurrected": false
   },
   {
@@ -8711,6 +8852,23 @@
   },
   {
     "repo": "microsoft/vscode",
+    "issue_number": 87455,
+    "title": "Coverage: December 20, 2019 - January 6, 2020",
+    "body": "After months of continuous shipping, most of us will take off the next couple of weeks. As in the last few years:\r\n- We will pause Insider builds. We will resume around January 6th, 2020\r\n- Issue triaging and responses will be slow and for some topic areas not happen at all.\r\n\r\nHappy Coding!",
+    "reactions": 62,
+    "created_at": "2019-12-20T16:52:39Z",
+    "updated_at": "2020-02-21T19:30:07Z",
+    "labels": [
+      "iteration-plan"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/87455",
+    "html_url": "https://github.com/microsoft/vscode/issues/87455",
+    "author_login": "kieferrm",
+    "author_profile": "https://github.com/kieferrm",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
     "issue_number": 78844,
     "title": "Iteration Plan for August 2019",
     "body": "\r\nThis plan captures our work in **August**. This is a 4-week iteration. We will **ship** our August Update **in early September**.\r\n\r\nAlthough this is the last of the Summer vacation months for us, good work is coming your way. With our work on Custom Editors and the settings sync provider API exploration we continue to pushing the boundaries of what extensions can provide. We also work on the overall user experience with items such as improved minimap and multi-select in custom tree views, and we continue our journey to better performance with reworking tokenization. See below for all the details.\r\n\r\n## Endgame\r\n\r\n- **August 26, 2019**: Endgame begins\r\n- **August 30, 2019**: Endgame done\r\n\r\nThe endgame details for this iteration are tracked in https://github.com/microsoft/vscode/issues/79792.\r\n\r\n## Plan Items\r\n\r\nBelow is a summary of the top level plan items.\r\n\r\nLegend of annotations:\r\n\r\n| Mark                | Description                                       |\r\n| ------------------- | ------------------------------------------------- |\r\n| :runner:            | work in progress                                  |\r\n| :hand:              | blocked task                                      |\r\n| :muscle:            | stretch goal for this iteration                   |\r\n| :red_circle:        | missing issue reference                           |\r\n| :large_blue_circle: | more investigation required to remove uncertainty |\r\n| :black_circle:      | under discussion within the team                  |\r\n\r\n### UX\r\n- [x] Update main extension icons to match new icon style https://github.com/microsoft/vscode/issues/77411 @misolori\r\n- [ ] :runner: Update Octicons to match new icon style https://github.com/microsoft/vscode/issues/76909 @misolori\r\n- [ ] :runner: Explore settings sync UX https://github.com/microsoft/vscode/issues/78869 @misolori @sandy081\r\n\r\n### Workbench\r\n- [x] Implement workbench layout using grid widget https://github.com/Microsoft/vscode/issues/50853 @sbatten @joaomoreno\r\n- [x] Support multi-selection in Custom Views https://github.com/microsoft/vscode/issues/76941 @alexr00\r\n- [ ] :runner: Support for custom editors https://github.com/microsoft/vscode/issues/77131 @mjbvz @jrieken\r\n- [x] Show file search results in the minimap https://github.com/microsoft/vscode/issues/78236 @rmacfarlane\r\n- [x] Polish settings with values that are lists of strings https://github.com/microsoft/vscode/issues/79050 @octref\r\n- [x] Provide link protection mechanism https://github.com/microsoft/vscode/issues/78125 @octref\r\n- [x] Simplify creation of top-level folder https://github.com/microsoft/vscode/issues/1043 @isidorn\r\n- [x] Allow workspace settings to override machine scoped settings https://github.com/microsoft/vscode/issues/73985 @sandy081\r\n- [ ] :runner: Explore using icon fonts for product icons https://github.com/microsoft/vscode/issues/78889 @misolori @bpasero\r\n- [x] Preserve casing in search/replace across files https://github.com/microsoft/vscode/issues",
@@ -8841,6 +8999,23 @@
     "html_url": "https://github.com/microsoft/vscode/issues/79130",
     "author_login": "schtauffen",
     "author_profile": "https://github.com/schtauffen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 87410,
+    "title": "Snow icon on vscode insiders and pushing of weather is very offensive to me ",
+    "body": "The Snow icon on vscode insiders and pushing of weather is very offensive to me, additionally xmas snow has cost billons of snowflakes their lives over the centuries, yet even if that was not the case, pushing weather symbols as part of a product update is completely unacceptable. Please remove it immediately and make it your top priority. To me this is almost equally offensive as a tsunami.\r\n\r\nVersion: 1.42.0-insider (user setup)\r\nissue: #87268\r\nOS: Windows 10 x64 10.0.19536.1000\r\n\r\nSteps to Reproduce:\r\n\r\nInstall latest build of insiders.\r\nDoes this issue occur when all extensions are disabled?: Yes\r\n\r\nAdditional reading on the issue that most certainly needs to be considered. https://www.knmi.nl/nederland-nu/klimatologie/lijsten/wittekerst",
+    "reactions": 58,
+    "created_at": "2019-12-19T15:25:52Z",
+    "updated_at": "2020-02-02T19:23:27Z",
+    "labels": [
+      "*off-topic"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/87410",
+    "html_url": "https://github.com/microsoft/vscode/issues/87410",
+    "author_login": "810",
+    "author_profile": "https://github.com/810",
     "already_resurrected": false
   },
   {
@@ -9188,6 +9363,23 @@
     "html_url": "https://github.com/microsoft/vscode/issues/148977",
     "author_login": "aradalvand",
     "author_profile": "https://github.com/aradalvand",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 87537,
+    "title": "Search symbol on vscode and pushing of religion is very offensive to me",
+    "body": "The logo used to search on vscode highly resembles the Ankh hieroglyph used on the ancient Egypt. As you all know, slavery was a big thing on the ancient Egypt and that offends me, A LOT.\r\n\r\nAlthough I'm no slave (only to the daily grind of life) or I have no history, that I know of, of relatives being treated as such, just thinking on the fact that such a horrible and vile act was done throughout the years and that a lot of people were hurt because of that really, really offends me... I just shed a tear of pain, yet even if that was not the case, pushing religious symbols as part of a product update is completely unacceptable. Please remove it immediately and make it your top priority. To me this is almost equally offensive as a swastika. \r\n\r\nAlso, I'm a Christian and I celebrate Christmas, why not add a christmas hat since in 4 days it's the big day and I'm getting presents :)). That would help ease the pain that you made me go through by reminding me that slavery is a thing.\r\n\r\nRelated: #87268\r\n\r\n\r\n![Capture](https://user-images.githubusercontent.com/58522298/71311944-42b48600-241d-11ea-96bf-fc127f09925f.PNG)\r\n![583px-Ankh svg](https://user-images.githubusercontent.com/58522298/71311951-5c55cd80-241d-11ea-8a55-8ea6f25cf988.png)\r\n\r\n",
+    "reactions": 50,
+    "created_at": "2019-12-21T18:15:41Z",
+    "updated_at": "2020-02-14T01:31:43Z",
+    "labels": [
+      "*off-topic"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/87537",
+    "html_url": "https://github.com/microsoft/vscode/issues/87537",
+    "author_login": "vitorbarbosagoncalves",
+    "author_profile": "https://github.com/vitorbarbosagoncalves",
     "already_resurrected": false
   },
   {

@@ -1412,6 +1412,24 @@
   },
   {
     "repo": "streamlit/streamlit",
+    "issue_number": 4866,
+    "title": "Create multipages app programmatically",
+    "body": "Currently, if we want to create a multipages app, we have to put page files into `pages` folder and give them names like `1_pageapple.py`, and `pageapple` will show as label on web page.\r\n\r\nThis will make three problems:\r\n\r\n1. It is hard to arrange pages. if I already have 10 pages and I want to insert a new page in index 2, I have to rename 8 files.\r\n2. The web project structure is too rigid, we can not put some util modules in pages directory or put different pages in any where we like.\r\n3. filename is not clean. Actually, label on web page is not the style of my filenames, I do not like emoji  in my filenames.\r\n\r\nI think streamlit at least should provide a manually model, just like:\r\n\r\n```python\r\n\r\nst.config(auto_pages=False)\r\n\r\nst.add_pages(\r\n  {\r\n  \"🌲label1_name%test\": \"page1_file_path.py\",\r\n  \"📚label2_name\": \"folder/page1_file_path.py\",\r\n  }\r\n)\r\n\r\n```\r\n\r\n---\r\n\r\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\r\n\r\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**",
+    "reactions": 54,
+    "created_at": "2022-06-14T07:37:46Z",
+    "updated_at": "2025-03-21T16:10:50Z",
+    "labels": [
+      "type:enhancement",
+      "feature:multipage-apps"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/4866",
+    "html_url": "https://github.com/streamlit/streamlit/issues/4866",
+    "author_login": "PaleNeutron",
+    "author_profile": "https://github.com/PaleNeutron",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
     "issue_number": 5348,
     "title": "Add an option to allow multiselect to accept new values",
     "body": "### Problem\n\nI'm building a small CRUD application with database behind it. Absolutely love how Streamlit works and allows to use Python everywhere, but once it comes to the ability to enter new information - currently available components are lacking.\n\nOne of use cases is tag-like fields. I need user to be able to select multiple existing tags with autocompletion - and multiselect is awesome there. But once user needs to add a new tag - basically there are only 2 ways: either to have a 2nd text field nearby (looks ugly), or to have a separate subpage for tags addition (even worse, as user has to navigate off his work).\n\n### Solution\n\n**MVP:** I'd llike to propose a minimal change - an option for multiselect to **allow new input from user**, which is not on options, confirmed with enter. With this option enabled - return new value as part of results. Dev checks if there are any items returned, which were not on original list of options - and then decides what to do with that. I believe this will require minimal changes, but this will greatly expand Streamlit use cases.\n\n**Preferred solution:** It would be great to expand other means to enter information too. Streamlit has gone a long way from Jupyter replacement to nearly full-featured web app framework. Ideally I'd love to see better user input support, including editable / clickable / selectable tables, and options to allow new input for other components, like selectbox (or maybe just an option to **limit number** of inputs on multiselect - with max=1 that could be a replacement for selectbox, which also allows no selection and new user input, as described above).\n\n### Additional context\n\nThere's a 3rd party streamlit-tags component, but it really lacks the polish, lacks proper suggestions by partial match, it has different theming.\n\n### Voting for feature requests\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n**If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-5348)",
@@ -1501,6 +1519,24 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5353",
     "author_login": "quantoid",
     "author_profile": "https://github.com/quantoid",
+    "already_resurrected": false
+  },
+  {
+    "repo": "streamlit/streamlit",
+    "issue_number": 309,
+    "title": "Grid layout",
+    "body": "Users sometimes want to lay items in a grid. For example:\r\n\r\n```\r\nimage 1 | label 1 | score 1\r\nimage 2 | label 2 | score 2\r\nimage 3 | label 3 | score 3\r\n```\r\n\r\nThe difference between a grid an a horizontal layout (Issue #241) is in a grid both the rows and the columns must line up. \r\n\r\nAnd here's a straw-man API for this feature:\r\n\r\n```python\r\ngrid = st.grid()\r\nfor image_info in image_info_list:\r\n  row = grid.row()\r\n  # Now you can use row.foo() to do the same as st.foo(), but \r\n  # the elements you insert will all go inside a horizontal\r\n  # container.\r\n  row.image(image_info.image)\r\n  row.text(image_info.label)\r\n  row.text(image_info.score)\r\n```\r\n...but this is just one of multiple possible APIs we could come up with here.\r\n\r\nEveryone: what are other possible APIs?",
+    "reactions": 51,
+    "created_at": "2019-10-08T00:14:17Z",
+    "updated_at": "2021-03-25T17:04:09Z",
+    "labels": [
+      "type:enhancement",
+      "area:layout"
+    ],
+    "url": "https://api.github.com/repos/streamlit/streamlit/issues/309",
+    "html_url": "https://github.com/streamlit/streamlit/issues/309",
+    "author_login": "tvst",
+    "author_profile": "https://github.com/tvst",
     "already_resurrected": false
   },
   {

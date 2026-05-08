@@ -458,6 +458,23 @@
   },
   {
     "repo": "ollama/ollama",
+    "issue_number": 4499,
+    "title": "paligemma2 support",
+    "body": "https://huggingface.co/google/paligemma-3b-pt-224",
+    "reactions": 53,
+    "created_at": "2024-05-17T12:27:40Z",
+    "updated_at": "2025-05-08T13:24:58Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4499",
+    "html_url": "https://github.com/ollama/ollama/issues/4499",
+    "author_login": "wwjCMP",
+    "author_profile": "https://github.com/wwjCMP",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
     "issue_number": 2637,
     "title": "Integrated AMD GPU support",
     "body": "Opening a new issue (see https://github.com/ollama/ollama/pull/2195) to track support for integrated GPUs. I have a AMD 5800U CPU with integrated graphics. As far as i did research ROCR lately does support integrated graphics too.\r\n\r\nCurrently Ollama seems to ignore iGPUs in general.",
@@ -489,6 +506,23 @@
     "html_url": "https://github.com/ollama/ollama/issues/11340",
     "author_login": "Dalibor-P",
     "author_profile": "https://github.com/Dalibor-P",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 4209,
+    "title": "IBM-Granite ",
+    "body": "Hello,\r\n\r\nVery interesting because of software license \r\n\r\nhttps://github.com/ibm-granite/granite-code-models\r\n\r\n",
+    "reactions": 51,
+    "created_at": "2024-05-06T21:26:04Z",
+    "updated_at": "2025-10-15T21:24:25Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/4209",
+    "html_url": "https://github.com/ollama/ollama/issues/4209",
+    "author_login": "ALutz273",
+    "author_profile": "https://github.com/ALutz273",
     "already_resurrected": false
   },
   {

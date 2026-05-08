@@ -570,5 +570,23 @@
     "author_login": "jsamr",
     "author_profile": "https://github.com/jsamr",
     "already_resurrected": false
+  },
+  {
+    "repo": "sharkdp/bat",
+    "issue_number": 951,
+    "title": "Improve bat startup speed",
+    "body": "The startup speed of `bat` is currently (v0.15) around 50 ms, which is on (or even past) the edge of being noticeable by humans.\r\n\r\nIt would be great if this situation could be improved.\r\n\r\nThe startup speed of `bat` can be measured with [`hyperfine`](github.com/sharkdp/hyperfine):\r\n``` bash\r\nhyperfine \\\r\n  --warmup 10 \\\r\n  --export-markdown bat_startup.md \\\r\n  'bat --no-config --color=always'\r\n```\r\n\r\nOn my laptop, this results in:\r\n\r\n| Command | Mean [ms] | Min [ms] | Max [ms] | Relative |\r\n|:---|---:|---:|---:|---:|\r\n| `bat --no-config --color=always` | 45.3 ± 0.7 | 44.0 | 47.4 | 1.00 |\r\n\r\nIf we use `perf` to get a profile\r\n``` bash\r\nperf record --call-graph dwarf bat --no-config --color=always < /dev/null\r\n```\r\n\r\n![image](https://user-images.githubusercontent.com/4209276/80308095-455d2880-87cd-11ea-8af9-915eb9bb4329.png)\r\n\r\nwe can see that most of the time is spent deserializing the stored syntaxes and themes via `bat::assets::assets_from_cache_or_binary`.\r\n\r\n\r\nThere are several ideas that come to mind which could improve the situation:\r\n\r\n* Somehow parallelize the deserialization process (maybe by splitting up the binaries into smaller chunks. After all, they are made out of ~100 different syntaxes and themes)\r\n* Only load syntaxes and themes \"on demand\". If syntaxes and themes were serialized separately, we might be able to load them on demand. It's probably not as easy as it sounds, because syntaxes are interlinked (code blocks in markdown files could require the loading of all kinds of syntaxes, for example).\r\n* Try to look into ways to improve the deserialization speed.\r\n* The assets are currently stored in compressed form. I think I have tried storing them in uncompressed form once (and didn't see any performance improvements), but it might be worth re-evaluating that.\r\n\r\nWe should also validate that we are indeed CPU bound here. The `bat` binary is quite large, due to the fact that all syntaxes and themes are included within the binary. It might take some time to simply load that from disk (or cache).",
+    "reactions": 5,
+    "created_at": "2020-04-26T12:51:23Z",
+    "updated_at": "2022-05-07T11:43:12Z",
+    "labels": [
+      "help wanted",
+      "performance"
+    ],
+    "url": "https://api.github.com/repos/sharkdp/bat/issues/951",
+    "html_url": "https://github.com/sharkdp/bat/issues/951",
+    "author_login": "sharkdp",
+    "author_profile": "https://github.com/sharkdp",
+    "already_resurrected": false
   }
 ]

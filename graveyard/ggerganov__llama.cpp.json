@@ -108,6 +108,24 @@
   },
   {
     "repo": "ggerganov/llama.cpp",
+    "issue_number": 1602,
+    "title": "llama : add Falcon LLM support",
+    "body": "Falcon LLM 40b and 7b were just open sourced under a license which allows commercial use (~~with royalties for over $1 million revenue per year~~) and have are topping the Huggingface Open LLM leaderboard. It seems to be based on a modified gpt3 architecture. I’m wondering if support in llama.cpp would be considered.\r\n\r\nhttps://huggingface.co/tiiuae/falcon-40b",
+    "reactions": 95,
+    "created_at": "2023-05-26T17:45:06Z",
+    "updated_at": "2023-08-23T20:11:44Z",
+    "labels": [
+      "help wanted",
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/1602",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/1602",
+    "author_login": "someone13574",
+    "author_profile": "https://github.com/someone13574",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
     "issue_number": 9119,
     "title": "Feature Request: Add support for Phi-3.5 MoE and Vision Instruct",
     "body": "### Prerequisites\n\n- [X] I am running the latest code. Mention the version if possible as well.\n- [X] I carefully followed the [README.md](https://github.com/ggerganov/llama.cpp/blob/master/README.md).\n- [X] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [X] I reviewed the [Discussions](https://github.com/ggerganov/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nMicrosoft has recently dropped two new models in the Phi Family. \r\n\r\n3.5 MoE: https://huggingface.co/microsoft/Phi-3.5-MoE-instruct\r\n3.5 Vision: https://huggingface.co/microsoft/Phi-3.5-vision-instruct\r\n\r\nIt would be nice to see support added to llama.cpp for these two models. \n\n### Motivation\n\nSupporting all model releases so the wider community can enjoy these great free models. \n\n### Possible Implementation\n\n_No response_",
@@ -215,6 +233,25 @@
   },
   {
     "repo": "ggerganov/llama.cpp",
+    "issue_number": 7727,
+    "title": "llama : support Mamba-2",
+    "body": "Mamba-2 is a new version of the Mamba architecture:\r\n\r\n- Blog: https://tridao.me/blog/2024/mamba2-part1-model/\r\n- Paper: https://arxiv.org/abs/2405.21060",
+    "reactions": 83,
+    "created_at": "2024-06-04T05:57:48Z",
+    "updated_at": "2025-07-02T17:10:26Z",
+    "labels": [
+      "model",
+      "research 🔬",
+      "roadmap"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/7727",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/7727",
+    "author_login": "ggerganov",
+    "author_profile": "https://github.com/ggerganov",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
     "issue_number": 14921,
     "title": "Feature Request: GLM 4.5 MoE support",
     "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nGLM 4.5 has been released\nhttps://huggingface.co/collections/zai-org/glm-45-687c621d34bda8c9e4bf503b\n\nit uses \"Glm4MoeForCausalLM\" architecture, llama.cpp currently supports only \"Glm4ForCausalLM\" and \"Glm4vForConditionalGeneration\"\n\n### Motivation\n\nit's a SOTA MoE model \n\n### Possible Implementation\n\nhttps://github.com/vllm-project/vllm/pull/20736",
@@ -228,6 +265,24 @@
     "html_url": "https://github.com/ggml-org/llama.cpp/issues/14921",
     "author_login": "jacekpoplawski",
     "author_profile": "https://github.com/jacekpoplawski",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 58,
+    "title": "Raspberry Pi 4 4GB",
+    "body": "Hi!\r\n\r\nJust a report. I've successfully run the LLaMA 7B model on my 4GB RAM Raspberry Pi 4. It's super slow at about 10 sec/token. But it looks like we can run powerful cognitive pipelines on a cheap hardware. It's awesome. Thank you!\r\n\r\nHardware      : BCM2835\r\nRevision        : c03111\r\nSerial             : 10000000d62b612e\r\nModel            : Raspberry Pi 4 Model B Rev 1.1\r\n\r\n%Cpu0  : 71.8 us, 14.6 sy,  0.0 ni,  0.0 id,  2.9 wa,  0.0 hi, 10.7 si,  0.0 st\r\n%Cpu1  : 77.4 us, 12.3 sy,  0.0 ni,  0.0 id, 10.4 wa,  0.0 hi,  0.0 si,  0.0 st\r\n%Cpu2  : 81.0 us,  8.6 sy,  0.0 ni,  0.0 id, 10.5 wa,  0.0 hi,  0.0 si,  0.0 st\r\n%Cpu3  : 77.1 us, 12.4 sy,  0.0 ni,  1.0 id,  9.5 wa,  0.0 hi,  0.0 si,  0.0 st\r\nMiB Mem :   3792.3 total,     76.2 free,   3622.9 used,     93.2 buff/cache\r\nMiB Swap:  65536.0 total,  60286.5 free,   5249.5 used.     42.1 avail Mem\r\n\r\n    PID      USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND\r\n2705518 ubuntu    20   0 5231516   3.3g   1904 R 339.6  88.3  84:16.70 main\r\n         102 root      20   0       0      0      0 S  14.2   0.0  29:54.42                  kswapd0\r\n\r\nmain: seed = 1678644466\r\nllama_model_load: loading model from './models/7B/ggml-model-q4_0.bin' - please wait ...\r\nllama_model_load: n_vocab = 32000\r\nllama_model_load: n_ctx   = 512\r\nllama_model_load: n_embd  = 4096\r\nllama_model_load: n_mult  = 256\r\nllama_model_load: n_head  = 32\r\nllama_model_load: n_layer = 32\r\nllama_model_load: n_rot   = 128\r\nllama_model_load: f16     = 2\r\nllama_model_load: n_ff    = 11008\r\nllama_model_load: n_parts = 1\r\nllama_model_load: ggml ctx size = 4529.34 MB\r\nllama_model_load: memory_size =   512.00 MB, n_mem = 16384\r\nllama_model_load: loading model part 1/1 from './models/7B/ggml-model-q4_0.bin'\r\nllama_model_load: .................................... done\r\nllama_model_load: model size =  4017.27 MB / num tensors = 291\r\n\r\nmain: prompt: 'The first man on the moon was '\r\nmain: number of tokens in prompt = 9\r\n     1 -> ''\r\n  1576 -> 'The'\r\n   937 -> ' first'\r\n   767 -> ' man'\r\n   373 -> ' on'\r\n   278 -> ' the'\r\n 18786 -> ' moon'\r\n   471 -> ' was'\r\n 29871 -> ' '\r\n\r\nsampling parameters: temp = 0.800000, top_k = 40, top_p = 0.950000, repeat_last_n = 64, repeat_penalty = 1.300000\r\n\r\n\r\nThe first man on the moon was 20 years old and looked^[ lot like me. In fact, when I read about Neil Armstrong during school lessons my fa",
+    "reactions": 82,
+    "created_at": "2023-03-12T18:33:40Z",
+    "updated_at": "2023-07-28T19:28:37Z",
+    "labels": [
+      "bug",
+      "build"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/58",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/58",
+    "author_login": "miolini",
+    "author_profile": "https://github.com/miolini",
     "already_resurrected": false
   },
   {
@@ -533,6 +588,23 @@
     "html_url": "https://github.com/ggml-org/llama.cpp/issues/1063",
     "author_login": "MarkSchmidty",
     "author_profile": "https://github.com/MarkSchmidty",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 33,
+    "title": "What is the meaning of hacked?",
+    "body": "Hey, I was reading your Readme.md and I saw that your repo was hacked. I want to ask what this means and wanted to check if the users like me also get the impact of hacking. Or, this is not the thing I should worry about?",
+    "reactions": 51,
+    "created_at": "2023-03-12T04:35:26Z",
+    "updated_at": "2025-01-06T12:36:53Z",
+    "labels": [
+      "question"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/33",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/33",
+    "author_login": "effortprogrammer",
+    "author_profile": "https://github.com/effortprogrammer",
     "already_resurrected": false
   },
   {
@@ -1548,6 +1620,24 @@
     "html_url": "https://github.com/ggml-org/llama.cpp/issues/5408",
     "author_login": "lastrosade",
     "author_profile": "https://github.com/lastrosade",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 14429,
+    "title": "Feature Request: Gemma3n multimodal support",
+    "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nCurrently only gemma3n text modality is supported and so multimodal inference(ASR/vision) cannot be carried out.\n\n### Motivation\n\nCurrently only gemma3n text modality is supported in llama.cpp. Please add support for gemma3n multimodality. \n\n### Possible Implementation\n\n_No response_",
+    "reactions": 19,
+    "created_at": "2025-06-28T01:12:21Z",
+    "updated_at": "2025-10-29T01:08:15Z",
+    "labels": [
+      "enhancement",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/14429",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/14429",
+    "author_login": "bil-ash",
+    "author_profile": "https://github.com/bil-ash",
     "already_resurrected": false
   },
   {

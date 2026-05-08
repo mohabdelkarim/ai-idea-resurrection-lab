@@ -3505,6 +3505,24 @@
   },
   {
     "repo": "docker/compose",
+    "issue_number": 8107,
+    "title": "Documentation enhncement: GPU stanza",
+    "body": "https://github.com/docker/compose/issues/6691\r\n\r\nMultiple people are having issues with the new docker compose and giving a container access to a GPU. A real world example would be extremely helpful in the documentation giving something like giving stanza examples for https://github.com/linuxserver/docker-plex this container. It's extremely popular container that many people with limited expirence in docker immediately switch to 2.x because there are no examples on how to use 3.x.compose stanza. \r\n\r\n\r\nMy suggestion is to provide a real world example so people understand better. It's not clear, I have tried every way I can think of and looked at multiple people's examples, none of them work at all. 2.x works fine. ",
+    "reactions": 10,
+    "created_at": "2021-02-08T21:46:17Z",
+    "updated_at": "2022-04-17T19:02:42Z",
+    "labels": [
+      "kind/feature",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/8107",
+    "html_url": "https://github.com/docker/compose/issues/8107",
+    "author_login": "Motophan",
+    "author_profile": "https://github.com/Motophan",
+    "already_resurrected": false
+  },
+  {
+    "repo": "docker/compose",
     "issue_number": 7674,
     "title": "`docker-compose up --no-build` should not require the existence of the build context directories",
     "body": "<!--\r\nWelcome to the docker-compose issue tracker! Before creating an issue, please heed the following:\r\n\r\n1. This tracker should only be used to report bugs and request features / enhancements to docker-compose\r\n    - For questions and general support, use https://forums.docker.com\r\n    - For documentation issues, use https://github.com/docker/docker.github.io\r\n    - For issues with the `docker stack` commands and the version 3 of the Compose file, use\r\n      https://github.com/docker/cli\r\n2. Use the search function before creating a new issue. Duplicates will be closed and directed to\r\n   the original discussion.\r\n-->\r\n\r\n**Is your feature request related to a problem? Please describe.**\r\nIn a production system, I would like to use `docker-compose up --no-build` but I can't when the build context directory does not exist, even though it is not used:\r\n\r\n\r\n\r\n    ERROR: build path my/build/context either does not exist, is not accessible, or is not a valid URL.\r\n\r\n\r\n**Describe the solution you'd like**\r\n`docker-compose up --no-build` should not require the existence of build context directories.\r\n\r\n**Describe alternatives you've considered**\r\nI can run `mkdir -p my/build/context` before `docker-compose up --no-build`, but it's kind of annoying to have to do that.\r\n\r\n**Additional context**\r\n\r\nDiscussion at: https://stackoverflow.com/q/53389151/446149\r\n",

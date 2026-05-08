@@ -622,6 +622,23 @@
   },
   {
     "repo": "golang/go",
+    "issue_number": 69536,
+    "title": "crypto: obtain a FIPS 140-3 validation",
+    "body": "## Background\r\n\r\nFIPS 140 is a set of U.S. Government requirements for cryptographic modules. A number of companies must comply with them, for example as part of a broader FedRAMP compliance posture. (If that's not you, you can ignore this. Run!)\r\n\r\nCurrent solutions for Go program compliance are based on cgo, and replace some of the crypto packages internals with FIPS 140 validated non-memory safe modules. These solutions come with varying levels of support (for example the Go+BoringCrypto solution is not officially supported and its compliance profile is left to the user to assess), introduce memory unsafe code, sometimes delay Go version updates, can have performance issues, affect the developer experience (for example inhibiting cross-compilation), and their compliance profile is debatable. As Go is adopted more and more in regulated settings, this is going to affect Go's adoption and developer experience.\r\n\r\n## The Go FIPS module\r\n\r\nWe plan to pursue a FIPS 140-3 validation for the NIST approved components of the Go standard library. The resulting module will be distributed as part of the standard library under the same license as the rest of the Go project, and will be transparently used by the relevant standard library packages with no API changes (wherever possible).\r\n\r\nUsers will be able to select the module to use at build time, for example choosing between a certified version, a version in the In Process list, or the latest unvalidated update. Moreover, we'll provide some mechanism for applications to disable the use of non-approved algorithms and modes at runtime.\r\n\r\n## Further planning details\r\n\r\nThe goal is shipping the module as part of Go 1.24, assuming our validation strategy is successful. This is the first time as far as we know that a Go library (or any non-Java memory safe library) is validated.\r\n\r\nUnless completely unavoidable, we'll not compromise on security to achieve compliance. For example, we will inject random bytes from the kernel as additional input per SP 800-90Ar1, Section 8.7.2, every time we use the mandatory DRBG, and we'll use a dedicated DRBG for ECDSA to implement a \"hedged\" nonce generation equivalent to what crypto/ecdsa does now (safer than both NIST options of fully random and deterministic). Also, we'll try to add minimal complexity to regular non-FIPS builds.\r\n\r\nNIST approved packages will be prioritized in being moved to the standard library (#65269) to get validated along the rest.\r\n\r\nWe'll test at least on Linux on amd64 and arm64. Further details will be available later in the process. (If you have specific requirements, please inquire about becoming a sponsor, see below.)\r\n\r\nWe aim to deprecate and hopefully remove Go+BoringCrypto once the module lands.\r\n\r\nAfter the initial validation, we plan to revalidate at least every year, and every time a CVE affects the module with no standard library-side mitigation.\r\n\r\nAll work will be done on Gerrit, tracked in the issue tracker, and the testing harnesse",
+    "reactions": 239,
+    "created_at": "2024-09-19T14:40:59Z",
+    "updated_at": "2026-04-28T11:12:04Z",
+    "labels": [
+      "umbrella"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/69536",
+    "html_url": "https://github.com/golang/go/issues/69536",
+    "author_login": "FiloSottile",
+    "author_profile": "https://github.com/FiloSottile",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
     "issue_number": 71203,
     "title": "proposal: spec: reduce error handling boilerplate using ?",
     "body": "### Proposal Details\n\n# Background\n\nAs discussed in the [introduction to an earlier, declined, proposal](https://go.googlesource.com/proposal/+/master/design/go2draft-error-handling-overview.md), Go programs have a lot of error checking code. In [surveys](https://go.dev/blog/survey2024-h1-results) error handling is listed as the biggest specific challenge people face using Go today.\n\nThere have been [many proposals](https://github.com/golang/go/issues?q=+is%3Aissue+label%3Aerror-handling) to address this, summarized in a [meta-proposal](https://go.dev/issue/40432).\n\nThis is yet another such proposal.  This proposal has some similarities to [onerr return](https://go.dev/issue/32848), [add \"or err: statement\" after function calls for error handling](https://go.dev/issue/33029), and [use ?<variable> simplify handling of multiple-return-values](https://go.dev/issue/33074).  It is in some ways a reworking of [simplify error handling with || err suffix](https://go.dev/issue/21161).  There are probably a number of other proposals that fed into this one even if I can't remember them now.\n\nThe goal of this proposal is to introduce a new syntax that reduces the amount of code required to check errors in the normal case, without obscuring flow of control.\n\n# New syntax\n\nThis section is an informal description of the proposal, with examples.  A more precise description appears below.\n\nI propose permitting statements of the form\n\n```Go\n\tr, err := SomeFunction()\n\tif err != nil {\n\t\treturn fmt.Errorf(\"something failed: %v\", err)\n\t}\n```\n\nto be written as\n\n```Go\n\tr := SomeFunction() ? {\n\t\treturn fmt.Errorf(\"something failed: %v\", err)\n\t}\n```\n\nThe `?` absorbs the error result of the function.  It introduces a new block, which is executed if the error result is not `nil`.  Within the new block, the identifier `err` refers to the absorbed error result.\n\nSimilarly, statements of the form\n\n```Go\n\tif err := SomeFunction2(); err != nil {\n\t\treturn fmt.Errorf(\"something else failed: %v\", err)\n\t}\n```\n\nmay be written as\n\n```Go\n\tSomeFunction2() ? {\n\t\treturn fmt.Errorf(\"something else failed: %v\", err)\n\t}\n```\n\nFurther, I propose that the block following the `?` is optional.  If the block is omitted, it acts as though there were a block that simply returns the error from the function.  For example, code like\n\n```Go\n\tif err := SomeFunction2(); err != nil {\n\t\treturn err\n\t}\n```\n\nmay in many cases be written as\n\n```Go\n\tSomeFunction2() ?\n```\n\n# Formal proposal\n\nThis section presents the formal proposal.\n\nAn assignment or expression statement may be followed by a question mark (`?`).  The question mark is a new syntactic element, the first permitted use of `?` in Go outside of string and character constants.  The `?` causes conditional execution similar to an `if` statement.  A `?` at the end of a line causes a semicolon to be [automatically inserted](https://go.dev/ref/spec#Semicolons) after it.\n\nA `?` uses a value as described below, referred to here as the _qvalue_.\n\nFor a `?` aft",
@@ -1748,6 +1765,25 @@
   },
   {
     "repo": "golang/go",
+    "issue_number": 34481,
+    "title": "cmd/compile, runtime:  a design for low-cost defers via inline code",
+    "body": "We are working on an implementation of defer statements that makes most `defer`s no more expensive than open-coding the deferred call, hence eliminating the incentives to avoid using this language to its fullest extent.  We wanted to document the design in the proposal/design repo.  \r\nSee issue [#14939](https://github.com/golang/go/issues/14939) for discussion of `defer` performance issues.\r\n\r\nThe design document is posted [here](https://github.com/golang/proposal/blob/master/design/34481-opencoded-defers.md).  The current, mostly complete implementation is [here](https://go-review.googlesource.com/c/go/+/190098/6)\r\n\r\nComments are welcome on either the design or the implementation.\r\n",
+    "reactions": 96,
+    "created_at": "2019-09-23T23:09:00Z",
+    "updated_at": "2020-11-06T22:48:32Z",
+    "labels": [
+      "Performance",
+      "NeedsInvestigation",
+      "FrozenDueToAge"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/34481",
+    "html_url": "https://github.com/golang/go/issues/34481",
+    "author_login": "danscales",
+    "author_profile": "https://github.com/danscales",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
     "issue_number": 29326,
     "title": "proposal: Go 2: remove dot imports from the language",
     "body": "This issue is broken out of #29036.\r\n\r\nWe should remove dot imports from the language (`import . \"path\"`).  Quoting @rogpeppe:\r\n\r\n> The official guidelines suggest that a dot import should only be used \"to let the file pretend to be part of package foo even though it is not\". This is a stylistic choice and strictly unnecessary. The tests can still use package-qualified names with only minor inconvenience (the same inconvenience that any external user will see).\r\n> \r\n> Other than that, I believe the most common use is to make the imported package feel \"close to a DSL\". This seems to be actively opposed to the aims of Go, as it makes the programs much harder to read.",
@@ -2543,6 +2579,23 @@
   },
   {
     "repo": "golang/go",
+    "issue_number": 41330,
+    "title": "cmd/go: default to GO111MODULE=on",
+    "body": "Back in Go 1.13 we tried defaulting to GO111MODULE=on but discovered a bunch of things that needed to be smoother before making it the default. Instead we added GO111MODULE=auto and made that the default, so that people with a go.mod could always get modules, but people without a go.mod would still get GOPATH mode.\n\nThe general plan since Go 1.11 to retire GOPATH mode has not changed. That's still an important step.\n\nWe believe Go 1.16 will have a smooth enough module experience to make it the default always. At that point GOPATH will be deprecated, to be removed entirely in some future Go version, perhaps Go 1.17.\n\nWe need to change the default soon, so that we can use it ourselves during the rest of the Go 1.16 cycle before shipping it in the release. \n\nThere are two important functionality changes remaining before we can change the default:\n\n - Removing automatic updating of go.mod by most commands (#40728).\n - A standalone (outside a module) command to download and install a binary, which will be `go get pkg@version` (`go get pkg@latest` if you want the latest version) (#40276).\n\nOnce those are done, I believe we can flip the default. If there are any other blocking issues, please comment. Thank you.",
+    "reactions": 72,
+    "created_at": "2020-09-10T19:02:12Z",
+    "updated_at": "2021-01-20T23:23:26Z",
+    "labels": [
+      "NeedsFix"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/41330",
+    "html_url": "https://github.com/golang/go/issues/41330",
+    "author_login": "rsc",
+    "author_profile": "https://github.com/rsc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
     "issue_number": 44886,
     "title": "crypto/tls: support QUIC as a transport",
     "body": "[QUIC](https://quicwg.org/) is the transport protocol underlying HTTP/3, as detailed in https://tools.ietf.org/html/draft-ietf-quic-tls-34. A QUIC implementation requires an unusually tight coupling with TLS; quoting the draft:\r\n\r\n> Rather than a strict layering, these two protocols cooperate: QUIC uses the TLS handshake; TLS uses the reliability, ordered delivery, and record layer provided by QUIC.\r\n\r\nThe `crypto/tls` package does not currently provide an API suitable for use by a QUIC implementation. I propose that we add one.\r\n\r\n## Related background\r\n\r\nBoringSSL provides a set of functions specifically for use by QUIC implementations:\r\nhttps://commondatastorage.googleapis.com/chromium-boringssl-docs/ssl.h.html#QUIC-integration\r\n\r\nThe [`quic-go`](https://github.com/lucas-clemente/quic-go) QUIC implementation uses a [fork of `crypto/tls`](https://github.com/marten-seemann/qtls-go1-16). The `quic-go` fork adds a [`RecordLayer`](https://github.com/marten-seemann/qtls-go1-16/blob/master/common.go#L694) interface, which is quite similar to the BoringSSL API.\r\n\r\nA QUIC implementation needs to:\r\n\r\n- accept TLS handshake bytes to send to the peer\r\n- provide TLS handshake bytes received from the peer\r\n- learn the read and write secrets and cipher suites for the connection\r\n- receive TLS alerts\r\n- communicate transport parameters in the `quic_transport_parameters` TLS extension\r\n\r\nBoringSSL and the `quic-go` fork of `crypto/tls` both provide these capabilities.\r\n\r\nThe `quic-go` fork provide additional extensions to `crypto/tls` around the handling of early data and session tickets. Those changes are out of scope for this proposal, which addresses only the QUIC-specific need to replace the record layer.\r\n\r\n## Proposed API changes\r\n\r\n```go\r\npackage tls\r\n\r\n// EncryptionLevel represents a QUIC encryption level used to transmit\r\n// handshake messages.\r\ntype EncryptionLevel int\r\n\r\nconst (\r\n  EncryptionLevelInitial = iota\r\n  EncryptionLevelEarlyData\r\n  EncryptionLevelHandshake\r\n  EncryptionLevelApplication\r\n)\r\n\r\n// QUICTransport describes hooks used by a QUIC implementation.\r\n//\r\n// If any QUICTransport function returns an error, the QUIC handshake will\r\n// be terminated.\r\n//\r\n// It is an error to call Read, Write, or CloseWrite on a connection with\r\n// a non-nil QUICTransport.\r\ntype QUICTransport struct {\r\n  // SetReadSecret configures the read secret and cipher suite for the given\r\n  // encryption level. It will be called at most once per encryption level.\r\n  //\r\n  // QUIC ACKs packets at the same level they were received at, except that\r\n  // early data (0-RTT) packets trigger application (1-RTT) acks. ACK-writing\r\n  // keys will always be installed with SetWriteSecret before the\r\n  // packet-reading keys with SetReadSecret, ensuring that QUIC can always\r\n  // ACK any packet that it decrypts.\r\n  SetReadSecret func(level EncryptionLevel, suite uint16, secret []byte) error\r\n\r\n  // SetWriteSecret configures the write secret and cipher suite for the\r\n  // given",
@@ -2751,6 +2804,25 @@
   },
   {
     "repo": "golang/go",
+    "issue_number": 63940,
+    "title": "spec: investigate if we can remove (most or all) needs for the concept of a core type",
+    "body": "**Note: This is now tracked in #70128.**\r\n\r\nThe original generics proposal (#43651) and accompanying detailed [design doc](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md) didn't specify the notion of a _core type_.\r\n\r\nThe spec introduced core types to determine whether an operation is permitted on a generic operand (i.e., an operand with a type containing a type parameter). Core types are also used to explain type inference involving constraints. This was mostly to have a somewhat manageable implementation and specification path from the code before generics to the code with generics, while not being too restrictive in practice.\r\n\r\nOn the other hand, the original proposal essentially just said that an operation is permitted if it is permitted for all types in the type set defined by the constraint. That is a more general approach and it may also be easier to understand (though not easier to implement).\r\n\r\nWe should investigate if we can avoid the use of core types more widely. We already do avoid them for some operations, such as indexing. If we can avoid them everywhere, we should be able to enable some desired features (such as #48522) w/o extra rules but as a matter of course.\r\n\r\nUmbrella issue for changes related to this.",
+    "reactions": 69,
+    "created_at": "2023-11-03T17:39:23Z",
+    "updated_at": "2025-11-29T18:14:36Z",
+    "labels": [
+      "NeedsInvestigation",
+      "FrozenDueToAge",
+      "umbrella"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/63940",
+    "html_url": "https://github.com/golang/go/issues/63940",
+    "author_login": "griesemer",
+    "author_profile": "https://github.com/griesemer",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
     "issue_number": 38151,
     "title": "proposal: allow implicit conversion of error to bool in if statements, fmt on one line",
     "body": "A couple weeks back during a proposal review, reviewing the fiftieth or so error handling proposal, I made a somewhat flippant remark that if we made `if err != nil {\\n return nil, err \\n}\\n` shorter, most of the error handling proposals would go away. (At least the more incomplete ones)\r\n\r\nI then mentioned two things we could do pretty easily:\r\n\r\n1) allow, in `if` statements only, just:\r\n\r\n```go\r\nif err {\r\n```\r\n... as syntactic sugar instead of:\r\n```go\r\nif err != nil {\r\n```\r\nThat is, if the static type of a variable is exactly and only `error`, allow conversion to a boolean.\r\n\r\n_\"But that's not orthogonal, why would you make error special?\"_ Yes. But errors are already special. They're the only interface predefined in the language. And they're incredibly common.\r\n\r\nEven if somebody is momentarily confused why it works, it's at least not ambiguous.\r\n\r\nIIRC, we discussed a bit whether to allow it in all boolean contexts, just in boolean expressions inside an `if` condition (so `if !err {` would work), or only when it's the entire expression in an `if` (only `if err {`).\r\n\r\n2) modify gofmt to format those on a single line (previously proposed and rejected in #27135):\r\n\r\n```go\r\nif err { return err }\r\n```\r\n\r\nLater, if we do #21182, that extends to:\r\n\r\n```go\r\nif err { return ..., err }\r\n```\r\n\r\nBut if you have any non-return statement in the if body, then it formats as multiple lines.\r\n\r\nTaken together, this makes error handling much lighter looking (the common motivation for new error handling proposals), while keeping flow control unchanged and explicit (a common argument against most error handling proposals).\r\n\r\nI made these comments mostly as a joke at first, but the more we talked about, the more we didn't outright hate the idea. I reluctantly agreed to file an issue, so here it is.",
@@ -2888,6 +2960,24 @@
     "html_url": "https://github.com/golang/go/issues/40221",
     "author_login": "CAFxX",
     "author_profile": "https://github.com/CAFxX",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 17503,
+    "title": "runtime: eliminate stack rescanning",
+    "body": "One of the largest remaining contributors to GC STW time is stack rescanning. I have an approach for eliminating this entirely. This is a tracking bug for implementing this approach.\r\n\r\nI will upload a design document and proof soon, and I have a working implementation that I plan to have cleaned up and mailed out in a day or two.\r\n\r\nI'm marking this Go 1.9. My current plan is to get the change in for Go 1.8, but have a GODEBUG flag to fall back to the current algorithm for debugging purposes (and in case something goes wrong). Assuming things go smoothly, we'll actually rip out the stack rescanning code when Go 1.9 opens.\r\n\r\nEdit: [Design doc](https://github.com/golang/proposal/blob/master/design/17503-eliminate-rescan.md)\r\n\r\nEdit: Things to follow up on in Go 1.9+:\r\n- [x] Remove stack rescanning\r\n- [X] Remove (or replace) stack barriers and delete TestStackBarrierProfiling\r\n- [X] Remove `debug.gcrescanstacks` (Go 1.12, 198440cc3d3453d349fbc7894a5d91dd7b16e6a0)\r\n- [X] Fix early mark termination race (Go 1.12, #26903)\r\n- [X] Remove work draining from mark termination and `work.helperDrainBlock` (Go 1.12, #26903)\r\n- [ ] Revisit 100us wait in `stopTheWorldWithSema` (should happen as part of non-cooperative preemption)\r\n- [ ] Revisit making the second shade conditional (and the condition for channel ops)\r\n\r\n/cc @RLH \r\n",
+    "reactions": 67,
+    "created_at": "2016-10-18T14:07:55Z",
+    "updated_at": "2022-06-23T03:14:15Z",
+    "labels": [
+      "FrozenDueToAge",
+      "early-in-cycle"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/17503",
+    "html_url": "https://github.com/golang/go/issues/17503",
+    "author_login": "aclements",
+    "author_profile": "https://github.com/aclements",
     "already_resurrected": false
   },
   {
@@ -3349,6 +3439,26 @@
     "html_url": "https://github.com/golang/go/issues/52746",
     "author_login": "dsnet",
     "author_profile": "https://github.com/dsnet",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 36439,
+    "title": "all: port to Windows/arm64",
+    "body": "Opening this issue to track interest and progress in a port to windows/arm64.\r\n\r\nThis is completely separate from the open issue #26148 (windows/arm32) but might be informed by it.\r\n\r\nThe specific codebase I'm motivated by for this request is for WireguardVPN, and the specific discussion to reference is https://lists.zx2c4.com/pipermail/wireguard/2020-January/004832.html & surrounding.",
+    "reactions": 58,
+    "created_at": "2020-01-07T21:15:52Z",
+    "updated_at": "2023-04-03T16:38:25Z",
+    "labels": [
+      "OS-Windows",
+      "NeedsInvestigation",
+      "FrozenDueToAge",
+      "arch-arm64"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/36439",
+    "html_url": "https://github.com/golang/go/issues/36439",
+    "author_login": "vielmetti",
+    "author_profile": "https://github.com/vielmetti",
     "already_resurrected": false
   },
   {
@@ -3949,6 +4059,41 @@
     "html_url": "https://github.com/golang/go/issues/10608",
     "author_login": "bep",
     "author_profile": "https://github.com/bep",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 50241,
+    "title": "Go team quiet weeks: issue tracker responses will be delayed",
+    "body": "_The issue tracker will be quiet from December 17 to January 4, to let Go team members and contributors disconnect and either recharge for a bit or do [focused, deep work](https://knowledge.wharton.upenn.edu/article/deep-work-the-secret-to-achieving-peak-productivity/)._\r\n\r\nHere at Google, we have been encouraging people to make sure to take time off during these stressful pandemic years. We’ve observed that one problem with taking a week or two off is that various discussions, meetings, golang-dev@ threads and issues happen while we are away, creating a backlog to work through on return. And even if you’re not taking time off, keeping up with this stream of interruptions can make it difficult to focus on individual work. I’m sure you’ve all seen this in your own jobs. \r\n\r\nWe have established regular \"quiet weeks\", once per quarter, with as few interruptions as possible and, for people taking time off, as little to catch up on as possible. The goals for a quiet week are:\r\n\r\n1. Create time for people to disconnect and take a real break, without feeling like they will need to catch up on what they missed when they return.\r\n\r\n2. Create time for people who keep working to do deep work, without all the usual interruptions like meetings and online discussions.\r\n\r\nThe two weeks (plus weekends) starting Friday, December 17 and ending Tuesday, January 4 are quiet weeks. We’ve cancelled all our meetings for these week and committed to not having team-wide email or chat discussions either. The same applies to public Go conversations that we are typically part of: during this time, we will not be participating in golang-dev@ nor non-trivial GitHub issue tracker conversations (like proposals or anything trying to arrive at a decision). \r\n\r\nWe will also be disconnecting as much as possible during the quiet weeks from other community forums like Gopher Slack, r/golang, and golang-nuts@. The conversations there are mostly not driven by the Go team, so they won’t be as affected, but just know that we won’t be trying to keep up with those either.\r\n\r\nWhen we return on January 4, we will pick up where we left off. Happy holidays to all, and best wishes for 2022.\r\n\r\n– Russ Cox, for the Go team\r\n",
+    "reactions": 50,
+    "created_at": "2021-12-17T13:17:25Z",
+    "updated_at": "2023-01-04T13:13:42Z",
+    "labels": [
+      "FrozenDueToAge"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/50241",
+    "html_url": "https://github.com/golang/go/issues/50241",
+    "author_login": "rsc",
+    "author_profile": "https://github.com/rsc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 26645,
+    "title": "cmd/go: 'cannot find module for path' when importing from subdirectories",
+    "body": "### What version of Go are you using (`go version`)?\r\n\r\n`go version go1.11beta2 linux/amd64`\r\n\r\n### Does this issue reproduce with the latest release?\r\n\r\nYes.\r\n\r\n### What operating system and processor architecture are you using (`go env`)?\r\n\r\n```\r\nGOARCH=\"amd64\"\r\nGOBIN=\"\"\r\nGOCACHE=\"/home/markkuit/.cache/go-build\"\r\nGOEXE=\"\"\r\nGOHOSTARCH=\"amd64\"\r\nGOHOSTOS=\"linux\"\r\nGOOS=\"linux\"\r\nGOPATH=\"/home/markkuit/go/\"\r\nGOPROXY=\"\"\r\nGORACE=\"\"\r\nGOROOT=\"/usr/local/go\"\r\nGOTMPDIR=\"\"\r\nGOTOOLDIR=\"/usr/local/go/pkg/tool/linux_amd64\"\r\nGCCGO=\"gccgo\"\r\nCC=\"gcc\"\r\nCXX=\"g++\"\r\nCGO_ENABLED=\"1\"\r\nGOMOD=\"/tmp/gomodsubdirs/go.mod\"\r\nCGO_CFLAGS=\"-g -O2\"\r\nCGO_CPPFLAGS=\"\"\r\nCGO_CXXFLAGS=\"-g -O2\"\r\nCGO_FFLAGS=\"-g -O2\"\r\nCGO_LDFLAGS=\"-g -O2\"\r\nPKG_CONFIG=\"pkg-config\"\r\nGOGCCFLAGS=\"-fPIC -m64 -pthread -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build236792179=/tmp/go-build -gno-record-gcc-switches\"\r\n```\r\n\r\n### What did you do?\r\n\r\nThe issue arises when using modules when having imports from subdirectories. I created a easy to reproduce example:\r\n\r\n**/tmp/gomodsubdirs/go.mod**\r\n`module testmodule.local/gomodsubdirs`\r\n\r\n**/tmp/gomodsubdirs/main.go**\r\n```\r\npackage main\r\n\r\nimport (\r\n\t\"./subdir\"\r\n\t\"fmt\"\r\n)\r\n\r\nfunc main() {\r\n\tfmt.Println(\"Printing from main!\")\r\n\tsubdir.Print()\r\n}\r\n```\r\n\r\n**/tmp/gomodsubdirs/subdir/subdir.go**\r\n```\r\npackage subdir\r\n\r\nimport \"fmt\"\r\n\r\nfunc Print() {\r\n\tfmt.Println(\"Printing from subdir!\")\r\n}\r\n```\r\n\r\n### What did you expect to see?\r\n\r\nI expected build to be successful both with and without modules, but it looks like putting code in subdirectories is troublesome for go modules (or I'm doing something wrong). I tend to do this quite a lot when I have a package in a subdirectory with a lot of files (mostly boilerplate code), which isn't however worthy of being a separate package itself or is too strictly related to the main package to be put apart from it. Note that I tried having a go.mod inside the subdirectory as well (both empty and filled), but it made no difference.\r\n\r\n### What did you see instead?\r\n\r\n```\r\n> go build main.go\r\nbuild .: cannot find module for path _/tmp/gomodsubdirs/subdir\r\n> env GO111MODULE=off go build main.go\r\n> ./main\r\nPrinting from main!\r\nPrinting from subdir!\r\n```",
+    "reactions": 50,
+    "created_at": "2018-07-27T14:52:03Z",
+    "updated_at": "2020-11-30T08:24:29Z",
+    "labels": [
+      "FrozenDueToAge",
+      "modules"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/26645",
+    "html_url": "https://github.com/golang/go/issues/26645",
+    "author_login": "markkuit",
+    "author_profile": "https://github.com/markkuit",
     "already_resurrected": false
   },
   {
@@ -7952,6 +8097,28 @@
     "html_url": "https://github.com/golang/go/issues/32852",
     "author_login": "kidlj",
     "author_profile": "https://github.com/kidlj",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 63961,
+    "title": "proposal: Go 2: Error-Handling Paradigm with !err Grammar Sugar",
+    "body": "**Hi, if you like this idea please give a heart emoji to me, Thank you very much**\r\n\r\n```go\r\n\r\nfunc copy(src, dst string) (int64, error) {\r\n\r\n    r, err := os.Open(\"input.txt\")\r\n    if err != nil {\r\n        return 0, err\r\n    }\r\n    defer r.Close()\r\n \r\n    w, err := os.Create(\"output.txt\")\r\n    if err != nil {\r\n        return 0, err\r\n    }\r\n    defer w.Close()\r\n    \r\n    if _, err = io.Copy(w, r); err != nil {\r\n        return 0, err\r\n    }\r\n    return 0, err\r\n}\r\n\r\n```\r\n\r\nAdd keywords listen:\r\n```go\r\n\r\nlisten: err {\r\n    if err != nil  {\r\n        return 0, err\r\n    }\r\n    return 0, nil\r\n}()\r\n\r\nfunc copy(src, dst string) (int64, error) {\r\n    listen:\r\n    \r\n    r, err := os.Open(\"input.txt\")\r\n    defer r.Close()\r\n \r\n    w, err := os.Create(\"output.txt\")\r\n    defer w.Close()\r\n\r\n    _, err = io.Copy(w, r) \r\n}\r\n\r\n```",
+    "reactions": 5,
+    "created_at": "2023-11-06T09:04:27Z",
+    "updated_at": "2024-12-05T13:40:26Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "WaitingForInfo",
+      "FrozenDueToAge",
+      "error-handling"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/63961",
+    "html_url": "https://github.com/golang/go/issues/63961",
+    "author_login": "xiaokentrl",
+    "author_profile": "https://github.com/xiaokentrl",
     "already_resurrected": false
   }
 ]

@@ -237,6 +237,40 @@
   },
   {
     "repo": "nodejs/node",
+    "issue_number": 11704,
+    "title": "Thank you",
+    "body": "I've just read [this post](https://nolanlawson.com/2017/03/05/what-it-feels-like-to-be-an-open-source-maintainer/) and I have felt so sorry at first. And then I have felt a need to just thank you all for your hard work and for the amazing things I've used to solve so many problems with and to create so many goods with — for myself and for other people.\r\n\r\nSorry that I have not found any other appropriate way to do this but with just another issue.\r\n\r\n> Nobody opens an issue or a pull request when they’re satisfied with your work. They only do so when they’ve found something lacking.\r\n\r\nLet it be an exception. :heart:",
+    "reactions": 122,
+    "created_at": "2017-03-05T23:54:58Z",
+    "updated_at": "2017-03-14T13:45:37Z",
+    "labels": [
+      "meta"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/11704",
+    "html_url": "https://github.com/nodejs/node/issues/11704",
+    "author_login": "vsemozhetbyt",
+    "author_profile": "https://github.com/vsemozhetbyt",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 57032,
+    "title": "Nominating @geeksilva97 to be a collaborator",
+    "body": "They have been contributing consistently for a while now. Being able to run the CI would be helpful and I think they have enough commits and involvement in the Node.js repos to warrant a collaborator nomination.\n\nCommits authored on nodejs/node: [github.com/nodejs/node/commits?author=geeksilva97](https://github.com/nodejs/node/commits?author=geeksilva97)\nPull requests opened: [github.com/search?q=author:geeksilva97+org:nodejs&type=pullrequests](https://github.com/search?q=author%3Ageeksilva97+org%3Anodejs&type=pullrequests)\nIssues opened: [github.com/search?q=author:geeksilva97+org:nodejs&type=issues](https://github.com/search?q=author%3Ageeksilva97+org%3Anodejs&type=issues)\nComments on pull requests and issues throughout the Node.js organization: https://github.com/search?q=commenter%3Ageeksilva97+org%3Anodejs&type=pullrequests\n\nPrivate nomination (visible to collaborators only): https://github.com/nodejs/collaborators/discussions/218\n\ncc: @geeksilva97 @nodejs/collaborators",
+    "reactions": 119,
+    "created_at": "2025-02-13T14:41:48Z",
+    "updated_at": "2025-02-28T17:27:05Z",
+    "labels": [
+      "meta"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/57032",
+    "html_url": "https://github.com/nodejs/node/issues/57032",
+    "author_login": "cjihrig",
+    "author_profile": "https://github.com/cjihrig",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
     "issue_number": 8381,
     "title": "http: support environment-defined proxy",
     "body": "To enable HTTP connectivity behind corporate firewalls, a number of tools and programming languages support HTTP/HTTPS proxies defined through environment variables like\n\n```\nHTTP_PROXY=http://proxy.com\nHTTPS_PROXY=https://proxy.com\nNO_PROXY=\"*.home.com,another.com\"\n```\n\nNote that there seems to be no consensus on the case of these variables and all-lowercase variable names are also very common. My limited research suggest that at least the following languages automatically obtain and use a proxy from the environment:\n- Python\n- Go\n- Ruby\n- R\n\nThe `request` module also [supports](https://github.com/request/request#controlling-proxy-behaviour-using-environment-variables) these variables, but I feel they show be respected by core `http` and `https` for best compatibilty.\n",
@@ -564,6 +598,23 @@
   },
   {
     "repo": "nodejs/node",
+    "issue_number": 43755,
+    "title": "Nominating Erick Wendel (@ErickWendel)",
+    "body": "I would like to nominate Erick Wendel (@ErickWendel) to be a collaborator. They have been an active contributor recently and documented some of their experience contributing in [a talk at OpenJS World](https://www.youtube.com/watch?v=zVDN0z6I7Pc). Being a collaborator would enable them to further contribute to the project.\r\n\r\n+ Pull requests and issues opened throughout the Node.js organization: [https://github.com/search?q=author:ErickWendel+org:nodejs](https://github.com/search?q=author:ErickWendel+org:nodejs)\r\n+ Commits in nodejs/node: [https://github.com/nodejs/node/commits?author=ErickWendel](https://github.com/nodejs/node/commits?author=ErickWendel)\r\n+ Pull requests and issues in nodejs/node: [https://github.com/nodejs/node/issues?q=author:ErickWendel](https://github.com/nodejs/node/issues?q=author:ErickWendel)\r\n+ Comments on pull requests and issues in nodejs/node: [https://github.com/nodejs/node/issues?q=commenter:ErickWendel](https://github.com/nodejs/node/issues?q=commenter:ErickWendel)\r\n+ Reviews on pull requests in nodejs/node: [https://github.com/nodejs/node/pulls?q=reviewed-by:ErickWendel](https://github.com/nodejs/node/pulls?q=reviewed-by:ErickWendel)\r\n+ Pull requests and issues opened throughout the Node.js organization:\r\n[https://github.com/search?q=author:ErickWendel+org:nodejs](https://github.com/search?q=author:ErickWendel+org:nodejs)\r\n+ Comments on pull requests and issues throughout the Node.js organization: [https://github.com/search?q=commenter:ErickWendel+org:nodejs](https://github.com/search?q=commenter:ErickWendel+org:nodejs)\r\n\r\n/cc @nodejs/collaborators ",
+    "reactions": 73,
+    "created_at": "2022-07-10T05:11:02Z",
+    "updated_at": "2022-08-01T21:13:09Z",
+    "labels": [
+      "meta"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/43755",
+    "html_url": "https://github.com/nodejs/node/issues/43755",
+    "author_login": "Trott",
+    "author_profile": "https://github.com/Trott",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
     "issue_number": 8369,
     "title": "source maps are not working when debugging with chrome",
     "body": "- **Version**: 6.3.1 + \n- **Platform**: OSX\n\nI am debugging my mocha tests using native node debugger, using the following command:\n\n``` bash\n/usr/local/bin/node --debug-brk --inspect=9444 --expose_debug_as=v8debug /Users/yanivef/Documents/projects/node-debug-example/node_modules/mocha/bin/_mocha --require babel-register --timeout 0 --ui bdd test/**/*.spec.js\n```\n\nDebugger works great, but I cannot make source maps to work. \n\nI created a small simple example [here](https://github.com/yanivefraim/node-debug-example). \n\nJust clone + `npm i` + `npm run test-debug`. You'll see that when opening the address from command line (chrome-devtools://devtools....) you can debug but source maps are not working:\n\n![screen shot 2016-09-01 at 4 41 53 pm](https://cloud.githubusercontent.com/assets/1336186/18169680/eb8f6608-7063-11e6-9279-c91d332a3655.png)\n\nI tried adding project to workspace / adding source maps manually with no luck. Am I doing something wrong here? Is there an issue here?  \n",
@@ -743,6 +794,24 @@
   },
   {
     "repo": "nodejs/node",
+    "issue_number": 16768,
+    "title": "Unhandled promise rejections are confusing to new users",
+    "body": "I try to monitor and answer Node.js promise questions in StackOverflow. Several times now [this sort of question](https://stackoverflow.com/questions/47119903/unhandledpromiserejectionwarning-in-mongoose-modal) arises where the OP gets an unhandled rejection error:\r\n\r\n\r\n> (node:52553) UnhandledPromiseRejectionWarning: Unhandled promise |  \r\n> rejection (rejection id: 1): ReferenceError: user is not defined |  \r\n> (node:52553) [DEP0018] DeprecationWarning: Unhandled promise > rejections are deprecated. In the future, promise rejections that are > not handled will terminate the Node.js process with a non-zero exit > code.\r\n\r\nWhich I then explain is just a regular error _wrapped_ in an `UnhandledPromiseRejectionWarning`. \r\n\r\nI think changing the error format could really help the user understand the problem. Currently the average async/await user has to:\r\n\r\n - Understand unhandled rejections and promise semantics to a reasonable degree.\r\n - Understand that it's probably just an unhandled exception in promise land.\r\n - Understand they need to run with `--trace-warnings` in order to get a reasonable stack trace for said error.\r\n\r\nI think the current error format is pretty unwelcoming to new users and while it is a huge improvement over swallowing the error by default or not having a hook into it - we should improve it.\r\n\r\nThis issue is about the phrasing of the current warning and does not interfere with ongoing efforts to throw on unhandled rejections when they're detected in GC.\r\n\r\nDoes anyone have any better naming suggestions?\r\n\r\n(Note, I'd prefer (if possible) that we keep using the existing warnings infrastructure for the warning)",
+    "reactions": 60,
+    "created_at": "2017-11-05T11:07:32Z",
+    "updated_at": "2019-08-10T10:40:29Z",
+    "labels": [
+      "promises",
+      "errors"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/16768",
+    "html_url": "https://github.com/nodejs/node/issues/16768",
+    "author_login": "benjamingr",
+    "author_profile": "https://github.com/benjamingr",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
     "issue_number": 12682,
     "title": "Relative URLs in WHATWG URL API",
     "body": "* **Version**: v9.x+\r\n* **Platform**: all\r\n* **Subsystem**: url\r\n\r\nWe are on the track to slowly deprecate the non-standard `url.parse()` (https://github.com/nodejs/node/issues/12168#issuecomment-291548561) in favor of the new [WHATWG standard-based URL API](https://nodejs.org/api/url.html#url_the_whatwg_url_api). One use case that currently cannot be migrated over from `url.parse()` is the handling of relative URLs.\r\n\r\n## Background\r\n\r\n`url.parse()` accepts incomplete, relative URLs by filling unavailable components of a URL with `null`.\r\n\r\n```js\r\n> url.parse('#hash')\r\nUrl {\r\n  protocol: null,\r\n  slashes: null,\r\n  auth: null,\r\n  host: null,\r\n  port: null,\r\n  hostname: null,\r\n  hash: '#hash',\r\n  search: null,\r\n  query: null,\r\n  pathname: null,\r\n  path: null,\r\n  href: '#hash' }\r\n```\r\n\r\nOn the other hand, the `URL` constructor guarantees that all URL objects are fully complete and valid URLs, which means that it throws an exception in case of relative URLs:\r\n\r\n```\r\n> new URL('#hash')\r\nTypeError [ERR_INVALID_URL]: Invalid URL: #hash\r\n    at Object.onParseError (internal/url.js:92:17)\r\n    at parse (internal/url.js:101:11)\r\n    at new URL (internal/url.js:184:5)\r\n    at repl:1:1\r\n```\r\n\r\nWHATWG URL API does have the algorithms necessary to parse relative URLs, however, and that is activated if a `base` argument is provided:\r\n\r\n```js\r\n> new URL('#hash', 'http://complete-url/')\r\nURL {\r\n  href: 'http://complete-url/#hash',\r\n  origin: 'http://complete-url',\r\n  protocol: 'http:',\r\n  username: '',\r\n  password: '',\r\n  host: 'complete-url',\r\n  hostname: 'complete-url',\r\n  port: '',\r\n  pathname: '/',\r\n  search: '',\r\n  searchParams: URLSearchParams {},\r\n  hash: '#hash' }\r\n```\r\n\r\nIt is not always the case that a base URL is available, though.\r\n\r\n## Possible solutions\r\n\r\n### Do nothing\r\n\r\nWhat this entails is that the currently supported ability to parse relative URLs will die as `url.parse()` becomes deprecated.\r\n\r\n### Do not deprecate `url.parse()`; otherwise do nothing\r\n\r\nThis is the most obvious actual solution, but from tickets like #12168, I don't see this as a good idea.\r\n\r\n### Add a non-standard `TolerantURL` class\r\n\r\nThis could work if we trick the parser into believing we have a legitimate URL, except there are many conditionals in the [URL parser algorithm](https://url.spec.whatwg.org/#concept-basic-url-parser) that provide ad-hoc compatibility fixes with legacy implementations. We would have to make a set of opinionated assumptions about the nature of the URL, such as the URL's scheme.\r\n\r\nIn addition to parsing, the setters will have awkward semantics. Consider the following:\r\n\r\n```js\r\n// Case 1\r\nconst relativeURL = new TolerantURL('#hash');\r\nconsole.log(relativeURL.href);\r\n  // Prints #hash\r\n\r\nrelativeURL.protocol = 'http:';\r\nconsole.log(relativeURL.href);\r\n  // Should this print http:#hash (what url.format() does)?\r\n  // http://#hash?\r\n  // Or make the setter a noop and therefore just #hash?\r\n\r\n// Case 2\r\n// Assuming we have decided to use http sche",
@@ -799,6 +868,23 @@
   },
   {
     "repo": "nodejs/node",
+    "issue_number": 5766,
+    "title": "Planning for v6",
+    "body": "@nodejs/ctc @nodejs/lts - It's almost time to begin preparing the v6 release. What schedule do we want to target? I volunteer to do the actual release.\n\nA quick run on changelog-maker looking at all semver-major changes since v5.0.0 was cut shows 48 semver-major commits:\n- [85ab4a5f12] - (SEMVER-MAJOR) buffer: add .from(), .alloc() and .allocUnsafe() (James M Snell) https://github.com/nodejs/node/pull/4682\n- [2c55cc2d2c] - (SEMVER-MAJOR) buffer: remove deprecated Buffer.write branch (dcposch@dcpos.ch) https://github.com/nodejs/node/pull/5048\n- [101bca988c] - (SEMVER-MAJOR) buffer: remove deprecated buffer.get/.set methods (Feross Aboukhadijeh) https://github.com/nodejs/node/pull/4594\n- [3b27dd5ce1] - (SEMVER-MAJOR) buffer: throw if both length and enc are passed (Mathias Buus) https://github.com/nodejs/node/pull/4514\n- [90a5fc20be] - (SEMVER-MAJOR) build: remove lint/dotfiles from release tarball (Johan Bergström) https://github.com/nodejs/node/pull/5695\n- [66f4586dd0] - (SEMVER-MAJOR) cluster: emit worker as first 'message' event arg (Ben Noordhuis) https://github.com/nodejs/node/pull/5361\n- [a5cce79ec3] - (SEMVER-MAJOR) console: delete timers that have ended (Vladimir Varankin) https://github.com/nodejs/node/pull/3562\n- [a37401e061] - (SEMVER-MAJOR) crypto: simplify Certificate class bindings (Alexander Makarenko) https://github.com/nodejs/node/pull/5382\n- [7c48cb5601] - (SEMVER-MAJOR) crypto: Improve control of FIPS mode (Stefan Budeanu) https://github.com/nodejs/node/pull/5181\n- [a1163582c5] - (SEMVER-MAJOR) crypto: pbkdf2 deprecate digest overload. (Tom Gallacher) https://github.com/nodejs/node/pull/4047\n- [b010c87164] - (SEMVER-MAJOR) crypto, string_bytes: treat `buffer` str as `utf8` (Fedor Indutny) https://github.com/nodejs/node/pull/5522\n- [dbdbdd4998] - (SEMVER-MAJOR) dns: add resolvePtr to query plain DNS PTR records (Daniel Turing) https://github.com/nodejs/node/pull/4921\n- [c4ab861a49] - (SEMVER-MAJOR) dns: add failure test for dns.resolveXXX (Daniel Turing) https://github.com/nodejs/node/pull/4921\n- [f3be421c1c] - (SEMVER-MAJOR) dns: coerce port to number in lookupService (Evan Lucas) https://github.com/nodejs/node/pull/4883\n- [d8290286b3] - (SEMVER-MAJOR) doc: document deprecation of util._extend (Benjamin Gruenbaum) https://github.com/nodejs/node/pull/4903\n- [90204cc468] - (SEMVER-MAJOR) domains: clear stack when no error handler (Julien Gilli) https://github.com/nodejs/node/pull/4659\n- [8bb60e3c8d] - (SEMVER-MAJOR) fs: improve error message for invalid flag (James M Snell) https://github.com/nodejs/node/pull/5590\n- [1d79787e2e] - (SEMVER-MAJOR) fs: add a temporary fix for re-evaluation support (Сковорода Никита Андреевич) https://github.com/nodejs/node/pull/5102\n- [1124de2d76] - (SEMVER-MAJOR) fs: deprecate fs.read's string interface (Sakthipriyan Vairamani) https://github.com/nodejs/node/pull/4525\n- [2b15e68bbe] - (SEMVER-MAJOR) fs: fs.read into zero buffer should not throw exception (Feross Aboukhadijeh) https://github.com/node",
+    "reactions": 55,
+    "created_at": "2016-03-17T20:34:16Z",
+    "updated_at": "2016-04-26T00:47:19Z",
+    "labels": [
+      "meta"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/5766",
+    "html_url": "https://github.com/nodejs/node/issues/5766",
+    "author_login": "jasnell",
+    "author_profile": "https://github.com/jasnell",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
     "issue_number": 39224,
     "title": "Install directory permissions broken on non-English Windows systems",
     "body": "* **Version**: 16.4.1\r\n* **Platform**: Windows\r\n\r\n### What steps will reproduce the bug?\r\n\r\n- Install Node v16.4.1 on a non-English Windows system.\r\n\r\n### How often does it reproduce? Is there a required condition?\r\n\r\nIt always reproduces as far as I can tell.\r\n\r\n### What do you see?\r\n\r\n![afbeelding](https://user-images.githubusercontent.com/954385/124154188-8cac0c80-da95-11eb-8bf9-c853b1ca0fc8.png)\r\n\r\n### Additional information\r\n\r\nI presume this bug was introduced in e817ba70f56c4bfd5d4a68dce8b165142312e7b6.\r\n\r\nCore issue seems to be that Windows localizes names of built-in users and groups. On my non-English Windows system, there does not exist a group called \"Authenticated Users\". It exists using a localized name. Hence, the solution implemented in that commit will never work on non-English Windows systems.\r\n\r\nInstead, we should probably use a SID to reference the correct group. See https://support.microsoft.com/kb/243330.\r\n\r\nEDIT: Presumably also affects v14.17.2 and v12.22.2, as these seem to include this same change. Haven't checked.\r\n\r\nEDIT2: To clarify; this completely breaks Node.js installs, make it unable to complete installation, and when upgrading will leave Node.js in a broken state.",
@@ -818,6 +904,21 @@
   },
   {
     "repo": "nodejs/node",
+    "issue_number": 60921,
+    "title": "Nominating @gurgunday as a Collaborator",
+    "body": "I would like to nominate @gurgunday as a Node.js Collaborator. They have been active for a while now, I find their contributions to be of high quality, both in terms of code and communication in the issues/PR.\n\n* Commits in the nodejs/node repository: https://github.com/nodejs/node/commits?author=gurgunday\n* Pull requests and issues opened in the nodejs/node repository: https://github.com/nodejs/node/issues?q=author:gurgunday\n* Comments on pull requests and issues in the nodejs/node repository: https://github.com/nodejs/node/issues?q=commenter:gurgunday\n* Reviews on pull requests in the nodejs/node repository: https://github.com/nodejs/node/pulls?q=reviewed-by:gurgunday\n* Pull requests and issues opened throughout the Node.js organization: https://github.com/search?q=author:gurgunday+org:nodejs\n* Comments on pull requests and issues throughout the Node.js organization: https://github.com/search?q=commenter:gurgunday+org:nodejs\n* They have joined the triaggers team back in May.\n\n/cc @nodejs/collaborators ",
+    "reactions": 52,
+    "created_at": "2025-12-01T16:07:30Z",
+    "updated_at": "2025-12-19T17:00:26Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/nodejs/node/issues/60921",
+    "html_url": "https://github.com/nodejs/node/issues/60921",
+    "author_login": "aduh95",
+    "author_profile": "https://github.com/aduh95",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
     "issue_number": 3462,
     "title": "btoa() and atob()",
     "body": "All major browsers expose the `btoa` and `atob` globals for encoding ASCII strings as base64 and vice versa. It'd be beneficial for the \"isomorphic\" javascript topic if we'd provide these too:\n- https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/btoa\n- https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/atob\n\nAs for the implementation, we can't `Buffer('string').toString('base64')` because that would encode unicode while `atob` and `btoa` must per spec throw on charcodes > 255. https://github.com/mathiasbynens/base64 looks like a solid implemenation we could pretty much drop in.\n",
@@ -831,6 +932,23 @@
     "html_url": "https://github.com/nodejs/node/issues/3462",
     "author_login": "silverwind",
     "author_profile": "https://github.com/silverwind",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 55918,
+    "title": "Nominating @ljharb to be a Collaborator",
+    "body": "I nominate @ljharb as a collaborator. He has been helping review code in Node.js for a long time and has expressed interest in becoming a releaser in the future. He is also an OpenJS Board member (https://openjsf.org/governance).\r\n\r\nCommits authored on nodejs/node: [github.com/nodejs/node/commits?author=ljharb](https://github.com/nodejs/node/commits?author=ljharb)\r\nPull requests opened: [github.com/search?q=author:ljharb+org:nodejs&type=pullrequests](https://github.com/search?q=author%3Aljharb+org%3Anodejs&type=pullrequests)\r\nIssues opened: [github.com/search?q=author:ljharb+org:nodejs&type=issues](https://github.com/search?q=author%3Aljharb+org%3Anodejs&type=issues)\r\nComments on pull requests and issues throughout the Node.js organization: https://github.com/search?q=commenter%3Aljharb+org%3Anodejs&type=pullrequests",
+    "reactions": 51,
+    "created_at": "2024-11-19T08:53:07Z",
+    "updated_at": "2025-01-08T23:26:47Z",
+    "labels": [
+      "meta"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/55918",
+    "html_url": "https://github.com/nodejs/node/issues/55918",
+    "author_login": "mcollina",
+    "author_profile": "https://github.com/mcollina",
     "already_resurrected": false
   },
   {

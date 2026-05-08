@@ -421,6 +421,21 @@
   },
   {
     "repo": "sveltejs/svelte",
+    "issue_number": 3458,
+    "title": "Svelte",
+    "body": "I've been coding in Svelte lately for a new project and I had to create an issue.\r\n\r\nThe issue is Svelte is too good. This is genius!\r\n\r\nKeep up the good work :)",
+    "reactions": 65,
+    "created_at": "2019-08-24T01:58:46Z",
+    "updated_at": "2019-12-24T19:52:46Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/3458",
+    "html_url": "https://github.com/sveltejs/svelte/issues/3458",
+    "author_login": "timothyerwin",
+    "author_profile": "https://github.com/timothyerwin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sveltejs/svelte",
     "issue_number": 6325,
     "title": "[AGAIN] Incorrect error message \"... received an unexpected slot \"default\".",
     "body": "**Describe the bug**\r\n\r\n`received an unexpected slot \"XXXXXX\"` for all the slots which were used in the component.\r\n\r\n**Logs**\r\n\r\n```\r\nindex.mjs:1701 <ts-divider> received an unexpected slot \"default\".\r\n```\r\n\r\n**To Reproduce**\r\n\r\n```html\r\n<div class=\"ts-divider\">\r\n    <!-- Text -->\r\n    {#if $$slots.default}\r\n    <div class=\"ts-divider__text\">\r\n        <div class=\"ts-divider__text__start\">\r\n            <div class=\"ts-divider__text__line\"></div>\r\n        </div>\r\n        <div class=\"ts-divider__text__center\">\r\n            <slot></slot>\r\n        </div>\r\n        <div class=\"ts-divider__text__end\">\r\n            <div class=\"ts-divider__text__line\"></div>\r\n        </div>\r\n    </div>\r\n    {/if}\r\n    <!-- / Text -->\r\n\r\n    <!-- Line Only -->\r\n    {#if !$$slots.default}\r\n    <div class=\"ts-divider__line\"></div>\r\n    {/if}\r\n    <!-- / Line Only -->\r\n</div>\r\n```\r\n\r\n**Expected behavior**\r\n\r\nNo warning message should appeared.\r\n\r\n**Stacktraces**\r\nIf you have a stack trace to include, we recommend putting inside a `<details>` block for the sake of the thread's readability:\r\n\r\n```\r\nindex.mjs:1701 <ts-divider> received an unexpected slot \"default\".\r\nvalidate_slots @ index.mjs:1701\r\ninstance       @ Divider.svelte:132\r\ninit           @ index.mjs:1517\r\nDivider        @ Divider.svelte:18\r\n(anonymous)    @ Divider.svelte:18\r\n(anonymous)    @ Divider.svelte:18\r\n```\r\n\r\n**Information about your Svelte project:**\r\n\r\n- Your browser and the version: (e.x. Chrome 52.1, Firefox 48.0, IE 10): **Chrome 90**\r\n\r\n- Your operating system: (e.x. OS X 10, Ubuntu Linux 19.10, Windows XP, etc): **Ubuntu 19.10**\r\n\r\n- Svelte version (Please check you can reproduce the issue with the latest release!): **^3.38.1**\r\n\r\n- Whether your project uses Webpack or Rollup: **Rollup**\r\n\r\n**Severity**\r\n\r\nIt's not immediate just annoying warning messages.\r\n\r\n**Additional context**\r\n\r\nRe-open an new issue from [Incorrect error message \"... received an unexpected slot \"default\". #4546](https://github.com/sveltejs/svelte/issues/4546)\r\n",
@@ -451,6 +466,36 @@
     "html_url": "https://github.com/sveltejs/svelte/issues/8636",
     "author_login": "Rich-Harris",
     "author_profile": "https://github.com/Rich-Harris",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 5767,
+    "title": "Thank You, I can't say it enough.",
+    "body": "I know this might not follow the stated guidelines but I felt it was too important and I felt it would reach the right folks.\r\n\r\n**Thank You.**\r\n\r\nI know there are so many people who work on Svelte. I felt this was a great way to go on record at the source and not just thank one person but thank the entire community of folks who want to see Svelte kick all sorts of ass. I know the passion that's put into this, the time late at night coding away, and answering all the questions in between.\r\n\r\n**Thank You.**\r\n\r\nI love how accessible everyone is. I love the folks who generally want to help one another. I love the fact @Rich-Harris isn't afraid to just be honest, transparent, and just say where things are headed and yet still make time to also answer my dumb ass questions.\r\n\r\n**So to the entire core team and everyone who put their time in.  Thank You.**\r\n\r\nThis might sound cheeky but Svelte did bring my love for UI development back. I've worked in plenty of frameworks but they've all felt like I was working for them, vs them helping me.\r\n\r\nI think it's important to know that I enjoy working in Svelte, and I know many others do as well.  Unlike some I do get to make the choice as to what frameworks we work in, and we chose Svelte and I don't regret it one bit at all.  \r\n\r\nIn the middle of a pandemic I was able to make a dream come true. We started laying down code to make a new kind of learning system for the development community that we simply call THAT at http://that.us/. Starting a new product/service in the middle of a global pandemic is, well, something for the history books but, Svelte and the community around it has made it possible. I attribute a lot of our ability to go from scratch to what we have now in just a few short months to Svelte and the design decisions that have been put into making a framework. 🙌\r\n\r\nIt's because of all this, I just wanted to say Thank Ya'll. We often don't say it enough. I look forward to SvelteKit and working in Svelte everyday.\r\n\r\n**Thank You!**",
+    "reactions": 61,
+    "created_at": "2020-12-10T17:45:51Z",
+    "updated_at": "2020-12-31T04:36:33Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/5767",
+    "html_url": "https://github.com/sveltejs/svelte/issues/5767",
+    "author_login": "theClarkSell",
+    "author_profile": "https://github.com/theClarkSell",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 8587,
+    "title": "Support Native CSS Nesting",
+    "body": "### Describe the problem\n\nNative CSS Nesting without a pre-processor is stable since Chromium 112 (March 2023), and is in technical preview of Safari 16.5.\r\n\r\nHowever, this syntax is _not_ supported by Svelte's processor in `<style>` tags.  Especially in instances like using Svelte in third-party web containers where you might not have control over the availability of additional pre-processors, this makes writing the style rules far simpler/easier than using complex selectors or a multitude of classes, allowing more rapid and readable prototyping.\r\n\r\nSurprisingly, there's no open or closed issue covering this topic.\r\n\r\nSources:\r\nhttps://caniuse.com/css-nesting\r\nhttps://web.dev/web-platform-04-2023/\r\nhttps://developer.chrome.com/articles/css-nesting/\r\nhttps://webkit.org/blog/13813/try-css-nesting-today-in-safari-technology-preview/\n\n### Describe the proposed solution\n\nTreat nested selectors as valid syntax.  Given this html:\r\n```html\r\n<p>\r\n  We really <span>should</span> support this\r\n  <strong class=\"red\">because it's part of the web platform...</strong>\r\n</p>\r\n```\r\nAll of these syntaxes should work without error:\r\n```html\r\n<style>\r\n  /* p strong */\r\n  p {\r\n    strong {\r\n      line-height: 1.2;\r\n    }\r\n  }\r\n  /* strong.red */\r\n  strong {\r\n    &.red {\r\n       color: red;\r\n    }\r\n  }\r\n  /* p > span */\r\n  p {\r\n    > span {\r\n      color: orange;\r\n    }\r\n  }\r\n</style>\r\n```\n\n### Alternatives considered\n\nUsing a pre-processor is the alternative, but it adds unnecessary bloat to the DX.\n\n### Importance\n\nnice to have",
+    "reactions": 60,
+    "created_at": "2023-05-14T10:28:57Z",
+    "updated_at": "2024-04-03T11:44:53Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/8587",
+    "html_url": "https://github.com/sveltejs/svelte/issues/8587",
+    "author_login": "jrmoynihan",
+    "author_profile": "https://github.com/jrmoynihan",
     "already_resurrected": false
   },
   {

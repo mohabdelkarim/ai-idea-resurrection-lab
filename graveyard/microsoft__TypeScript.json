@@ -1797,6 +1797,25 @@
   },
   {
     "repo": "microsoft/TypeScript",
+    "issue_number": 48513,
+    "title": "[RFC] Towards Non-Fungible Types",
+    "body": "For years TypeScript has strived to grow and support its community. We've seen some tremendous investment, innovation, creativity, and beauty from TypeScript developers.\r\n\r\n```ts\r\nexport type ConsistentWith<DecorationTargetProps, InjectedProps> = {\r\n  [P in keyof DecorationTargetProps]: P extends keyof InjectedProps\r\n    ? InjectedProps[P] extends DecorationTargetProps[P]\r\n      ? DecorationTargetProps[P]\r\n      : InjectedProps[P]\r\n    : DecorationTargetProps[P];\r\n};\r\n\r\nexport type PropInjector<InjectedProps, AdditionalProps = {}> = <\r\n  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, InjectedProps>>,\r\n>(\r\n  component: C,\r\n) => React.JSXElementConstructor<\r\n  DistributiveOmit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &\r\n    AdditionalProps\r\n>;\r\n```\r\n\r\n<!-- ![Screenshot of confusing type declarations.](https://user-images.githubusercontent.com/972891/161114922-0a401b6a-5480-49b2-bfc8-cee94d70edef.png) -->\r\n\r\nBut how will we ensure that creators of these innovative types are rewarded for their brilliance? How do we make sure people continue writing more beautiful types?\r\n\r\nThis question coincides with the advent of \"WEB 3\", a broader community shift which can be best explained by aggressively waving one's hands. Many fascinating ideas have come from the \"WEB 3\" world including NFTs - **N**on-**F**ungible **T**okens, which are simply **T**okens which ca**N**not be **F**unged.\r\n\r\nThis dovetails with another new concept which I would like to introduce today: Non-Fungible Types.\r\n\r\n## The Idea\r\n\r\nToday we see the broader use of non-fungible tokens for breathtaking pictures of apes that look like they've just been laid off - the biggest explosion of art collection since pogs, Beanie Babies, Pokémon cards, and fidget spinners.\r\n\r\nWhat a lot of people don't realize is that ***TypeScript code is art.***\r\n\r\nHow do we figure?\r\n\r\nWell, if you've ever heard the expression \"ars longa, vita brevis\" &ndash; Latin for \"art is long, life is short\" &ndash; then you almost immediately recalled a TypeScript type you saw in an error message. It really does seem obvious when you put it that way!\r\n\r\nIn fact, you have a wide variety, ranging from minimalist TypeScript art...\r\n\r\n```ts\r\ntype a = {}\r\n```\r\n\r\nto surreal TypeScript art...\r\n\r\n```ts\r\ntype UnionToIntersection<T> = \r\n  (T extends any ? (x: T) => any : never) extends \r\n  (x: infer R) => any ? R : never\r\n```\r\n\r\nSo TypeScript types are great candidates for NFTs! Users should be able to take NFTs of type declarations and annotations and build a thriving ecosystem of type system artisans.\r\n\r\n## Do individual types actually have value?\r\n\r\nI've discussed this proposal with ~~my math friends from college~~ **experts in the field** who have ~~kinda offhandedly postulated over chat apps~~ **assured me** that thanks to *Cantor's Diagonal Argument*, there are an uncountably infinite number of types. So can we really induce shortage to ensure value for every typ",
+    "reactions": 127,
+    "created_at": "2022-04-01T16:53:12Z",
+    "updated_at": "2022-04-08T18:20:38Z",
+    "labels": [
+      "Suggestion",
+      "In Discussion",
+      "Community Tooling"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/48513",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/48513",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
     "issue_number": 38510,
     "title": "TypeScript 4.0 Iteration Plan",
     "body": "This document outlines our focused tasks for TypeScript 4.0, as well as some of the discussion that explains how/why we prioritized certain work items. Nothing is set in stone, but we will strive to complete them in a reasonable timeframe.\r\n\r\nDate          |   Event\r\n--------------|-------------------------\r\nMay 12th      | TypeScript 3.9 Release (past)\r\nJune 22nd     | Create 4.0 Beta (4.0.0) Build for Testing\r\nJune 25th     | **TypeScript 4.0 Beta Release**\r\nJuly 31st     | Create 4.0 RC (4.0.1) Build for Testing\r\nAugust 6th    | **TypeScript 4.0 RC Release**\r\nAugust 14th   | Create 4.0 Final (4.0.2) Build for Testing\r\nAugust 20th   | **TypeScript 4.0 Final Release** 🚀\r\n\r\n## Language Features\r\n\r\n* [Short-Circuiting Assignment Operators](https://github.com/microsoft/TypeScript/issues/37255)\r\n* [Labeled Tuple Elements](https://github.com/Microsoft/TypeScript/issues/28259)\r\n* [Class Property Inference from Constructors](https://github.com/microsoft/TypeScript/pull/37920)\r\n* [Forward Declarations](https://github.com/microsoft/TypeScript/issues/31894)\r\n* [Investigate the `awaited` Type](https://github.com/microsoft/TypeScript/issues/27711)\r\n* [JSX Factory Updates](https://github.com/microsoft/TypeScript/issues/34547)\r\n* [`unknown` on `catch` Clause Bindings](https://github.com/microsoft/TypeScript/issues/36775)\r\n* [Variadic Tuples](https://github.com/microsoft/TypeScript/issues/5453)\r\n\r\n## Editor Productivity\r\n\r\n* Refactorings\r\n    * [Convert to Optional Chaining and Coalescing](https://github.com/microsoft/TypeScript/issues/35018)\r\n* [Discoverability in Refactoring](https://github.com/microsoft/TypeScript/issues/34930) ([ideas](https://github.com/microsoft/TypeScript/issues/37895))\r\n* [Lightweight Navigation](https://github.com/microsoft/TypeScript/issues/37713)\r\n* [Improved Auto-Import](https://github.com/microsoft/TypeScript/issues/37812)\r\n* [Editor support for `/** @deprecated */` tags](https://github.com/microsoft/TypeScript/issues/390)\r\n* [Editor support for `/** @see */` tags](https://github.com/microsoft/TypeScript/issues/35524)\r\n* [Semantic Highlighting](https://github.com/microsoft/TypeScript/issues/38435)\r\n\r\n## Performance\r\n\r\n* More Type-Checking Optimizations\r\n* Investigate Bottlenecks in Larger Apps\r\n\r\n## Infrastructure\r\n\r\n* [Migrate TypeScript to Modules](https://github.com/microsoft/TypeScript/pull/35561)\r\n* Expand Commands Tested in TSServer Crawler\r\n* GitHub Crawler Infrastructure to Find Breaking Changes\r\n\r\n## Investigate High-Demand Bug Fixes\r\n\r\n* [Don't Widen Computed Property Keys](https://github.com/microsoft/TypeScript/issues/13948)\r\n* [Cleaning Files Under `--watch`](https://github.com/microsoft/TypeScript/issues/16057)\r\n* [Higher Order Component Issues](https://github.com/microsoft/TypeScript/issues/28938)\r\n* [Remove `--declaration` Emit Error](https://github.com/microsoft/TypeScript/issues/17293)\r\n* [Inference for Proxies](https://github.com/microsoft/TypeScript/issues/20846)\r\n* [`change` events on `<input type=\"file\">`have",
@@ -2029,6 +2048,23 @@
     "html_url": "https://github.com/microsoft/TypeScript/issues/4639",
     "author_login": "ivogabe",
     "author_profile": "https://github.com/ivogabe",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 45418,
+    "title": "TypeScript 4.5 Iteration Plan",
+    "body": "This document outlines our focused tasks for TypeScript 4.5. It minimally indicates intent to investigate tasks or contribute to an implementation. Nothing is set in stone, but we will strive to complete these tasks in a reasonable timeframe.\r\n\r\nDate           | Event\r\n---------------|-------------------------\r\nAugust 24th    | TypeScript 4.4 Release\r\nSeptember 24th | Create 4.5 Beta (4.5.0) Build for Testing\r\nSeptember 28th | **TypeScript 4.5 Beta Release**\r\nOctober 29th   | Create 4.5 RC (4.5.1) Build for Testing\r\nNovember 2nd   | **TypeScript 4.5 RC Release**\r\nNovember 12th  | Create 4.5 Final (4.5.2) Build for Testing\r\nNovember 16th  | **TypeScript 4.5 Final Release** 🚀\r\n\r\n## Language and Compiler Features\r\n\r\n* [`module: node12`](https://github.com/microsoft/TypeScript/pull/44501)\r\n* [`@types/web`](https://github.com/microsoft/TypeScript/issues/44795)\r\n* [Import Assertions](https://github.com/microsoft/TypeScript/pull/40698)\r\n* [Flag to Disable Import Elision](https://github.com/microsoft/TypeScript/pull/44619)\r\n* [Private Field Presence Checks](https://github.com/microsoft/TypeScript/pull/44648)\r\n* [`lib.d.ts` Updates](https://github.com/microsoft/TypeScript/issues/45291)\r\n* [Investigate Shared Node/DOM types](https://github.com/microsoft/TypeScript/issues/43972)\r\n\r\n## Editor Productivity\r\n\r\n* [Editor Grammar Errors in JavaScript Files](https://github.com/microsoft/TypeScript/issues/45349)\r\n* [Improved JavaScript Editing Using `package.json`](https://github.com/microsoft/TypeScript/issues/45558)\r\n* [Inline Values API for Debugging](https://github.com/microsoft/TypeScript/issues/43449)\r\n* [Investigate Snippet Completions](https://github.com/Microsoft/TypeScript/issues/25207)\r\n* [Differentiating Definitions from References](https://github.com/microsoft/TypeScript/issues/42889)\r\n* [Enable Automatic Type Acquisition in Web Contexts](https://github.com/microsoft/vscode/issues/172887)\r\n* [Events for Requesting More Files](https://github.com/microsoft/TypeScript/issues/45315)\r\n* [Welcome Page Contributions in Visual Studio Code](https://github.com/microsoft/vscode/issues/63152)\r\n* [Create New TypeScript Workspace in Visual Studio Code](https://github.com/microsoft/vscode/issues/126105)\r\n* [Continue Enabling the Language Server Protocol (LSP)](https://github.com/microsoft/TypeScript/issues/39459)\r\n* [Commit Characters in Server API](https://github.com/microsoft/TypeScript/issues/27623)\r\n\r\n## Performance\r\n\r\n* [Supporting Additional Trace Points](https://github.com/microsoft/TypeScript/issues/40460)\r\n* [Profiling/Tracing Mode Improvements](https://github.com/microsoft/TypeScript/issues/40461)\r\n* [Investigate Tooling for JIT Deoptimizations](https://github.com/microsoft/TypeScript/issues/44211)\r\n* [Use `fs.realpathSync.native`](https://github.com/microsoft/TypeScript/issues/43105)\r\n\r\n## Infrastructure\r\n\r\n* [Migrate to Modules](https://github.com/microsoft/TypeScript/pull/35561)\r\n* [Expand Perf Suite](https://github.com/microsoft/TypeScript/issues/44033",
+    "reactions": 117,
+    "created_at": "2021-08-11T23:36:51Z",
+    "updated_at": "2024-01-05T19:57:59Z",
+    "labels": [
+      "Planning"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/45418",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/45418",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
     "already_resurrected": false
   },
   {
@@ -2675,6 +2711,23 @@
   },
   {
     "repo": "microsoft/TypeScript",
+    "issue_number": 46858,
+    "title": "TypeScript 4.6 Iteration Plan",
+    "body": "This document outlines our focused tasks for TypeScript 4.6. It minimally indicates intent to investigate tasks or contribute to an implementation. Nothing is set in stone, but we will strive to complete these tasks in a reasonable timeframe.\r\n\r\nDate           | Event\r\n---------------|-------------------------\r\nNovember 16th  | TypeScript 4.5 Release\r\nJanuary 14th   | Create 4.6 Beta (4.6.0) Build for Testing\r\nJanuary 18th   | **TypeScript 4.6 Beta Release**\r\nFebruary 4th   | Create 4.6 RC (4.6.1) Build for Testing\r\nFebruary 8th   | **TypeScript 4.6 RC Release**\r\nFebruary 18th  | Create 4.6 Final (4.6.2) Build for Testing\r\nFebruary 22nd  | **TypeScript 4.6 Final Release** 🚀\r\n\r\n## Language and Compiler Features\r\n\r\n* [Narrowing Destructured Discriminated Unions](https://github.com/microsoft/TypeScript/pull/46266)\r\n* [Investigate Contextually Typed And Compatible Operator](https://github.com/microsoft/TypeScript/issues/7481)\r\n* [`lib.d.ts` Updates](https://github.com/microsoft/TypeScript/issues/46811)\r\n* [Bug Fixing](https://github.com/microsoft/TypeScript/issues?q=is%3Aopen+is%3Aissue+label%3ABug+milestone%3A%22TypeScript+4.6.0%22)\r\n\r\n## Editor Productivity\r\n\r\n* [Object Member Snippet Completions](https://github.com/microsoft/TypeScript/issues/46590)\r\n* [Provide Grammar Errors in JavaScript Files](https://github.com/microsoft/TypeScript/issues/45349)\r\n* [Investigate IPC Communication for TSServer](https://github.com/microsoft/TypeScript/issues/46417)\r\n* [Enable Automatic Type Acquisition in Web Contexts](https://github.com/microsoft/vscode/issues/172887)\r\n* [Investigate Workspace Support in Web Contexts](https://github.com/microsoft/TypeScript/issues/46421)\r\n* [Welcome Page Contributions in Visual Studio Code](https://github.com/microsoft/vscode/issues/63152)\r\n* [Easy Run/Debug for Loose TypeScript Files](https://github.com/microsoft/vscode/issues/124280)\r\n\r\n## Performance\r\n\r\n* [Investigate Outstanding Performance Issues](https://github.com/microsoft/TypeScript/issues?q=is%3Aopen+is%3Aissue+label%3A%22Domain%3A+Performance%22)\r\n* [Transfer ts-analyze-trace to Microsoft](https://github.com/microsoft/TypeScript/issues/46813)\r\n* [Supporting Additional Trace Points](https://github.com/microsoft/TypeScript/issues/40460)\r\n* [Profiling/Tracing Mode Improvements](https://github.com/microsoft/TypeScript/issues/40461)\r\n* [Investigate Tooling for JIT Deoptimizations](https://github.com/microsoft/TypeScript/issues/44211)\r\n\r\n## Infrastructure\r\n\r\n* [Migrate to Modules](https://github.com/microsoft/TypeScript/pull/35561)\r\n* [Expand Perf Suite](https://github.com/microsoft/TypeScript/issues/44033)\r\n* [Fuzzer Improvements and Addressing Crashes](https://github.com/microsoft/TypeScript/issues/44210)\r\n* [Improving User Suite Reports](https://github.com/microsoft/TypeScript/issues/44209)\r\n\r\n## Website\r\n\r\n* [Migrate to Static Web Apps](https://github.com/microsoft/TypeScript-Website/issues/1966)\r\n* [Investigate Playground as a VS Code Extension](https://github.com/micr",
+    "reactions": 92,
+    "created_at": "2021-11-18T18:39:08Z",
+    "updated_at": "2024-01-05T19:57:02Z",
+    "labels": [
+      "Planning"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/46858",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/46858",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
     "issue_number": 11073,
     "title": "// #regions",
     "body": "_From @mbeckenbach on September 16, 2016 12:48_\n- VSCode Version: 1.5.2\n- OS Version: Win10\n\nWould be great to have //#region support in typescript\n\n_Copied from original issue: Microsoft/vscode#12146_\n",
@@ -2745,6 +2798,23 @@
     "html_url": "https://github.com/microsoft/TypeScript/issues/37181",
     "author_login": "mperktold",
     "author_profile": "https://github.com/mperktold",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 30281,
+    "title": "TypeScript 3.4 Iteration Plan",
+    "body": "This document outlines our focused tasks for TypeScript 3.4, as well as some of the discussion that explains how/why we prioritized certain work items. Nothing is set in stone, but we will strive to complete them in a reasonable timeframe.\r\n\r\n# Dates\r\n\r\nOfficially, here's the plan:\r\n\r\n1. March 8th (12pm Pacific): Create a `release-3.4` branch, and update the version to `3.4.0-rc`. `master` is locked from receiving new feature-work that is not 3.4-bound.\r\n    1. Start a build of TypeScript for Visual Studio for our remote testing team.\r\n1. March 13th (12pm Pacific): Last day to adjust the `release-3.4` branch with any feedback we receive.\r\n    * Kick off a final Visual Studio build if necessary.\r\n    * Produce an insiders release for VS Code.\r\n1. Morning of March 14th: The release candidate goes out.\r\n1. March 22nd (12pm Pacific): Merge `master` into `release-3.4` one last time, finalize the version as `3.4.1`. `master` is unlocked. Critical changes for 3.4 must be ported in.\r\n    1. Start a build of TypeScript for Visual Studio for our remote testing team.\r\n1. March 27th (12pm Pacific): Last day to adjust the `release-3.4` branch with any feedback we receive.\r\n    * Kick off a final Visual Studio build if necessary.\r\n    * Produce an insiders release for VS Code.\r\n1. March 28th: Announcing TypeScript 3.4 🚀\r\n\r\n# Conclusions\r\n\r\nHow to read this:\r\n\r\nSymbol | Meaning\r\n-------|--------\r\n✅    | Work item is done\r\n🏃🏻‍️     | Work item is in progress\r\n📖👀   | Work item is in review\r\n🤔    | Work item is in speculative planning phase\r\n\r\n## Expected Work Items\r\n\r\n* Language\r\n    * [`const` contexts](https://github.com/Microsoft/TypeScript/pull/29510) ✅\r\n    * [`readonly` tuple/array type modifiers](https://github.com/Microsoft/TypeScript/pull/29435) ✅\r\n    * Various inference improvements\r\n        * https://github.com/Microsoft/TypeScript/pull/30114\r\n        * https://github.com/Microsoft/TypeScript/pull/30215\r\n        * https://github.com/Microsoft/TypeScript/pull/29478\r\n    * [`globalThis`](https://github.com/Microsoft/TypeScript/pull/29332) ✅\r\n* Compiler\r\n    * [Incremental build digests for cold builds](https://github.com/Microsoft/TypeScript/pull/29813) ✅\r\n    * [APIs for composite projects (`--build` mode)](https://github.com/Microsoft/TypeScript/issues/29978) 🏃\r\n    * Investigate plugin API 🏃\r\n* Language service\r\n    * [Convert to named parameters](https://github.com/Microsoft/TypeScript/issues/23552) ✅\r\n    * [Smart Select API](https://github.com/Microsoft/TypeScript/issues/29071) 🤔\r\n    * [Convert function expression to arrow function, vice versa](https://github.com/Microsoft/TypeScript/pull/28250) 📖👀\r\n* Infrastructure\r\n    * Benchmarking infrastructure ✅\r\n    * [Moving builds to Gulp](https://github.com/Microsoft/TypeScript/pull/29085) ✅\r\n    * DefinitelyTyped infrastructure ✅\r\n    * Automated testing language service infrastructure for real world code 🤔\r\n    * ESLint parity with TSLint for semantic checking 🏃\r\n\r\n## Deferred Work Items\r\n\r\n* [Negate",
+    "reactions": 89,
+    "created_at": "2019-03-08T22:44:08Z",
+    "updated_at": "2019-04-01T22:52:38Z",
+    "labels": [
+      "Planning"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/30281",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/30281",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
     "already_resurrected": false
   },
   {
@@ -3320,6 +3390,23 @@
   },
   {
     "repo": "microsoft/TypeScript",
+    "issue_number": 54298,
+    "title": "TypeScript 5.2 Iteration Plan",
+    "body": "This document outlines our focused tasks for TypeScript 5.2. It minimally indicates intent to investigate tasks or contribute to an implementation. Nothing is set in stone, but we will strive to complete these tasks in a reasonable timeframe.\r\n\r\nDate       | Event\r\n-----------|-------------------------\r\n2023-05-30 | TypeScript 5.1 Release\r\n2023-06-23 | Create 5.2 Beta (5.2.0) Build for Testing\r\n2023-06-27 | **TypeScript 5.2 Beta Release**\r\n2023-08-04 | Create 5.2 RC (5.2.1) Build for Testing\r\n2023-08-08 | **TypeScript 5.2 RC Release**\r\n2023-08-18 | Create 5.2 Final (5.2.2) Build for Testing\r\n2023-08-22 | **TypeScript 5.2 Final Release** 🚀\r\n\r\n```mermaid\r\ngantt\r\n    dateFormat  YYYY-MM-DD\r\n    TypeScript 5.1 Stabilization Period : 2023-05-15, 2023-05-30\r\n    TypeScript 5.2 Beta Development : 2023-05-15, 2023-06-27\r\n    TypeScript 5.2 RC Development : 2023-06-27, 2023-08-04\r\n    TypeScript 5.2 Stabilization Period : 2023-08-04, 2023-08-22\r\ntodayMarker stroke-width:5px,stroke:#0f0,opacity:0.5\r\n```\r\n\r\n# Compiler and Language\r\n\r\n* [Decorator Metadata](https://github.com/microsoft/TypeScript/issues/53461)\r\n* [`using` Declarations](https://github.com/microsoft/TypeScript/issues/52955)\r\n* [`Array` method signature merging](https://github.com/microsoft/TypeScript/pull/53489)\r\n* [Investigate Type Argument Placeholders](https://github.com/microsoft/TypeScript/pull/26349)\r\n* [Investigate Plugins for File-Watching](https://github.com/microsoft/TypeScript/pull/51074)\r\n* [Investigate Custom Transformers in `tsc`](https://github.com/microsoft/TypeScript/issues/54276)\r\n* [Investigate Function Implementations Returning Indexed Access and Conditional Types](https://github.com/microsoft/TypeScript/issues/33014)\r\n* [Investigate Interop Across TypeScript and Bundlers for Default Imports](https://github.com/microsoft/TypeScript/issues/54102)\r\n* [`lib.d.ts` Updates](https://github.com/microsoft/TypeScript/issues/54280)\r\n\r\n# Editor and Language Service\r\n\r\n* [Refactor to Inline Variable](https://github.com/microsoft/TypeScript/issues/18459)\r\n* [Open-Ended String Completions](https://github.com/microsoft/TypeScript/issues/29729)\r\n* [Full Program Loads and ATA in vscode.dev](https://github.com/microsoft/vscode/issues/182791)\r\n* [Trailing Comma Completions for Object Members](https://github.com/microsoft/TypeScript/issues/52604)\r\n* [Completion Commit Characters](https://github.com/microsoft/TypeScript/issues/27623)\r\n* [Organize Imports Respecting `type` Imports](https://github.com/microsoft/TypeScript/issues/52820)\r\n* [Experiment with Better Names for Extracted Code](https://github.com/microsoft/vscode/issues/182779)\r\n* [Specify Node.js Executable for TSServer in VS Code](https://github.com/microsoft/vscode/issues/151245)\r\n* [Address Crawler-Detected Crashes](https://github.com/microsoft/TypeScript/issues?q=is%3Aissue+is%3Aopen+label%3ACrawler-Detected%2COld-Crawler-Detected+)\r\n\r\n# Performance\r\n\r\n* [Investigate Parallelized Parsing](https://github.com/microsoft/TypeScript/iss",
+    "reactions": 76,
+    "created_at": "2023-05-17T20:04:59Z",
+    "updated_at": "2024-01-05T19:57:35Z",
+    "labels": [
+      "Planning"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/54298",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/54298",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
     "issue_number": 23812,
     "title": "Better support for 'defaultProps' in JSX",
     "body": "This proposal aims to fix problems around React's use of `defaultProps`, which TypeScript has trouble understanding today.\r\n\r\n# Background\r\n\r\nToday, React has a concept called `defaultProps`; these are props that an external user of a component may consider optional, but are *always* present in the component definition.\r\n\r\n```ts\r\nexport class Greeting extends React.Component {\r\n  static defaultProps = {\r\n    name: 'stranger'\r\n  }\r\n\r\n  render() {\r\n    return (\r\n      <div>Hello, {this.props.name}</div>\r\n    )\r\n  }\r\n}\r\n\r\nlet myElement1 = <Greeting name=\"Daniel!\"/>; // <div>Hello, Daniel!</div>\r\nlet myElement2 = <Greeting />;               // <div>Hello, stranger</div>\r\n```\r\n\r\nUnfortunately, TypeScript `--strictNullChecks` users who want to take advantage of this are in a tough spot.\r\nThey can either specify these props as optional and assert that defaulted properties are present internally,\r\n\r\n```ts\r\nexport interface GreetingProps {\r\n  name?: string\r\n}\r\n\r\nexport class Greeting extends React.Component<GreetingProps> {\r\n  static defaultProps = {\r\n    name: 'stranger'\r\n  }\r\n\r\n  render() {\r\n    // Notice the non-null assertion!\r\n    //                           | |\r\n    //                           | |\r\n    //                           \\ /\r\n    //                            V\r\n    return (\r\n      <div>Hello, {this.props.name!.toUpperCase()}</div>\r\n    )\r\n  }\r\n}\r\n```\r\n\r\nor they can jump through levels of indirection:\r\n\r\n```ts\r\nexport interface GreetingProps {\r\n  name?: string\r\n}\r\n\r\n// Notice we are using a 'const' declaration here!\r\nexport const Greeting: React.Component<GreetingProps> = class extends React.Component<GreetingProps> {\r\n  static defaultProps = {\r\n    name: 'stranger'\r\n  }\r\n\r\n  render() {\r\n    return (\r\n      <div>Hello, {this.props.name!.toUpperCase()}</div>\r\n    )\r\n  }\r\n}\r\n```\r\n\r\n# Proposals\r\n\r\n## Using resolution semantics of the JSX factory\r\n\r\nUsers can already emulate this behavior with `React.createElement`: https://tinyurl.com/y9jbptt9\r\n\r\n```ts\r\n// React-like API\r\n\r\nexport interface Component<P> {\r\n    props: P;\r\n}\r\n\r\nexport interface ComponentClass<P, Defaults = void> {\r\n    new(props: P): Component<P>;\r\n    defaultProps: Defaults;\r\n}\r\n\r\nexport interface Element<P> {\r\n    type: string | ComponentClass<P>;\r\n    props: P;\r\n}\r\n\r\n// Some additions\r\n\r\ntype Defaultize<T, Defaults> =\r\n    & Partial<Pick<T, Extract<keyof T, keyof Defaults>>>\r\n    & Pick<T, Exclude<keyof T, keyof Defaults>>;\r\n\r\ndeclare function createElement<Props, Defaults>(\r\n    type: ComponentClass<Props, Defaults>,\r\n    props: Defaultize<Props, Defaults> | null):\r\n    Element<Props>\r\n\r\n// Now comes your code...\r\n\r\nclass FooComponent {\r\n    props: { hello: string, world: number };\r\n    static defaultProps: { hello: \"hello\" };\r\n}\r\n\r\n// works: 'hello' got defaulted\r\ncreateElement(FooComponent, { world: 100 });\r\n\r\n// error: missing 'world'\r\ncreateElement(FooComponent, { hello: \"hello\" });\r\n```\r\n\r\nIn theory, just passing the right data to the JSX factory should do the work f",
@@ -3448,6 +3535,23 @@
   },
   {
     "repo": "microsoft/TypeScript",
+    "issue_number": 24993,
+    "title": "Better TypeScript coverage support in Istanbul",
+    "body": "Hello Ben Coe here 👋, I maintain the [nyc](https://github.com/istanbuljs/nyc) and [istanbuljs](https://github.com/istanbuljs/istanbuljs) test coverage tools.\r\n\r\nA good chunk of the bug reports opened on these repos relate to TypeScript parsing:\r\n\r\nhttps://github.com/istanbuljs/nyc/issues?q=is%3Aissue+is%3Aopen+label%3ATypeScript\r\n\r\nGiven that:\r\n\r\n1. TypeScript is wildly popular, and continues to become more popular.\r\n2. folks want to collect coverage information as part of the testing cycle for their TypeScript projects.\r\n\r\nI would _love_ to work with you to add better TypeScript support to Istanbul. \r\n\r\nIstanbul uses babel behind the scenes for instrumentation, I think that [babel-preset-typescript](https://github.com/babel/babel/tree/master/packages/babel-preset-typescript) could potentially be a good starting point for pulling this off -- perhaps we could simply swap out the underlying JavaScript parser for a TypeScript parser based on a flag?\r\n\r\nIs there anyone on your end who might be interested in this joint project with the Istanbul folks?\r\n\r\n_flagging a couple folks on the Babel project too, in case they're at all interested in giving their two cents:_\r\n\r\nCC: @hzoo, @loganfsmyth.",
+    "reactions": 74,
+    "created_at": "2018-06-15T16:46:29Z",
+    "updated_at": "2019-03-11T10:00:03Z",
+    "labels": [
+      "External"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/24993",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/24993",
+    "author_login": "bcoe",
+    "author_profile": "https://github.com/bcoe",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
     "issue_number": 6395,
     "title": "Using lookahead to detect generic JSX elements?",
     "body": "_Initially from a [couple](https://github.com/Microsoft/TypeScript/issues/3960#issuecomment-165375803) [different](https://github.com/Microsoft/TypeScript/issues/3960#issuecomment-132192858) comments, but elaborated here._\n\nCurrently, in order to use a generic JSX element, you must alias both the type and interface to a non-generic specialization.\n\n``` ts\nclass Select<T> extends React.Component<SelectProps<T>, any> {}\n\n// Alias\ntype StringSelect = new () => Select<string>\nconst StringSelect = <StringSelect> Select\n\nconst Form = () => <StringSelect items={['a','b']} />\n```\n\nIt would be a _lot_ more convenient and consistent to use something like this:\n\n``` ts\nconst Form = () => <Select<string> items={['a', 'b']} />\n```\n\nIn order to differentiate the latter, you can use a single token of lookahead in the parser to know if it's a generic JSX element:\n- If the next token is a `<`, like in `< Select <`, then consume the rest of the type as a generic type. After consuming that:\n  - If the next token is a `>`, then finish the type as a generic type cast.\n  - If the next token is an identifier or a `{` (for spread attributes, when they get implemented), then parse the rest as a JSX element.\n  - Otherwise, parse the rest as a type cast.\n- If the next token is a `>`, like in `< Select >`, then finish the type as a simple type cast.\n- If the next token is an identifier or a `{`, then parse the rest as a JSX element.\n- Otherwise, consume the rest as a type cast.\n\nI don't know of any reason that wouldn't be feasible to do, considering async arrow functions, which are [already implemented](https://github.com/Microsoft/TypeScript/pull/5231), require potentially a whole call expression of parsing to differentiate between `let f = async (x, y)`, which is a call expression, and `let f = async (x, y) => x`, which is an async arrow function. (I feel sorry for whoever ends up implementing that in V8, which doesn't support any backtracking or much lookahead for memory reasons.)\n\n/cc @RyanCavanaugh \n",
@@ -3484,6 +3588,23 @@
     "html_url": "https://github.com/microsoft/TypeScript/issues/29118",
     "author_login": "mutech",
     "author_profile": "https://github.com/mutech",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 53031,
+    "title": "TypeScript 5.1 Iteration Plan",
+    "body": "This document outlines our focused tasks for TypeScript 5.1. It minimally indicates intent to investigate tasks or contribute to an implementation. Nothing is set in stone, but we will strive to complete these tasks in a reasonable timeframe.\r\n\r\nDate           | Event\r\n---------------|-------------------------\r\nMarch 16th     | TypeScript 5.0 Release\r\nApril 14th     | Create 5.1 Beta (5.1.0) Build for Testing\r\nApril 18th     | **TypeScript 5.1 Beta Release**\r\nMay 12th       | Create 5.1 RC (5.1.1) Build for Testing\r\nMay 18th       | **TypeScript 5.1 RC Release**\r\nMay 26th       | Create 5.1 Final (5.1.2) Build for Testing\r\nMay 30th       | **TypeScript 5.1 Final Release** 🚀\r\n\r\n\r\n```mermaid\r\ngantt\r\n    dateFormat  YYYY-MM-DD\r\n    TypeScript 5.0 Stabilization Period : 2023-02-24, 2023-03-10\r\n    TypeScript 5.1 Beta Development : 2023-02-27, 2023-04-14\r\n    TypeScript 5.1 RC Development : 2023-04-14, 2023-05-12\r\n    TypeScript 5.1 Stabilization Period : 2023-05-12, 2023-05-26\r\ntodayMarker stroke-width:5px,stroke:#0f0,opacity:0.5\r\n```\r\n\r\n# Compiler\r\n\r\n* [`using` Declarations](https://github.com/microsoft/TypeScript/issues/52955)\r\n* [Investigate Improved Inference and Checking Between Overloads](https://github.com/microsoft/TypeScript/pull/52944)\r\n* [Investigate Consulting JSX Factories](https://github.com/microsoft/TypeScript/issues/14729)\r\n* [Improved `typeRoots` Behaviors](https://github.com/microsoft/TypeScript/pull/51715)\r\n* [Investigate Custom File-Watching](https://github.com/microsoft/TypeScript/pull/51074)\r\n* [`lib.d.ts` Updates](https://github.com/microsoft/TypeScript/issues/52956)\r\n\r\n# Language Service\r\n\r\n* [Move to Existing File](https://github.com/microsoft/TypeScript/issues/29988)\r\n* [Mirror Cursor for JSX](https://github.com/microsoft/TypeScript/issues/51832)\r\n* [`@param` Snippet Completions](https://github.com/microsoft/TypeScript/issues/52370)\r\n* [Auto-Separating Object Literal Completions](https://github.com/microsoft/TypeScript/pull/52899)\r\n* [Support *Go to Source Definition* UX Improvements](https://github.com/microsoft/vscode/issues/152252)\r\n* [Organize Type Imports](https://github.com/microsoft/TypeScript/issues/52820)\r\n* [Automatic Type Acquisition in Web Contexts](https://github.com/microsoft/vscode/issues/172887)\r\n* [Address Crawler-Detected Crashes](https://github.com/microsoft/TypeScript/issues?q=is%3Aissue+is%3Aopen+label%3ACrawler-Detected%2COld-Crawler-Detected+)\r\n\r\n# Performance\r\n\r\n* [Expand Performance Suite](https://github.com/microsoft/TypeScript/issues/44033)\r\n* [Optimize JSDoc Parsing](https://github.com/microsoft/TypeScript/issues/52959)\r\n* [Reduce Path Probing During Resolution](https://github.com/microsoft/TypeScript/issues/52695)\r\n* [Investigate Caching Resolutions in `.tsbuildinfo`](https://github.com/microsoft/TypeScript/pull/50007)\r\n* [Tooling for Inline Cache and Hidden Class Analysis](https://github.com/microsoft/TypeScript/issues/44211)\r\n\r\n# Infrastructure\r\n\r\n* [Move to npm for Bootstrapping](https://gith",
+    "reactions": 73,
+    "created_at": "2023-02-28T21:17:12Z",
+    "updated_at": "2024-01-05T19:57:31Z",
+    "labels": [
+      "Planning"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/53031",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/53031",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
     "already_resurrected": false
   },
   {
@@ -3592,6 +3713,25 @@
     "html_url": "https://github.com/microsoft/TypeScript/issues/14377",
     "author_login": "mhegazy",
     "author_profile": "https://github.com/mhegazy",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 25082,
+    "title": "Proposal: Code Fix -- Convert Promise Handlers to Async and Await",
+    "body": "This proposal allows the Typescript language service to automatically refactor code that uses Promise methods such as `.then()` or `.catch()` to instead use the `async` and `await` keywords.\r\n\r\nAsync/await offers many advantages over promise methods including cleaner syntax, error handling, debugging, and readability. The benefits of the synchronous style code provided by async/await are largely recognized by the Javascript community. However, there is still a substantial amount of asynchronous code written using Promises. This proposal will provide a quick and simple transition to using the async/await keywords. \r\n\r\n![promisetoasync2](https://user-images.githubusercontent.com/8715900/41627126-cf5b40ea-73d3-11e8-97a4-91fef90b208a.gif)\r\n\r\n\r\n## Simple Examples\r\n**Input:** \r\n```ts\r\nfunction ex1(): Promise<boolean> {\r\n    return fetch('https://microsoft.com').then( result => result.ok; );\r\n}\r\n```\r\n**Output:**\r\n```ts\r\nasync function ex1(): Promise<boolean> {\r\n    let result = await fetch('https://microsoft.com');\r\n    return result.ok; \r\n}\r\n\r\n````\r\n---\r\n\r\n**onRejected handlers:**\r\n\r\n**Input:**\r\n```ts\r\nfunction ex2(): Promise<void> {\r\n    return fetch('https://microsoft.com').then( result => console.log(result), rej => console.log(\"error\", rej) );\r\n}\r\n```\r\n**Output:**\r\n```ts\r\nasync function ex2(): Promise<void> {\r\n    let result;\r\n    try {\r\n        result = await fetch('https://microsoft.com');\r\n    }\r\n    catch (rej) {\r\n        return console.log(\"error:\", rej);\r\n    }\r\n    return result.ok;\r\n}\r\n```\r\nNote that this conversion does not preserve semantics. In order to create clean, readable code, the semantics of some code is slightly altered. \r\n\r\n---\r\n**Catch handlers:**\r\n**Input:**\r\n````ts\r\nfunction ex3():Promise<void> {\r\n    return fetch('https://microsoft.com').then(result => console.log(result)).catch(err => console.log(err));\r\n}\r\n````\r\n**Output:**\r\n```ts\r\nasync function ex3():Promise<void> {\r\n    let result;\r\n    try {\r\n        result = await fetch('https://microsoft.com');\r\n        await console.log(result);\r\n    }\r\n    catch (err) {\r\n        await console.log(err);\r\n    }\r\n}\r\n````\r\n---\r\n## More Examples - multiple handlers\r\n\r\n**Multiple .then() calls:**\r\nIn situations where variable names intersect, a new variable name will be chosen for intermediate variables. For example:\r\n\r\n**Input:**\r\n````ts\r\nfunction ex4():Promise<boolean> {\r\n    return fetch('https://microsoft.com').then(res).then(res2);\r\n}\r\nfunction res(result){\r\n    return result.ok;\r\n}\r\n\r\nfunction res2(result){\r\n   console.log(result);\r\n}\r\n````\r\n**Output:**\r\n````ts\r\nasync function ex4():Promise<boolean> {\r\n    let result = await fetch('https://microsoft.com');\r\n    let temp = await res(result);\r\n    return res2(temp);\r\n}\r\n\r\nfunction res(result){\r\n    return result.ok;\r\n}\r\n\r\nfunction res2(result){\r\n    console.log(result);\r\n}\r\n````\r\n\r\n**Multiple .catch() calls**\r\n**Input:**\r\n````ts\r\nfunction ex5(): Promise<void> {\r\n    return fetch('https://microsoft.com').then(res => console.log(res)).",
+    "reactions": 69,
+    "created_at": "2018-06-19T22:30:50Z",
+    "updated_at": "2018-08-22T21:20:52Z",
+    "labels": [
+      "Suggestion",
+      "Committed",
+      "Domain: LS: Refactorings"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/25082",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/25082",
+    "author_login": "elizabethdinella",
+    "author_profile": "https://github.com/elizabethdinella",
     "already_resurrected": false
   },
   {
@@ -3717,6 +3857,28 @@
     "html_url": "https://github.com/microsoft/TypeScript/issues/1479",
     "author_login": "technicalmedia",
     "author_profile": "https://github.com/technicalmedia",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 29978,
+    "title": "Provide --build/--incremental APIs for build tools",
+    "body": "When we added support for composite projects and implemented `--build` mode (https://github.com/Microsoft/TypeScript/issues/3469, https://github.com/Microsoft/TypeScript/issues/25600), we only provided a few APIs, but not enough that 3rd party tools could defer to TypeScript's understanding of composite projects to instruct these tools how to build intelligently.\r\n\r\nWe'd like to provide some stable API so tools like gulp and Webpack can easily operate over composite projects with project references.",
+    "reactions": 68,
+    "created_at": "2019-02-19T21:43:21Z",
+    "updated_at": "2019-07-13T00:35:54Z",
+    "labels": [
+      "Suggestion",
+      "Committed",
+      "Domain: API",
+      "Scenario: Monorepos & Cross-Project References",
+      "Domain: tsc -b",
+      "Domain: tsc: --incremental"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/29978",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/29978",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
     "already_resurrected": false
   },
   {
@@ -3955,6 +4117,23 @@
   },
   {
     "repo": "microsoft/TypeScript",
+    "issue_number": 31983,
+    "title": "What do you not like about the TypeScript Website and Documentation?",
+    "body": "## What do you not like about the TypeScript Website and Documentation?\r\n\r\nHey folks, we, the TypeScript team at Microsoft, are planning a full re-think of our website to match our [revised handbook](https://github.com/microsoft/TypeScript-New-Handbook). The team has a lot of our own ideas about the current deficiencies of the site and what we'd like to improve, but we also want to open the floor to others to pitch ideas.\r\n\r\nWe saw a format which worked well for these sorts of discussions from the React Native team in https://github.com/react-native-community/discussions-and-proposals/issues/64 which is for people to reply to this issue with a single idea per comment. \r\n\r\n**Please do** reply with 1 comment per issue which you are having with the website, documentation, resources, process, playground etc. Add tags if you'd like to help with search for others and ease-of classification. If you have a link to an existing issue, that would be super useful too.\r\n\r\nIf you see that someone has already pitched your idea, please use the emoji reactions to +1 it, we will be deleting duplicates and off-topic replies. If you want to add more to a topic, see if it has an attached issue and leave more feedback there.\r\n\r\n**Please do not** use this thread for discussions about the TypeScript language itself, and as with all issues please conform to the [code of conduct](https://github.com/microsoft/TypeScript/blob/master/CODE_OF_CONDUCT.md). We all want to see improvements.\r\n\r\n\r\n**Template** - feel free to copy & paste\r\n\r\n```md\r\n### [title]\r\n\r\n[message]\r\n\r\nTags: `[tags]`\r\n```\r\n\r\n## For example\r\n\r\nOne of mine:\r\n\r\n----\r\n\r\n### Website is closed source\r\n\r\nI would like to contribute fixes and improvements, but because I don't have the ability\r\nto do this while the repo is private\r\n\r\nTags: `oss`\r\n\r\n---",
+    "reactions": 62,
+    "created_at": "2019-06-19T17:21:10Z",
+    "updated_at": "2021-05-10T19:38:43Z",
+    "labels": [
+      "Discussion"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/31983",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/31983",
+    "author_login": "orta",
+    "author_profile": "https://github.com/orta",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
     "issue_number": 52460,
     "title": "Path completions for Node.js subpath imports",
     "body": "# Suggestion\r\n\r\nNode.js for a while has a way to define [import aliases (known as subpath imports)](url) in `package.json` file. The subpath imports also work fine when I compile my code using `tsc` and inside my code editor (VSCode).\r\n\r\nHowever, as I type the import path in my code editor, no suggestions related to subpath imports are shown.\r\n\r\nGiven, I have the following subpath import alias inside `package.json`.\r\n\r\n```json\r\n{\r\n  \"imports\": {\r\n    \"#controllers/*\": \"./app/controllers/*.js\"\r\n  }\r\n}\r\n```\r\n\r\nI should be able to type `#controllers` and get suggestions. Infact, using an export symbol from one of the controller files should write the auto-import using the alias.\r\n\r\n### `tsconfig.json`\r\n\r\nFollowing is a trimmed down version of my `tsconfig.json` file.\r\n\r\n```json\r\n{\r\n  \"compilerOptions\": {\r\n    \"target\": \"ESNext\",\r\n    \"module\": \"NodeNext\",\r\n    \"lib\": [\"ESNext\"],\r\n    \"rootDir\": \"./\",\r\n    \"outDir\": \"./build\",\r\n    \"esModuleInterop\": true,\r\n    \"skipLibCheck\": true,\r\n    \"types\": [\"@types/node\"]\r\n  },\r\n  \"include\": [\"./**/*\"],\r\n  \"exclude\": [\"./node_modules\", \"./build\"]\r\n}\r\n```\r\n\r\n## 🔍 Search Terms\r\n\r\n- Node subpath imports\r\n- Auto complete subpath imports\r\n- Redirected by https://github.com/microsoft/vscode/issues/128064\r\n\r\n## ✅ Viability Checklist\r\n\r\n* [x] This wouldn't be a breaking change in existing TypeScript/JavaScript code\r\n* [x] This wouldn't change the runtime behavior of existing JavaScript code\r\n* [x] This could be implemented without emitting different JS based on the types of the expressions\r\n* [x] This isn't a runtime feature (e.g. library functionality, non-ECMAScript syntax with JavaScript output, new syntax sugar for JS, etc.)\r\n* [x] This feature would agree with the rest of [TypeScript's Design Goals](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Design-Goals).\r\n\r\n\r\n## ⭐ Suggestion\r\nSince, TypeScript can understand and compile subpath imports, it will be great, if they are also suggested during import autocomplete\r\n\r\n\r\n## 📃 Motivating Example\r\n\r\nHave nice experience of auto-importing files with aliases.\r\n\r\n\r\n## 💻 Use Cases\r\n\r\nRight now, I have to either manually type the complete import statement by hand. Or type the export symbol name and update the import path to use the subpath alias.\r\n\r\nAttaching a small screen recording of the same\r\n\r\n\r\nhttps://user-images.githubusercontent.com/1706381/215099932-cf274151-6882-4a14-ba49-3b127a9231e3.mov\r\n\r\n",
@@ -4111,6 +4290,23 @@
     "html_url": "https://github.com/microsoft/TypeScript/issues/183",
     "author_login": "fdecampredon",
     "author_profile": "https://github.com/fdecampredon",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 57475,
+    "title": "TypeScript 5.5 Iteration Plan",
+    "body": "This document outlines our focused tasks for TypeScript 5.5. It minimally indicates intent to investigate tasks or contribute to an implementation. Nothing is set in stone, but we will strive to complete these tasks in a reasonable timeframe.\r\n\r\nDate           | Event\r\n---------------|-------------------------\r\n2024-03-05     | TypeScript 5.4 Release\r\n2024-04-19     | Create 5.5 Beta (5.5.0) Build for Testing\r\n2024-04-24     | **TypeScript 5.5 Beta Release**\r\n2024-05-31     | Create 5.5 RC (5.5.1) Build for Testing\r\n2024-06-04     | **TypeScript 5.5 RC Release**\r\n2024-06-14     | Create 5.5 Final (5.5.2) Build for Testing\r\n2024-06-18     | **TypeScript 5.5 Final Release** 🚀\r\n\r\n```mermaid\r\ngantt\r\n    dateFormat  YYYY-MM-DD\r\n    TypeScript 5.4 Stabilization Period : 2024-02-16, 2024-03-05\r\n    TypeScript 5.5 Beta Development : 2024-02-16, 2024-04-19\r\n    TypeScript 5.5 RC Development : 2024-04-20, 2024-05-31\r\n    TypeScript 5.5 Stabilization Period : 2024-06-01, 2024-06-18\r\ntodayMarker stroke-width:5px,stroke:#0f0,opacity:0.5\r\n```\r\n\r\n# Compiler and Language\r\n\r\n* [The `--isolatedDeclarations` Flag](https://github.com/microsoft/TypeScript/pull/53463)\r\n* [Type-Only Imports in JSDoc](https://github.com/microsoft/TypeScript/pull/57207)\r\n* [Non-Null Assertions in JSDoc](https://github.com/microsoft/TypeScript/pull/57042)\r\n* [Regex Syntax Validation](https://github.com/microsoft/TypeScript/pull/55600)\r\n* [Checks for Never-Initialized Variables](https://github.com/microsoft/TypeScript/pull/55887)\r\n* [Allow Implementing Functions That Return Conditional Types](https://github.com/microsoft/TypeScript/issues/33014)\r\n* [Improvements in Extending `tsconfig.json` Files](https://github.com/microsoft/TypeScript/issues/56436)\r\n* [Investigate Recursive Object Type References](https://github.com/microsoft/TypeScript/issues/57034)\r\n* [Investigate Speculation Infrastructure for Overload Resolution](https://github.com/microsoft/TypeScript/pull/57421)\r\n* [Provide Better `default` Import Interop Configurability](https://github.com/microsoft/TypeScript/issues/54102)\r\n* [Improve `default` Import Detection from ECMAScript Modules](https://github.com/microsoft/TypeScript/issues/54752)\r\n* [ECMAScript `Set` Methods](https://github.com/microsoft/TypeScript/pull/57230)\r\n* [`lib.d.ts` Updates](https://github.com/microsoft/TypeScript/issues/57474)\r\n* [Removal of 5.0-Deprecated Functionality in 5.5](https://github.com/microsoft/TypeScript/issues/51909)\r\n\r\n# Editor and Language Service\r\n\r\n* [Auto-Import on Paste](https://github.com/microsoft/TypeScript/issues/50187)\r\n* [Region-Prioritized Error Checking](https://github.com/microsoft/TypeScript/issues/57393)\r\n* [Investigate AI-powered Refactorings](https://github.com/microsoft/vscode/issues/182779)\r\n* [Provide Code Action Ranges](https://github.com/microsoft/TypeScript/issues/57264)\r\n* [TSServer File-Watching Events](https://github.com/microsoft/vscode/pull/193848)\r\n* [Improve Organize Import Ordering](https://github.com/microsoft/Typ",
+    "reactions": 59,
+    "created_at": "2024-02-22T00:54:09Z",
+    "updated_at": "2024-09-10T11:51:26Z",
+    "labels": [
+      "Planning"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/57475",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/57475",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
     "already_resurrected": false
   },
   {
@@ -4447,6 +4643,23 @@
   },
   {
     "repo": "microsoft/TypeScript",
+    "issue_number": 36948,
+    "title": "TypeScript Roadmap: January - December 2020",
+    "body": "# Roadmap Overview\r\n\r\nThis roadmap is meant to give our team and users clarity over our priorities until June. It's meant more as a set of guidelines than as a strict set of tasks we are bound to finish.\r\n\r\nAt a high-level, we're going to be focusing on the following 5 goals:\r\n\r\n* **Types** on every desk, in every home, for every JS developer\r\n* **Productivity** through strong tooling\r\n* **Approachability** and UX\r\n* **Community** engagement\r\n* **Infrastructure** and engineering systems\r\n\r\nThe *how* is broken down into the following sections:\r\n\r\n* [Language design and innovation](#language-design-and-innovation)\r\n* [Developer productivity tools and integration](#developer-productivity-tools-and-integration)\r\n* [Education and UX](#education-and-ux)\r\n* [Community investment](#community-investment)\r\n* [Internal engineering](#internal-engineering)\r\n\r\n<!-- # Retrospective -->\r\nIf you've seen [our last 6-month roadmap](https://github.com/microsoft/TypeScript/issues/33118), you will notice that our goals and areas of investment haven't changed. The biggest changes you might notice are specific work items and amount we'll be focusing on each area of investment.\r\n\r\n# Language design and innovation\r\n\r\n## TypeScript and the core type system\r\n\r\n* Enabling popular JS patterns in a type-safe way\r\n* Increasing expressivity\r\n* Proving relationships between types\r\n* Stricter settings\r\n* Implementing ECMAScript features\r\n\r\nThe goal of TypeScript's type system is to statically model patterns in JavaScript in a reasonable way while catching bugs and enforcing correctness. As more features are added to ECMAScript, and as we notice emerging patterns in the ecosystem, we have more work to do, and because the JavaScript world moves fast, so must we.\r\n\r\nWhile nothing has changed here, new areas of focus might target a few core issues like:\r\n\r\n* running under multiple runtimes with conflicting global declarations\r\n* the nature of `Promise` unwrapping on generic types\r\n* exploring different approaches to nominal types\r\n* experimenting with local type declarations within types\r\n\r\n[**Back to top**](#show_issue)\r\n\r\n## JavaScript: TypeScript beyond TypeScript\r\n\r\n* Making the JavaScript editing experience better\r\n* Smoothing the transition to TypeScript\r\n* Automating the addition of JSDoc types\r\n* Understanding more dynamic patterns\r\n\r\nTypeScript isn't just for TypeScript anymore. Our userbase now includes the JavaScript ecosystem as a whole, whether they are\r\n\r\n* using `.js`/`.jsx` files in editors powered by TypeScript,\r\n* compiling purely with `allowJs`,\r\n* type-checking with `checkJs` (also enabled by the `// @ts-check` comment), or\r\n* transitioning to TypeScript\r\n\r\nWhoever these users are, we believe TypeScript can serve them in some way.\r\n\r\nWe largely expect investment in the following areas:\r\n\r\n* editor tooling\r\n* polish in the existing `.d.ts` file generation from `.js` files\r\n* improving parity for JSDoc mode where appropriate (e.g. fixing up generics and supporting a ",
+    "reactions": 56,
+    "created_at": "2020-02-21T22:40:06Z",
+    "updated_at": "2021-02-20T00:07:58Z",
+    "labels": [
+      "Planning"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/36948",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/36948",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
     "issue_number": 26859,
     "title": "TS Paths not working with index.ts when using a wildcard - more explained inside",
     "body": "Hi,\r\n\r\nI am using paths to point to another project ( I am using lerna), anyway, I have the following path setup.\r\n\r\n```\r\n    \"paths\": {\r\n      \"@test/pkg2/*\": [\r\n        \"./packages/pkg2/src/*\"\r\n      ],\r\n```\r\n\r\nThe problem is that if I do the following, I get an error saying cannot find module.\r\n\r\n```\r\nimport {Something} from \"@test/pkg2\"; // <<<<<<< This errors HERE HERE\r\nimport {TestMe} from '@test/pkg2/item/testme' << This is fine\r\n```\r\n\r\nThe above error can be fixed by appending index.ts after the /pkg2, but it should know the default package name is index.ts if not is specified.\r\n\r\nI can, of course, change the paths to \r\n\r\n      \"@test/pkg2\": [\r\n        \"./packages/pkg2/src\"\r\n      ],\r\n\r\nbut now, of course, it complains about not finding testme (see above). The only way I was able to get it to work was by adding both the paths, but is this really correct ?\r\n\r\nSo, here is what i ended up with, its a lot more code.\r\n\r\n```\r\n   \"paths\": {\r\n      \"@test/pkg2/*\": [\r\n        \"./packages/pkg2/src/*\"\r\n      ],\r\n      \"@test/pkg2\": [\r\n        \"./packages/pkg2/src/\"\r\n      ]\r\n    }\r\n```\r\n",
@@ -4568,6 +4781,26 @@
     "html_url": "https://github.com/microsoft/TypeScript/issues/12996",
     "author_login": "yaooluu",
     "author_profile": "https://github.com/yaooluu",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 35018,
+    "title": "Refactoring to convert && chain to optional chain expression",
+    "body": "```ts\r\ninterface Foo {\r\n    bar?: {\r\n        baz?: string;\r\n    }\r\n}\r\n\r\ndeclare let foo: Foo | undefined;\r\n\r\n[|foo && foo.bar && foo.bar.baz|]\r\n```\r\n\r\nIt should be possible to convert that chain into the following:\r\n\r\n```ts\r\ninterface Foo {\r\n    bar?: {\r\n        baz?: string;\r\n    }\r\n}\r\n\r\ndeclare let foo: Foo | undefined;\r\n\r\nfoo?.bar?.baz;\r\n```",
+    "reactions": 54,
+    "created_at": "2019-11-09T21:32:18Z",
+    "updated_at": "2020-11-06T18:01:45Z",
+    "labels": [
+      "Suggestion",
+      "Committed",
+      "Domain: LS: Refactorings",
+      "Fix Available"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/35018",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/35018",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
     "already_resurrected": false
   },
   {
@@ -4805,6 +5038,47 @@
     "html_url": "https://github.com/microsoft/TypeScript/issues/661",
     "author_login": "yinhaibo01",
     "author_profile": "https://github.com/yinhaibo01",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 52955,
+    "title": "ECMAScript Explicit Resource Management & `using` Declarations",
+    "body": "@rbuckton's proposal for [Explicit Resource Management](https://github.com/tc39/proposal-explicit-resource-management) has reached stage 3 in TC39!\r\n\r\nAs such, it's time for TypeScript to look into its implementation. This proposal carries a few new features that TypeScript should have\r\n\r\n* [`using` declarations](https://github.com/tc39/proposal-explicit-resource-management/tree/22f80f76fe9ed4bd08faff076520fb08b0bf87f9#using-declarations)\r\n* [`Symbol.dispose`](https://github.com/tc39/proposal-explicit-resource-management/tree/22f80f76fe9ed4bd08faff076520fb08b0bf87f9#additions-to-symbol)\r\n* [`SuppressedError`](https://github.com/tc39/proposal-explicit-resource-management/tree/22f80f76fe9ed4bd08faff076520fb08b0bf87f9#the-suppressederror-error)\r\n* [`Iterator.prototype[Symbol.dispose]`](https://github.com/tc39/proposal-explicit-resource-management/tree/22f80f76fe9ed4bd08faff076520fb08b0bf87f9#iteratorprototypedispose)\r\n* Possibly [a new interface called `Disposable`](https://github.com/tc39/proposal-explicit-resource-management/tree/22f80f76fe9ed4bd08faff076520fb08b0bf87f9#the-common-disposable-and-asyncdisposable-interface) ([which I think we should consider calling `DisposableLike`](https://github.com/tc39/proposal-iterator-helpers/issues/116))\r\n* [`DisposableStack`](https://github.com/tc39/proposal-explicit-resource-management/tree/22f80f76fe9ed4bd08faff076520fb08b0bf87f9#disposablestack-and-asyncdisposablestack-container-object)\r\n\r\nWe are in a slightly weird spot here since downlevel emit of `using` is possible, but will require a `lib` of `esnext`.\r\n\r\nGiven that the 5.1 timeframe will be shorter, it would be reasonable for our first stab at this feature to include only support for `--target esnext`.\r\n\r\nNote that since [Async Explicit Resource Management](https://github.com/tc39/proposal-async-explicit-resource-management) has been split off into its own proposal, I'm not suggesting we add it here.",
+    "reactions": 51,
+    "created_at": "2023-02-24T22:39:13Z",
+    "updated_at": "2023-06-22T21:02:59Z",
+    "labels": [
+      "Suggestion",
+      "Committed",
+      "ES Next",
+      "Fix Available"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/52955",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/52955",
+    "author_login": "DanielRosenwasser",
+    "author_profile": "https://github.com/DanielRosenwasser",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 14009,
+    "title": "Observe @private and @protected in JSDocs for Property Suggestions",
+    "body": "<!-- BUGS: Please use this template. -->\r\n<!-- QUESTIONS: This is not a general support forum! Ask Qs at http://stackoverflow.com/questions/tagged/typescript -->\r\n<!-- SUGGESTIONS: See https://github.com/Microsoft/TypeScript-wiki/blob/master/Writing-Good-Design-Proposals.md -->\r\n\r\nFrom: https://github.com/Microsoft/vscode/issues/5163\r\n\r\n**TypeScript Version:**  2.2.0- 20170210\r\n\r\n**Code**\r\n\r\n```js\r\nclass Foo {\r\n    /**\r\n     * abc docs \r\n     * \r\n     * @private\r\n    */\r\n    abc;\r\n\r\n    /**\r\n     * xyz docs\r\n     * \r\n     * @public\r\n     */\r\n    xyz;\r\n\r\n}\r\n\r\n(new Foo()).|\r\n```\r\n\r\n**Expected behavior:**\r\nWhen triggering suggestions on instances of `Foo`, an entry for `abc` is not returned.\r\n\r\n**Actual behavior:**\r\nAll members of `Foo` are returned. The `@private` annotation seems to be ignored.",
+    "reactions": 51,
+    "created_at": "2017-02-11T00:35:11Z",
+    "updated_at": "2020-07-10T13:10:28Z",
+    "labels": [
+      "Suggestion",
+      "Committed",
+      "VS Code Tracked",
+      "Domain: JSDoc",
+      "Domain: JavaScript"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/14009",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/14009",
+    "author_login": "mjbvz",
+    "author_profile": "https://github.com/mjbvz",
     "already_resurrected": false
   },
   {

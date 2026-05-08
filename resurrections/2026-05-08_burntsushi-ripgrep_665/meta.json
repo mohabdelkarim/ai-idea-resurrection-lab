@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-08",
+  "repo": "BurntSushi/ripgrep",
+  "issue_number": 665,
+  "title": "Option to print file paths as file URLs",
+  "reactions": 22,
+  "abandoned_date": "2023-09-25T18:56:21Z",
+  "one_line_why": "This feature succeeds now due to improved terminal and editor support for file URLs.",
+  "impact_score": 5,
+  "effort_hours": 16.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "rust",
+  "technology_tags": [
+    "cli",
+    "ripgrep",
+    "rust",
+    "file-urls"
+  ],
+  "original_url": "https://github.com/BurntSushi/ripgrep/issues/665"
+}

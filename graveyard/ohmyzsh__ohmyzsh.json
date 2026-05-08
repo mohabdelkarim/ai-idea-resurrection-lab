@@ -63,6 +63,23 @@
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 7609,
+    "title": "Why don't Ctrl+Backspace and Ctrl+Delete work?",
+    "body": "It is standard in UI applications to have Ctrl+Backspace delete a word before the cursor (`backwards-kill-word`) and Ctrl+Delete delete a words after the cursor (`kill-word`). In Oh-My-ZSH I can use Alt+Backspace and Ctrl+W for the former and there doesn't seem to be an alternative for the latter. Why is that?\r\n\r\nIt is very easy to implement the standard behavior, I could just add these lines to `lib/key-bindings.zsh`:\r\n```\r\nbindkey '^H' backward-kill-word\r\nbindkey '^[[3;5~' kill-word\r\n```\r\nBut before doing so, I'm interested whether there is a reason not to add this.",
+    "reactions": 52,
+    "created_at": "2019-02-19T12:42:36Z",
+    "updated_at": "2022-11-16T04:48:23Z",
+    "labels": [
+      "Topic: bindkey"
+    ],
+    "url": "https://api.github.com/repos/ohmyzsh/ohmyzsh/issues/7609",
+    "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7609",
+    "author_login": "cshaa",
+    "author_profile": "https://github.com/cshaa",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ohmyzsh/ohmyzsh",
     "issue_number": 9015,
     "title": "Rename OMZ's master branch",
     "body": "We are going rename our primary/main branch and discontinue using `master`.\r\n\r\nProposal to move from `main` (or `stable` as we're also exploring a `beta` branch naming convention for community-driven testing).  @mcornella can help make a call there.\r\n\r\nGiven that our install and update process is reliant on branch names, this will not be a quick nor simple change. ...but it will (and needs to) happen. Thanks in advance for your contributions and patience as we figure out a strategy.\r\n\r\n* * * *\r\n\r\n```[tasklist]\r\n### Tasks\r\n- [ ] Add logic to `upgrade.sh` to locally rename the branch\r\n- [ ] Test branch rename on external fork\r\n- [ ] Test branch rename against zsh plugin managers:\r\n\t- [ ] https://github.com/zsh-users/antigen\r\n\t- [ ] https://github.com/getantibody/antibody\r\n\t- [ ] https://getantidote.github.io/\r\n\t- [ ] https://github.com/tarjoilija/zgen\r\n\t- [ ] https://github.com/zdharma-continuum/zinit\r\n\t- [ ] https://github.com/zplug/zplug\r\n\t- [ ] https://github.com/zpm-zsh/zpm\r\n- [ ] Test branch rename against a fork\r\n- [ ] Rename in GitHub UI\r\n```\r\n",

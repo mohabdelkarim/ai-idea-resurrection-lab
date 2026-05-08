@@ -1259,6 +1259,21 @@
   },
   {
     "repo": "vercel/next.js",
+    "issue_number": 409,
+    "title": "2.0 checklist",
+    "body": "- [x] `next.config.js`\r\n- [x] Upgrade to Webpack 2.0 #287\r\n- [x] Switch to more optimized main bundle / ditch CDN\r\n- [x] Document singleton `Router` API\r\n- [x] Document programmatic server API in README\r\n- [x] Add `config.babel` `Object` + `Function` support\r\n  - [x] Document adding an additional babel transformation in README (`do-expressions`)\r\n- [x] Make sure we flush `head` and CSS upon errors #439\r\n- [x] Add missing `README`s in `examples/` and link to them throughout the README\r\n- [x] Document usage of SSR styling solutions with `<Document>` in `examples/`\r\n  - [x] glamor\r\n  - [x] styled-components\r\n  - [x] styletron\r\n- [x] Incorporate `styled-jsx` and update\r\n  - [x] Readme\r\n  - [ ] Blog post \r\n  - [x] Examples\r\n- [x] Show dev-mode deprecation for `pushTo` and `replaceTo`\r\n- [x] Show dev-mode deprecation notice for `next/css` and point to the glamor example\r\n- [ ] Router events",
+    "reactions": 68,
+    "created_at": "2016-12-16T22:05:24Z",
+    "updated_at": "2018-05-11T14:05:29Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/vercel/next.js/issues/409",
+    "html_url": "https://github.com/vercel/next.js/issues/409",
+    "author_login": "rauchg",
+    "author_profile": "https://github.com/rauchg",
+    "already_resurrected": false
+  },
+  {
+    "repo": "vercel/next.js",
     "issue_number": 6531,
     "title": "Add api reference",
     "body": "Could you please add api reference to the documentation with a detailed description of each method for each entity? To go through the documentation without the ability to see immediately available api, spoils the blood.\r\nAs here https://reactjs.org/docs/react-api.html or here https://vuejs.org/v2/api/\r\nAttempting to sort out and collect piece of information from the documentation, learn, and source code and types, spends a lot of time",
@@ -1422,6 +1437,23 @@
     "html_url": "https://github.com/vercel/next.js/issues/41994",
     "author_login": "karlhorky",
     "author_profile": "https://github.com/karlhorky",
+    "already_resurrected": false
+  },
+  {
+    "repo": "vercel/next.js",
+    "issue_number": 11367,
+    "title": "[Feature Request] View the app \"On Your Network\"",
+    "body": "### View the app \"On Your Network\"\r\n\r\nBy default create-react-app make the app live on `localhost` as well as your network.\r\nThis would make it easier to test on mobile devices. Also the current way has the text mixing in with all the other details and becomes harder to find. I would be better to highlight somehow, maybe draw a box around it.\r\n\r\nEdit: **I opened a PR to solve this #22352**\r\n\r\n```sh\r\n[ info ]  ready on http://localhost:3000\r\n```\r\n\r\n![react](https://user-images.githubusercontent.com/18533307/77638763-af3fa380-6f7d-11ea-8ecb-fdc8115dab4b.jpeg)\r\n",
+    "reactions": 63,
+    "created_at": "2020-03-26T10:59:42Z",
+    "updated_at": "2024-02-21T22:42:38Z",
+    "labels": [
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/vercel/next.js/issues/11367",
+    "html_url": "https://github.com/vercel/next.js/issues/11367",
+    "author_login": "heyitsarpit",
+    "author_profile": "https://github.com/heyitsarpit",
     "already_resurrected": false
   },
   {
@@ -1609,6 +1641,21 @@
   },
   {
     "repo": "vercel/next.js",
+    "issue_number": 1498,
+    "title": "Example of async getInitialProps with functional component",
+    "body": "readme.md\r\n\r\n> \r\n> When you need state, lifecycle hooks or initial data population **you can** export a React.Component (**instead of a stateless function**, like shown above):\r\n> \r\n> ```jsx\r\n> import React from 'react'\r\n> export default class extends React.Component {\r\n>   static async getInitialProps ({ req }) {\r\n>     return req\r\n>       ? { userAgent: req.headers['user-agent'] }\r\n>       : { userAgent: navigator.userAgent }\r\n>   }\r\n>   render () {\r\n>     return <div>\r\n>       Hello World {this.props.userAgent}\r\n>     </div>\r\n>   }\r\n> }\r\n> ```\r\n> \r\n\r\nYou may use also functional component:\r\n```jsx\r\nimport React from 'react'\r\nimport 'isomorphic-fetch'\r\nconst Page = (props) => (\r\n  <div>\r\n    Preact stars: {props.stars}\r\n  </div>\r\n)\r\nPage.getInitialProps = async ({ req }) => {\r\n  const res = await fetch('https://api.github.com/repos/developit/preact')\r\n  const json = await res.json()\r\n  return { stars: json.stargazers_count }\r\n}\r\nexport default Page\r\n```",
+    "reactions": 56,
+    "created_at": "2017-03-24T20:54:38Z",
+    "updated_at": "2019-11-01T11:26:55Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/vercel/next.js/issues/1498",
+    "html_url": "https://github.com/vercel/next.js/issues/1498",
+    "author_login": "comerc",
+    "author_profile": "https://github.com/comerc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "vercel/next.js",
     "issue_number": 18356,
     "title": "_next/image 404 on next build && next export",
     "body": "# Bug report\r\n\r\n## Describe the bug\r\n\r\nImages are 404 on next build && next export. Works properly next build && next start\r\n\r\n## To Reproduce\r\n\r\n1. npx create-next-app --example image-component image-app\r\n2. cd image-app\r\n3. npx next build && npx next export && cd out && npx serve\r\n4. visit localhost:5000\r\n\r\n## Screenshots\r\n\r\n![image](https://user-images.githubusercontent.com/23246308/97381906-08e9c100-1905-11eb-95cc-a0855c433c19.png)\r\n\r\n## System information\r\n\r\n- OS: macOS Mojave\r\n- Version of Next.js: [e.g. 10.0.0]\r\n- Version of Node.js: [e.g. 12.18.4]",
@@ -1738,6 +1785,21 @@
     "html_url": "https://github.com/vercel/next.js/issues/18398",
     "author_login": "piotrzaborow",
     "author_profile": "https://github.com/piotrzaborow",
+    "already_resurrected": false
+  },
+  {
+    "repo": "vercel/next.js",
+    "issue_number": 7177,
+    "title": "[RFC] Serving static files from the root",
+    "body": "# Feature request\r\n\r\n## Is your feature request related to a problem? Please describe.\r\n\r\nAfter seeing some custom server.js usage a clear pattern is people using it to define static file serving from the root. For example for robots.txt or google site verification and other files that have to be served from the root.\r\n\r\n## Describe the solution you'd like\r\n\r\nIdeally users would not have to define this. The common way root serving has been solved is through a `public` directory.\r\n\r\nFor example:\r\n- [Symfony](https://symfony.com/doc/current/configuration/override_dir_structure.html)\r\n- [create-react-app](https://github.com/facebook/create-react-app#yarn)\r\n\r\n\r\n### Notes\r\n\r\nThis also needs to be applied to `@now/next` when implemented.",
+    "reactions": 54,
+    "created_at": "2019-04-27T12:01:46Z",
+    "updated_at": "2020-05-05T21:47:24Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/vercel/next.js/issues/7177",
+    "html_url": "https://github.com/vercel/next.js/issues/7177",
+    "author_login": "timneutkens",
+    "author_profile": "https://github.com/timneutkens",
     "already_resurrected": false
   },
   {
@@ -1894,6 +1956,38 @@
     "html_url": "https://github.com/vercel/next.js/issues/55524",
     "author_login": "wiwo-dev",
     "author_profile": "https://github.com/wiwo-dev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "vercel/next.js",
+    "issue_number": 12434,
+    "title": "pages/_app.js doesn't have getStaticProps ",
+    "body": "# Feature request\r\n\r\nI think _app.js also should have `getStaticProps` as Layout, Providers etc can use it's data.\r\n\r\n(Having that _app.js has getInitialProps it will be good)\r\n\r\n",
+    "reactions": 52,
+    "created_at": "2020-05-03T10:22:59Z",
+    "updated_at": "2021-04-12T13:04:49Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/vercel/next.js/issues/12434",
+    "html_url": "https://github.com/vercel/next.js/issues/12434",
+    "author_login": "istarkov",
+    "author_profile": "https://github.com/istarkov",
+    "already_resurrected": false
+  },
+  {
+    "repo": "vercel/next.js",
+    "issue_number": 4626,
+    "title": "UI to show that code is compiling in the browser window",
+    "body": "Currently, the only way to know that _hot code replacement_ is going to happen (and that the Next.js compiler toolchain is doing work) is to look at the developer console.\r\n\r\nMany times, one is looking at the resulting rendering instead, but it's hard to get an idea of progress.\r\n\r\nI'd like to make this an umbrella thread for gathering ideas and feedback on how to best signal to the developer that work is happening.\r\n\r\nSome requirements:\r\n- The top priority is that it must be non-invasive. Some ideas along these lines \r\n  - [Favicon animation](https://hongkiat.github.io/favicon-canvas-loader/)\r\n     - <img src=\"https://user-images.githubusercontent.com/13041/41511007-95a57606-7223-11e8-9493-5ceb72451f32.gif\" width=\"300\" />\r\n     - The demo works great in Chrome, but not Firefox. I wonder if we can make it work?\r\n  - `window.title` changes\r\n  - onscreen animation with a shadow root / careful style isolation\r\n- It must be unique and identifiable\r\n- It must be very lightweight, even though it will be enabled only during development\r\n\r\nBonus points:\r\n- Like `jest`, we can keep data around about how long each unique path takes to compile, to provide statistically accurate estimates when animating of how long the process is going to take",
+    "reactions": 52,
+    "created_at": "2018-06-17T18:45:33Z",
+    "updated_at": "2022-01-31T14:05:43Z",
+    "labels": [
+      "good first issue"
+    ],
+    "url": "https://api.github.com/repos/vercel/next.js/issues/4626",
+    "html_url": "https://github.com/vercel/next.js/issues/4626",
+    "author_login": "rauchg",
+    "author_profile": "https://github.com/rauchg",
     "already_resurrected": false
   },
   {
