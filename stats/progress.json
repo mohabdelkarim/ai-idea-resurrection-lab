@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-08T17:10:31",
-  "total_resurrections": 8,
-  "total_repos_covered": 2,
-  "average_impact_score": 5.38,
-  "average_effort_hours": 59.5,
+  "last_updated": "2026-05-08T20:13:02",
+  "total_resurrections": 9,
+  "total_repos_covered": 3,
+  "average_impact_score": 5.44,
+  "average_effort_hours": 57.33,
   "top_tags": [
     "rust",
     "ripgrep",
