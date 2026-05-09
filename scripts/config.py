@@ -165,6 +165,8 @@ BOT_NAME = "Resurrection Bot 🧬"
 BOT_EMAIL = "bot@resurrection-lab.dev"
 
 # Single source of truth for abandoned labels — imported by scanner.py
+# NOTE: 'enhancement' and 'feature' removed — they are too broad and exist
+# on virtually every repo, causing too many false-positive "abandoned" matches.
 ABANDONED_LABELS: frozenset[str] = frozenset({
     # Standard wontfix variants
     "wontfix",
@@ -176,9 +178,7 @@ ABANDONED_LABELS: frozenset[str] = frozenset({
     "staled",
     "inactive",
     "no-activity",
-    # Feature requests (closed without implementing)
-    "enhancement",
-    "feature",
+    # Feature requests (specific closed/declined variants only)
     "feature-request",
     "feature request",
     "type: feature",

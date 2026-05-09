@@ -5,6 +5,7 @@ import logging
 import os
 import re
 import time
+import uuid
 from pathlib import Path
 from typing import Any
 
@@ -15,15 +16,64 @@ from config import APPROVED_TECHNOLOGY_TAGS
 
 LOGGER = logging.getLogger(__name__)
 
-ANALYSIS_TEMP_FILE = ".analysis_temp.json"
+# Use a UUID-based temp file per run to prevent race conditions
+# when multiple cron triggers fire concurrently.
+_RUN_ID = uuid.uuid4().hex[:12]
+ANALYSIS_TEMP_FILE = f".analysis_temp_{_RUN_ID}.json"
 
 _TAGS_LOWER = {tag.lower(): tag for tag in APPROVED_TECHNOLOGY_TAGS}
 
 # Maps repo slug → the language its codebase is written in.
 REPO_POC_LANGUAGE: dict[str, str] = {
+    # Microsoft / TypeScript ecosystem
+    "microsoft/vscode": "typescript",
+    "microsoft/TypeScript": "typescript",
+    "microsoft/semantic-kernel": "python",
+    # JavaScript / Node
+    "nodejs/node": "typescript",
+    "facebook/react": "typescript",
+    "vuejs/vue": "typescript",
+    "vercel/next.js": "typescript",
+    "sveltejs/svelte": "typescript",
+    "babel/babel": "typescript",
+    "webpack/webpack": "typescript",
+    "vitejs/vite": "typescript",
+    "prettier/prettier": "typescript",
+    "eslint/eslint": "typescript",
+    "denoland/deno": "typescript",
+    "withastro/astro": "typescript",
+    "remix-run/remix": "typescript",
+    "open-webui/open-webui": "typescript",
+    # Python ecosystem
+    "python/cpython": "python",
+    "django/django": "python",
+    "pallets/flask": "python",
+    "psf/requests": "python",
+    "huggingface/transformers": "python",
+    "pytorch/pytorch": "python",
+    "openai/openai-python": "python",
+    "langchain-ai/langchain": "python",
+    "gradio-app/gradio": "python",
+    "streamlit/streamlit": "python",
+    "run-llama/llama_index": "python",
+    "ggerganov/llama.cpp": "python",
+    "comfyanonymous/ComfyUI": "python",
+    "ansible/ansible": "python",
+    "supabase/supabase": "typescript",
+    # Go ecosystem
+    "golang/go": "go",
     "hashicorp/terraform": "go",
     "hashicorp/vault": "go",
     "hashicorp/packer": "go",
+    "docker/compose": "go",
+    "kubernetes/kubernetes": "go",
+    "grafana/grafana": "go",
+    "prometheus/prometheus": "go",
+    "cli/cli": "go",
+    "charmbracelet/bubbletea": "go",
+    "ollama/ollama": "go",
+    # Rust ecosystem
+    "rust-lang/rust": "rust",
     "BurntSushi/ripgrep": "rust",
     "sharkdp/bat": "rust",
     "sharkdp/fd": "rust",
@@ -31,18 +81,15 @@ REPO_POC_LANGUAGE: dict[str, str] = {
     "starship/starship": "rust",
     "alacritty/alacritty": "rust",
     "zellij-org/zellij": "rust",
-    "cli/cli": "go",
-    "charmbracelet/bubbletea": "go",
-    "ollama/ollama": "go",
-    "openai/openai-python": "python",
-    "langchain-ai/langchain": "python",
-    "gradio-app/gradio": "python",
-    "streamlit/streamlit": "python",
-    "microsoft/semantic-kernel": "python",
-    "run-llama/llama_index": "python",
-    "ggerganov/llama.cpp": "python",
-    "comfyanonymous/ComfyUI": "python",
-    "open-webui/open-webui": "typescript",
+    "tauri-apps/tauri": "rust",
+    "nickel-lang/nickel": "rust",
+    # Other
+    "rails/rails": "python",  # Ruby → closest supported = python for PoC
+    "ohmyzsh/ohmyzsh": "python",
+    "JetBrains/intellij-community": "python",
+    "expressjs/express": "typescript",
+    "redis/redis": "python",
+    "postgres/postgres": "python",
 }
 
 # ---------------------------------------------------------------------------
@@ -250,7 +297,7 @@ def _sanitize_raw_json(raw: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# FIX 2: Read last impact_score per repo to prevent score repetition
+# Read last impact_score per repo to prevent score repetition
 # ---------------------------------------------------------------------------
 
 def _get_last_resurrection_score(repo: str, resurrection_base: str) -> int | None:
@@ -273,7 +320,6 @@ def _get_last_resurrection_score(repo: str, resurrection_base: str) -> int | Non
             meta = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
             if str(meta.get("repo", "")) == repo:
                 score = int(meta.get("impact_score", 0))
-                # Folder name has YYYY-MM-DD prefix — sort chronologically
                 candidates.append((child.name, score))
         except (json.JSONDecodeError, OSError, ValueError):
             continue
@@ -627,7 +673,6 @@ def analyze_issue(issue: dict[str, Any], previous_score: int | None = None) -> d
 def analyze() -> None:
     from config import GRAVEYARD_FOLDER, RESURRECTION_BASE_FOLDER
 
-    # FIX 1: Import rotation helpers directly from scanner to enforce cooldown
     from scanner import is_repo_on_cooldown, mark_repo_used, _load_rotation
 
     rotation = _load_rotation()
@@ -657,7 +702,6 @@ def analyze() -> None:
             repo = str(issue.get("repo", ""))
             issue_number = int(issue.get("issue_number", 0))
 
-            # FIX 1: Skip repos still in rotation cooldown
             if is_repo_on_cooldown(repo, rotation):
                 LOGGER.info(
                     "[Analyzer] Skipping #%d (%s) — repo is in rotation cooldown.",
@@ -672,7 +716,6 @@ def analyze() -> None:
                 )
                 continue
 
-            # FIX 2: Look up last impact_score for this repo to hint LLM for diversity
             previous_score = _get_last_resurrection_score(repo, RESURRECTION_BASE_FOLDER)
             if previous_score is not None:
                 LOGGER.info(
@@ -689,12 +732,12 @@ def analyze() -> None:
                 "issue": issue,
                 "analysis": result["analysis"],
             }
+            # Write to UUID-based temp file to prevent race conditions
             Path(ANALYSIS_TEMP_FILE).write_text(
                 json.dumps(temp_data, indent=2, ensure_ascii=False),
                 encoding="utf-8",
             )
             LOGGER.info("[Analyzer] Analysis saved to %s", ANALYSIS_TEMP_FILE)
-            # Mark this repo as recently used so the scanner rotates away from it.
             mark_repo_used(repo)
             return
 
