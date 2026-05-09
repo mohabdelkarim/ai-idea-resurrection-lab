@@ -74,13 +74,6 @@ def get_issue_folder(base: Path, issue: dict[str, Any]) -> Path:
     return base / folder_name
 
 
-# Keep the old helper around so any external script that imported it doesn't break
-def get_today_folder(base: Path) -> Path:  # noqa: D401
-    """Deprecated — use get_issue_folder() instead."""
-    today = datetime.now().strftime("%Y-%m-%d")
-    return base / f"day-{today}"
-
-
 def build_meta(issue: dict[str, Any], analysis: dict[str, Any], today: str) -> dict[str, Any]:
     meta = {
         "date": today,
@@ -285,8 +278,6 @@ def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Pa
     write_rfc_md(folder, analysis, issue_title)
     meta = build_meta(issue, analysis, today)
     write_meta_json(folder, meta)
-
-    LOGGER.info("Templates folder configured: %s", Path(TEMPLATES_FOLDER))
     LOGGER.info("Resurrection folder ready: %s", folder)
     return folder
 
@@ -294,25 +285,28 @@ def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Pa
 def generate() -> None:
     temp_path = Path(ANALYSIS_TEMP_FILE)
     if not temp_path.exists():
-        raise FileNotFoundError(
-            f"Analysis temp file not found: {ANALYSIS_TEMP_FILE}. "
-            "Make sure the analyzer step ran successfully first."
-        )
+        LOGGER.warning("[Generator] Temp file not found: %s — nothing to generate.", ANALYSIS_TEMP_FILE)
+        return
+    try:
+        data = json.loads(temp_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as e:
+        LOGGER.error("[Generator] Cannot read temp file %s: %s", ANALYSIS_TEMP_FILE, e)
+        return
 
-    with temp_path.open(encoding="utf-8") as f:
-        temp_data = json.load(f)
+    issue = data.get("issue", {})
+    analysis = data.get("analysis", {})
 
-    issue = _sanitize(temp_data["issue"])
-    analysis = _sanitize(temp_data["analysis"])
+    if not issue or not analysis:
+        LOGGER.error("[Generator] Temp file missing 'issue' or 'analysis' keys.")
+        return
 
-    generate_resurrection(issue, analysis)
+    folder = generate_resurrection(issue, analysis)
 
-    repo = str(issue.get("repo", ""))
-    issue_number = int(issue.get("issue_number", 0))
-    if repo and issue_number:
-        from scanner import mark_resurrected
-        mark_resurrected(repo, issue_number)
-        LOGGER.info("Graveyard updated: issue #%d marked as resurrected.", issue_number)
+    # Clean up temp file after successful generation
+    try:
+        temp_path.unlink()
+        LOGGER.info("[Generator] Cleaned up temp file: %s", ANALYSIS_TEMP_FILE)
+    except OSError as e:
+        LOGGER.warning("[Generator] Could not delete temp file %s: %s", ANALYSIS_TEMP_FILE, e)
 
-    temp_path.unlink(missing_ok=True)
-    LOGGER.info("Temp analysis file cleaned up.")
+    LOGGER.info("[Generator] Done. Output: %s", folder)
