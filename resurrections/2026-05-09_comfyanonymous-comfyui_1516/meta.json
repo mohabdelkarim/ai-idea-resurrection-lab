@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-09",
+  "repo": "comfyanonymous/ComfyUI",
+  "issue_number": 1516,
+  "title": "[Feature Request] : Support for W\u00fcrstchen",
+  "reactions": 39,
+  "abandoned_date": "2026-02-19T23:34:01Z",
+  "one_line_why": "With W\u00fcrstchen's performance and the recent updates to the diffusers library, integrating W\u00fcrstchen into ComfyUI can significantly enhance user workflow.",
+  "impact_score": 6,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "ai",
+    "machine learning",
+    "diffusers",
+    "w\u00fcrstchen"
+  ],
+  "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/1516"
+}
