@@ -6,11 +6,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import json
 import logging
-from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
-from config import RESURRECTION_BASE_FOLDER, MAX_DAILY_RESURRECTIONS
+from config import RESURRECTION_BASE_FOLDER
 
 logging.basicConfig(
     level=logging.INFO,
@@ -46,24 +45,6 @@ def export_to_github_env(key: str, value: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as handle:
         handle.write(f"{key}={safe_value}\n")
-
-
-def count_todays_resurrections() -> int:
-    """
-    Count how many resurrection folders were created today (UTC date prefix).
-    Folders follow the pattern: YYYY-MM-DD_<repo-slug>_<issue-number>
-    """
-    today = datetime.utcnow().strftime("%Y-%m-%d")
-    base = Path(RESURRECTION_BASE_FOLDER)
-    if not base.exists():
-        return 0
-    count = 0
-    for child in base.iterdir():
-        if child.is_dir() and child.name.startswith(today):
-            # Only count folders that have a valid meta.json (completed runs)
-            if (child / "meta.json").exists():
-                count += 1
-    return count
 
 
 def run_step(step_name: str, fn: Callable[[], None]) -> bool:
@@ -156,24 +137,6 @@ def export_commit_vars(meta: dict[str, Any]) -> None:
 
 
 def run_pipeline() -> None:
-    # ---------------------------------------------------------------------------
-    # Enforce MAX_DAILY_RESURRECTIONS BEFORE running anything
-    # This is the single source of truth — checked once here so all 3 daily
-    # cron triggers share the same limit. If today's quota is already filled,
-    # the run exits cleanly with code 0 (no commit, no error in GH Actions).
-    # ---------------------------------------------------------------------------
-    todays_count = count_todays_resurrections()
-    if todays_count >= MAX_DAILY_RESURRECTIONS:
-        LOGGER.info(
-            "[Runner] Daily limit reached: %d/%d resurrections done today. Exiting cleanly.",
-            todays_count, MAX_DAILY_RESURRECTIONS,
-        )
-        sys.exit(0)
-    LOGGER.info(
-        "[Runner] Daily quota: %d/%d used today. Proceeding with pipeline.",
-        todays_count, MAX_DAILY_RESURRECTIONS,
-    )
-
     results: list[bool] = []
 
     def _scanner_step() -> None:
