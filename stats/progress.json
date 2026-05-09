@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-09T11:05:12",
-  "total_resurrections": 10,
-  "total_repos_covered": 5,
-  "average_impact_score": 5.7,
-  "average_effort_hours": 73.8,
+  "last_updated": "2026-05-09T14:23:43",
+  "total_resurrections": 11,
+  "total_repos_covered": 6,
+  "average_impact_score": 5.82,
+  "average_effort_hours": 78.0,
   "top_tags": [
     "rust",
     "search",
@@ -32,33 +32,33 @@
     },
     {
       "date": "2026-05-09",
-      "repo": "charmbracelet/bubbletea",
-      "issue_number": 1010,
-      "title": "Proposal: Model v2, program context",
+      "repo": "cli/cli",
+      "issue_number": 273,
+      "title": "Support for GitHub Enterprise",
       "impact_score": 7,
-      "one_line_why": "The proposal succeeds now due to advancements in terminal capabilities, growing Bubble Tea adoption, and the need for more robust.",
-      "original_url": "https://github.com/charmbracelet/bubbletea/issues/1010"
+      "one_line_why": "With recent API advancements and client libraries, implementing GitHub Enterprise support now offers significant benefits to a large user base.",
+      "original_url": "https://github.com/cli/cli/issues/273"
     }
   ],
   "last_resurrection": {
     "date": "2026-05-09",
-    "repo": "charmbracelet/bubbletea",
-    "issue_number": 1010,
-    "title": "Proposal: Model v2, program context",
-    "reactions": 13,
-    "abandoned_date": "2024-08-28T18:11:39Z",
-    "one_line_why": "The proposal succeeds now due to advancements in terminal capabilities, growing Bubble Tea adoption, and the need for more robust.",
+    "repo": "cli/cli",
+    "issue_number": 273,
+    "title": "Support for GitHub Enterprise",
+    "reactions": 229,
+    "abandoned_date": "2020-08-25T15:14:02Z",
+    "one_line_why": "With recent API advancements and client libraries, implementing GitHub Enterprise support now offers significant benefits to a large user base.",
     "impact_score": 7,
     "effort_hours": 120.0,
     "has_poc": false,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
+      "github api",
+      "graphql",
       "go",
-      "terminal",
-      "bubble-tea",
-      "lip-gloss"
+      "microservices"
     ],
-    "original_url": "https://github.com/charmbracelet/bubbletea/issues/1010"
+    "original_url": "https://github.com/cli/cli/issues/273"
   }
 }
