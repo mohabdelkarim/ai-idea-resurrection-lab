@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-09",
+  "repo": "babel/babel",
+  "issue_number": 8741,
+  "title": "[Feature Request] Add Support for const enum in TS",
+  "reactions": 161,
+  "abandoned_date": "2021-11-03T04:03:25Z",
+  "one_line_why": "This feature succeeds now due to advancements in type inference algorithms and growing TypeScript adoption.",
+  "impact_score": 6,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "typescript",
+    "babel",
+    "javascript",
+    "transpilation"
+  ],
+  "original_url": "https://github.com/babel/babel/issues/8741"
+}
