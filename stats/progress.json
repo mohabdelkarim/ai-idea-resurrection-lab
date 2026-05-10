@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-09T16:49:05",
-  "total_resurrections": 12,
-  "total_repos_covered": 7,
-  "average_impact_score": 5.83,
-  "average_effort_hours": 74.83,
+  "last_updated": "2026-05-10T02:52:50",
+  "total_resurrections": 13,
+  "total_repos_covered": 8,
+  "average_impact_score": 6.0,
+  "average_effort_hours": 78.31,
   "top_tags": [
     "rust",
     "search",
@@ -22,6 +22,15 @@
       "original_url": "https://github.com/BurntSushi/ripgrep/issues/176"
     },
     {
+      "date": "2026-05-10",
+      "repo": "denoland/deno",
+      "issue_number": 2473,
+      "title": "1.0",
+      "impact_score": 8,
+      "one_line_why": "With current tooling advancements, Deno can now complete its dev tool support, enabling a stable 1.0 release.",
+      "original_url": "https://github.com/denoland/deno/issues/2473"
+    },
+    {
       "date": "2026-05-08",
       "repo": "alacritty/alacritty",
       "issue_number": 607,
@@ -29,36 +38,27 @@
       "impact_score": 7,
       "one_line_why": "Multiple windows in Alacritty would improve user experience for those using window managers instead of tmux.",
       "original_url": "https://github.com/alacritty/alacritty/issues/607"
-    },
-    {
-      "date": "2026-05-09",
-      "repo": "cli/cli",
-      "issue_number": 273,
-      "title": "Support for GitHub Enterprise",
-      "impact_score": 7,
-      "one_line_why": "With recent API advancements and client libraries, implementing GitHub Enterprise support now offers significant benefits to a large user base.",
-      "original_url": "https://github.com/cli/cli/issues/273"
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-09",
-    "repo": "comfyanonymous/ComfyUI",
-    "issue_number": 1516,
-    "title": "[Feature Request] : Support for W\u00fcrstchen",
-    "reactions": 39,
-    "abandoned_date": "2026-02-19T23:34:01Z",
-    "one_line_why": "With W\u00fcrstchen's performance and the recent updates to the diffusers library, integrating W\u00fcrstchen into ComfyUI can significantly enhance user workflow.",
-    "impact_score": 6,
-    "effort_hours": 40.0,
-    "has_poc": true,
+    "date": "2026-05-10",
+    "repo": "denoland/deno",
+    "issue_number": 2473,
+    "title": "1.0",
+    "reactions": 724,
+    "abandoned_date": "2020-06-27T13:11:32Z",
+    "one_line_why": "With current tooling advancements, Deno can now complete its dev tool support, enabling a stable 1.0 release.",
+    "impact_score": 8,
+    "effort_hours": 120.0,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "ai",
-      "machine learning",
-      "diffusers",
-      "w\u00fcrstchen"
+      "typescript",
+      "rust",
+      "v8",
+      "chrome-devtools"
     ],
-    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/1516"
+    "original_url": "https://github.com/denoland/deno/issues/2473"
   }
 }
