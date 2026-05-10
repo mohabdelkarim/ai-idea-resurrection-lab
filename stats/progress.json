@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-10T14:27:12",
-  "total_resurrections": 14,
-  "total_repos_covered": 9,
+  "last_updated": "2026-05-10T16:49:12",
+  "total_resurrections": 15,
+  "total_repos_covered": 10,
   "average_impact_score": 6.0,
-  "average_effort_hours": 74.43,
+  "average_effort_hours": 72.13,
   "top_tags": [
     "rust",
     "search",
@@ -42,23 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-10",
-    "repo": "docker/compose",
-    "issue_number": 5523,
-    "title": "docker-compose copy file or directory to container",
-    "reactions": 652,
-    "abandoned_date": "2024-04-04T07:02:02Z",
-    "one_line_why": "This feature is essential for users who need to transfer files to containers during development, making it a central workflow.",
+    "repo": "eslint/eslint",
+    "issue_number": 3458,
+    "title": "Support having plugins as dependencies in shareable config",
+    "reactions": 507,
+    "abandoned_date": "2022-09-07T19:56:53Z",
+    "one_line_why": "Supporting plugins as dependencies in shareable configs enhances user experience by minimizing boilerplate.",
     "impact_score": 6,
-    "effort_hours": 24.0,
+    "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "typescript",
     "technology_tags": [
-      "docker",
-      "compose",
-      "go",
-      "file-copy"
+      "eslint",
+      "plugins",
+      "shareable configs",
+      "javascript"
     ],
-    "original_url": "https://github.com/docker/compose/issues/5523"
+    "original_url": "https://github.com/eslint/eslint/issues/3458"
   }
 }
