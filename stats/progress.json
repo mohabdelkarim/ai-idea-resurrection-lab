@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-10T02:52:50",
-  "total_resurrections": 13,
-  "total_repos_covered": 8,
+  "last_updated": "2026-05-10T14:27:12",
+  "total_resurrections": 14,
+  "total_repos_covered": 9,
   "average_impact_score": 6.0,
-  "average_effort_hours": 78.31,
+  "average_effort_hours": 74.43,
   "top_tags": [
     "rust",
     "search",
     "ripgrep",
     "terminal",
-    "cli"
+    "go"
   ],
   "hall_of_fame": [
     {
@@ -42,23 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-10",
-    "repo": "denoland/deno",
-    "issue_number": 2473,
-    "title": "1.0",
-    "reactions": 724,
-    "abandoned_date": "2020-06-27T13:11:32Z",
-    "one_line_why": "With current tooling advancements, Deno can now complete its dev tool support, enabling a stable 1.0 release.",
-    "impact_score": 8,
-    "effort_hours": 120.0,
-    "has_poc": false,
+    "repo": "docker/compose",
+    "issue_number": 5523,
+    "title": "docker-compose copy file or directory to container",
+    "reactions": 652,
+    "abandoned_date": "2024-04-04T07:02:02Z",
+    "one_line_why": "This feature is essential for users who need to transfer files to containers during development, making it a central workflow.",
+    "impact_score": 6,
+    "effort_hours": 24.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "go",
     "technology_tags": [
-      "typescript",
-      "rust",
-      "v8",
-      "chrome-devtools"
+      "docker",
+      "compose",
+      "go",
+      "file-copy"
     ],
-    "original_url": "https://github.com/denoland/deno/issues/2473"
+    "original_url": "https://github.com/docker/compose/issues/5523"
   }
 }
