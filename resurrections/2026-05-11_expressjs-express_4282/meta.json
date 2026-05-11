@@ -1,0 +1,20 @@
+{
+  "date": "2026-05-11",
+  "repo": "expressjs/express",
+  "issue_number": 4282,
+  "title": "Dependencies (5.0)",
+  "reactions": 57,
+  "abandoned_date": "2025-01-11T18:01:33Z",
+  "one_line_why": "This issue succeeds now because Node.js built-in modules have matured, making it safer and more efficient to rely on them.",
+  "impact_score": 7,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "expressjs",
+    "nodejs",
+    "typescript"
+  ],
+  "original_url": "https://github.com/expressjs/express/issues/4282"
+}
