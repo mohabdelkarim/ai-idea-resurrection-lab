@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-11",
+  "repo": "facebook/react",
+  "issue_number": 13525,
+  "title": "React Fire: Modernizing React DOM",
+  "reactions": 2389,
+  "abandoned_date": "2022-09-23T12:27:56Z",
+  "one_line_why": "React Fire succeeds now due to advancements in React, TypeScript, and web development, enabling a more maintainable and efficient implementation.",
+  "impact_score": 8,
+  "effort_hours": 160.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "react",
+    "typescript",
+    "dom",
+    "web development"
+  ],
+  "original_url": "https://github.com/facebook/react/issues/13525"
+}
