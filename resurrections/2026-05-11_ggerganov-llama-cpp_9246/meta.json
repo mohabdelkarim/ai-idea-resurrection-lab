@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-11",
+  "repo": "ggerganov/llama.cpp",
+  "issue_number": 9246,
+  "title": "Feature Request: Support for Qwen2-VL",
+  "reactions": 226,
+  "abandoned_date": "2025-05-25T01:08:25Z",
+  "one_line_why": "The feature request succeeds now due to advancements in model optimization and the growing demand for multimodal models.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "multimodal",
+    "ai",
+    "machine learning",
+    "computer vision"
+  ],
+  "original_url": "https://github.com/ggml-org/llama.cpp/issues/9246"
+}
