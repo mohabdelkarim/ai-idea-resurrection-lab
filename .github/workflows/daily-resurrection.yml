@@ -44,11 +44,11 @@ jobs:
           git config user.name "mohabdelkarim"
           git config user.email "mohaabdelkarim2@gmail.com"
           git add -A
-          git diff --cached --quiet || git commit -m \
-            "feat(resurrection): resurrect ${{ env.ISSUE_REPO }}#${{ env.ISSUE_NUMBER }}
+          COMMIT_MSG="feat(resurrection): resurrect ${{ env.ISSUE_REPO }}#${{ env.ISSUE_NUMBER }}
 
-            Issue: ${{ env.ISSUE_TITLE }}
-            Impact: ${{ env.IMPACT_SCORE }}/10  Effort: ~${{ env.EFFORT_HOURS }}h  PoC: ${{ env.HAS_POC }}
-            Ref: ${{ env.ISSUE_URL }}"
+Issue: ${{ env.ISSUE_TITLE }}
+Impact: ${{ env.IMPACT_SCORE }}/10  Effort: ~${{ env.EFFORT_HOURS }}h  PoC: ${{ env.HAS_POC }}
+Ref: ${{ env.ISSUE_URL }}"
+          git diff --cached --quiet || git commit -m "$COMMIT_MSG"
           git pull --rebase origin main
           git push origin main
