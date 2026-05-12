@@ -2,9 +2,9 @@ name: Daily Resurrection
 
 on:
   schedule:
-    - cron: "0 13 * * *"   # 09:00 US Eastern (ET) — morning run
-    - cron: "0 16 * * *"   # 12:00 US Eastern (ET) — midday run
-    - cron: "0 0 * * *"    # 20:00 US Eastern (ET) — evening run
+    - cron: "0 13 * * *"   # 09:00 US Eastern (ET) - morning run
+    - cron: "0 16 * * *"   # 12:00 US Eastern (ET) - midday run
+    - cron: "0 0 * * *"    # 20:00 US Eastern (ET) - evening run
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,6 @@ permissions:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-
 
 jobs:
   resurrect:
@@ -44,11 +43,8 @@ jobs:
           git config user.name "mohabdelkarim"
           git config user.email "mohaabdelkarim2@gmail.com"
           git add -A
-          COMMIT_MSG="feat(resurrection): resurrect ${{ env.ISSUE_REPO }}#${{ env.ISSUE_NUMBER }}
-
-Issue: ${{ env.ISSUE_TITLE }}
-Impact: ${{ env.IMPACT_SCORE }}/10  Effort: ~${{ env.EFFORT_HOURS }}h  PoC: ${{ env.HAS_POC }}
-Ref: ${{ env.ISSUE_URL }}"
+          COMMIT_MSG=$(printf 'feat(resurrection): resurrect %s#%s\n\nIssue: %s\nImpact: %s/10  Effort: ~%sh  PoC: %s\nRef: %s' \
+            "$ISSUE_REPO" "$ISSUE_NUMBER" "$ISSUE_TITLE" "$IMPACT_SCORE" "$EFFORT_HOURS" "$HAS_POC" "$ISSUE_URL")
           git diff --cached --quiet || git commit -m "$COMMIT_MSG"
           git pull --rebase origin main
           git push origin main
