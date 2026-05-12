@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-11T17:55:53",
-  "total_resurrections": 18,
-  "total_repos_covered": 13,
-  "average_impact_score": 6.22,
-  "average_effort_hours": 77.0,
+  "last_updated": "2026-05-12T15:56:54",
+  "total_resurrections": 19,
+  "total_repos_covered": 14,
+  "average_impact_score": 6.21,
+  "average_effort_hours": 75.05,
   "top_tags": [
     "rust",
+    "go",
     "typescript",
     "search",
-    "ripgrep",
-    "terminal"
+    "ripgrep"
   ],
   "hall_of_fame": [
     {
@@ -41,24 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-11",
-    "repo": "ggerganov/llama.cpp",
-    "issue_number": 9246,
-    "title": "Feature Request: Support for Qwen2-VL",
-    "reactions": 226,
-    "abandoned_date": "2025-05-25T01:08:25Z",
-    "one_line_why": "The feature request succeeds now due to advancements in model optimization and the growing demand for multimodal models.",
-    "impact_score": 7,
-    "effort_hours": 120.0,
-    "has_poc": false,
+    "date": "2026-05-12",
+    "repo": "golang/go",
+    "issue_number": 32825,
+    "title": "proposal: leave \"if err != nil\" alone?",
+    "reactions": 2008,
+    "abandoned_date": "2020-12-09T04:16:22Z",
+    "one_line_why": "The original proposal failed to gain traction, but with new error handling tools in Go, it's worth reconsidering.",
+    "impact_score": 6,
+    "effort_hours": 40.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
-      "multimodal",
-      "ai",
-      "machine learning",
-      "computer vision"
+      "go",
+      "error-handling",
+      "syntax"
     ],
-    "original_url": "https://github.com/ggml-org/llama.cpp/issues/9246"
+    "original_url": "https://github.com/golang/go/issues/32825"
   }
 }
