@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-12",
+  "repo": "gradio-app/gradio",
+  "issue_number": 631,
+  "title": "Support deleting rows and columns from the dataframe",
+  "reactions": 16,
+  "abandoned_date": "2025-10-14T15:59:35Z",
+  "one_line_why": "This feature is crucial for users who rely on data manipulation and analysis workflows in Gradio.",
+  "impact_score": 6,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "dataframe",
+    "data manipulation",
+    "gradio",
+    "pandas"
+  ],
+  "original_url": "https://github.com/gradio-app/gradio/issues/631"
+}
