@@ -50,6 +50,11 @@ RESOLVED_LABELS = {
     "released", "resolved", "wontfix",
 }
 
+# GitHub state_reason values that mean the issue was intentionally closed as done.
+# "not_planned" means abandoned/wontfix — we still want those.
+# "completed" means the issue was actually resolved and should be skipped.
+RESOLVED_STATE_REASONS = {"completed", "duplicate"}
+
 # Text patterns that signal the issue is already solved in practice
 RESOLVED_TEXT_PATTERNS = [
     re.compile(pattern, re.IGNORECASE) for pattern in [
@@ -351,23 +356,86 @@ def _has_resolved_signal(text: str) -> bool:
     return any(pattern.search(compact) for pattern in RESOLVED_TEXT_PATTERNS)
 
 
+def _is_closed_via_pr(issue: dict[str, Any]) -> bool:
+    """
+    Return True if this issue was closed by a linked pull request.
+
+    The GitHub REST API attaches a 'pull_request' key to an issue object
+    when it was closed via a PR. This is the most reliable signal that
+    the feature/bug was actually implemented — no extra API call needed.
+
+    Note: the presence of 'pull_request' alone means a PR was linked.
+    We do NOT require merged_at to be non-null here because:
+    - The issues endpoint returns closed issues (state=closed).
+    - A closed issue with a linked PR almost always means merged.
+    - Checking merged_at would require a separate PR API call per issue.
+    """
+    pr_data = issue.get("pull_request")
+    if not pr_data or not isinstance(pr_data, dict):
+        return False
+    # If merged_at is present in the payload (sometimes it is), use it directly.
+    merged_at = pr_data.get("merged_at")
+    if merged_at is not None:
+        # merged_at is a timestamp string if merged, or null if not
+        return bool(merged_at)
+    # merged_at not present in payload — existence of pull_request key on a
+    # closed issue is a strong enough signal.
+    return True
+
+
+def _is_closed_as_completed(issue: dict[str, Any]) -> bool:
+    """
+    Return True if GitHub's state_reason for this issue is 'completed' or 'duplicate'.
+
+    state_reason is set by whoever closed the issue:
+      - 'completed'  → the work is done, issue is resolved
+      - 'not_planned' → abandoned/wontfix — we still want these
+      - 'duplicate'  → resolved via another issue
+      - None         → old issues closed before state_reason was introduced (2022)
+    """
+    state_reason = str(issue.get("state_reason") or "").strip().lower()
+    return state_reason in RESOLVED_STATE_REASONS
+
+
 def is_already_solved(repo: str, issue: dict[str, Any], token: str) -> bool:
     """
     Return True if the issue appears to be already solved / obsolete.
 
-    Checks (in order, cheapest first):
-      1. Label contains a resolved signal (no API calls needed).
+    Checks (in order, cheapest first — no extra API calls for checks 0-2):
+      0. Issue has a linked pull_request field → closed via merged PR → solved.
+      0b. GitHub state_reason is 'completed' or 'duplicate' → solved.
+      1. Label contains a resolved signal.
       2. Title or body contains a resolved text pattern.
-      3. Any of the first MAX_COMMENTS_TO_INSPECT comments contains a resolved pattern.
+      3. Any of the first MAX_COMMENTS_TO_INSPECT comments contains a resolved pattern
+         (one API call).
     """
+    # Check 0: closed via a linked PR (free — data already in issue object)
+    if _is_closed_via_pr(issue):
+        LOGGER.debug(
+            "[SolvedCheck] %s#%s: closed via linked PR — skipping.",
+            repo, issue.get("number"),
+        )
+        return True
+
+    # Check 0b: GitHub state_reason signals completion (free — data already in issue object)
+    if _is_closed_as_completed(issue):
+        LOGGER.debug(
+            "[SolvedCheck] %s#%s: state_reason=%s — skipping.",
+            repo, issue.get("number"), issue.get("state_reason"),
+        )
+        return True
+
+    # Check 1: resolved label (free — data already in issue object)
     if _has_resolved_label(issue):
         return True
 
+    # Check 2: resolved signal in title or body (free — data already in issue object)
     title = str(issue.get("title", ""))
     body = str(issue.get("body") or "")
     if _has_resolved_signal(title) or _has_resolved_signal(body):
         return True
 
+    # Check 3: scan comments (one API call per issue — only reached if all above pass)
     comments = get_issue_comments(repo, int(issue.get("number", 0)), token)
     for comment in comments:
         comment_body = str(comment.get("body") or "")
