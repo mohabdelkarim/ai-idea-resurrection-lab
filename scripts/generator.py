@@ -2,13 +2,13 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 from config import BOT_NAME, RESURRECTION_BASE_FOLDER, TEMPLATES_FOLDER
-from analyzer import ANALYSIS_TEMP_FILE
 
 
 logging.basicConfig(
@@ -282,15 +282,39 @@ def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Pa
     return folder
 
 
-def generate() -> None:
-    temp_path = Path(ANALYSIS_TEMP_FILE)
-    if not temp_path.exists():
-        LOGGER.warning("[Generator] Temp file not found: %s — nothing to generate.", ANALYSIS_TEMP_FILE)
+def generate(temp_file_path: str = "") -> None:
+    """
+    Read the analysis temp file and generate all resurrection output files.
+
+    Args:
+        temp_file_path: Explicit path to the temp JSON file written by analyze().
+                        If empty, falls back to the ANALYSIS_TEMP_PATH env var.
+                        This explicit passing eliminates the shared-global race condition
+                        that occurred when both analyzer and generator imported a module-level UUID.
+    """
+    # Resolve path: explicit arg > env var fallback
+    resolved_path = temp_file_path.strip() if temp_file_path else ""
+    if not resolved_path:
+        resolved_path = os.environ.get("ANALYSIS_TEMP_PATH", "").strip()
+
+    if not resolved_path:
+        LOGGER.warning(
+            "[Generator] No temp file path provided and ANALYSIS_TEMP_PATH env var not set. "
+            "Nothing to generate."
+        )
         return
+
+    temp_path = Path(resolved_path)
+    if not temp_path.exists():
+        LOGGER.error(
+            "[Generator] Temp file not found: %s — nothing to generate.", resolved_path
+        )
+        return
+
     try:
         data = json.loads(temp_path.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError) as e:
-        LOGGER.error("[Generator] Cannot read temp file %s: %s", ANALYSIS_TEMP_FILE, e)
+        LOGGER.error("[Generator] Cannot read temp file %s: %s", resolved_path, e)
         return
 
     issue = data.get("issue", {})
@@ -305,8 +329,8 @@ def generate() -> None:
     # Clean up temp file after successful generation
     try:
         temp_path.unlink()
-        LOGGER.info("[Generator] Cleaned up temp file: %s", ANALYSIS_TEMP_FILE)
+        LOGGER.info("[Generator] Cleaned up temp file: %s", resolved_path)
     except OSError as e:
-        LOGGER.warning("[Generator] Could not delete temp file %s: %s", ANALYSIS_TEMP_FILE, e)
+        LOGGER.warning("[Generator] Could not delete temp file %s: %s", resolved_path, e)
 
     LOGGER.info("[Generator] Done. Output: %s", folder)

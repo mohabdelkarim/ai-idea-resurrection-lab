@@ -16,11 +16,6 @@ from config import APPROVED_TECHNOLOGY_TAGS
 
 LOGGER = logging.getLogger(__name__)
 
-# Use a UUID-based temp file per run to prevent race conditions
-# when multiple cron triggers fire concurrently.
-_RUN_ID = uuid.uuid4().hex[:12]
-ANALYSIS_TEMP_FILE = f".analysis_temp_{_RUN_ID}.json"
-
 _TAGS_LOWER = {tag.lower(): tag for tag in APPROVED_TECHNOLOGY_TAGS}
 
 # Maps repo slug → the language its codebase is written in.
@@ -84,12 +79,16 @@ REPO_POC_LANGUAGE: dict[str, str] = {
     "tauri-apps/tauri": "rust",
     "nickel-lang/nickel": "rust",
     # Other
-    "rails/rails": "python",  # Ruby → closest supported = python for PoC
+    # Ruby repos → closest supported PoC language is Python
+    "rails/rails": "python",
     "ohmyzsh/ohmyzsh": "python",
     "JetBrains/intellij-community": "python",
     "expressjs/express": "typescript",
     "redis/redis": "python",
     "postgres/postgres": "python",
+    # C++ repos (llama.cpp, linux, llvm) → Python for PoC since C++ is not in ALLOWED_POC_LANGUAGES
+    "torvalds/linux": "python",
+    "llvm/llvm-project": "python",
 }
 
 # ---------------------------------------------------------------------------
@@ -668,15 +667,22 @@ def analyze_issue(issue: dict[str, Any], previous_score: int | None = None) -> d
 
 # ---------------------------------------------------------------------------
 # Entry point (called by runner.py)
+# Returns the path of the temp file written, so runner can pass it
+# explicitly to generator — no shared global state between processes.
 # ---------------------------------------------------------------------------
 
-def analyze() -> None:
-    from config import GRAVEYARD_FOLDER, RESURRECTION_BASE_FOLDER
+def analyze() -> str:
+    """
+    Run the full analysis pipeline for one unresurrected issue.
 
+    Returns:
+        The absolute path (str) of the temp JSON file written,
+        or an empty string if no issue was found to process.
+    """
+    from config import GRAVEYARD_FOLDER, RESURRECTION_BASE_FOLDER
     from scanner import is_repo_on_cooldown, mark_repo_used, _load_rotation
 
     rotation = _load_rotation()
-
     already_resurrected = _load_already_resurrected_keys(RESURRECTION_BASE_FOLDER)
     LOGGER.info("[Analyzer] %d issues already resurrected (from folders).", len(already_resurrected))
 
@@ -732,16 +738,25 @@ def analyze() -> None:
                 "issue": issue,
                 "analysis": result["analysis"],
             }
-            # Write to UUID-based temp file to prevent race conditions
-            Path(ANALYSIS_TEMP_FILE).write_text(
+
+            # Generate a fresh UUID for this specific write — isolated per process/run.
+            run_id = uuid.uuid4().hex[:12]
+            temp_file = f".analysis_temp_{run_id}.json"
+            temp_path = Path(temp_file)
+            temp_path.write_text(
                 json.dumps(temp_data, indent=2, ensure_ascii=False),
                 encoding="utf-8",
             )
-            LOGGER.info("[Analyzer] Analysis saved to %s", ANALYSIS_TEMP_FILE)
+            LOGGER.info("[Analyzer] Analysis saved to %s", temp_file)
             mark_repo_used(repo)
-            return
+            # Return the path so runner.py can pass it explicitly to generator
+            return str(temp_path.resolve())
 
-    LOGGER.warning("[Analyzer] No unresurrected issues found in graveyard (all repos in cooldown or exhausted).")
+    LOGGER.warning(
+        "[Analyzer] No unresurrected issues found in graveyard "
+        "(all repos in cooldown or exhausted)."
+    )
+    return ""
 
 
 def _load_already_resurrected_keys(resurrection_base: str) -> set[tuple[str, int]]:
