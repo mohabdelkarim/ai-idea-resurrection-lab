@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-13",
+  "repo": "huggingface/transformers",
+  "issue_number": 4658,
+  "title": "Add upcoming GPT-3 model",
+  "reactions": 92,
+  "abandoned_date": "2025-05-20T11:47:59Z",
+  "one_line_why": "GPT-3's massive success and widespread adoption make its integration crucial for the Transformers library.",
+  "impact_score": 8,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "nlp",
+    "transformer",
+    "gpt-3",
+    "pytorch"
+  ],
+  "original_url": "https://github.com/huggingface/transformers/issues/4658"
+}
