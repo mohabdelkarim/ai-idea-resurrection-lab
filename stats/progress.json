@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-13T15:36:39",
-  "total_resurrections": 23,
-  "total_repos_covered": 18,
-  "average_impact_score": 6.3,
-  "average_effort_hours": 75.91,
+  "last_updated": "2026-05-13T15:51:48",
+  "total_resurrections": 24,
+  "total_repos_covered": 19,
+  "average_impact_score": 6.29,
+  "average_effort_hours": 77.75,
   "top_tags": [
     "rust",
     "go",
@@ -42,23 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-13",
-    "repo": "huggingface/transformers",
-    "issue_number": 4658,
-    "title": "Add upcoming GPT-3 model",
-    "reactions": 92,
-    "abandoned_date": "2025-05-20T11:47:59Z",
-    "one_line_why": "GPT-3's massive success and widespread adoption make its integration crucial for the Transformers library.",
-    "impact_score": 8,
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 25908,
+    "title": "Better support for sidecar containers in batch jobs",
+    "reactions": 422,
+    "abandoned_date": "2024-11-30T10:56:48Z",
+    "one_line_why": "A clear solution now exists with matured Kubernetes APIs and tooling.",
+    "impact_score": 6,
     "effort_hours": 120.0,
-    "has_poc": true,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
-      "nlp",
-      "transformer",
-      "gpt-3",
-      "pytorch"
+      "kubernetes",
+      "job-api",
+      "batch",
+      "sidecar-containers"
     ],
-    "original_url": "https://github.com/huggingface/transformers/issues/4658"
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/25908"
   }
 }
