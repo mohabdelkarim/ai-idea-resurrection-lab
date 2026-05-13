@@ -42,9 +42,23 @@ jobs:
         run: |
           git config user.name "mohabdelkarim"
           git config user.email "mohaabdelkarim2@gmail.com"
+
+          # Pull latest remote changes BEFORE staging/committing.
+          # This ensures rebase operates on a clean working tree and
+          # avoids conflicts that occur when rebasing after a commit.
+          git pull --rebase --autostash --no-edit origin main
+
           git add -A
+
           COMMIT_MSG=$(printf 'feat(resurrection): resurrect %s#%s\n\nIssue: %s\nImpact: %s/10  Effort: ~%sh  PoC: %s\nRef: %s' \
             "$ISSUE_REPO" "$ISSUE_NUMBER" "$ISSUE_TITLE" "$IMPACT_SCORE" "$EFFORT_HOURS" "$HAS_POC" "$ISSUE_URL")
+
           git diff --cached --quiet || git commit -m "$COMMIT_MSG"
-          git pull --rebase origin main
-          git push origin main
+
+          # Retry push up to 3 times to handle rare races between
+          # the 3 daily cron triggers firing close together.
+          for attempt in 1 2 3; do
+            git push origin main && break
+            echo "Push attempt $attempt failed, pulling and retrying..."
+            git pull --rebase --autostash --no-edit origin main
+          done
