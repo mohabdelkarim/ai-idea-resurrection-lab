@@ -98,9 +98,16 @@ REPO_POC_LANGUAGE: dict[str, str] = {
 ALLOWED_POC_LANGUAGES = {"python", "typescript", "rust", "go"}
 MIN_ANALYSIS_TEXT_LENGTH = 80
 MIN_POC_CODE_LENGTH = 400
-# If effort_hours <= this threshold AND has_poc=False, we force has_poc=True
-# because small/medium features should always have a proof-of-concept.
+
+# If effort_hours <= this threshold AND has_poc=False, force has_poc=True.
+# Small/medium features should always have a proof-of-concept.
 POC_FORCE_EFFORT_THRESHOLD = 80
+
+# If impact_score >= this threshold, force has_poc=True regardless of effort.
+# High-impact issues (8-10/10) always deserve a PoC even for large features,
+# because demonstrating feasibility is most valuable for the biggest ideas.
+POC_FORCE_IMPACT_THRESHOLD = 8
+
 MIN_RFC_LENGTH = 300
 ONE_LINE_MIN_WORDS = 10
 ONE_LINE_MAX_WORDS = 20
@@ -421,14 +428,28 @@ def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str,
     parsed["effort_hours"] = _safe_int(parsed.get("effort_hours"), 1, 10000, 40)
     parsed["death_year"] = _safe_int(parsed.get("death_year"), 2010, 2026, _issue_year(issue))
     parsed["has_poc"] = bool(parsed.get("has_poc", False))
-    # Force PoC for small/medium issues (effort <= threshold) regardless of LLM decision.
+
     effort = parsed.get("effort_hours", 999)
+    impact = parsed.get("impact_score", 0)
+
+    # Force PoC path 1: small/medium effort (effort <= threshold)
     if not parsed["has_poc"] and isinstance(effort, int) and effort <= POC_FORCE_EFFORT_THRESHOLD:
         LOGGER.info(
-            "[Coerce] Forcing has_poc=True (effort=%dh <= threshold=%dh).",
+            "[Coerce] Forcing has_poc=True (effort=%dh <= effort_threshold=%dh).",
             effort, POC_FORCE_EFFORT_THRESHOLD,
         )
         parsed["has_poc"] = True
+
+    # Force PoC path 2: high-impact issue (impact >= threshold)
+    # These are the most valuable resurrections — a PoC is essential to
+    # demonstrate feasibility even when implementation is large.
+    if not parsed["has_poc"] and isinstance(impact, int) and impact >= POC_FORCE_IMPACT_THRESHOLD:
+        LOGGER.info(
+            "[Coerce] Forcing has_poc=True (impact_score=%d >= impact_threshold=%d).",
+            impact, POC_FORCE_IMPACT_THRESHOLD,
+        )
+        parsed["has_poc"] = True
+
     parsed["rfc_needed"] = bool(parsed.get("rfc_needed", False))
     parsed["abandoned_date"] = str(issue.get("updated_at", ""))
     parsed["technology_tags"] = _normalize_tags(parsed.get("technology_tags", []))
