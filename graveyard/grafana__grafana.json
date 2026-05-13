@@ -2193,6 +2193,30 @@
   },
   {
     "repo": "grafana/grafana",
+    "issue_number": 16004,
+    "title": "Support Backend plugins for Alert notifiers",
+    "body": "**What would you like to be added**:\r\nThe ability to create custom Notification Channel Types -- similar to a datasource plugin -- to support custom notification platforms.\r\n\r\n**Why is this needed**:\r\nWe have a use case for our own internal notification framework interfacing with grafana alerts. In this case, a simple webhook would not provide the level of integration desired to fully utilize the framework.\r\nWe would want to create a \"plugin\" that would allow for us to specify configuration settings -- ones that are unique to our framework -- when creating a new notification channel.",
+    "reactions": 47,
+    "created_at": "2019-03-14T15:44:34Z",
+    "updated_at": "2026-05-13T02:20:27Z",
+    "labels": [
+      "type/feature-request",
+      "area/plugins",
+      "area/alerting",
+      "area/alerting/notifications",
+      "area/backend/plugins",
+      "area/backend",
+      "stale",
+      "needs-design-doc"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/16004",
+    "html_url": "https://github.com/grafana/grafana/issues/16004",
+    "author_login": "3brettb",
+    "author_profile": "https://github.com/3brettb",
+    "already_resurrected": false
+  },
+  {
+    "repo": "grafana/grafana",
     "issue_number": 6288,
     "title": "[Dashboard time range]: Automatically find time range for data in graphs",
     "body": "- [ ] Feature request\n\nUsing Grafana 3.1 / ES\n\nReally big fan of Grafana, recently we are trying to use Grafana in our network test environment to monitor and analysis the test outcomes. \n\nNow we got into this problem, which prevents us from deploying our organization wide\n## Problem \n\nLet say we have monitored and recorded all of the performance parameters of node during a event with a unique field value in db\n\nNow if want to retrieve and analysis the event. It is impossible to retrieve just with the unique field, we need to know the time-stamp of the start and end of the event ( which can be got from the start entry and end entry of the query search with the unique field )  \n## Either of the below solution will work for me : \n\nWay to ignore the time range in the dashboard and retrieve all the available data for the matched field in query and display them ?  ( which is more preferable  )\n\nor\n\nWay to template the start and end with a query \n",
