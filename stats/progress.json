@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-13T15:13:54",
-  "total_resurrections": 22,
-  "total_repos_covered": 17,
-  "average_impact_score": 6.23,
-  "average_effort_hours": 73.91,
+  "last_updated": "2026-05-13T15:36:39",
+  "total_resurrections": 23,
+  "total_repos_covered": 18,
+  "average_impact_score": 6.3,
+  "average_effort_hours": 75.91,
   "top_tags": [
     "rust",
     "go",
@@ -42,22 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-13",
-    "repo": "hashicorp/terraform",
-    "issue_number": 19898,
-    "title": "Optional arguments in object variable type definition",
-    "reactions": 1757,
-    "abandoned_date": "2022-09-29T02:43:05Z",
-    "one_line_why": "This feature improves Terraform's flexibility and usability by allowing for more expressive and robust variable type definitions.",
-    "impact_score": 6,
-    "effort_hours": 40.0,
+    "repo": "huggingface/transformers",
+    "issue_number": 4658,
+    "title": "Add upcoming GPT-3 model",
+    "reactions": 92,
+    "abandoned_date": "2025-05-20T11:47:59Z",
+    "one_line_why": "GPT-3's massive success and widespread adoption make its integration crucial for the Transformers library.",
+    "impact_score": 8,
+    "effort_hours": 120.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "python",
     "technology_tags": [
-      "terraform",
-      "configuration",
-      "type-system"
+      "nlp",
+      "transformer",
+      "gpt-3",
+      "pytorch"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/19898"
+    "original_url": "https://github.com/huggingface/transformers/issues/4658"
   }
 }
