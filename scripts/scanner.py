@@ -55,9 +55,15 @@ RESOLVED_LABELS = {
 # "completed" means the issue was actually resolved and should be skipped.
 RESOLVED_STATE_REASONS = {"completed", "duplicate"}
 
-# Text patterns that signal the issue is already solved in practice
+# Text patterns that signal the issue is already solved in practice.
+# Rules:
+#   - Each pattern must be specific enough to avoid false positives.
+#   - "not_planned" / "wontfix" issues are still wanted — do NOT add patterns
+#     that would accidentally match rejection language.
+#   - Add patterns here only for unambiguous "it ships / it exists" language.
 RESOLVED_TEXT_PATTERNS = [
     re.compile(pattern, re.IGNORECASE) for pattern in [
+        # Generic "it already works" signals
         r"\balready (?:available|implemented|supported|possible|works?|added)\b",
         r"\bthis (?:is|was) (?:already )?(?:available|implemented|supported|fixed|done)\b",
         r"\b(?:fixed|resolved|implemented|released|shipped) (?:in|by|since|with)\b",
@@ -65,6 +71,7 @@ RESOLVED_TEXT_PATTERNS = [
         r"\byou can already\b",
         r"\buse (?:the )?.+ instead\b",
         r"\bavailable (?:in|via|through|as of)\b",
+        # Package-manager install signals (issue is packaged → already exists)
         r"\bpackaged (?:for|in|on)\b",
         r"\bhomebrew\b",
         r"\bapt(?:-get)? install\b",
@@ -74,8 +81,21 @@ RESOLVED_TEXT_PATTERNS = [
         r"\bchoco install\b",
         r"\bsnapcraft\b",
         r"\bflatpak install\b",
+        # Explicit close-as-done language
         r"\bclosing (?:as|this as) (?:resolved|done|fixed|duplicate|complete)\b",
         r"\bhas been (?:added|merged|implemented|shipped|released)\b",
+        # Version-shipped signals — e.g. "merged in v1.3", "shipped in v2.0.0"
+        # These catch cases where maintainers close an issue with a release note
+        # comment rather than a linked PR (e.g. Terraform, Go, Grafana style).
+        r"\bmerged (?:in|into) (?:main|master|v?\d)",
+        r"\bshipped (?:in|with) v?\d[\d\.]*",
+        r"\breleased (?:in|as part of) v?\d[\d\.]*",
+        r"\bimplemented (?:in|as of) v?\d[\d\.]*",
+        r"\badded (?:in|as of|since) v?\d[\d\.]*",
+        r"\bsince v?\d[\d\.]*\b",
+        r"\bas of v?\d[\d\.]*\b",
+        r"\bintroduced in v?\d[\d\.]*",
+        r"\bpart of the v?\d[\d\.]* release",
     ]
 ]
 
