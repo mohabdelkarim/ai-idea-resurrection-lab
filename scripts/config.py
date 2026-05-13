@@ -1,3 +1,5 @@
+import math
+
 # ---------------------------------------------------------------------------
 # Repos to scan — curated list of high-traffic repos with many closed issues
 # Prioritized by: issue volume, community size, viral potential
@@ -76,8 +78,23 @@ REPOS_TO_SCAN = [
 
 MIN_UPVOTES = 5              # lowered from 20: cast a wider net
 MONTHS_STALE_THRESHOLD = 12  # raised from 6: 12 months is a safer "abandoned" signal
-SCAN_PAGES_PER_REPO = 5
+
+# ---------------------------------------------------------------------------
+# Pagination — single source of truth
+# ---------------------------------------------------------------------------
+# Maximum issues the GitHub API returns per page (hard cap = 100).
+ISSUES_PER_PAGE = 100
+
+# Total issues to collect per repo across all pages.
 MAX_ISSUES_PER_REPO = 500
+
+# Number of pages to fetch: computed automatically so that changing
+# MAX_ISSUES_PER_REPO never silently under- or over-fetches.
+# Example: MAX=500, PER_PAGE=100 → 5 pages (unchanged).
+#          MAX=50,  PER_PAGE=100 → 1 page  (saves 4 unnecessary API calls).
+#          MAX=250, PER_PAGE=100 → 3 pages (fetches exactly what is needed).
+SCAN_PAGES_PER_REPO: int = math.ceil(MAX_ISSUES_PER_REPO / ISSUES_PER_PAGE)
+
 MAX_DAILY_RESURRECTIONS = 1
 SCAN_INTERVAL_DAYS = 3
 
