@@ -123,6 +123,29 @@ MAX_TOKENS_RFC = 3072
 # Prompts — one focused system prompt per call
 # ---------------------------------------------------------------------------
 
+# PRE-CHECK: Is the issue already solved?
+_SYSTEM_PRECHECK = """\
+You are a senior software engineer with deep knowledge of open-source project history.
+
+Given a GitHub issue title, repository, and description, determine whether this feature
+or bug has ALREADY been implemented/fixed in the CURRENT stable version of the software.
+
+Return ONLY a JSON object with exactly these two fields and NO others:
+{
+  "already_solved": <true|false>,
+  "reason": "<one sentence explaining your verdict>"
+}
+
+Rules:
+- already_solved=true ONLY if the feature/fix is confirmed available in the current
+  stable release of the software as of 2026. Be specific — name the version or flag.
+- already_solved=false if the issue is genuinely unresolved, partially addressed,
+  or if you are not certain. When in doubt, return false.
+- Do NOT confuse "wontfix" or "rejected" with "already solved". A rejected proposal
+  is NOT solved — return false for rejected issues.
+- Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
+"""
+
 # CALL 1: metadata only (no long-form text, no code)
 _SYSTEM_METADATA = """\
 You are a world-class senior software architect specialising in resurrecting abandoned
@@ -391,6 +414,62 @@ def _call_api(
                 time.sleep(2 ** (attempt - 1))
 
     raise ValueError(f"All {MAX_RETRIES} attempts failed for {call_label}: {last_error}")
+
+
+# ---------------------------------------------------------------------------
+# Pre-check: ask LLM if the issue is already solved before spending tokens
+# ---------------------------------------------------------------------------
+
+def _is_already_solved_llm(client: Groq, issue: dict[str, Any]) -> bool:
+    """
+    Ask the LLM whether this issue is already implemented/solved in the current
+    stable version of the software.
+
+    Returns True only when the LLM answers with high confidence (already_solved=true).
+    On any error or ambiguous answer, returns False so the issue is NOT skipped.
+    This is intentionally conservative: false negatives (letting a solved issue
+    through) are caught later by validate_analysis; false positives (dropping a
+    valid resurrection) would silently kill a good idea.
+    """
+    repo = str(issue.get("repo", ""))
+    title = str(issue.get("title", ""))
+    body = str(issue.get("body") or "")[:1500]  # keep prompt short
+    issue_number = issue.get("issue_number", "?")
+
+    user_prompt = (
+        f"Repository: {repo}\n"
+        f"Issue title: {title}\n"
+        f"Issue description (truncated):\n\"\"\"{body}\"\"\""
+    )
+
+    try:
+        result = _call_api(
+            client,
+            _SYSTEM_PRECHECK,
+            user_prompt,
+            max_tokens=256,
+            call_label=f"#{issue_number} precheck",
+        )
+        already_solved = bool(result.get("already_solved", False))
+        reason = str(result.get("reason", "")).strip()
+        if already_solved:
+            LOGGER.info(
+                "[PreCheck] #%s (%s): already solved — %s. Skipping.",
+                issue_number, repo, reason,
+            )
+        else:
+            LOGGER.info(
+                "[PreCheck] #%s (%s): not solved — %s. Proceeding.",
+                issue_number, repo, reason,
+            )
+        return already_solved
+    except Exception as err:
+        # On any failure, be conservative: do NOT skip the issue.
+        LOGGER.warning(
+            "[PreCheck] #%s (%s): pre-check failed (%s) — proceeding with analysis.",
+            issue_number, repo, err,
+        )
+        return False
 
 
 # ---------------------------------------------------------------------------
@@ -703,6 +782,16 @@ def analyze() -> str:
     from config import GRAVEYARD_FOLDER, RESURRECTION_BASE_FOLDER
     from scanner import is_repo_on_cooldown, mark_repo_used, _load_rotation
 
+    api_key = os.environ.get("GROQ_API_KEY", "")
+    if not api_key:
+        LOGGER.error("[Analyzer] GROQ_API_KEY not set — cannot run pre-check.")
+        # Fall through without pre-check rather than crashing the whole pipeline
+        client = None
+    else:
+        from dotenv import load_dotenv
+        load_dotenv()
+        client = Groq(api_key=api_key)
+
     rotation = _load_rotation()
     already_resurrected = _load_already_resurrected_keys(RESURRECTION_BASE_FOLDER)
     LOGGER.info("[Analyzer] %d issues already resurrected (from folders).", len(already_resurrected))
@@ -739,6 +828,16 @@ def analyze() -> str:
             if (repo, issue_number) in already_resurrected:
                 LOGGER.info(
                     "[Analyzer] Skipping #%d (%s) — resurrection folder already exists.",
+                    issue_number, repo,
+                )
+                continue
+
+            # PRE-CHECK: ask LLM if the issue is already solved before spending tokens
+            # on the full 3-call analysis pipeline. Only runs if Groq client is available.
+            # On failure it returns False (conservative) so the issue is NOT skipped.
+            if client is not None and _is_already_solved_llm(client, issue):
+                LOGGER.info(
+                    "[Analyzer] Skipping #%d (%s) — LLM pre-check: already solved.",
                     issue_number, repo,
                 )
                 continue
