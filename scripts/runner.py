@@ -23,6 +23,14 @@ REQUIRED_ENV_VARS = (
     "GROQ_API_KEY",
 )
 
+# Steps that MUST succeed for the pipeline to be considered healthy.
+# If any of these fail, the pipeline exits with code 1.
+CRITICAL_STEPS = {
+    "GitHub Issue Scanner",
+    "AI Analyzer",
+    "File Generator",
+}
+
 
 def validate_env() -> None:
     missing: list[str] = []
@@ -48,24 +56,31 @@ def export_to_github_env(key: str, value: str) -> None:
 
 
 def run_step(step_name: str, fn: Callable[[], None]) -> bool:
-    LOGGER.info("▶ Running: %s", step_name)
+    LOGGER.info("\u25b6 Running: %s", step_name)
     try:
         fn()
     except Exception as error:
-        LOGGER.error("❌ %s failed: %s", step_name, error)
+        LOGGER.error("\u274c %s failed: %s", step_name, error)
         return False
-    LOGGER.info("✅ %s completed.", step_name)
+    LOGGER.info("\u2705 %s completed.", step_name)
     return True
 
 
 def load_latest_meta() -> dict[str, Any]:
+    """
+    Load the meta.json from the most recently MODIFIED resurrection folder.
+    Uses mtime instead of alphabetical sort so the truly latest run is always returned,
+    even when two resurrections happen on the same calendar day for different repos.
+    """
     base = Path(RESURRECTION_BASE_FOLDER)
-    # Folders use format: YYYY-MM-DD_repo_issuenumber
-    candidates = sorted(base.glob("*/meta.json"), reverse=True)
-    if not candidates:
+    meta_files = list(base.glob("*/meta.json"))
+    if not meta_files:
         LOGGER.warning("No resurrection meta.json files found under %s", base)
         return {}
-    latest = candidates[0]
+
+    # Sort by modification time, most recent first
+    meta_files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+    latest = meta_files[0]
     LOGGER.info("Loading latest meta from: %s", latest)
     try:
         with latest.open("r", encoding="utf-8") as handle:
@@ -81,7 +96,7 @@ def _find_resurrection_folder(meta: dict[str, Any]) -> Path | None:
     Locate the resurrection folder for a given meta dict.
     Folders follow the pattern YYYY-MM-DD_<repo-slug>_<issue_number>.
     We match by repo + issue_number from the meta, searching all subdirs,
-    so we never depend on a hardcoded 'day-{date}' pattern that doesn't exist.
+    so we never depend on a hardcoded pattern that may not exist.
     """
     base = Path(RESURRECTION_BASE_FOLDER)
     if not base.exists():
@@ -107,14 +122,15 @@ def _find_resurrection_folder(meta: dict[str, Any]) -> Path | None:
         except (json.JSONDecodeError, OSError):
             continue
 
-    # Fallback: the most recently sorted folder that contains a meta.json
-    candidates = sorted(base.glob("*/meta.json"), reverse=True)
-    if candidates:
+    # Fallback: the most recently modified folder that contains a meta.json
+    meta_files = list(base.glob("*/meta.json"))
+    if meta_files:
+        meta_files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
         LOGGER.warning(
             "[ScoreCard] Exact folder match failed for %s#%s — falling back to latest folder.",
             repo, issue_number,
         )
-        return candidates[0].parent
+        return meta_files[0].parent
 
     return None
 
@@ -122,7 +138,7 @@ def _find_resurrection_folder(meta: dict[str, Any]) -> Path | None:
 def export_commit_vars(meta: dict[str, Any]) -> None:
     if not meta:
         LOGGER.error(
-            "⚠️  export_commit_vars called with empty meta — "
+            "\u26a0\ufe0f  export_commit_vars called with empty meta — "
             "commit message will use fallback values. Check load_latest_meta()."
         )
     export_to_github_env("ISSUE_TITLE", str(meta.get("title", "Unknown")))
@@ -137,7 +153,11 @@ def export_commit_vars(meta: dict[str, Any]) -> None:
 
 
 def run_pipeline() -> None:
-    results: list[bool] = []
+    # _temp_file_path holds the path returned by analyze() and is passed
+    # explicitly to generate() — no shared global state between the two.
+    _temp_file_path: list[str] = [""]
+
+    results: dict[str, bool] = {}
 
     def _scanner_step() -> None:
         from scanner import scan_issues
@@ -145,11 +165,24 @@ def run_pipeline() -> None:
 
     def _analyzer_step() -> None:
         from analyzer import analyze
-        analyze()
+        path = analyze()
+        if not path:
+            raise RuntimeError(
+                "Analyzer returned no temp file path — "
+                "no unresurrected issues found or all repos are in cooldown."
+            )
+        _temp_file_path[0] = path
+        LOGGER.info("[Runner] Analyzer wrote temp file: %s", path)
 
     def _generator_step() -> None:
         from generator import generate
-        generate()
+        path = _temp_file_path[0]
+        if not path:
+            raise RuntimeError(
+                "Generator called but no temp file path is set. "
+                "Analyzer step may have been skipped or failed."
+            )
+        generate(temp_file_path=path)
 
     def _score_card_step() -> None:
         meta = load_latest_meta()
@@ -183,26 +216,52 @@ def run_pipeline() -> None:
         else:
             LOGGER.warning("[Commenter] Missing meta or token. Skipping.")
 
-    results.append(run_step("GitHub Issue Scanner", _scanner_step))
-    results.append(run_step("AI Analyzer", _analyzer_step))
-    results.append(run_step("File Generator", _generator_step))
-    results.append(run_step("Score Card Generator", _score_card_step))
-    results.append(run_step("Stats Engine", _stats_step))
-    results.append(run_step("README Generator", _readme_step))
-    results.append(run_step("Original Issue Commenter", _commenter_step))
+    steps = [
+        ("GitHub Issue Scanner", _scanner_step),
+        ("AI Analyzer",          _analyzer_step),
+        ("File Generator",       _generator_step),
+        ("Score Card Generator", _score_card_step),
+        ("Stats Engine",         _stats_step),
+        ("README Generator",     _readme_step),
+        ("Original Issue Commenter", _commenter_step),
+    ]
+
+    for step_name, step_fn in steps:
+        ok = run_step(step_name, step_fn)
+        results[step_name] = ok
+        # Abort early if a critical step fails — no point continuing
+        if not ok and step_name in CRITICAL_STEPS:
+            LOGGER.error(
+                "\u274c Critical step '%s' failed — aborting pipeline.", step_name
+            )
+            sys.exit(1)
 
     meta = load_latest_meta()
     if not meta:
         LOGGER.error(
-            "❌ Pipeline finished but no meta.json was found. "
+            "\u274c Pipeline finished but no meta.json was found. "
             "Commit message vars will be empty. Aborting to prevent a bad commit."
         )
         sys.exit(1)
 
     export_commit_vars(meta)
-    LOGGER.info("Pipeline complete. Steps: %d/%d passed.", sum(results), len(results))
 
-    if not all(results):
+    critical_ok = all(results.get(s, False) for s in CRITICAL_STEPS)
+    non_critical_failures = [
+        name for name, ok in results.items()
+        if not ok and name not in CRITICAL_STEPS
+    ]
+    if non_critical_failures:
+        LOGGER.warning(
+            "[Runner] Non-critical steps failed (pipeline still succeeds): %s",
+            ", ".join(non_critical_failures),
+        )
+
+    total = len(results)
+    passed = sum(results.values())
+    LOGGER.info("Pipeline complete. Steps: %d/%d passed.", passed, total)
+
+    if not critical_ok:
         sys.exit(1)
 
 
