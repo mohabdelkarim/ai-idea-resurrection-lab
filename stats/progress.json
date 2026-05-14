@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-13T18:05:51",
-  "total_resurrections": 25,
-  "total_repos_covered": 20,
-  "average_impact_score": 6.28,
-  "average_effort_hours": 76.24,
+  "last_updated": "2026-05-14T03:42:57",
+  "total_resurrections": 26,
+  "total_repos_covered": 21,
+  "average_impact_score": 6.27,
+  "average_effort_hours": 76.38,
   "top_tags": [
     "rust",
     "go",
@@ -41,24 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-13",
-    "repo": "langchain-ai/langchain",
-    "issue_number": 1358,
-    "title": "ValueError: Could not parse LLM output:",
-    "reactions": 123,
-    "abandoned_date": "2024-06-30T16:02:40Z",
-    "one_line_why": "The issue succeeds now due to advancements in LLM output parsing and handling in LangChain and Hugging Face libraries.",
+    "date": "2026-05-14",
+    "repo": "llvm/llvm-project",
+    "issue_number": 52959,
+    "title": "Feature Request: Option to not check included files in clang-tidy",
+    "reactions": 41,
+    "abandoned_date": "2025-10-02T21:03:35Z",
+    "one_line_why": "This feature is now feasible due to improvements in Clang and LLVM tooling infrastructure.",
     "impact_score": 6,
-    "effort_hours": 40.0,
+    "effort_hours": 80.0,
     "has_poc": true,
-    "has_rfc": false,
+    "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "langchain",
-      "llm",
-      "huggingface",
-      "transformers"
+      "clang-tidy",
+      "llvm",
+      "c++",
+      "linting"
     ],
-    "original_url": "https://github.com/langchain-ai/langchain/issues/1358"
+    "original_url": "https://github.com/llvm/llvm-project/issues/52959"
   }
 }

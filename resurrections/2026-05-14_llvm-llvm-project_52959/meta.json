@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-14",
+  "repo": "llvm/llvm-project",
+  "issue_number": 52959,
+  "title": "Feature Request: Option to not check included files in clang-tidy",
+  "reactions": 41,
+  "abandoned_date": "2025-10-02T21:03:35Z",
+  "one_line_why": "This feature is now feasible due to improvements in Clang and LLVM tooling infrastructure.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "clang-tidy",
+    "llvm",
+    "c++",
+    "linting"
+  ],
+  "original_url": "https://github.com/llvm/llvm-project/issues/52959"
+}
