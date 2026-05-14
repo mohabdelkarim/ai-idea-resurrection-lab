@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-05-14T03:42:57",
-  "total_resurrections": 26,
-  "total_repos_covered": 21,
-  "average_impact_score": 6.27,
-  "average_effort_hours": 76.38,
+  "last_updated": "2026-05-14T17:52:49",
+  "total_resurrections": 27,
+  "total_repos_covered": 22,
+  "average_impact_score": 6.3,
+  "average_effort_hours": 78.0,
   "top_tags": [
     "rust",
-    "go",
     "typescript",
+    "go",
     "search",
     "ripgrep"
   ],
@@ -42,23 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-14",
-    "repo": "llvm/llvm-project",
-    "issue_number": 52959,
-    "title": "Feature Request: Option to not check included files in clang-tidy",
-    "reactions": 41,
-    "abandoned_date": "2025-10-02T21:03:35Z",
-    "one_line_why": "This feature is now feasible due to improvements in Clang and LLVM tooling infrastructure.",
-    "impact_score": 6,
-    "effort_hours": 80.0,
-    "has_poc": true,
+    "repo": "microsoft/TypeScript",
+    "issue_number": 6579,
+    "title": "Suggestion: Regex-validated string type",
+    "reactions": 1895,
+    "abandoned_date": "2024-04-28T12:15:56Z",
+    "one_line_why": "This feature would succeed now due to TypeScript's improved type system capabilities and the growing demand for more precise type.",
+    "impact_score": 7,
+    "effort_hours": 120.0,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "clang-tidy",
-      "llvm",
-      "c++",
-      "linting"
+      "typescript",
+      "type system",
+      "regex",
+      "string validation"
     ],
-    "original_url": "https://github.com/llvm/llvm-project/issues/52959"
+    "original_url": "https://github.com/microsoft/TypeScript/issues/6579"
   }
 }
