@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-15",
+  "repo": "microsoft/semantic-kernel",
+  "issue_number": 7946,
+  "title": "Python: .Net: OpenAI - Support response_format type of json_schema (Structured Outputs)",
+  "reactions": 20,
+  "abandoned_date": "2025-04-29T03:08:52Z",
+  "one_line_why": "This feature is crucial for applications relying on JSON output and deserialization to strongly-typed .NET types.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "openai",
+    ".net",
+    "json",
+    "semantic kernel",
+    "ai connector"
+  ],
+  "original_url": "https://github.com/microsoft/semantic-kernel/issues/7946"
+}
