@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-14T17:52:49",
-  "total_resurrections": 27,
-  "total_repos_covered": 22,
-  "average_impact_score": 6.3,
-  "average_effort_hours": 78.0,
+  "last_updated": "2026-05-15T03:45:00",
+  "total_resurrections": 28,
+  "total_repos_covered": 23,
+  "average_impact_score": 6.32,
+  "average_effort_hours": 78.07,
   "top_tags": [
     "rust",
     "typescript",
@@ -41,24 +41,25 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-14",
-    "repo": "microsoft/TypeScript",
-    "issue_number": 6579,
-    "title": "Suggestion: Regex-validated string type",
-    "reactions": 1895,
-    "abandoned_date": "2024-04-28T12:15:56Z",
-    "one_line_why": "This feature would succeed now due to TypeScript's improved type system capabilities and the growing demand for more precise type.",
+    "date": "2026-05-15",
+    "repo": "microsoft/semantic-kernel",
+    "issue_number": 7946,
+    "title": "Python: .Net: OpenAI - Support response_format type of json_schema (Structured Outputs)",
+    "reactions": 20,
+    "abandoned_date": "2025-04-29T03:08:52Z",
+    "one_line_why": "This feature is crucial for applications relying on JSON output and deserialization to strongly-typed .NET types.",
     "impact_score": 7,
-    "effort_hours": 120.0,
-    "has_poc": false,
+    "effort_hours": 80.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "typescript",
-      "type system",
-      "regex",
-      "string validation"
+      "openai",
+      ".net",
+      "json",
+      "semantic kernel",
+      "ai connector"
     ],
-    "original_url": "https://github.com/microsoft/TypeScript/issues/6579"
+    "original_url": "https://github.com/microsoft/semantic-kernel/issues/7946"
   }
 }
