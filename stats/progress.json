@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-15T15:23:47",
-  "total_resurrections": 29,
+  "last_updated": "2026-05-15T17:29:43",
+  "total_resurrections": 30,
   "total_repos_covered": 24,
-  "average_impact_score": 6.31,
-  "average_effort_hours": 76.76,
+  "average_impact_score": 6.33,
+  "average_effort_hours": 78.2,
   "top_tags": [
     "rust",
     "typescript",
-    "go",
     "search",
-    "ripgrep"
+    "ripgrep",
+    "go"
   ],
   "hall_of_fame": [
     {
