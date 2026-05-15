@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-15",
+  "repo": "BurntSushi/ripgrep",
+  "issue_number": 95,
+  "title": "fulltext search",
+  "reactions": 17,
+  "abandoned_date": "2021-02-01T22:52:15Z",
+  "one_line_why": "Fulltext search in ripgrep will improve developer productivity by enabling fast and accurate code search across projects.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "technology_tags": [
+    "search",
+    "indexing",
+    "ripgrep",
+    "rust"
+  ],
+  "original_url": "https://github.com/BurntSushi/ripgrep/issues/95"
+}
