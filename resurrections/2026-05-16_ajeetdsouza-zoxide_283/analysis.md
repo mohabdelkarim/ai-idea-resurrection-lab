@@ -12,11 +12,11 @@ The issue was abandoned due to lack of immediate demand and the author's focus o
 
 ## Why 2026 Changes Everything
 
-With the growing popularity of Rust in the developer tooling space, and the increasing demand for integrating zoxide with other tools, the time is ripe to revisit this feature. The existence of libraries like skim and the growing ecosystem of Rust tools, including file managers like joshuto, provide a clear use case for a zoxide library. Furthermore, the recent advancements in Rust's package management and dependency management tools make it easier to create and maintain libraries.
+With the growing popularity of Rust in the developer tooling space, and the increasing demand for integrating zoxide with other tools, the time is ripe to revisit this feature. The existence of libraries like skim and the growing ecosystem of Rust tools, including file managers like joshuto and yazi, provide a clear use case for a zoxide library. Furthermore, zoxide v0.9+ already exposes `zoxide::db::DatabaseFile` and `zoxide::util::current_time` as public items — the internal data model is stable and well-suited for re-export as a library crate.
 
 ## Modern Architecture
 
-The zoxide library could be designed as a Rust crate, providing a simple and intuitive API for integrating zoxide's functionality into other tools. The library could use a builder pattern to configure the zoxide instance, and provide methods for querying and interacting with the database. The library could also use async/await to provide a non-blocking interface. A possible design could include classes like `Zoxide`, `Database`, and `Query`. The library could also use popular Rust libraries like `anyhow` for error handling and `tokio` for async support.
+The library crate wraps `zoxide::db::DatabaseFile::open()` — the same code path the zoxide binary uses — rather than reimplementing a custom database format. A `ZoxideLib` struct resolves the DB path via `$_ZO_DATA_DIR` → `$XDG_DATA_HOME/zoxide/db.zo` → platform default, matching zoxide's own resolution logic. The public API provides `query(keywords, limit) -> Vec<QueryResult>` (frecency-sorted) and `add(path)` for recording visits. Error handling uses `anyhow`. No async runtime is required: zoxide's DB operations are synchronous file I/O.
 
 ---
 
