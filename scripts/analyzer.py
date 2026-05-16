@@ -204,7 +204,25 @@ Requirements for proof_of_concept_code:
 - At least 80 lines. Include imports, error handling, comments.
 - Directly demonstrates the core idea from the issue.
 - Use the language specified in the user message.
-- CRITICAL: You MUST escape ALL special characters for valid JSON:
+
+CRITICAL — IMPORTS AND DEPENDENCIES (read carefully, violations will fail review):
+- Use ONLY packages/modules from ONE of these two sources:
+    1. The target repository's own go.mod / Cargo.toml / package.json / requirements.txt
+       (i.e. dependencies the repo ALREADY has).
+    2. The language's standard library (stdlib).
+- NEVER invent or guess package names. If you are not 100% certain a package exists
+  in the repo's dependency manifest, fall back to stdlib only.
+- Specific banned patterns:
+    Go:   do NOT use any "github.com/shurcooL/*" package unless it appears in the
+          repo's go.mod. Do NOT invent helper packages.
+    Rust: do NOT write a custom binary DB format — use the real crate's existing
+          public types (e.g. zoxide::db::DatabaseFile for zoxide).
+    Python: do NOT import modules that are not in stdlib or the repo's requirements.
+    TypeScript: do NOT import from packages not in the repo's package.json.
+- When in doubt, use only stdlib. A stdlib-only PoC is always better than one with
+  a hallucinated dependency.
+
+CRITICAL: You MUST escape ALL special characters for valid JSON:
   * Newlines: use \\n (two characters: backslash + n), NEVER a literal newline
   * Tabs: use \\t
   * Quotes: use \\"
@@ -580,7 +598,14 @@ def _build_poc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
         "Return ONLY a JSON object with a single key 'proof_of_concept_code' "
         "whose value is the complete runnable code as a single-line JSON string.\n"
         "CRITICAL: escape ALL newlines as \\n, ALL quotes as \\\", ALL backslashes as \\\\\n"
-        "The code must be at least 80 lines and include imports and error handling."
+        "The code must be at least 80 lines and include imports and error handling.\n\n"
+        "IMPORT RULES (strictly enforced):\n"
+        f"- Only use packages that are in the stdlib OR already in {repo}'s dependency manifest.\n"
+        "- Do NOT invent package names. If unsure, use stdlib only.\n"
+        f"- For Go repos: check go.mod. For Rust repos: check Cargo.toml. "
+        "For Python repos: check requirements.txt or setup.py. "
+        "For TypeScript repos: check package.json.\n"
+        "- A PoC that uses only stdlib is always preferred over one with an invented dependency."
     )
 
 
