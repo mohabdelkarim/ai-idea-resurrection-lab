@@ -1,88 +1,150 @@
+// Proof of concept: paginated PR file listing via GitHub GraphQL API
+// Uses only: github.com/cli/go-gh (real gh CLI library) + stdlib
+// Run: go run main.go <PR_NUMBER>
+// Requires: GH_TOKEN env var or `gh auth login` already done
 package main
 
 import (
-	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
-	"github.com/cli/go-gh"
-	"github.com/cli/go-gh/auth"
-	"github.com/cli/go-gh/transport"
-	"github.com/shurcooL/github_flate"
+	"os"
+	"strconv"
+
+	"github.com/cli/go-gh/v2/pkg/api"
 )
 
-type File struct {
-	Filename string `json:"filename"`
+// GraphQL response structs
+type pageInfo struct {
+	HasNextPage bool   `json:"hasNextPage"`
+	EndCursor   string `json:"endCursor"`
 }
 
-type PullRequest struct {
-	Files []File `json:"files"`
+type fileNode struct {
+	Path      string `json:"path"`
+	Additions int    `json:"additions"`
+	Deletions int    `json:"deletions"`
+}
+
+type filesConnection struct {
+	PageInfo   pageInfo   `json:"pageInfo"`
+	TotalCount int        `json:"totalCount"`
+	Nodes      []fileNode `json:"nodes"`
+}
+
+type prFiles struct {
+	Files filesConnection `json:"files"`
+}
+
+type prResponse struct {
+	Repository struct {
+		PullRequest prFiles `json:"pullRequest"`
+	} `json:"repository"`
+}
+
+const prFilesQuery = `
+query($owner: String!, $repo: String!, $number: Int!, $cursor: String) {
+  repository(owner: $owner, name: $repo) {
+    pullRequest(number: $number) {
+      files(first: 100, after: $cursor) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          path
+          additions
+          deletions
+        }
+      }
+    }
+  }
+}
+`
+
+// fetchAllFiles pages through the GraphQL files connection until exhausted.
+// This removes the hard 100-file cap that the REST endpoint has.
+func fetchAllFiles(client api.GQLClient, owner, repo string, prNumber int) ([]fileNode, int, error) {
+	var allFiles []fileNode
+	totalCount := 0
+	var cursor *string
+
+	for {
+		variables := map[string]interface{}{
+			"owner":  owner,
+			"repo":   repo,
+			"number": prNumber,
+			"cursor": cursor,
+		}
+
+		var resp prResponse
+		if err := client.Do(prFilesQuery, variables, &resp); err != nil {
+			return nil, 0, fmt.Errorf("GraphQL query failed: %w", err)
+		}
+
+		files := resp.Repository.PullRequest.Files
+		totalCount = files.TotalCount
+		allFiles = append(allFiles, files.Nodes...)
+
+		if !files.PageInfo.HasNextPage {
+			break
+		}
+		next := files.PageInfo.EndCursor
+		cursor = &next
+	}
+
+	return allFiles, totalCount, nil
 }
 
 func main() {
-	// Authentication
-	token, err := auth.GetToken("github.com")
-	if err != nil {
-		fmt.Println(err)
-		return
+	if len(os.Args) < 2 {
+		fmt.Fprintln(os.Stderr, "usage: main <pr_number>")
+		os.Exit(1)
 	}
-	rateLimit := &transport.RateLimit{
-		Token: token,
-	}
-	tp := transport.NewChain(rateLimit, transport.Default)
-	client, err := gh.NewClient(tp)
+	prNumber, err := strconv.Atoi(os.Args[1])
 	if err != nil {
-		fmt.Println(err)
-		return
+		fmt.Fprintf(os.Stderr, "invalid PR number: %v\n", err)
+		os.Exit(1)
 	}
 
-	// Fetch files
-	var files []File
-	err = fetchFiles(client, 12345, &files)
+	// go-gh auto-resolves owner/repo from git remote and auth from GH_TOKEN / gh keyring
+	repo, err := currentRepo()
 	if err != nil {
-		fmt.Println(err)
-		return
+		fmt.Fprintf(os.Stderr, "could not detect repo: %v\n", err)
+		os.Exit(1)
 	}
 
-	// Output
-	data, err := json.MarshalIndent(files, "", "\t")
+	client, err := api.NewGraphQLClient(api.ClientOptions{})
 	if err != nil {
-		fmt.Println(err)
-		return
+		fmt.Fprintf(os.Stderr, "failed to create GraphQL client: %v\n", err)
+		os.Exit(1)
 	}
-	fmt.Println(string(data))
+
+	fmt.Printf("Fetching all files for PR #%d in %s/%s ...\n", prNumber, repo.Owner, repo.Name)
+
+	files, total, err := fetchAllFiles(client, repo.Owner, repo.Name, prNumber)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Total files reported by API: %d | fetched: %d\n\n", total, len(files))
+
+	enc := json.NewEncoder(os.Stdout)
+	enc.SetIndent("", "  ")
+	if err := enc.Encode(files); err != nil {
+		fmt.Fprintf(os.Stderr, "json encode error: %v\n", err)
+		os.Exit(1)
+	}
 }
 
-func fetchFiles(client *gh.Client, prNumber int, accumulator *[]File) error {
-	var query struct {
-		Repository struct {
-			PullRequest struct {
-				Files struct {
-					Edges []struct {
-						Node File `json:"node"`
-					} `json:"edges"`
-					PageInfo github_flate.PageInfo `json:"pageInfo"`
-				} `json:"files"`
-			} `json:"pullRequest"`
-		} `json:"repository"`
+// currentRepo resolves owner+name from the git remote using go-gh.
+type repoRef struct{ Owner, Name string }
+
+func currentRepo() (repoRef, error) {
+	ghr, err := api.CurrentRepository()
+	if err != nil {
+		return repoRef{}, err
 	}
-	vars := map[string]interface{}{
-		"prNumber": prNumber,
-		"repoOwner": "your_username",
-		"repoName":   "your_repo",
-	}
-	for {
-		err := client.GraphQL().Query(&query, vars)
-		if err != nil {
-			return err
-		}
-		for _, edge := range query.Repository.PullRequest.Files.Edges {
-			*accumulator = append(*accumulator, edge.Node)
-		}
-		if !query.Repository.PullRequest.Files.PageInfo.HasNextPage {
-			break
-		}
-		vars["cursor"] = query.Repository.PullRequest.Files.PageInfo.EndCursor
-	}
-	return nil
+	return repoRef{Owner: ghr.Owner(), Name: ghr.Name()}, nil
 }
