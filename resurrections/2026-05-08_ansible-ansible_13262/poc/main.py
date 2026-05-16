@@ -1,57 +1,92 @@
-import json
-import os
-from ansible.module_utils.basic import AnsibleModule
-from ansible.executor.task_executor import TaskExecutor
-from ansible.playbook.block import Block
-from ansible.playbook.play_context import MAGIC_VARIABLE_MAPPING
-from ansible.plugins.loader import get_connection_loader
+"""
+PoC: Loop over blocks in Ansible (ansible/ansible#13262)
 
-class LoopableBlock(Block):
-    def __init__(self, *args, **kwargs):
-        super(LoopableBlock, self).__init__(*args, **kwargs)
-        self.loop = None
-        self.loop_var = None
+This script simulates the correct implementation path for adding
+loop support to blocks in Ansible's PlayIterator / TaskExecutor.
 
-    def loop_over(self, loop, loop_var):
-        self.loop = loop
+No Ansible installation required — pure Python simulation.
+"""
+
+# ---------------------------------------------------------------------------
+# Minimal stubs mirroring Ansible internals
+# ---------------------------------------------------------------------------
+
+class Task:
+    def __init__(self, name, loop_var=None):
+        self.name = name
         self.loop_var = loop_var
 
-    def run(self, play_context, runner_context, variables):
-        if self.loop:
-            return self._run_loop(play_context, runner_context, variables)
-        else:
-            return super(LoopableBlock, self).run(play_context, runner_context, variables)
+    def __repr__(self):
+        return f"Task({self.name!r})"
 
-    def _run_loop(self, play_context, runner_context, variables):
-        results = []
-        for item in self.loop:
-            variables[self.loop_var] = item
-            task_results = super(LoopableBlock, self).run(play_context, runner_context, variables)
-            results.append(task_results)
-        return results
 
-def main():
-    argument_spec = dict(
-        loop=dict(type='list'),
-        loop_var=dict(type='str')
+class Block:
+    """Mirrors ansible.playbook.block.Block (simplified)."""
+    def __init__(self, tasks, loop=None, loop_var="item"):
+        self.tasks = tasks
+        self.loop = loop        # e.g. ["web", "db", "cache"]
+        self.loop_var = loop_var
+
+    def get_tasks(self):
+        return self.tasks
+
+
+# ---------------------------------------------------------------------------
+# Simulate the TaskExecutor loop-over-block logic
+#
+# Currently Ansible only supports `loop:` on individual tasks.
+# The proposed change is to detect `loop:` on a Block and expand
+# the block's tasks for each item, injecting `loop_var` into vars.
+# This would live in:
+#   lib/ansible/executor/task_executor.py  (_execute_regular())
+#   lib/ansible/playbook/block.py          (compile())
+# ---------------------------------------------------------------------------
+
+def execute_block(block, variables=None):
+    """Execute a block, optionally iterating if block.loop is set."""
+    variables = variables or {}
+
+    if block.loop:
+        # NEW: iterate block over each item
+        print(f"[block] Looping over {len(block.loop)} items (loop_var='{block.loop_var}')")
+        for item in block.loop:
+            print(f"  --- item: {item!r} ---")
+            loop_vars = {**variables, block.loop_var: item}
+            _run_tasks(block.get_tasks(), loop_vars)
+    else:
+        _run_tasks(block.get_tasks(), variables)
+
+
+def _run_tasks(tasks, variables):
+    for task in tasks:
+        item_label = f" [item={variables.get('item')!r}]" if "item" in variables else ""
+        print(f"    [run] {task.name}{item_label}")
+
+
+# ---------------------------------------------------------------------------
+# Demo
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    print("=== Simulation: loop over a block ===")
+    print()
+
+    # Before: you'd have to repeat tasks manually or use include_tasks hacks
+    # After: loop: on the block expands all tasks inside
+    service_block = Block(
+        tasks=[
+            Task("Ensure service is installed"),
+            Task("Copy config file"),
+            Task("Enable and start service"),
+        ],
+        loop=["nginx", "postgresql", "redis"],
+        loop_var="item"
     )
 
-    module = AnsibleModule(argument_spec=argument_spec)
-    loop = module.params['loop']
-    loop_var = module.params['loop_var']
+    execute_block(service_block)
 
-    block = LoopableBlock()
-    block.loop_over(loop, loop_var)
-
-    play_context = play_context = MAGIC_VARIABLE_MAPPING['play_context']
-    runner_context = None
-    variables = {}
-
-    try:
-        results = block.run(play_context, runner_context, variables)
-        module.exit_json(results=results)
-    except Exception as e:
-        module.fail_json(msg=str(e))
-
-if __name__ == '__main__':
-    main()
+    print()
+    print("=== Block without loop (existing behaviour unchanged) ===")
+    print()
+    simple_block = Block(tasks=[Task("Run migrations"), Task("Restart app")])
+    execute_block(simple_block)

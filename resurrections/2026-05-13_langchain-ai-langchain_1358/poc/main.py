@@ -1,65 +1,148 @@
+"""
+PoC: ValueError: Could not parse LLM output (langchain-ai/langchain#1358)
+
+The root cause: MRKL / ConversationalReact agents use a strict regex to
+parse "Action: ..." / "Action Input: ..." from LLM output. Open-source
+models (flan-t5, Bloom) produce conversational responses that don't match
+this format, causing ValueError.
+
+The correct fix (and what LangChain eventually did): allow agents to
+specify a custom OutputParser, and ship a more lenient parser for
+non-instruction-tuned models.
+
+This PoC demonstrates:
+  1. The broken parser (strict regex) — crashes on casual LLM output
+  2. The fixed parser (lenient fallback) — handles both formats
+  3. A RouterOutputParser that picks the right strategy per model type
+
+No LangChain or API key required — runs standalone.
+To run:  python poc/main.py
+"""
+
 import re
-from abc import ABC, abstractmethod
-from typing import Dict, Any
+from dataclasses import dataclass
+from typing import Optional
 
-class LLMOutputParser(ABC):
-    @abstractmethod
-    def parse(self, llm_output: str) -> Dict[str, Any]:
-        pass
 
-class RegexLLMOutputParser(LLMOutputParser):
-    def __init__(self, pattern: str):
-        self.pattern = re.compile(pattern)
+# ---------------------------------------------------------------------------
+# 1. Simulate LLM outputs from different model families
+# ---------------------------------------------------------------------------
 
-    def parse(self, llm_output: str) -> Dict[str, Any]:
-        match = self.pattern.match(llm_output)
+OPENAI_OUTPUT = """I need to look up the weather.
+Action: search
+Action Input: current weather in Athens"""
+
+FLAN_T5_OUTPUT = """Assistant, how can I help you today?"""
+
+BLOOM_OUTPUT = """Sure! I can help with that. What city are you asking about?"""
+
+
+# ---------------------------------------------------------------------------
+# 2. The ORIGINAL broken parser (mirrors the 2023 ConversationalReactAgent)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AgentAction:
+    action: str
+    action_input: str
+
+@dataclass
+class AgentFinish:
+    output: str
+
+
+class StrictMRKLOutputParser:
+    """Original parser — strict regex, crashes on open-source model output."""
+
+    ACTION_RE = re.compile(r"Action: (.+?)\nAction Input: (.+)", re.DOTALL)
+
+    def parse(self, llm_output: str):
+        match = self.ACTION_RE.search(llm_output)
+        if not match:
+            # This is what caused #1358
+            raise ValueError(f"Could not parse LLM output: {llm_output!r}")
+        return AgentAction(action=match.group(1).strip(),
+                           action_input=match.group(2).strip())
+
+
+# ---------------------------------------------------------------------------
+# 3. The FIXED parser — lenient fallback treats unparseable output as Final Answer
+# ---------------------------------------------------------------------------
+
+class LenientOutputParser:
+    """
+    Fixed parser: if strict Action/Input parsing fails, treat the whole
+    output as a Final Answer instead of crashing. This matches what
+    LangChain merged in the OutputParser refactor.
+    """
+
+    ACTION_RE = re.compile(r"Action: (.+?)\nAction Input: (.+)", re.DOTALL)
+    FINAL_ANSWER_RE = re.compile(r"Final Answer: (.+)", re.DOTALL)
+
+    def parse(self, llm_output: str):
+        # Try structured action format first
+        match = self.ACTION_RE.search(llm_output)
         if match:
-            return match.groupdict()
-        else:
-            raise ValueError(f"Could not parse LLM output: {llm_output}")
+            return AgentAction(action=match.group(1).strip(),
+                               action_input=match.group(2).strip())
+        # Try explicit Final Answer
+        fa_match = self.FINAL_ANSWER_RE.search(llm_output)
+        if fa_match:
+            return AgentFinish(output=fa_match.group(1).strip())
+        # Lenient fallback: treat entire output as final answer (key fix for #1358)
+        return AgentFinish(output=llm_output.strip())
 
-class StrategyLLMOutputParser(LLMOutputParser):
-    def __init__(self, strategies: Dict[str, LLMOutputParser]):
-        self.strategies = strategies
 
-    def parse(self, llm_output: str) -> Dict[str, Any]:
-        for strategy in self.strategies.values():
-            try:
-                return strategy.parse(llm_output)
-            except ValueError:
-                pass
-        raise ValueError(f"Could not parse LLM output: {llm_output}")
+# ---------------------------------------------------------------------------
+# 4. Router: pick parser based on model family
+# ---------------------------------------------------------------------------
 
-class LoggingLLMOutputParser(LLMOutputParser):
-    def __init__(self, parser: LLMOutputParser):
-        self.parser = parser
+class RouterOutputParser:
+    def __init__(self):
+        self._strict = StrictMRKLOutputParser()
+        self._lenient = LenientOutputParser()
 
-    def parse(self, llm_output: str) -> Dict[str, Any]:
-        try:
-            return self.parser.parse(llm_output)
-        except ValueError as e:
-            print(f"Error parsing LLM output: {e}")
-            raise
+    def parse(self, llm_output: str, model_family: str = "openai"):
+        if model_family == "openai":
+            return self._strict.parse(llm_output)
+        return self._lenient.parse(llm_output)
 
-def initialize_agent(tools, llm, agent, memory, verbose):
-    # Initialize agent chain
-    return agent_chain
 
-def main():
-    tools = []
-    llm = "google/flan-t5-xl"
-    agent = "conversational-react-description"
-    memory = {}
-    verbose = False
+# ---------------------------------------------------------------------------
+# 5. Demo
+# ---------------------------------------------------------------------------
 
-    agent_chain = initialize_agent(tools, llm, agent, memory, verbose)
+if __name__ == "__main__":
+    strict = StrictMRKLOutputParser()
+    lenient = LenientOutputParser()
+    router = RouterOutputParser()
+
+    print("=== StrictMRKLOutputParser (original broken behaviour) ===")
     try:
-        llm_output = agent_chain.run("Hi")
-        parser = RegexLLMOutputParser(r"(\w+): (.*)")
-        parsed_output = parser.parse(llm_output)
-        print(parsed_output)
-    except Exception as e:
-        print(f"Error: {e}")
+        result = strict.parse(OPENAI_OUTPUT)
+        print(f"  OpenAI : OK -> Action={result.action!r}")
+    except ValueError as e:
+        print(f"  OpenAI : CRASH -> {e}")
 
-if __name__ == '__main__':
-    main()
+    try:
+        result = strict.parse(FLAN_T5_OUTPUT)
+        print(f"  flan-t5: OK -> {result}")
+    except ValueError as e:
+        print(f"  flan-t5: CRASH (this is the #1358 bug) -> {e}")
+
+    print()
+    print("=== LenientOutputParser (fix) ===")
+    for label, output in [("OpenAI", OPENAI_OUTPUT), ("flan-t5", FLAN_T5_OUTPUT), ("Bloom", BLOOM_OUTPUT)]:
+        result = lenient.parse(output)
+        kind = type(result).__name__
+        if isinstance(result, AgentAction):
+            print(f"  {label:8s}: {kind} -> action={result.action!r}")
+        else:
+            print(f"  {label:8s}: {kind} -> output={result.output[:60]!r}")
+
+    print()
+    print("=== RouterOutputParser ===")
+    r1 = router.parse(OPENAI_OUTPUT, model_family="openai")
+    r2 = router.parse(FLAN_T5_OUTPUT, model_family="huggingface")
+    print(f"  OpenAI (strict)  : {type(r1).__name__} action={r1.action!r}")
+    print(f"  flan-t5 (lenient): {type(r2).__name__} output={r2.output!r}")
