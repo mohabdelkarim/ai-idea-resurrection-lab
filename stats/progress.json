@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-16T16:59:53",
-  "total_resurrections": 27,
+  "last_updated": "2026-05-16T17:37:00",
+  "total_resurrections": 28,
   "total_repos_covered": 22,
-  "average_impact_score": 6.26,
-  "average_effort_hours": 73.04,
+  "average_impact_score": 6.29,
+  "average_effort_hours": 72.57,
   "top_tags": [
     "rust",
     "terminal",
