@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-16",
+  "repo": "nodejs/node",
+  "issue_number": 50963,
+  "title": "enable corepack by default",
+  "reactions": 271,
+  "abandoned_date": "2025-03-23T21:17:51Z",
+  "one_line_why": "Enabling corepack by default solves the problem of inconsistent package manager versions across projects by ensuring developers use the specified.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "node.js",
+    "corepack",
+    "packagemanager",
+    "pnpm"
+  ],
+  "original_url": "https://github.com/nodejs/node/issues/50963"
+}
