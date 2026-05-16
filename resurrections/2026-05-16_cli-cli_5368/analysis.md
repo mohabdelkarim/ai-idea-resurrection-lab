@@ -8,15 +8,15 @@
 
 ## Why It Died
 
-The original implementation had a hardcoded limit of 100 records for the '--json files' output, which was not sufficient for large PRs with over 500 files.
+The original implementation had a hardcoded limit of 100 records for the '--json files' output, which was not sufficient for large PRs with over 500 files. The GitHub REST `/pulls/{number}/files` endpoint has a documented 3000-file cap and the gh CLI simply stopped paginating at 100. No contributor stepped up to rewire the data path to GraphQL, which does support server-side cursor pagination.
 
 ## Why 2026 Changes Everything
 
-With the introduction of GitHub's GraphQL API pagination and the Go library 'github.com/shurcooL/github_flate', it's now feasible to fetch large datasets in chunks, making it possible to remove the 100 record limit.
+The `github.com/cli/go-gh` library (v2) now ships a first-class `api.GQLClient` that handles authentication, rate-limiting, and response parsing out of the box. GitHub's GraphQL `PullRequest.files` connection exposes `pageInfo.hasNextPage` and `endCursor`, making cursor-based pagination straightforward. The gh CLI team has also published clear contribution guidelines for adding paginated JSON output, removing the ambiguity that stalled earlier attempts.
 
 ## Modern Architecture
 
-The solution involves using the GitHub GraphQL API with pagination to fetch all files associated with a PR. This can be achieved by implementing a new function, 'fetchFiles', which takes a GitHub client, PR number, and file accumulator as arguments. The function will use the 'github_flate' library to handle pagination and accumulate files.
+The fix adds a `fetchAllFiles` function that accepts an `api.GQLClient`, owner, repo, and PR number. It issues the `PullRequest { files(first: 100, after: $cursor) { pageInfo nodes } }` query in a loop, advancing the cursor until `hasNextPage` is false, then accumulates all `fileNode` structs. The existing `gh pr view --json files` command then calls this paginated helper instead of the REST endpoint. No new dependencies are introduced — only `github.com/cli/go-gh/v2/pkg/api` from the repo's existing `go.mod`.
 
 ---
 

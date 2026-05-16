@@ -12,11 +12,11 @@ The issue failed to gain traction due to limited community involvement and lack 
 
 ## Why 2026 Changes Everything
 
-The landscape has changed with the increasing adoption of terminals and terminal emulators that support advanced keyboard encoding. Tools like Wezterm, Kitty, and Windows Terminal have already implemented similar features, making it more feasible for Bubble Tea to integrate 'CSI u' encoding. The growing need for better keyboard input handling in terminals makes this feature more relevant.
+Wezterm, Kitty, foot, and Windows Terminal all ship CSI-u (Kitty keyboard protocol) support by default in 2026, meaning the majority of terminal users in the Bubble Tea target audience now have capable terminals. The `golang.org/x/term` package provides raw-mode helpers without adding new dependencies. The Charm team has also merged similar escape-sequence parsing work in Lip Gloss, establishing the internal patterns that a bubbletea PR can follow directly.
 
 ## Modern Architecture
 
-The implementation could follow a modular design, incorporating a new input handler class (e.g., `CSIuInputHandler`) that decodes 'CSI u' sequences. This class could interact with the existing `Model` and `Update` functions in Bubble Tea, ensuring seamless integration. The use of a finite state machine or a similar pattern could help manage the different keyboard encoding states.
+The implementation adds a `parseCSIu(seq string) (KeyMsg, bool)` parser inside the existing `internal/input.go` reader goroutine. CSI-u sequences have the form `ESC [ <codepoint> ; <modifiers> u`; the parser decodes modifier bits (shift=1, alt=2, ctrl=4, per the spec) and produces an extended `KeyMsg` that carries a `Modifiers` field alongside the existing `Runes` and `Alt` fields. The `tea.Program` event loop passes this `KeyMsg` to `Update` unchanged — no breaking API change for existing Bubble Tea programs. Terminals that do not support CSI-u continue to send legacy sequences, which the existing parser handles as before.
 
 ---
 
