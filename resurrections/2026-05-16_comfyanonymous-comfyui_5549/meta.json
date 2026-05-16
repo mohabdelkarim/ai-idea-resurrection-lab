@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-16",
+  "repo": "comfyanonymous/ComfyUI",
+  "issue_number": 5549,
+  "title": "please support svdquant",
+  "reactions": 34,
+  "abandoned_date": "2024-12-09T02:09:49Z",
+  "one_line_why": "Supporting svdquant in ComfyUI will benefit users by providing a more efficient model optimization option.",
+  "impact_score": 7,
+  "effort_hours": 60.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "ai",
+    "model optimization",
+    "quantization",
+    "svdquant"
+  ],
+  "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/5549"
+}
