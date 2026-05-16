@@ -1,0 +1,112 @@
+[
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 9241,
+    "title": "Add a (singular) `$prop` rune",
+    "body": "### Describe the problem\r\n\r\nThis came up multiple times in the Discord server, so I figured I'd create an issue for it:\r\nIn v5's runes mode, the only way to declare props is by using the `$props` rune, like so:\r\n```js\r\nlet { someProp = 'default' } = $props();\r\n```\r\nThis looks good unless you're using TypeScript, in which case in order to type your props, you'll have to pass a type argument to `$props`, what this means in effect is that you'll be duplicating your prop names:\r\n```ts\r\nlet { someProp = 'default' } = $props<{ someProp: string }>();\r\n```\r\nNeedless to say this is not very pretty, feels a bit overly verbose, it gets even more problematic when you have many props:\r\n```ts\r\nlet {\r\n    foo = 'default',\r\n    bar,\r\n    buzz = 123,\r\n} = $props<{\r\n    foo: string;\r\n    bar: number;\r\n    buzz: number;\r\n}>();\r\n```\r\nHere, you have to traverse quite a bit of distance with your eyes in order to find a specific prop's type (e.g. `bar`), because the destructured variable and the corresponding type could potentially be far from each other, and you'll have to \"switch\" your eyes to an entirely different \"list\", if you will.\r\n\r\nIn addition, this format yields a weird order of `name` => `default-value` => `name` => `type`, and when you compare all of this to the old way of declaring props with types, the difference becomes apparent:\r\n```ts\r\nexport let foo: string = 'default';\r\nexport let bar: number;\r\nexport let buzz: number = 123;\r\n```\r\nWhich is more concise, of course, but the order is more logical as well: `name` => `type` => `default-value`.\r\n\r\n### Describe the proposed solution\r\n\r\nIntroduce a singular `$prop` rune, like so:\r\n```ts\r\nlet someProp = $prop<string>('default');\r\n```\r\nWhich, once again, is less verbose and has a more logical order of symbols; the type of each prop is always next to it on the same line, and you don't have to repeat the prop name.\r\n\r\n### Alternatives considered\r\n\r\n- Just using the `$props` rune, which suffers from the aforementioned problems.\r\n\r\n### Importance\r\n\r\nnice to have",
+    "reactions": 140,
+    "created_at": "2023-09-21T17:15:48Z",
+    "updated_at": "2024-08-22T10:46:27Z",
+    "labels": [
+      "runes"
+    ],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/9241",
+    "html_url": "https://github.com/sveltejs/svelte/issues/9241",
+    "author_login": "aradalvand",
+    "author_profile": "https://github.com/aradalvand",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 2968,
+    "title": "{#range ...} block",
+    "body": "Never thought I'd say this but I think we need range blocks — we've had so many questions along the lines of 'how do I iterate *n* times?'.\r\n\r\nThe usual answer is one of these...\r\n\r\n```html\r\n{#each Array(n) as _, i}\r\n  <p>{i}</p>\r\n{/each}\r\n```\r\n\r\n```html\r\n{#each { length: n } as _, i}\r\n  <p>{i}</p>\r\n{/each}\r\n```\r\n\r\n...but neither is particularly satisfying.\r\n\r\nAnyway, we're a compiler, so we can add this for free, if we want to. The only real question is syntax. We could emulate Ruby's range operator:\r\n\r\n```html\r\n<!-- 1,2,3,4,5 -->\r\n{#range 1..5 as n}\r\n  {n}\r\n{/range}\r\n\r\n<!-- 1,2,3,4 -->\r\n{#range 1...5 as n}\r\n  {n}\r\n{/range}\r\n```\r\n\r\n`{#range 5 as n}` could be shorthand for `{#range 0...5 as n}`, perhaps.\r\n\r\nComplications: Ruby's operator also handles decrementing ranges (`5...1`) and strings (`'a'...'z'` and `'z'...'a'`), so if we were to steal that syntax then presumably we should also support those.\r\n\r\nAny thoughts?",
+    "reactions": 121,
+    "created_at": "2019-06-07T13:22:12Z",
+    "updated_at": "2024-12-03T07:37:28Z",
+    "labels": [
+      "feature request",
+      "awaiting submitter",
+      "popular"
+    ],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/2968",
+    "html_url": "https://github.com/sveltejs/svelte/issues/2968",
+    "author_login": "Rich-Harris",
+    "author_profile": "https://github.com/Rich-Harris",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 5312,
+    "title": "$$slots with conditional/reactive content?",
+    "body": "The new `$$slots` feature (thanks to @tanhauhau) provides information if a slot is loaded/filled or empty.\r\nHowever this only works with \"static\" content. As soon as there is a condition `{#if}` or `{#await}` involved the\r\nthe output of `$$slots` is not really useful anymore or in case of a named slot a error is thrown.\r\n\r\nIn case of an unnamed slot in combination with `{#if}` the slot is considered *filled* and `$$slots.default` results to `true`\r\neven if the condition passed to the slot is false. Additionally the fallback wont be rendered.\r\n\r\nIn case of a named slot value inside a `{#if}`  (example below) the line `<div slot=\"a\">Content</div>` will throw\r\n`ValidationError: Element with a slot='...' attribute must be a child of a component or a descendant of a custom element`\r\n\r\nExample (tested with `commit 8adb47401e7f7b420ffabf9752a8236114aaecfc`)\r\n\r\n``` svelte\r\n// App.svelte\r\n\r\n<script>\r\n    import SlotWrapper from './SlotWrapper.svelte';\r\n    let show = false; \r\n</script>\r\n\r\n<SlotWrapper>\r\n    {#if show}\r\n        <div slot=\"a\">Content</div>  <!-- throws error -->\r\n    {/if}\r\n</SlotWrapper>\r\n\r\n<button on:click=\"{()=> show = !show}\">\r\n    { show ? 'Hide' : 'Show' }\r\n</button>\r\n\r\n```\r\n\r\n``` svelte \r\n// SlotWrapper.svelte\r\n\r\n<script>\r\n    $: console.log('slots', $$slots)    \r\n</script>\r\n\r\n<slot name=\"a\">Fallback Content</slot>\r\n\r\n```\r\n\r\n**The behaviors that I would expect, want and need are:**\r\n\r\n1. Properties of `$$slot` are only set to true if the content passed to a slot is renderable.  \r\n2. Conditionally pass content to named slots like in the example above. (but that one is not as important me as the first one)\r\n\r\n\r\n**Why would I want that?**\r\n\r\nOne usecase (besides many others) is implicitly setting the state of a component with a slot.\r\n\r\nExample: \r\nI have a Card component that displays data coming from a fetch request. The Card component should have a\r\n`loading` state while it is fetching and go to its `default` state if the data is fetched and rendered.\r\nAt the moment the only way i konw of is to explicitly create a `loading` variable, set it to `true` before fetching, set it to `false`\r\nafterwards and pass it down to the  `Card` component. \r\nThis is okay if you have to do it one or twice but not if you have many components with similar structure.\r\n\r\nWith a properly reactive `$$slots` property this could be much cleaner and could look something like this:\r\n\r\n```svelte\r\n\r\n// Card.svelte\r\n<script>\r\n  $: loading = !$$slots.default;\r\n</script>\r\n\r\n<div class=\"card\" class:loading>\r\n   <slot />\r\n</div>\r\n\r\n// App.svelte\r\n// ... script, imports. etc...\r\n<Card>\r\n  {#await fetch(url).then(responseToJSON) then data}\r\n  { data.name }\r\n  {/await}\r\n</Card>\r\n```\r\n\r\nThats it. \r\nThanks you for providing such an awesome tool. \r\n",
+    "reactions": 59,
+    "created_at": "2020-08-26T20:14:19Z",
+    "updated_at": "2024-10-29T22:28:59Z",
+    "labels": [
+      "feature request",
+      "compiler"
+    ],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/5312",
+    "html_url": "https://github.com/sveltejs/svelte/issues/5312",
+    "author_login": "icalvin102",
+    "author_profile": "https://github.com/icalvin102",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 3586,
+    "title": "A lot of empty text nodes - I mean A LOT - performance issue",
+    "body": "**Describe the bug**\r\nJust check this repl https://svelte.dev/repl/902d4ccfcc5745d0b927b6db6be4f441?version=3.12.1\r\n\r\nThere are 22 000 empty text nodes that are really slowing down entire component on update.\r\n\r\n![obraz](https://user-images.githubusercontent.com/25027696/65147220-fa508b00-da1d-11e9-9838-f9fd19eea8c5.png)\r\n\r\n\r\n**Expected behavior**\r\nI know that those nodes are for a reason but maybe some virtual approach will be better?\r\nEach node must be created updated and destroyed which takes a lot of time and memory when something change.\r\n\r\n**Severity**\r\nThis behavior can lead users to leave svelte because they might not figure out what is wrong - code seems to be ok, but performance is really bad (22 000 extra nodes for 2 500 real ones :O ).\r\nFor me this is annoying because I must be careful and watch for those \"extra\" nodes that are appearing randomly in some circumstances.",
+    "reactions": 13,
+    "created_at": "2019-09-18T12:12:53Z",
+    "updated_at": "2025-05-23T21:23:22Z",
+    "labels": [
+      "feature request",
+      "awaiting submitter",
+      "perf",
+      "stale-bot"
+    ],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/3586",
+    "html_url": "https://github.com/sveltejs/svelte/issues/3586",
+    "author_login": "neuronetio",
+    "author_profile": "https://github.com/neuronetio",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 1518,
+    "title": "Better error checking and messages for beginners",
+    "body": "We should have better error checking and error messages in dev mode to make it easier to learn and develop in Svelte. IMO this is a must to increase widespread adoption since people trying it out will be frustrated and drop it if they don't understand what is going on within the template.\r\n\r\nIt's very cool to see what code the template is generating, but it should be a goal that you don't _need_ to understand what is being generated to be successful using Svelte.\r\n\r\nFor example, when you have `{#each items as item}` in your template and `items` is undefined you get the error `Cannot read property 'length' of undefined`. It would be nicer if the error was `` `items` is undefined in {#each items as item}``. It might even be nicer if we output the lines before and after this from the template into the console all fancy like. Perhaps an Error Framework to make it super easy to understand issues in your app.\r\n\r\nOther places for additional error checking:\r\n* undefined/nulls in bind, e.g. `{ person.name }` when `person` is null\r\n\r\nWhat other errors within templates we add better error checking?",
+    "reactions": 11,
+    "created_at": "2018-05-31T17:31:41Z",
+    "updated_at": "2024-09-23T00:56:27Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/1518",
+    "html_url": "https://github.com/sveltejs/svelte/issues/1518",
+    "author_login": "jacwright",
+    "author_profile": "https://github.com/jacwright",
+    "already_resurrected": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 646,
+    "title": "Optimising at the AST level",
+    "body": "Second random thought after #645. In cases like [this](https://svelte.technology/repl?version=1.22.4&gist=4ad6df1f08729b203c45204336d7cce8)...\r\n\r\n```html\r\n{#if foo}\r\n  <p>foo!</p>\r\n{:else}\r\n  <p>not foo!</p>\r\n{/if}\r\n```\r\n\r\n...we have to create three blocks (`create_main_fragment`, `create_if_block` and `create_if_block_1`), totalling 74 LOC as of the current version. If we optimised it to the equivalent of this...\r\n\r\n```html\r\n<p>{foo ? 'foo!' : 'not foo!'}</p>\r\n```\r\n\r\n...we get the same result with one block (`create_main_fragment`) totalling 25 LOC, and there's less work to do to update things.\r\n\r\nThere are probably all sorts of optimisations like this we could perform. Might not be straightforward, but definitely worth investigating.",
+    "reactions": 10,
+    "created_at": "2017-06-16T13:27:50Z",
+    "updated_at": "2024-09-23T00:54:36Z",
+    "labels": [
+      "feature request",
+      "perf",
+      "compiler"
+    ],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/646",
+    "html_url": "https://github.com/sveltejs/svelte/issues/646",
+    "author_login": "Rich-Harris",
+    "author_profile": "https://github.com/Rich-Harris",
+    "already_resurrected": false
+  }
+]

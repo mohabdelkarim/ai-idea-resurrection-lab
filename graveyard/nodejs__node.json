@@ -1,0 +1,172 @@
+[
+  {
+    "repo": "nodejs/node",
+    "issue_number": 50963,
+    "title": "enable corepack by default",
+    "body": "### What is the problem this feature will solve?\n\nwe try to use corepack and \"packageManager\" to force developers use the same pnpm version, but developers always forget to enable corepack(because it's turned off by default and when we switch node version it's turned off again) which makes packageManager not working at all\n\n### What is the feature you are proposing to solve the problem?\n\nenable corepack by default if package.json contains \"packageManager\".\n\n### What alternatives have you considered?\n\nwe currently use \"engine.pnpm\" field to check whether developers use same pnpm version but engine field is annoying when we deals with tons of projects with different version",
+    "reactions": 271,
+    "created_at": "2023-11-29T11:01:40Z",
+    "updated_at": "2025-03-23T21:17:51Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/50963",
+    "html_url": "https://github.com/nodejs/node/issues/50963",
+    "author_login": "hardfist",
+    "author_profile": "https://github.com/hardfist",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 34388,
+    "title": "Add experimental support for io_uring",
+    "body": "<!--\r\nThank you for suggesting an idea to make Node.js better.\r\n\r\nPlease fill in as much of the template below as you're able.\r\n-->\r\n\r\nRecent Linux kernel (5.1+) includes io_uring, a new non-blocking I/O subsystem, which might serve as a more efficient alternative to epoll. We could benefit from it and get a performance improvement in network I/O scenarios with high volume of concurrent connections and/or for fs operations.\r\n\r\nOf course, in Node.js case we need changes made in libuv. There is an ongoing experiment aimed to add support for io_uring in libuv: https://github.com/libuv/libuv/pull/2322\r\n\r\nAs this feature should be experimental (at least initially), io_uring mode could be activated under a new flag.\r\n\r\nThe goal of this issue is to improve visibility of the libuv experiment and gather some feedback.",
+    "reactions": 54,
+    "created_at": "2020-07-16T03:04:21Z",
+    "updated_at": "2023-11-20T21:59:25Z",
+    "labels": [
+      "discuss",
+      "feature request",
+      "libuv",
+      "performance",
+      "linux",
+      "stale",
+      "never-stale"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/34388",
+    "html_url": "https://github.com/nodejs/node/issues/34388",
+    "author_login": "puzpuzpuz",
+    "author_profile": "https://github.com/puzpuzpuz",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 38823,
+    "title": "Add Promise-based versions of child_process",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nIt would be nice if child_process functionality, such as `exec`, had Promised based versions by default. Currently it does not, see https://nodejs.org/api/child_process.html\r\n\r\n**Describe the solution you'd like**\r\nA new `child_process/promises` import path that can be used similar to how [fs promises](https://nodejs.org/api/fs.html#fs_promise_example) are used:\r\n\r\n```js\r\n// Using ESM Module syntax:\r\nimport { exec } from 'child_process/promises';\r\n\r\ntry {\r\n  const { stdout } = await exec(\r\n    'sysctl -n net.ipv4.ip_local_port_range'\r\n  );\r\n  console.log('successfully executed the child process command');\r\n} catch (error) {\r\n  console.error('there was an error:', error.message);\r\n}\r\n```\r\n\r\n**Describe alternatives you've considered**\r\nI am already using `const exec = util.promisify(process.exec);` but that is not as nice. And this new proposal follows along what is happening in other Node.js APIs.\r\n",
+    "reactions": 48,
+    "created_at": "2021-05-27T13:36:12Z",
+    "updated_at": "2024-09-09T16:41:41Z",
+    "labels": [
+      "child_process",
+      "feature request",
+      "promises"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/38823",
+    "html_url": "https://github.com/nodejs/node/issues/38823",
+    "author_login": "thernstig",
+    "author_profile": "https://github.com/thernstig",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 51147,
+    "title": "`--env-file` support in `NODE_OPTIONS`",
+    "body": "### What is the problem this feature will solve?\n\nSometimes env files are used as config files, therefore it should be allowed to set an `--env-file` in `NODE_OPTIONS`, for example in the `.npmrc` file, so that it applies to all scripts of that specific project.\n\n### What is the feature you are proposing to solve the problem?\n\nAllowing for the `--env-file` flag to be supported in `NODE_OPTIONS`.\n\n### What alternatives have you considered?\n\n_No response_",
+    "reactions": 37,
+    "created_at": "2023-12-13T15:18:07Z",
+    "updated_at": "2025-10-25T08:35:38Z",
+    "labels": [
+      "feature request",
+      "stale",
+      "dotenv"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/51147",
+    "html_url": "https://github.com/nodejs/node/issues/51147",
+    "author_login": "afonsojramos",
+    "author_profile": "https://github.com/afonsojramos",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 40054,
+    "title": "Add utility to synchronously inspect promise state",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\n\r\nIn most cases, you should just await the promise and get its value, even if the promise has already resolved. However, it could sometimes be useful to get the state of the promise. For example, as an optimization to only do a heavy operation if the promise in a certain state or for assertions when writing tests.\r\n\r\n**Describe the solution you'd like**\r\n\r\nThere used to be `process.binding('util').getPromiseDetails(promise)`, but it was removed in Node.js 16. I suggest exposing a `util.promiseState(promise)` method which would return `'pending' | 'fulfilled' | 'rejected'` depending on the promise state.\r\n\r\n**Describe alternatives you've considered**\r\n\r\nI have made a [package](https://github.com/sindresorhus/p-state) for this, but it depends on parsing `util.inspect()` output which is a bit fragile.\r\n",
+    "reactions": 32,
+    "created_at": "2021-09-09T15:30:42Z",
+    "updated_at": "2024-03-13T06:02:36Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/40054",
+    "html_url": "https://github.com/nodejs/node/issues/40054",
+    "author_login": "sindresorhus",
+    "author_profile": "https://github.com/sindresorhus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 32022,
+    "title": "Solid Node.js with official type system support",
+    "body": "## Is your feature request related to a problem? Please describe.\r\n\r\nWhile js became more and more popular, typescript and flow appears to deal with  stability and maintainability for large projects, yet we lack support for type definitions for Node.js core api. I think the needs goes strong and strong, one proof is that https://www.npmjs.com/package/@types/node has reached 23 million download weekly.\r\n\r\nCommunity already has `@type/node`, should we really support it in core ?\r\nI think we should, here are the reasons:\r\n\r\n### It's not reflect the api change quickly enough\r\nFor example, the `wasi` api takes some time added to the repo.\r\nApis like newly or changed takes time to get adopted, developers will has\r\nto wait for this.\r\n\r\n### It's not related to Node.js version consistently\r\nthis package doesn't related Node.js versions. But we has lts, latest and other versions, this can be problematic and got surprised behavior. If we have \r\nofficial support, developers can choose the related version and got precise result.\r\n\r\n### other\r\nIt's only for typescript. We can expand our official type system to flow or other newly solutions.\r\nAlso contribute to this package is too much pain.\r\n\r\n## Describe the solution you'd like\r\n\r\nI am thinking we generate types file from our markdown doc or js source file (the `libs` folder ), not sure whether this eventually can work. Another solution is we invent a new dsl :)\r\n\r\nEventually we should make should publish types package when we release a new Node.js version.\r\n\r\n\r\n\r\n",
+    "reactions": 27,
+    "created_at": "2020-02-29T10:21:05Z",
+    "updated_at": "2023-05-05T01:26:53Z",
+    "labels": [
+      "feature request",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/32022",
+    "html_url": "https://github.com/nodejs/node/issues/32022",
+    "author_login": "gengjiawen",
+    "author_profile": "https://github.com/gengjiawen",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 38361,
+    "title": "Make AbortError public",
+    "body": "Would be useful to be able to throw `AbortError`s in userland.",
+    "reactions": 25,
+    "created_at": "2021-04-22T18:14:05Z",
+    "updated_at": "2025-11-07T01:29:29Z",
+    "labels": [
+      "feature request",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/38361",
+    "html_url": "https://github.com/nodejs/node/issues/38361",
+    "author_login": "ronag",
+    "author_profile": "https://github.com/ronag",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 21664,
+    "title": "Ability to replace current Node process with another",
+    "body": "**Edit:** If someone can come up with a better shim for `execve` for Windows, that'd be *far* better. The form below is *very* expensive and *very* horrible.\r\n\r\n**Edit 2:** Linked relevant [SO question](https://stackoverflow.com/questions/51185115/what-is-the-ideal-way-to-emulate-process-replacement-on-windows).\r\n\r\n**Edit 3:** Clarify FS changes\r\n\r\n**Edit 4:** Here's the text from that SO question as of July 6, 2018 (so you don't have to search for it), where I asked about how to do the Windows part.\r\n\r\n<details>\r\n<summary>Click to show (warning: lots of text)</summary>\r\n\r\nSo, in a [feature request I filed against Node.js](https://github.com/nodejs/node/issues/21664), I was looking for a way to replace the current Node process with another. In Linux and friends (really, any POSIX-compliant system), this is easy: use [`execve`](http://man7.org/linux/man-pages/man2/execve.2.html) and friends and call it a day. But obviously, that won't work on Windows, since it only has `CreateProcess` (which `execve` and friends delegate to, [complete with async behavior](https://stackoverflow.com/questions/49736973/blocking-version-of-execvp-windows)). And it's not like [people](https://stackoverflow.com/questions/35111313/windows-exec-equivalent) [haven't](https://stackoverflow.com/questions/6743567/replace-current-process-with-invocation-of-subprocess) [wanted](https://stackoverflow.com/questions/7198666/strategies-for-replacing-program-executable-in-windows) [to](https://stackoverflow.com/questions/198122/how-can-i-replace-the-current-java-process-like-a-unix-style-exec) [do](https://stackoverflow.com/questions/5450147/how-to-replace-the-current-java-process-in-windows-using-jna-jni) [similar](https://stackoverflow.com/questions/45607959/restart-windows-process-inplace-preserving-process-id-and-handles), leading to [numerous duplicate questions on this site](https://www.google.com/search?q=windows+replace+current+process+site:stackoverflow.com). (This isn't a duplicate because it's explicitly seeking a workaround given certain constraints, not just asking for direct replacement.)\r\n\r\nProcess replacement has several facets that have to addressed:\r\n\r\n1. All console I/O streams have to be forwarded to the new process.\r\n1. All signals need transparently forwarded to the new process.\r\n1. The data from the old process have to be destroyed, with as many resources reclaimed as possible.\r\n1. All pre-existing threads and child processes should be destroyed.\r\n1. All pre-existing handles should be destroyed apart from open file descriptors and named pipes/etc.\r\n1. Optimally, the old process's memory should be kept to a minimum after the process is created.\r\n1. For my particular use case, retaining the process ID is not important.\r\n\r\nAnd for my particular case, there are a few constraints:\r\n\r\n1. I can control the initial process's startup as well as the location of my \"process replacement\" function.\r\n1. I could load arbitrary native code via add-ons at potentially any stack",
+    "reactions": 24,
+    "created_at": "2018-07-05T03:36:31Z",
+    "updated_at": "2025-06-25T07:38:06Z",
+    "labels": [
+      "child_process",
+      "feature request",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/21664",
+    "html_url": "https://github.com/nodejs/node/issues/21664",
+    "author_login": "dead-claudia",
+    "author_profile": "https://github.com/dead-claudia",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 46074,
+    "title": "Make Node.js more permissive when libraries ship invalid ESM code",
+    "body": "### What is the problem this feature will solve?\r\n\r\nI'm the author of [vite-plugin-ssr](https://vite-plugin-ssr.com/) and a *lot* of users are having problems because many libraries ship invalid ESM code, which makes Node.js choke.\r\n\r\n(The reason why many libraries ship erronous ESM code is because frameworks like Next.js bundle the server-side code of libraries. Where Next.js is permissive and is able to process invalid ESM code, Node.js is strict and throws an error upon invalid ESM code.)\r\n\r\nMore information at https://vite-plugin-ssr.com/broken-npm-package#solution.\r\n\r\nThis is a concern not only for vite-plugin-ssr, but also for the whole Vite ecosystem such as Nuxt and SvelteKit (see [SvelteKit FAQ - How do I fix the error I'm getting trying to include a package?](https://kit.svelte.dev/faq#packages) which is, I quote, \"issues most commonly affecting SvelteKit users\").\r\n\r\nThe situation is quite bad and the feedback I get from users is quite vivid, to say the least.\r\n\r\nWhile one could say that it's \"Next.js's fault of being permissive\" (webpack more precisely speaking), the situation is what it is and it's not going to change anytime soon. So I propose following practical solution.\r\n\r\n### What is the feature you are proposing to solve the problem?\r\n\r\nMake Node.js more permissive.\r\n\r\nFor example, a widespread problem is npm packages having invalid ESM imports, e.g. `import './foo'` instead of `import './foo.js'`, which makes Node.js choke. Another example is packages that ship ESM but don't have `type: \"module\"` in their `package.json`. Node.js should be able to execute npm packages that ship invalid code.\r\n\r\nI'd make Node.js permissive only for npm packages (i.e. code living in `node_modules`), while being more strict for the user land.\r\n\r\n### What alternatives have you considered?\r\n\r\n**[Edit]** An alternative is to make npm validate packages before they are published: https://github.com/npm/rfcs/issues/665.",
+    "reactions": 8,
+    "created_at": "2023-01-03T15:00:36Z",
+    "updated_at": "2023-07-10T07:16:00Z",
+    "labels": [
+      "module",
+      "feature request",
+      "esm",
+      "loaders"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/46074",
+    "html_url": "https://github.com/nodejs/node/issues/46074",
+    "author_login": "brillout",
+    "author_profile": "https://github.com/brillout",
+    "already_resurrected": false
+  }
+]
