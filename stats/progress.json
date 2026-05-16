@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-16T14:27:45",
-  "total_resurrections": 26,
-  "total_repos_covered": 21,
-  "average_impact_score": 6.27,
-  "average_effort_hours": 74.31,
+  "last_updated": "2026-05-16T16:59:53",
+  "total_resurrections": 27,
+  "total_repos_covered": 22,
+  "average_impact_score": 6.26,
+  "average_effort_hours": 73.04,
   "top_tags": [
     "rust",
     "terminal",
+    "go",
     "typescript",
-    "cli",
-    "search"
+    "cli"
   ],
   "hall_of_fame": [
     {
