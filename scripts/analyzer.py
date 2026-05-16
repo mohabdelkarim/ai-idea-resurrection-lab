@@ -5,6 +5,7 @@ import logging
 import os
 import re
 import time
+import urllib.request
 import uuid
 from pathlib import Path
 from typing import Any
@@ -120,6 +121,51 @@ MAX_TOKENS_POC = 4096
 MAX_TOKENS_RFC = 3072
 
 # ---------------------------------------------------------------------------
+# Manifest fetching — grabs real dependencies so the LLM can't hallucinate imports
+# ---------------------------------------------------------------------------
+
+# Maps language → candidate manifest filenames (in priority order)
+_MANIFEST_CANDIDATES: dict[str, list[str]] = {
+    "go":         ["go.mod"],
+    "rust":       ["Cargo.toml"],
+    "python":     ["requirements.txt", "setup.cfg", "pyproject.toml"],
+    "typescript": ["package.json"],
+}
+
+# Hard cap: we only send the first N chars of the manifest to the LLM
+_MANIFEST_MAX_CHARS = 3000
+
+
+def _fetch_repo_manifest(repo: str, language: str) -> str:
+    """
+    Fetch the dependency manifest for *repo* from GitHub's raw content CDN.
+    Returns a (possibly truncated) string with the file contents, or an empty
+    string if none of the candidate files could be retrieved.
+
+    This is best-effort: network failures are silently swallowed so that the
+    rest of the pipeline is never blocked by a missing manifest.
+    """
+    candidates = _MANIFEST_CANDIDATES.get(language, [])
+    for filename in candidates:
+        url = f"https://raw.githubusercontent.com/{repo}/HEAD/{filename}"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "resurrection-bot/1.0"})
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                if resp.status == 200:
+                    content = resp.read().decode("utf-8", errors="replace")
+                    if content.strip():
+                        LOGGER.info(
+                            "[Manifest] Fetched %s for %s (%d chars).",
+                            filename, repo, len(content),
+                        )
+                        return content[:_MANIFEST_MAX_CHARS]
+        except Exception as exc:
+            LOGGER.debug("[Manifest] Could not fetch %s from %s: %s", filename, repo, exc)
+    LOGGER.warning("[Manifest] No manifest found for %s (language=%s).", repo, language)
+    return ""
+
+
+# ---------------------------------------------------------------------------
 # Prompts — one focused system prompt per call
 # ---------------------------------------------------------------------------
 
@@ -205,22 +251,14 @@ Requirements for proof_of_concept_code:
 - Directly demonstrates the core idea from the issue.
 - Use the language specified in the user message.
 
-CRITICAL — IMPORTS AND DEPENDENCIES (read carefully, violations will fail review):
-- Use ONLY packages/modules from ONE of these two sources:
-    1. The target repository's own go.mod / Cargo.toml / package.json / requirements.txt
-       (i.e. dependencies the repo ALREADY has).
-    2. The language's standard library (stdlib).
-- NEVER invent or guess package names. If you are not 100% certain a package exists
-  in the repo's dependency manifest, fall back to stdlib only.
-- Specific banned patterns:
-    Go:   do NOT use any "github.com/shurcooL/*" package unless it appears in the
-          repo's go.mod. Do NOT invent helper packages.
-    Rust: do NOT write a custom binary DB format — use the real crate's existing
-          public types (e.g. zoxide::db::DatabaseFile for zoxide).
-    Python: do NOT import modules that are not in stdlib or the repo's requirements.
-    TypeScript: do NOT import from packages not in the repo's package.json.
-- When in doubt, use only stdlib. A stdlib-only PoC is always better than one with
-  a hallucinated dependency.
+CRITICAL — IMPORTS AND DEPENDENCIES (violations will cause the output to be rejected):
+- The user message contains the REAL dependency manifest fetched directly from the
+  repository (go.mod / Cargo.toml / package.json / requirements.txt).
+- You MUST use ONLY packages that appear in that manifest OR in the language stdlib.
+- If the manifest is empty or missing, use ONLY stdlib — no exceptions.
+- NEVER invent or guess package names. If you are not 100% certain a package is listed
+  in the provided manifest, fall back to stdlib only.
+- A stdlib-only PoC is always better than one with a hallucinated dependency.
 
 CRITICAL: You MUST escape ALL special characters for valid JSON:
   * Newlines: use \\n (two characters: backslash + n), NEVER a literal newline
@@ -588,24 +626,33 @@ def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str,
 def _build_poc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
     repo = str(issue.get("repo", ""))
     language = metadata.get("poc_language", _preferred_poc_language(repo))
+
+    # Fetch the real dependency manifest so the LLM can't hallucinate imports
+    manifest = _fetch_repo_manifest(repo, language)
+    if manifest:
+        manifest_section = (
+            f"\nREAL DEPENDENCY MANIFEST for {repo} (fetched from GitHub — use ONLY these):\n"
+            f"```\n{manifest}\n```\n"
+            "Use ONLY packages listed above OR stdlib. Do NOT invent any other package names.\n"
+        )
+    else:
+        manifest_section = (
+            f"\nNo dependency manifest could be fetched for {repo}. "
+            "Use ONLY the language stdlib — do NOT import any third-party packages.\n"
+        )
+
     return (
         f"ISSUE: {issue.get('title', '')}\n"
         f"Repository: {repo}\n"
-        f"Language to use: {language}\n\n"
+        f"Language to use: {language}\n"
+        f"{manifest_section}\n"
         f"Architecture summary:\n{metadata.get('modern_design', '')}\n\n"
         f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
         f"Write the full proof-of-concept in {language}. "
         "Return ONLY a JSON object with a single key 'proof_of_concept_code' "
         "whose value is the complete runnable code as a single-line JSON string.\n"
         "CRITICAL: escape ALL newlines as \\n, ALL quotes as \\\", ALL backslashes as \\\\\n"
-        "The code must be at least 80 lines and include imports and error handling.\n\n"
-        "IMPORT RULES (strictly enforced):\n"
-        f"- Only use packages that are in the stdlib OR already in {repo}'s dependency manifest.\n"
-        "- Do NOT invent package names. If unsure, use stdlib only.\n"
-        f"- For Go repos: check go.mod. For Rust repos: check Cargo.toml. "
-        "For Python repos: check requirements.txt or setup.py. "
-        "For TypeScript repos: check package.json.\n"
-        "- A PoC that uses only stdlib is always preferred over one with an invented dependency."
+        "The code must be at least 80 lines and include imports and error handling.\n"
     )
 
 
