@@ -1,22 +1,30 @@
-# Analysis: Add upcoming GPT-3 model
+# Analysis: Add GPT-3 style model to Hugging Face Transformers
 
-> Integrate the GPT-3 model into the Transformers library for seamless usage.
+> Integrate a GPT-3 class autoregressive language model into the `transformers` library using its standard `PreTrainedModel` + `GenerationMixin` pattern.
 
-**Why it will work now:** GPT-3's massive success and widespread adoption make its integration crucial for the Transformers library.
+**Why it will work now:** When the issue was filed in May 2020, GPT-3 weights were unavailable and OpenAI had not released them publicly. Today, multiple open-weight GPT-3 equivalent models exist (GPT-J-6B, GPT-NeoX-20B, LLaMA-3, Mistral-7B), all of which follow the exact same `PreTrainedModel` / `CausalLMOutputWithPast` interface. Adding GPT-3 to Transformers means adding a config class + a model class — the integration path is fully paved.
 
 ---
 
 ## Why It Died
 
-The issue died due to lack of model implementation and weights availability. The GPT-3 model was not open-sourced, and the authors did not provide a direct implementation. The conversation shifted towards discussing potential integrations and forks.
+The 2020 request died because the weights were never released. OpenAI kept GPT-3 API-only. The issue became a long comment thread tracking third-party alternatives until it was eventually superseded by the `gpt_neo`, `gptj`, and `gpt_neox` model families that Hugging Face added between 2021–2023.
 
 ## Why 2026 Changes Everything
 
-The landscape has changed with the release of GPT-3.5 and GPT-4 models, and the open-source community has developed alternatives like LLaMA and Mistral. The Transformers library has also matured, supporting more models and features.
+Two concrete developments make this viable now:
 
-## Modern Architecture
+1. **Open-weight equivalents are available.** Meta's LLaMA-3 (8B, 70B), Mistral-7B, and Falcon-40B are all GPT-3 class models with public weights. Adding a `GPT3ForCausalLM` wrapper that maps to these weights (or to the community-released GPT-3 distillations) is a weekend project, not a research effort.
+2. **The Transformers integration pattern is fully standardised.** Since 2021, adding a new autoregressive model requires: a `PretrainedConfig` subclass, a `PreTrainedModel` + `GenerationMixin` subclass, and an `AutoModel` registration. The PoC in this resurrection demonstrates all three in under 80 lines of runnable code.
 
-The modern design would involve integrating GPT-3 as a subclass of the existing `PreTrainedModel` class, leveraging the `GenerationMixin` for generation capabilities. The implementation would utilize the `torch` library for tensor operations and the `transformers` library for model parallelism.
+## Correct Architecture
+
+The implementation follows the standard `transformers` model addition guide:
+
+1. **`TinyGPTConfig(PretrainedConfig)`** — declares hyperparameters (`vocab_size`, `hidden_size`, `num_hidden_layers`, `num_attention_heads`, `max_position_embeddings`).
+2. **`TinyGPTForCausalLM(PreTrainedModel, GenerationMixin)`** — implements `forward()` returning `CausalLMOutputWithPast` and `prepare_inputs_for_generation()`. Inheriting `GenerationMixin` gives `.generate()`, `.beam_search()`, `.sample()` for free.
+3. **`post_init()`** — call in `__init__` for Hugging Face weight initialisation and gradient checkpointing hooks.
+4. **No custom trainer or tokenizer needed** — a standard `GPT2Tokenizer` works for a GPT-3 style BPE vocabulary.
 
 ---
 
@@ -24,10 +32,10 @@ The modern design would involve integrating GPT-3 as a subclass of the existing 
 
 | Metric | Value |
 |--------|-------|
-| 💥 Impact Score | 8/10 |
-| ⏱️ Effort Estimate | ~120 hours |
-| 🏷️ Tech Tags | nlp, transformer, gpt-3, pytorch |
-| 💀 Year Abandoned | 2020 |
+| 💥 Impact Score | 6/10 |
+| ⏱️ Effort Estimate | ~24 hours |
+| 🏷️ Tech Tags | transformers, pytorch, causal-lm, gpt, autoregressive |
+| 💀 Year Abandoned | 2025 (open since 2020) |
 | 🔬 Has PoC | Yes |
 | 📋 Has RFC | Yes |
 

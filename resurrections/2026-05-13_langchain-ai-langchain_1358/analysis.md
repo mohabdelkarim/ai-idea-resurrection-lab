@@ -1,22 +1,28 @@
-# Analysis: ValueError: Could not parse LLM output:
+# Analysis: ValueError: Could not parse LLM output
 
-> The LangChain agent fails to parse LLM output, causing a ValueError with certain models.
+> LangChain agents using open-source models (flan-t5, Bloom) crash with `ValueError: Could not parse LLM output` because the strict MRKL regex parser requires `Action: ... \nAction Input: ...` format, which instruction-tuned but non-RLHF models don't produce.
 
-**Why it will work now:** The issue succeeds now due to advancements in LLM output parsing and handling in LangChain and Hugging Face libraries.
+**Why it will work now:** LangChain has since refactored its agent output parsing into a pluggable `BaseOutputParser` interface. A lenient fallback parser can be added without touching core agent logic, and the fix is a drop-in contribution — no architectural changes required.
 
 ---
 
 ## Why It Died
 
-The issue failed due to the inability of the agent to parse the output of the LLM (Large Language Model) correctly. The error occurred because the LLM output did not match the expected format for parsing. This issue arose with multiple LLM models, including HuggingFaceHub's 'google/flan-t5-xl' and Bloom, but not with OpenAI.
+The issue was filed in March 2023 when LangChain was growing fast and the codebase was in flux. The root cause (a hardcoded regex in `ConversationalReactAgent`) was well-understood in the thread, but the fix required changes across several agent classes. With hundreds of issues open, it was never prioritised. LangChain closed it in mid-2024 as a stale issue, despite 123 👍.
 
 ## Why 2026 Changes Everything
 
-The introduction of more advanced and flexible LLM output parsing mechanisms, such as those provided by recent updates to Hugging Face's Transformers library and the LangChain framework itself, can resolve this issue. Specifically, improvements in output parsing logic and better handling of diverse LLM output formats can make the agent more robust.
+Two concrete developments make this viable now:
 
-## Modern Architecture
+1. **LangChain's `BaseOutputParser` is now stable and documented.** Since LangChain 0.1 (late 2023), all agents accept a custom `output_parser` argument. A lenient parser can be injected at construction time without forking any core class. The fix is a 30-line contribution.
+2. **The proliferation of open-source LLMs makes the bug more visible.** In 2023 the failure affected a handful of HuggingFace Hub models. In 2026, with Mistral, Qwen, LLaMA-3 and dozens of derivatives all producing conversational output, the strict parser crashes far more often. The community motivation to merge a fix is now much higher.
 
-The modern design should incorporate a more sophisticated LLM output parsing module, potentially utilizing regular expressions or machine learning-based approaches to handle a variety of output formats. This could involve implementing a parser class (e.g., `LLMOutputParser`) that can be easily extended or customized. The use of design patterns such as the Strategy pattern for swapping different parsing strategies could be beneficial. Additionally, integrating more comprehensive logging and error handling mechanisms can help in diagnosing and resolving parsing issues.
+## Correct Architecture
+
+The fix has two parts:
+
+1. **`LenientOutputParser`** — tries the strict `Action:/Action Input:` regex first; if it fails, falls back to `Final Answer:` extraction; if that also fails, returns the entire LLM output as a `AgentFinish` instead of raising `ValueError`. This single change resolves the #1358 crash.
+2. **`RouterOutputParser`** — selects `StrictMRKLParser` for OpenAI/Anthropic models and `LenientOutputParser` for all others, wired in via the agent's `output_parser=` constructor argument. No changes to existing agent logic.
 
 ---
 
@@ -24,12 +30,12 @@ The modern design should incorporate a more sophisticated LLM output parsing mod
 
 | Metric | Value |
 |--------|-------|
-| 💥 Impact Score | 6/10 |
-| ⏱️ Effort Estimate | ~40 hours |
-| 🏷️ Tech Tags | langchain, llm, huggingface, transformers |
-| 💀 Year Abandoned | 2023 |
+| 💥 Impact Score | 7/10 |
+| ⏱️ Effort Estimate | ~8 hours |
+| 🏷️ Tech Tags | langchain, agents, output-parsing, llm, mrkl |
+| 💀 Year Abandoned | 2024 (open since 2023) |
 | 🔬 Has PoC | Yes |
-| 📋 Has RFC | No |
+| 📋 Has RFC | Yes |
 
 ---
 
