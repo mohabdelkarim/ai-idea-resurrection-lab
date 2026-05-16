@@ -99,6 +99,52 @@ RESOLVED_TEXT_PATTERNS = [
     ]
 ]
 
+# ---------------------------------------------------------------------------
+# Off-topic issue detection
+#
+# These patterns match the body of issues that are bug reports, Q&A questions,
+# or support requests — never candidates for resurrection as ideas/features.
+#
+# Rules:
+#   - Match only against the FIRST ~200 characters of the body (the header line).
+#     This avoids false-positives from incidental text deeper in the body.
+#   - Keep patterns anchored to well-known issue templates used by major OSS repos.
+#   - Do NOT match "🚀 Feature request" or "🌟 New model addition" — those are wanted.
+# ---------------------------------------------------------------------------
+_OFF_TOPIC_BODY_PREFIXES = re.compile(
+    r"""
+    ^\s*(?:
+        \#{1,3}\s*🐛       |   # "# 🐛 Bug" template header
+        \#{1,3}\s*Bug\b    |   # "# Bug" (no emoji variant)
+        \#{1,3}\s*❓        |   # "# ❓ Questions & Help"
+        \#{1,3}\s*Questions?\s*[&/]?\s*Help  |
+        \#{1,3}\s*Support\s+Request |
+        \#{1,3}\s*Help\s+(?:Request|Wanted)\b
+    )
+    """,
+    re.IGNORECASE | re.VERBOSE,
+)
+
+
+def _is_off_topic_issue(issue: dict[str, Any]) -> bool:
+    """Return True if the issue body looks like a bug report or Q&A question.
+
+    These are support/debugging threads that have no value as resurrection
+    candidates regardless of how many upvotes they collected.
+
+    Only inspects the first 200 characters of the body so we avoid false
+    positives from incidental bug-report language deeper in a feature request.
+    """
+    body = str(issue.get("body") or "")
+    excerpt = body[:200]
+    if _OFF_TOPIC_BODY_PREFIXES.search(excerpt):
+        LOGGER.debug(
+            "[OffTopic] #%s: body starts with bug/Q&A header — skipping.",
+            issue.get("number"),
+        )
+        return True
+    return False
+
 
 # ---------------------------------------------------------------------------
 # Repo rotation helpers
@@ -566,6 +612,11 @@ def scan_repo(repo: str, token: str) -> int:
         if issue_number in existing_issue_numbers:
             continue
         if not is_abandoned(raw_issue):
+            continue
+        # Skip bug reports, Q&A questions, and support requests — they are
+        # never candidates for resurrection as ideas or features.
+        if _is_off_topic_issue(raw_issue):
+            LOGGER.info("Skipping off-topic (bug/Q&A) issue: %s#%d", repo, issue_number)
             continue
         # Skip issues that appear to already be solved in practice
         if is_already_solved(repo, raw_issue, token):
