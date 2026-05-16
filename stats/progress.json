@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-16T17:37:00",
+  "last_updated": "2026-05-16T17:52:54",
   "total_resurrections": 28,
   "total_repos_covered": 22,
-  "average_impact_score": 6.29,
-  "average_effort_hours": 72.57,
+  "average_impact_score": 6.25,
+  "average_effort_hours": 71.14,
   "top_tags": [
     "rust",
     "terminal",
@@ -42,23 +42,24 @@
   ],
   "last_resurrection": {
     "date": "2026-05-16",
-    "repo": "ohmyzsh/ohmyzsh",
-    "issue_number": 5327,
-    "title": "oh-my-zsh very slow :(",
-    "reactions": 139,
-    "abandoned_date": "2024-07-08T03:46:48Z",
-    "one_line_why": "Modern performance monitoring and optimization tools make it feasible to improve oh-my-zsh's performance.",
-    "impact_score": 7,
-    "effort_hours": 120.0,
-    "has_poc": false,
+    "repo": "ollama/ollama",
+    "issue_number": 4499,
+    "title": "paligemma2 support",
+    "reactions": 53,
+    "abandoned_date": "2025-05-08T13:24:58Z",
+    "one_line_why": "The issue succeeds now due to advancements in model serving and Go-based inference libraries.",
+    "impact_score": 6,
+    "effort_hours": 80.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
-      "zsh",
-      "oh-my-zsh",
-      "performance optimization",
-      "plugin manager"
+      "model serving",
+      "go",
+      "onnx",
+      "tensorflow",
+      "kubernetes"
     ],
-    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/5327"
+    "original_url": "https://github.com/ollama/ollama/issues/4499"
   }
 }
