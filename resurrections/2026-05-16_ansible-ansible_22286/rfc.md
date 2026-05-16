@@ -1,61 +1,93 @@
-# RFC: Feature Idea: add meta: end_role
+# RFC: add `meta: end_role` to Ansible
 
-### Summary
+## Summary
 
-This RFC proposes the addition of a new meta command, `meta: end_role`, to terminate a role early, similar to the existing `meta: end_play` command. The goal is to provide more control over role execution, allowing for more flexible and dynamic playbook design.
+Add a new `meta` action keyword `end_role` that immediately stops execution of the current role, analogous to the existing `end_play` and `end_host` keywords. The play continues with whatever comes after the role.
 
-### Motivation
+## Motivation
 
-Currently, Ansible roles execute until completion, unless an error occurs or a `meta: end_play` command is encountered. However, there are scenarios where it would be beneficial to terminate a role early, such as:
+Ansible already has two escape hatches:
 
-* When a specific condition is met, and further tasks in the role are unnecessary.
-* When a role is used to perform setup or validation, and it needs to exit early if the validation fails.
+| Keyword | Scope |
+|---|---|
+| `meta: end_play` | Stops the **entire play** for all hosts |
+| `meta: end_host` | Stops the play **for the current host only** |
 
-The absence of an `end_role` command forces users to implement workarounds, such as using `blocks` with `rescue` or `always` clauses, or employing complex conditional logic. These workarounds can lead to convoluted playbooks and make it harder to understand the intent of the code.
+There is no way to stop **just the current role** while letting the play (and other roles) continue normally. The workarounds are all painful:
 
-### Detailed Design
+- `block/rescue/always` — adds nesting and obscures intent
+- `when:` conditions on every remaining task — fragile and verbose
+- `meta: end_play` — too aggressive; kills everything
+- Splitting the role into two roles — architectural overhead for a simple early-exit
 
-The proposed implementation involves introducing a new module, `ansible_meta_end_role`, which will utilize Ansible's existing `meta` module framework. This new module will follow the Singleton pattern to ensure only one instance of the role termination is executed.
+Real use-cases where `end_role` is needed today:
 
-The `meta: end_role` command will be designed to:
+- A validation/preflight role that should exit cleanly if preconditions are already met (idempotency)
+- A setup role that detects the system is already configured and wants to skip remaining tasks without error
+- Dynamically included roles (via `include_role`) where the caller decides the role should bail based on a registered variable
 
-* Immediately terminate the current role execution.
-* Prevent any further tasks within the role from running.
-* Allow the playbook to continue executing with the next role or task.
+## Detailed Design
 
-To achieve this, the following changes will be made:
+The implementation follows the exact same pattern as `meta: end_host` (added in Ansible 2.8, PR [#42end_host](https://github.com/ansible/ansible/pull/42906)).
 
-* Update the Ansible core to recognize and handle the new `meta: end_role` task.
-* Implement the `ansible_meta_end_role` module, which will handle the role termination logic.
+### 1. New exception class
 
-### Drawbacks
+In `lib/ansible/errors/__init__.py`:
 
-The introduction of `meta: end_role` may lead to:
+```python
+class AnsibleEndRole(AnsibleError):
+    """Raised when meta: end_role is encountered. Stops current role only."""
+    pass
+```
 
-* Increased complexity in playbook design, as users will need to understand when and how to use this new command.
-* Potential misuse or overuse of the `end_role` command, leading to hard-to-debug playbooks.
+### 2. Handle the keyword in `TaskExecutor`
 
-However, these drawbacks can be mitigated through:
+In `lib/ansible/executor/task_executor.py`, inside `_execute_meta()`:
 
-* Clear documentation and examples of the `meta: end_role` command.
-* Best practices guidelines for using this command effectively.
+```python
+elif meta_action == 'end_role':
+    if self._task._role is None:
+        raise AnsibleError("meta: end_role can only be used inside a role")
+    raise AnsibleEndRole()
+```
 
-### Alternatives
+### 3. Catch `AnsibleEndRole` in the strategy
 
-Alternative solutions to achieve similar functionality include:
+In `lib/ansible/plugins/strategy/__init__.py`, inside `_process_pending_results()`, catch `AnsibleEndRole` and mark remaining tasks for that role as skipped for the current host — identical to how `AnsibleEndHost` is handled, but scoped to role task boundaries only.
 
-* Using `meta: end_play`, which terminates the entire play, not just the role.
-* Implementing complex conditional logic to skip tasks within a role.
+### 4. Usage example
 
-However, these alternatives are either too drastic (terminating the entire play) or cumbersome (complex conditionals), making `meta: end_role` a more attractive and flexible solution.
+```yaml
+# roles/my_role/tasks/main.yml
+- name: Check if already configured
+  stat:
+    path: /etc/myapp/configured
+  register: already_configured
 
-### Unresolved Questions
+- name: Exit role early if already configured
+  meta: end_role
+  when: already_configured.stat.exists
 
-* How will `meta: end_role` interact with `blocks` and `rescue` clauses within a role?
-* Will `meta: end_role` be allowed within a `block` or `rescue` clause?
-* How will this feature impact performance, particularly in large playbooks?
+- name: Run expensive setup (skipped if already configured)
+  include_tasks: setup.yml
+```
 
-These questions will be addressed through further discussion and testing during the implementation phase.
+## Drawbacks
+
+- Adds a new control-flow keyword that developers must learn
+- Behaviour inside `block/rescue` needs careful definition (proposed: `end_role` inside a `block` exits the role, same as if it were at the top level)
+
+## Alternatives
+
+- **`block/rescue`** — already possible but verbose and obscures intent
+- **`when:` on every task** — fragile; easy to miss a task
+- **`meta: end_play`** — too coarse-grained
+
+## Unresolved Questions
+
+- Should `end_role` work inside `include_role` only, or also inside statically `import_role`d roles? (Proposed: both, but with a warning for `import_role` since tasks are pre-loaded at parse time.)
+- Should `end_role` inside a `rescue` block be allowed? (Proposed: yes, same semantics as at top level.)
+- Interaction with `loop:` on `include_role` — should it end the current loop iteration or all remaining iterations?
 
 ---
 

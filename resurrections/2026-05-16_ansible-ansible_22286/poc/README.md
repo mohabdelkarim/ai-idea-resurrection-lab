@@ -1,19 +1,34 @@
-# Proof of Concept: Feature Idea: add meta: end_role
+# PoC: `meta: end_role`
 
-**Language:** python
-**Estimated run time:** < 5 minutes
+This PoC simulates the correct implementation of `meta: end_role` in Ansible.
 
-## Prerequisites
+## What it demonstrates
 
-- Python 3.12+, pip install requirements
+- The `AnsibleEndRole` exception class that mirrors `AnsibleEndHost` / `AnsibleEndPlay`
+- Where to patch `TaskExecutor._execute_meta()` (one `elif` branch)
+- The control-flow: `end_role` stops the current role, the play continues with the next role
 
-## How to Run
+## How to run
+
+No Ansible installation required — pure Python stdlib:
 
 ```bash
-pip install -r requirements.txt
-python main.py
+python poc/main.py
 ```
 
-## What This Demonstrates
+## Expected output
 
-Add a new meta command 'meta: end_role' to terminate a role early, similar to 'end_play'.
+```
+=== Simulation: end_role stops only the current role ===
+
+[role:preflight] Starting
+  [run]  Check if already configured
+  [end_role] Stopping role 'preflight' early
+[role:deploy] Starting
+  [run]  Deploy application
+  [run]  Restart service
+[role:deploy] Completed normally
+[play] Done
+```
+
+Change `condition=True` to `condition=False` on the `end_role` task to see the full preflight role run without early exit.
