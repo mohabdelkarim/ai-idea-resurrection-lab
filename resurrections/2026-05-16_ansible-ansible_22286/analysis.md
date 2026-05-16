@@ -1,22 +1,30 @@
 # Analysis: Feature Idea: add meta: end_role
 
-> Add a new meta command 'meta: end_role' to terminate a role early, similar to 'end_play'.
+> Add a new `meta: end_role` task to terminate a role early, analogous to the existing `meta: end_play`.
 
-**Why it will work now:** The feature succeeds now due to improved ecosystem support and clear use cases for role control.
+**Why it will work now:** Ansible's task execution pipeline has been substantially refactored since 2017. The `TaskExecutor` and `PlayIterator` now expose cleaner hooks, and the Ansible community has converged on similar patterns (e.g. `meta: end_host` added in 2.8) that serve as a direct precedent.
 
 ---
 
 ## Why It Died
 
-The issue was abandoned due to lack of clear requirements and implementation details. The original proposal was to add a new meta command 'end_role' to terminate a role early, similar to 'end_play'. However, there was no clear consensus on its use cases and implementation.
+The original 2017 issue ([ansible/ansible#22286](https://github.com/ansible/ansible/issues/22286)) was closed by a bot in 2024 without resolution. The proposal was minimal — a one-liner request — with no implementation detail, no agreed use-cases, and no champion to drive it through the Ansible core team's review process.
 
 ## Why 2026 Changes Everything
 
-With the advancements in Ansible's modular design and the introduction of new features like 'meta: reset_connection', the ecosystem is now more receptive to role control commands. The existence of tools like Ansible AWX and improved support for role development in VSCode also facilitate the implementation and adoption of such a feature.
+Two concrete developments make this viable now:
 
-## Modern Architecture
+1. **`meta: end_host` precedent (Ansible 2.8, 2018).** The `end_host` keyword was successfully added to `PlayIterator` by raising an internal `AnsibleEndHost` exception inside `TaskExecutor`. The `end_role` feature requires exactly the same pattern — an `AnsibleEndRole` exception caught one level higher than `end_host`. The engineering path is already proven.
+2. **`include_role` and `import_role` are now mainstream.** As of Ansible 2.16+, roles are composed dynamically far more often. The ability to bail out of a nested role without killing the entire play or using `block/rescue` workarounds is a real day-to-day pain point that didn't exist at the same scale in 2017.
 
-The modern design for 'meta: end_role' could involve introducing a new module, 'ansible_meta_end_role', which would utilize Ansible's existing 'meta' module framework. This would follow the Singleton pattern to ensure only one instance of the role termination is executed. The implementation would involve updating the Ansible core to recognize and handle this new meta task.
+## Correct Architecture
+
+The `meta:` directive is **not** a regular module — it is handled directly by `TaskExecutor` via a special-cased branch in `_execute_meta()`. The correct implementation path:
+
+1. **Add `AnsibleEndRole` exception** to `ansible/errors/__init__.py` (mirrors `AnsibleEndPlay`, `AnsibleEndHost`).
+2. **Handle the new keyword** inside `TaskExecutor._execute_meta()` — raise `AnsibleEndRole` when `meta: end_role` is encountered.
+3. **Catch `AnsibleEndRole`** inside the role execution loop in `StrategyBase._process_pending_results()` / `linear.py` — skip remaining tasks for that role only, then continue the play normally.
+4. **No new module needed.** No Singleton pattern. No new plugin type. Pure exception-based control flow, consistent with how `end_host` and `end_play` work today.
 
 ---
 
@@ -25,9 +33,9 @@ The modern design for 'meta: end_role' could involve introducing a new module, '
 | Metric | Value |
 |--------|-------|
 | 💥 Impact Score | 5/10 |
-| ⏱️ Effort Estimate | ~48 hours |
-| 🏷️ Tech Tags | ansible, meta, role, automation |
-| 💀 Year Abandoned | 2017 |
+| ⏱️ Effort Estimate | ~40 hours |
+| 🏷️ Tech Tags | ansible, meta, role, task-executor, playbook |
+| 💀 Year Abandoned | 2024 (open since 2017) |
 | 🔬 Has PoC | Yes |
 | 📋 Has RFC | Yes |
 
