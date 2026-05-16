@@ -1,0 +1,93 @@
+[
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 100000,
+    "title": "Rust is Beautiful",
+    "body": ":heart: :crab: :heart: \r\n\r\n100,000 issues filled with love, compassion and a wholesome community. Thank you, Rust community, for being one of the most, if not straight out the most, welcoming programming communities out there. Thank you, Rust teams, for the tireless hours you spend every day on every aspect of this project. Thank you to the Rust team alumni for the many hours spent growing a plant and the humility of passing it to people you trust to continue taking care of it. Thank you everyone for RFCs, giving voice to the community, being those voices AND listening to each other.\r\n\r\nThis community has been and continue to be one of the best I have ever had the pleasure of being a part of. The language itself has many things to love and appreciate about it, from the humane error messages to giving the people the power to express high performance code without sacrificing readability for the ones to come after us. But nothing, truly nothing, takes the cake as much as the community that's building it, answering questions, helping and loving each other. Every single day.\r\n\r\nCongratulations everyone for 100,000 issues and PRs! And thank you for being you. Because Rust is Beautiful, for having you as part of it.\r\n\r\nTo the times we spent together and the many more to come! :orange_heart:\r\n",
+    "reactions": 2774,
+    "created_at": "2022-07-31T22:01:04Z",
+    "updated_at": "2024-01-14T22:16:41Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/100000",
+    "html_url": "https://github.com/rust-lang/rust/issues/100000",
+    "author_login": "Mathspy",
+    "author_profile": "https://github.com/Mathspy",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 99999,
+    "title": "Happy birthday, issue tracker. :)",
+    "body": "Not an issue, just a nice number. :D",
+    "reactions": 162,
+    "created_at": "2022-07-31T21:58:42Z",
+    "updated_at": "2022-08-10T18:13:43Z",
+    "labels": [
+      "metabug"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/99999",
+    "html_url": "https://github.com/rust-lang/rust/issues/99999",
+    "author_login": "RalfJung",
+    "author_profile": "https://github.com/RalfJung",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 20866,
+    "title": "doc: provide epub download of The Book",
+    "body": "Could you possibly add an .epub version of The Book for download on the website?\n\nThe epub format seems at least mentioned in some Makefiles, so I hope this should be not very hard  -- unless it's defunct and unsupported, and would have to be done from scratch? If not, then still there are some tools like pandoc, that I think support making epubs from Markdown already, so at least should be doable without reinventing the tools...\n\nI'd be very grateful, thanks.\n",
+    "reactions": 116,
+    "created_at": "2015-01-10T11:18:56Z",
+    "updated_at": "2024-02-17T02:21:27Z",
+    "labels": [
+      "P-low",
+      "E-help-wanted",
+      "A-docs",
+      "C-feature-request"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/20866",
+    "html_url": "https://github.com/rust-lang/rust/issues/20866",
+    "author_login": "akavel",
+    "author_profile": "https://github.com/akavel",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 27189,
+    "title": "Add `rustc --fatal` which stops at the first build error",
+    "body": "(Should this be an RFC?)\n## Motivation\n\nWhen refactoring, one may have dozens or hundreds of build errors which need to be fixed one by one. Sometimes, a build error is only a consequence of an earlier error rather than something that need to be fixed itself:\n\n``` rust\nlet foo = bar.method_that_was_renamed(); // First error\n// ...\nbar.other_method() // Second error because the type of `bar` is unknown\n```\n\nIn such cases, it is a better strategy to start by looking at and fixing earlier errors (in the compiler output) first. The second error might just go away when the first is fixed.\n\nIn a large enough crate, it’s easy to get well over one screenful of compiler output. So the workflow is something like:\n- Build. See lots of output be generated too fast to read.\n- Scroll back to the beginning of the output for this build. Don’t miss it! It looks a lot like the output of the previous build.\n- Find the first error.\n- Try to fix the first error.\n- Repeat.\n## Proposal\n\nAdd a command-line argument to rustc, called something like `--fatal`. When it is given and the compile finds a build error (the kind that would cause the compilation to fail eventually, so not warnings), exit immediately after printing diagnostics for this error. This is the opposite of the usual strategy of finding as many errors as possible at once.\n\nThe new workflow is:\n- Build.\n- The first error is right there at the bottom of the terminal. A single error likely fits entirely on the screen.\n- Try to fix it.\n- Repeat.\n\n(With some [inotify-based tricks](https://exyr.org/2011/inotify-run/), it’s not even necessary to switch focus from the terminal.)\n",
+    "reactions": 93,
+    "created_at": "2015-07-21T15:48:03Z",
+    "updated_at": "2025-07-10T20:33:13Z",
+    "labels": [
+      "A-frontend",
+      "A-diagnostics",
+      "T-compiler",
+      "C-feature-request",
+      "D-verbose"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/27189",
+    "html_url": "https://github.com/rust-lang/rust/issues/27189",
+    "author_login": "SimonSapin",
+    "author_profile": "https://github.com/SimonSapin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "rust-lang/rust",
+    "issue_number": 40552,
+    "title": "Enable --remap-path-prefix for absolute paths by default",
+    "body": "According to #40374 , a part of private information is leaked by the path string living in the compiled binaries. To protect privacy and help debugging, I think we can let rustc to mangle the path. Here is my solution:\r\n\r\nBasically, we can hide the 'insignificant' part of the path (which usually contains some private and/or unrelated info), leave 'significant' part untouched. Then what is the 'significant' part of a path? Here is an example: Assume that we have a project `foobar` which is in user's home directory (here I use a windows path, on *nix things work similarly):\r\n```\r\nC:\\Users\\username\\Documents\\foobar\r\n```\r\nIn this case, the useful part is the crate name and the part after the crate name, i.e.\r\n```\r\n\\foobar\\lib.rs\r\n```\r\nAssuming we have a mod called 'somemod', then after mangling, the new path looks like:\r\n```\r\n[crate]\\foobar\\somemod\\mod.rs\r\n```\r\nwhich not only saves the relatitionship information between sources files, but also protects the privacy of the user (since no more user name or aboslute path exists) !\r\n\r\nThe next question is how to process all paths under this rule. From what I know, all compiled code of a crate comes from 4 sources:\r\n* crates.io or mirrors of crates.io, or some independent 3rd party repo, in which the code is cached and lives in the cargo cache directory\r\n* remote git repositories\r\n* local filesystem\r\n* the crate itself (which may locate at any place)\r\n\r\nWe could specify different root names for these sources to indicate their origin:\r\n* For code from crates.io or mirrors, the root name is `[crates.io]`. Example:\r\n`C:\\Users\\username\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\winapi-0.2.8\\` will be mangled to `[crate.io]\\winapi-0.2.8\\`\r\n* For code from remote git repository, the root name is `[username@git server name]`. Example: `https://github.com/rust-lang/rust` will be manged to `[rust-lang@github.com]/rust`\r\n* For code from local filesystem, the root name is `[local]`. Example: `D:\\workspaces\\foobarng\\` will be mangled to `[local]\\foobarng\\`\r\n* For code from the crate itself, the root name is `crate`. Example: `C:\\Users\\username\\Documents\\foobar\\` will be mangled to `[crate]\\foobar\\`\r\n\r\nAnd for helping debuggers, all paths in debugging information won't be modified. Thus, users still know where the debugging code is, and won't worry about leaking privacy (just need stripping out debugging information before packaging on *nix, or not distributing .pdb files on windows).",
+    "reactions": 81,
+    "created_at": "2017-03-15T18:30:22Z",
+    "updated_at": "2023-06-16T16:37:48Z",
+    "labels": [
+      "T-compiler",
+      "C-feature-request"
+    ],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/40552",
+    "html_url": "https://github.com/rust-lang/rust/issues/40552",
+    "author_login": "mzji",
+    "author_profile": "https://github.com/mzji",
+    "already_resurrected": false
+  }
+]
