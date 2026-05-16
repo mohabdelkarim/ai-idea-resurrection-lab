@@ -537,6 +537,24 @@
   },
   {
     "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11215,
+    "title": "when can surport longcat",
+    "body": "\n\n### Your question\n\nwhen can surport longcat   https://github.com/meituan-longcat/LongCat-Image",
+    "reactions": 7,
+    "created_at": "2025-12-10T00:18:49Z",
+    "updated_at": "2026-05-15T12:06:28Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/11215",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/11215",
+    "author_login": "chenfeng6a",
+    "author_profile": "https://github.com/chenfeng6a",
+    "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
     "issue_number": 10563,
     "title": "Emu3.5 support",
     "body": " \nMatches Gemini 2.5 Flash Image (Nano Banana) on image generation/editing, and outperforms on interleaved generation tasks.😄 @comfyanonymous \n\n ",
