@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-15T17:29:43",
-  "total_resurrections": 30,
-  "total_repos_covered": 24,
-  "average_impact_score": 6.33,
-  "average_effort_hours": 78.2,
+  "last_updated": "2026-05-16T03:29:39",
+  "total_resurrections": 31,
+  "total_repos_covered": 25,
+  "average_impact_score": 6.32,
+  "average_effort_hours": 78.26,
   "top_tags": [
     "rust",
     "typescript",
@@ -41,24 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-15",
-    "repo": "microsoft/vscode",
-    "issue_number": 71827,
-    "title": "Refreshing the VS Code product icon ",
-    "reactions": 1540,
-    "abandoned_date": "2019-07-18T18:20:48Z",
-    "one_line_why": "The refreshed icon would enhance user experience by providing better visibility and consistency with other Microsoft products.",
+    "date": "2026-05-16",
+    "repo": "ajeetdsouza/zoxide",
+    "issue_number": 283,
+    "title": "[Feature Request] Zoxide Library",
+    "reactions": 5,
+    "abandoned_date": "2022-04-25T03:06:54Z",
+    "one_line_why": "A zoxide library would enable seamless integration with other tools, enhancing their functionality and user experience.",
     "impact_score": 6,
-    "effort_hours": 40.0,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "rust",
     "technology_tags": [
-      "icon-design",
-      "fluent design",
-      "typescript",
-      "vs code"
+      "rust",
+      "library",
+      "zoxide",
+      "file manager"
     ],
-    "original_url": "https://github.com/microsoft/vscode/issues/71827"
+    "original_url": "https://github.com/ajeetdsouza/zoxide/issues/283"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-16",
+  "repo": "ajeetdsouza/zoxide",
+  "issue_number": 283,
+  "title": "[Feature Request] Zoxide Library",
+  "reactions": 5,
+  "abandoned_date": "2022-04-25T03:06:54Z",
+  "one_line_why": "A zoxide library would enable seamless integration with other tools, enhancing their functionality and user experience.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "technology_tags": [
+    "rust",
+    "library",
+    "zoxide",
+    "file manager"
+  ],
+  "original_url": "https://github.com/ajeetdsouza/zoxide/issues/283"
+}
