@@ -1,0 +1,55 @@
+[
+  {
+    "repo": "denoland/deno",
+    "issue_number": 13616,
+    "title": "[fmt] Option to remove semicolons",
+    "body": "Hi!\r\n\r\nA lot of JavaScript and TypeScript projects don't use semicolons. Some famous style conventions such as [StandardJS](https://standardjs.com/) prohibit their use (except when needed).\r\n\r\nI suggest to add an option `useSemicolon` that defaults to `true` and can be turned off in order to remove automatically insertable semicolons. When turned off this option set [dprint's semicolon option](https://dprint.dev/plugins/typescript/config/) to `asi`.\r\n\r\nI think it is an option in the same vein as `useTabs` and `indentWidth`: for some people this improves code readability.",
+    "reactions": 52,
+    "created_at": "2022-02-07T17:58:43Z",
+    "updated_at": "2023-01-26T20:57:49Z",
+    "labels": [
+      "suggestion",
+      "deno fmt"
+    ],
+    "url": "https://api.github.com/repos/denoland/deno/issues/13616",
+    "html_url": "https://github.com/denoland/deno/issues/13616",
+    "author_login": "Conaclos",
+    "author_profile": "https://github.com/Conaclos",
+    "already_resurrected": false
+  },
+  {
+    "repo": "denoland/deno",
+    "issue_number": 18390,
+    "title": "Feature Request: Importing a `js` file could fall back to `ts` file in a `ts` file",
+    "body": "### Discussed in https://github.com/denoland/deno/discussions/18293\r\n\r\n<div type='discussions-op-text'>\r\n\r\n<sup>Originally posted by **Conaclos** March 20, 2023</sup>\r\nHi!\r\n\r\nOne thing that prevents me from using _Deno_ for my TypeScript projects is the incompatibility of Deno with other tools. in particular _ESbuild_ and _TSC_.\r\n\r\nI use _ESbuild_ and _TSC_ to transpile my projects for npm and the browser. ESbuild and TSC do not change the extension of import paths. That's mean we have to use js extension to import a TypeScript file.\r\n\r\nIt could be nice to implement a very simple resolution strategy for _Deno_: in a TypeScript file (file ending with ts extension): an import path ending with a _js_ extension is resolved to the same file, but ending with a ts extension if the _js_ file does not exist.\r\n\r\n```ts\r\n// a.ts\r\nimport * as b from \"./b.js\" // resolves to \"./b.js\" or \"./b.ts\" if \"./b.js\" does not exist\r\n...\r\n```\r\n\r\n\r\n</div>",
+    "reactions": 9,
+    "created_at": "2023-03-23T16:03:43Z",
+    "updated_at": "2025-04-23T19:27:34Z",
+    "labels": [
+      "declined"
+    ],
+    "url": "https://api.github.com/repos/denoland/deno/issues/18390",
+    "html_url": "https://github.com/denoland/deno/issues/18390",
+    "author_login": "Conaclos",
+    "author_profile": "https://github.com/Conaclos",
+    "already_resurrected": false
+  },
+  {
+    "repo": "denoland/deno",
+    "issue_number": 20455,
+    "title": "npm: automatic acquisition of `@types` package for type checking",
+    "body": "This was already on the roadmap but with no issue.\r\n\r\nYou can usually work around this with `// @deno-types=\"npm:@types/<package>\"` but that's not always an option. E.g. for `\"jsxImportSource\": \"npm:react\"` in your compiler options, there's no import to add the directive to. So it's a big obstacle for react-jsx users.",
+    "reactions": 9,
+    "created_at": "2023-09-11T19:14:28Z",
+    "updated_at": "2024-09-02T03:13:41Z",
+    "labels": [
+      "declined",
+      "node compat"
+    ],
+    "url": "https://api.github.com/repos/denoland/deno/issues/20455",
+    "html_url": "https://github.com/denoland/deno/issues/20455",
+    "author_login": "nayeemrmn",
+    "author_profile": "https://github.com/nayeemrmn",
+    "already_resurrected": false
+  }
+]

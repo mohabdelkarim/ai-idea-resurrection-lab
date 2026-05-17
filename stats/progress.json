@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-05-16T17:52:54",
+  "last_updated": "2026-05-17T03:43:47",
   "total_resurrections": 28,
   "total_repos_covered": 22,
   "average_impact_score": 6.25,
-  "average_effort_hours": 71.14,
+  "average_effort_hours": 69.14,
   "top_tags": [
     "rust",
     "terminal",
-    "go",
     "typescript",
+    "go",
     "cli"
   ],
   "hall_of_fame": [
@@ -41,25 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-16",
-    "repo": "ollama/ollama",
-    "issue_number": 4499,
-    "title": "paligemma2 support",
-    "reactions": 53,
-    "abandoned_date": "2025-05-08T13:24:58Z",
-    "one_line_why": "The issue succeeds now due to advancements in model serving and Go-based inference libraries.",
+    "date": "2026-05-17",
+    "repo": "denoland/deno",
+    "issue_number": 13616,
+    "title": "[fmt] Option to remove semicolons",
+    "reactions": 52,
+    "abandoned_date": "2023-01-26T20:57:49Z",
+    "one_line_why": "This feature succeeds now because deno fmt needs customizable formatting options to match the diverse style conventions in the JavaScript.",
     "impact_score": 6,
-    "effort_hours": 80.0,
+    "effort_hours": 24.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "typescript",
     "technology_tags": [
-      "model serving",
-      "go",
-      "onnx",
-      "tensorflow",
-      "kubernetes"
+      "deno",
+      "typescript",
+      "javascript",
+      "code-formatting"
     ],
-    "original_url": "https://github.com/ollama/ollama/issues/4499"
+    "original_url": "https://github.com/denoland/deno/issues/13616"
   }
 }
