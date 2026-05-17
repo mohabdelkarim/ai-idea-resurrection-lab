@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-17",
+  "repo": "denoland/deno",
+  "issue_number": 13616,
+  "title": "[fmt] Option to remove semicolons",
+  "reactions": 52,
+  "abandoned_date": "2023-01-26T20:57:49Z",
+  "one_line_why": "This feature succeeds now because deno fmt needs customizable formatting options to match the diverse style conventions in the JavaScript.",
+  "impact_score": 6,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "deno",
+    "typescript",
+    "javascript",
+    "code-formatting"
+  ],
+  "original_url": "https://github.com/denoland/deno/issues/13616"
+}
