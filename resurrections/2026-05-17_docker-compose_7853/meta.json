@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-17",
+  "repo": "docker/compose",
+  "issue_number": 7853,
+  "title": "Please expose current user and group ID as new variables for use inside docker-compose.yml",
+  "reactions": 59,
+  "abandoned_date": "2025-11-07T08:34:04Z",
+  "one_line_why": "This feature is necessary to allow users to run containers with the same user and group ID as the docker-compose.",
+  "impact_score": 7,
+  "effort_hours": 48.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "docker",
+    "compose",
+    "go",
+    "environment variables"
+  ],
+  "original_url": "https://github.com/docker/compose/issues/7853"
+}
