@@ -1,0 +1,40 @@
+[
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 13430,
+    "title": "Rule Proposal: prefer-optional-chaining",
+    "body": "**Please describe what the rule should do:**\r\n\r\nThe new rule warns `obj && obj.prop`-like notations to suggest `obj?.prop`.\r\n\r\n**What new ECMAScript feature does this rule relate to?**\r\n\r\nOptional chaining\r\n\r\n**What category of rule is this? (place an \"X\" next to just one item)**\r\n\r\n[X] Suggests an alternate way of doing something (suggestion)\r\n\r\n**Provide 2-3 code examples that this rule will warn about:**\r\n\r\n<!-- Put your code examples here -->\r\n```js\r\n//✖ BAD\r\nobj && obj.prop\r\nobj != null ? obj.prop : undefined\r\nobj && obj[key]\r\nobj != null ? obj[key] : undefined\r\nfunc && func()\r\nfunc != null ? func() : undefined\r\nif (func) func()\r\nif (func) { func() }\r\n\r\n//✔ GOOD\r\nobj?.prop\r\nobj?.[key]\r\nfunc?.()\r\n```\r\n\r\n**Why should this rule be included in ESLint (instead of a plugin)?**\r\n\r\n`obj && obj.prop`-like notation is a popular practice. This rule will help people to learn the new syntax Optional Chaining. This is about a language feature rather than third-party platforms or libraries.\r\n\r\n**Are you willing to submit a pull request to implement this rule?**\r\n\r\nYes.\r\n",
+    "reactions": 77,
+    "created_at": "2020-06-21T04:36:38Z",
+    "updated_at": "2025-06-05T15:36:08Z",
+    "labels": [
+      "rule",
+      "accepted",
+      "feature"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/13430",
+    "html_url": "https://github.com/eslint/eslint/issues/13430",
+    "author_login": "mysticatea",
+    "author_profile": "https://github.com/mysticatea",
+    "already_resurrected": false
+  },
+  {
+    "repo": "eslint/eslint",
+    "issue_number": 19978,
+    "title": "Change Request: Show a reminder when errors are suppressed",
+    "body": "### ESLint version\n\nv9.32.0\n\n### What problem do you want to solve?\n\nCurrently, ESLint's [Bulk Suppressions](https://eslint.org/docs/latest/use/suppressions) mechanism completely hides suppressed errors and provides no indication that they exist. While this is useful for reducing noise, it also removes important context, especially in large codebases where tech debt is being suppressed temporarily.\n\nWithout any visible signal, developers can easily forget that suppressed errors exist, leading to:\n- Long-term accumulation of silent issues\n- Lack of visibility in IDEs or CI\n- No easy way to prioritize cleanup or track tech debt\n\nThis invisibility makes it hard to balance short-term silence with long-term accountability.\n\n### What do you think is the correct solution?\n\nI'd like ESLint to optionally surface suppressed errors as reminders, such as:\n\n> 💡 10 errors were suppressed in this file\n\nThis could appear as an \"info\" level diagnostic, ideally shown once per file, including metadata like the count of suppressed errors and possibly which rules were affected. \n\nIf the behavior should be off by default to preserve the current silent suppression flow, maybe users could opt into it via a flag like `--remind-suppressions`. These reminders would be purely informational and wouldn't impact exit codes or `--max-warnings`.\n\nThe goal is to keep teams aware of lingering tech debt without reintroducing full error noise.\n\n### Participation\n\n- [ ] I am willing to submit a pull request for this change.\n\n### Additional comments\n\n- While possibly outside the scope of Suppressions, it would be useful to consider `CODEOWNERS` integration. In large repos, mapping suppressed errors to owning teams could improve triage and accountability.\n\n- Related: https://github.com/eslint/eslint/issues/19706, which focuses on suppressing warnings. While that request aims to reduce noise, this one focuses on retaining visibility and tech debt awareness even when suppressions are in place.",
+    "reactions": 7,
+    "created_at": "2025-08-02T00:32:28Z",
+    "updated_at": "2025-10-04T22:32:09Z",
+    "labels": [
+      "enhancement",
+      "core",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/eslint/eslint/issues/19978",
+    "html_url": "https://github.com/eslint/eslint/issues/19978",
+    "author_login": "privatenumber",
+    "author_profile": "https://github.com/privatenumber",
+    "already_resurrected": false
+  }
+]

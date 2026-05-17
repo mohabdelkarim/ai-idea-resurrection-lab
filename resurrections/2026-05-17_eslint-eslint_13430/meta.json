@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-17",
+  "repo": "eslint/eslint",
+  "issue_number": 13430,
+  "title": "Rule Proposal: prefer-optional-chaining",
+  "reactions": 77,
+  "abandoned_date": "2025-06-05T15:36:08Z",
+  "one_line_why": "This rule succeeds now because modern JavaScript and tools like TypeScript widely support optional chaining.",
+  "impact_score": 7,
+  "effort_hours": 48.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "eslint",
+    "javascript",
+    "typescript",
+    "optional-chaining"
+  ],
+  "original_url": "https://github.com/eslint/eslint/issues/13430"
+}

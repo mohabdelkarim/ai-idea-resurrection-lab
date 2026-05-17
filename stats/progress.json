@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-17T14:30:26",
-  "total_resurrections": 29,
+  "last_updated": "2026-05-17T16:58:51",
+  "total_resurrections": 30,
   "total_repos_covered": 22,
-  "average_impact_score": 6.28,
-  "average_effort_hours": 68.41,
+  "average_impact_score": 6.3,
+  "average_effort_hours": 67.73,
   "top_tags": [
     "rust",
+    "typescript",
     "terminal",
     "go",
-    "typescript",
-    "cli"
+    "javascript"
   ],
   "hall_of_fame": [
     {
@@ -42,23 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-17",
-    "repo": "docker/compose",
-    "issue_number": 7853,
-    "title": "Please expose current user and group ID as new variables for use inside docker-compose.yml",
-    "reactions": 59,
-    "abandoned_date": "2025-11-07T08:34:04Z",
-    "one_line_why": "This feature is necessary to allow users to run containers with the same user and group ID as the docker-compose.",
+    "repo": "eslint/eslint",
+    "issue_number": 13430,
+    "title": "Rule Proposal: prefer-optional-chaining",
+    "reactions": 77,
+    "abandoned_date": "2025-06-05T15:36:08Z",
+    "one_line_why": "This rule succeeds now because modern JavaScript and tools like TypeScript widely support optional chaining.",
     "impact_score": 7,
     "effort_hours": 48.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "typescript",
     "technology_tags": [
-      "docker",
-      "compose",
-      "go",
-      "environment variables"
+      "eslint",
+      "javascript",
+      "typescript",
+      "optional-chaining"
     ],
-    "original_url": "https://github.com/docker/compose/issues/7853"
+    "original_url": "https://github.com/eslint/eslint/issues/13430"
   }
 }
