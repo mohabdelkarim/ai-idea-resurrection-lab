@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-18",
+  "repo": "expressjs/express",
+  "issue_number": 4535,
+  "title": "Node.js 15+ starts recommending promise based versions by default - Express 5.0 and wrapAsync",
+  "reactions": 36,
+  "abandoned_date": "2022-02-17T16:01:51Z",
+  "one_line_why": "Native support for promise-based APIs and async/await in Express routes will simplify development and improve error handling.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "express",
+    "nodejs",
+    "async/await",
+    "promise"
+  ],
+  "original_url": "https://github.com/expressjs/express/issues/4535"
+}
