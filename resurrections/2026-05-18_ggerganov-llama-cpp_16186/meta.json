@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-18",
+  "repo": "ggerganov/llama.cpp",
+  "issue_number": 16186,
+  "title": "Feature Request: Qwen3-Omni-30B-A3B support",
+  "reactions": 117,
+  "abandoned_date": "2026-05-06T16:38:23Z",
+  "one_line_why": "The implementation succeeds now due to recent updates in Transformers library and ggml library.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "ggml",
+    "llama.cpp",
+    "hugging face transformers",
+    "ai",
+    "ml"
+  ],
+  "original_url": "https://github.com/ggml-org/llama.cpp/issues/16186"
+}
