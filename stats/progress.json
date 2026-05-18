@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-17T16:58:51",
-  "total_resurrections": 30,
-  "total_repos_covered": 22,
-  "average_impact_score": 6.3,
-  "average_effort_hours": 67.73,
+  "last_updated": "2026-05-18T03:58:56",
+  "total_resurrections": 31,
+  "total_repos_covered": 23,
+  "average_impact_score": 6.32,
+  "average_effort_hours": 69.42,
   "top_tags": [
     "rust",
     "typescript",
@@ -41,24 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-17",
-    "repo": "eslint/eslint",
-    "issue_number": 13430,
-    "title": "Rule Proposal: prefer-optional-chaining",
-    "reactions": 77,
-    "abandoned_date": "2025-06-05T15:36:08Z",
-    "one_line_why": "This rule succeeds now because modern JavaScript and tools like TypeScript widely support optional chaining.",
+    "date": "2026-05-18",
+    "repo": "expressjs/express",
+    "issue_number": 4535,
+    "title": "Node.js 15+ starts recommending promise based versions by default - Express 5.0 and wrapAsync",
+    "reactions": 36,
+    "abandoned_date": "2022-02-17T16:01:51Z",
+    "one_line_why": "Native support for promise-based APIs and async/await in Express routes will simplify development and improve error handling.",
     "impact_score": 7,
-    "effort_hours": 48.0,
-    "has_poc": true,
+    "effort_hours": 120.0,
+    "has_poc": false,
     "has_rfc": true,
     "poc_language": "typescript",
     "technology_tags": [
-      "eslint",
-      "javascript",
-      "typescript",
-      "optional-chaining"
+      "express",
+      "nodejs",
+      "async/await",
+      "promise"
     ],
-    "original_url": "https://github.com/eslint/eslint/issues/13430"
+    "original_url": "https://github.com/expressjs/express/issues/4535"
   }
 }
