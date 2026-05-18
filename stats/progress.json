@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-18T03:58:56",
-  "total_resurrections": 31,
+  "last_updated": "2026-05-18T16:31:36",
+  "total_resurrections": 32,
   "total_repos_covered": 23,
-  "average_impact_score": 6.32,
-  "average_effort_hours": 69.42,
+  "average_impact_score": 6.34,
+  "average_effort_hours": 68.0,
   "top_tags": [
     "rust",
     "typescript",
@@ -42,23 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-05-18",
-    "repo": "expressjs/express",
-    "issue_number": 4535,
-    "title": "Node.js 15+ starts recommending promise based versions by default - Express 5.0 and wrapAsync",
-    "reactions": 36,
-    "abandoned_date": "2022-02-17T16:01:51Z",
-    "one_line_why": "Native support for promise-based APIs and async/await in Express routes will simplify development and improve error handling.",
+    "repo": "facebook/react",
+    "issue_number": 10191,
+    "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
+    "reactions": 846,
+    "abandoned_date": "2018-02-17T17:10:18Z",
+    "one_line_why": "Re-licensing React.js now would enable continued use in ASF projects and align with industry standards.",
     "impact_score": 7,
-    "effort_hours": 120.0,
-    "has_poc": false,
+    "effort_hours": 24.0,
+    "has_poc": true,
     "has_rfc": true,
     "poc_language": "typescript",
     "technology_tags": [
-      "express",
-      "nodejs",
-      "async/await",
-      "promise"
+      "react",
+      "licensing",
+      "apache"
     ],
-    "original_url": "https://github.com/expressjs/express/issues/4535"
+    "original_url": "https://github.com/facebook/react/issues/10191"
   }
 }
