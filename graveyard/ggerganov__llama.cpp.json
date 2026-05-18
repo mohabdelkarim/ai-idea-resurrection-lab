@@ -1,0 +1,92 @@
+[
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 16186,
+    "title": "Feature Request: Qwen3-Omni-30B-A3B support",
+    "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nQwen has released three 30b a3b omni models:\nhttps://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Instruct\nhttps://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Thinking\nhttps://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Captioner\n\n### Motivation\n\nnew SOTA omni models\n\n### Possible Implementation\n\nhttps://github.com/huggingface/transformers/pull/41025\nhttps://github.com/huggingface/transformers/pull/41045",
+    "reactions": 117,
+    "created_at": "2025-09-22T23:48:12Z",
+    "updated_at": "2026-05-06T16:38:23Z",
+    "labels": [
+      "enhancement",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/16186",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/16186",
+    "author_login": "teee9",
+    "author_profile": "https://github.com/teee9",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 16331,
+    "title": "Feature Request: DeepSeek V3.2-Exp support",
+    "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nSupport DeepSeek V3.2-Exp: https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Exp\n\n### Motivation\n\nBecause we can.\n\n### Possible Implementation\n\nVLLM code is here for reference: https://github.com/vllm-project/vllm/pull/25896",
+    "reactions": 35,
+    "created_at": "2025-09-29T12:24:14Z",
+    "updated_at": "2026-05-13T06:36:10Z",
+    "labels": [
+      "enhancement",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/16331",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/16331",
+    "author_login": "createthis",
+    "author_profile": "https://github.com/createthis",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 17509,
+    "title": "Feature Request: Support HunyuanOCR-1B",
+    "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nNew (claimed) 1B SOTA OCR VLM model from Tencent: https://huggingface.co/tencent/HunyuanOCR\n\n### Motivation\n\nClaimed SOTA OCR VLM\n\n<img width=\"2604\" height=\"1968\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/6bcbe39d-c7d3-45e5-a3e6-530cf1c0f7c6\" />\n\n### Possible Implementation\n\n_No response_",
+    "reactions": 21,
+    "created_at": "2025-11-25T23:57:23Z",
+    "updated_at": "2026-02-03T02:01:40Z",
+    "labels": [
+      "enhancement",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/17509",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/17509",
+    "author_login": "AbdullahMPrograms",
+    "author_profile": "https://github.com/AbdullahMPrograms",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 18189,
+    "title": "Feature Request: Idle model unload timeout (router mode / config.ini)",
+    "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nIt would be great if llama-server when run in router mode and/or with a config.ini could unload models that have been idle for a given time.\n\nFor example, you could default it to 300 (seconds) and have models that haven't performed any inference in 5 minutes be unloaded to free up resources.\n\n### Motivation\n\nModels current sit loaded until the max loaded models are met, using up system resources.\n\n[llama-swap provides](https://github.com/mostlygeek/llama-swap#configuration) this as a `ttl` setting.\n\nSomewhat related:\n- https://github.com/ggml-org/llama.cpp/issues/11703\n- https://github.com/ggml-org/llama.cpp/issues/4598\n\n### Possible Implementation\n\n```ini\nunload-idle-seconds = 300\n\n[some-custom-important-model]\nm = /models/custom.gguf\nunload-idle-seconds = 3600\n```\n\n```bash\nllama-server --unload-idle-seconds 300 --models-dir /models\n```\n",
+    "reactions": 15,
+    "created_at": "2025-12-19T01:15:59Z",
+    "updated_at": "2026-05-03T13:11:56Z",
+    "labels": [
+      "enhancement",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/18189",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/18189",
+    "author_login": "sammcj",
+    "author_profile": "https://github.com/sammcj",
+    "already_resurrected": false
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 17280,
+    "title": "Feature Request: ERNIE-4.5-VL-28B-A3B-Thinking support",
+    "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nBuilt upon the powerful ERNIE-4.5-VL-28B-A3B architecture, the newly upgraded ERNIE-4.5-VL-28B-A3B-Thinking achieves a remarkable leap forward in multimodal reasoning capabilities.\n\n### Motivation\n\nBuilt upon the powerful ERNIE-4.5-VL-28B-A3B architecture, the newly upgraded ERNIE-4.5-VL-28B-A3B-Thinking achieves a remarkable leap forward in multimodal reasoning capabilities.\n\n### Possible Implementation\n\n_No response_",
+    "reactions": 11,
+    "created_at": "2025-11-15T01:11:07Z",
+    "updated_at": "2026-01-29T01:09:08Z",
+    "labels": [
+      "enhancement",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/17280",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/17280",
+    "author_login": "sxch775-work",
+    "author_profile": "https://github.com/sxch775-work",
+    "already_resurrected": false
+  }
+]
