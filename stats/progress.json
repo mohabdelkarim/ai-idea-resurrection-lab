@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-18T18:03:20",
-  "total_resurrections": 33,
-  "total_repos_covered": 24,
-  "average_impact_score": 6.33,
-  "average_effort_hours": 68.36,
+  "last_updated": "2026-05-19T03:50:57",
+  "total_resurrections": 34,
+  "total_repos_covered": 25,
+  "average_impact_score": 6.35,
+  "average_effort_hours": 69.88,
   "top_tags": [
     "rust",
     "typescript",
@@ -41,25 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-18",
-    "repo": "ggerganov/llama.cpp",
-    "issue_number": 16186,
-    "title": "Feature Request: Qwen3-Omni-30B-A3B support",
-    "reactions": 117,
-    "abandoned_date": "2026-05-06T16:38:23Z",
-    "one_line_why": "The implementation succeeds now due to recent updates in Transformers library and ggml library.",
-    "impact_score": 6,
-    "effort_hours": 80.0,
-    "has_poc": true,
+    "date": "2026-05-19",
+    "repo": "open-webui/open-webui",
+    "issue_number": 483,
+    "title": "feat: OAuth/OIDC ",
+    "reactions": 83,
+    "abandoned_date": "2025-02-14T04:05:41Z",
+    "one_line_why": "With libraries like NextAuth.js and widespread OIDC adoption, secure and flexible authentication is now feasible.",
+    "impact_score": 7,
+    "effort_hours": 120.0,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "ggml",
-      "llama.cpp",
-      "hugging face transformers",
-      "ai",
-      "ml"
+      "oauth",
+      "oidc",
+      "authentication",
+      "typescript"
     ],
-    "original_url": "https://github.com/ggml-org/llama.cpp/issues/16186"
+    "original_url": "https://github.com/open-webui/open-webui/issues/483"
   }
 }
