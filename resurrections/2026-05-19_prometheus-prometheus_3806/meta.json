@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-19",
+  "repo": "prometheus/prometheus",
+  "issue_number": 3806,
+  "title": "Proposal for improving rate/increase ",
+  "reactions": 125,
+  "abandoned_date": "2026-03-24T23:23:53Z",
+  "one_line_why": "The proposed changes are necessary to provide more accurate and flexible rate and increase calculations, which are essential for modern.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "prometheus",
+    "promql",
+    "time series data",
+    "query engine"
+  ],
+  "original_url": "https://github.com/prometheus/prometheus/issues/3806"
+}
