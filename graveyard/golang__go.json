@@ -1,0 +1,442 @@
+[
+  {
+    "repo": "golang/go",
+    "issue_number": 34174,
+    "title": "proposal: Go 2: string interpolation",
+    "body": "# Introduction \r\n\r\nFor ones who don't know what it is:\r\n\r\n#### Swift\r\n```swift\r\nlet multiplier = 3\r\nlet message = \"\\(multiplier) times 2.5 is \\(Double(multiplier) * 2.5)\"\r\n// message is \"3 times 2.5 is 7.5\"\r\n```\r\n\r\n#### Kotlin\r\n```kotlin\r\nvar age = 21\r\n\r\nprintln(\"My Age Is: $age\")\r\n```\r\n\r\n#### C#\r\n```c#\r\nstring name = \"Mark\";\r\nvar date = DateTime.Now;\r\n\r\nConsole.WriteLine($\"Hello, {name}! Today is {date.DayOfWeek}, it's {date:HH:mm} now.\");\r\n```\r\n\r\n# Reasoning of string interpolation vs old school formatting\r\n\r\nI used to think it was a gimmick but it is not in fact. It is actually a way to provide type safety for string formatting. I mean compiler can expand interpolated strings into expressions and perform all kind of type checking needed.\r\n\r\n### Examples\r\n\r\n```\r\nvariable := \"var\"\r\nres := \"123\\{variable}321\" // res := \"123\" + variable + \"321\"\r\n```\r\n\r\n```\r\nreturn errors.New(\"opening config file: \\\\{err}\") // return errors.New(\"opening config file: \" + err.Error())\r\n```\r\n\r\n```\r\nvar status fmt.Stringer\r\n…\r\nmsg := \"exit status: \\{status}\" // msg := \"exit status: \" + status.String()\r\n```\r\n\r\n```\r\nv := 123\r\nres := \"value = \\{v}\" // res := \"value = \" + someIntToStringConversionFunc(v)\r\n```\r\n\r\n# Syntax proposed\r\n\r\n* Using `$` or `{}` would be more convenient in my opinion, but we can't use them for compatibility reasons\r\n* Using Swift `\\(…)` notation would be compatible but these `\\()` are a bit too stealthy\r\n\r\nI guess  `{…}` and `\\(…)` can be combined into `\\{…}`\r\n\r\nSo, the interpolation of variable `variable` into some string may look like\r\n\r\n```\r\n\"<prefix>\\{variable}<suffix>\"\r\n```\r\n\r\nFormatting also has formatting options. It may look like\r\n\r\n```\r\n\"<prefix>\\{variable[:<options>]}<suffix>\"\r\n```\r\n\r\n#### Examples of options\r\n\r\n```\r\nv := 123.45\r\nfmt.Println(\"value=\\{v:04.3}\") // value=0123.450\r\n```\r\n\r\n```\r\nv := \"value\"\r\nfmt.Println(\"value='\\{v:a50}'\") // value='<45 spaces>value'\r\n```\r\n\r\netc\r\n\r\n# Conversions\r\n\r\nThere should be conversions and formatting support for built in types and for types implementing `error` and `fmt.Stringer`. Support for types implementing\r\n\r\n```\r\ntype Formatter interface {\r\n    Format(format string) string\r\n}\r\n```\r\n\r\ncan be introduced later to deal with interpolation options\r\n\r\n# Pros and cons over traditional formatting\r\n\r\n### Pros\r\n\r\n* Type safety\r\n* Performance (depends on the compiler)\r\n* Custom formatting options support for user defined types\r\n\r\n### Cons\r\n\r\n* Complication of a compiler\r\n* Less formatting methods supported (no `%v` (?), `%T`, etc)",
+    "reactions": 523,
+    "created_at": "2019-09-08T10:45:23Z",
+    "updated_at": "2024-02-08T16:52:06Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "Proposal-FinalCommentPeriod"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/34174",
+    "html_url": "https://github.com/golang/go/issues/34174",
+    "author_login": "sirkon",
+    "author_profile": "https://github.com/sirkon",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 21291,
+    "title": "proposal: Go 2: remove bare return",
+    "body": "(I couldn't find an existing issue for this, so please close if this is a duplicate and I missed it.)\r\n\r\nI propose getting rid of bare returns. Named return values are great, keep those. Bare returns are more trouble than they are worth, eliminate them.",
+    "reactions": 325,
+    "created_at": "2017-08-03T16:02:21Z",
+    "updated_at": "2024-08-22T17:54:07Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "NeedsDecision",
+      "FrozenDueToAge"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/21291",
+    "html_url": "https://github.com/golang/go/issues/21291",
+    "author_login": "earthboundkid",
+    "author_profile": "https://github.com/earthboundkid",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 22885,
+    "title": "cmd/compile: implement powerpc 32-bit backend (ppc32)",
+    "body": "Tracking bug for missing PowerPC 32-bit backend. People interested in this can put a 👍 reaction here so that we can track interest.",
+    "reactions": 221,
+    "created_at": "2017-11-27T08:58:21Z",
+    "updated_at": "2026-02-05T22:22:36Z",
+    "labels": [
+      "FeatureRequest",
+      "compiler/runtime"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/22885",
+    "html_url": "https://github.com/golang/go/issues/22885",
+    "author_login": "rasky",
+    "author_profile": "https://github.com/rasky",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 47657,
+    "title": "proposal: sync, sync/atomic: add PoolOf, MapOf, ValueOf",
+    "body": "This proposal is for use with #43651.  We propose using type parameters to add compile-time-type-safe variants of `sync.Pool`, `sync.Map`, and `atomic.Value`.\r\n\r\nThis proposal is not targeted for any specific Go release.\r\n\r\n```Go\r\npackage sync\r\n\r\n// A PoolOf is a set of temporary objects of type T that may be individually saved and retrieved.\r\n// ...and so forth\r\ntype PoolOf[T any] struct {\r\n    ...\r\n    New func() T\r\n}\r\n\r\n// Put adds x to the pool.\r\nfunc (p *PoolOf[T]) Put(x T)\r\n\r\n// Get selects an arbitrary item from the Pool, removes it from the\r\n// Pool, and returns it to the caller.\r\n// The bool result reports whether a value was found.\r\n// ...and so forth\r\n//\r\n// If Get would otherwise return the second result as false and p.New is non-nil,\r\n// Get returns the result of calling p.New and true.\r\nfunc (p *PoolOf[T]) Get() (T, bool)\r\n\r\n// MapOf is like a Go map[K]V but is safe for concurrent use\r\n// by multiple goroutines without additional locking or coordination.\r\n// ...and so forth\r\ntype MapOf[K comparable, V any] struct { ... }\r\n\r\n// Load returns the value stored in the map for a key, or the zero value if no\r\n// value is present.\r\n// The ok result indicates whether value was found in the map.\r\nfunc (m *MapOf[K, V]) Load(key K) (value V, ok bool)\r\n\r\n// Store sets the value for a key.\r\nfunc (m *MapOf[K, V]) Store(key K, value V)\r\n\r\n// LoadOrStore returns the existing value for the key if present.\r\n// Otherwise, it stores and returns the given value.\r\n// The loaded result is true if the value was loaded, false if stored.\r\nfunc (m *MapOf[K, V]) LoadOrStore(key K, value V) (actual V, loaded bool)\r\n\r\n// LoadAndDelete deletes the value for a key, returning the previous value if any.\r\n// The loaded result reports whether the key was present.\r\nfunc (m *MapOf[K, V]) LoadAndDelete(key K) (value V, loaded bool)\r\n\r\n// Delete deletes the value for a key.\r\nfunc (m *MapOf[K, V]) Delete(key K)\r\n\r\n// Range calls f sequentially for each key and value present in the map.\r\n// ... and so forth\r\nfunc (m *MapOf[K, V]) Range(f func(key K, value V) bool)\r\n```\r\n\r\n```Go\r\npackage atomic\r\n\r\n// A ValueOf provides an atomic load and store of a value of a given type.\r\n// The zero value for a Value returns the zero value of the type from Load.\r\n// Once Store has been called, a Value must not be copied.\r\n//\r\n// A Value must not be copied after first use.\r\ntype ValueOf[T any] struct { ... }\r\n\r\n// Load returns the value set by the most recent Store.\r\n// It returns the zero value of T if there has been no call to Store for this Value.\r\nfunc (v *ValueOf[T]) Load() (val T)\r\n\r\n// Store sets the value of the Value to x.\r\nfunc (v *ValueOf[T]) Store(val T)\r\n\r\n// Swap stores new into Value and returns the previous value. It returns the zero value\r\n// if the Value is empty.\r\nfunc (v *ValueOf[T]) Swap(new T) (old T)\r\n\r\n// Note: no CompareAndSwap method; it would require a comparable T.\r\n```",
+    "reactions": 171,
+    "created_at": "2021-08-11T21:53:13Z",
+    "updated_at": "2026-01-01T04:48:54Z",
+    "labels": [
+      "Proposal",
+      "FrozenDueToAge",
+      "Proposal-Hold",
+      "generics"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/47657",
+    "html_url": "https://github.com/golang/go/issues/47657",
+    "author_login": "ianlancetaylor",
+    "author_profile": "https://github.com/ianlancetaylor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 15959,
+    "title": "cmd/go: go get download progress and download speed status ",
+    "body": "go 1.6\nlinux_amd_64\n### problem\n\ngo get is an awesome tool download and install repositories from websites. But the problem is many times due bad internet connection or varying internet speed or a large repository it takes a lot of time.All we can do is look at blinking the cursor and there is no way to know how much code has been downloaded or is it installing or downloading .\n### feature request\n\nI would like  to request this feature  of percentage of completed download and download speed status \nin go get tool. It will be very helpful for gophers with slow internet access.\n",
+    "reactions": 123,
+    "created_at": "2016-06-05T05:05:13Z",
+    "updated_at": "2025-07-15T07:56:59Z",
+    "labels": [
+      "NeedsInvestigation",
+      "GoCommand"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/15959",
+    "html_url": "https://github.com/golang/go/issues/15959",
+    "author_login": "prithvi16",
+    "author_profile": "https://github.com/prithvi16",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 21670,
+    "title": "proposal: Go 2: Have functions auto-implement interfaces with only a single method of that same signature",
+    "body": "For example, instead of having to have [http.HandlerFunc](https://golang.org/pkg/net/http/#HandlerFunc), a function with the signature `func(http.ResponsWriter, *http.Request)` would automatically implement [http.Handler](https://golang.org/pkg/net/http/#Handler).\r\n\r\n-----\r\n\r\nWhere I work we have at least 4 internal packages which use some form of interface layering/middleware, similar to `http.Handler` and it's middlewares like [http.StripPrefix](https://golang.org/pkg/net/http/#StripPrefix) and [http.TimeoutHandler](https://golang.org/pkg/net/http/#TimeoutHandler). It's a very powerful pattern which I don't think needs justification (I could give one, but it's not really what this proposal is about).\r\n\r\nHaving now written a few versions of what's essentially the exact same type I have a few different reasons I think this change is warranted:\r\n\r\n* It reduces confusion for programmers new to go. Anecdotally, pretty much every new go developer I've worked with has tried to pass a function like this and been confused as to why they can't. While I understand that this is a fairly small blip on the go learning-curve, I do think this is an indication that this function-as-interface behavior fits better with devs' mental model of how interfaces work.\r\n\r\n* It would allow for removing some public-facing types/functions from packages like http (if such a thing is on the table, at the very least it allows for reducing api surface area in new and internal packages). By the same token it reduces code-clutter in cases where something like `HandlerFunc` isn't available and you have to wrap your function in the `WhateverFunc` type inline.\r\n\r\n* It would be almost completely backwards compatible. There's no new syntax, and all existing code using types like `http.HandlerFunc` would continue to work as they are. The only exception I can think of is if someone is doing something with a `switch v.(type) {...}`, where `v` _might_ be a function, and the dev expects that the function _won't_ implement the interface as part of that switch behaving correctly (or the equivalent with if-statements or whatever).\r\n\r\nThese reasons don't justify a language change individually, but in sum I think it becomes worth talking about. Sorry if this has been proposed already, I searched for it but wasn't able to find anything related.",
+    "reactions": 115,
+    "created_at": "2017-08-28T19:43:22Z",
+    "updated_at": "2024-08-22T00:54:24Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "NeedsDecision",
+      "FrozenDueToAge"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/21670",
+    "html_url": "https://github.com/golang/go/issues/21670",
+    "author_login": "mediocregopher",
+    "author_profile": "https://github.com/mediocregopher",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 37739,
+    "title": "proposal: spec: lazy values",
+    "body": "This is just a thought.  I'm interested in what people think.\r\n\r\nBackground:\r\n\r\nGo has two short circuit binary operators, `&&` and `||`, that only evaluate their second operand under certain conditions.  There are periodic requests for additional short circuit expressions, often but not only the `?:` ternary operator found originally in C; for example: #20774, #23248, #31659, #32860, #33171, #36303, #37165.\r\n\r\nThere are also uses for short circuit operation in cases like conditional logging, in which the operands to a logging function are only evaluated if the function will actually log something.  For example, calls like\r\n\r\n```Go\r\n    log.Verbose(\"graph depth %d\", GraphDepth(g))\r\n```\r\n\r\nwhere `log.Verbose` only logs a message if some command line flag is specified, and `GraphDepth` is an expensive operation.\r\n\r\nTo be clear, all short circuit operations can be expressed using `if ` statements (or occasionally `&&` or `||` operators).  But this expression is inevitably more verbose, and can on occasion overwhelm more important elements of the code.\r\n\r\n```Go\r\n    if log.VerboseLogging() {\r\n        log.Verbose(\"graph depth %d\", GraphDepth(g))\r\n    }\r\n```\r\n\r\nIn this proposal I consider a general mechanism for short circuiting.\r\n\r\nDiscussion:\r\n\r\nShort circuiting means delaying the evaluation of an expression until and unless the value of that expression is needed.  If the value of the expression is never needed, then the expression is never evaluated.\r\n\r\n(In this discussion it is important to clearly understand the distinction that Go draws between expressions (https://golang.org/ref/spec#Expressions) and statements (https://golang.org/ref/spec#Statements).  I'm not going to elaborate on that here but be aware that when I write \"expression\" I definitely do not mean \"statement\".)\r\n\r\nIn practice the only case where we are interested in delaying the evaluation of an expression is if the expression is a function call.  All expressions other than function calls complete in small bounded time and have no side effects (other than memory allocation and panicking).  While it may occasionally be nice to skip the evaluation of such an expression, it will rarely make a difference in program behavior and will rarely take a noticeable amount of time.  It's not worth changing the language to short circuit the evaluation of any expression other than a function call.\r\n\r\nSimilarly, in practice the only case where we are interested in delaying the evaluation of an expression is when passing that expression to a function.  In all other cases the expression is evaluated in the course of executing the statement or larger expression in which it appears (other than, of course, the `&&` and `||` operators).  There is no point to delaying the evaluation of expression when it is going to be evaluated very shortly in any case.  (Here I am intentionally ignoring the possibility of adding additional short circuit operators, like `?:`, to the language; the language does not have t",
+    "reactions": 104,
+    "created_at": "2020-03-07T21:39:43Z",
+    "updated_at": "2026-04-08T21:30:22Z",
+    "labels": [
+      "LanguageChange",
+      "Proposal",
+      "LanguageChangeReview"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/37739",
+    "html_url": "https://github.com/golang/go/issues/37739",
+    "author_login": "ianlancetaylor",
+    "author_profile": "https://github.com/ianlancetaylor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 18605,
+    "title": "proposal: spec: allow x, y..., z in list for variadic function argument",
+    "body": "(See the bottom of this post for a full example.) This is something I've run into a few times and I've been unable to find a discussion fully explaining why it can't/shouldn't be supported.\r\n\r\nI've tried searching for prior discussion about this and have mostly come up with Stack Overflow questions where people have been confused about the current restriction. The best reasoning I've found is in #2873:\r\n\r\n> To avoid confusion about what slice is being passed, the ... syntax only applies when it is providing the entire ... argument; you can't splice in additional parameters with it.\r\n\r\nI disagree with this. It implies the developer is already expected to understand that 1) `...string` denotes a slice and 2) there would be two slices (i.e., your variadic arguments were turned into a slice implicitly).\r\n\r\nThey could also be expected to understand that the second slice (`paths` in my example below) is appended to the first slice if you were to mix the two approaches. I would even argue that is the expected behavior.\r\n\r\nUltimately, if Go was to support this proposal there are (AFAICT) still only two possible outcomes:\r\n\r\n1. The slice followed by `...` is passed on as-is (0 positional arguments)\r\n2. A new slice is implicitly created (>0 positional arguments)\r\n\r\nThis proposal extends the second case to also implicitly append the slice followed by `...` to the implicit slice (approximately what I've done as a workaround in the example below).\r\n\r\nOne new behavior resulting from this is that modifying some values in the resulting slice will have no outside effect, while modifying the indexes at the end that correspond to the passed-in slice may modify it. I don't think this is very different from today however, as there is currently no way to know if modifying any index in the argument slice will have any outside effect or not, so touching it should be strongly discouraged regardless. For such cases, an explicit slice should always be passed instead.\r\n\r\n### Full example\r\n\r\n```go\r\npackage main\r\n\r\nimport (\r\n    \"bytes\"\r\n    \"fmt\"\r\n    \"os/exec\"\r\n)\r\n\r\nfunc main() {\r\n    list(\"/usr/share\", \"/var/tmp\")\r\n}\r\n\r\nfunc list(paths ...string) {\r\n    // Desired:\r\n    //cmd := exec.Command(\"ls\", \"-la\", paths...)\r\n    // Current workaround:\r\n    cmd := exec.Command(\"ls\", append([]string{\"-la\"}, paths...)...)\r\n    var out bytes.Buffer\r\n    cmd.Stdout = &out\r\n    err := cmd.Run()\r\n    if err != nil {\r\n        fmt.Printf(\"error: %v\\n\", err)\r\n    }\r\n    fmt.Println(out.String())\r\n}\r\n```",
+    "reactions": 92,
+    "created_at": "2017-01-11T04:17:55Z",
+    "updated_at": "2024-08-22T18:13:46Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "NeedsDecision",
+      "FrozenDueToAge",
+      "dotdotdot"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/18605",
+    "html_url": "https://github.com/golang/go/issues/18605",
+    "author_login": "blixt",
+    "author_profile": "https://github.com/blixt",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 38812,
+    "title": "cmd/go: \"package … is not in GOROOT\" is confusing in module mode when the package would exist in GOPATH mode",
+    "body": "### What version of Go are you using (`go version`)?\r\n\r\n<pre>\r\n$ go version\r\ngo version go1.14.2 linux/amd64\r\n</pre>\r\n\r\n### Does this issue reproduce with the latest release?\r\nYes\r\n\r\n\r\n### What operating system and processor architecture are you using (`go env`)?\r\n\r\n<details><summary><code>go env</code> Output</summary><br><pre>\r\n$ go env\r\n\r\n</pre></details>\r\n\r\n### What did you do?\r\nIf a parent folder contained a `go.mod` this overrides the GOPATH setting and there is no clear indication this is happening.\r\nlets say the following exists in the file system\r\n```\r\n/work/go.mod \r\n```\r\nand say you create a folder like\r\n```\r\n/work/projects/x/src/my/test2/main.go\r\n```\r\nand you export the GOPATH to point to your project\r\n```\r\nexport GOPATH=/work/projects/x/\r\n```\r\nYou will get an error like\r\n```\r\ncan't load package: package my/test2 is not in GOROOT (/home/me/.gvm/gos/go1.14.2/src/my/test2)\r\n```\r\nAnd much time and head bashing will occur because you dont realize that go is using the `/work/go.mod` and overrides your `GOPATH` that you defined. This behavior is different then go 1.12 as well (it compiles without issue) so that adds to the confusion. (To be fair... I am totally guilty as sin for my own nasty creation, but there should be a better way of pointing out the root cause.)\r\n\r\n### What did you expect to see?\r\nIt would be great to see some reference to the `go.mod` file in the error message and not the `GOROOT`. \r\n```\r\ncan't load package: package my/test2 is not in GOROOT (/home/me/.gvm/gos/go1.14.2/src/my/test2) with (/work/go.mod)\r\n```\r\nOr even more directly\r\n```\r\ncan't load package: package my/test2 is not in go.mod (/work/my/test2)\r\n```\r\nI agree the former error is not wrong, but it is pointing in the wrong direction\r\n\r\n### What did you see instead?\r\n```\r\ncan't load package: package my/test2 is not in GOROOT (/home/me/.gvm/gos/go1.14.2/src/my/test2)\r\n```",
+    "reactions": 88,
+    "created_at": "2020-05-02T16:28:26Z",
+    "updated_at": "2026-03-26T15:20:53Z",
+    "labels": [
+      "NeedsInvestigation",
+      "FrozenDueToAge",
+      "GoCommand",
+      "modules"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/38812",
+    "html_url": "https://github.com/golang/go/issues/38812",
+    "author_login": "notzippy",
+    "author_profile": "https://github.com/notzippy",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 25612,
+    "title": "wasm: re-use //export mechanism for exporting identifiers within wasm modules",
+    "body": "Right now, compiling the following piece of Go code:\r\n```go\r\npackage main\r\n\r\nfunc main() {\r\n\tprintln(\"hello\")\r\n\tprintln(\"1+3=\", MyAdd(1, 3))\r\n}\r\n\r\n//export MyAdd\r\nfunc MyAdd(i, j int32) int32 {\r\n\treturn i + j\r\n}\r\n```\r\n\r\nlike so:\r\n```\r\n$> GOOS=js GOARCH=wasm go build -o foo.wasm ./main.go\r\n```\r\n\r\nwill produce the following `foo.wasm` module:\r\n\r\n```\r\n$> wasm-objdump -h ./foo.wasm\r\n\r\nfoo.wasm:\tfile format wasm 0x1\r\n\r\nSections:\r\n\r\n     Type start=0x0000000e end=0x00000048 (size=0x0000003a) count: 10\r\n   Import start=0x0000004e end=0x000000ce (size=0x00000080) count: 6\r\n Function start=0x000000d4 end=0x0000042c (size=0x00000358) count: 854\r\n    Table start=0x00000432 end=0x00000437 (size=0x00000005) count: 1\r\n   Memory start=0x0000043d end=0x00000442 (size=0x00000005) count: 1\r\n   Global start=0x00000448 end=0x0000047b (size=0x00000033) count: 10\r\n   Export start=0x00000481 end=0x0000048f (size=0x0000000e) count: 2\r\n     Elem start=0x00000495 end=0x00000acf (size=0x0000063a) count: 1\r\n     Code start=0x00000ad5 end=0x000a3b7a (size=0x000a30a5) count: 854\r\n     Data start=0x000a3b80 end=0x001290fd (size=0x0008557d) count: 7\r\n   Custom start=0x00129103 end=0x0012f117 (size=0x00006014) \"name\"\r\n```\r\n\r\nespecially:\r\n```\r\n$> wasm-objdump -j export -x ./foo.wasm\r\n\r\nfoo.wasm:\tfile format wasm 0x1\r\n\r\nSection Details:\r\n\r\nExport:\r\n - func[750] <_rt0_wasm_js> -> \"run\"\r\n - memory[0] -> \"mem\"\r\n```\r\n\r\nie: the user can not control what is exported.\r\nthe recommended way to export something currently, is to use `js.NewCallback`.\r\nthis is - mainly - because one needs to setup a few things for the Go and js runtimes to cooperate nicely together.\r\n\r\nI would argue that, in the same spirit than when one compiles the same `main.go` file with `-buildmode=c-shared`, it should be possible to achieve the same thing for `GOOS=xyz GOARCH=wasm`, and only export what is `//export`-ed.\r\ninitialization of the runtime(s) would be performed via the wasm module's [start function](https://webassembly.org/docs/modules/#module-start-function).\r\n\r\n(this is a re-hash of neelance/go#22.)",
+    "reactions": 81,
+    "created_at": "2018-05-28T18:14:34Z",
+    "updated_at": "2025-08-27T19:28:16Z",
+    "labels": [
+      "NeedsInvestigation",
+      "FeatureRequest",
+      "FrozenDueToAge",
+      "arch-wasm"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/25612",
+    "html_url": "https://github.com/golang/go/issues/25612",
+    "author_login": "sbinet",
+    "author_profile": "https://github.com/sbinet",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 21835,
+    "title": "proposal: use PCG Source in math/rand for Go 2",
+    "body": "The original `math/rand` package had a number of flaws. Some of the flaws in the API have been addressed, such as the addition of the Source64 interface, but the most important issue remains: the default `Source` is poor.\r\n\r\nThe `Source` has several problems.\r\n\r\n- It has no clear provenance (it came from Plan 9, but its history before that is unknown).\r\n- It is a linear feedback shift register, which is known to have flaws uncovered by various empirical tests.\r\n- It is difficult and expensive to seed.\r\n- It is enormous! The shift register itself comprises 607 64-bit words, a total of 4856 bytes.\r\n\r\nThis last point is not fatal if there is only one instance, but it couples poorly with another fundamental and perhaps unfixable problem: bad behavior when accessed concurrently. It must be protected with a mutex, but if it were much smaller (and cheaper to seed) it would be practical instead to have each client in the address space access a separate instance, seeded uniquely.\r\n\r\nTo put it another way, with a separate `Source` for each goroutine, no locking would be required, but the current implementation is impractically large for such an approach.\r\n\r\nThe proposal here is in several parts.\r\n\r\nFirst, we create an alternate `Source` implementation. Our choice is the Permuted Congruential Generator (PCG) designed and thoroughly tested by O'Neill in:\r\n\r\nPCG: A Family of Simple Fast Space-Efficient Statistically Good\r\nAlgorithms for Random Number Generation\r\nMelissa E. O’Neill, Harvey Mudd College\r\nhttp://www.pcg-random.org/pdf/toms-oneill-pcg-family-v1.02.pdf\r\n\r\nA 128-bit PCG generator producing a 64-bit output is only two words of memory but provably has a period of `2**128`, is cheap to seed, and efficient. (A 64-bit generator would be noticeably cheaper, but a period of only `2**64` is deemed too small for modern hardware). It is practical and reasonable for every goroutine to have a local `Source` (a simple seeding algorithm is to use the address of the `Source` as the seed).\r\n\r\nAn implementation of this generator, specifically PCG XSL RR 128/64 (LCG), is checked in to `golang.org/x/exp/rand` as its default `Source`.\r\n\r\nSecond, we work on the compiler, possibly through `math/bits`, to make it a little more efficient. The current implementation, in pure Go, is somewhat slower than `math/rand`, but could be comparably fast or even faster given compiler support for the 128-bit multiply inside.\r\n\r\nThe third part is the critical piece.\r\n\r\nWe propose to make this generator the default one in `math/rand` for Go 2. The Go 1 compatibility decree could allow it to happen today, but we have chosen in the past to take the guarantee more literally than is expressed by also requiring that the generated stream of bits will never change. This decision was made when a fix was done, but enough tests in production were discovered that depended on the exact stream that it was deemed simpler to lock down the implementation rather than to fix all the tests.\r\n\r\nHowever, wi",
+    "reactions": 64,
+    "created_at": "2017-09-11T11:00:59Z",
+    "updated_at": "2024-06-12T03:01:51Z",
+    "labels": [
+      "v2",
+      "Proposal",
+      "NeedsDecision",
+      "FrozenDueToAge"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/21835",
+    "html_url": "https://github.com/golang/go/issues/21835",
+    "author_login": "robpike",
+    "author_profile": "https://github.com/robpike",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 54393,
+    "title": "proposal: reflect: add generic type arg info to reflect.Type",
+    "body": "I'm not sure if this has been discussed already (I couldn't find a prior issue),  but currently `reflect.Type` has no direct methods to retrieve the type arguments of generic types.\r\n\r\nThe only way to retrieve these type arguments is by parsing the string returned by `Type.Name()` which includes fully qualified package names and could look something like this in a complex case: `MyGenericType[some/package.Foo, map[string]other/package.Bar]`. This string is not easy to parse because of the possibility of nested type arguments, maps, slices, etc.\r\n\r\nI propose adding methods to `reflect.Type` to retrieve these type arguments programmatically:\r\n```go\r\nNumTypeArg() int\r\nTypeArg(i int) Type\r\n```",
+    "reactions": 55,
+    "created_at": "2022-08-11T10:52:41Z",
+    "updated_at": "2026-03-24T14:01:30Z",
+    "labels": [
+      "Proposal"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/54393",
+    "html_url": "https://github.com/golang/go/issues/54393",
+    "author_login": "aaronc",
+    "author_profile": "https://github.com/aaronc",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 9097,
+    "title": "proposal: spec: add &T(v) to allocate variable of type T, set to v, and return address",
+    "body": "<pre>1. improve new func (by Albert Liu @ jpush)\n\nfunc new(Type, value ...Type) *Type\n\n2. support &amp;Type(value) grammar\n\nExamples:\n\npx := new(int, 9527)\npx := &amp;int(9527)\n\nSome discuss:\n<a href=\"https://groups.google.com/d/msg/golang-nuts/I_nxdFuwAmE/jNObXNDy5bEJ\">https://groups.google.com/d/msg/golang-nuts/I_nxdFuwAmE/jNObXNDy5bEJ</a></pre>\n",
+    "reactions": 54,
+    "created_at": "2014-11-13T07:16:20Z",
+    "updated_at": "2024-08-22T18:20:38Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "NeedsDecision",
+      "FrozenDueToAge"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/9097",
+    "html_url": "https://github.com/golang/go/issues/9097",
+    "author_login": "chai2010",
+    "author_profile": "https://github.com/chai2010",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 70752,
+    "title": "proposal: spec: finite type set interface as union type",
+    "body": "### Go Programming Experience\r\n\r\nIntermediate\r\n\r\n### Other Languages Experience\r\n\r\nC, C++, Python, TypeScript\r\n\r\n### Related Idea\r\n\r\n- [X] Has this idea, or one like it, been proposed before?\r\n- [ ] Does this affect error handling?\r\n- [ ] Is this about generics?\r\n- [X] Is this change backward compatible? Breaking the Go 1 compatibility guarantee is a large cost and requires a large benefit\r\n\r\n### Has this idea, or one like it, been proposed before?\r\n\r\n1. There have been multiple proposals on this topic, with different kinds of syntax:\r\n\r\nhttps://github.com/golang/go/issues/54685\r\nhttps://github.com/golang/go/issues/19412\r\n\r\nMost of which suggest introducing new syntax, such as `type MyUnion = Type1 | Type2 | ...`\r\n\r\n2. This proposal differs by simply re-using already existing syntax in a new context.\r\n\r\n### Does this affect error handling?\r\n\r\nNo.\r\n\r\n### Is this about generics?\r\n\r\nNo.\r\n\r\nAlthough this proposal builds on the type set concept introduced in generics, it is not about generics itself.\r\n\r\n### Proposal\r\n\r\nThe introduction of generics in Go has introduced the concept of type constraints, which have syntax similar to interfaces, but are not interchangable:\r\n\r\n```go\r\ntype TypeConstraint interface {\r\n    ~int | string\r\n}\r\n\r\nvar v TypeConstraint // error: cannot use type TypeConstraint outside a type constraint\r\n```\r\n\r\nPrevious proposals of re-using type constraints for union types have been rejected, the reason being the inherent inability of a compiler to produce exhaustive type search when the number of types that fit the constraint is infinite:\r\n\r\n```go\r\ntype MyInt1 int\r\ntype MyInt2 int\r\n// ...\r\n// type MyIntAlephNull int\r\n\r\ntype TypeConstraint interface {\r\n    ~int | string\r\n}\r\n```\r\n\r\n---\r\n\r\nThis proposal suggests permitting a restricted set of type constraints to be usable as Union types.\r\nThe \"restricted set of type constraints\" here is defined as a type constraint which only contains a union of \"exact types\" - meaning builtin types, structs, pointers, functions and named types whose underlying type is a builtin type, struct, pointer or function - and other union interfaces. Method-set interface types are not allowed. Structs that embed interface types are allowed as a workaround.\r\nI.e. `~Type` syntax is not allowed and method sets are not allowed.\r\n\r\nThis restriction covers the basic use case of unions - exhaustive type switch.\r\n\r\nSince type union would essencially be an interface, its default value would be nil, and `nil` could be checked in the switch statement, just like with regular interfaces.\r\n\r\nExample, using go/ast as inspiration:\r\n\r\n```go\r\ntype Keyword struct {}\r\ntype AssignStmt struct {}\r\ntype BadExpr struct {}\r\n// ...\r\n\r\ntype Node interface {\r\n    Keyword | AssignStmt | BadExpr // | ...\r\n}\r\n\r\n// no default:\r\nvar n node\r\nswitch n.(type) {\r\n    case nil: // ...\r\n    case Keyword: // ...\r\n    case AssignStmt: // ...\r\n    // go vet: type switch of type union not exhaustive\r\n}\r\n\r\nswitch n.(type) {\r\n    case nil: // ...\r\n    case",
+    "reactions": 48,
+    "created_at": "2024-12-10T08:03:50Z",
+    "updated_at": "2026-01-08T22:19:14Z",
+    "labels": [
+      "LanguageChange",
+      "Proposal",
+      "FrozenDueToAge",
+      "LanguageChangeReview"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/70752",
+    "html_url": "https://github.com/golang/go/issues/70752",
+    "author_login": "paskozdilar",
+    "author_profile": "https://github.com/paskozdilar",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 23019,
+    "title": "os/exec: consider changing Wait to stop copying goroutines rather than waiting for them",
+    "body": "When the `Stdin`, `Stdout`, or `Stderr` fields of `os/exec.Cmd` are set to anything other than `nil` or a `*os.File` (a common case is `*bytes.Buffer`), we call `os.Pipe` to get a pipe and create goroutines to copy data in or out.  The `(*Cmd).Wait` method first waits for the subprocess to exit, then waits for those goroutines to finish copying data.\r\n\r\nIf the subprocess C1 itself starts a subsubprocess C2, and if C1 passes any of its stdin/stdout/stderr descriptors to C2, and if C1 exits without waiting for C2 to exit, then C2 will hold an open end of the pipes created by the os/exec package.  The `(*Cmd).Wait` method will wait until the goroutines complete, which means waiting until those pipes are closed, which in practice means waiting until C2 exits.  This is confusing, because the user sees that C1 is done, and doesn't understand why their program is still waiting for it.\r\n\r\nThis confusion has been filed as an issue multiple times, at least #7378, #18874, #20730, #21922, #22485.\r\n\r\nIt doesn't have to work this way.  Although the current goroutines call `io.Copy`, we could change them to use a loop.  After every `Read`, the loop could check whether the process has been waited for.  Then `Wait` could wait for the child, tell the goroutines to stop, give them a chance for a final write, and then return.  The stdout/stderr goroutines would close their end of the pipe.  There wouldn't be any race and there wouldn't be any unexpected waits.  But in cases where there is a C2 process, not all of the standard output and standard error output that we currently collect would be available.\r\n\r\nTo be clear, programmers can already handle these cases however they like by calling `os.Pipe` themselves and using the pipe in the `Cmd` struct.  That is true today and it would be true if change how it works.\r\n\r\nThe questions I want to raise are: would making this change be less confusing for people?  Can we make this change without breaking the Go 1 guarantee?\r\n\r\nCC @bradfitz ",
+    "reactions": 43,
+    "created_at": "2017-12-06T21:02:26Z",
+    "updated_at": "2023-10-10T23:02:38Z",
+    "labels": [
+      "Proposal",
+      "Proposal-Accepted",
+      "FrozenDueToAge",
+      "early-in-cycle"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/23019",
+    "html_url": "https://github.com/golang/go/issues/23019",
+    "author_login": "ianlancetaylor",
+    "author_profile": "https://github.com/ianlancetaylor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 25572,
+    "title": "proposal: time: use big-endian/ISO reference time",
+    "body": "(I couldn't find an existing issue mentioning this, so I wanted to submit it for consideration **for Go2**, to make sure that whatever the final decision, it's at least given proper thought and not overlooked purely by accident.)\r\n\r\n## Proposal\r\n\r\nI propose that for Go2, the \"reference time\" used by time.Format and time.Parse is changed to:\r\n\r\n    2001-02-03 16:05:06-0700\r\n\r\nalias *Feb 3 16:05:06 -0700 2001*.\r\n\r\n## Rationale\r\n\r\nThis has the advantage of being trivial to remember for the whole world, not only U.S. residents, as well as being generally simpler in idea, following the \"network order\" (a.k.a. big endian), and straightforwardly corresponding to the universally (?) known international standards of RFC 3339 / ISO 8601.\r\n\r\nThe old reference time AFAIU is more or less accidental, per [Rob's 2014 comment](https://groups.google.com/d/msg/golang-nuts/0nQbfyNzk9E/LWbMgpRQNOgJ):\r\n\r\n> The choice was made by the output of the date command on my Unix\r\n> machine. I should have realized the format varies with locale. Mea\r\n> culpa. [...]\r\n\r\nI believe Go2 is a point where this can potentially be approached, disarming somewhat the (AFAIU) main (and only?) rejection argument of \"it's too late, this ship has sailed\".\r\n\r\n## Alternatives\r\n\r\n- #9696 — \"Dec 31, 23:59:05, 1999\"\r\n",
+    "reactions": 41,
+    "created_at": "2018-05-25T16:18:59Z",
+    "updated_at": "2024-08-22T00:44:27Z",
+    "labels": [
+      "v2",
+      "Proposal",
+      "NeedsDecision",
+      "FrozenDueToAge"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/25572",
+    "html_url": "https://github.com/golang/go/issues/25572",
+    "author_login": "akavel",
+    "author_profile": "https://github.com/akavel",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 66651,
+    "title": "proposal: spec: variadic type parameters",
+    "body": "### Proposal Details\r\n\r\n## Background\r\n\r\nThere are various algorithms that are not easy to write in Go with generics because they are naturally expressed using an unknown number of type parameters.  For example, the [metrics package](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md#metrics) suggested in the generics proposal document is forced to define types, `Metric1`, `Metric2`, and so forth, based on the number of different fields required for the metric.  For a different example, the iterator adapter proposal (https://go.dev/issue/61898) proposes two-element variants of most functions, such as `Filter2`, `Concat2`, `Equal2`, and so forth.\r\n\r\nLanguages like C++ use variadic templates to avoid this requirement.  C++ has powerful facilities to, in effect, loop over the variadic type arguments.  We do not propose introducing such facilities into Go, as that leads to template metaprogramming, which we do not want to support.  In this proposal, Go variadic type parameters can only be used in limited ways.\r\n\r\n## Proposal\r\n\r\nA generic type or function declaration is permitted to use a `...` following the last type parameter of a type parameter list (as in `T...` for a type parameter `T`) to indicate that an instantiation may use zero or more trailing type arguments.  We use `T... constraint` rather than `T ...constraint` (that is, gofmt will put the space after the `...`, not before) because `T` is a list of types.  It's not quite like a variadic function, in which the final argument is effectively a slice.  Here `T` is a list, not a slice.\r\n\r\nWe permit an optional pair of integers after the `...` to indicate the minimum and maximum number of type arguments permitted.  If the maximum is `0`, there is no upper limit.  Omitting the numbers is the same as listing `0 0`.\r\n\r\n(We will permit implementations to restrict the maximum number of type arguments permitted.  Implementations must support at least 255 type arguments.  This is a limit on the number of types that are passed as type arguments, so 255 is very generous for readable code.)\r\n\r\n```Go\r\ntype Metric[V... 1 0 comparable] /* type definition */\r\nfunc Filter[K any, V... 0 1 any] /* function signature and body */\r\nfunc Filter[K, V... 0 1 any]     /* same effect as previous line */\r\n```\r\n\r\nWith this notation `V` becomes a _variadic type parameter_.\r\n\r\nA variadic type parameter is a list of types.  In general a variadic type parameter may be used wherever a list of types is permitted:\r\n- In a function parameter or result list\r\n  - `func SliceOf[T... any](v T) []any`\r\n  - a variadic type parameter may not be used as the type of a regular variadic parameter\r\n- In a variable declaration, to define a _variadic variable_.\r\n  - `func PrintZeroes[T... any]() { var z T; fmt.Println(z) }`\r\n- In a struct declaration, to define a _variadic field_.\r\n  - `type Keys[T... any] struct { keys T }`\r\n\r\nA variadic variable or field may be used wherever a list of values is permitt",
+    "reactions": 39,
+    "created_at": "2024-04-02T20:20:51Z",
+    "updated_at": "2025-05-08T21:12:13Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "FrozenDueToAge",
+      "dotdotdot"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/66651",
+    "html_url": "https://github.com/golang/go/issues/66651",
+    "author_login": "ianlancetaylor",
+    "author_profile": "https://github.com/ianlancetaylor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 57616,
+    "title": "proposal: spec: add simple string interpolation similar to Swift",
+    "body": "I propose a simple version of string interpolation similar to that in Swift.  This is a simpler version of #34174 and #50554.\r\n\r\n## Proposal\r\n\r\nIn string literals we permit a new escape sequence `\\(`.  A valid `\\(` must be followed a expression and a trailing `)`.  Any unquoted `(` in the expression must be balanced by a `)` so that the compiler can locate the `)` that terminates the `\\(`.\r\n\r\nThe expression is evaluated in the context of the string literal.  If it is not valid, the compiler reports an error.  Multiple `\\(` expressions in the string literal are evaluated from left to right.\r\n\r\nThe expression must evaluate to a single value.  If the type of that value has a method `String() string`, that method is called to get a string value.  Otherwise the expression must be a string, integer, floating-point, complex, or boolean value.  Values of other types will be reported as an error.\r\n\r\n1. If the expression has a string type, it is used as is.\r\n2. If the expression is a [constant expression](https://go.dev/ref/spec#Constant_expressions) it is converted (as described below) to an untyped string constant.\r\n3. Otherwise the expression is converted (as described below) to a non-constant value of type `string`.\r\n\r\nThe original string `\"prefix\\(expression)suffix\"` is then replaced by the expression `(\"prefix\" + expressionAsString + \"suffix\")`.\r\n\r\n## Examples\r\n\r\n```Go\r\n    // Prints something like \"Ken Thompson is 79 years old\".\r\n    fmt.Println(\"\\(person.Name()) is \\(person.Age()) years old\")\r\n    // Prints something like \"The time is 2023-01-04 16:22:01.204034106 -0800 PST\".\r\n    // Note: calls the String method of time.Time.\r\n    fmt.Println(\"The time is \\(time.Now().Round(0))\")\r\n```\r\n\r\n## Formatting\r\n\r\nInteger values are converted to strings in the obvious way.\r\n\r\nFloating-point values are converted to strings with the equivalent of `strconv.FormatFloat(f, 'g', prec, -1)`.  This will need to be spelled out in the spec.\r\n\r\nComplex values are converted to strings by converting the real and imaginary parts to `R` and `I` as with any float, and producing `R+Ii` or `R-Ii`.\r\n\r\nBoolean values are converted to either `\"true\"` or `\"false\"`.\r\n\r\nValues of other types are not permitted.\r\n\r\n## Commentary\r\n\r\nString interpolation is useful to avoid mistakes in complex formatting, as discussed in the earlier issues.\r\n\r\nThe earlier issues were caught up in complexity due to the desire to control formatting.  However, 1) we already have `fmt.Sprintf` for arbitrary formatting; 2) even with simple string interpolation we can do formatting by writing code like `\"The average of \\(len(values)) is \\(strconv.FormatFloat(average, 'f', 32, 2))\"`.\r\n\r\nThe syntax `\\(EXPR)` is borrowed from Swift.\r\n\r\nThe type of the result ensures that interpolating variable values into a string can't produce an untyped string constant, but can only produce a non-constant string value.  This will avoid implicit type conversions.\r\n\r\nThis proposal is backward compatible as currently using `\\(` ",
+    "reactions": 38,
+    "created_at": "2023-01-05T00:32:27Z",
+    "updated_at": "2024-02-29T22:09:05Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "FrozenDueToAge",
+      "Proposal-FinalCommentPeriod"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/57616",
+    "html_url": "https://github.com/golang/go/issues/57616",
+    "author_login": "ianlancetaylor",
+    "author_profile": "https://github.com/ianlancetaylor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 78027,
+    "title": "proposal: spec: make bool an ordered type",
+    "body": "### Go Programming Experience\n\nExperienced\n\n### Other Languages Experience\n\nPython, Haskell, JavaScript, C\n\n### Related Idea\n\n- [ ] Has this idea, or one like it, been proposed before?\n- [ ] Does this affect error handling?\n- [ ] Is this about generics?\n- [ ] Is this change backward compatible? Breaking the Go 1 compatibility guarantee is a large cost and requires a large benefit\n\n### Has this idea, or one like it, been proposed before?\n\nAs far as I know, this idea has never been the object of a formal proposal, although it has been floated by then members of the Go team in responses to [the (rejected) cmp.CompareBool proposal](https://github.com/golang/go/issues/61643).\n\n### Does this affect error handling?\n\nNo.\n\n### Is this about generics?\n\nYes and no. The proposal does involve redefining the [cmp.Ordered](https://pkg.go.dev/cmp#Ordered) type constraint; and if it were accepted, some generic functions like [cmp.Or](https://pkg.go.dev/cmp#Or) and [cmp.Compare](https://pkg.go.dev/cmp#Compare) would become more generally useful. However, it does not suggest any modifications to the syntax or semantics of generics.\n\n### Proposal\n\nI propose that `bool` become an ordered type and that a `~bool` term be added to the union of [cmp.Ordered](https://pkg.go.dev/cmp#Ordered).\n\n#### Motivation\n\nThe need to compare `bool` for order comes up frequently, esp. when you need to define some order for a struct type that has one or more fields of `bool` type, with a view to sorting a slice containing values of such a type. Before the advent of generics, sorting was typically done via [the sort package](pkg.go.dev/sort), which involves \"less\" functions/methods of type `func(int, int) bool`. So far, so good, since testing whether `bool` value `a` is less than bool value `b` can be computed via a simple expression (`!a || b`):\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sort\"\n)\n\ntype Employee struct {\n\tName        string\n\tIsManager   bool\n\tBadgeNumber uint\n}\n\nfunc main() {\n\tstaff := []Employee{\n\t\t{Name: \"Alice\", BadgeNumber: 0, IsManager: true},\n\t\t{Name: \"Alice\", BadgeNumber: 1, IsManager: false},\n\t}\n\tless := func(i, j int) bool {\n\t\treturn staff[i].Name < staff[j].Name ||\n\t\t\t!staff[i].IsManager || staff[j].IsManager ||\n\t\t\tstaff[i].BadgeNumber < staff[j].BadgeNumber\n\t}\n\tsort.Slice(staff, less)\n\tfmt.Println(staff)\n}\n```\n\n([playground link](https://go.dev/play/p/pOfJBiBY9Gf))\n\nHowever, [the more modern slices package](https://pkg.go.dev/slices) involves a three-way comparison function of type `func(E, E) int`. There's no way to three-way-compare two bools for order via a simple expression; some conditional statement is required, and it doesn't play well with [cmp.Or](https://pkg.go.dev/cmp#Or):\n\n```go\npackage main\n\nimport (\n\t\"cmp\"\n\t\"fmt\"\n\t\"slices\"\n\t\"strings\"\n)\n\n// omitted: same declaration of Employee type as before\n\nfunc main() {\n\tstaff := []Employee{\n\t\t{Name: \"Alice\", BadgeNumber: 0, IsManager: true},\n\t\t{Name: \"Alice\", BadgeNumber: 1, IsManager: false},\n\t}\n\tcmp := func(x, y",
+    "reactions": 33,
+    "created_at": "2026-03-09T09:45:54Z",
+    "updated_at": "2026-03-17T18:54:40Z",
+    "labels": [
+      "LanguageChange",
+      "Proposal",
+      "LanguageChangeReview",
+      "LanguageProposal"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/78027",
+    "html_url": "https://github.com/golang/go/issues/78027",
+    "author_login": "jub0bs",
+    "author_profile": "https://github.com/jub0bs",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 62487,
+    "title": "proposal: spec: permit using nil with type parameters",
+    "body": "This is an alternative to #61372.  I mentioned it in https://github.com/golang/go/issues/61372#issuecomment-1699772431, and I'm here pulling it out into a separate proposal.\r\n\r\nI propose that we permit using `nil` with type parameters.  Specifically, I propose that we change the language such that\r\n\r\n1. we can assign `nil` to a variable whose type is a type parameter; it sets the variable to the zero value of its type;\r\n2. we can compare a value whose type is a type parameter to `nil`; this is permitted even if the type parameter is not comparable, and `==` reports whether the value is equal to the zero value of its type.\r\n\r\n---\r\n\r\nBackground\r\n\r\n#61372 aims to solve three problems:\r\n\r\n 1. Referring to a zero value in generic code. Today people suggest `*new(T)`, which [@rsc finds] embarrasingly clunky to explain to new users. This comes up fairly often, and we need something cleaner.\r\n\r\n 2. Comparing to a zero value in generic code, even for non-`comparable` type parameters. This comes up less often, but it did just come up in `cmp.Or` (#60204).\r\n\r\n 3. Shortening error returns: `return zero, err` is nicer than `return time.Time{}, err`.\r\n\r\nThe solution in #61372 is to introduce a new builtin type `zero` that may be used with any type that does not already have a short name for the zero value.\r\n\r\nThis proposal addresses the first two points but not the third.\r\n\r\n---\r\n\r\nRationale\r\n\r\nI'm concerned that #61372 is overfitting to the current language and creating a solution that makes sense to experienced Go programmers but not to people learning the language for the first time.  We already have three names for the zero value: `0`, `\"\"`, `nil`.  Introducing a fourth name, `zero`, makes sense given where we are but seems confusing for people learning the language for the first time.\r\n\r\nExtending the use of `zero` to all types, as originally proposed and as mentioned by @robpike at https://github.com/golang/go/issues/61372#issuecomment-1690860960, permits confusion when using a variable `p` of pointer type: we can write both `p == zero` and `*p == zero`, but they mean very different things (as mentioned by @rsc at https://github.com/golang/go/issues/61372#issuecomment-1636929105).\r\n\r\nExtending the use of `nil` to all types somewhat exacerbates the problem address by the FAQ in [Why is my nil error value no equal to nil?](https://go.dev/doc/faq#nil_error), which has itself been reported as a bug many times despite the FAQ entry (#43643, #44102, #47551, #53768, #54229, #56930, #57292, #59521 among many others).\r\n\r\nExtending `nil` to type parameters only, as proposed here, is imperfect, but it addresses the immediate needs, and to me it seems less imperfect than the other solutions.",
+    "reactions": 21,
+    "created_at": "2023-09-06T20:48:49Z",
+    "updated_at": "2024-09-21T20:01:49Z",
+    "labels": [
+      "Proposal",
+      "FrozenDueToAge"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/62487",
+    "html_url": "https://github.com/golang/go/issues/62487",
+    "author_login": "ianlancetaylor",
+    "author_profile": "https://github.com/ianlancetaylor",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 57825,
+    "title": "proposal: Go 2: `empty` as an alias for `struct{}`",
+    "body": "<!--\r\nOur proposal process is documented here:\r\nhttps://go.dev/s/proposal-process\r\n-->\r\nVery simple proposal here.\r\n\r\nInstead of:\r\n\r\n```\r\n// var m map[int]struct{}\r\nm := map[int]struct{}{}\r\nm[0] = struct{}{}\r\n```\r\n\r\nhow about\r\n\r\n```\r\n// var m map[int]empty\r\nm := map[int]empty{}\r\nm[0] = empty{}\r\n```\r\n\r\nI love the change from `interface{}` to `any`, making code, stacks, intellisense, etc., easier to read.\r\n\r\nI dislike the `struct{}{}` to represent the concept of an empty value.\r\n\r\nI propose `empty` because it reduces curly brace clutter, and makes it obvious that the value is nothing.\r\n\r\n\r\n\r\n",
+    "reactions": 17,
+    "created_at": "2023-01-16T18:19:19Z",
+    "updated_at": "2024-02-29T22:10:06Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "FrozenDueToAge",
+      "Proposal-FinalCommentPeriod"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/57825",
+    "html_url": "https://github.com/golang/go/issues/57825",
+    "author_login": "jimsnab",
+    "author_profile": "https://github.com/jimsnab",
+    "already_resurrected": false
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 63961,
+    "title": "proposal: Go 2: Error-Handling Paradigm with !err Grammar Sugar",
+    "body": "**Hi, if you like this idea please give a heart emoji to me, Thank you very much**\r\n\r\n```go\r\n\r\nfunc copy(src, dst string) (int64, error) {\r\n\r\n    r, err := os.Open(\"input.txt\")\r\n    if err != nil {\r\n        return 0, err\r\n    }\r\n    defer r.Close()\r\n \r\n    w, err := os.Create(\"output.txt\")\r\n    if err != nil {\r\n        return 0, err\r\n    }\r\n    defer w.Close()\r\n    \r\n    if _, err = io.Copy(w, r); err != nil {\r\n        return 0, err\r\n    }\r\n    return 0, err\r\n}\r\n\r\n```\r\n\r\nAdd keywords listen:\r\n```go\r\n\r\nlisten: err {\r\n    if err != nil  {\r\n        return 0, err\r\n    }\r\n    return 0, nil\r\n}()\r\n\r\nfunc copy(src, dst string) (int64, error) {\r\n    listen:\r\n    \r\n    r, err := os.Open(\"input.txt\")\r\n    defer r.Close()\r\n \r\n    w, err := os.Create(\"output.txt\")\r\n    defer w.Close()\r\n\r\n    _, err = io.Copy(w, r) \r\n}\r\n\r\n```",
+    "reactions": 5,
+    "created_at": "2023-11-06T09:04:27Z",
+    "updated_at": "2024-12-05T13:40:26Z",
+    "labels": [
+      "LanguageChange",
+      "v2",
+      "Proposal",
+      "WaitingForInfo",
+      "FrozenDueToAge",
+      "error-handling"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/63961",
+    "html_url": "https://github.com/golang/go/issues/63961",
+    "author_login": "xiaokentrl",
+    "author_profile": "https://github.com/xiaokentrl",
+    "already_resurrected": false
+  }
+]
