@@ -1,0 +1,20 @@
+{
+  "date": "2026-05-20",
+  "repo": "hashicorp/terraform",
+  "issue_number": 610,
+  "title": "capture output of provisioners into variables",
+  "reactions": 384,
+  "abandoned_date": "2022-10-02T02:42:10Z",
+  "one_line_why": "This feature is now feasible due to Terraform 1.0's improved provisioner system and growing demand for dynamic environments.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "terraform",
+    "provisioners",
+    "variables"
+  ],
+  "original_url": "https://github.com/hashicorp/terraform/issues/610"
+}

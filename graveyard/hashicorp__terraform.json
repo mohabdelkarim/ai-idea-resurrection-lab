@@ -1,0 +1,114 @@
+[
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 610,
+    "title": "capture output of provisioners into variables",
+    "body": "so that they could be referenced in other TF resources\n",
+    "reactions": 384,
+    "created_at": "2014-11-27T13:40:41Z",
+    "updated_at": "2022-10-02T02:42:10Z",
+    "labels": [
+      "enhancement",
+      "config"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/610",
+    "html_url": "https://github.com/hashicorp/terraform/issues/610",
+    "author_login": "piavlo",
+    "author_profile": "https://github.com/piavlo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 4149,
+    "title": "Partial/Progressive Configuration Changes",
+    "body": "For a while now I've been wringing my hands over the issue of using computed resource properties in parts of the Terraform config that are needed during the refresh and apply phases, where the values are likely to not be known yet.\r\n\r\nThe two primary situations that I and others have run into are:\r\n- Interpolating into provider configuration blocks, as I described in #2976. This is allowed by Terraform but fails in unintuitive ways when a chicken-and-egg problem arises.\r\n- Interpolating into the `count` modifier on resource blocks, as described in #1497. Currently this permits only variables, but having it configurable from resource attributes would be desirable.\r\n\r\nAfter a number of false-starts trying to find a way to make this work better in Terraform, I believe I've found a design that builds on concepts already present in Terraform, and that makes only small changes to the Terraform workflow. I arrived at this solution by \"paving the cowpaths\" after watching my coworkers and I work around the issue in various ways.\r\n\r\n---\r\n\r\nThe crux of the proposal is to alter Terraform's workflow to support the idea of _partial application_, allowing Terraform to apply a complicated configuration over several passes and converging on the desired configuration. So from the user's perspective, it would look something like this:\r\n\r\n``` bash\r\n$ terraform plan -out=tfplan\r\n... (yada yada yada) ...\r\n\r\nTerraform is not able to apply this configuration in a single step. The plan above\r\nwill partially apply the configuration, after which you should run \"terraform plan\"\r\nagain to plan the next set of changes to converge on the given configuration.\r\n\r\n$ terraform apply tfplan\r\n... (yada yada yada) ...\r\n\r\nTerraform has only partially-applied the given configuration. To converge on\r\nthe final result, run \"terraform plan\" again to plan the next set of changes.\r\n\r\n$ terraform plan -out=tfplan\r\n... (yada yada yada) ...\r\n\r\n$ terraform apply\r\n... (yada yada yada) ...\r\n\r\nSuccess! ....\r\n```\r\n\r\nFor a particularly-complicated configuration there may be three or more apply/plan cycles, but eventually the configuration should converge.\r\n\r\n`terraform apply` would also exit with a predictable exit status in the \"partial success\" case, so that Atlas can implement a smooth workflow where e.g. it could immediately plan the next step and repeat the sign-off/apply process as many times as necessary.\r\n\r\nThis workflow is intended to embrace the existing workaround of using the `-target` argument to force Terraform to apply only a subset of the config, but improve it by having Terraform itself detect the situation. Terraform can then calculate itself which resources to target to plan for the maximal subset of the graph that can be applied in a single action, rather than requiring the operator to figure this out.\r\n\r\nBy teaching Terraform to identify the problem and propose a solution itself, Terraform can guide new users through the application of trickier configurations, rather than requir",
+    "reactions": 298,
+    "created_at": "2015-12-02T23:54:12Z",
+    "updated_at": "2022-04-26T22:03:45Z",
+    "labels": [
+      "enhancement",
+      "core",
+      "thinking",
+      "proposal",
+      "providers/protocol"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/4149",
+    "html_url": "https://github.com/hashicorp/terraform/issues/4149",
+    "author_login": "apparentlymart",
+    "author_profile": "https://github.com/apparentlymart",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 12959,
+    "title": "Feature Request: terraform fmt applies sort to variables.tf and terraform.tfvars",
+    "body": "It would be useful imho for terraform fmt to also do an alphabetical sort on variable definition files, namely variables.tf and terraform.tfvars.",
+    "reactions": 85,
+    "created_at": "2017-03-22T12:16:46Z",
+    "updated_at": "2023-12-07T02:05:01Z",
+    "labels": [
+      "enhancement",
+      "cli"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/12959",
+    "html_url": "https://github.com/hashicorp/terraform/issues/12959",
+    "author_login": "sysadmiral",
+    "author_profile": "https://github.com/sysadmiral",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 14403,
+    "title": "Tainted `null_resource` with `destroy provisioner` does not run the destroy command.",
+    "body": "Hi there,\r\n\r\nI am using `destroy` provisioner on `null_resource`, this works great on `terraform destroy`. When I try to taint this resource and re-apply, the destroy script does not run. Is this expected?\r\n\r\n### Terraform Version\r\nTerraform v0.9.5\r\n\r\n### Affected Resource(s)\r\n- null_resource\r\n\r\n### Terraform Configuration Files\r\n```json\r\n{\r\n  \"provider\": {\r\n    \"azurerm\": {\r\n      \"client_id\": \"${var.client_id}\",\r\n      \"client_secret\": \"${var.client_secret}\",\r\n      \"subscription_id\": \"${var.subscription_id}\",\r\n      \"tenant_id\": \"${var.tenant_id}\"\r\n    }\r\n  },\r\n  \"resource\": {\r\n    \"null_resource\": {\r\n      \"test2_add_group_role\": {\r\n        \"provisioner\": [\r\n          {\r\n            \"local-exec\": {\r\n              \"command\": \"\\naz ad group create --display-name dev-group --mail-nickname dev-group\\n\\n\"\r\n            }\r\n          },\r\n          {\r\n            \"local-exec\": {\r\n              \"command\": \"\\naz ad group delete -g dev-group\\n\\n\",\r\n              \"on_failure\": \"continue\",\r\n              \"when\": \"destroy\"\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\n### Expected Behavior\r\nThe `destroy` provisioner should run when the resource is tainted, and re-applied.\r\n\r\n### Actual Behavior\r\nThe `destroy` provisioner did not run.\r\n\r\n### Steps to Reproduce\r\n1. `terraform taint null_resource.test2_add_group_role`\r\n2. `terraform plan`\r\n3. `terraform apply`\r\n",
+    "reactions": 83,
+    "created_at": "2017-05-11T16:48:56Z",
+    "updated_at": "2022-10-28T02:39:32Z",
+    "labels": [
+      "bug",
+      "provisioner/local-exec"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/14403",
+    "html_url": "https://github.com/hashicorp/terraform/issues/14403",
+    "author_login": "zhaohanweng",
+    "author_profile": "https://github.com/zhaohanweng",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 21966,
+    "title": "`terraform show <plan>` \"Backend reinitialization required\" within subfolder",
+    "body": "**_NOTE: This ticket is when terraform is initialized above a subfolder_**\r\n\r\n### Terraform Version\r\n```\r\nTerraform v0.12.3\r\n+ provider.aws v2.17.0\r\n```\r\n\r\n### Terraform Configuration Files\r\n```hcl\r\nterraform {\r\n  backend \"local\" {\r\n  }\r\n}\r\nprovider \"aws\" {\r\n}\r\nresource \"aws_sns_topic\" \"test\" {\r\n    name = \"test\"\r\n}\r\n```\r\n\r\n### Debug Output\r\nN/A\r\n\r\n### Crash Output\r\nN/A\r\n\r\n### Expected Behavior\r\nThe plan is show:\r\n```bash\r\n$ terraform show \"test.plan\"\r\n  + aws_sns_topic.test\r\n      id:     <computed>\r\n      arn:    <computed>\r\n      name:   \"test\"\r\n      policy: <computed>\r\n```\r\n### Actual Behavior\r\nError stating that \r\n\r\n> Backend reinitialization required\r\n\r\n### Steps to Reproduce\r\n1. `terraform init ./subfolder-terraform`\r\n```bash\r\n$ terraform init ./subfolder-terraform\r\n\r\nInitializing the backend...\r\n\r\nSuccessfully configured the backend \"local\"! Terraform will automatically\r\nuse this backend unless the backend configuration changes.\r\n\r\nInitializing provider plugins...\r\n- Checking for available provider plugins...\r\n- Downloading plugin for provider \"aws\" (terraform-providers/aws) 2.17.0...\r\n\r\nThe following providers do not have any version constraints in configuration,\r\nso the latest version was installed.\r\n\r\nTo prevent automatic upgrades to new major versions that may contain breaking\r\nchanges, it is recommended to add version = \"...\" constraints to the\r\ncorresponding provider blocks in configuration, with the constraint strings\r\nsuggested below.\r\n\r\n* provider.aws: version = \"~> 2.17\"\r\n\r\nTerraform has been successfully initialized!\r\n\r\nYou may now begin working with Terraform. Try running \"terraform plan\" to see\r\nany changes that are required for your infrastructure. All Terraform commands\r\nshould now work.\r\n\r\nIf you ever set or change modules or backend configuration for Terraform,\r\nrerun this command to reinitialize your working directory. If you forget, other\r\ncommands will detect it and remind you to do so if necessary.\r\n```\r\n\r\n2. `terraform validate ./subfolder-terraform`\r\n```bash\r\n$ terraform validate ./subfolder-terraform`\r\nSuccess! The configuration is valid.\r\n```\r\n\r\n3. `terraform plan -out=test.plan ./subfolder-terraform`\r\n```bash\r\n$ terraform plan -out=test.plan ./subfolder-terraform\r\nAcquiring state lock. This may take a few moments...\r\nRefreshing Terraform state in-memory prior to plan...\r\nThe refreshed state will be used to calculate this plan, but will not be\r\npersisted to local or remote state storage.\r\n\r\n------------------------------------------------------------------------\r\n\r\nAn execution plan has been generated and is shown below.\r\nResource actions are indicated with the following symbols:\r\n  + create\r\n\r\nTerraform will perform the following actions:\r\n\r\n  # aws_sns_topic.test will be created\r\n  + resource \"aws_sns_topic\" \"test\" {\r\n      + arn    = (known after apply)\r\n      + id     = (known after apply)\r\n      + name   = \"test\"\r\n      + policy = (known after apply)\r\n    }\r\n\r\nPlan: 1 to add, 0 to change, 0 to destroy.\r\n\r\n--",
+    "reactions": 72,
+    "created_at": "2019-07-03T18:42:26Z",
+    "updated_at": "2023-04-23T02:13:04Z",
+    "labels": [
+      "enhancement",
+      "confirmed"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/21966",
+    "html_url": "https://github.com/hashicorp/terraform/issues/21966",
+    "author_login": "scottschreckengaust",
+    "author_profile": "https://github.com/scottschreckengaust",
+    "already_resurrected": false
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "issue_number": 23906,
+    "title": "Request: Enable simple/native way to read .env files",
+    "body": "\r\n### Current Terraform Version\r\n```\r\nTerraform v0.12.19\r\n```\r\n\r\n### Use-cases\r\nIt's standard for code bases to have .env files, but I am not aware of any way to read their contents into terraform scripts.\r\n\r\n### Attempted Solutions\r\nThere is the option for `terraform.tfvars`, but this requires my code base to maintain two secret-variable files (and their templates).\r\n\r\n### Proposal\r\nAt minimum, instead of requiring that the `-var-file` flag take only files named exactly `terraform.tfvars`, terraform could be tweaked to allow for `.env` files to be specified. I'd also prefer to not have to also declare the variable name in the terraform script.\r\n\r\n\r\n",
+    "reactions": 54,
+    "created_at": "2020-01-21T14:09:56Z",
+    "updated_at": "2024-07-14T02:10:24Z",
+    "labels": [
+      "enhancement",
+      "config",
+      "functions"
+    ],
+    "url": "https://api.github.com/repos/hashicorp/terraform/issues/23906",
+    "html_url": "https://github.com/hashicorp/terraform/issues/23906",
+    "author_login": "AnastasiusVivaldus",
+    "author_profile": "https://github.com/AnastasiusVivaldus",
+    "already_resurrected": false
+  }
+]

@@ -1,0 +1,404 @@
+[
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 85963,
+    "title": "Add Support to Deny RBAC Rules",
+    "body": "(_I am opening this ticket on behalf of the author of https://github.com/kubernetes/community/issues/4061 - because we are also having the same problem and it's problematic for us. The text in this ticket is a direct copy and paste_)\r\n\r\n**What would you like to be added**:\r\nAdd `Kind: <Allow/Deny>` to the RBAC `Rules` key. Default to `Allow. Example:\r\n\r\n```yaml\r\napiVersion: rbac.authorization.k8s.io/v1\r\nkind: Role\r\nmetadata:\r\n  namespace: ns\r\n  name: role\r\nrules:\r\n  - kind: Allow\r\n    apiGroups:\r\n      - ''\r\n      - apps\r\n      - extensions\r\n    resources:\r\n      - '*'\r\n    verbs:\r\n      - '*'\r\n  - kind: Deny\r\n    apiGroups:\r\n      - ''\r\n    resources:\r\n      - 'secrets'\r\n    verbs:\r\n      - 'get'\r\n      - 'watch'\r\n      - 'list'\r\n```\r\n\r\n**Why is this needed**:\r\nThe absence of denial rules in K8s makes it difficult or impracticable to restrict access while being permissive.\r\n\r\nSome use cases would be:\r\n\r\nAllow user to perform all actions that do not involve kube-system namespace. Including being able to create new namespaces and automatically have access granted to perform actions on it.\r\nPrevent secrets from being accessed by some subject in a namespace and have access to custom resources without having to list all of them manually.\r\n",
+    "reactions": 100,
+    "created_at": "2019-12-05T19:11:09Z",
+    "updated_at": "2024-03-18T15:59:01Z",
+    "labels": [
+      "priority/awaiting-more-evidence",
+      "kind/feature",
+      "sig/auth"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/85963",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/85963",
+    "author_login": "diranged",
+    "author_profile": "https://github.com/diranged",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 78761,
+    "title": "HPA doesn't scale down to minReplicas even though metric is under target",
+    "body": "**What happened**:\r\n\r\nHPA scales to `Spec.MaxReplicas` even though metric is always under target.\r\n\r\nHere's the HPA in YAML:\r\n\r\n```yaml\r\napiVersion: autoscaling/v1\r\nkind: HorizontalPodAutoscaler\r\nmetadata:\r\n  annotations:\r\n    autoscaling.alpha.kubernetes.io/conditions: '[{\"type\":\"AbleToScale\",\"status\":\"True\",\"lastTransitionTime\":\"2019-06-06T10:46:13Z\",\"reason\":\"ReadyForNewScale\",\"message\":\"recommended\r\n      size matches current size\"},{\"type\":\"ScalingActive\",\"status\":\"True\",\"lastTransitionTime\":\"2019-06-06T10:46:13Z\",\"reason\":\"ValidMetricFound\",\"message\":\"the\r\n      HPA was able to successfully calculate a replica count from cpu resource utilization\r\n      (percentage of request)\"},{\"type\":\"ScalingLimited\",\"status\":\"True\",\"lastTransitionTime\":\"2019-06-06T10:46:13Z\",\"reason\":\"TooManyReplicas\",\"message\":\"the\r\n      desired replica count is more than the maximum replica count\"}]'\r\n    autoscaling.alpha.kubernetes.io/current-metrics: '[{\"type\":\"Resource\",\"resource\":{\"name\":\"cpu\",\"currentAverageUtilization\":0,\"currentAverageValue\":\"9m\"}}]'\r\n  creationTimestamp: \"2019-06-06T10:45:58Z\"\r\n  name: my-app-1\r\n  namespace: default\r\n  resourceVersion: \"55041251\"\r\n  selfLink: /apis/autoscaling/v1/namespaces/default/horizontalpodautoscalers/my-app-1\r\n  uid: 44fedc1a-8848-11e9-8465-025acf90d81e\r\nspec:\r\n  maxReplicas: 4\r\n  minReplicas: 2\r\n  scaleTargetRef:\r\n    apiVersion: extensions/v1beta1\r\n    kind: Deployment\r\n    name: my-app-1\r\n  targetCPUUtilizationPercentage: 40\r\nstatus:\r\n  currentCPUUtilizationPercentage: 0\r\n  currentReplicas: 4\r\n  desiredReplicas: 4\r\n```\r\n\r\nAnd here's a description output:\r\n\r\n```\r\n$ kubectl describe hpa my-app-1\r\n  Name:                                                  my-app-1\r\n  Namespace:                                             default\r\n  Labels:                                                <none>\r\n  Annotations:                                           <none>\r\n  CreationTimestamp:                                     Thu, 06 Jun 2019 12:45:58 +0200\r\n  Reference:                                             Deployment/my-app-1\r\n  Metrics:                                               ( current / target )\r\n    resource cpu on pods  (as a percentage of request):  0% (9m) / 40%\r\n  Min replicas:                                          2\r\n  Max replicas:                                          4\r\n  Deployment pods:                                       4 current / 4 desired\r\n  Conditions:\r\n    Type            Status  Reason            Message\r\n    ----            ------  ------            -------\r\n    AbleToScale     True    ReadyForNewScale  recommended size matches current size\r\n    ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)\r\n    ScalingLimited  True    TooManyReplicas   the desired replica count is more than the maximum replica count\r\n  Events:           <none>\r\n```\r\n\r\n**What you expected to happen**:\r\n\r\nHPA only scal",
+    "reactions": 89,
+    "created_at": "2019-06-06T11:59:43Z",
+    "updated_at": "2023-09-25T17:33:00Z",
+    "labels": [
+      "kind/bug",
+      "sig/autoscaling"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/78761",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/78761",
+    "author_login": "max-rocket-internet",
+    "author_profile": "https://github.com/max-rocket-internet",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 64623,
+    "title": "Run job on each node once to help with setup",
+    "body": "Hello, \r\n\r\nI am looking to see if it is possible to have a job run on each node in the cluster once. Right now our cluster is dynamically provisioned and scaled and was looking to use the kubernetes job and cronjob feature to run things to setup the node once it is provisioned or have a cron make sure something is cleaned up on each node.",
+    "reactions": 70,
+    "created_at": "2018-06-01T18:26:45Z",
+    "updated_at": "2024-02-18T16:58:17Z",
+    "labels": [
+      "kind/feature",
+      "sig/apps",
+      "lifecycle/rotten"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/64623",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/64623",
+    "author_login": "mitchellmaler",
+    "author_profile": "https://github.com/mitchellmaler",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 122753,
+    "title": "DaemonSet dynamic/scaled resources based on node type",
+    "body": "### What would you like to be added?\n\n_Intro note: I've read about KEP, however, I'm merely a busy engineer that loves Kubernetes. I'm not sure I can lead my feature request through the KEP process. Please consider this as my initial reach out, if anything to have my voice heard and poll my idea to the community. If there is enough traction, I could follow up and/or someone else could lead it._\r\n\r\nI want to propose an enhancement to the DaemonSet (DS) resource management in Kubernetes. The DaemonSet, as it stands, is an invaluable feature for ensuring that each node in a cluster runs a copy of a specific pod. However, I have identified an area where its functionality could be significantly improved: dynamic and scaled resource allocation based on node type.\r\n\r\n### Current Limitation: Static Resource Definition\r\n\r\nCurrently, the resource allocation logic for DaemonSets is rather static. When defining resources for a DaemonSet, such as CPU and memory, it operates on an 'all-or-nothing' basis. This approach does not leverage the full potential of diverse node environments.\r\n\r\n### Diverse Node Environment in Current Ecosystem\r\n\r\nIn the present cloud ecosystem, there's an extensive variety of node types available. These range from nodes with as little as 1 virtual CPU to those as large as 488 CPUs offered by services like AWS. This diversity in node capabilities is not currently accounted for in the DaemonSet design.\r\n\r\n### Resource Dependence on Node Size and Pod Density\r\n\r\nThe workload resources for a DaemonSet, particularly memory and CPU, are often dependent on the number of pods running on a node. More importantly, they can also depend on the size or capacity of the node itself. For instance, a node with more CPUs and memory can, and ideally should, handle more intensive workloads.\r\n\r\n### Lack of Native Methods for Dynamic Resource Allocation\r\n\r\nAs of now, Kubernetes does not offer native methods to define resources for a DaemonSet based on the size or capacity of the node. While it is possible to categorize nodes into groups based on size, this solution is cumbersome and static. It requires significant manual intervention and does not adapt dynamically as the cluster evolves.\r\n\r\n### Existing Alternatives\r\n\r\nI acknowledge that there are existing methods to manage this challenge, such as adding nodes to different node groups and then using affinity rules to place DaemonSets with different resource requirements. However, this approach is quite tedious and complex. It requires significant manual configuration and continuous adjustment, which detracts from usability and efficiency. This method does not truly cater to the dynamic nature of resource demands in a Kubernetes environment.\r\n\r\n### Proposal: Dynamic/Scaled Resource Allocation for DaemonSets\r\n\r\nI propose the introduction of a feature that allows DaemonSets to dynamically allocate resources based on the type or capacity of the node. This feature would analyze the node's characteristics (such a",
+    "reactions": 62,
+    "created_at": "2024-01-13T00:45:26Z",
+    "updated_at": "2026-05-07T22:42:52Z",
+    "labels": [
+      "kind/feature",
+      "sig/apps",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/122753",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/122753",
+    "author_login": "wiardvanrij",
+    "author_profile": "https://github.com/wiardvanrij",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 484,
+    "title": "Service scale-to-zero (fka \"Socket activation\")",
+    "body": "I want to start this issue to drum up support for adding socket activation support to Kubernetes. My CTO at the last place I worked at, @davidstrauss, invented this technique.\n\nNormally for a service to be available, its daemon has to be running and listening on a socket. With socket activation, another service, generally SystemD, listens for all incoming traffic and on an incoming request, passes the request to its service, waking it if necessary.\n\nBy idling inactive containers, there can be significant savings on memory. At Pantheon which hosts Drupal and Wordpress sites, at any time some ~80-90% of containers are idled waiting for traffic. This means they can proportionally increase the density of containers resulting in significant operations and server cost savings.\n\nThis is of course not a technique for everyone. You need to have services which won't get any use for significant periods of time and you can accept a few second delay from the initial waking time. But for many people, especially those running multi-tenant architectures, this would be a very valuable feature if baked in and easy to use and help Kubernetes be even more elastic.\n\nSome more information on socket activation:\n- http://0pointer.de/blog/projects/socket-activated-containers.html\n- http://www.slideshare.net/warpforge/php-at-density-and-scale\n",
+    "reactions": 57,
+    "created_at": "2014-07-16T05:26:24Z",
+    "updated_at": "2024-04-28T22:50:54Z",
+    "labels": [
+      "sig/network",
+      "priority/awaiting-more-evidence",
+      "sig/node",
+      "kind/feature",
+      "lifecycle/rotten"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/484",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/484",
+    "author_login": "KyleAMathews",
+    "author_profile": "https://github.com/KyleAMathews",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 53248,
+    "title": "kubectl provides a way to find which RoleBinding/ClusterRoleBinding is related to a serviceAccount",
+    "body": "<!-- This form is for bug reports and feature requests ONLY! \r\n\r\nIf you're looking for help check [Stack Overflow](https://stackoverflow.com/questions/tagged/kubernetes) and the [troubleshooting guide](https://kubernetes.io/docs/tasks/debug-application-cluster/troubleshooting/).\r\n-->\r\n\r\n**Is this a BUG REPORT or FEATURE REQUEST?**: \r\n\r\n/kind feature\r\n\r\n\r\n**What happened**:\r\nWhen I encounter a problem which is caused by no proper permissions, I want to find which RoleBinding/ClusterRoleBinding is related to the serviceAccount the Pod uses. But there's no simple way to do this without traversing all of the bindings.\r\n\r\n**What you expected to happen**:\r\n`kubectl` could provide a simple method to solve the above problem such as:\r\n\r\n```shell\r\n$ kubectl get rolebinding SERVICE_ACCOUNT_NAME POD\r\n$ kubectl get clusterrolebinding SERVICE_ACCOUNT_NAME POD\r\n```\r\n\r\n**How to reproduce it (as minimally and precisely as possible)**:\r\n\r\n\r\n**Anything else we need to know?**:\r\n\r\nRelated stackoverflow problems: [Is there a way to find the RoleBinding/ClusterRoleBinding related to a serviceAccount?](https://stackoverflow.com/questions/46482455/is-there-a-way-to-find-the-rolebinding-clusterrolebinding-related-to-a-serviceac)\r\n\r\n**Environment**:\r\n- Kubernetes version (use `kubectl version`):\r\n- Cloud provider or hardware configuration**:\r\n- OS (e.g. from /etc/os-release):\r\n- Kernel (e.g. `uname -a`):\r\n- Install tools:\r\n- Others:\r\n",
+    "reactions": 39,
+    "created_at": "2017-09-29T07:13:15Z",
+    "updated_at": "2024-04-03T13:57:18Z",
+    "labels": [
+      "area/kubectl",
+      "priority/awaiting-more-evidence",
+      "kind/feature",
+      "sig/cli",
+      "lifecycle/frozen"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/53248",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/53248",
+    "author_login": "flyer103",
+    "author_profile": "https://github.com/flyer103",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 63214,
+    "title": "kubectl run from a manifest file",
+    "body": "**Is this a BUG REPORT or FEATURE REQUEST?**:\r\n\r\n/kind feature\r\n\r\n**What happened**:\r\n\r\nAs discussed in #48684 we also have a use case where we would like to spin up a pod, run a command, and throw away the pod. `kubectl run` seems to support this except that it gets very complicated to bring up a pod matching the environment of an existing deployment. Specifically, attaching secrets.\r\n\r\nThe commonly cited example is to spin up a pod to run database migrations during a deployment.\r\n\r\nThat PR has to do with adding an `--end-from` option to the `kubectl run` but on further discussion, the use of `--override` seems to have resolved some of the problems. However, that has it's own issues, as [@javanthropus mentioned](https://github.com/kubernetes/kubernetes/pull/48684#issuecomment-382048645):\r\n\r\n> This seems a little backwards logically though because we want the manifest to be the base definition, where the additional command line options provide overrides. It's also a mess to have to pass the entire manifest on the command line.\r\n\r\nI would like to be able to specify the image on the command-line and override the spec. Specifically, I'd like to have a static manifest to load from and then add a tag to the image from our script so I can make sure I'm using the right image.\r\n\r\nSomething like this (which currently ignores the command-line:)\r\n\r\n```\r\nkubectl run -shell --image image:${TAG:-latest} --restart=Never --overrides $overrides -- bin/rails db:migrate\r\n```\r\n\r\n> Going further, as with the create and apply commands, it would be great if the manifest could be supplied in either JSON or YAML formats.\r\n\r\nAgreed because all our other configuration files are in YAML.  I ended up with this so we could store the manifest in YAML like we do everything else:\r\n\r\n```\r\n--overrides $(ruby -r json -r yaml -e 'puts JSON.dump YAML.load_file(\"shell.yml\")')\r\n```\r\n\r\nBut I ran into further issues where if `--restart=Never` is on the `run` command, it launches a Pod, but _ignores_ the command line and just runs the default command in the Docker image.\r\n\r\n**What you expected to happen**:\r\n\r\nIt would be great to have a `-f` option like `apply` does:\r\n\r\n```\r\nkubectl run -it --rm --restart=Never --filename pod.json\r\n```\r\n\r\n**Anything else we need to know?**:\r\n\r\n**Environment**:\r\n- Kubernetes version (use `kubectl version`):\r\n  ```\r\n  $ kubectl version\r\n  Client Version: version.Info{Major:\"1\", Minor:\"8\", GitVersion:\"v1.8.6\", GitCommit:\"6260bb08c46c31eea6cb538b34a9ceb3e406689c\", GitTreeState:\"clean\", BuildDate:\"2017-12-21T06:34:11Z\", GoVersion:\"go1.8.3\", Compiler:\"gc\", Platform:\"darwin/amd64\"}\r\n  Server Version: version.Info{Major:\"1\", Minor:\"9+\", GitVersion:\"v1.9.6-gke.1\", GitCommit:\"cb151369f60073317da686a6ce7de36abe2bda8d\", GitTreeState:\"clean\", BuildDate:\"2018-04-07T22:06:59Z\", GoVersion:\"go1.9.3b4\", Compiler:\"gc\", Platform:\"linux/amd64\"}\r\n  ```\r\n",
+    "reactions": 34,
+    "created_at": "2018-04-26T19:59:17Z",
+    "updated_at": "2022-11-06T10:57:34Z",
+    "labels": [
+      "kind/feature",
+      "sig/cli",
+      "lifecycle/rotten"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/63214",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/63214",
+    "author_login": "jeremywadsack",
+    "author_profile": "https://github.com/jeremywadsack",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 62078,
+    "title": "Feature Request: Create a node's automatic node labels on its pods ",
+    "body": "<!-- This form is for bug reports and feature requests ONLY! \r\n\r\nIf you're looking for help check [Stack Overflow](https://stackoverflow.com/questions/tagged/kubernetes) and the [troubleshooting guide](https://kubernetes.io/docs/tasks/debug-application-cluster/troubleshooting/).\r\n-->\r\n\r\n**Is this a BUG REPORT or FEATURE REQUEST?**:\r\n\r\n> Uncomment only one, leave it on its own line: \r\n>\r\n> /kind bug\r\n\r\n/kind feature\r\n\r\n\r\n**What happened**:\r\nCannot tell Kafka broker pod which failure domain it is in for rack-awareness.\r\n\r\n**What you expected to happen**: \r\nPods would inherit these labels from the node:\r\nhttps://kubernetes.io/docs/concepts/configuration/assign-pod-node/#interlude-built-in-node-labels\r\n\r\n**How to reproduce it (as minimally and precisely as possible)**:\r\nN/A\r\n\r\n**Anything else we need to know?**:\r\nThis approach would be a kind of alternative to these:\r\n- https://github.com/kubernetes/kubernetes/issues/40610\r\n- https://github.com/kubernetes/kubernetes/pull/25957\r\n- https://github.com/Yolean/kubernetes-kafka/pull/41\r\n\r\nAlso relevant:\r\n- https://github.com/minio/minio/issues/5738\r\n\r\n**Environment**:\r\n- Kubernetes version (use `kubectl version`): v1.10.0\r\n- Cloud provider or hardware configuration: AWS\r\n- OS (e.g. from /etc/os-release):\r\n- Kernel (e.g. `uname -a`):\r\n- Install tools: Kops\r\n- Others:\r\n",
+    "reactions": 34,
+    "created_at": "2018-04-03T19:33:40Z",
+    "updated_at": "2024-10-28T17:17:56Z",
+    "labels": [
+      "sig/scheduling",
+      "sig/node",
+      "kind/feature",
+      "lifecycle/rotten"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/62078",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/62078",
+    "author_login": "ghost",
+    "author_profile": "https://github.com/ghost",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 49937,
+    "title": "Support httpHead for pod livenessProbe",
+    "body": "/kind feature\r\n\r\n**What happened**:\r\nThe docs for [http liveness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#define-a-liveness-http-request) only reference `httpGet`, but a http `HEAD` request is better for healthchecks as no data is returned so it is lighter weight.\r\n\r\n**What you expected to happen**:\r\nI would expect a httpHead directive to exist. It would perform a request such as:\r\n\r\n```\r\nHEAD / HTTP/1.1\r\n```\r\n\r\nvs `httpGet`, which does something like:\r\n\r\n```\r\nGET / HTTP/1.1\r\n```\r\n\r\n**How to reproduce it (as minimally and precisely as possible)**:\r\n\r\nCreate a livenessProbe and be :disappointed:  that `HEAD` requests aren't available.",
+    "reactions": 33,
+    "created_at": "2017-08-01T10:45:20Z",
+    "updated_at": "2025-06-27T11:29:55Z",
+    "labels": [
+      "sig/node",
+      "kind/feature",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/49937",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/49937",
+    "author_login": "SEJeff",
+    "author_profile": "https://github.com/SEJeff",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 118749,
+    "title": "topologySpreadConstraint spanning multiple namespaces",
+    "body": "### What would you like to be added?\r\n\r\nI desperately need a way to spread similar prods from different namespaces evenly across clusters nodes.\r\n\r\nRight now official docummentation for topologySpreadConstraints explicitly states this:\r\n> Only the Pods holding the same namespace as the incoming Pod can be matching candidates.\r\n\r\nI also taken into consideration cluster-wide topologySpreadConstraints, but they seems not covering my case as well, as pods should belong to the same controlling entity (Deployment, Statefulset, Service).\r\n\r\n### Why is this needed?\r\n\r\nI'm responsible for big enough cluster with hundreds instances of cloud native application that consists of 20+ microservices. Since application may spin up worker pods for data processing pod names are clashing quite often, that's why I have to use namespaces, easy garbage collecting upon removal is another reason.\r\n\r\nApplication is quite big, so we use resource overprovisioning quite heavily, however, when some nodes getting too many instances of a few specific microservice, it can be easily overloaded. Having global (as opposed to namespaced) topologySpreadConstraints would allow us to optimize capacity requirements a lot.\r\n\r\nI'm happy to provide any additional information upon request. Also, any workaround for my use-case is extremely welcome.\r\n\r\nThanks!",
+    "reactions": 32,
+    "created_at": "2023-06-20T03:17:50Z",
+    "updated_at": "2025-07-30T14:15:16Z",
+    "labels": [
+      "sig/scheduling",
+      "kind/feature",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/118749",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/118749",
+    "author_login": "dene14",
+    "author_profile": "https://github.com/dene14",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 106802,
+    "title": "Waiting for Job completion in InitContainer (or before main container starts)",
+    "body": "### What would you like to be added?\n\nA common pattern is to include the release phase (e.g. database migrations) inside a Job. \r\nThen you need to wait until the migration is completed before starting the new pods: you can use an InitContainer for that.\r\n\r\nFor example if you use Rails you can:\r\n1. Create a Job (e.g. `migration-job`) with `rails db:migrate` command\r\n2. Inside the Deployment (e.g. web app), add an InitContainer that waits for the condition `rake db:abort_if_pending_migrations`  (this command returns success only when the migrations are complete)\r\n\r\nThe problem is that not all commands (in step 1) have a corresponding \"check\" command (in step 2). **It can be extremely hard for some commands to find a separate command in step 2 that verifies their completion.**\r\n\r\n**It would be much easier if we could simply wait for a Job to become Complete before starting the pods** (in step 2).\n\n### Why is this needed?\n\nInitContainers are a great way to wait for a general condition to be met, but it is difficult to check a condition for a Kubernetes component (like a Job).\r\n\r\nOne of the most common conditions is a Job completion, but currently there's no way to express that in Kubernetes (e.g. `waitFor: migration-job`). This could be something similar to what `kubectl wait` does on the client side, but inside the spec.",
+    "reactions": 31,
+    "created_at": "2021-12-03T12:28:05Z",
+    "updated_at": "2024-07-05T21:34:48Z",
+    "labels": [
+      "sig/node",
+      "kind/feature",
+      "sig/apps",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/106802",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/106802",
+    "author_login": "collimarco",
+    "author_profile": "https://github.com/collimarco",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 51475,
+    "title": "don't require API server connection for `kubectl create configmap ... --dry-run`",
+    "body": "**Is this a BUG REPORT or FEATURE REQUEST?**: \r\n\r\n/kind feature\r\n\r\n**What happened**:\r\n```\r\nkubectl create configmap my-cmap --from-file=file.txt --dry-run --output=yaml > my-cmap.yaml\r\nUnable to connect to the server: dial tcp: lookup REDACDTED on REDACTED: no such host\r\n```\r\n\r\n**What you expected to happen**:\r\nIdeally, I expect that no connection to the Kubernetes API server should be needed to create a ConfigMap with `--dry-run`.\r\n\r\n**How to reproduce it (as minimally and precisely as possible)**:\r\nRun the above command with no connection to a Kubernetes cluster.\r\n\r\n**Anything else we need to know?**:\r\nhttps://github.com/kubernetes/kubernetes/issues/11488 is a related issue that mentions that we need to decide if `--dry-run` should or should not require server-side connection. In this case for running `--dry-run` to create and save YAMLs, we should not need API server connection. It seems like an API server connection should only be needed if both `--dry-run` and `--validate` are used to validate the manifest against the API server and not apply the manifest.\r\n\r\n**Environment**:\r\n- Kubernetes version (use `kubectl version`):\r\n```\r\nClient Version: version.Info{Major:\"1\", Minor:\"6\", GitVersion:\"v1.6.2\", GitCommit:\"477efc3cbe6a7effca06bd1452fa356e2201e1ee\", GitTreeState:\"clean\", BuildDate:\"2017-04-19T20:33:11Z\", GoVersion:\"go1.7.5\", Compiler:\"gc\", Platform:\"linux/amd64\"}\r\n```\r\n- Cloud provider or hardware configuration**: n/a\r\n- OS (e.g. from /etc/os-release): n/a\r\n- Kernel (e.g. `uname -a`): n/a\r\n- Install tools: n/a\r\n- Others: n/a\r\n",
+    "reactions": 27,
+    "created_at": "2017-08-28T20:56:17Z",
+    "updated_at": "2026-04-16T10:43:02Z",
+    "labels": [
+      "area/kubectl",
+      "sig/api-machinery",
+      "kind/feature",
+      "sig/cli",
+      "lifecycle/rotten",
+      "triage/accepted"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/51475",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/51475",
+    "author_login": "julianvmodesto",
+    "author_profile": "https://github.com/julianvmodesto",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 121178,
+    "title": "Allow volumeClaimTemplates annotations to be updated",
+    "body": "### What would you like to be added?\n\nAllow annotations in volumeClaimTemplates (StatefulSet) to be updated and consequently be propagated to the PVC. This will allow us to use https://github.com/mtougeron/k8s-pvc-tagger and keep EBS Volumes tags up-to-date.\r\n\r\nRelated with https://github.com/kubernetes/kubernetes/issues/68737\n\n### Why is this needed?\n\nKeep EBS volumes tags up-to-date, when using volumeClaimTemplates to create PVC/volume.",
+    "reactions": 23,
+    "created_at": "2023-10-12T12:56:16Z",
+    "updated_at": "2025-06-04T22:16:53Z",
+    "labels": [
+      "sig/storage",
+      "kind/feature",
+      "sig/apps",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/121178",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/121178",
+    "author_login": "andreclaro",
+    "author_profile": "https://github.com/andreclaro",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 79547,
+    "title": "kubectl logs -f should wait when in state PodInitializing",
+    "body": "It's a minor gripe, but when I'm trying to find out why my pod fails, I tend to \"kubectl logs -f [podname]\".  A common problem is that it's still initializing and kubectl tells me to go away.\r\n\r\nGiven that I specified '-f', I'd rather it just hang out in that state and then start piping logs when it's ready, versus me having to manually poll for when it's out of that state.",
+    "reactions": 21,
+    "created_at": "2019-06-28T22:53:41Z",
+    "updated_at": "2023-01-16T13:10:47Z",
+    "labels": [
+      "kind/feature",
+      "sig/cli",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/79547",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/79547",
+    "author_login": "eddieparker",
+    "author_profile": "https://github.com/eddieparker",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 118858,
+    "title": "Consider providing separate etcd destination for CRDs",
+    "body": "### What would you like to be added?\n\nAs of now, Kubernetes api server provides a mechanism to push events to a separate etcd cluster using the --etcd-servers-overrides=\"/events#\" flag. This issue is to request similar mechanism for sending CRDs to separate etcd cluster.\r\n\n\n### Why is this needed?\n\nPrimary motivation is to keep the main etcd cluster performant.\r\n\r\n* CRD listing - Some workloads use their CRDs for events (example argo). These events cause issues similar to the Kubernetes native events - they have spiky writes and they keep getting LIST calls typically from monitoring tools. The motivation for moving these out of main etcd cluster is similar to the reasoning for moving Kubernetes events out of main etcd cluster.\r\n\r\n* CRD count - Some CRDs produce millions of objects and affect the performance of main etcd cluster. \r\n\r\n\r\n\r\n\r\n",
+    "reactions": 19,
+    "created_at": "2023-06-25T21:14:01Z",
+    "updated_at": "2026-02-19T07:13:18Z",
+    "labels": [
+      "sig/api-machinery",
+      "kind/feature",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/118858",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/118858",
+    "author_login": "geetasg",
+    "author_profile": "https://github.com/geetasg",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 127994,
+    "title": "delete PVC created by statefulset on pod eviction",
+    "body": "### What would you like to be added?\n\nSimilarly to the [persistentVolumeClaimRetentionPolicy](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention), would be nice to have the possibility to delete the PVC on pod eviction.\n\n### Why is this needed?\n\nIn case of local storage provisioners ( like lvm, or static provisioner ), where the PV is tied to nodes, on node roll-over it would avoid the need of a manual deletion of the PVC in order to let the newly scheduled pod to start.",
+    "reactions": 17,
+    "created_at": "2024-10-11T06:13:09Z",
+    "updated_at": "2025-07-14T12:18:46Z",
+    "labels": [
+      "sig/storage",
+      "kind/feature",
+      "sig/apps",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/127994",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/127994",
+    "author_login": "nrobert13",
+    "author_profile": "https://github.com/nrobert13",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 121211,
+    "title": "uneven Pods spreading across domains",
+    "body": "## What \r\n\r\nImplement an uneven Pod spreading constraints between domains. Like domainA:domainB = x:y.\r\n\r\nThis requires us to introduce a new field to `topologySpreadConstraints` (name it `domains` for now). \r\nWhen `domains` field is non-empty, `maxSkew` should be nil. (vise-versa)\r\n\r\n```yaml\r\n- topologySpreadConstraints:\r\n    # ...\r\n    domains:\r\n      - topologyLabel: \"domainA\"\r\n        weight: 7\r\n      - topologyLabel: \"domainB\"\r\n        weight: 3\r\n```\r\n\r\n## Usecases\r\n\r\n### Usecase1: spread Pods between zones\r\n\r\n```yaml\r\n- topologySpreadConstraints:\r\n    whenUnsatisfiable: DoNotSchedule\r\n    labelSelector:\r\n       matchLabels:\r\n         app: foo\r\n    topologyKey: \"zone\"\r\n    domains:\r\n      - topologyLabel: \"zonea\"\r\n        weight: 7\r\n      - topologyLabel: \"zoneb\"\r\n        weight: 3\r\n```\r\n\r\nWe have a DB in zoneA, so we want to schedule the Pods mostly to zoneA for better latency.\r\nBut, want to schedule smaller part of them to zone-b in case of zone failure.\r\n\r\n### Usecases2: spread Pods for on-demand/spot\r\n\r\n```yaml\r\n- topologySpreadConstraints:\r\n    labelSelector:\r\n       matchLabels:\r\n         app: foo\r\n    topologyKey: \"node-availability\"\r\n    domains:\r\n      - topologyLabel: \"on-demand\"\r\n        weight: 7\r\n      - topologyLabel: \"spot\"\r\n        weight: 3\r\n```\r\n\r\nSo, we want to keep a large part of Pods running in on-demand Nodes because the spot instance might be deleted suddenly.\r\nBut, we're greedy, we want to keep some Pods in the spot Nodes for sure for the cost saving.\r\n\r\n### Usecase3: gradual infrastructure migration\r\n\r\n```yaml\r\n- topologySpreadConstraints:\r\n    labelSelector:\r\n       matchLabels:\r\n         app: foo\r\n    topologyKey: \"nodepool\"\r\n    domains:\r\n      - topologyLabel: \"old-nodepool\"\r\n        weight: 9 # will be reduced gradually\r\n      - topologyLabel: \"new-nodepool\"\r\n        weight: 1 # will be increased gradually\r\n```\r\n\r\nWhen we migrate workloads from one domain to another, we want to do it gradually.\r\n\r\n## Why\r\n \r\nOur company has one huge cluster to accommodate tons of Pods.\r\n\r\nCurrently, in order to achieve such uneven spreading, we need to choose either:\r\n- create multiple deployments (+ HPA etc), one per domain. And somehow keep them to a specific ratio via some custom autoscaling solution.\r\n  - It's hard to prepare multiple deployments in the first place when doing that for many services.(the usecase 2 / 3)\r\n- use one deployment, but create the mutating webhook to add the required nodeaffinity to each Pod based on the current number of Pods in each domain. Also, descheduling should be done somehow.\r\n- EDIT: Or follow [a similar way of Karpenter](https://github.com/kubernetes/kubernetes/issues/121211#issuecomment-1761840082). \r\n\r\nAll are not simple solutions, which require engineering effort a lot and could cause serious problems in case of bugs.\r\n\r\nAlso, again we're greedy, we want to have a fallback mechanism like https://github.com/kubernetes/enhancements/issues/3990 when it comes to usecase 2. So, there could ",
+    "reactions": 17,
+    "created_at": "2023-10-13T05:47:26Z",
+    "updated_at": "2025-10-28T10:06:40Z",
+    "labels": [
+      "sig/scheduling",
+      "kind/feature",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/121211",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/121211",
+    "author_login": "sanposhiho",
+    "author_profile": "https://github.com/sanposhiho",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 74415,
+    "title": "Support a list of namespaces for informers",
+    "body": "**What would you like to be added**:\r\nEnhance the api here: https://godoc.org/k8s.io/client-go/informers to support a list of namespaces\r\n**Why is this needed**:\r\nOperators may need to monitor a subset of all namespaces or even dynamically add one.\r\nI think it could benefit the multi-tenancy story.\r\n @kubernetes/sig-api-machinery-feature-requests",
+    "reactions": 17,
+    "created_at": "2019-02-22T13:53:00Z",
+    "updated_at": "2022-11-14T10:35:16Z",
+    "labels": [
+      "priority/awaiting-more-evidence",
+      "sig/api-machinery",
+      "kind/feature",
+      "lifecycle/rotten"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/74415",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/74415",
+    "author_login": "skonto",
+    "author_profile": "https://github.com/skonto",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 114010,
+    "title": "Topology Aware Infrastructure Disruptions for Statefulsets",
+    "body": "### What would you like to be added?\r\n\r\nAdd the following features to the StatefulSet API for Kubernetes to make the management of stateful apps easier:\r\n1. The ability to rollout pods by zone for a Statefulset.\r\n2. Allow PDBs to have budget of disruptions per zone for a Statefulset.\r\n\r\n\r\n### Why is this needed?\r\n\r\nA key focus of most stateful applications is data availability and consistency. In service of this, many stateful applications replicate data and often have these replicas spread across multiple zones. Due to this zonal replication, these apps can often tolerate the disruptions of several pods if limited to the same zone.\r\n\r\nWe propose Kubernetes should provide native features to allow users to take advantage of the zonal replication for stateful apps when performing any kind of planned disruption ex. rollouts or node upgrades.\r\n\r\nThe two features we thing can have a high impact on easing the management of such applications are:\r\n1. The ability to rollout pods by zone for a Statefulset.\r\n2. Allow PDBs to have budget of disruptions per zone for a Statefulset.\r\n\r\n**The aim for both these features is to speed up deployment times without having an impact on availability.**\r\n\r\nThere are several popular apps: Kafka, Zookeeper, Redis, Elastisearch, TiKV, Cortex to name a few which would benefit from the addition of these features to Kubernetes (one would expect most distributed apps should). These apps often support zonal replicas by using some kind of topology or rack aware setting in their configuration.\r\n\r\nIdeally these are native features in Kubernetes that can be developed to be robust, generic and be of use to several stateful apps.\r\n\r\n**More context for the proposal is captured in this public [doc here](https://docs.google.com/document/d/1mnV1D_2qz3iYjnMzEUuLFjW9Oi4Kw0Qtz_B1Nup8FlU/edit#heading=h.u7jfy9wqpd2b)**\r\n**Similar requests have been made in the past:** https://github.com/kubernetes/kubernetes/issues/104583\r\n\r\n#### Current attempts at solving the problem\r\nThe current way most teams support such features is by writing custom operators. These operator are either designed to be generic which is how we solve this at Shopify and thanks to @marianafranco it seems AWS seems to do the same. Or these features get baked into existing operators written to manage apps.\r\n\r\nAnother pattern we have seen, sometimes in conjunction with a custom operator is to have multiple Statefulset definitions for a single logical app, with each Statefulset definition restricting pods to a single zone.\r\n\r\n\r\n### A simple case study of speeding up rollouts for Kafka using a custom operator at Shopify\r\n\r\nKafka is distributed event store, deployed as a Statefulset on Kubernetes. Users can read/write oredered events from a topics which are further made up of partitions. Kafka performs replication at this partition level.\r\n\r\nKafka like many other apps is rack/topology aware and spreads the partition replicas across the available zones. We usually have 3 replicas f",
+    "reactions": 16,
+    "created_at": "2022-11-18T20:16:38Z",
+    "updated_at": "2024-07-29T19:14:16Z",
+    "labels": [
+      "kind/feature",
+      "sig/apps",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/114010",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/114010",
+    "author_login": "null-sleep",
+    "author_profile": "https://github.com/null-sleep",
+    "already_resurrected": false
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 135178,
+    "title": "Live container migration from one node to another to support long-running AI/ML workloads",
+    "body": "### What would you like to be added?\n\nBuilding on the previous discussions in issue #3949, I'd like to propose adding ability to live migrate a container from one node to another. I believe this would be a valuable addition to those of us that use Kubernetes as a compute platform on which to run large scale batch jobs and model training. I have read the KEP by @adrianreber , but it only covers the \"first part\" of the required functionality - aka checkpointing the container for further analysis - and is more security oriented. The proposal here would be more geared AI/ML workloads that are expensive to restart, prone to exhausting resources on a single node and would benefit from being able to be transferred to another node and restarted from the current state. \n\nThere are two specific cases I am thinking about: \n\n1. Move container from one node to a node with more resources if container is exhausting resources on original node\n2. Move container from one node to another is original node is a spot node and has been pre-empted\n\n### Why is this needed?\n\nThere are two primary types of AI/ML workloads that run on Kubernetes - live services that run model inference and service requests from users and batch jobs/tasks that are launched by an orchestrator and usually make up a a part of a more involved ML pipeline. Examples of things that happen inside containers in these tasks are things like - extracting data from a data store, manipulating the data in a process inside the container, long-running ingestion process ( for example, embedding vectors and indexing them into a vector store) training a model either using some custom framework or an open source framework like scikit-learn or PyTorch, writing data back to a datastore or uploading a model file to object storage. \n\nDue to their nature, these tasks are expensive to restart. For example, terminating and restarting a model training container might mean that you lose hours of work. Unfortunately, due to the nature of these tasks, it can be difficult to estimate up front how much resources these tasks take and very frequently, these containers exhaust the resources available on a node. Due to the computational requirements of these tasks and the cost of cloud computing, spot instances would offer a way to architect these platform more cost-effectively were it not for the potential interruptions that these tasks would incur were a spot instance to be pre-empted. \n\nThus an easy-to use functionality that allows containers to be moved from one node to another would be very helpful in addressing some of the issues that make Kubernetes hard-to-use for AI/ML teams. ",
+    "reactions": 14,
+    "created_at": "2025-11-06T11:07:16Z",
+    "updated_at": "2026-04-19T04:22:58Z",
+    "labels": [
+      "kind/feature",
+      "needs-sig",
+      "lifecycle/rotten",
+      "needs-triage"
+    ],
+    "url": "https://api.github.com/repos/kubernetes/kubernetes/issues/135178",
+    "html_url": "https://github.com/kubernetes/kubernetes/issues/135178",
+    "author_login": "Winterflower",
+    "author_profile": "https://github.com/Winterflower",
+    "already_resurrected": false
+  }
+]
