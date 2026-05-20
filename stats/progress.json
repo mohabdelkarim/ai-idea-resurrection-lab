@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-19T18:08:21",
-  "total_resurrections": 36,
+  "last_updated": "2026-05-20T03:52:00",
+  "total_resurrections": 37,
   "total_repos_covered": 27,
-  "average_impact_score": 6.39,
-  "average_effort_hours": 72.67,
+  "average_impact_score": 6.38,
+  "average_effort_hours": 73.95,
   "top_tags": [
     "rust",
     "typescript",
@@ -41,24 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-19",
-    "repo": "prometheus/prometheus",
-    "issue_number": 3806,
-    "title": "Proposal for improving rate/increase ",
-    "reactions": 125,
-    "abandoned_date": "2026-03-24T23:23:53Z",
-    "one_line_why": "The proposed changes are necessary to provide more accurate and flexible rate and increase calculations, which are essential for modern.",
-    "impact_score": 7,
+    "date": "2026-05-20",
+    "repo": "grafana/grafana",
+    "issue_number": 6694,
+    "title": "[Feature request] Google Analytics integration",
+    "reactions": 148,
+    "abandoned_date": "2024-02-20T01:46:58Z",
+    "one_line_why": "Google Analytics integration is now viable due to advancements in Grafana's plugin architecture and Google's API maturity.",
+    "impact_score": 6,
     "effort_hours": 120.0,
     "has_poc": false,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
-      "prometheus",
-      "promql",
-      "time series data",
-      "query engine"
+      "grafana",
+      "google-analytics",
+      "plugin-architecture",
+      "api-integration"
     ],
-    "original_url": "https://github.com/prometheus/prometheus/issues/3806"
+    "original_url": "https://github.com/grafana/grafana/issues/6694"
   }
 }
