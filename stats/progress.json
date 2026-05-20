@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-20T16:32:56",
-  "total_resurrections": 38,
+  "last_updated": "2026-05-20T18:18:29",
+  "total_resurrections": 39,
   "total_repos_covered": 27,
-  "average_impact_score": 6.39,
-  "average_effort_hours": 75.16,
+  "average_impact_score": 6.41,
+  "average_effort_hours": 76.31,
   "top_tags": [
     "rust",
     "typescript",
@@ -42,22 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-20",
-    "repo": "hashicorp/terraform",
-    "issue_number": 610,
-    "title": "capture output of provisioners into variables",
-    "reactions": 384,
-    "abandoned_date": "2022-10-02T02:42:10Z",
-    "one_line_why": "This feature is now feasible due to Terraform 1.0's improved provisioner system and growing demand for dynamic environments.",
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 85963,
+    "title": "Add Support to Deny RBAC Rules",
+    "reactions": 100,
+    "abandoned_date": "2024-03-18T15:59:01Z",
+    "one_line_why": "Deny rules in RBAC would allow for more granular access control, enabling administrators to restrict access while still being permissive.",
     "impact_score": 7,
     "effort_hours": 120.0,
     "has_poc": false,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
-      "terraform",
-      "provisioners",
-      "variables"
+      "rbac",
+      "access-control",
+      "security",
+      "policy"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/610"
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/85963"
   }
 }
