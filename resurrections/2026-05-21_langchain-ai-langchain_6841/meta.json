@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-21",
+  "repo": "langchain-ai/langchain",
+  "issue_number": 6841,
+  "title": "Support for Pydantic v2",
+  "reactions": 75,
+  "abandoned_date": "2023-08-17T21:20:44Z",
+  "one_line_why": "Pydantic v2 offers significant performance improvements and is now widely adopted, making it a good time to add support.",
+  "impact_score": 7,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "pydantic",
+    "langchain",
+    "fastapi",
+    "python"
+  ],
+  "original_url": "https://github.com/langchain-ai/langchain/issues/6841"
+}
