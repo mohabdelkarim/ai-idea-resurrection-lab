@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-21",
+  "repo": "psf/requests",
+  "issue_number": 2966,
+  "title": "Consider using system trust stores by default in 3.0.0.",
+  "reactions": 92,
+  "abandoned_date": "2025-05-20T00:05:04Z",
+  "one_line_why": "The requests library can now leverage system trust stores for enhanced security and compliance, thanks to advancements in certitude and.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "python",
+    "cryptography",
+    "certifi",
+    "trust-store"
+  ],
+  "original_url": "https://github.com/psf/requests/issues/2966"
+}
