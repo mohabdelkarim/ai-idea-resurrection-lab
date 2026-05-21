@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-21T04:02:38",
-  "total_resurrections": 40,
-  "total_repos_covered": 27,
-  "average_impact_score": 6.42,
-  "average_effort_hours": 75.4,
+  "last_updated": "2026-05-21T16:22:06",
+  "total_resurrections": 41,
+  "total_repos_covered": 28,
+  "average_impact_score": 6.44,
+  "average_effort_hours": 76.49,
   "top_tags": [
     "rust",
     "typescript",
@@ -42,23 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-21",
-    "repo": "langchain-ai/langchain",
-    "issue_number": 6841,
-    "title": "Support for Pydantic v2",
-    "reactions": 75,
-    "abandoned_date": "2023-08-17T21:20:44Z",
-    "one_line_why": "Pydantic v2 offers significant performance improvements and is now widely adopted, making it a good time to add support.",
+    "repo": "psf/requests",
+    "issue_number": 2966,
+    "title": "Consider using system trust stores by default in 3.0.0.",
+    "reactions": 92,
+    "abandoned_date": "2025-05-20T00:05:04Z",
+    "one_line_why": "The requests library can now leverage system trust stores for enhanced security and compliance, thanks to advancements in certitude and.",
     "impact_score": 7,
-    "effort_hours": 40.0,
-    "has_poc": true,
+    "effort_hours": 120.0,
+    "has_poc": false,
     "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "pydantic",
-      "langchain",
-      "fastapi",
-      "python"
+      "python",
+      "cryptography",
+      "certifi",
+      "trust-store"
     ],
-    "original_url": "https://github.com/langchain-ai/langchain/issues/6841"
+    "original_url": "https://github.com/psf/requests/issues/2966"
   }
 }
