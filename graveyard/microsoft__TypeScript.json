@@ -1,0 +1,169 @@
+[
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 15480,
+    "title": "Suggestion: Range as Number type",
+    "body": "When defining a type one can specify multiple numbers separated by `|`.\r\n\r\n```ts\r\ntype TTerminalColors = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;\r\n```\r\n\r\nAllow to specify number types as ranges, instead of listing each number:\r\n\r\n```ts\r\ntype TTerminalColors = 0..15;\r\ntype TRgbColorComponent = 0..255;\r\ntype TUInt = 0..4294967295;\r\n```\r\n\r\nMaybe use `..` for integers and `...` for floats.\r\n\r\n```ts\r\ninterface Math {\r\n  random(): 0...1\r\n}\r\n\r\ntype RandomDice = 1..6;\r\n\r\nconst roll: RandomDice = Math.floor(Math.random() * 6);\r\n// Error: -------------------------^ Maybe use Math.ceil()?\r\n```",
+    "reactions": 1403,
+    "created_at": "2017-04-30T12:47:27Z",
+    "updated_at": "2023-10-23T16:21:31Z",
+    "labels": [
+      "Suggestion",
+      "In Discussion"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/15480",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/15480",
+    "author_login": "streamich",
+    "author_profile": "https://github.com/streamich",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 8,
+    "title": "Suggestion: minification",
+    "body": "TypeScript should support emitting minified JavaScript.\n\nThere are several different things we could support:\n1. Just remove whitespace\n2. Minify unobservable identifiers\n3. Remove provably dead code\n4. Whole-program minification (i.e. closure compiler)\n5. (Others?)\n",
+    "reactions": 1061,
+    "created_at": "2014-07-15T16:50:03Z",
+    "updated_at": "2024-10-15T21:46:24Z",
+    "labels": [
+      "Suggestion",
+      "Out of Scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/8",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/8",
+    "author_login": "RyanCavanaugh",
+    "author_profile": "https://github.com/RyanCavanaugh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 10011,
+    "title": "Love for TypeScript",
+    "body": "@ahejlsberg \n\nI love what you've done with VS Code and TypeScript - that's dream come true for me! Thank you!\n\nI am sure there are other people who contributed to that but for me you Mr. Anders represent all awesome coding tools like Delphi, C# and now TypeScript. \n\nThank you for existing!\n\n@GitHub How come there is <!-- BUG: --> but no <!-- LOVE: --> tag !?\n",
+    "reactions": 1058,
+    "created_at": "2016-07-28T18:31:44Z",
+    "updated_at": "2026-04-10T08:50:06Z",
+    "labels": [
+      "By Design",
+      "Suggestion",
+      "Needs Proposal",
+      "Help Wanted",
+      "Committed",
+      "Canonical",
+      "Effort: Difficult",
+      "Working as Intended",
+      "Awaiting More Feedback"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/10011",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/10011",
+    "author_login": "deiangi",
+    "author_profile": "https://github.com/deiangi",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 1897,
+    "title": "Please provide a `json` basic type",
+    "body": "Hi,\n\nJSON is an important data exchange format. At present there is no explicit way to annotate an object as pure JSON. We were expecting union types to solve this problem via the following:\n\n``` typeScript\n    interface Json {\n        [x: string]: string|number|boolean|Date|Json|JsonArray;\n    }\n    interface JsonArray extends Array<string|number|boolean|Date|Json|JsonArray> { }\n```\n\nThere are currently a number of problems with this.\n- Contextual typing is absent in parenthetic expression #920 \n  \n  ``` typeScript\n    interface Id extends Json {\n        id: number;\n    }\n  \n    var z = (): Id => ({id: 'foo'}); // Error: Missing index signature\n  ```\n- Contextual typing does not flow from base to subclasses #1373  \n\n``` typeScript\nclass Bass {\n\n    f(): Id{ return undefined;}\n}\n\n // Error: missing index signature\nclass Foo extends Bass {\n    f() { return { id: 10 }} \n}\n```\n- Object literals require explicit index signatures #1889:\n\n``` typeScript\n    interface Foo extends Json {\n\n        foo: { val: string }; // Error: Not assignable\n\n    }\n```\n- Other problems: \n  \n  ``` TypeScript\n  // Error: Missing index signature\n  var result: Id[] = 'a|b'.split('|').map(item => {\n        return { id: 0 };\n  });\n  ```\n\nThe first two problems look likely to be resolved, but not the last two.\n\nThis motivates the introduction of a natively supported `json` type that conforms to the [JSON spec](http://www.json.org/).\n\nIt should be possible to derive a custom JSON object from the `json` type with non of the problems above. Furthermore, since JSON is a data exchange format it should be possible to mark fields as nullable on types deriving from `json` (which would trigger a type guard).\n\nI am of course aware that this is all rather vague!\n",
+    "reactions": 475,
+    "created_at": "2015-02-02T21:37:47Z",
+    "updated_at": "2026-03-09T12:57:52Z",
+    "labels": [
+      "Suggestion",
+      "Declined"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/1897",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/1897",
+    "author_login": "NoelAbrahams",
+    "author_profile": "https://github.com/NoelAbrahams",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 15300,
+    "title": "Index signature is missing in type (only on interfaces, not on type alias)",
+    "body": "**TypeScript Version:**  2.2.2\r\n\r\n**Code**\r\n\r\n```ts\r\ninterface IndexType {\r\n     [key: string]: string;\r\n}\r\n\r\ninterface doesNotWork {\r\n    hola: string;\r\n}\r\ntype doWorks = { hola: string };\r\n\r\nlet y: IndexType;\r\n\r\nconst correctA = { hola: \"hello\" };\r\nconst correctB: doWorks = { hola: \"hello\" };\r\n//error should be assignable to y\r\nconst error: doesNotWork = { hola: \"hello \" };\r\n\r\ny = correctA;\r\ny = correctB;\r\ny = error; //Index signature is missing in type 'doesNotWork'\r\ny = {... error}; //workaround but not equivalent since the instance is not the same\r\n```\r\n\r\n**Expected behavior:**\r\nThe code should not result on a compiler error since the interface `doesNotWork` is equivalent to the type `{ hola: string }`\r\n\r\n**Actual behavior:**\r\nVariable `error` of type `doesNotWork` can't be assigned to y",
+    "reactions": 367,
+    "created_at": "2017-04-21T00:29:53Z",
+    "updated_at": "2022-11-18T22:55:09Z",
+    "labels": [
+      "Suggestion",
+      "In Discussion"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/15300",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/15300",
+    "author_login": "RafaelSalguero",
+    "author_profile": "https://github.com/RafaelSalguero",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 29729,
+    "title": "Literal String Union Autocomplete",
+    "body": "Autocomplete works for literal string unions, but adding a union of `string` negates autocomplete entirely. This has been brought up before but I believe there is enough value in this feature to be reconsidered.  \r\n\r\nMy use case is to have a union of string literals for several colors, but also allow hex codes without having to add 16.7 million string literals.\r\n\r\n**TypeScript Version:**  3.4.0-dev.20190202\r\n\r\n**Search Terms:** Literal string union autocomplete\r\n\r\n**Code**\r\n\r\n```ts\r\ninterface Options {\r\n  borderColor: 'black' | 'red' | 'green' | 'yellow' | 'blue' | string\r\n};\r\n\r\nconst opts: Options = {borderColor: 'red'};\r\n```\r\n\r\n**Expected behavior:**\r\n\r\n![image](https://user-images.githubusercontent.com/11617455/52225250-918e1700-286f-11e9-8ed2-9ca7fe5b0b70.png)\r\n\r\n**Actual behavior:**\r\n\r\n![image](https://user-images.githubusercontent.com/11617455/52225328-bd110180-286f-11e9-8b5d-62d516c96564.png)\r\n\r\n**Playground Link:** https://stackblitz.com/edit/typescript-bwyyab\r\n\r\n**Related Issues:** #12687 #13614\r\n",
+    "reactions": 245,
+    "created_at": "2019-02-04T17:44:40Z",
+    "updated_at": "2025-01-08T18:47:50Z",
+    "labels": [
+      "Design Limitation"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/29729",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/29729",
+    "author_login": "MrTarantula",
+    "author_profile": "https://github.com/MrTarantula",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 8436,
+    "title": "umd module compiler option doesn't have a fallback for global namespace.",
+    "body": "Most umd patterns have a third fallback that allows exporting to the window.namesapace = export; As such the current umd module export is pretty broken when a huge number of users / library developers need to support all three.\n\n``` js\n(function(root, factory) {\n  if (typeof define === 'function' && define.amd) {\n    define(factory);\n  } else if (typeof exports === 'object') {\n    module.exports = factory(require, exports, module);\n  } else {\n    root.exceptionless = factory();\n  }\n}(this, function(require, exports, module) {}\n```\n",
+    "reactions": 86,
+    "created_at": "2016-05-03T13:27:09Z",
+    "updated_at": "2025-10-23T16:46:55Z",
+    "labels": [
+      "Suggestion",
+      "Needs Proposal"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/8436",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/8436",
+    "author_login": "niemyjski",
+    "author_profile": "https://github.com/niemyjski",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 31394,
+    "title": "Add a new `type Awaitable<T> = T | PromiseLike<T>`",
+    "body": "## Search Terms\r\n\r\n- `awaitable`\r\n\r\n## Suggestion\r\n\r\nAdd an awaitable type for values that will be awaited.\r\n\r\n```ts\r\ntype Awaitable<T> = T | PromiseLike<T>;\r\n```\r\n\r\nThis is based on [my question and a comment on StackOverflow](https://stackoverflow.com/questions/56021581/awaitable-type-in-typescript#comment98890590_56021581)\r\n\r\n## Use Cases\r\n\r\nTwo use cases come in mind immediately:\r\n\r\n1. A function accepts a callback that may either return a value synchronously, or may return a promise value. This will then probably be awaited.\r\n2. This is more of a specific version of 1, but this would be the return type of `Promise.then()` / `Promise.catch` / `Promise.finally` callbacks.\r\n\r\nAlso, this type could replace all 1334 occurrences that come up when running `git grep '| Promise'` in the current TypeScript code base.\r\n\r\n## Examples\r\n\r\nCallback example:\r\n\r\n```ts\r\nasync function logAnswer(getAnswer: () => Awaitable<number>): Promise<void> {\r\n  const answer = await getAnswer();\r\n  console.log(answer);\r\n}\r\n\r\nlogAnswer(() => 42);\r\nlogAnswer(() => Promise.resolve(42));\r\n```\r\n\r\nPromise example:\r\n\r\n```ts\r\nPromise.resolve('Hello, world!').then(\r\n  // This type annotation is silly. This is really just to show promise callbacks should accept `Awaitable<T>`.\r\n  (hello): Awaitable<string> => {\r\n    console.log(hello);\r\n    return hello;\r\n  },\r\n);\r\n```\r\n\r\n## Checklist\r\n\r\nMy suggestion meets these guidelines:\r\n\r\n* [x] This wouldn't be a breaking change in existing TypeScript/JavaScript code\r\n* [x] This wouldn't change the runtime behavior of existing JavaScript code\r\n* [x] This could be implemented without emitting different JS based on the types of the expressions\r\n* [x] This isn't a runtime feature (e.g. library functionality, non-ECMAScript syntax with JavaScript output, etc.)\r\n* [x] This feature would agree with the rest of [TypeScript's Design Goals](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Design-Goals).\r\n\r\n",
+    "reactions": 72,
+    "created_at": "2019-05-14T12:27:11Z",
+    "updated_at": "2024-08-21T15:42:02Z",
+    "labels": [
+      "Needs Investigation"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/31394",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/31394",
+    "author_login": "remcohaszing",
+    "author_profile": "https://github.com/remcohaszing",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/TypeScript",
+    "issue_number": 36275,
+    "title": ".includes or .indexOf does not narrow the type",
+    "body": "<!-- 🚨 STOP 🚨 𝗦𝗧𝗢𝗣 🚨 𝑺𝑻𝑶𝑷 🚨\r\n\r\nHalf of all issues filed here are duplicates, answered in the FAQ, or not appropriate for the bug tracker. Even if you think you've found a *bug*, please read the FAQ first, especially the Common \"Bugs\" That Aren't Bugs section!\r\n\r\nPlease help us by doing the following steps before logging an issue:\r\n  * Search: https://github.com/Microsoft/TypeScript/search?type=Issues\r\n  * Read the FAQ: https://github.com/Microsoft/TypeScript/wiki/FAQ\r\n\r\nPlease fill in the *entire* template below.\r\n-->\r\n\r\n<!--\r\nPlease try to reproduce the issue with the latest published version. It may have already been fixed.\r\nFor npm: `typescript@next`\r\nThis is also the 'Nightly' version in the playground: http://www.typescriptlang.org/play/?ts=Nightly\r\n-->\r\n**TypeScript Version:**  3.7.x-dev.201xxxxx\r\n\r\n<!-- Search terms you tried before logging this (so others can find this issue more easily) -->\r\n**Search Terms:** `.includes type narrowing`, `.indexOf type narrowing`\r\n\r\n**Code**\r\n\r\n```ts\r\ninterface TextMessage {\r\n    type: 'text',\r\n    text: string\r\n}\r\n\r\ninterface ImageMessage {\r\n    type: 'image',\r\n    url: string\r\n}\r\n\r\ntype Message = TextMessage | ImageMessage;\r\n\r\n// This is an example to reproduce the error in Playground.\r\n// In practice, assume this message comes from outside our control (e.g. HTTP request)\r\nconst message: Message = JSON.parse(prompt('') as string) as Message;\r\n\r\nif (message.type === 'text') {\r\n    // No error here\r\n    message.text = message.text.trim();\r\n}\r\n\r\n// Same for ['text'].includes(message.type)\r\nif (['text'].indexOf(message.type) > -1) {\r\n    // Error: Property 'text' does not exist on type 'ImageMessage'\r\n    message.text = message.text.trim();\r\n}\r\n```\r\n\r\n**Expected behavior:**\r\nI expect `message` to narrow its type to `TextMessage` inside `if (['text'].indexOf(message.type) > -1)`.\r\n\r\nSame way it does inside `if (message.type === 'text')`\r\n\r\n**Actual behavior:**\r\n`message` is typed as `TextMessage | ImageMessage` inside the `if` block\r\n```ts\r\nif (['text'].indexOf(message.type) > -1) {\r\n    // Error: Property 'text' does not exist on type 'ImageMessage'\r\n    message.text = message.text.trim();\r\n}\r\n```\r\n\r\n**Playground Link:** [Provided](https://www.typescriptlang.org/play/?target=1&module=5#code/JYOwLgpgTgZghgYwgAgCoQB5gLIQM55wDmKA3gFDJXJgCeADhAFzIDkkWrANJdR2CzxgooIuQC+5cqEixEKAJIBbYhFwFVyCtRoNmbYCpLdeVAK5QANoOGiJUuo2TrCJZAF40mHPlcoAPsjKqi6qANxSAPSRaAAWwHjICchwIMiYcEr0lihgAPbIUBD0UHkAJmZINLEo0KVQSWkACpZwtESlZiBlAHTk0UFpJYhgwEhcKQRmSrnxiTMabgh5C8gwpUrIeWZgeMBlKNsNy+CllsgAFBA9RD3IABKoqE2FEACOZvhgAJTkJ0LIBZ+FihNyeABSAGUAPIAOR69DgUDwEAuJRW9DAF1YrG+k2QQhEICIeLgiVBEAi0hglyBqh6jhQ7mZbH4uK0pmQA1hBTqeQaNSKnLpJAZ3g8gN89P4DJESgu3wikn6MUhmRQMH5yAA2uxvKwALo9UAISxmA54C4i66M37AGkXXVso2gA4YaEwK1S0W25AAPmQAFoAIx47TUAYAUSg9RYTVKjCgdFZ+uQZTy+GQIDyYHSGASubyaUZbGCJAprGF3pt4s81rFWFlhgVSqAA)\r\n\r\n**Related Issues:** https://github.com/microsoft/TypeScript/issues/9842\r\n\r\nMy argument is that `if (message.type === 'text')` should be consid",
+    "reactions": 55,
+    "created_at": "2020-01-18T00:40:03Z",
+    "updated_at": "2025-04-14T12:47:40Z",
+    "labels": [
+      "Suggestion",
+      "Too Complex"
+    ],
+    "url": "https://api.github.com/repos/microsoft/TypeScript/issues/36275",
+    "html_url": "https://github.com/microsoft/TypeScript/issues/36275",
+    "author_login": "minderov",
+    "author_profile": "https://github.com/minderov",
+    "already_resurrected": false
+  }
+]
