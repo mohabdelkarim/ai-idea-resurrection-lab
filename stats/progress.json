@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-05-21T16:22:06",
-  "total_resurrections": 41,
+  "last_updated": "2026-05-21T17:58:58",
+  "total_resurrections": 42,
   "total_repos_covered": 28,
-  "average_impact_score": 6.44,
-  "average_effort_hours": 76.49,
+  "average_impact_score": 6.43,
+  "average_effort_hours": 77.52,
   "top_tags": [
-    "rust",
     "typescript",
+    "rust",
     "go",
     "terminal",
     "ai"

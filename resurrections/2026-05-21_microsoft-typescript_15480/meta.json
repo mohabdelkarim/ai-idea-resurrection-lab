@@ -1,0 +1,20 @@
+{
+  "date": "2026-05-21",
+  "repo": "microsoft/TypeScript",
+  "issue_number": 15480,
+  "title": "Suggestion: Range as Number type",
+  "reactions": 1403,
+  "abandoned_date": "2023-10-23T16:21:31Z",
+  "one_line_why": "The range type would enhance the expressiveness and flexibility of TypeScript's type system, making it easier to define and work.",
+  "impact_score": 6,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "typescript",
+    "type system",
+    "range type"
+  ],
+  "original_url": "https://github.com/microsoft/TypeScript/issues/15480"
+}
