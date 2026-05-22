@@ -1,0 +1,375 @@
+[
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 118308,
+    "title": "Move away from electron",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\r\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\r\n<!-- Please search existing issues to avoid creating duplicates. -->\r\n\r\n<!-- Describe the feature you'd like. -->\r\n\r\nHey,\r\n\r\nThis is not really a feature request, but more of an overall suggestion. I've been interested in something called [tauri](https://tauri.studio) for a while now, it's basically electron but written in Rust and is extremely lightweight, but not yet stable. It is also a lot more secure.\r\n\r\nMoving away from electron and moving to tauri would be a big performance upgrade, allowing for more low-end devices to use VSC.\r\n\r\nObviously, this'd be a lot of work but I think it'd be worth it. I'm pretty sure something inside the `vscode` package for making extensions would have to change. I'd be happy to help if need be. \r\n\r\nThis is not urgent at all, but, would be worth it in my opinion.",
+    "reactions": 279,
+    "created_at": "2021-03-06T11:56:12Z",
+    "updated_at": "2023-02-05T23:23:44Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/118308",
+    "html_url": "https://github.com/microsoft/vscode/issues/118308",
+    "author_login": "Milo123459",
+    "author_profile": "https://github.com/Milo123459",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 20599,
+    "title": "Create Categories/Groups for extensions.",
+    "body": "Disable extension for workspace is a really good feature but would be nice if I can categorized my installed extension (or create groups of extensions) in order to enable that category/group on specific workspace, this would be helpful when starting a new project. Right now it could be very complex finding the proper extensions for the project if the list of them is very large.",
+    "reactions": 279,
+    "created_at": "2017-02-14T15:23:57Z",
+    "updated_at": "2024-01-17T23:23:54Z",
+    "labels": [
+      "feature-request",
+      "extensions",
+      "*duplicate"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/20599",
+    "html_url": "https://github.com/microsoft/vscode/issues/20599",
+    "author_login": "blopez2010",
+    "author_profile": "https://github.com/blopez2010",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 6560,
+    "title": "Allow to open different windows with different permissions",
+    "body": "- VSCode Version: 1.1.1\n- OS Version: Windows 10 1511 (10586.318)\n\nSteps to Reproduce:\n1. Close all Code instances, then run Code as administrator (a new blank Code instance with administrator right)\n2. In File Explorer, right click a text file and Open with Code, nothing will happen.\n\nNote: there are multiple other ways to trigger this issue, the above repro is just an example.\nNote 2: If you already have a code instance running without administrator running, the above issue will not get triggered. That's why the very first step is to close all Code instances.\n",
+    "reactions": 129,
+    "created_at": "2016-05-19T22:53:19Z",
+    "updated_at": "2024-12-08T14:40:04Z",
+    "labels": [
+      "feature-request",
+      "under-discussion",
+      "workbench-run-as-admin",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/6560",
+    "html_url": "https://github.com/microsoft/vscode/issues/6560",
+    "author_login": "MullenStudio",
+    "author_profile": "https://github.com/MullenStudio",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 43806,
+    "title": "Allow custom setting/control of workbench tab titles",
+    "body": "Hi there,\r\n\r\nIn my project, I have files with quite long file names (beyond my control).  This limits me to having 3-4 tabs show in my workbench at once.  I would like to be able to rename these tabs, or control their label format myself, in order to have more condense tab titles and thus more easily navigate my tabs.  This was roughly suggested by #21662 but was not really addressed by #12965 -- any of the options for `workbench.editor.labelFormat` still give me tab titles that are too long.  Can `workbench.editor.labelFormat` be modified, for example, to optionally take a formatter lambda function we can provide?  As just one example of a reasonable formatter one might write, it could be that you fix tab titles to 20 chars, and for long filenames you truncate and prepend with \"...\".  Additionally, one might want to assign nickname/shorthand tab titles for commonly used files.  Please pardon me if there is already a way to do this (would love to know how!), but if not, I'd sincerely appreciate considering this as a feature request.\r\n\r\nThanks!",
+    "reactions": 102,
+    "created_at": "2018-02-16T06:37:05Z",
+    "updated_at": "2024-07-19T23:24:29Z",
+    "labels": [
+      "feature-request",
+      "info-needed",
+      "workbench-tabs"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/43806",
+    "html_url": "https://github.com/microsoft/vscode/issues/43806",
+    "author_login": "DABH",
+    "author_profile": "https://github.com/DABH",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 106132,
+    "title": "Nested snippets",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\r\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\r\n<!-- Please search existing issues to avoid creating duplicates. -->\r\n\r\n<!-- Describe the feature you'd like. -->\r\nThe ability to add nested snippets would be extremely useful for creating very complex and useful language snippets. Reference\r\n\r\n- https://github.com/microsoft/vscode/issues/101526\r\n- https://github.com/microsoft/vscode/issues/83690",
+    "reactions": 93,
+    "created_at": "2020-09-04T16:08:55Z",
+    "updated_at": "2022-12-06T14:12:56Z",
+    "labels": [
+      "feature-request",
+      "snippets",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/106132",
+    "html_url": "https://github.com/microsoft/vscode/issues/106132",
+    "author_login": "GlenNicholls",
+    "author_profile": "https://github.com/GlenNicholls",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 176946,
+    "title": "Exclude files or directories from editor.formatOnSave",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\r\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\r\n<!-- Please search existing issues to avoid creating duplicates. -->\r\n\r\n<!-- Describe the feature you'd like. -->\r\nFormat on save should have an additional setting that allows the user to exclude files or directories based on some pattern from the format on save feature. This was requested in #147677, but closed as out of scope. @jrieken pointed out that you can disable format on save based on language, however that does not solve my problem. I work on large C++ projects, often with many third party dependencies. When modifying third party code, I would like to be able to save without applying my project-specific formatting to the thirdparty code. Being able to exclude directories from the editor.formatOnSave feature would solve this problem.\r\n",
+    "reactions": 91,
+    "created_at": "2023-03-13T09:58:38Z",
+    "updated_at": "2025-05-04T18:11:25Z",
+    "labels": [
+      "feature-request",
+      "formatting",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/176946",
+    "html_url": "https://github.com/microsoft/vscode/issues/176946",
+    "author_login": "0x6e",
+    "author_profile": "https://github.com/0x6e",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 142904,
+    "title": "Support multiple formatters for a single file",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\r\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\r\n<!-- Please search existing issues to avoid creating duplicates. -->\r\n\r\nBack in 2019, #84603 was opened to request multiple formatter support. I would like to re-open this request again. Having multiple formatters is quite common in the modern toolchain and the lack of support for this in VS Code makes it very frustrating to use. The suggestion proposed was to allow an array of values for `editor.defaultFormatter` which would run each formatter in the order specified, eg:\r\n\r\n```json\r\n\"[typescript]\": {\r\n    \"editor.defaultFormatter\": [\"esbenp.prettier-vscode\", \"publisher.some-other-formatter\"]\r\n}\r\n```\r\n\r\nSome common scenarios where this would be helpful:\r\n\r\n- JavaScript/TypeScript code that uses both Prettier and ESLint. ESLint already supports tight integration with Prettier via `eslint-plugin-prettier` and other editors (like Atom) handle them both auto-formatting code on file save properly\r\n- CSS code that uses both Stylelint and Prettier. This is another common scenario. In this case you let Prettier handle the formatting changes, and let Stylelint handle all other linting. Both support auto-fixing of files.\r\n\r\nHaving to choose only one formatter leads to complex interactions between them (eg. https://github.com/microsoft/vscode-eslint/issues/1417). I think allowing multiple formatters to run in sequence would address a lot of friction and would eliminate the need to force users to select a default formatter entirely.",
+    "reactions": 90,
+    "created_at": "2022-02-12T05:54:21Z",
+    "updated_at": "2023-02-23T12:24:47Z",
+    "labels": [
+      "feature-request",
+      "formatting",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/142904",
+    "html_url": "https://github.com/microsoft/vscode/issues/142904",
+    "author_login": "EvHaus",
+    "author_profile": "https://github.com/EvHaus",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 28310,
+    "title": "Option to autohide minimap when in split editor view",
+    "body": "* VSCode Version: 1.13.0\r\n* OS Version: Windows 10\r\n\r\nSteps to Reproduce:\r\n1. `\"editor.minimap.enabled\": true`\r\n\r\nIdea: There should be an option when user is in Split Editor the minimap will be hidden automatically.\r\nEspecially on smaller resolutions the minimap takes too much space when working in Split Editor view.\r\nFor example something like this: `\"editor.minimap.spliteditorhide\": true`",
+    "reactions": 90,
+    "created_at": "2017-06-09T07:40:58Z",
+    "updated_at": "2022-12-06T12:03:23Z",
+    "labels": [
+      "feature-request",
+      "editor-minimap",
+      "workbench-editors",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/28310",
+    "html_url": "https://github.com/microsoft/vscode/issues/28310",
+    "author_login": "attuo",
+    "author_profile": "https://github.com/attuo",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 140674,
+    "title": "Allow to place tabs at the bottom",
+    "body": "I don't understand why [this](https://github.com/Microsoft/vscode/issues/50318) feature request was closed, it's really a useful feature for mac users. \r\nSo, would it be possible to have an option to move tabs to the bottom of the screen? ",
+    "reactions": 89,
+    "created_at": "2022-01-14T00:19:17Z",
+    "updated_at": "2025-07-21T01:52:58Z",
+    "labels": [
+      "feature-request",
+      "workbench-tabs",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/140674",
+    "html_url": "https://github.com/microsoft/vscode/issues/140674",
+    "author_login": "Pingear",
+    "author_profile": "https://github.com/Pingear",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 43226,
+    "title": "Allow local configuration update in the extension API",
+    "body": "Hello, I would like to see in VS Code the ability to set configuration options without them automatically being written in the target configuration file, whether it's the global `settings.json` or workspace settings.\r\n\r\nRight now it's not possible to share your global/workspace settings between several machines and adding machine-specific configuration options (e.g. window.zoomLevel, due to different screen DPI) without issues. I'm currently writing [an extension](https://github.com/Shgck/VsCodeLocalSettings) that will allow users to save some settings in a specific file and load it on top on the user settings ; adding several local files and workspace/folder support can come later once this basic feature is working. If I try to write a locally available configuration option in whatever configuration target with `WorkspaceConfiguration.update`, the result is automatically written in the associated settings file, making common settings file sharing problematic: the settings file will always store the merged configuration (global & local) from the last machine used.\r\n\r\nProposal:\r\n\r\n1. Update current settings with `WorkspaceConfiguration.update` and an option, or a different kind of `ConfigurationTarget`, to not write this new configuration setting.\r\n2. Apply the changes only in memory and not on disk : the configuration will be reset next time VS Code is restarted, or when the window reloads.\r\n\r\nA quick search in the issues tells me that it would be an appreciated feature:\r\n\r\n- https://github.com/Microsoft/vscode/issues/17634\r\n- https://github.com/Microsoft/vscode/issues/37519\r\n- https://github.com/Microsoft/vscode/issues/40233\r\n\r\nThank you!",
+    "reactions": 84,
+    "created_at": "2018-02-08T15:36:54Z",
+    "updated_at": "2024-02-06T12:11:50Z",
+    "labels": [
+      "feature-request",
+      "api",
+      "config",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/43226",
+    "html_url": "https://github.com/microsoft/vscode/issues/43226",
+    "author_login": "dece",
+    "author_profile": "https://github.com/dece",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 92257,
+    "title": "Markdown Preview - Navigate back",
+    "body": "Issue Type: <b>Feature Request</b>\r\n\r\n## Description\r\n\r\nIf you write a relative link in markdown and follow the relative link while in Markdown Preview, there is no way to navigate back using Backspace or Mouse 4. Using the `workbench.action.navigateBack` command will go back to the `.md`-file opened before the preview. The only way to get back is to re-open the editor of the original `.md`-file and use `markdown.showPreview` again.\r\n\r\nThis is quite annoying when testing your documentation home-page, which can have dozens of relative links. While writing markdown for documentation purposes, testing your links is very important as it's quite easy to introduce typos while writing links.\r\n\r\n## Reproduce\r\n\r\nTo reproduce, you need two `.md`-files, and a link between them. In [this archive](https://github.com/microsoft/vscode/files/4305742/MarkdownPreviewNavigateBack.zip) I provide `a.md` and `b.md`.\r\n\r\n`a.md`:\r\n\r\n```\r\n# A\r\n\r\nHere a [link to b].\r\n\r\n[link to b]: ./b\r\n\r\n```\r\n\r\n`b.md`:\r\n\r\n```\r\n# B\r\n\r\nYou can't go back from here.\r\n\r\nIf you use `workbench.action.navigateBack`, you'll go to `a.md`, rather than `a`'s preview.\r\n\r\n```\r\n\r\n1. Open `a.md`.\r\n2. Run `markdown.showPreview` .\r\n3. Press the link.\r\n4. If you try using Backspace or Mouse4 to navigate back - nothing will happen. If you use `workbench.action.navigateBack`, you go to the editor of `a.md` rather than its preview.\r\n\r\n## Expected behavior\r\n\r\nI as a user would want a way to navigate back to the preview of `a` after clicking its link to the preview of `b`. The behavior of`workbench.action.navigateBack` goes back to the previous editor window rather than the previous preview.\r\n\r\n### Version info\r\n\r\nVS Code version: Code 1.42.1 (c47d83b293181d9be64f27ff093689e8e7aed054, 2020-02-11T14:45:59.656Z)\r\nOS version: Windows_NT x64 10.0.18362\r\n\r\n<!-- generated by issue reporter -->",
+    "reactions": 80,
+    "created_at": "2020-03-09T09:41:15Z",
+    "updated_at": "2025-10-17T16:00:15Z",
+    "labels": [
+      "feature-request",
+      "markdown-ext",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/92257",
+    "html_url": "https://github.com/microsoft/vscode/issues/92257",
+    "author_login": "Towkin",
+    "author_profile": "https://github.com/Towkin",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 141224,
+    "title": "Allow users to select suggestion matching algorithm in settings (fuzzy, sequential, strict)",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\r\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\r\n<!-- Please search existing issues to avoid creating duplicates. -->\r\n\r\n<!-- Describe the feature you'd like. -->\r\nBranching off from #64367, as this request is fundamentally different from the simple fuzzy suggestion disablement setting request.\r\n\r\nExcerpt from https://github.com/microsoft/vscode/issues/64367#issuecomment-1019024390:\r\n> This is a user experience issue that should be solved by inclusion of a setting that allows the user to disable fuzzy matching. Maybe call it \"Editor > Suggest: Matching Mode\" so users can easily find it in settings, and include options strict, sequential, and fuzzy.\r\n\r\nElaboration on options:\r\n- `fuzzy`: Current algorithm, a partial (fuzzy) match of input to enabled names/types\r\n- `sequential`: Partial match, constrained to consecutive matching characters in enabled names/types\r\n- `strict`: Strict match, constrained to both the starting character and consecutive characters in enabled names/types\r\n\r\nI appreciate your consideration!",
+    "reactions": 79,
+    "created_at": "2022-01-22T21:05:43Z",
+    "updated_at": "2024-12-05T17:54:51Z",
+    "labels": [
+      "feature-request",
+      "suggest",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/141224",
+    "html_url": "https://github.com/microsoft/vscode/issues/141224",
+    "author_login": "miliarch",
+    "author_profile": "https://github.com/miliarch",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 187175,
+    "title": "update to latest version 1.80.0",
+    "body": "Type: <b>Bug</b>\r\n\r\nvs code keeps switching updates between 1.79 and 1.80 not knowing that 1.80 is latest and should not try to update back to 1.79\r\n\r\nVS Code version: Code 1.80.0 (660393deaaa6d1996740ff4880f1bad43768c814, 2023-07-04T15:06:02.407Z)\r\nOS version: Windows_NT x64 10.0.22621\r\nModes:\r\n\r\n\r\n<!-- generated by issue reporter -->",
+    "reactions": 72,
+    "created_at": "2023-07-06T18:35:09Z",
+    "updated_at": "2023-08-21T23:21:41Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/187175",
+    "html_url": "https://github.com/microsoft/vscode/issues/187175",
+    "author_login": "sinke100",
+    "author_profile": "https://github.com/sinke100",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 57481,
+    "title": "Extensions startup loading order",
+    "body": "There has been an issue here without a potential solution: #13292\r\n\r\nI don't want to give extensions the power to set their priority of loading in my VSCode I rather want myself setting a priority to some extensions I want to have loaded before the others.\r\n\r\nFor example, I have an extension that shows me saved projects ([Project Manager](https://github.com/alefragnani/vscode-project-manager)) and I want this to be loaded at first to fast select a project before the rest is loaded because when I have selected a project the viewport will be reloaded anyway.\r\n\r\nMy solution, having a option like this:\r\n\r\n```json\r\n\"workbench.extensions.loadingOrder\": {\r\n    \"alefragnani.project-manager\": {\r\n      \"priority\": 10000\r\n    }\r\n  },\r\n```\r\n\r\nall other extensions would be loaded as before after these prioritised extensions.",
+    "reactions": 72,
+    "created_at": "2018-08-29T08:32:18Z",
+    "updated_at": "2023-06-17T09:42:53Z",
+    "labels": [
+      "feature-request",
+      "extensions",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/57481",
+    "html_url": "https://github.com/microsoft/vscode/issues/57481",
+    "author_login": "muuvmuuv",
+    "author_profile": "https://github.com/muuvmuuv",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 1223,
+    "title": "Mac OS X :: \"Open Folder With\" VS Code",
+    "body": "Hello,\n\nSince Finder is obviously developed by Apple, I'm not sure if this would be possible or not. Is there any way to right-click a folder in Finder, and \"open with VS Code?\" You can do this with individual files, but it would be a nice, small workflow enhancement to be able to open a _folder_ with VS Code, directly from Finder, as well. If not, no big deal. This would be a fault with Finder, rather than VS Code.\n\nHere's a screenshot of right-clicking a folder ... there's no \"Open With\" option. Maybe the **Share** option could work somehow?\n\n<img width=\"367\" alt=\"screen shot 2015-12-12 at 3 20 03 pm\" src=\"https://cloud.githubusercontent.com/assets/466713/11764203/1e1419d4-a0e4-11e5-814e-c2a201c90ef6.png\">\n\nCheers,\nTrevor Sullivan\nMicrosoft MVP: PowerShell\n",
+    "reactions": 71,
+    "created_at": "2015-12-12T22:22:01Z",
+    "updated_at": "2023-01-27T23:24:32Z",
+    "labels": [
+      "feature-request",
+      "install-update",
+      "macos",
+      "workbench-os-integration"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/1223",
+    "html_url": "https://github.com/microsoft/vscode/issues/1223",
+    "author_login": "pcgeek86",
+    "author_profile": "https://github.com/pcgeek86",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 249826,
+    "title": "Add support for Bluetooth for web extensions",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- Please search existing issues to avoid creating duplicates. -->\n\n<!-- Describe the feature you'd like. -->\nCurrently we have ability to use WebUSB, WebSerial and WebHID in web extensions. Would be great if we also could use the WebBluetooth APIs. ",
+    "reactions": 70,
+    "created_at": "2025-05-26T16:50:09Z",
+    "updated_at": "2025-10-31T22:08:29Z",
+    "labels": [
+      "feature-request",
+      "web"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/249826",
+    "html_url": "https://github.com/microsoft/vscode/issues/249826",
+    "author_login": "PeterStaev",
+    "author_profile": "https://github.com/PeterStaev",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 249326,
+    "title": "Support Harmony Next PC",
+    "body": "<!-- ⚠️⚠️ Do Not Delete This! feature_request_template ⚠️⚠️ -->\n<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->\n<!-- Please search existing issues to avoid creating duplicates. -->\n\n<!-- Describe the feature you'd like. -->\nSupport Harmony Next PC",
+    "reactions": 69,
+    "created_at": "2025-05-20T02:44:41Z",
+    "updated_at": "2025-07-04T23:26:55Z",
+    "labels": [
+      "invalid",
+      "triage-needed"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/249326",
+    "html_url": "https://github.com/microsoft/vscode/issues/249326",
+    "author_login": "maxiaogood",
+    "author_profile": "https://github.com/maxiaogood",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 112192,
+    "title": "Allow to set a background image into the editor",
+    "body": "Issue Type: <b>Feature Request</b>\r\n\r\nThere are some extentions that support set image for editor as background, but when startup there is a spalsh , which is not elegant. It will be awesome if vscode can support background image natively like Jetbrains IDEA.\r\n\r\nVS Code version: Code 1.51.1 (e5a624b788d92b8d34d1392e4c4d9789406efe8f, 2020-11-10T23:34:32.027Z)\r\nOS version: Windows_NT x64 10.0.19042\r\n\r\n\r\n<!-- generated by issue reporter -->",
+    "reactions": 68,
+    "created_at": "2020-12-10T03:17:28Z",
+    "updated_at": "2022-12-06T19:45:12Z",
+    "labels": [
+      "feature-request",
+      "ux",
+      "workbench-editors",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/112192",
+    "html_url": "https://github.com/microsoft/vscode/issues/112192",
+    "author_login": "wchen9",
+    "author_profile": "https://github.com/wchen9",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 202543,
+    "title": "Feature Request: Support VSCode running natively in Vision Pro",
+    "body": "vscode is amazing with remote development and containers.  Native support for Apple Vision Pro would allow the user to bypass a lot of passthrough middle-pieces and really hit home with the developer experience (which is the only reason some people are getting the Apple Vision Pro, myself included).",
+    "reactions": 68,
+    "created_at": "2024-01-15T21:19:32Z",
+    "updated_at": "2024-09-06T18:03:03Z",
+    "labels": [
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/202543",
+    "html_url": "https://github.com/microsoft/vscode/issues/202543",
+    "author_login": "cygnuson",
+    "author_profile": "https://github.com/cygnuson",
+    "already_resurrected": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "issue_number": 10400,
+    "title": "Suggestion: Automatically show the Problems panel if problems exist (and hide similarly)",
+    "body": "- VSCode Version: 1.4.0\n- OS Version: macOS 10.11.6\n\nI often work with the Problems panel open, as listing the problems that way is a very good visual indication of what needs some work. However, when I don't have any current problems, it'd be nice if the Problems panel could automatically hide (giving some more screen real estate). Then, when problems come up, it could automatically show again.\n\nA little bit of auto-sizing based on the current number of problems would also be nice, but is less important, in my opinion.\n",
+    "reactions": 67,
+    "created_at": "2016-08-10T15:51:48Z",
+    "updated_at": "2023-07-05T22:08:19Z",
+    "labels": [
+      "feature-request",
+      "error-list",
+      "*out-of-scope"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/10400",
+    "html_url": "https://github.com/microsoft/vscode/issues/10400",
+    "author_login": "dahjelle",
+    "author_profile": "https://github.com/dahjelle",
+    "already_resurrected": false
+  }
+]
