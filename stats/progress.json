@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-21T17:58:58",
-  "total_resurrections": 42,
-  "total_repos_covered": 28,
-  "average_impact_score": 6.43,
-  "average_effort_hours": 77.52,
+  "last_updated": "2026-05-22T03:58:14",
+  "total_resurrections": 43,
+  "total_repos_covered": 29,
+  "average_impact_score": 6.49,
+  "average_effort_hours": 78.51,
   "top_tags": [
     "typescript",
     "rust",
@@ -12,6 +12,15 @@
     "ai"
   ],
   "hall_of_fame": [
+    {
+      "date": "2026-05-22",
+      "repo": "python/cpython",
+      "issue_number": 108219,
+      "title": "PEP 703 -- Making the Global Interpreter Lock Optional in CPython",
+      "impact_score": 9,
+      "one_line_why": "The optional GIL will enable true parallelism in CPU-bound threads, significantly enhancing performance in multithreaded Python applications.",
+      "original_url": "https://github.com/python/cpython/issues/108219"
+    },
     {
       "date": "2026-05-11",
       "repo": "facebook/react",
@@ -29,36 +38,28 @@
       "impact_score": 8,
       "one_line_why": "GPT-3's massive success and widespread adoption make its integration crucial for the Transformers library.",
       "original_url": "https://github.com/huggingface/transformers/issues/4658"
-    },
-    {
-      "date": "2026-05-08",
-      "repo": "alacritty/alacritty",
-      "issue_number": 607,
-      "title": "Support multiple windows",
-      "impact_score": 7,
-      "one_line_why": "Multiple windows in Alacritty would improve user experience for those using window managers instead of tmux.",
-      "original_url": "https://github.com/alacritty/alacritty/issues/607"
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-21",
-    "repo": "psf/requests",
-    "issue_number": 2966,
-    "title": "Consider using system trust stores by default in 3.0.0.",
-    "reactions": 92,
-    "abandoned_date": "2025-05-20T00:05:04Z",
-    "one_line_why": "The requests library can now leverage system trust stores for enhanced security and compliance, thanks to advancements in certitude and.",
-    "impact_score": 7,
+    "date": "2026-05-22",
+    "repo": "python/cpython",
+    "issue_number": 108219,
+    "title": "PEP 703 -- Making the Global Interpreter Lock Optional in CPython",
+    "reactions": 109,
+    "abandoned_date": "2025-05-20T15:52:16Z",
+    "one_line_why": "The optional GIL will enable true parallelism in CPU-bound threads, significantly enhancing performance in multithreaded Python applications.",
+    "impact_score": 9,
     "effort_hours": 120.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
       "python",
-      "cryptography",
-      "certifi",
-      "trust-store"
+      "cpython",
+      "gil",
+      "parallelism",
+      "concurrency"
     ],
-    "original_url": "https://github.com/psf/requests/issues/2966"
+    "original_url": "https://github.com/python/cpython/issues/108219"
   }
 }
