@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-22",
+  "repo": "rails/rails",
+  "issue_number": 50446,
+  "title": "Add basic authentication generator",
+  "reactions": 190,
+  "abandoned_date": "2025-03-16T18:56:09Z",
+  "one_line_why": "A basic authentication generator succeeds now because Rails 7 provides a solid foundation and modern authentication standards are increasingly adopted.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "rails",
+    "authentication",
+    "generator",
+    "scaffold"
+  ],
+  "original_url": "https://github.com/rails/rails/issues/50446"
+}
