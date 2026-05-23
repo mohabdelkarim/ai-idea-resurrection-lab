@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-23T14:45:08",
-  "total_resurrections": 47,
+  "last_updated": "2026-05-23T17:00:25",
+  "total_resurrections": 48,
   "total_repos_covered": 31,
   "average_impact_score": 6.38,
-  "average_effort_hours": 100.26,
+  "average_effort_hours": 98.67,
   "top_tags": [
     "typescript",
     "rust",
