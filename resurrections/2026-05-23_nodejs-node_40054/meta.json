@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-23",
+  "repo": "nodejs/node",
+  "issue_number": 40054,
+  "title": "Add utility to synchronously inspect promise state",
+  "reactions": 32,
+  "abandoned_date": "2024-03-13T06:02:36Z",
+  "one_line_why": "A native promise state inspection utility is essential for optimizing performance and writing robust tests in modern Node.js development.",
+  "impact_score": 6,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "promises",
+    "async/await",
+    "node.js",
+    "typescript"
+  ],
+  "original_url": "https://github.com/nodejs/node/issues/40054"
+}
