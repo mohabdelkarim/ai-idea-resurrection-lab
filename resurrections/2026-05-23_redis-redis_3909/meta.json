@@ -1,0 +1,20 @@
+{
+  "date": "2026-05-23",
+  "repo": "redis/redis",
+  "issue_number": 3909,
+  "title": "///33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333-g=-[=.",
+  "reactions": 481,
+  "abandoned_date": "2021-10-27T03:55:14Z",
+  "one_line_why": "The issue can succeed now due to improved development tools and a growing need for robust error handling in Redis.",
+  "impact_score": 2,
+  "effort_hours": 8.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "python",
+  "technology_tags": [
+    "redis",
+    "python",
+    "command pattern"
+  ],
+  "original_url": "https://github.com/redis/redis/issues/3909"
+}

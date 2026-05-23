@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-22T17:53:48",
-  "total_resurrections": 45,
-  "total_repos_covered": 30,
-  "average_impact_score": 6.51,
-  "average_effort_hours": 103.47,
+  "last_updated": "2026-05-23T03:34:05",
+  "total_resurrections": 46,
+  "total_repos_covered": 31,
+  "average_impact_score": 6.41,
+  "average_effort_hours": 101.39,
   "top_tags": [
     "typescript",
     "rust",
     "go",
     "terminal",
-    "ai"
+    "python"
   ],
   "hall_of_fame": [
     {
@@ -41,24 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-22",
-    "repo": "rails/rails",
-    "issue_number": 50446,
-    "title": "Add basic authentication generator",
-    "reactions": 190,
-    "abandoned_date": "2025-03-16T18:56:09Z",
-    "one_line_why": "A basic authentication generator succeeds now because Rails 7 provides a solid foundation and modern authentication standards are increasingly adopted.",
-    "impact_score": 6,
-    "effort_hours": 80.0,
+    "date": "2026-05-23",
+    "repo": "redis/redis",
+    "issue_number": 3909,
+    "title": "///33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333-g=-[=.",
+    "reactions": 481,
+    "abandoned_date": "2021-10-27T03:55:14Z",
+    "one_line_why": "The issue can succeed now due to improved development tools and a growing need for robust error handling in Redis.",
+    "impact_score": 2,
+    "effort_hours": 8.0,
     "has_poc": true,
-    "has_rfc": true,
+    "has_rfc": false,
     "poc_language": "python",
     "technology_tags": [
-      "rails",
-      "authentication",
-      "generator",
-      "scaffold"
+      "redis",
+      "python",
+      "command pattern"
     ],
-    "original_url": "https://github.com/rails/rails/issues/50446"
+    "original_url": "https://github.com/redis/redis/issues/3909"
   }
 }
