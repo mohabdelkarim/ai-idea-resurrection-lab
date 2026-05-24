@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-24T14:30:59",
-  "total_resurrections": 50,
+  "last_updated": "2026-05-24T17:02:02",
+  "total_resurrections": 51,
   "total_repos_covered": 31,
-  "average_impact_score": 6.38,
-  "average_effort_hours": 96.32,
+  "average_impact_score": 6.37,
+  "average_effort_hours": 95.37,
   "top_tags": [
     "typescript",
     "rust",
@@ -42,22 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-24",
-    "repo": "denoland/deno",
-    "issue_number": 18390,
-    "title": "Feature Request: Importing a `js` file could fall back to `ts` file in a `ts` file",
-    "reactions": 9,
-    "abandoned_date": "2025-04-23T19:27:34Z",
-    "one_line_why": "This feature increases compatibility with other TypeScript tooling like ESbuild and TSC, enhancing Deno's usability in TypeScript projects.",
-    "impact_score": 7,
-    "effort_hours": 40.0,
+    "repo": "docker/compose",
+    "issue_number": 4579,
+    "title": "Using scale number to adjust mounted volumes?",
+    "reactions": 38,
+    "abandoned_date": "2025-03-04T16:11:49Z",
+    "one_line_why": "This feature is now feasible due to advancements in templating and variable interpolation in Docker Compose.",
+    "impact_score": 6,
+    "effort_hours": 48.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "go",
     "technology_tags": [
-      "typescript",
-      "import resolution",
-      "deno"
+      "docker",
+      "compose",
+      "templating",
+      "volume-mounting"
     ],
-    "original_url": "https://github.com/denoland/deno/issues/18390"
+    "original_url": "https://github.com/docker/compose/issues/4579"
   }
 }
