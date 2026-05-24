@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-24",
+  "repo": "comfyanonymous/ComfyUI",
+  "issue_number": 9173,
+  "title": "Qwen-image support",
+  "reactions": 29,
+  "abandoned_date": "2025-08-05T06:39:02Z",
+  "one_line_why": "With Hugging Face's Qwen-Image model and modern AI libraries, ComfyUI can now integrate Qwen-image support for improved image-based workflows.",
+  "impact_score": 6,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "ai",
+    "ml",
+    "hugging face",
+    "transformers",
+    "pytorch"
+  ],
+  "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/9173"
+}

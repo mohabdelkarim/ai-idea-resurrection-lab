@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-23T17:00:25",
-  "total_resurrections": 48,
+  "last_updated": "2026-05-24T03:55:30",
+  "total_resurrections": 49,
   "total_repos_covered": 31,
-  "average_impact_score": 6.38,
-  "average_effort_hours": 98.67,
+  "average_impact_score": 6.37,
+  "average_effort_hours": 97.47,
   "top_tags": [
     "typescript",
     "rust",
     "go",
     "terminal",
-    "python"
+    "ai"
   ],
   "hall_of_fame": [
     {
@@ -41,23 +41,25 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-23",
-    "repo": "redis/redis",
-    "issue_number": 3909,
-    "title": "///33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333-g=-[=.",
-    "reactions": 481,
-    "abandoned_date": "2021-10-27T03:55:14Z",
-    "one_line_why": "The issue can succeed now due to improved development tools and a growing need for robust error handling in Redis.",
-    "impact_score": 2,
-    "effort_hours": 8.0,
+    "date": "2026-05-24",
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 9173,
+    "title": "Qwen-image support",
+    "reactions": 29,
+    "abandoned_date": "2025-08-05T06:39:02Z",
+    "one_line_why": "With Hugging Face's Qwen-Image model and modern AI libraries, ComfyUI can now integrate Qwen-image support for improved image-based workflows.",
+    "impact_score": 6,
+    "effort_hours": 40.0,
     "has_poc": true,
-    "has_rfc": false,
+    "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "redis",
-      "python",
-      "command pattern"
+      "ai",
+      "ml",
+      "hugging face",
+      "transformers",
+      "pytorch"
     ],
-    "original_url": "https://github.com/redis/redis/issues/3909"
+    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/9173"
   }
 }
