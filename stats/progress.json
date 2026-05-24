@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-24T03:55:30",
-  "total_resurrections": 49,
+  "last_updated": "2026-05-24T14:30:59",
+  "total_resurrections": 50,
   "total_repos_covered": 31,
-  "average_impact_score": 6.37,
-  "average_effort_hours": 97.47,
+  "average_impact_score": 6.38,
+  "average_effort_hours": 96.32,
   "top_tags": [
     "typescript",
     "rust",
@@ -42,24 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-05-24",
-    "repo": "comfyanonymous/ComfyUI",
-    "issue_number": 9173,
-    "title": "Qwen-image support",
-    "reactions": 29,
-    "abandoned_date": "2025-08-05T06:39:02Z",
-    "one_line_why": "With Hugging Face's Qwen-Image model and modern AI libraries, ComfyUI can now integrate Qwen-image support for improved image-based workflows.",
-    "impact_score": 6,
+    "repo": "denoland/deno",
+    "issue_number": 18390,
+    "title": "Feature Request: Importing a `js` file could fall back to `ts` file in a `ts` file",
+    "reactions": 9,
+    "abandoned_date": "2025-04-23T19:27:34Z",
+    "one_line_why": "This feature increases compatibility with other TypeScript tooling like ESbuild and TSC, enhancing Deno's usability in TypeScript projects.",
+    "impact_score": 7,
     "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "ai",
-      "ml",
-      "hugging face",
-      "transformers",
-      "pytorch"
+      "typescript",
+      "import resolution",
+      "deno"
     ],
-    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/9173"
+    "original_url": "https://github.com/denoland/deno/issues/18390"
   }
 }
