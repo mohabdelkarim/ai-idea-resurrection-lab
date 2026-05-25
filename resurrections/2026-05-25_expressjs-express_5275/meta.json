@@ -1,0 +1,20 @@
+{
+  "date": "2026-05-25",
+  "repo": "expressjs/express",
+  "issue_number": 5275,
+  "title": "Unable to create Partitioned cookie",
+  "reactions": 12,
+  "abandoned_date": "2026-01-17T04:07:18Z",
+  "one_line_why": "Supporting Partitioned cookies is essential for Express.js to stay relevant and secure in the evolving web landscape.",
+  "impact_score": 6,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "express",
+    "cookies",
+    "privacy-sandbox"
+  ],
+  "original_url": "https://github.com/expressjs/express/issues/5275"
+}
