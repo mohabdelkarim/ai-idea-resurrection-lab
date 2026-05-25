@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-25",
+  "repo": "facebook/react",
+  "issue_number": 12014,
+  "title": "Have Fragments support dangerouslySetInnerHTML",
+  "reactions": 477,
+  "abandoned_date": "2023-09-06T14:31:21Z",
+  "one_line_why": "This feature succeeds now due to improved security measures and rendering APIs in React.",
+  "impact_score": 6,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "react",
+    "dom",
+    "fragments",
+    "dangerouslysetinnerhtml"
+  ],
+  "original_url": "https://github.com/facebook/react/issues/12014"
+}
