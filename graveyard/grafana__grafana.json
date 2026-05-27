@@ -376,6 +376,25 @@
   },
   {
     "repo": "grafana/grafana",
+    "issue_number": 6865,
+    "title": "[Feature request] Percent values in legend and tooltip",
+    "body": "See images from : https://github.com/grafana/grafana/pull/3362#issuecomment-162156626 for full explanation.\r\n\r\nMy use case was to see how much money I spent on every campaign related to the whole spend in a specific date and in total.\r\n\r\nIf there will be high demand for this feature, I'll be happy to re-write it.\r\n",
+    "reactions": 31,
+    "created_at": "2016-12-07T11:32:50Z",
+    "updated_at": "2026-05-26T02:20:37Z",
+    "labels": [
+      "type/feature-request",
+      "area/panel/graph",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/6865",
+    "html_url": "https://github.com/grafana/grafana/issues/6865",
+    "author_login": "shanielh",
+    "author_profile": "https://github.com/shanielh",
+    "already_resurrected": false
+  },
+  {
+    "repo": "grafana/grafana",
     "issue_number": 25042,
     "title": "alert support dynamic threshold or variable in condition.",
     "body": "<!-- Please only use this template for submitting feature requests -->\r\n\r\n**What would you like to be added**:\r\nalert support variable in condition.\r\n\r\n**Why is this needed**:\r\nI need alert when one point's fieldA `IS ABOVE` fieldB. but now alert just support fixed threshold.\r\n\r\nthat is, alert condition support `dynamic threshold` or `variable`.",
