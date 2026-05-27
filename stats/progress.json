@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-26T18:28:14",
-  "total_resurrections": 57,
+  "last_updated": "2026-05-27T04:06:51",
+  "total_resurrections": 58,
   "total_repos_covered": 32,
-  "average_impact_score": 6.37,
-  "average_effort_hours": 93.47,
+  "average_impact_score": 6.38,
+  "average_effort_hours": 93.93,
   "top_tags": [
     "typescript",
     "rust",
@@ -41,24 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-26",
-    "repo": "ohmyzsh/ohmyzsh",
-    "issue_number": 5327,
-    "title": "oh-my-zsh very slow :(",
-    "reactions": 139,
-    "abandoned_date": "2024-07-08T03:46:48Z",
-    "one_line_why": "Optimized plugin loading and modern development practices make it feasible to improve oh-my-zsh's performance now.",
+    "date": "2026-05-27",
+    "repo": "grafana/grafana",
+    "issue_number": 7121,
+    "title": "[Feature request] Email templating in Alert engine",
+    "reactions": 92,
+    "abandoned_date": "2024-05-27T01:49:02Z",
+    "one_line_why": "A templating engine for email alerts will increase the adoption and usage of Grafana's alerting feature by allowing users to.",
     "impact_score": 7,
     "effort_hours": 120.0,
     "has_poc": false,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
-      "zsh",
-      "oh-my-zsh",
-      "plugin management",
-      "syntax highlighting"
+      "templating",
+      "notifications",
+      "observability",
+      "monitoring"
     ],
-    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/5327"
+    "original_url": "https://github.com/grafana/grafana/issues/7121"
   }
 }
