@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-27T16:45:10",
-  "total_resurrections": 59,
+  "last_updated": "2026-05-27T18:29:26",
+  "total_resurrections": 60,
   "total_repos_covered": 32,
-  "average_impact_score": 6.41,
-  "average_effort_hours": 94.37,
+  "average_impact_score": 6.43,
+  "average_effort_hours": 94.8,
   "top_tags": [
     "typescript",
     "rust",
@@ -42,22 +42,23 @@
   ],
   "last_resurrection": {
     "date": "2026-05-27",
-    "repo": "hashicorp/terraform",
-    "issue_number": 4149,
-    "title": "Partial/Progressive Configuration Changes",
-    "reactions": 298,
-    "abandoned_date": "2022-04-26T22:03:45Z",
-    "one_line_why": "Partial configuration changes succeed now due to advancements in Terraform's provider protocol and improved planning and apply phases.",
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 122753,
+    "title": "DaemonSet dynamic/scaled resources based on node type",
+    "reactions": 62,
+    "abandoned_date": "2026-05-07T22:42:52Z",
+    "one_line_why": "Dynamic resource allocation for DaemonSets is crucial for efficient utilization of diverse node environments in modern Kubernetes clusters.",
     "impact_score": 8,
     "effort_hours": 120.0,
     "has_poc": true,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
-      "terraform",
-      "infrastructure-as-code",
-      "configuration-management"
+      "kubernetes",
+      "daemonset",
+      "resource allocation",
+      "node type"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/4149"
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/122753"
   }
 }
