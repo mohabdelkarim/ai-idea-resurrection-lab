@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-27T04:06:51",
-  "total_resurrections": 58,
+  "last_updated": "2026-05-27T16:45:10",
+  "total_resurrections": 59,
   "total_repos_covered": 32,
-  "average_impact_score": 6.38,
-  "average_effort_hours": 93.93,
+  "average_impact_score": 6.41,
+  "average_effort_hours": 94.37,
   "top_tags": [
     "typescript",
     "rust",
@@ -42,23 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-05-27",
-    "repo": "grafana/grafana",
-    "issue_number": 7121,
-    "title": "[Feature request] Email templating in Alert engine",
-    "reactions": 92,
-    "abandoned_date": "2024-05-27T01:49:02Z",
-    "one_line_why": "A templating engine for email alerts will increase the adoption and usage of Grafana's alerting feature by allowing users to.",
-    "impact_score": 7,
+    "repo": "hashicorp/terraform",
+    "issue_number": 4149,
+    "title": "Partial/Progressive Configuration Changes",
+    "reactions": 298,
+    "abandoned_date": "2022-04-26T22:03:45Z",
+    "one_line_why": "Partial configuration changes succeed now due to advancements in Terraform's provider protocol and improved planning and apply phases.",
+    "impact_score": 8,
     "effort_hours": 120.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
-      "templating",
-      "notifications",
-      "observability",
-      "monitoring"
+      "terraform",
+      "infrastructure-as-code",
+      "configuration-management"
     ],
-    "original_url": "https://github.com/grafana/grafana/issues/7121"
+    "original_url": "https://github.com/hashicorp/terraform/issues/4149"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "date": "2026-05-27",
+  "repo": "hashicorp/terraform",
+  "issue_number": 4149,
+  "title": "Partial/Progressive Configuration Changes",
+  "reactions": 298,
+  "abandoned_date": "2022-04-26T22:03:45Z",
+  "one_line_why": "Partial configuration changes succeed now due to advancements in Terraform's provider protocol and improved planning and apply phases.",
+  "impact_score": 8,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "terraform",
+    "infrastructure-as-code",
+    "configuration-management"
+  ],
+  "original_url": "https://github.com/hashicorp/terraform/issues/4149"
+}
