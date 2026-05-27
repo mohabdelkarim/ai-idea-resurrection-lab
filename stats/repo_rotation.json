@@ -16,7 +16,7 @@
   "golang/go": "2026-05-26T16:49:29.019040+00:00",
   "gradio-app/gradio": "2026-05-12T18:02:55.352772+00:00",
   "grafana/grafana": "2026-05-27T04:06:51.409275+00:00",
-  "hashicorp/terraform": "2026-05-20T16:32:56.493995+00:00",
+  "hashicorp/terraform": "2026-05-27T16:45:10.646614+00:00",
   "huggingface/transformers": "2026-05-13T15:36:39.200099+00:00",
   "kubernetes/kubernetes": "2026-05-20T18:18:29.421120+00:00",
   "langchain-ai/langchain": "2026-05-21T04:02:38.205124+00:00",
