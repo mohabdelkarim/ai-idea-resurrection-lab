@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-27",
+  "repo": "kubernetes/kubernetes",
+  "issue_number": 122753,
+  "title": "DaemonSet dynamic/scaled resources based on node type",
+  "reactions": 62,
+  "abandoned_date": "2026-05-07T22:42:52Z",
+  "one_line_why": "Dynamic resource allocation for DaemonSets is crucial for efficient utilization of diverse node environments in modern Kubernetes clusters.",
+  "impact_score": 8,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "kubernetes",
+    "daemonset",
+    "resource allocation",
+    "node type"
+  ],
+  "original_url": "https://github.com/kubernetes/kubernetes/issues/122753"
+}
