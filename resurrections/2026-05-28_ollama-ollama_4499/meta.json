@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-28",
+  "repo": "ollama/ollama",
+  "issue_number": 4499,
+  "title": "paligemma2 support",
+  "reactions": 53,
+  "abandoned_date": "2025-05-08T13:24:58Z",
+  "one_line_why": "The issue succeeds now due to advancements in Go and the growing demand for AI integration, making it feasible and.",
+  "impact_score": 6,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "go",
+    "ai",
+    "machine-learning",
+    "model-integration"
+  ],
+  "original_url": "https://github.com/ollama/ollama/issues/4499"
+}
