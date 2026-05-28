@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-27T18:29:26",
-  "total_resurrections": 60,
-  "total_repos_covered": 32,
+  "last_updated": "2026-05-28T03:55:19",
+  "total_resurrections": 61,
+  "total_repos_covered": 33,
   "average_impact_score": 6.43,
-  "average_effort_hours": 94.8,
+  "average_effort_hours": 95.21,
   "top_tags": [
     "typescript",
-    "rust",
     "go",
-    "terminal",
-    "ai"
+    "rust",
+    "ai",
+    "terminal"
   ],
   "hall_of_fame": [
     {
@@ -41,24 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-27",
-    "repo": "kubernetes/kubernetes",
-    "issue_number": 122753,
-    "title": "DaemonSet dynamic/scaled resources based on node type",
-    "reactions": 62,
-    "abandoned_date": "2026-05-07T22:42:52Z",
-    "one_line_why": "Dynamic resource allocation for DaemonSets is crucial for efficient utilization of diverse node environments in modern Kubernetes clusters.",
-    "impact_score": 8,
+    "date": "2026-05-28",
+    "repo": "ollama/ollama",
+    "issue_number": 4499,
+    "title": "paligemma2 support",
+    "reactions": 53,
+    "abandoned_date": "2025-05-08T13:24:58Z",
+    "one_line_why": "The issue succeeds now due to advancements in Go and the growing demand for AI integration, making it feasible and.",
+    "impact_score": 6,
     "effort_hours": 120.0,
-    "has_poc": true,
+    "has_poc": false,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
-      "kubernetes",
-      "daemonset",
-      "resource allocation",
-      "node type"
+      "go",
+      "ai",
+      "machine-learning",
+      "model-integration"
     ],
-    "original_url": "https://github.com/kubernetes/kubernetes/issues/122753"
+    "original_url": "https://github.com/ollama/ollama/issues/4499"
   }
 }
