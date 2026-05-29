@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-29",
+  "repo": "open-webui/open-webui",
+  "issue_number": 8706,
+  "title": "Better <think> block rendering for DeepSeek-R1 and similar",
+  "reactions": 76,
+  "abandoned_date": "2025-02-25T15:50:17Z",
+  "one_line_why": "Better rendering of <think> blocks enhances user experience by making LLM output more readable and navigable.",
+  "impact_score": 6,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "react",
+    "typescript",
+    "ui/ux",
+    "llms"
+  ],
+  "original_url": "https://github.com/open-webui/open-webui/issues/8706"
+}
