@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-30",
+  "repo": "prometheus/prometheus",
+  "issue_number": 535,
+  "title": "Add mechanism to perform bulk imports",
+  "reactions": 122,
+  "abandoned_date": "2021-11-17T23:21:18Z",
+  "one_line_why": "A bulk import mechanism is essential for large-scale Prometheus deployments, making it a high-priority feature.",
+  "impact_score": 8,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "prometheus",
+    "tsdb",
+    "ingestion",
+    "bulk-import"
+  ],
+  "original_url": "https://github.com/prometheus/prometheus/issues/535"
+}

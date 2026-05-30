@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-29T18:35:09",
-  "total_resurrections": 65,
+  "last_updated": "2026-05-30T03:43:09",
+  "total_resurrections": 66,
   "total_repos_covered": 33,
-  "average_impact_score": 6.4,
-  "average_effort_hours": 94.28,
+  "average_impact_score": 6.42,
+  "average_effort_hours": 94.67,
   "top_tags": [
     "typescript",
     "go",
@@ -41,24 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-29",
-    "repo": "open-webui/open-webui",
-    "issue_number": 8706,
-    "title": "Better <think> block rendering for DeepSeek-R1 and similar",
-    "reactions": 76,
-    "abandoned_date": "2025-02-25T15:50:17Z",
-    "one_line_why": "Better rendering of <think> blocks enhances user experience by making LLM output more readable and navigable.",
-    "impact_score": 6,
-    "effort_hours": 40.0,
+    "date": "2026-05-30",
+    "repo": "prometheus/prometheus",
+    "issue_number": 535,
+    "title": "Add mechanism to perform bulk imports",
+    "reactions": 122,
+    "abandoned_date": "2021-11-17T23:21:18Z",
+    "one_line_why": "A bulk import mechanism is essential for large-scale Prometheus deployments, making it a high-priority feature.",
+    "impact_score": 8,
+    "effort_hours": 120.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "go",
     "technology_tags": [
-      "react",
-      "typescript",
-      "ui/ux",
-      "llms"
+      "prometheus",
+      "tsdb",
+      "ingestion",
+      "bulk-import"
     ],
-    "original_url": "https://github.com/open-webui/open-webui/issues/8706"
+    "original_url": "https://github.com/prometheus/prometheus/issues/535"
   }
 }
