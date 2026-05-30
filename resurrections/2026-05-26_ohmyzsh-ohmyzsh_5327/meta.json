@@ -10,7 +10,7 @@
   "effort_hours": 120.0,
   "has_poc": false,
   "has_rfc": true,
-  "poc_language": "python",
+  "poc_language": "zsh",
   "technology_tags": [
     "zsh",
     "oh-my-zsh",
