@@ -1,35 +1,17 @@
 {
-  "last_updated": "2026-05-30T03:43:09",
-  "total_resurrections": 66,
-  "total_repos_covered": 33,
-  "average_impact_score": 6.42,
-  "average_effort_hours": 94.67,
+  "last_updated": "2026-05-30T11:26:04",
+  "total_resurrections": 59,
+  "total_repos_covered": 31,
+  "average_impact_score": 6.32,
+  "average_effort_hours": 76.34,
   "top_tags": [
     "typescript",
     "go",
-    "rust",
     "ai",
+    "rust",
     "terminal"
   ],
   "hall_of_fame": [
-    {
-      "date": "2026-05-22",
-      "repo": "python/cpython",
-      "issue_number": 108219,
-      "title": "PEP 703 -- Making the Global Interpreter Lock Optional in CPython",
-      "impact_score": 9,
-      "one_line_why": "The optional GIL will enable true parallelism in CPU-bound threads, significantly enhancing performance in multithreaded Python applications.",
-      "original_url": "https://github.com/python/cpython/issues/108219"
-    },
-    {
-      "date": "2026-05-11",
-      "repo": "facebook/react",
-      "issue_number": 13525,
-      "title": "React Fire: Modernizing React DOM",
-      "impact_score": 8,
-      "one_line_why": "React Fire succeeds now due to advancements in React, TypeScript, and web development, enabling a more maintainable and efficient implementation.",
-      "original_url": "https://github.com/facebook/react/issues/13525"
-    },
     {
       "date": "2026-05-13",
       "repo": "huggingface/transformers",
@@ -38,6 +20,24 @@
       "impact_score": 8,
       "one_line_why": "GPT-3's massive success and widespread adoption make its integration crucial for the Transformers library.",
       "original_url": "https://github.com/huggingface/transformers/issues/4658"
+    },
+    {
+      "date": "2026-05-27",
+      "repo": "kubernetes/kubernetes",
+      "issue_number": 122753,
+      "title": "DaemonSet dynamic/scaled resources based on node type",
+      "impact_score": 8,
+      "one_line_why": "Dynamic resource allocation for DaemonSets is crucial for efficient utilization of diverse node environments in modern Kubernetes clusters.",
+      "original_url": "https://github.com/kubernetes/kubernetes/issues/122753"
+    },
+    {
+      "date": "2026-05-27",
+      "repo": "hashicorp/terraform",
+      "issue_number": 4149,
+      "title": "Partial/Progressive Configuration Changes",
+      "impact_score": 8,
+      "one_line_why": "Partial configuration changes succeed now due to advancements in Terraform's provider protocol and improved planning and apply phases.",
+      "original_url": "https://github.com/hashicorp/terraform/issues/4149"
     }
   ],
   "last_resurrection": {
