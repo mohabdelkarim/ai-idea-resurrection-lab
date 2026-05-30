@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-30",
+  "repo": "nodejs/node",
+  "issue_number": 34388,
+  "title": "Add experimental support for io_uring",
+  "reactions": 54,
+  "abandoned_date": "2023-11-20T21:59:25Z",
+  "one_line_why": "Linux kernel advancements and recent libuv updates make io_uring feasible for Node.js now.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "nodejs",
+    "libuv",
+    "io_uring",
+    "linux"
+  ],
+  "original_url": "https://github.com/nodejs/node/issues/34388"
+}
