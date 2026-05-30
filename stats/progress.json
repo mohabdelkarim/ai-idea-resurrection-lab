@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-30T11:26:04",
-  "total_resurrections": 59,
+  "last_updated": "2026-05-30T14:47:40",
+  "total_resurrections": 60,
   "total_repos_covered": 31,
   "average_impact_score": 6.32,
-  "average_effort_hours": 76.34,
+  "average_effort_hours": 75.47,
   "top_tags": [
     "typescript",
     "go",
@@ -42,23 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-05-30",
-    "repo": "prometheus/prometheus",
-    "issue_number": 535,
-    "title": "Add mechanism to perform bulk imports",
-    "reactions": 122,
-    "abandoned_date": "2021-11-17T23:21:18Z",
-    "one_line_why": "A bulk import mechanism is essential for large-scale Prometheus deployments, making it a high-priority feature.",
-    "impact_score": 8,
-    "effort_hours": 120.0,
+    "repo": "psf/requests",
+    "issue_number": 5710,
+    "title": "idna 3.0 version package conflict",
+    "reactions": 88,
+    "abandoned_date": "2021-10-07T20:00:26Z",
+    "one_line_why": "The idna library has released version 3.0, and Python's importlib.metadata module now provides flexible package metadata handling.",
+    "impact_score": 6,
+    "effort_hours": 24.0,
     "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "go",
+    "has_rfc": false,
+    "poc_language": "python",
     "technology_tags": [
-      "prometheus",
-      "tsdb",
-      "ingestion",
-      "bulk-import"
+      "requests",
+      "idna",
+      "python"
     ],
-    "original_url": "https://github.com/prometheus/prometheus/issues/535"
+    "original_url": "https://github.com/psf/requests/issues/5710"
   }
 }
