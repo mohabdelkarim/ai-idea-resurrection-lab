@@ -120,6 +120,17 @@ MAX_TOKENS_METADATA = 2048
 MAX_TOKENS_POC = 4096
 MAX_TOKENS_RFC = 3072
 
+# Labels that indicate a maintainer consciously rejected the idea.
+# Issues carrying any of these must be skipped — they are not resurrection candidates.
+_BY_DESIGN_LABELS: frozenset[str] = frozenset({
+    "wontfix", "won't fix", "wont fix",
+    "by design", "by-design", "bydesign",
+    "declined", "not planned", "not-planned",
+    "out of scope", "out-of-scope",
+    "intentional", "rejected", "invalid",
+    "as designed", "as-designed",
+})
+
 # ---------------------------------------------------------------------------
 # Manifest fetching — grabs real dependencies so the LLM can't hallucinate imports
 # ---------------------------------------------------------------------------
@@ -171,69 +182,170 @@ def _fetch_repo_manifest(repo: str, language: str) -> str:
 
 # PRE-CHECK: Is the issue already solved?
 _SYSTEM_PRECHECK = """\
-You are a senior software engineer with deep knowledge of open-source project history.
+You are a senior software engineer with 15+ years of open-source experience.
+You have deep knowledge of project histories, major version releases, and
+community decisions across the most popular GitHub repositories.
 
-Given a GitHub issue title, repository, and description, determine whether this feature
-or bug has ALREADY been implemented/fixed in the CURRENT stable version of the software.
+TASK: Determine whether a GitHub issue has ALREADY been fully implemented
+or resolved in the CURRENT stable release of the software (as of mid-2026).
 
-Return ONLY a JSON object with exactly these two fields and NO others:
+═══════════════════════════════════════════════════════
+SKILL: Reading Issue Resolution Status
+═══════════════════════════════════════════════════════
+You will be given:
+  - Repository name and issue title
+  - Issue description (truncated)
+  - Labels applied to the issue
+  - state_reason (if available: "completed", "not_planned", "duplicate", or null)
+
+Use ALL of this context together.
+
+═══════════════════════════════════════════════════════
+RULES — read every rule before answering
+═══════════════════════════════════════════════════════
+
+RULE 1 — ALREADY SOLVED (return true) ONLY IF:
+  The feature or fix is fully available in the stable release as of 2026.
+  You must be able to name the specific version, flag, or release where
+  it landed (e.g. "Implemented in Python 3.13 via PEP 703 --disable-gil flag").
+  If you cannot name it precisely, return false.
+
+RULE 2 — REJECTED IS NOT SOLVED (critical):
+  If the issue was closed with state_reason="not_planned", or labels include
+  ANY of: wontfix, won't fix, by design, by-design, declined, not planned,
+  out of scope, intentional, rejected — return already_solved=FALSE.
+  A rejected proposal is NEVER solved, even if the feature exists elsewhere.
+
+RULE 3 — PARTIAL SOLUTIONS DO NOT COUNT:
+  If the issue is only partially addressed, or requires a workaround,
+  return already_solved=false.
+
+RULE 4 — WHEN IN DOUBT, RETURN FALSE:
+  False negatives (letting a solved issue through) are caught later.
+  False positives (silently dropping a valid resurrection) are unrecoverable.
+  Uncertainty = false.
+
+RULE 5 — DO NOT USE GENERAL KNOWLEDGE AS A SUBSTITUTE FOR SPECIFICITY:
+  "This is likely implemented by now" is NOT sufficient.
+  You must recall a specific version, PR, or changelog entry.
+
+═══════════════════════════════════════════════════════
+OUTPUT FORMAT
+═══════════════════════════════════════════════════════
+Return ONLY a JSON object with exactly these two fields:
 {
   "already_solved": <true|false>,
-  "reason": "<one sentence explaining your verdict>"
+  "reason": "<one sentence — if true: name the version/flag; if false: why not>"
 }
-
-Rules:
-- already_solved=true ONLY if the feature/fix is confirmed available in the current
-  stable release of the software as of 2026. Be specific — name the version or flag.
-- already_solved=false if the issue is genuinely unresolved, partially addressed,
-  or if you are not certain. When in doubt, return false.
-- Do NOT confuse "wontfix" or "rejected" with "already solved". A rejected proposal
-  is NOT solved — return false for rejected issues.
-- Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
+No markdown fences. No text outside the JSON object.\
 """
 
 # CALL 1: metadata only (no long-form text, no code)
 _SYSTEM_METADATA = """\
-You are a world-class senior software architect specialising in resurrecting abandoned
-open-source ideas.
+You are a world-class senior software architect specialising in open-source
+idea resurrection. You analyse abandoned GitHub issues and assess whether
+modern tooling makes them viable today.
 
-Given a GitHub issue, return ONLY a JSON object with these fields and NO others:
+═══════════════════════════════════════════════════════
+SKILL SET
+═══════════════════════════════════════════════════════
+- Deep knowledge of OSS ecosystem evolution (2015–2026)
+- Architecture-level reasoning about implementation cost and feasibility
+- Distinguishing "abandoned for good reasons" vs "abandoned due to timing"
+- Calibrated scoring: you never cluster scores — you use the full 1–10 scale
 
+═══════════════════════════════════════════════════════
+CONTEXT YOU WILL RECEIVE
+═══════════════════════════════════════════════════════
+The user message contains:
+  1. Repository name and issue title
+  2. Issue description (original body)
+  3. Labels applied to the issue
+  4. state_reason (completed / not_planned / duplicate / null)
+  5. The preferred poc_language for this repo
+  6. A PREVIOUS_SCORE hint (optional) — if present, you MUST use a different score
+
+═══════════════════════════════════════════════════════
+RULES — read every rule before generating output
+═══════════════════════════════════════════════════════
+
+RULE 1 — REJECT "BY DESIGN" ISSUES BEFORE ANALYSIS:
+  If labels include ANY of: wontfix, won't fix, by design, by-design,
+  declined, not planned, out of scope, intentional, rejected, invalid —
+  OR state_reason = "not_planned" —
+  STOP. Do NOT analyse this issue. Return:
+  {"__skip__": true, "reason": "<why it is by-design rejected>"}
+  This is a hard gate. No exceptions.
+
+RULE 2 — IMPACT SCORE CALIBRATION (mandatory distribution):
+  Score based SOLELY on: audience size × centrality to daily workflow.
+  You MUST use this scale — never cluster at 6:
+    1–2 : niche tool, <500 users affected (obscure CLI flag, edge-case config)
+    3–4 : useful for a subset (~1k–5k devs), non-critical path
+    5–6 : notable feature, ~10k–50k devs benefit, non-critical daily workflow
+    7–8 : high-impact, 100k+ devs, core daily workflow feature
+    9–10: industry-wide, millions of devs, fundamental change to ubiquitous tool
+  Reference examples:
+    ripgrep obscure flag = 3, ripgrep multiline search = 6,
+    VSCode core editor feature = 8, Python type-hint syntax change = 10.
+  If you received a PREVIOUS_SCORE hint, you MUST pick a different score.
+  When torn between two scores, pick the LOWER one (be conservative).
+
+RULE 3 — EFFORT HOURS (derive from THIS issue, never use defaults):
+  8–16h   : small CLI flag, config option, one-function change
+  24–40h  : focused feature with tests and docs
+  60–80h  : parser/protocol change, multi-file refactor
+  100–160h: core engine modification, new subsystem
+  200h+   : architecture overhaul, cross-cutting concern
+  NEVER default to exactly 40h or 80h without specific justification.
+
+RULE 4 — ONE-LINE FIELDS (one_line_summary, one_line_why):
+  - Must be a COMPLETE grammatical sentence (subject + verb + object).
+  - Exactly 10–20 words. Count the words before writing.
+  - Must end with a period.
+  - Must NOT end with a conjunction (and, or, but), preposition, article, or comma.
+  - one_line_why must explain what SPECIFICALLY changed since the issue was filed —
+    name a real technology, API, or ecosystem shift (e.g. "WASM SIMD", "Deno 2.0",
+    "Rust async/await stabilisation"). Generic phrases like "user demand" or
+    "ecosystem maturity" are NOT acceptable.
+
+RULE 5 — PROSE FIELDS (why_it_died, why_2026_changes_it, modern_design):
+  - why_it_died: 3–5 sentences. Name the SPECIFIC technical or social blockers
+    that caused abandonment (missing APIs, performance limits, community bandwidth).
+  - why_2026_changes_it: 3–5 sentences. Name EXACT tools, crates, packages, or
+    language features that now make this feasible. No vague "ecosystem maturity".
+  - modern_design: 5–8 sentences. Architecture-level. Name classes, APIs, patterns,
+    data structures. This section must be specific enough to guide implementation.
+
+RULE 6 — poc_language:
+  Use EXACTLY the language provided in the user message under "Preferred poc_language".
+  Do not invent or substitute another language.
+
+RULE 7 — technology_tags:
+  Return 3–6 lowercase tags. The first tag must be the name of the repo's primary
+  technology (e.g. "vscode", "ripgrep", "deno"). No generic tags like "software"
+  or "feature".
+
+═══════════════════════════════════════════════════════
+OUTPUT FORMAT
+═══════════════════════════════════════════════════════
+Return ONLY a JSON object with these exact fields:
 {
-  "why_it_died": "<3-5 specific sentences about why it failed>",
-  "why_2026_changes_it": "<3-5 sentences naming exact tools/APIs that exist now>",
-  "modern_design": "<5-8 sentences, architecture-level, names classes/APIs/patterns>",
-  "one_line_summary": "<single complete sentence 10-20 words>",
-  "one_line_why": "<single complete sentence 10-20 words explaining why it succeeds now>",
-  "impact_score": <integer 1-10>,
-  "effort_hours": <positive integer>,
-  "technology_tags": ["tag1", "tag2", "tag3", "tag4"],
+  "why_it_died": "<3–5 sentences>",
+  "why_2026_changes_it": "<3–5 sentences naming exact tools/APIs>",
+  "modern_design": "<5–8 sentences, architecture-level>",
+  "one_line_summary": "<complete sentence, 10–20 words, ends with period>",
+  "one_line_why": "<complete sentence, 10–20 words, names specific tech shift>",
+  "impact_score": <integer 1–10>,
+  "effort_hours": <positive integer derived from complexity>,
+  "technology_tags": ["tag1", "tag2", "tag3"],
   "poc_language": "<python|typescript|rust|go>",
   "death_year": <4-digit integer>,
   "has_poc": <true|false>,
   "rfc_needed": <true|false>,
   "abandoned_date": "<YYYY-MM-DD>"
 }
-
-Rules:
-- impact_score: 1-10 based SOLELY on audience size x how central the feature is.
-  MANDATORY scale — you MUST use this distribution, not cluster at 6:
-    1-2: niche tool, <500 users affected (e.g. obscure CLI flag, edge-case config)
-    3-4: useful improvement for a subset of users (~1k-5k devs impacted)
-    5-6: notable feature, ~10k-50k devs benefit, non-critical daily workflow
-    7-8: high-impact for a large community (100k+ devs), core daily workflow
-    9-10: industry-wide, millions of devs, fundamental change to a ubiquitous tool
-  EXAMPLES: ripgrep -o flag = 4 (already exists as -o), ripgrep multiline = 6,
-    VSCode built-in feature = 8, Python type-hint syntax = 10.
-  NEVER give the same score as the previous issue in the same repo (see PREVIOUS_SCORE hint).
-  If unsure between two scores, pick the LOWER one (be conservative).
-- effort_hours: realistic for THIS issue. 8-16h=small CLI flag, 24-40h=focused feature,
-  60-80h=parser/protocol change, 100-160h=core engine rewrite, 200h+=architecture overhaul.
-  NEVER use 40h or 80h as a default — derive from actual complexity of THIS issue.
-- one_line_summary and one_line_why: complete sentences, 10-20 words, NO ellipsis.
-- poc_language: use the preferred language from the user message.
-- Keep each prose field (why_it_died, why_2026_changes_it, modern_design) to 3-5 sentences.
-- Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
+No markdown fences. No text outside the JSON object.\
 """
 
 # CALL 2: proof-of-concept code only
@@ -382,6 +494,39 @@ def _sanitize_raw_json(raw: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# By-design label pre-filter — zero API tokens spent on rejected issues
+# ---------------------------------------------------------------------------
+
+def _is_by_design_rejected(issue: dict[str, Any]) -> bool:
+    """
+    Return True if the issue carries any label or state_reason that signals
+    a deliberate maintainer decision to not implement it.
+
+    This is a hard gate that runs BEFORE any LLM call, so no tokens are
+    wasted on issues that can never be valid resurrection candidates.
+    """
+    raw_labels = issue.get("labels", [])
+    label_names: set[str] = set()
+    for lbl in raw_labels:
+        if isinstance(lbl, dict):
+            label_names.add(str(lbl.get("name", "")).strip().lower())
+        else:
+            label_names.add(str(lbl).strip().lower())
+
+    if label_names & _BY_DESIGN_LABELS:
+        matched = label_names & _BY_DESIGN_LABELS
+        LOGGER.info("[ByDesignFilter] Matched labels: %s", matched)
+        return True
+
+    state_reason = str(issue.get("state_reason", "") or "").strip().lower()
+    if state_reason == "not_planned":
+        LOGGER.info("[ByDesignFilter] state_reason=not_planned.")
+        return True
+
+    return False
+
+
+# ---------------------------------------------------------------------------
 # Read last impact_score per repo to prevent score repetition
 # ---------------------------------------------------------------------------
 
@@ -492,9 +637,22 @@ def _is_already_solved_llm(client: Groq, issue: dict[str, Any]) -> bool:
     body = str(issue.get("body") or "")[:1500]  # keep prompt short
     issue_number = issue.get("issue_number", "?")
 
+    # Collect labels as plain strings for the prompt
+    raw_labels = issue.get("labels", [])
+    label_strings: list[str] = []
+    for lbl in raw_labels:
+        if isinstance(lbl, dict):
+            label_strings.append(str(lbl.get("name", "")).strip())
+        else:
+            label_strings.append(str(lbl).strip())
+    labels_line = ", ".join(label_strings) if label_strings else "none"
+    state_reason = str(issue.get("state_reason", "") or "null").strip()
+
     user_prompt = (
         f"Repository: {repo}\n"
         f"Issue title: {title}\n"
+        f"Labels: {labels_line}\n"
+        f"state_reason: {state_reason}\n"
         f"Issue description (truncated):\n\"\"\"{body}\"\"\""
     )
 
@@ -541,13 +699,26 @@ def _build_metadata_prompt(issue: dict[str, Any], previous_score: int | None = N
         if previous_score is not None
         else ""
     )
+
+    # Collect labels as plain strings for the prompt
+    raw_labels = issue.get("labels", [])
+    label_strings: list[str] = []
+    for lbl in raw_labels:
+        if isinstance(lbl, dict):
+            label_strings.append(str(lbl.get("name", "")).strip())
+        else:
+            label_strings.append(str(lbl).strip())
+    labels_line = ", ".join(label_strings) if label_strings else "none"
+    state_reason = str(issue.get("state_reason", "") or "null").strip()
+
     return (
         f"ABANDONED GITHUB ISSUE TO RESURRECT:\n"
         f"Repository: {repo}\n"
         f"Title: {issue.get('title', '')}\n"
         f"Originally filed: {issue.get('created_at', '')}\n"
         f"Last activity: {issue.get('updated_at', '')}\n"
-        f"Labels: {', '.join(str(l) for l in issue.get('labels', []))}\n\n"
+        f"Labels: {labels_line}\n"
+        f"state_reason: {state_reason}\n\n"
         f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
         f"Preferred poc_language for this repository: {preferred_language}.\n"
         f"{previous_score_hint}\n"
@@ -607,11 +778,20 @@ def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str,
         value = re.sub(r"\.{2,}$", ".", value).strip()
         words = value.split()
         if len(words) > ONE_LINE_MAX_WORDS:
-            truncated_words = words[:ONE_LINE_MAX_WORDS]
-            truncated = " ".join(truncated_words).rstrip(",;:")
-            if not truncated.endswith("."):
-                truncated += "."
-            value = truncated
+            # Try to cut at the last sentence-ending punctuation within the limit
+            candidate = " ".join(words[:ONE_LINE_MAX_WORDS])
+            last_punct = max(
+                candidate.rfind(". "),
+                candidate.rfind("! "),
+                candidate.rfind("? "),
+            )
+            if last_punct > len(candidate) // 2:
+                value = candidate[: last_punct + 1].strip()
+            else:
+                truncated = candidate.rstrip(",;:")
+                if not truncated.endswith("."):
+                    truncated += "."
+                value = truncated
         if value and value[-1] not in ".!?":
             value += "."
         parsed[field] = value
@@ -726,6 +906,13 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
             errors.append(f"{field} too long ({len(words)} words, max {ONE_LINE_MAX_WORDS})")
         if value.endswith("..."):
             errors.append(f"{field} must not end with ellipsis — write a complete sentence")
+        # Reject sentences ending with dangling conjunctions/prepositions
+        dangling = re.search(
+            r"\b(and|or|but|the|a|an|in|of|to|for|with|by|from|on|at|into|via)\s*[.!?]?\s*$",
+            value, re.IGNORECASE,
+        )
+        if dangling:
+            errors.append(f"{field} ends with dangling word '{dangling.group().strip()}' — incomplete sentence")
 
     if data.get("has_poc"):
         poc = str(data.get("proof_of_concept_code", "")).strip()
@@ -904,9 +1091,18 @@ def analyze() -> str:
                 )
                 continue
 
-            # PRE-CHECK: ask LLM if the issue is already solved before spending tokens
-            # on the full 3-call analysis pipeline. Only runs if Groq client is available.
-            # On failure it returns False (conservative) so the issue is NOT skipped.
+            # GATE 1 — Label / state_reason pre-filter (zero LLM tokens spent).
+            # Issues explicitly rejected by maintainers (wontfix, not_planned, etc.)
+            # are not resurrection candidates and must be skipped immediately.
+            if _is_by_design_rejected(issue):
+                LOGGER.info(
+                    "[Analyzer] Skipping #%d (%s) — by-design rejected (labels/state_reason).",
+                    issue_number, repo,
+                )
+                continue
+
+            # GATE 2 — LLM pre-check: is this already solved in the current stable release?
+            # Only runs if Groq client is available. On failure returns False (conservative).
             if client is not None and _is_already_solved_llm(client, issue):
                 LOGGER.info(
                     "[Analyzer] Skipping #%d (%s) — LLM pre-check: already solved.",
