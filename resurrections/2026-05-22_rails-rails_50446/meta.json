@@ -10,7 +10,7 @@
   "effort_hours": 80.0,
   "has_poc": true,
   "has_rfc": true,
-  "poc_language": "python",
+  "poc_language": "ruby",
   "technology_tags": [
     "rails",
     "authentication",
