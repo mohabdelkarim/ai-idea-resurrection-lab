@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-05-30T17:03:23",
-  "total_resurrections": 61,
+  "last_updated": "2026-05-31T04:08:22",
+  "total_resurrections": 62,
   "total_repos_covered": 31,
-  "average_impact_score": 6.33,
-  "average_effort_hours": 76.2,
+  "average_impact_score": 6.34,
+  "average_effort_hours": 76.26,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-30",
-    "repo": "psf/requests",
-    "issue_number": 5710,
-    "title": "idna 3.0 version package conflict",
-    "reactions": 88,
-    "abandoned_date": "2021-10-07T20:00:26Z",
-    "one_line_why": "The idna library has released version 3.0, and Python's importlib.metadata module now provides flexible package metadata handling.",
-    "impact_score": 6,
-    "effort_hours": 24.0,
+    "date": "2026-05-31",
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 11041,
+    "title": "Request to Support Z-Image Controlnet",
+    "reactions": 26,
+    "abandoned_date": "2025-12-03T02:39:31Z",
+    "one_line_why": "The Z-Image-Turbo-Fun-Controlnet-Union model's compatibility with modern AI frameworks and libraries, such as PyTorch, now enables its support in ComfyUI.",
+    "impact_score": 7,
+    "effort_hours": 80.0,
     "has_poc": true,
-    "has_rfc": false,
+    "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "requests",
-      "idna",
-      "python"
+      "comfyui",
+      "controlnet",
+      "ai-models"
     ],
-    "original_url": "https://github.com/psf/requests/issues/5710"
+    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/11041"
   }
 }

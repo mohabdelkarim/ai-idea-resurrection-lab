@@ -1,0 +1,20 @@
+{
+  "date": "2026-05-31",
+  "repo": "comfyanonymous/ComfyUI",
+  "issue_number": 11041,
+  "title": "Request to Support Z-Image Controlnet",
+  "reactions": 26,
+  "abandoned_date": "2025-12-03T02:39:31Z",
+  "one_line_why": "The Z-Image-Turbo-Fun-Controlnet-Union model's compatibility with modern AI frameworks and libraries, such as PyTorch, now enables its support in ComfyUI.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "comfyui",
+    "controlnet",
+    "ai-models"
+  ],
+  "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/11041"
+}
