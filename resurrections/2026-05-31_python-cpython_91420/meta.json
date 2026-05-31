@@ -1,0 +1,20 @@
+{
+  "date": "2026-05-31",
+  "repo": "python/cpython",
+  "issue_number": 91420,
+  "title": "Test issue",
+  "reactions": 68,
+  "abandoned_date": "2025-03-03T22:21:39Z",
+  "one_line_why": "The Python community's increased adoption of GitHub issues and testing changes it.",
+  "impact_score": 3,
+  "effort_hours": 8.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "python",
+  "technology_tags": [
+    "python",
+    "testing",
+    "github"
+  ],
+  "original_url": "https://github.com/python/cpython/issues/91420"
+}
