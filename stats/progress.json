@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-05-31T17:07:49",
-  "total_resurrections": 64,
-  "total_repos_covered": 32,
-  "average_impact_score": 6.27,
-  "average_effort_hours": 74.62,
+  "last_updated": "2026-06-01T04:22:56",
+  "total_resurrections": 65,
+  "total_repos_covered": 33,
+  "average_impact_score": 6.26,
+  "average_effort_hours": 74.09,
   "top_tags": [
     "typescript",
     "go",
     "ai",
-    "rust",
-    "terminal"
+    "python",
+    "rust"
   ],
   "hall_of_fame": [
     {
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-05-31",
-    "repo": "python/cpython",
-    "issue_number": 91420,
-    "title": "Test issue",
-    "reactions": 68,
-    "abandoned_date": "2025-03-03T22:21:39Z",
-    "one_line_why": "The Python community's increased adoption of GitHub issues and testing changes it.",
-    "impact_score": 3,
-    "effort_hours": 8.0,
+    "date": "2026-06-01",
+    "repo": "pallets/flask",
+    "issue_number": 593,
+    "title": "Nestable blueprints",
+    "reactions": 54,
+    "abandoned_date": "2021-04-29T00:06:10Z",
+    "one_line_why": "Flask 2.0's improved modularity and Python 3.9's type hinting enable a cleaner implementation of nestable blueprints.",
+    "impact_score": 6,
+    "effort_hours": 40.0,
     "has_poc": true,
-    "has_rfc": false,
+    "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "python",
-      "testing",
-      "github"
+      "flask",
+      "blueprints",
+      "python"
     ],
-    "original_url": "https://github.com/python/cpython/issues/91420"
+    "original_url": "https://github.com/pallets/flask/issues/593"
   }
 }
