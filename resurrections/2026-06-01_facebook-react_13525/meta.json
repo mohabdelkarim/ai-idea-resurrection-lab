@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-01",
+  "repo": "facebook/react",
+  "issue_number": 13525,
+  "title": "React Fire: Modernizing React DOM",
+  "reactions": 2389,
+  "abandoned_date": "2022-09-23T12:27:56Z",
+  "one_line_why": "React Fire is revivable in 2026 due to React 18's concurrent rendering and improved TypeScript support.",
+  "impact_score": 8,
+  "effort_hours": 160.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "react",
+    "typescript",
+    "dom"
+  ],
+  "original_url": "https://github.com/facebook/react/issues/13525"
+}
