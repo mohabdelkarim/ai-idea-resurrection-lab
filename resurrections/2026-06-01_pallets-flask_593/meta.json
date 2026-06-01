@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-01",
+  "repo": "pallets/flask",
+  "issue_number": 593,
+  "title": "Nestable blueprints",
+  "reactions": 54,
+  "abandoned_date": "2021-04-29T00:06:10Z",
+  "one_line_why": "Flask 2.0's improved modularity and Python 3.9's type hinting enable a cleaner implementation of nestable blueprints.",
+  "impact_score": 6,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "flask",
+    "blueprints",
+    "python"
+  ],
+  "original_url": "https://github.com/pallets/flask/issues/593"
+}
