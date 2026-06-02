@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-02T17:30:42",
-  "total_resurrections": 69,
+  "last_updated": "2026-06-02T19:44:21",
+  "total_resurrections": 70,
   "total_repos_covered": 34,
   "average_impact_score": 6.26,
-  "average_effort_hours": 75.88,
+  "average_effort_hours": 75.14,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-02",
-    "repo": "golang/go",
-    "issue_number": 22885,
-    "title": "cmd/compile: implement powerpc 32-bit backend (ppc32)",
-    "reactions": 221,
-    "abandoned_date": "2026-02-05T22:22:36Z",
-    "one_line_why": "The Go compiler now supports a more modular backend design, making it feasible to add a PowerPC 32-bit backend.",
-    "impact_score": 4,
-    "effort_hours": 100.0,
-    "has_poc": false,
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 2537,
+    "title": "No, I dont want share history.",
+    "reactions": 190,
+    "abandoned_date": "2024-11-22T08:21:55Z",
+    "one_line_why": "With zsh 5.9 and ohmyzsh updates, dynamic option handling improved.",
+    "impact_score": 6,
+    "effort_hours": 24.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "python",
     "technology_tags": [
-      "go",
-      "compiler",
-      "ppc32"
+      "ohmyzsh",
+      "zsh",
+      "history"
     ],
-    "original_url": "https://github.com/golang/go/issues/22885"
+    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/2537"
   }
 }

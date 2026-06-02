@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-02",
+  "repo": "ohmyzsh/ohmyzsh",
+  "issue_number": 2537,
+  "title": "No, I dont want share history.",
+  "reactions": 190,
+  "abandoned_date": "2024-11-22T08:21:55Z",
+  "one_line_why": "With zsh 5.9 and ohmyzsh updates, dynamic option handling improved.",
+  "impact_score": 6,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "ohmyzsh",
+    "zsh",
+    "history"
+  ],
+  "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/2537"
+}
