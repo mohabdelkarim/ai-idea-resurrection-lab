@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-02",
+  "repo": "golang/go",
+  "issue_number": 22885,
+  "title": "cmd/compile: implement powerpc 32-bit backend (ppc32)",
+  "reactions": 221,
+  "abandoned_date": "2026-02-05T22:22:36Z",
+  "one_line_why": "The Go compiler now supports a more modular backend design, making it feasible to add a PowerPC 32-bit backend.",
+  "impact_score": 4,
+  "effort_hours": 100.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "go",
+    "compiler",
+    "ppc32"
+  ],
+  "original_url": "https://github.com/golang/go/issues/22885"
+}
