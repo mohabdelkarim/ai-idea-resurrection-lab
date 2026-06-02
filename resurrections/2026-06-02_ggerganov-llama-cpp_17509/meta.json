@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-02",
+  "repo": "ggerganov/llama.cpp",
+  "issue_number": 17509,
+  "title": "Feature Request: Support HunyuanOCR-1B",
+  "reactions": 21,
+  "abandoned_date": "2026-02-03T02:01:40Z",
+  "one_line_why": "The GGML library now supports more advanced model integration, and the llama.cpp community has grown, making it feasible to add.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "llamacpp",
+    "ggml",
+    "ocr"
+  ],
+  "original_url": "https://github.com/ggml-org/llama.cpp/issues/17509"
+}

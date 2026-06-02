@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-01T20:19:16",
-  "total_resurrections": 67,
+  "last_updated": "2026-06-02T04:17:11",
+  "total_resurrections": 68,
   "total_repos_covered": 34,
-  "average_impact_score": 6.3,
-  "average_effort_hours": 75.46,
+  "average_impact_score": 6.29,
+  "average_effort_hours": 75.53,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-01",
-    "repo": "pallets/flask",
-    "issue_number": 593,
-    "title": "Nestable blueprints",
-    "reactions": 54,
-    "abandoned_date": "2021-04-29T00:06:10Z",
-    "one_line_why": "Flask 2.0's improved modularity and Python 3.9's type hinting enable a cleaner implementation of nestable blueprints.",
+    "date": "2026-06-02",
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 17509,
+    "title": "Feature Request: Support HunyuanOCR-1B",
+    "reactions": 21,
+    "abandoned_date": "2026-02-03T02:01:40Z",
+    "one_line_why": "The GGML library now supports more advanced model integration, and the llama.cpp community has grown, making it feasible to add.",
     "impact_score": 6,
-    "effort_hours": 40.0,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "flask",
-      "blueprints",
-      "python"
+      "llamacpp",
+      "ggml",
+      "ocr"
     ],
-    "original_url": "https://github.com/pallets/flask/issues/593"
+    "original_url": "https://github.com/ggml-org/llama.cpp/issues/17509"
   }
 }
