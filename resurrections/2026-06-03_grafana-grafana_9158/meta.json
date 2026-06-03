@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-03",
+  "repo": "grafana/grafana",
+  "issue_number": 9158,
+  "title": "[feature request] AWS Athena as sql datasource",
+  "reactions": 96,
+  "abandoned_date": "2024-02-20T01:47:06Z",
+  "one_line_why": "AWS SDK for Go and Grafana's plugin architecture now enable efficient integration.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "grafana",
+    "aws-athena",
+    "sql-datasource"
+  ],
+  "original_url": "https://github.com/grafana/grafana/issues/9158"
+}

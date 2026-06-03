@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-02T19:44:21",
-  "total_resurrections": 70,
+  "last_updated": "2026-06-03T04:26:21",
+  "total_resurrections": 71,
   "total_repos_covered": 34,
-  "average_impact_score": 6.26,
-  "average_effort_hours": 75.14,
+  "average_impact_score": 6.25,
+  "average_effort_hours": 75.21,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-02",
-    "repo": "ohmyzsh/ohmyzsh",
-    "issue_number": 2537,
-    "title": "No, I dont want share history.",
-    "reactions": 190,
-    "abandoned_date": "2024-11-22T08:21:55Z",
-    "one_line_why": "With zsh 5.9 and ohmyzsh updates, dynamic option handling improved.",
+    "date": "2026-06-03",
+    "repo": "grafana/grafana",
+    "issue_number": 9158,
+    "title": "[feature request] AWS Athena as sql datasource",
+    "reactions": 96,
+    "abandoned_date": "2024-02-20T01:47:06Z",
+    "one_line_why": "AWS SDK for Go and Grafana's plugin architecture now enable efficient integration.",
     "impact_score": 6,
-    "effort_hours": 24.0,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
-      "ohmyzsh",
-      "zsh",
-      "history"
+      "grafana",
+      "aws-athena",
+      "sql-datasource"
     ],
-    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/2537"
+    "original_url": "https://github.com/grafana/grafana/issues/9158"
   }
 }
