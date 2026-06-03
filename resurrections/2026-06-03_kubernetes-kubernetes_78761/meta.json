@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-03",
+  "repo": "kubernetes/kubernetes",
+  "issue_number": 78761,
+  "title": "HPA doesn't scale down to minReplicas even though metric is under target",
+  "reactions": 89,
+  "abandoned_date": "2023-09-25T17:33:00Z",
+  "one_line_why": "The problem persists due to outdated scaling logic in HPA, but recent advancements in Kubernetes metrics and scaling algorithms now.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "kubernetes",
+    "hpa",
+    "autoscaling"
+  ],
+  "original_url": "https://github.com/kubernetes/kubernetes/issues/78761"
+}
