@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-03T18:05:59",
-  "total_resurrections": 72,
+  "last_updated": "2026-06-03T19:50:09",
+  "total_resurrections": 73,
   "total_repos_covered": 34,
-  "average_impact_score": 6.26,
-  "average_effort_hours": 74.72,
+  "average_impact_score": 6.27,
+  "average_effort_hours": 74.79,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-03",
-    "repo": "hashicorp/terraform",
-    "issue_number": 12959,
-    "title": "Feature Request: terraform fmt applies sort to variables.tf and terraform.tfvars",
-    "reactions": 85,
-    "abandoned_date": "2023-12-07T02:05:01Z",
-    "one_line_why": "The Go ecosystem's mature HCL parsing library and Terraform's growing adoption enable this feature.",
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 78761,
+    "title": "HPA doesn't scale down to minReplicas even though metric is under target",
+    "reactions": 89,
+    "abandoned_date": "2023-09-25T17:33:00Z",
+    "one_line_why": "The problem persists due to outdated scaling logic in HPA, but recent advancements in Kubernetes metrics and scaling algorithms now.",
     "impact_score": 7,
-    "effort_hours": 40.0,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
-      "terraform",
-      "hcl",
-      "go"
+      "kubernetes",
+      "hpa",
+      "autoscaling"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/12959"
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/78761"
   }
 }
