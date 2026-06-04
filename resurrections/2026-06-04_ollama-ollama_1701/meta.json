@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-04",
+  "repo": "ollama/ollama",
+  "issue_number": 1701,
+  "title": "Create uninstall script",
+  "reactions": 12,
+  "abandoned_date": "2025-12-14T19:29:04Z",
+  "one_line_why": "The Go ecosystem's maturity and library support, such as cobra for CLI management, make this feasible now.",
+  "impact_score": 5,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "go",
+  "technology_tags": [
+    "ollama",
+    "go",
+    "uninstall"
+  ],
+  "original_url": "https://github.com/ollama/ollama/issues/1701"
+}

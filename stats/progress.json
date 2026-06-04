@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-03T19:50:09",
-  "total_resurrections": 73,
+  "last_updated": "2026-06-04T04:20:23",
+  "total_resurrections": 74,
   "total_repos_covered": 34,
-  "average_impact_score": 6.27,
-  "average_effort_hours": 74.79,
+  "average_impact_score": 6.26,
+  "average_effort_hours": 74.11,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-03",
-    "repo": "kubernetes/kubernetes",
-    "issue_number": 78761,
-    "title": "HPA doesn't scale down to minReplicas even though metric is under target",
-    "reactions": 89,
-    "abandoned_date": "2023-09-25T17:33:00Z",
-    "one_line_why": "The problem persists due to outdated scaling logic in HPA, but recent advancements in Kubernetes metrics and scaling algorithms now.",
-    "impact_score": 7,
-    "effort_hours": 80.0,
+    "date": "2026-06-04",
+    "repo": "ollama/ollama",
+    "issue_number": 1701,
+    "title": "Create uninstall script",
+    "reactions": 12,
+    "abandoned_date": "2025-12-14T19:29:04Z",
+    "one_line_why": "The Go ecosystem's maturity and library support, such as cobra for CLI management, make this feasible now.",
+    "impact_score": 5,
+    "effort_hours": 24.0,
     "has_poc": true,
-    "has_rfc": true,
+    "has_rfc": false,
     "poc_language": "go",
     "technology_tags": [
-      "kubernetes",
-      "hpa",
-      "autoscaling"
+      "ollama",
+      "go",
+      "uninstall"
     ],
-    "original_url": "https://github.com/kubernetes/kubernetes/issues/78761"
+    "original_url": "https://github.com/ollama/ollama/issues/1701"
   }
 }
