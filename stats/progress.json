@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-05T04:03:44",
-  "total_resurrections": 76,
+  "last_updated": "2026-06-05T16:01:01",
+  "total_resurrections": 77,
   "total_repos_covered": 34,
-  "average_impact_score": 6.25,
-  "average_effort_hours": 74.26,
+  "average_impact_score": 6.23,
+  "average_effort_hours": 73.82,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-05",
-    "repo": "microsoft/TypeScript",
-    "issue_number": 15300,
-    "title": "Index signature is missing in type (only on interfaces, not on type alias)",
-    "reactions": 367,
-    "abandoned_date": "2022-11-18T22:55:09Z",
-    "one_line_why": "TypeScript 4.1's template literal types enable more flexible type definitions.",
-    "impact_score": 7,
-    "effort_hours": 80.0,
+    "repo": "rails/rails",
+    "issue_number": 32790,
+    "title": "Folder with active storage",
+    "reactions": 122,
+    "abandoned_date": "2021-05-19T22:40:36Z",
+    "one_line_why": "Rails 7.0+ ActiveStorage improvements enable folder organization.",
+    "impact_score": 5,
+    "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "typescript",
-      "type-system",
-      "interface"
+      "rails",
+      "activestorage",
+      "ruby"
     ],
-    "original_url": "https://github.com/microsoft/TypeScript/issues/15300"
+    "original_url": "https://github.com/rails/rails/issues/32790"
   }
 }
