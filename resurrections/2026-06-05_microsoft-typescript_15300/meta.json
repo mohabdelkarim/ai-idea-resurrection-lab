@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-05",
+  "repo": "microsoft/TypeScript",
+  "issue_number": 15300,
+  "title": "Index signature is missing in type (only on interfaces, not on type alias)",
+  "reactions": 367,
+  "abandoned_date": "2022-11-18T22:55:09Z",
+  "one_line_why": "TypeScript 4.1's template literal types enable more flexible type definitions.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "typescript",
+    "type-system",
+    "interface"
+  ],
+  "original_url": "https://github.com/microsoft/TypeScript/issues/15300"
+}
