@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-04T18:17:00",
-  "total_resurrections": 75,
+  "last_updated": "2026-06-05T04:03:44",
+  "total_resurrections": 76,
   "total_repos_covered": 34,
-  "average_impact_score": 6.24,
-  "average_effort_hours": 74.19,
+  "average_impact_score": 6.25,
+  "average_effort_hours": 74.26,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-04",
-    "repo": "ollama/ollama",
-    "issue_number": 1701,
-    "title": "Create uninstall script",
-    "reactions": 12,
-    "abandoned_date": "2025-12-14T19:29:04Z",
-    "one_line_why": "The Go ecosystem's maturity and library support, such as cobra for CLI management, make this feasible now.",
-    "impact_score": 5,
-    "effort_hours": 24.0,
+    "date": "2026-06-05",
+    "repo": "microsoft/TypeScript",
+    "issue_number": 15300,
+    "title": "Index signature is missing in type (only on interfaces, not on type alias)",
+    "reactions": 367,
+    "abandoned_date": "2022-11-18T22:55:09Z",
+    "one_line_why": "TypeScript 4.1's template literal types enable more flexible type definitions.",
+    "impact_score": 7,
+    "effort_hours": 80.0,
     "has_poc": true,
-    "has_rfc": false,
-    "poc_language": "go",
+    "has_rfc": true,
+    "poc_language": "typescript",
     "technology_tags": [
-      "ollama",
-      "go",
-      "uninstall"
+      "typescript",
+      "type-system",
+      "interface"
     ],
-    "original_url": "https://github.com/ollama/ollama/issues/1701"
+    "original_url": "https://github.com/microsoft/TypeScript/issues/15300"
   }
 }
