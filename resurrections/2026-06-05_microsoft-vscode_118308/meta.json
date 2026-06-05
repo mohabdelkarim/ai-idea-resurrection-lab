@@ -1,0 +1,21 @@
+{
+  "date": "2026-06-05",
+  "repo": "microsoft/vscode",
+  "issue_number": 118308,
+  "title": "Move away from electron",
+  "reactions": 279,
+  "abandoned_date": "2023-02-05T23:23:44Z",
+  "one_line_why": "Tauri's stability and security improvements make it viable for VSCode migration now.",
+  "impact_score": 8,
+  "effort_hours": 200.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "vscode",
+    "tauri",
+    "electron",
+    "rust"
+  ],
+  "original_url": "https://github.com/microsoft/vscode/issues/118308"
+}
