@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-06T03:46:03",
-  "total_resurrections": 79,
+  "last_updated": "2026-06-06T14:48:35",
+  "total_resurrections": 80,
   "total_repos_covered": 34,
-  "average_impact_score": 6.24,
-  "average_effort_hours": 74.99,
+  "average_impact_score": 6.25,
+  "average_effort_hours": 74.55,
   "top_tags": [
     "typescript",
     "go",
+    "python",
     "rust",
-    "ai",
-    "python"
+    "ai"
   ],
   "hall_of_fame": [
     {
