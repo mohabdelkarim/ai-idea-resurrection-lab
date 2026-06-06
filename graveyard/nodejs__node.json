@@ -151,6 +151,24 @@
   },
   {
     "repo": "nodejs/node",
+    "issue_number": 56504,
+    "title": "A workflow to periodically check status for author-ready PRs opened by a non-collaborator",
+    "body": "It's quite common for PRs from non-collaborators that have gotten approval to fall through the cracks because there's no one who remember to shepherd it through. I sometimes bump into one of these, and would restart a CI when I see one, but it's very hard to remember to go back keep resuming the CI (sigh) until it's green and land it. And from time to time I also see PRs waiting for months without moving forward due to this reason (not all new contributors know that they have to specifically ping for actions to move it forward, and they could be waiting in vain). I suspect many of the open PRs are stalled this way.\n\nIt would help the situation if there is a workflow that gets trigered by the author-ready label and would periodically (e.g. weekly) ping for status if it's opened by a non-collaborator (it's more likely that they don't know how to move it forward), at least sending a notification to the collaborators involved in that PR to press whatever button needed to move it forward.",
+    "reactions": 22,
+    "created_at": "2025-01-07T15:49:25Z",
+    "updated_at": "2026-05-24T01:47:16Z",
+    "labels": [
+      "meta",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/56504",
+    "html_url": "https://github.com/nodejs/node/issues/56504",
+    "author_login": "joyeecheung",
+    "author_profile": "https://github.com/joyeecheung",
+    "already_resurrected": false
+  },
+  {
+    "repo": "nodejs/node",
     "issue_number": 46074,
     "title": "Make Node.js more permissive when libraries ship invalid ESM code",
     "body": "### What is the problem this feature will solve?\r\n\r\nI'm the author of [vite-plugin-ssr](https://vite-plugin-ssr.com/) and a *lot* of users are having problems because many libraries ship invalid ESM code, which makes Node.js choke.\r\n\r\n(The reason why many libraries ship erronous ESM code is because frameworks like Next.js bundle the server-side code of libraries. Where Next.js is permissive and is able to process invalid ESM code, Node.js is strict and throws an error upon invalid ESM code.)\r\n\r\nMore information at https://vite-plugin-ssr.com/broken-npm-package#solution.\r\n\r\nThis is a concern not only for vite-plugin-ssr, but also for the whole Vite ecosystem such as Nuxt and SvelteKit (see [SvelteKit FAQ - How do I fix the error I'm getting trying to include a package?](https://kit.svelte.dev/faq#packages) which is, I quote, \"issues most commonly affecting SvelteKit users\").\r\n\r\nThe situation is quite bad and the feedback I get from users is quite vivid, to say the least.\r\n\r\nWhile one could say that it's \"Next.js's fault of being permissive\" (webpack more precisely speaking), the situation is what it is and it's not going to change anytime soon. So I propose following practical solution.\r\n\r\n### What is the feature you are proposing to solve the problem?\r\n\r\nMake Node.js more permissive.\r\n\r\nFor example, a widespread problem is npm packages having invalid ESM imports, e.g. `import './foo'` instead of `import './foo.js'`, which makes Node.js choke. Another example is packages that ship ESM but don't have `type: \"module\"` in their `package.json`. Node.js should be able to execute npm packages that ship invalid code.\r\n\r\nI'd make Node.js permissive only for npm packages (i.e. code living in `node_modules`), while being more strict for the user land.\r\n\r\n### What alternatives have you considered?\r\n\r\n**[Edit]** An alternative is to make npm validate packages before they are published: https://github.com/npm/rfcs/issues/665.",
