@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-05T17:56:12",
-  "total_resurrections": 78,
+  "last_updated": "2026-06-06T03:46:03",
+  "total_resurrections": 79,
   "total_repos_covered": 34,
-  "average_impact_score": 6.26,
-  "average_effort_hours": 75.44,
+  "average_impact_score": 6.24,
+  "average_effort_hours": 74.99,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-05",
-    "repo": "rails/rails",
-    "issue_number": 32790,
-    "title": "Folder with active storage",
-    "reactions": 122,
-    "abandoned_date": "2021-05-19T22:40:36Z",
-    "one_line_why": "Rails 7.0+ ActiveStorage improvements enable folder organization.",
+    "date": "2026-06-06",
+    "repo": "open-webui/open-webui",
+    "issue_number": 16935,
+    "title": "feat: Support new Image Generation base64 with OpenRouter",
+    "reactions": 70,
+    "abandoned_date": "2025-11-06T06:40:37Z",
+    "one_line_why": "The integration became feasible due to advancements in API integration and AI model support.",
     "impact_score": 5,
     "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "rails",
-      "activestorage",
-      "ruby"
+      "open-webui",
+      "typescript",
+      "image-generation"
     ],
-    "original_url": "https://github.com/rails/rails/issues/32790"
+    "original_url": "https://github.com/open-webui/open-webui/issues/16935"
   }
 }
