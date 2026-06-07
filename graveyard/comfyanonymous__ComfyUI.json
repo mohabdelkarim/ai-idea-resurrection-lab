@@ -761,5 +761,23 @@
     "author_login": "kabachuha",
     "author_profile": "https://github.com/kabachuha",
     "already_resurrected": false
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 12628,
+    "title": "ComfyUI keeps loading no or outdated workflows on startup",
+    "body": "### Custom Node Testing\n\n- [x] I have tried disabling custom nodes and the issue persists (see [how to disable custom nodes](https://docs.comfy.org/troubleshooting/custom-node-issues#step-1%3A-test-with-all-custom-nodes-disabled) if you need help)\n\n### Your question\n\nWith the option of session restore active, ComfyUI should open with the last saved state of the last used workflow (used to work consistently until several months ago).\n\nBut since an update late last year, ComfyUI opens with either the basic default workflow, or some old version of the last used workflow. Said old version can be from hours before the last time I actually saved it, or in one case even an entire day older. When I carefully close that version of the workflow without saving and load it again, it opens the correct version, so it seems to load some messed up cached version instead from who knows where.\n\nIn one potentially disastrous case (not this time due to being able to extract the last version from a generated image, but still), after the latest update it outright overwrote my saved workflow with an outdated version.\n\nDid ComfyUI at some point change the way it caches sessions, or saves cached old versions of workflows somewhere, and refers to those instead of the actual version saved in my user folder? It's extremely annoying behavior, and makes the whole \"restore session\" feature essentially useless.\n\n### Logs\n\n```powershell\n\n```\n\n### Other\n\n_No response_",
+    "reactions": 5,
+    "created_at": "2026-02-25T10:15:24Z",
+    "updated_at": "2026-05-24T12:52:20Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/12628",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/12628",
+    "author_login": "frooptown-netizen",
+    "author_profile": "https://github.com/frooptown-netizen",
+    "already_resurrected": false
   }
 ]
