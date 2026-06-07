@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-07",
+  "repo": "prometheus/prometheus",
+  "issue_number": 6934,
+  "title": "Memory usage spikes during WAL replay to more than normal usage",
+  "reactions": 119,
+  "abandoned_date": "2025-07-29T12:12:18Z",
+  "one_line_why": "Changes in Go 1.19+ improve garbage collection efficiency, making this feasible now.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "prometheus",
+    "tsdb",
+    "wal"
+  ],
+  "original_url": "https://github.com/prometheus/prometheus/issues/6934"
+}
