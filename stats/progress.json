@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-06T17:12:50",
-  "total_resurrections": 81,
+  "last_updated": "2026-06-07T04:13:47",
+  "total_resurrections": 82,
   "total_repos_covered": 34,
-  "average_impact_score": 6.25,
-  "average_effort_hours": 74.12,
+  "average_impact_score": 6.27,
+  "average_effort_hours": 73.71,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-06",
-    "repo": "open-webui/open-webui",
-    "issue_number": 16935,
-    "title": "feat: Support new Image Generation base64 with OpenRouter",
-    "reactions": 70,
-    "abandoned_date": "2025-11-06T06:40:37Z",
-    "one_line_why": "The integration became feasible due to advancements in API integration and AI model support.",
-    "impact_score": 5,
+    "date": "2026-06-07",
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 7530,
+    "title": "New Model: HiDream-I1-Full",
+    "reactions": 26,
+    "abandoned_date": "2025-06-19T08:42:41Z",
+    "one_line_why": "The Hugging Face Transformers library now supports efficient loading of AI models like HiDream-I1-Full.",
+    "impact_score": 8,
     "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "open-webui",
-      "typescript",
-      "image-generation"
+      "comfyui",
+      "huggingface",
+      "ai-models"
     ],
-    "original_url": "https://github.com/open-webui/open-webui/issues/16935"
+    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/7530"
   }
 }
