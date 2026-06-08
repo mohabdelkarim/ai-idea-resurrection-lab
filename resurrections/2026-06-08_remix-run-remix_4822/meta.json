@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-08",
+  "repo": "remix-run/remix",
+  "issue_number": 4822,
+  "title": "hydration error when there is a chrome extension that modifies DOM",
+  "reactions": 52,
+  "abandoned_date": "2025-03-20T10:56:12Z",
+  "one_line_why": "Remix's hydration process can now handle external DOM modifications with React 18's streaming SSR.",
+  "impact_score": 5,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "remix",
+    "react",
+    "ssr"
+  ],
+  "original_url": "https://github.com/remix-run/remix/issues/4822"
+}

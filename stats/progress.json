@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-08T16:55:48",
-  "total_resurrections": 86,
-  "total_repos_covered": 34,
-  "average_impact_score": 6.21,
-  "average_effort_hours": 72.43,
+  "last_updated": "2026-06-08T18:28:06",
+  "total_resurrections": 87,
+  "total_repos_covered": 35,
+  "average_impact_score": 6.2,
+  "average_effort_hours": 72.06,
   "top_tags": [
     "typescript",
     "go",
@@ -42,20 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-08",
-    "repo": "redis/redis",
-    "issue_number": 5203,
-    "title": "antirez summer vacations",
-    "reactions": 87,
-    "abandoned_date": "2021-02-02T18:28:12Z",
-    "one_line_why": "The issue was not a technical issue.",
-    "impact_score": 1,
-    "effort_hours": 1.0,
+    "repo": "remix-run/remix",
+    "issue_number": 4822,
+    "title": "hydration error when there is a chrome extension that modifies DOM",
+    "reactions": 52,
+    "abandoned_date": "2025-03-20T10:56:12Z",
+    "one_line_why": "Remix's hydration process can now handle external DOM modifications with React 18's streaming SSR.",
+    "impact_score": 5,
+    "effort_hours": 40.0,
     "has_poc": true,
-    "has_rfc": false,
-    "poc_language": "python",
+    "has_rfc": true,
+    "poc_language": "typescript",
     "technology_tags": [
-      "redis"
+      "remix",
+      "react",
+      "ssr"
     ],
-    "original_url": "https://github.com/redis/redis/issues/5203"
+    "original_url": "https://github.com/remix-run/remix/issues/4822"
   }
 }
