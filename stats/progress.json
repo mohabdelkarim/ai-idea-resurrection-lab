@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-07T17:16:56",
-  "total_resurrections": 84,
+  "last_updated": "2026-06-08T04:18:24",
+  "total_resurrections": 85,
   "total_repos_covered": 34,
-  "average_impact_score": 6.29,
-  "average_effort_hours": 73.86,
+  "average_impact_score": 6.27,
+  "average_effort_hours": 73.27,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-07",
-    "repo": "prometheus/prometheus",
-    "issue_number": 6934,
-    "title": "Memory usage spikes during WAL replay to more than normal usage",
-    "reactions": 119,
-    "abandoned_date": "2025-07-29T12:12:18Z",
-    "one_line_why": "Changes in Go 1.19+ improve garbage collection efficiency, making this feasible now.",
-    "impact_score": 7,
-    "effort_hours": 80.0,
+    "date": "2026-06-08",
+    "repo": "psf/requests",
+    "issue_number": 2766,
+    "title": "Document threading contract for Session class",
+    "reactions": 77,
+    "abandoned_date": "2025-11-07T00:04:58Z",
+    "one_line_why": "With Python's improved type hinting and documentation tools, we can now clearly document Session's threading contract.",
+    "impact_score": 5,
+    "effort_hours": 24.0,
     "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "go",
+    "has_rfc": false,
+    "poc_language": "python",
     "technology_tags": [
-      "prometheus",
-      "tsdb",
-      "wal"
+      "requests",
+      "python",
+      "documentation"
     ],
-    "original_url": "https://github.com/prometheus/prometheus/issues/6934"
+    "original_url": "https://github.com/psf/requests/issues/2766"
   }
 }

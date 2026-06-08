@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-08",
+  "repo": "psf/requests",
+  "issue_number": 2766,
+  "title": "Document threading contract for Session class",
+  "reactions": 77,
+  "abandoned_date": "2025-11-07T00:04:58Z",
+  "one_line_why": "With Python's improved type hinting and documentation tools, we can now clearly document Session's threading contract.",
+  "impact_score": 5,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "python",
+  "technology_tags": [
+    "requests",
+    "python",
+    "documentation"
+  ],
+  "original_url": "https://github.com/psf/requests/issues/2766"
+}
