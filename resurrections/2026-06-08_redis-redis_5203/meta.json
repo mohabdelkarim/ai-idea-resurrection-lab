@@ -1,0 +1,18 @@
+{
+  "date": "2026-06-08",
+  "repo": "redis/redis",
+  "issue_number": 5203,
+  "title": "antirez summer vacations",
+  "reactions": 87,
+  "abandoned_date": "2021-02-02T18:28:12Z",
+  "one_line_why": "The issue was not a technical issue.",
+  "impact_score": 1,
+  "effort_hours": 1.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "python",
+  "technology_tags": [
+    "redis"
+  ],
+  "original_url": "https://github.com/redis/redis/issues/5203"
+}

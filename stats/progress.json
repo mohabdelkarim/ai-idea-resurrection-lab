@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-08T04:18:24",
-  "total_resurrections": 85,
+  "last_updated": "2026-06-08T16:55:48",
+  "total_resurrections": 86,
   "total_repos_covered": 34,
-  "average_impact_score": 6.27,
-  "average_effort_hours": 73.27,
+  "average_impact_score": 6.21,
+  "average_effort_hours": 72.43,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,20 @@
   ],
   "last_resurrection": {
     "date": "2026-06-08",
-    "repo": "psf/requests",
-    "issue_number": 2766,
-    "title": "Document threading contract for Session class",
-    "reactions": 77,
-    "abandoned_date": "2025-11-07T00:04:58Z",
-    "one_line_why": "With Python's improved type hinting and documentation tools, we can now clearly document Session's threading contract.",
-    "impact_score": 5,
-    "effort_hours": 24.0,
+    "repo": "redis/redis",
+    "issue_number": 5203,
+    "title": "antirez summer vacations",
+    "reactions": 87,
+    "abandoned_date": "2021-02-02T18:28:12Z",
+    "one_line_why": "The issue was not a technical issue.",
+    "impact_score": 1,
+    "effort_hours": 1.0,
     "has_poc": true,
     "has_rfc": false,
     "poc_language": "python",
     "technology_tags": [
-      "requests",
-      "python",
-      "documentation"
+      "redis"
     ],
-    "original_url": "https://github.com/psf/requests/issues/2766"
+    "original_url": "https://github.com/redis/redis/issues/5203"
   }
 }
