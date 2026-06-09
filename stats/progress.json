@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-09T16:03:45",
-  "total_resurrections": 89,
+  "last_updated": "2026-06-09T18:04:35",
+  "total_resurrections": 90,
   "total_repos_covered": 35,
-  "average_impact_score": 6.25,
-  "average_effort_hours": 73.13,
+  "average_impact_score": 6.26,
+  "average_effort_hours": 73.21,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-09",
-    "repo": "facebook/react",
-    "issue_number": 10191,
-    "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
-    "reactions": 846,
-    "abandoned_date": "2018-02-17T17:10:18Z",
-    "one_line_why": "The open-source community's shift towards more permissive licenses like AL v2.0 makes re-licensing feasible.",
-    "impact_score": 9,
-    "effort_hours": 120.0,
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 18189,
+    "title": "Feature Request: Idle model unload timeout (router mode / config.ini)",
+    "reactions": 15,
+    "abandoned_date": "2026-05-03T13:11:56Z",
+    "one_line_why": "The ecosystem shift towards more efficient resource management in large language models makes this feature viable in 2026.",
+    "impact_score": 7,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "react",
-      "javascript",
-      "licensing"
+      "llama.cpp",
+      "model management",
+      "resource optimization"
     ],
-    "original_url": "https://github.com/facebook/react/issues/10191"
+    "original_url": "https://github.com/ggml-org/llama.cpp/issues/18189"
   }
 }
