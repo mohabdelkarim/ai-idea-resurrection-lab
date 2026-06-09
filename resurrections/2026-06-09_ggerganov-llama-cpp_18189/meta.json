@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-09",
+  "repo": "ggerganov/llama.cpp",
+  "issue_number": 18189,
+  "title": "Feature Request: Idle model unload timeout (router mode / config.ini)",
+  "reactions": 15,
+  "abandoned_date": "2026-05-03T13:11:56Z",
+  "one_line_why": "The ecosystem shift towards more efficient resource management in large language models makes this feature viable in 2026.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "llama.cpp",
+    "model management",
+    "resource optimization"
+  ],
+  "original_url": "https://github.com/ggml-org/llama.cpp/issues/18189"
+}
