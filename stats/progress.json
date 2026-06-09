@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-09T03:47:07",
-  "total_resurrections": 88,
+  "last_updated": "2026-06-09T16:03:45",
+  "total_resurrections": 89,
   "total_repos_covered": 35,
-  "average_impact_score": 6.22,
-  "average_effort_hours": 72.6,
+  "average_impact_score": 6.25,
+  "average_effort_hours": 73.13,
   "top_tags": [
     "typescript",
     "go",
@@ -12,6 +12,15 @@
     "ai"
   ],
   "hall_of_fame": [
+    {
+      "date": "2026-06-09",
+      "repo": "facebook/react",
+      "issue_number": 10191,
+      "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
+      "impact_score": 9,
+      "one_line_why": "The open-source community's shift towards more permissive licenses like AL v2.0 makes re-licensing feasible.",
+      "original_url": "https://github.com/facebook/react/issues/10191"
+    },
     {
       "date": "2026-05-13",
       "repo": "huggingface/transformers",
@@ -29,35 +38,26 @@
       "impact_score": 8,
       "one_line_why": "Dynamic resource allocation for DaemonSets is crucial for efficient utilization of diverse node environments in modern Kubernetes clusters.",
       "original_url": "https://github.com/kubernetes/kubernetes/issues/122753"
-    },
-    {
-      "date": "2026-05-27",
-      "repo": "hashicorp/terraform",
-      "issue_number": 4149,
-      "title": "Partial/Progressive Configuration Changes",
-      "impact_score": 8,
-      "one_line_why": "Partial configuration changes succeed now due to advancements in Terraform's provider protocol and improved planning and apply phases.",
-      "original_url": "https://github.com/hashicorp/terraform/issues/4149"
     }
   ],
   "last_resurrection": {
     "date": "2026-06-09",
-    "repo": "expressjs/express",
-    "issue_number": 2761,
-    "title": "Support for module http2?",
-    "reactions": 39,
-    "abandoned_date": "2025-03-28T19:37:00Z",
-    "one_line_why": "Node.js now has stable http2 support and TypeScript facilitates better compatibility.",
-    "impact_score": 8,
+    "repo": "facebook/react",
+    "issue_number": 10191,
+    "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
+    "reactions": 846,
+    "abandoned_date": "2018-02-17T17:10:18Z",
+    "one_line_why": "The open-source community's shift towards more permissive licenses like AL v2.0 makes re-licensing feasible.",
+    "impact_score": 9,
     "effort_hours": 120.0,
     "has_poc": true,
     "has_rfc": true,
     "poc_language": "typescript",
     "technology_tags": [
-      "express",
-      "http2",
-      "typescript"
+      "react",
+      "javascript",
+      "licensing"
     ],
-    "original_url": "https://github.com/expressjs/express/issues/2761"
+    "original_url": "https://github.com/facebook/react/issues/10191"
   }
 }

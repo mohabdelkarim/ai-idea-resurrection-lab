@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-09",
+  "repo": "facebook/react",
+  "issue_number": 10191,
+  "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
+  "reactions": 846,
+  "abandoned_date": "2018-02-17T17:10:18Z",
+  "one_line_why": "The open-source community's shift towards more permissive licenses like AL v2.0 makes re-licensing feasible.",
+  "impact_score": 9,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "react",
+    "javascript",
+    "licensing"
+  ],
+  "original_url": "https://github.com/facebook/react/issues/10191"
+}
