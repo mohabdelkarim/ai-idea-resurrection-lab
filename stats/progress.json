@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-09T18:04:35",
-  "total_resurrections": 90,
+  "last_updated": "2026-06-10T04:01:52",
+  "total_resurrections": 91,
   "total_repos_covered": 35,
   "average_impact_score": 6.26,
-  "average_effort_hours": 73.21,
+  "average_effort_hours": 73.29,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-09",
-    "repo": "ggerganov/llama.cpp",
-    "issue_number": 18189,
-    "title": "Feature Request: Idle model unload timeout (router mode / config.ini)",
-    "reactions": 15,
-    "abandoned_date": "2026-05-03T13:11:56Z",
-    "one_line_why": "The ecosystem shift towards more efficient resource management in large language models makes this feature viable in 2026.",
+    "date": "2026-06-10",
+    "repo": "golang/go",
+    "issue_number": 47657,
+    "title": "proposal: sync, sync/atomic: add PoolOf, MapOf, ValueOf",
+    "reactions": 171,
+    "abandoned_date": "2026-01-01T04:48:54Z",
+    "one_line_why": "Go generics stabilization in Go 1.18 enables type-safe implementation of PoolOf, MapOf, and ValueOf.",
     "impact_score": 7,
     "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
-      "llama.cpp",
-      "model management",
-      "resource optimization"
+      "go",
+      "sync",
+      "atomic"
     ],
-    "original_url": "https://github.com/ggml-org/llama.cpp/issues/18189"
+    "original_url": "https://github.com/golang/go/issues/47657"
   }
 }
