@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-10T04:01:52",
-  "total_resurrections": 91,
+  "last_updated": "2026-06-10T18:34:14",
+  "total_resurrections": 92,
   "total_repos_covered": 35,
-  "average_impact_score": 6.26,
-  "average_effort_hours": 73.29,
+  "average_impact_score": 6.27,
+  "average_effort_hours": 73.36,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-10",
-    "repo": "golang/go",
-    "issue_number": 47657,
-    "title": "proposal: sync, sync/atomic: add PoolOf, MapOf, ValueOf",
-    "reactions": 171,
-    "abandoned_date": "2026-01-01T04:48:54Z",
-    "one_line_why": "Go generics stabilization in Go 1.18 enables type-safe implementation of PoolOf, MapOf, and ValueOf.",
+    "repo": "grafana/grafana",
+    "issue_number": 6106,
+    "title": "Feature Request: add support for error bars in graphs",
+    "reactions": 73,
+    "abandoned_date": "2026-02-22T02:16:55Z",
+    "one_line_why": "Advances in Grafana's plugin architecture and data processing libraries enable error bar implementation.",
     "impact_score": 7,
     "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
-      "go",
-      "sync",
-      "atomic"
+      "grafana",
+      "graph",
+      "visualization"
     ],
-    "original_url": "https://github.com/golang/go/issues/47657"
+    "original_url": "https://github.com/grafana/grafana/issues/6106"
   }
 }
