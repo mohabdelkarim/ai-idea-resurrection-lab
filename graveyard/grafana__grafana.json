@@ -839,6 +839,26 @@
   },
   {
     "repo": "grafana/grafana",
+    "issue_number": 83013,
+    "title": "Table: Sort value mapped column by display text, not by value",
+    "body": "### Discussed in https://github.com/grafana/grafana/discussions/43280\r\n\r\n<div type='discussions-op-text'>\r\n\r\n<sup>Originally posted by **a-mazed** December 16, 2021</sup>\r\n**What happened**:\r\nWhen using value mapping for one of a column in my table, I want to sort this column by display text. But it can be sorted only by source values.\r\nFor example\r\n\r\n```\r\nvalue | Display text\r\n--------------------\r\n1     |  B\r\n2     |  A\r\n3     |  C\r\n```\r\nIn this case, I never get text ordered as ABC or CBA, only BAC or CAB\r\n\r\n**What you expected to happen**:\r\nI want to sort data in column by display text instead of values\r\n\r\n**Environment**:\r\n- Grafana version: 8.3.3\r\n- Data source type & version: SQL\r\n- OS Grafana is installed on:\r\n- User OS & Browser:\r\n- Grafana plugins:\r\n- Others:\r\n</div>",
+    "reactions": 18,
+    "created_at": "2024-02-17T19:44:12Z",
+    "updated_at": "2026-06-09T02:20:43Z",
+    "labels": [
+      "type/feature-request",
+      "area/panel/table",
+      "stale",
+      "migrated-discussions"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/83013",
+    "html_url": "https://github.com/grafana/grafana/issues/83013",
+    "author_login": "gelicia",
+    "author_profile": "https://github.com/gelicia",
+    "already_resurrected": false
+  },
+  {
+    "repo": "grafana/grafana",
     "issue_number": 78248,
     "title": "Alias PromQL metrics for Google Prometheus (Stackdriver) datasource",
     "body": "<!-- Please only use this template for submitting feature requests -->\r\n\r\n**Why is this needed**:\r\n\r\nCurrently, there's no way to alias metrics. It makes the legend very long and unreadable.\r\n\r\nInterestingly, it's possible to alias in the Builder mode (see pic).\r\n\r\n\r\n**What would you like to be added**:\r\n\r\nWe should be able to alias metrics as for Prometheus datasource using `{{label}}` syntax.\r\n\r\n\r\n**Who is this feature for?**\r\n\r\nI work at a company where we want to use PromQL and have our graphs clean.\r\n\r\n![image](https://github.com/grafana/grafana/assets/107541/26ba160f-bd3c-4885-a833-d7f4868fcf95)\r\n\r\n![image](https://github.com/grafana/grafana/assets/107541/91702e0b-4c70-423c-ae32-bbab671f2083)\r\n",
