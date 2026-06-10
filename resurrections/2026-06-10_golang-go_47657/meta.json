@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-10",
+  "repo": "golang/go",
+  "issue_number": 47657,
+  "title": "proposal: sync, sync/atomic: add PoolOf, MapOf, ValueOf",
+  "reactions": 171,
+  "abandoned_date": "2026-01-01T04:48:54Z",
+  "one_line_why": "Go generics stabilization in Go 1.18 enables type-safe implementation of PoolOf, MapOf, and ValueOf.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "go",
+    "sync",
+    "atomic"
+  ],
+  "original_url": "https://github.com/golang/go/issues/47657"
+}
