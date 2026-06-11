@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-10T18:34:14",
-  "total_resurrections": 92,
+  "last_updated": "2026-06-11T04:15:43",
+  "total_resurrections": 93,
   "total_repos_covered": 35,
   "average_impact_score": 6.27,
-  "average_effort_hours": 73.36,
+  "average_effort_hours": 73.0,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-10",
-    "repo": "grafana/grafana",
-    "issue_number": 6106,
-    "title": "Feature Request: add support for error bars in graphs",
-    "reactions": 73,
-    "abandoned_date": "2026-02-22T02:16:55Z",
-    "one_line_why": "Advances in Grafana's plugin architecture and data processing libraries enable error bar implementation.",
-    "impact_score": 7,
-    "effort_hours": 80.0,
+    "date": "2026-06-11",
+    "repo": "hashicorp/terraform",
+    "issue_number": 21966,
+    "title": "`terraform show <plan>` \"Backend reinitialization required\" within subfolder",
+    "reactions": 72,
+    "abandoned_date": "2023-04-23T02:13:04Z",
+    "one_line_why": "The new Terraform 1.6+ workspace management and improved plan file handling make this feasible now.",
+    "impact_score": 6,
+    "effort_hours": 40.0,
     "has_poc": true,
-    "has_rfc": true,
+    "has_rfc": false,
     "poc_language": "go",
     "technology_tags": [
-      "grafana",
-      "graph",
-      "visualization"
+      "terraform",
+      "go",
+      "backend"
     ],
-    "original_url": "https://github.com/grafana/grafana/issues/6106"
+    "original_url": "https://github.com/hashicorp/terraform/issues/21966"
   }
 }
