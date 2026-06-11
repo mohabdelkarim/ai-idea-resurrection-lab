@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-11",
+  "repo": "kubernetes/kubernetes",
+  "issue_number": 64623,
+  "title": "Run job on each node once to help with setup",
+  "reactions": 70,
+  "abandoned_date": "2024-02-18T16:58:17Z",
+  "one_line_why": "Kubeadm 1.22+ and OPA Gatekeeper 2.0 make node-specific initialization safer and more feasible.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "kubernetes",
+    "daemonset",
+    "kubeadm"
+  ],
+  "original_url": "https://github.com/kubernetes/kubernetes/issues/64623"
+}
