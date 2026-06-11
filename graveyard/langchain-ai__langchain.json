@@ -108,6 +108,44 @@
   },
   {
     "repo": "langchain-ai/langchain",
+    "issue_number": 34956,
+    "title": "Enable Exporting Select Agent Metrics to Customer-facing Dashboards in Real-Time",
+    "body": "### Checked other resources\n\n- [x] This is a feature request, not a bug report or usage question.\n- [x] I added a clear and descriptive title that summarizes the feature request.\n- [x] I used the GitHub search to find a similar feature request and didn't find it.\n- [x] I checked the LangChain documentation and API reference to see if this feature already exists.\n- [x] This is not related to the langchain-community package.\n\n### Package (Required)\n\n- [x] langchain\n- [ ] langchain-openai\n- [ ] langchain-anthropic\n- [ ] langchain-classic\n- [ ] langchain-core\n- [ ] langchain-model-profiles\n- [ ] langchain-tests\n- [ ] langchain-text-splitters\n- [ ] langchain-chroma\n- [ ] langchain-deepseek\n- [ ] langchain-exa\n- [ ] langchain-fireworks\n- [ ] langchain-groq\n- [ ] langchain-huggingface\n- [ ] langchain-mistralai\n- [ ] langchain-nomic\n- [ ] langchain-ollama\n- [ ] langchain-perplexity\n- [ ] langchain-prompty\n- [ ] langchain-qdrant\n- [ ] langchain-xai\n- [ ] Other / not sure / general\n\n### Feature Description\n\nLangchain needs to enable exporting standard AI agent metrics (e.g., latency, token usage) to customer-facing dashboards for cost visibility, usage monitoring, etc.\n\n### Use Case\n\nReal use case: We have Langchain-based agent. The customer requires adding latency and token usage metrics to their dashboard.\n\nCurrently, these metrics can be found in Langsmith, but the latter isn't designed to be customer-facing and may expose debugging internals that will overhelm the customer.\n\nWe need to enable developers to plug in their own metrics exporter (e.g., Promotheus-based). Simultaneously, the exported metrics must be correlated with Langsmith (and optionally OpenTelemetry) traces to enable end-to-end observability and trace-level drill-downs.\n\n### Proposed Solution\n\nMy proposed solution: https://github.com/langchain-ai/langchain/pull/34947\n\n### Alternatives Considered\n\nDevelopers must pull these metrics from Langsmith, which adds extra hops to the data flow and introduces additional failure points.\n\n### Additional Context\n\n_No response_",
+    "reactions": 9,
+    "created_at": "2026-02-01T10:17:29Z",
+    "updated_at": "2026-06-11T07:31:01Z",
+    "labels": [
+      "langchain",
+      "feature request",
+      "external"
+    ],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/34956",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/34956",
+    "author_login": "f4roukb",
+    "author_profile": "https://github.com/f4roukb",
+    "already_resurrected": false
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "issue_number": 34955,
+    "title": "Enable Messages PII Anonymization through External APIs",
+    "body": "### Checked other resources\n\n- [x] This is a feature request, not a bug report or usage question.\n- [x] I added a clear and descriptive title that summarizes the feature request.\n- [x] I used the GitHub search to find a similar feature request and didn't find it.\n- [x] I checked the LangChain documentation and API reference to see if this feature already exists.\n- [x] This is not related to the langchain-community package.\n\n### Package (Required)\n\n- [x] langchain\n- [ ] langchain-openai\n- [ ] langchain-anthropic\n- [ ] langchain-classic\n- [ ] langchain-core\n- [ ] langchain-model-profiles\n- [ ] langchain-tests\n- [ ] langchain-text-splitters\n- [ ] langchain-chroma\n- [ ] langchain-deepseek\n- [ ] langchain-exa\n- [ ] langchain-fireworks\n- [ ] langchain-groq\n- [ ] langchain-huggingface\n- [ ] langchain-mistralai\n- [ ] langchain-nomic\n- [ ] langchain-ollama\n- [ ] langchain-perplexity\n- [ ] langchain-prompty\n- [ ] langchain-qdrant\n- [ ] langchain-xai\n- [ ] Other / not sure / general\n\n### Feature Description\n\nLangchain needs to enable developers to use their own anonymization solution for anonymizing agent messages, with as minimal overhead as possible. \n\n### Use Case\n\nReal Scenario: We have a Langchain-based agent. For compliance reasons, our business needs to:\n1. Remove PII from the user message, to keep the user anonymous.\n2. Remove PII from the AI message, potentially coming from the tools or from foundational knowledge.\n3. Remove PII from the tool messages, to be shown in a PII-free UI.\n\nCurrently, PIIMiddleware offers limited possibility for anonymization–to use it, one needs a PII detector that is compatible with a specific PII taxonomy (e.g., email address). Many anonymization solutions today serve directly the anonimyzed version of the content, so the PII detection phase is not even exposed and so cannot be used with the PIIMiddleware, let alone that the PII taxonomy may differ.\n\nAn anonymization middleware makes it easier for developers to integrate anonymization APIs (e.g., from cloud services or third-party software) or even custom solutions (e.g., deep learning solutions), into their agent. This bring-your-own-anonymization solution will help us address the compliance challenges that are necessary to continue using Langchain in customer PoCs and production environments. \n\n### Proposed Solution\n\nMy proposed solution: https://github.com/langchain-ai/langchain/pull/34948\n\n### Alternatives Considered\n\nThere seems to be no lightweight alternative here. Please feel free to make suggestions.\n\n### Additional Context\n\n_No response_",
+    "reactions": 8,
+    "created_at": "2026-02-01T09:49:50Z",
+    "updated_at": "2026-06-05T19:45:52Z",
+    "labels": [
+      "langchain",
+      "feature request",
+      "external"
+    ],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/34955",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/34955",
+    "author_login": "f4roukb",
+    "author_profile": "https://github.com/f4roukb",
+    "already_resurrected": false
+  },
+  {
+    "repo": "langchain-ai/langchain",
     "issue_number": 34056,
     "title": "Add the Gemini 3 pro's `thought_signature` support in langchain-openai",
     "body": "### Checked other resources\n\n- [x] This is a feature request, not a bug report or usage question.\n- [x] I added a clear and descriptive title that summarizes the feature request.\n- [x] I used the GitHub search to find a similar feature request and didn't find it.\n- [x] I checked the LangChain documentation and API reference to see if this feature already exists.\n- [x] This is not related to the langchain-community package.\n\n### Package (Required)\n\n- [ ] langchain\n- [x] langchain-openai\n- [ ] langchain-anthropic\n- [ ] langchain-classic\n- [ ] langchain-core\n- [ ] langchain-cli\n- [ ] langchain-model-profiles\n- [ ] langchain-tests\n- [ ] langchain-text-splitters\n- [ ] langchain-chroma\n- [ ] langchain-deepseek\n- [ ] langchain-exa\n- [ ] langchain-fireworks\n- [ ] langchain-groq\n- [ ] langchain-huggingface\n- [ ] langchain-mistralai\n- [ ] langchain-nomic\n- [ ] langchain-ollama\n- [ ] langchain-perplexity\n- [ ] langchain-prompty\n- [ ] langchain-qdrant\n- [ ] langchain-xai\n- [ ] Other / not sure / general\n\n### Feature Description\n\nWe are currently calling Gemini 3 pro through the chain **langchain-openai** → **OpenRouter** → **Gemini 3 pro**.\nThe newly released [Gemini 3 Pro](https://ai.google.dev/gemini-api/docs/thought-signatures) requires passing back the thoughtSignatures parameter during tool calls, but this parameter is only supported in langchain-google-genai, not in langchain-openai.\n\n<img width=\"1515\" height=\"694\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/89cffcaf-88df-49c6-a1d0-0a58cd080b97\" />\n\n### Use Case\n\nOnce we add the support for thought-signatures, we can use the chain **langchain-openai** → **OpenRouter** → **Gemini 3 pro**.\n\n### Proposed Solution\n\n_No response_\n\n### Alternatives Considered\n\n_No response_\n\n### Additional Context\n\n_No response_",
@@ -176,6 +214,24 @@
     "html_url": "https://github.com/langchain-ai/langchain/issues/33635",
     "author_login": "Haknt",
     "author_profile": "https://github.com/Haknt",
+    "already_resurrected": false
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "issue_number": 33056,
+    "title": "Richer Interface for Multimodal Data and BaseChat Interaction",
+    "body": "### Checked other resources\n\n- [x] This is a feature request, not a bug report or usage question.\n- [x] I added a clear and descriptive title that summarizes the feature request.\n- [x] I used the GitHub search to find a similar feature request and didn't find it.\n- [x] I checked the LangChain documentation and API reference to see if this feature already exists.\n- [x] This is not related to the langchain-community package.\n\n### Feature Description\n\nBased on my experience with Langchain, I find the `langchain.Document` interface to be too generic—perhaps intentionally so, to support a wide range of use cases. However, as LLMs continue to evolve, especially with growing multimodal capabilities, the need for a richer, more expressive interface for data parsing, storage, retrieval, LLM interaction, and citation becomes increasingly critical.\nCurrently, `Langchain.Document` is not expressive enough to represent complex or structured information beyond plain text. I also explored `Langchain.BaseMedia`, which partially addresses multimodality (e.g., image/audio), but it still lacks the granularity required for representing tables, formulas, and other structured formats. I’m expanding the concept of \"modality\" here to include more sophisticated constructs for representing information.\n\n### Use Case\n\n### Existing Gaps and Observations\nThere are interfaces in other systems that attempt to support richer representations, but many are tightly coupled with specific document parsers. For example:\n* **[Docling](https://docling-project.github.io/docling/concepts/docling_document/#example-document-structures)** provides its own schema for structured outputs from parsed documents (text, tables, images, etc.).\n* Other parser APIs like **LandingAI** or **LlamaParse** also return structured outputs (e.g., in JSON, HTML, Markdown).\n\nThis reveals a broader opportunity: to define a **common interface** in Langchain that can represent different modalities - `TextElement`, `ImageElement`, `TableElement`, `AudioElement`, etc. - as part of a unified `MultimodalDocument`, which could be implemented as something like `List[Element]`.\nSuch a structure could assume vertically stacked elements by default, but it could also support layout-aware metadata (e.g., page number, bounding boxes) if the parser is capable of providing it.\nCurrently, most Langchain chains/runnables (e.g., for Q\\&A) are text-based. They expect retrievers to return a `List[Document]` where the content is textual. These documents are typically concatenated into a prompt string passed to the LLM.\nHowever, in the multimodal setting, this approach doesn’t scale well. You need to interact with the LLM using `HumanMessage` objects that might represent different modalities. The current workaround - dumping everything into `Document.metadata` and reconstructing `HumanMessage` types (text, image, etc.) from there - is hacky, hard to reuse, and error-prone.\n\nThere’s a clear **design gap** here:\n* Langchain expects ret",
+    "reactions": 5,
+    "created_at": "2025-09-23T17:05:46Z",
+    "updated_at": "2026-06-11T07:28:24Z",
+    "labels": [
+      "feature request",
+      "external"
+    ],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/33056",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/33056",
+    "author_login": "mprudra",
+    "author_profile": "https://github.com/mprudra",
     "already_resurrected": false
   }
 ]

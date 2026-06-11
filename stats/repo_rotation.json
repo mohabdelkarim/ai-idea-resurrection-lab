@@ -19,7 +19,7 @@
   "hashicorp/terraform": "2026-06-11T04:15:43.916284+00:00",
   "huggingface/transformers": "2026-05-13T15:36:39.200099+00:00",
   "kubernetes/kubernetes": "2026-06-11T17:01:58.794294+00:00",
-  "langchain-ai/langchain": "2026-06-04T18:17:00.870028+00:00",
+  "langchain-ai/langchain": "2026-06-11T18:50:22.219740+00:00",
   "llvm/llvm-project": "2026-05-14T03:42:57.121035+00:00",
   "microsoft/TypeScript": "2026-06-05T04:03:44.129288+00:00",
   "microsoft/semantic-kernel": "2026-05-15T03:45:00.067325+00:00",
