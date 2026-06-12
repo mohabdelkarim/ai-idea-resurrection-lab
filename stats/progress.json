@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-12T16:26:33",
-  "total_resurrections": 97,
+  "last_updated": "2026-06-12T18:08:54",
+  "total_resurrections": 98,
   "total_repos_covered": 35,
-  "average_impact_score": 6.28,
-  "average_effort_hours": 73.54,
+  "average_impact_score": 6.29,
+  "average_effort_hours": 73.81,
   "top_tags": [
     "typescript",
     "go",
