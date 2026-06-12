@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-12",
+  "repo": "ohmyzsh/ohmyzsh",
+  "issue_number": 7688,
+  "title": "Warning: plugin zsh-syntax-highlighting not found",
+  "reactions": 94,
+  "abandoned_date": "2025-03-13T17:55:42Z",
+  "one_line_why": "Improved plugin management in oh-my-zsh now allows for explicit plugin loading.",
+  "impact_score": 5,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "python",
+  "technology_tags": [
+    "ohmyzsh",
+    "zsh",
+    "plugins"
+  ],
+  "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7688"
+}

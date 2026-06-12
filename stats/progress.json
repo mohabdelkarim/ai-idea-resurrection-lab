@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-12T04:16:44",
-  "total_resurrections": 96,
+  "last_updated": "2026-06-12T16:26:33",
+  "total_resurrections": 97,
   "total_repos_covered": 35,
-  "average_impact_score": 6.29,
-  "average_effort_hours": 74.05,
+  "average_impact_score": 6.28,
+  "average_effort_hours": 73.54,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-12",
-    "repo": "microsoft/TypeScript",
-    "issue_number": 29729,
-    "title": "Literal String Union Autocomplete",
-    "reactions": 245,
-    "abandoned_date": "2025-01-08T18:47:50Z",
-    "one_line_why": "TypeScript 5.0's improved type inference and IntelliSense enable efficient handling of complex unions.",
-    "impact_score": 8,
-    "effort_hours": 120.0,
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 7688,
+    "title": "Warning: plugin zsh-syntax-highlighting not found",
+    "reactions": 94,
+    "abandoned_date": "2025-03-13T17:55:42Z",
+    "one_line_why": "Improved plugin management in oh-my-zsh now allows for explicit plugin loading.",
+    "impact_score": 5,
+    "effort_hours": 24.0,
     "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "typescript",
+    "has_rfc": false,
+    "poc_language": "python",
     "technology_tags": [
-      "typescript",
-      "autocomplete",
-      "intellisense"
+      "ohmyzsh",
+      "zsh",
+      "plugins"
     ],
-    "original_url": "https://github.com/microsoft/TypeScript/issues/29729"
+    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7688"
   }
 }
