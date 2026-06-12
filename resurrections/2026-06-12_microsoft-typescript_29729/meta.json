@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-12",
+  "repo": "microsoft/TypeScript",
+  "issue_number": 29729,
+  "title": "Literal String Union Autocomplete",
+  "reactions": 245,
+  "abandoned_date": "2025-01-08T18:47:50Z",
+  "one_line_why": "TypeScript 5.0's improved type inference and IntelliSense enable efficient handling of complex unions.",
+  "impact_score": 8,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "typescript",
+    "autocomplete",
+    "intellisense"
+  ],
+  "original_url": "https://github.com/microsoft/TypeScript/issues/29729"
+}
