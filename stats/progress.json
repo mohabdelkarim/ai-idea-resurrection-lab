@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-12T18:08:54",
-  "total_resurrections": 98,
+  "last_updated": "2026-06-13T04:04:36",
+  "total_resurrections": 99,
   "total_repos_covered": 35,
   "average_impact_score": 6.29,
-  "average_effort_hours": 73.81,
+  "average_effort_hours": 73.3,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-12",
-    "repo": "ohmyzsh/ohmyzsh",
-    "issue_number": 7688,
-    "title": "Warning: plugin zsh-syntax-highlighting not found",
-    "reactions": 94,
-    "abandoned_date": "2025-03-13T17:55:42Z",
-    "one_line_why": "Improved plugin management in oh-my-zsh now allows for explicit plugin loading.",
-    "impact_score": 5,
+    "date": "2026-06-13",
+    "repo": "ollama/ollama",
+    "issue_number": 12436,
+    "title": "Option to disable all Cloud and remote Search features",
+    "reactions": 7,
+    "abandoned_date": "2025-10-12T12:36:08Z",
+    "one_line_why": "The increasing importance of data privacy and the availability of modern configuration management tools make this feature viable in 2026.",
+    "impact_score": 7,
     "effort_hours": 24.0,
     "has_poc": true,
-    "has_rfc": false,
-    "poc_language": "python",
+    "has_rfc": true,
+    "poc_language": "go",
     "technology_tags": [
-      "ohmyzsh",
-      "zsh",
-      "plugins"
+      "ollama",
+      "privacy",
+      "configuration"
     ],
-    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7688"
+    "original_url": "https://github.com/ollama/ollama/issues/12436"
   }
 }
