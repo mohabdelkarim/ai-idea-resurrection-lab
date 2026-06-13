@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-13",
+  "repo": "ollama/ollama",
+  "issue_number": 12436,
+  "title": "Option to disable all Cloud and remote Search features",
+  "reactions": 7,
+  "abandoned_date": "2025-10-12T12:36:08Z",
+  "one_line_why": "The increasing importance of data privacy and the availability of modern configuration management tools make this feature viable in 2026.",
+  "impact_score": 7,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "ollama",
+    "privacy",
+    "configuration"
+  ],
+  "original_url": "https://github.com/ollama/ollama/issues/12436"
+}
