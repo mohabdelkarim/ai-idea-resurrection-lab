@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-13",
+  "repo": "nodejs/node",
+  "issue_number": 32022,
+  "title": "Solid Node.js with official type system support",
+  "reactions": 27,
+  "abandoned_date": "2023-05-05T01:26:53Z",
+  "one_line_why": "TypeScript's evolution and Node.js' API changes enable feasible official type support now.",
+  "impact_score": 8,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "nodejs",
+    "typescript",
+    "types"
+  ],
+  "original_url": "https://github.com/nodejs/node/issues/32022"
+}
