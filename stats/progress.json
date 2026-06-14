@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-13T17:23:46",
-  "total_resurrections": 101,
+  "last_updated": "2026-06-14T04:23:32",
+  "total_resurrections": 102,
   "total_repos_covered": 35,
   "average_impact_score": 6.31,
-  "average_effort_hours": 73.44,
+  "average_effort_hours": 73.5,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-13",
-    "repo": "ollama/ollama",
-    "issue_number": 12436,
-    "title": "Option to disable all Cloud and remote Search features",
-    "reactions": 7,
-    "abandoned_date": "2025-10-12T12:36:08Z",
-    "one_line_why": "The increasing importance of data privacy and the availability of modern configuration management tools make this feature viable in 2026.",
+    "date": "2026-06-14",
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 6375,
+    "title": "Add support for Nvidia cosmos models",
+    "reactions": 19,
+    "abandoned_date": "2025-01-18T23:25:36Z",
+    "one_line_why": "The Hugging Face Transformers library now supports Nvidia cosmos models, making integration feasible.",
     "impact_score": 7,
-    "effort_hours": 24.0,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "python",
     "technology_tags": [
-      "ollama",
-      "privacy",
-      "configuration"
+      "comfyui",
+      "nvidia",
+      "diffusion-models"
     ],
-    "original_url": "https://github.com/ollama/ollama/issues/12436"
+    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/6375"
   }
 }
