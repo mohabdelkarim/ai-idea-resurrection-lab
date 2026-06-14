@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-14",
+  "repo": "docker/compose",
+  "issue_number": 9586,
+  "title": "\"Custom build outputs\" support",
+  "reactions": 15,
+  "abandoned_date": "2025-11-13T13:18:51Z",
+  "one_line_why": "Docker BuildKit's API now enables custom build output implementations.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "docker",
+    "compose",
+    "buildkit"
+  ],
+  "original_url": "https://github.com/docker/compose/issues/9586"
+}
