@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-14",
+  "repo": "comfyanonymous/ComfyUI",
+  "issue_number": 6375,
+  "title": "Add support for Nvidia cosmos models",
+  "reactions": 19,
+  "abandoned_date": "2025-01-18T23:25:36Z",
+  "one_line_why": "The Hugging Face Transformers library now supports Nvidia cosmos models, making integration feasible.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "comfyui",
+    "nvidia",
+    "diffusion-models"
+  ],
+  "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/6375"
+}
