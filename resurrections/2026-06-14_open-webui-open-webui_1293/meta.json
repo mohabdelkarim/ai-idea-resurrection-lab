@@ -1,0 +1,22 @@
+{
+  "date": "2026-06-14",
+  "repo": "open-webui/open-webui",
+  "issue_number": 1293,
+  "title": "feat: better RAG",
+  "reactions": 70,
+  "abandoned_date": "2025-02-16T01:39:22Z",
+  "one_line_why": "The ecosystem shift towards low-code and no-code tools, along with advancements in TypeScript and web development frameworks, makes this feature.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "open-webui",
+    "webui",
+    "typescript",
+    "api-connectors",
+    "database-connectors"
+  ],
+  "original_url": "https://github.com/open-webui/open-webui/issues/1293"
+}
