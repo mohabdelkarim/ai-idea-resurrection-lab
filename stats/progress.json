@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-14T04:23:32",
-  "total_resurrections": 102,
+  "last_updated": "2026-06-14T15:12:22",
+  "total_resurrections": 103,
   "total_repos_covered": 35,
-  "average_impact_score": 6.31,
-  "average_effort_hours": 73.5,
+  "average_impact_score": 6.32,
+  "average_effort_hours": 73.95,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,24 @@
   ],
   "last_resurrection": {
     "date": "2026-06-14",
-    "repo": "comfyanonymous/ComfyUI",
-    "issue_number": 6375,
-    "title": "Add support for Nvidia cosmos models",
-    "reactions": 19,
-    "abandoned_date": "2025-01-18T23:25:36Z",
-    "one_line_why": "The Hugging Face Transformers library now supports Nvidia cosmos models, making integration feasible.",
+    "repo": "open-webui/open-webui",
+    "issue_number": 1293,
+    "title": "feat: better RAG",
+    "reactions": 70,
+    "abandoned_date": "2025-02-16T01:39:22Z",
+    "one_line_why": "The ecosystem shift towards low-code and no-code tools, along with advancements in TypeScript and web development frameworks, makes this feature.",
     "impact_score": 7,
-    "effort_hours": 80.0,
-    "has_poc": true,
+    "effort_hours": 120.0,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "comfyui",
-      "nvidia",
-      "diffusion-models"
+      "open-webui",
+      "webui",
+      "typescript",
+      "api-connectors",
+      "database-connectors"
     ],
-    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/6375"
+    "original_url": "https://github.com/open-webui/open-webui/issues/1293"
   }
 }
