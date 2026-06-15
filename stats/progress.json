@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-15T18:03:37",
-  "total_resurrections": 106,
+  "last_updated": "2026-06-15T19:51:39",
+  "total_resurrections": 107,
   "total_repos_covered": 35,
-  "average_impact_score": 6.34,
-  "average_effort_hours": 74.12,
+  "average_impact_score": 6.35,
+  "average_effort_hours": 74.18,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-15",
-    "repo": "psf/requests",
-    "issue_number": 3070,
-    "title": "Consider making Timeout option required or have a default",
-    "reactions": 66,
-    "abandoned_date": "2024-05-21T10:16:30Z",
-    "one_line_why": "Python's async/await stabilisation and growing use of async libraries make explicit timeouts more feasible.",
+    "repo": "rails/rails",
+    "issue_number": 21948,
+    "title": "CSRF protection prevents some webkit users from submitting forms",
+    "reactions": 105,
+    "abandoned_date": "2022-12-22T16:55:42Z",
+    "one_line_why": "The issue can be revisited due to modern browser improvements in handling session cookies and caching, specifically with the introduction.",
     "impact_score": 7,
-    "effort_hours": 40.0,
+    "effort_hours": 80.0,
     "has_poc": true,
-    "has_rfc": true,
+    "has_rfc": false,
     "poc_language": "python",
     "technology_tags": [
-      "requests",
-      "python",
-      "timeout"
+      "rails",
+      "csrf",
+      "webkit"
     ],
-    "original_url": "https://github.com/psf/requests/issues/3070"
+    "original_url": "https://github.com/rails/rails/issues/21948"
   }
 }

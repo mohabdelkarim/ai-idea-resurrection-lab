@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-15",
+  "repo": "rails/rails",
+  "issue_number": 21948,
+  "title": "CSRF protection prevents some webkit users from submitting forms",
+  "reactions": 105,
+  "abandoned_date": "2022-12-22T16:55:42Z",
+  "one_line_why": "The issue can be revisited due to modern browser improvements in handling session cookies and caching, specifically with the introduction.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "python",
+  "technology_tags": [
+    "rails",
+    "csrf",
+    "webkit"
+  ],
+  "original_url": "https://github.com/rails/rails/issues/21948"
+}
