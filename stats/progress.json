@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-14T17:22:06",
-  "total_resurrections": 104,
+  "last_updated": "2026-06-15T04:46:24",
+  "total_resurrections": 105,
   "total_repos_covered": 35,
-  "average_impact_score": 6.32,
-  "average_effort_hours": 74.01,
+  "average_impact_score": 6.33,
+  "average_effort_hours": 74.45,
   "top_tags": [
     "typescript",
     "go",
@@ -41,25 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-14",
-    "repo": "open-webui/open-webui",
-    "issue_number": 1293,
-    "title": "feat: better RAG",
-    "reactions": 70,
-    "abandoned_date": "2025-02-16T01:39:22Z",
-    "one_line_why": "The ecosystem shift towards low-code and no-code tools, along with advancements in TypeScript and web development frameworks, makes this feature.",
-    "impact_score": 7,
+    "date": "2026-06-15",
+    "repo": "prometheus/prometheus",
+    "issue_number": 4633,
+    "title": "Monitoring kubernetes with prometheus from outside of k8s cluster.",
+    "reactions": 68,
+    "abandoned_date": "2021-12-01T23:21:39Z",
+    "one_line_why": "The stabilization of Kubernetes APIs and Go client libraries enables a straightforward proxy-based solution.",
+    "impact_score": 8,
     "effort_hours": 120.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "go",
     "technology_tags": [
-      "open-webui",
-      "webui",
-      "typescript",
-      "api-connectors",
-      "database-connectors"
+      "prometheus",
+      "kubernetes",
+      "go"
     ],
-    "original_url": "https://github.com/open-webui/open-webui/issues/1293"
+    "original_url": "https://github.com/prometheus/prometheus/issues/4633"
   }
 }
