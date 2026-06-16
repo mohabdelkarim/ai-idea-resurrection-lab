@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-16",
+  "repo": "facebook/react",
+  "issue_number": 12014,
+  "title": "Have Fragments support dangerouslySetInnerHTML",
+  "reactions": 477,
+  "abandoned_date": "2023-09-06T14:31:21Z",
+  "one_line_why": "React Server Components and modern sanitization libraries like DOMPurify now make this feature feasible.",
+  "impact_score": 8,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "react",
+    "typescript",
+    "ssr"
+  ],
+  "original_url": "https://github.com/facebook/react/issues/12014"
+}
