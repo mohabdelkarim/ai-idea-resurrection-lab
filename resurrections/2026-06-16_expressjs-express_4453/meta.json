@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-16",
+  "repo": "expressjs/express",
+  "issue_number": 4453,
+  "title": "Allow specifying JSON stringifier",
+  "reactions": 28,
+  "abandoned_date": "2025-12-03T18:19:43Z",
+  "one_line_why": "The addition of json-bigint and similar libraries now makes this feasible.",
+  "impact_score": 7,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "express",
+    "json",
+    "typescript"
+  ],
+  "original_url": "https://github.com/expressjs/express/issues/4453"
+}

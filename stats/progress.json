@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-15T19:51:39",
-  "total_resurrections": 107,
+  "last_updated": "2026-06-16T18:10:29",
+  "total_resurrections": 108,
   "total_repos_covered": 35,
   "average_impact_score": 6.35,
-  "average_effort_hours": 74.18,
+  "average_effort_hours": 73.71,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-15",
-    "repo": "rails/rails",
-    "issue_number": 21948,
-    "title": "CSRF protection prevents some webkit users from submitting forms",
-    "reactions": 105,
-    "abandoned_date": "2022-12-22T16:55:42Z",
-    "one_line_why": "The issue can be revisited due to modern browser improvements in handling session cookies and caching, specifically with the introduction.",
+    "date": "2026-06-16",
+    "repo": "expressjs/express",
+    "issue_number": 4453,
+    "title": "Allow specifying JSON stringifier",
+    "reactions": 28,
+    "abandoned_date": "2025-12-03T18:19:43Z",
+    "one_line_why": "The addition of json-bigint and similar libraries now makes this feasible.",
     "impact_score": 7,
-    "effort_hours": 80.0,
+    "effort_hours": 24.0,
     "has_poc": true,
-    "has_rfc": false,
-    "poc_language": "python",
+    "has_rfc": true,
+    "poc_language": "typescript",
     "technology_tags": [
-      "rails",
-      "csrf",
-      "webkit"
+      "express",
+      "json",
+      "typescript"
     ],
-    "original_url": "https://github.com/rails/rails/issues/21948"
+    "original_url": "https://github.com/expressjs/express/issues/4453"
   }
 }
