@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-17",
+  "repo": "redis/redis",
+  "issue_number": 5179,
+  "title": "maybe an optimizable point for zadd operation",
+  "reactions": 62,
+  "abandoned_date": "2022-06-13T09:06:37Z",
+  "one_line_why": "Redis ziplist and dict improvements make optimizing zadd for small score deltas feasible now.",
+  "impact_score": 2,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "redis",
+    "sorted-sets",
+    "skiplist"
+  ],
+  "original_url": "https://github.com/redis/redis/issues/5179"
+}
