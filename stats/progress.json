@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-16T19:35:40",
-  "total_resurrections": 109,
+  "last_updated": "2026-06-17T04:24:10",
+  "total_resurrections": 110,
   "total_repos_covered": 35,
-  "average_impact_score": 6.37,
-  "average_effort_hours": 73.77,
+  "average_impact_score": 6.38,
+  "average_effort_hours": 74.19,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,23 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-16",
-    "repo": "facebook/react",
-    "issue_number": 12014,
-    "title": "Have Fragments support dangerouslySetInnerHTML",
-    "reactions": 477,
-    "abandoned_date": "2023-09-06T14:31:21Z",
-    "one_line_why": "React Server Components and modern sanitization libraries like DOMPurify now make this feature feasible.",
+    "date": "2026-06-17",
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 17280,
+    "title": "Feature Request: ERNIE-4.5-VL-28B-A3B-Thinking support",
+    "reactions": 11,
+    "abandoned_date": "2026-01-29T01:09:08Z",
+    "one_line_why": "Recent advancements in model optimization and conversion tools make integration of ERNIE-4.5-VL-28B-A3B-Thinking feasible now.",
     "impact_score": 8,
-    "effort_hours": 80.0,
+    "effort_hours": 120.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "react",
-      "typescript",
-      "ssr"
+      "llama.cpp",
+      "multimodal-models",
+      "transformers"
     ],
-    "original_url": "https://github.com/facebook/react/issues/12014"
+    "original_url": "https://github.com/ggml-org/llama.cpp/issues/17280"
   }
 }
