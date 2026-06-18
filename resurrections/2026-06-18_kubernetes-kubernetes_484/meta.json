@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-18",
+  "repo": "kubernetes/kubernetes",
+  "issue_number": 484,
+  "title": "Service scale-to-zero (fka \"Socket activation\")",
+  "reactions": 57,
+  "abandoned_date": "2024-04-28T22:50:54Z",
+  "one_line_why": "Advances in serverless computing and Kubernetes extensions like Knative make socket activation feasible and valuable for efficient resource utilization.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "kubernetes",
+    "scale-to-zero",
+    "socket-activation"
+  ],
+  "original_url": "https://github.com/kubernetes/kubernetes/issues/484"
+}

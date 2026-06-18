@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-18T16:40:08",
-  "total_resurrections": 114,
+  "last_updated": "2026-06-18T18:29:24",
+  "total_resurrections": 115,
   "total_repos_covered": 35,
-  "average_impact_score": 6.32,
-  "average_effort_hours": 72.99,
+  "average_impact_score": 6.33,
+  "average_effort_hours": 73.4,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-18",
-    "repo": "hashicorp/terraform",
-    "issue_number": 23906,
-    "title": "Request: Enable simple/native way to read .env files",
-    "reactions": 54,
-    "abandoned_date": "2024-07-14T02:10:24Z",
-    "one_line_why": "The dotenv library for Go and Terraform 1.x configuration improvements make .env file integration feasible now.",
-    "impact_score": 5,
-    "effort_hours": 40.0,
-    "has_poc": true,
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 484,
+    "title": "Service scale-to-zero (fka \"Socket activation\")",
+    "reactions": 57,
+    "abandoned_date": "2024-04-28T22:50:54Z",
+    "one_line_why": "Advances in serverless computing and Kubernetes extensions like Knative make socket activation feasible and valuable for efficient resource utilization.",
+    "impact_score": 7,
+    "effort_hours": 120.0,
+    "has_poc": false,
     "has_rfc": true,
     "poc_language": "go",
     "technology_tags": [
-      "terraform",
-      "configuration",
-      "env"
+      "kubernetes",
+      "scale-to-zero",
+      "socket-activation"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/23906"
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/484"
   }
 }
