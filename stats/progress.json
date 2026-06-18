@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-17T18:16:22",
-  "total_resurrections": 112,
+  "last_updated": "2026-06-18T04:16:12",
+  "total_resurrections": 113,
   "total_repos_covered": 35,
   "average_impact_score": 6.34,
-  "average_effort_hours": 73.58,
+  "average_effort_hours": 73.28,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,24 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-17",
-    "repo": "redis/redis",
-    "issue_number": 5179,
-    "title": "maybe an optimizable point for zadd operation",
-    "reactions": 62,
-    "abandoned_date": "2022-06-13T09:06:37Z",
-    "one_line_why": "Redis ziplist and dict improvements make optimizing zadd for small score deltas feasible now.",
-    "impact_score": 2,
+    "date": "2026-06-18",
+    "repo": "grafana/grafana",
+    "issue_number": 14952,
+    "title": "Support Signal as alert notifier",
+    "reactions": 72,
+    "abandoned_date": "2025-09-11T16:02:18Z",
+    "one_line_why": "Recent Signal API advancements and Go library improvements enable feasible implementation.",
+    "impact_score": 6,
     "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
-      "redis",
-      "sorted-sets",
-      "skiplist"
+      "grafana",
+      "signal",
+      "alerting",
+      "notifications"
     ],
-    "original_url": "https://github.com/redis/redis/issues/5179"
+    "original_url": "https://github.com/grafana/grafana/issues/14952"
   }
 }
