@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-18",
+  "repo": "hashicorp/terraform",
+  "issue_number": 23906,
+  "title": "Request: Enable simple/native way to read .env files",
+  "reactions": 54,
+  "abandoned_date": "2024-07-14T02:10:24Z",
+  "one_line_why": "The dotenv library for Go and Terraform 1.x configuration improvements make .env file integration feasible now.",
+  "impact_score": 5,
+  "effort_hours": 40.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "terraform",
+    "configuration",
+    "env"
+  ],
+  "original_url": "https://github.com/hashicorp/terraform/issues/23906"
+}
