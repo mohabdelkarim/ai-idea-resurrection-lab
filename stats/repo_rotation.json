@@ -18,7 +18,7 @@
   "grafana/grafana": "2026-06-18T04:16:12.667347+00:00",
   "hashicorp/terraform": "2026-06-18T16:40:08.155379+00:00",
   "huggingface/transformers": "2026-05-13T15:36:39.200099+00:00",
-  "kubernetes/kubernetes": "2026-06-11T17:01:58.794294+00:00",
+  "kubernetes/kubernetes": "2026-06-18T18:29:24.684993+00:00",
   "langchain-ai/langchain": "2026-06-11T18:50:22.219740+00:00",
   "llvm/llvm-project": "2026-05-14T03:42:57.121035+00:00",
   "microsoft/TypeScript": "2026-06-12T04:16:44.393982+00:00",
