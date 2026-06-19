@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-18T18:29:24",
-  "total_resurrections": 115,
+  "last_updated": "2026-06-19T04:45:42",
+  "total_resurrections": 116,
   "total_repos_covered": 35,
-  "average_impact_score": 6.33,
-  "average_effort_hours": 73.4,
+  "average_impact_score": 6.34,
+  "average_effort_hours": 73.8,
   "top_tags": [
     "typescript",
     "go",
@@ -41,23 +41,25 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-18",
-    "repo": "kubernetes/kubernetes",
-    "issue_number": 484,
-    "title": "Service scale-to-zero (fka \"Socket activation\")",
-    "reactions": 57,
-    "abandoned_date": "2024-04-28T22:50:54Z",
-    "one_line_why": "Advances in serverless computing and Kubernetes extensions like Knative make socket activation feasible and valuable for efficient resource utilization.",
-    "impact_score": 7,
+    "date": "2026-06-19",
+    "repo": "langchain-ai/langchain",
+    "issue_number": 2228,
+    "title": "Vicuna (Fine-tuned LLaMa)",
+    "reactions": 51,
+    "abandoned_date": "2023-10-13T12:08:05Z",
+    "one_line_why": "Advances in AI model serving and LangChain's ecosystem growth now enable feasible integration of Vicuna.",
+    "impact_score": 8,
     "effort_hours": 120.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "python",
     "technology_tags": [
-      "kubernetes",
-      "scale-to-zero",
-      "socket-activation"
+      "langchain",
+      "vicuna",
+      "llama",
+      "chatbot",
+      "fastchat"
     ],
-    "original_url": "https://github.com/kubernetes/kubernetes/issues/484"
+    "original_url": "https://github.com/langchain-ai/langchain/issues/2228"
   }
 }
