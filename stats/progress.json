@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-19T04:45:42",
-  "total_resurrections": 116,
+  "last_updated": "2026-06-19T16:12:21",
+  "total_resurrections": 117,
   "total_repos_covered": 35,
-  "average_impact_score": 6.34,
-  "average_effort_hours": 73.8,
+  "average_impact_score": 6.35,
+  "average_effort_hours": 73.85,
   "top_tags": [
     "typescript",
     "go",
@@ -42,24 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-19",
-    "repo": "langchain-ai/langchain",
-    "issue_number": 2228,
-    "title": "Vicuna (Fine-tuned LLaMa)",
-    "reactions": 51,
-    "abandoned_date": "2023-10-13T12:08:05Z",
-    "one_line_why": "Advances in AI model serving and LangChain's ecosystem growth now enable feasible integration of Vicuna.",
-    "impact_score": 8,
-    "effort_hours": 120.0,
+    "repo": "microsoft/TypeScript",
+    "issue_number": 8436,
+    "title": "umd module compiler option doesn't have a fallback for global namespace.",
+    "reactions": 86,
+    "abandoned_date": "2025-10-23T16:46:55Z",
+    "one_line_why": "The issue became feasible again due to TypeScript's improved module system and growing UMD module adoption.",
+    "impact_score": 7,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "langchain",
-      "vicuna",
-      "llama",
-      "chatbot",
-      "fastchat"
+      "typescript",
+      "umd",
+      "module-system"
     ],
-    "original_url": "https://github.com/langchain-ai/langchain/issues/2228"
+    "original_url": "https://github.com/microsoft/TypeScript/issues/8436"
   }
 }
