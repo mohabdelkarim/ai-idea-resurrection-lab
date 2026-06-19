@@ -21,7 +21,7 @@
   "kubernetes/kubernetes": "2026-06-18T18:29:24.684993+00:00",
   "langchain-ai/langchain": "2026-06-19T04:45:42.731468+00:00",
   "llvm/llvm-project": "2026-05-14T03:42:57.121035+00:00",
-  "microsoft/TypeScript": "2026-06-12T04:16:44.393982+00:00",
+  "microsoft/TypeScript": "2026-06-19T16:12:21.654502+00:00",
   "microsoft/semantic-kernel": "2026-05-15T03:45:00.067325+00:00",
   "microsoft/vscode": "2026-06-12T18:08:54.654211+00:00",
   "nodejs/node": "2026-06-13T17:23:46.172254+00:00",
