@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-19T16:12:21",
-  "total_resurrections": 117,
+  "last_updated": "2026-06-19T17:58:03",
+  "total_resurrections": 118,
   "total_repos_covered": 35,
-  "average_impact_score": 6.35,
-  "average_effort_hours": 73.85,
+  "average_impact_score": 6.36,
+  "average_effort_hours": 73.43,
   "top_tags": [
     "typescript",
     "go",
@@ -42,22 +42,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-19",
-    "repo": "microsoft/TypeScript",
-    "issue_number": 8436,
-    "title": "umd module compiler option doesn't have a fallback for global namespace.",
-    "reactions": 86,
-    "abandoned_date": "2025-10-23T16:46:55Z",
-    "one_line_why": "The issue became feasible again due to TypeScript's improved module system and growing UMD module adoption.",
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 4390,
+    "title": "Please, oh please, ask, or at least warn, about overwriting ~/.zshrc on installation",
+    "reactions": 75,
+    "abandoned_date": "2025-01-28T10:14:11Z",
+    "one_line_why": "With Python's questionary library and recent installer updates, a non-intrusive warning system is now feasible.",
     "impact_score": 7,
-    "effort_hours": 80.0,
+    "effort_hours": 24.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "typescript",
-      "umd",
-      "module-system"
+      "ohmyzsh",
+      "installer",
+      "python"
     ],
-    "original_url": "https://github.com/microsoft/TypeScript/issues/8436"
+    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/4390"
   }
 }

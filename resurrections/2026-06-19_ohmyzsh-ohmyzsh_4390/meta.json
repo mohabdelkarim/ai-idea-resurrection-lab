@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-19",
+  "repo": "ohmyzsh/ohmyzsh",
+  "issue_number": 4390,
+  "title": "Please, oh please, ask, or at least warn, about overwriting ~/.zshrc on installation",
+  "reactions": 75,
+  "abandoned_date": "2025-01-28T10:14:11Z",
+  "one_line_why": "With Python's questionary library and recent installer updates, a non-intrusive warning system is now feasible.",
+  "impact_score": 7,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "ohmyzsh",
+    "installer",
+    "python"
+  ],
+  "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/4390"
+}
