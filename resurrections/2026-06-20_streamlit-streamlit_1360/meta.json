@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-20",
+  "repo": "streamlit/streamlit",
+  "issue_number": 1360,
+  "title": "Modal/pop-up widget",
+  "reactions": 417,
+  "abandoned_date": "2024-05-02T14:22:27Z",
+  "one_line_why": "Recent advancements in Python GUI libraries and Streamlit's UI components make this feature feasible now.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "streamlit",
+    "python",
+    "gui"
+  ],
+  "original_url": "https://github.com/streamlit/streamlit/issues/1360",
+  "resurrection_slug": "2026-06-20_streamlit-streamlit_1360",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-20T11:53:40+00:00"
+}
