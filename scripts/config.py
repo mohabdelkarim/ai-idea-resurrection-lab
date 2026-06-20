@@ -102,6 +102,15 @@ SCAN_INTERVAL_DAYS = 3
 # After mark_repo_used() is called, the repo is skipped for this many days.
 REPO_ROTATION_COOLDOWN_DAYS = 7
 
+# Diversity tuning for resurrection selection.
+# If a repo appeared in the recent resurrection history within this window,
+# it is deprioritized unless there are no better candidates.
+REPO_DIVERSITY_LOOKBACK_DAYS = 21
+
+# Cap the recent-history sample used for diversity calculations so one
+# historically prolific repo does not dominate selection forever.
+RECENT_REPO_HISTORY_LIMIT = 12
+
 APPROVED_TECHNOLOGY_TAGS = [
     "WebAssembly",
     "Rust async",

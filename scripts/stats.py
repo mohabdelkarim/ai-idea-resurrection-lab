@@ -36,6 +36,16 @@ def _default_progress() -> dict[str, Any]:
         "total_repos_covered": 0,
         "average_impact_score": 0.0,
         "average_effort_hours": 0.0,
+        "total_with_poc": 0,
+        "total_with_rfc": 0,
+        "comment_stats": {
+            "attempted": 0,
+            "posted": 0,
+            "failed": 0,
+        },
+        "repo_diversity": {
+            "top_repeated_repos": [],
+        },
         "top_tags": [],
         "hall_of_fame": [],
         "last_resurrection": None,
@@ -153,6 +163,24 @@ def compute_hall_of_fame(metas: list[dict[str, Any]], top_n: int = 3) -> list[di
     ]
 
 
+def compute_repo_diversity(metas: list[dict[str, Any]], top_n: int = 5) -> dict[str, Any]:
+    counter: Counter[str] = Counter()
+    for meta in metas:
+        repo = str(meta.get("repo", "")).strip()
+        if repo:
+            counter[repo] += 1
+    top_repeated = [
+        {
+            "repo": repo,
+            "count": count,
+        }
+        for repo, count in counter.most_common(top_n)
+    ]
+    return {
+        "top_repeated_repos": top_repeated,
+    }
+
+
 def _pick_last_resurrection(metas: list[dict[str, Any]]) -> dict[str, Any] | None:
     """
     Pick the most recent resurrection.
@@ -200,6 +228,11 @@ def update_stats() -> dict[str, Any]:
         for meta in metas
         if isinstance(meta, dict) and str(meta.get("repo", "")).strip()
     }
+    total_with_poc = sum(1 for meta in metas if bool(meta.get("has_poc", False)))
+    total_with_rfc = sum(1 for meta in metas if bool(meta.get("has_rfc", False)))
+    comment_attempted = sum(1 for meta in metas if str(meta.get("comment_status", "not_attempted")) != "not_attempted")
+    comment_posted = sum(1 for meta in metas if bool(meta.get("comment_posted", False)))
+    comment_failed = max(0, comment_attempted - comment_posted)
 
     if metas:
         impact_values: list[int] = []
@@ -228,6 +261,14 @@ def update_stats() -> dict[str, Any]:
         "total_repos_covered": len(unique_repos),
         "average_impact_score": average_impact_score,
         "average_effort_hours": average_effort_hours,
+        "total_with_poc": total_with_poc,
+        "total_with_rfc": total_with_rfc,
+        "comment_stats": {
+            "attempted": comment_attempted,
+            "posted": comment_posted,
+            "failed": comment_failed,
+        },
+        "repo_diversity": compute_repo_diversity(metas, top_n=5),
         "top_tags": compute_top_tags(metas, top_n=5),
         "hall_of_fame": compute_hall_of_fame(metas, top_n=3),
         "last_resurrection": _sanitize(last_resurrection) if last_resurrection is not None else None,

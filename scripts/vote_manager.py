@@ -259,7 +259,7 @@ if __name__ == "__main__":
     token = os.environ.get("GITHUB_TOKEN", "")
 
     meta_path = Path(STATS_FILE).parent.parent / "resurrections"
-    candidates = sorted(meta_path.glob("day-*/meta.json"), reverse=True)
+    candidates = sorted(meta_path.glob("*/meta.json"), key=lambda p: p.stat().st_mtime, reverse=True)
     if candidates:
         with candidates[0].open(encoding="utf-8") as handle:
             meta = json.load(handle)

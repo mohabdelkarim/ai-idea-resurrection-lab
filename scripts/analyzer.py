@@ -7,12 +7,18 @@ import re
 import time
 import urllib.request
 import uuid
+from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from groq import Groq
 
-from config import APPROVED_TECHNOLOGY_TAGS
+from config import (
+    APPROVED_TECHNOLOGY_TAGS,
+    RECENT_REPO_HISTORY_LIMIT,
+    REPO_DIVERSITY_LOOKBACK_DAYS,
+)
 
 
 LOGGER = logging.getLogger(__name__)
@@ -559,6 +565,99 @@ def _get_last_resurrection_score(repo: str, resurrection_base: str) -> int | Non
     return candidates[0][1]
 
 
+def _parse_iso_datetime(value: str) -> datetime | None:
+    raw = str(value or "").strip()
+    if not raw:
+        return None
+    try:
+        parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
+
+
+def _load_resurrection_history(resurrection_base: str) -> list[dict[str, Any]]:
+    base = Path(resurrection_base)
+    history: list[dict[str, Any]] = []
+    if not base.exists():
+        return history
+
+    for child in base.iterdir():
+        if not child.is_dir():
+            continue
+        meta_path = child / "meta.json"
+        if not meta_path.exists():
+            continue
+        try:
+            meta = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if not isinstance(meta, dict):
+            continue
+        meta["_folder_name"] = child.name
+        history.append(meta)
+
+    def _history_sort_key(meta: dict[str, Any]) -> tuple[str, str]:
+        return (
+            str(meta.get("date", "")),
+            str(meta.get("_folder_name", "")),
+        )
+
+    history.sort(key=_history_sort_key, reverse=True)
+    return history
+
+
+def _compute_repo_diversity(history: list[dict[str, Any]]) -> tuple[Counter[str], Counter[str], set[str]]:
+    total_counts: Counter[str] = Counter()
+    recent_counts: Counter[str] = Counter()
+    recent_blocklist: set[str] = set()
+
+    cutoff_ts = datetime.now(timezone.utc).timestamp() - (REPO_DIVERSITY_LOOKBACK_DAYS * 86400)
+    recent_sample = history[:RECENT_REPO_HISTORY_LIMIT]
+
+    for meta in history:
+        repo = str(meta.get("repo", "")).strip()
+        if repo:
+            total_counts[repo] += 1
+
+    for meta in recent_sample:
+        repo = str(meta.get("repo", "")).strip()
+        if not repo:
+            continue
+        recent_counts[repo] += 1
+
+        parsed = _parse_iso_datetime(str(meta.get("date", "")))
+        if parsed is None:
+            folder_name = str(meta.get("_folder_name", ""))
+            parsed = _parse_iso_datetime(folder_name[:10])
+        if parsed is not None and parsed.timestamp() >= cutoff_ts:
+            recent_blocklist.add(repo)
+
+    return total_counts, recent_counts, recent_blocklist
+
+
+def _candidate_sort_key(
+    candidate: dict[str, Any],
+    recent_counts: Counter[str],
+    total_counts: Counter[str],
+    recent_blocklist: set[str],
+) -> tuple[int, int, int, int, str, int]:
+    issue = candidate["issue"]
+    repo = str(issue.get("repo", "")).strip()
+    reactions = _safe_int(issue.get("reactions", 0), 0, 1_000_000, 0)
+    issue_number = _safe_int(issue.get("issue_number", 0), 0, 10_000_000, 0)
+    return (
+        1 if repo in recent_blocklist else 0,
+        recent_counts.get(repo, 0),
+        total_counts.get(repo, 0),
+        -reactions,
+        repo.lower(),
+        issue_number,
+    )
+
+
 # ---------------------------------------------------------------------------
 # Low-level: single API call with retries
 # ---------------------------------------------------------------------------
@@ -1053,11 +1152,17 @@ def analyze() -> str:
 
     rotation = _load_rotation()
     already_resurrected = _load_already_resurrected_keys(RESURRECTION_BASE_FOLDER)
+    history = _load_resurrection_history(RESURRECTION_BASE_FOLDER)
+    total_counts, recent_counts, recent_blocklist = _compute_repo_diversity(history)
     LOGGER.info("[Analyzer] %d issues already resurrected (from folders).", len(already_resurrected))
+    LOGGER.info(
+        "[Analyzer] Diversity context loaded: %d historical resurrections, %d recent repos in blocklist.",
+        len(history),
+        len(recent_blocklist),
+    )
 
+    candidates: list[dict[str, Any]] = []
     for graveyard_file in sorted(Path(GRAVEYARD_FOLDER).glob("*.json")):
-        if graveyard_file.name == ".gitkeep":
-            continue
         try:
             with graveyard_file.open(encoding="utf-8") as f:
                 issues = json.load(f)
@@ -1091,54 +1196,82 @@ def analyze() -> str:
                 )
                 continue
 
-            # GATE 1 — Label / state_reason pre-filter (zero LLM tokens spent).
-            # Issues explicitly rejected by maintainers (wontfix, not_planned, etc.)
-            # are not resurrection candidates and must be skipped immediately.
-            if _is_by_design_rejected(issue):
-                LOGGER.info(
-                    "[Analyzer] Skipping #%d (%s) — by-design rejected (labels/state_reason).",
-                    issue_number, repo,
-                )
-                continue
+            candidates.append(
+                {
+                    "issue": issue,
+                    "graveyard_file": graveyard_file.name,
+                }
+            )
 
-            # GATE 2 — LLM pre-check: is this already solved in the current stable release?
-            # Only runs if Groq client is available. On failure returns False (conservative).
-            if client is not None and _is_already_solved_llm(client, issue):
-                LOGGER.info(
-                    "[Analyzer] Skipping #%d (%s) — LLM pre-check: already solved.",
-                    issue_number, repo,
-                )
-                continue
+    if candidates:
+        candidates.sort(
+            key=lambda candidate: _candidate_sort_key(
+                candidate,
+                recent_counts=recent_counts,
+                total_counts=total_counts,
+                recent_blocklist=recent_blocklist,
+            )
+        )
+        LOGGER.info("[Analyzer] Ranked %d candidate issue(s) across the whole graveyard.", len(candidates))
 
-            previous_score = _get_last_resurrection_score(repo, RESURRECTION_BASE_FOLDER)
-            if previous_score is not None:
-                LOGGER.info(
-                    "[Analyzer] Last impact_score for %s was %d — hinting LLM to use a different score.",
-                    repo, previous_score,
-                )
+    for candidate in candidates:
+        issue = candidate["issue"]
+        repo = str(issue.get("repo", ""))
+        issue_number = int(issue.get("issue_number", 0))
 
+        # GATE 1 — Label / state_reason pre-filter (zero LLM tokens spent).
+        # Issues explicitly rejected by maintainers (wontfix, not_planned, etc.)
+        # are not resurrection candidates and must be skipped immediately.
+        if _is_by_design_rejected(issue):
             LOGGER.info(
-                "[Analyzer] Analyzing issue #%s: %s",
-                issue.get("issue_number"), issue.get("title"),
+                "[Analyzer] Skipping #%d (%s) — by-design rejected (labels/state_reason).",
+                issue_number, repo,
             )
-            result = analyze_issue(issue, previous_score=previous_score)
-            temp_data = {
-                "issue": issue,
-                "analysis": result["analysis"],
-            }
+            continue
 
-            # Generate a fresh UUID for this specific write — isolated per process/run.
-            run_id = uuid.uuid4().hex[:12]
-            temp_file = f".analysis_temp_{run_id}.json"
-            temp_path = Path(temp_file)
-            temp_path.write_text(
-                json.dumps(temp_data, indent=2, ensure_ascii=False),
-                encoding="utf-8",
+        # GATE 2 — LLM pre-check: is this already solved in the current stable release?
+        # Only runs if Groq client is available. On failure returns False (conservative).
+        if client is not None and _is_already_solved_llm(client, issue):
+            LOGGER.info(
+                "[Analyzer] Skipping #%d (%s) — LLM pre-check: already solved.",
+                issue_number, repo,
             )
-            LOGGER.info("[Analyzer] Analysis saved to %s", temp_file)
-            mark_repo_used(repo)
-            # Return the path so runner.py can pass it explicitly to generator
-            return str(temp_path.resolve())
+            continue
+
+        previous_score = _get_last_resurrection_score(repo, RESURRECTION_BASE_FOLDER)
+        if previous_score is not None:
+            LOGGER.info(
+                "[Analyzer] Last impact_score for %s was %d — hinting LLM to use a different score.",
+                repo, previous_score,
+            )
+
+        LOGGER.info(
+            "[Analyzer] Analyzing issue #%s (%s) from %s [recent=%d, total=%d, reactions=%d].",
+            issue.get("issue_number"),
+            repo,
+            candidate["graveyard_file"],
+            recent_counts.get(repo, 0),
+            total_counts.get(repo, 0),
+            _safe_int(issue.get("reactions", 0), 0, 1_000_000, 0),
+        )
+        result = analyze_issue(issue, previous_score=previous_score)
+        temp_data = {
+            "issue": issue,
+            "analysis": result["analysis"],
+        }
+
+        # Generate a fresh UUID for this specific write — isolated per process/run.
+        run_id = uuid.uuid4().hex[:12]
+        temp_file = f".analysis_temp_{run_id}.json"
+        temp_path = Path(temp_file)
+        temp_path.write_text(
+            json.dumps(temp_data, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        LOGGER.info("[Analyzer] Analysis saved to %s", temp_file)
+        mark_repo_used(repo)
+        # Return the path so runner.py can pass it explicitly to generator
+        return str(temp_path.resolve())
 
     LOGGER.warning(
         "[Analyzer] No unresurrected issues found in graveyard "

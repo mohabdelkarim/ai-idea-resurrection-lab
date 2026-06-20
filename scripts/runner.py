@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import json
 import logging
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
@@ -135,6 +136,35 @@ def _find_resurrection_folder(meta: dict[str, Any]) -> Path | None:
     return None
 
 
+def _update_resurrection_meta(meta: dict[str, Any], updates: dict[str, Any]) -> None:
+    folder = _find_resurrection_folder(meta)
+    if folder is None:
+        LOGGER.warning(
+            "[Runner] Cannot update meta for %s#%s — resurrection folder not found.",
+            meta.get("repo", "?"),
+            meta.get("issue_number", "?"),
+        )
+        return
+
+    meta_path = folder / "meta.json"
+    try:
+        current = json.loads(meta_path.read_text(encoding="utf-8", errors="ignore"))
+    except (json.JSONDecodeError, OSError) as error:
+        LOGGER.warning("[Runner] Cannot read %s for update: %s", meta_path, error)
+        return
+
+    if not isinstance(current, dict):
+        LOGGER.warning("[Runner] Meta file %s is not a JSON object.", meta_path)
+        return
+
+    current.update(updates)
+    meta_path.write_text(
+        json.dumps(current, indent=2, ensure_ascii=True),
+        encoding="utf-8",
+    )
+    LOGGER.info("[Runner] Updated meta with %d field(s): %s", len(updates), meta_path)
+
+
 def export_commit_vars(meta: dict[str, Any]) -> None:
     if not meta:
         LOGGER.error(
@@ -176,13 +206,25 @@ def run_pipeline() -> None:
 
     def _generator_step() -> None:
         from generator import generate
+        from scanner import mark_resurrected
         path = _temp_file_path[0]
         if not path:
             raise RuntimeError(
                 "Generator called but no temp file path is set. "
                 "Analyzer step may have been skipped or failed."
             )
+        try:
+            temp_data = json.loads(Path(path).read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError) as error:
+            raise RuntimeError(f"Cannot read analyzer temp file {path}: {error}") from error
+
+        issue = temp_data.get("issue", {})
         generate(temp_file_path=path)
+        if isinstance(issue, dict):
+            repo = str(issue.get("repo", ""))
+            issue_number = int(issue.get("issue_number", 0))
+            if repo and issue_number:
+                mark_resurrected(repo, issue_number)
 
     def _score_card_step() -> None:
         meta = load_latest_meta()
@@ -212,7 +254,16 @@ def run_pipeline() -> None:
         meta = load_latest_meta()
         token = os.environ.get("GITHUB_TOKEN", "")
         if meta and token:
-            post_resurrection_comment(meta, token)
+            result = post_resurrection_comment(meta, token)
+            _update_resurrection_meta(
+                meta,
+                {
+                    "comment_posted": bool(result.get("posted", False)),
+                    "comment_status": str(result.get("status", "unknown")),
+                    "comment_url": str(result.get("comment_url", "")),
+                    "commented_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+                },
+            )
         else:
             LOGGER.warning("[Commenter] Missing meta or token. Skipping.")
 
@@ -221,9 +272,9 @@ def run_pipeline() -> None:
         ("AI Analyzer",          _analyzer_step),
         ("File Generator",       _generator_step),
         ("Score Card Generator", _score_card_step),
+        ("Original Issue Commenter", _commenter_step),
         ("Stats Engine",         _stats_step),
         ("README Generator",     _readme_step),
-        ("Original Issue Commenter", _commenter_step),
     ]
 
     for step_name, step_fn in steps:
