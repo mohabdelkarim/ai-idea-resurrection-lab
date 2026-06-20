@@ -17,6 +17,9 @@ from config import (
     GRAVEYARD_FOLDER,
     HIGH_DEMAND_UPVOTES_OVERRIDE,
     MAX_ISSUES_PER_REPO,
+    MIN_QUALITY_BODY_CHARS,
+    MIN_QUALITY_COMMENTS,
+    MIN_QUALITY_REACTIONS,
     MIN_UPVOTES,
     MONTHS_STALE_THRESHOLD,
     REPOS_TO_SCAN,
@@ -96,6 +99,24 @@ RESOLVED_TEXT_PATTERNS = [
         r"\bas of v?\d[\d\.]*\b",
         r"\bintroduced in v?\d[\d\.]*",
         r"\bpart of the v?\d[\d\.]* release",
+    ]
+]
+
+_ACTIONABLE_REQUEST_PATTERNS = [
+    re.compile(pattern, re.IGNORECASE) for pattern in [
+        r"\b(add|allow|support|enable|implement|provide|expose|introduce|make|include|offer)\b",
+        r"\b(feature|option|flag|setting|config|configuration|api|command|mode)\b",
+        r"\bshould\b",
+        r"\bi want\b",
+        r"\bit would be (?:useful|helpful|nice)\b",
+    ]
+]
+
+_LOW_QUALITY_TITLE_PATTERNS = [
+    re.compile(pattern, re.IGNORECASE) for pattern in [
+        r"^\s*[A-Za-z0-9_.:/-]+\s+is\s+(?:beautiful|awesome|amazing|great|cool|nice)\s*!?\s*$",
+        r"^\s*(?:lol|lmao|haha|pls|please)\b",
+        r"\b(?:meme|troll|joke)\b",
     ]
 ]
 
@@ -220,7 +241,10 @@ class GraveyardEntry:
     html_url: str
     author_login: str
     author_profile: str
+    comments: int = 0
     already_resurrected: bool = False
+    quality_rejected: bool = False
+    quality_rejection_reason: str = ""
 
 
 def months_since(date_str: str) -> float:
@@ -289,6 +313,32 @@ def mark_resurrected(repo: str, issue_number: int) -> None:
     else:
         LOGGER.warning(
             "Could not find issue #%d in graveyard for %s to mark as resurrected.",
+            issue_number,
+            repo,
+        )
+
+
+def mark_quality_rejected(repo: str, issue_number: int, reason: str) -> None:
+    """Persist a quality rejection so the analyzer does not keep retrying it."""
+    issues = load_graveyard(repo)
+    updated = False
+    for issue in issues:
+        if int(issue.get("issue_number", -1)) == issue_number:
+            issue["quality_rejected"] = True
+            issue["quality_rejection_reason"] = reason
+            updated = True
+            LOGGER.info(
+                "Marked issue #%d as quality_rejected in %s graveyard: %s",
+                issue_number,
+                repo,
+                reason,
+            )
+            break
+    if updated:
+        save_graveyard(repo, issues)
+    else:
+        LOGGER.warning(
+            "Could not find issue #%d in graveyard for %s to mark quality_rejected.",
             issue_number,
             repo,
         )
@@ -525,6 +575,36 @@ def _get_reactions_count(issue: dict[str, Any]) -> int:
     return 0
 
 
+def _has_actionable_request_signal(issue: dict[str, Any]) -> bool:
+    title = str(issue.get("title", "")).strip()
+    body = str(issue.get("body") or "").strip()
+    text = f"{title}\n{body}"
+    return any(pattern.search(text) for pattern in _ACTIONABLE_REQUEST_PATTERNS)
+
+
+def _looks_low_quality_issue(issue: dict[str, Any]) -> bool:
+    """Return True for low-signal joke/praise issues that should never enter the graveyard."""
+    reactions = _get_reactions_count(issue)
+    comments = int(issue.get("comments", 0) or 0)
+    title = str(issue.get("title", "")).strip()
+    body = str(issue.get("body") or "").strip()
+
+    # Strong social proof can override weak prose unless the title is explicit joke/troll bait.
+    has_strong_social_proof = (
+        reactions >= HIGH_REACTIONS_OVERRIDE or comments >= MIN_QUALITY_COMMENTS
+    )
+    title_looks_low_quality = any(pattern.search(title) for pattern in _LOW_QUALITY_TITLE_PATTERNS)
+    body_too_short = len(body) < MIN_QUALITY_BODY_CHARS
+    reactions_too_low = reactions < MIN_QUALITY_REACTIONS
+    actionable = _has_actionable_request_signal(issue)
+
+    if title_looks_low_quality and body_too_short and not has_strong_social_proof:
+        return True
+    if reactions_too_low and body_too_short and not actionable:
+        return True
+    return False
+
+
 def is_abandoned(issue: dict[str, Any]) -> bool:
     """Determine if a GitHub issue qualifies as abandoned and worth resurrecting.
 
@@ -591,6 +671,7 @@ def _entry_from_issue(repo: str, issue: dict[str, Any]) -> GraveyardEntry:
         html_url=str(issue.get("html_url", "")),
         author_login=author_login,
         author_profile=f"https://github.com/{author_login}",
+        comments=int(issue.get("comments", 0) or 0),
         already_resurrected=False,
     )
 
@@ -617,6 +698,9 @@ def scan_repo(repo: str, token: str) -> int:
         # never candidates for resurrection as ideas or features.
         if _is_off_topic_issue(raw_issue):
             LOGGER.info("Skipping off-topic (bug/Q&A) issue: %s#%d", repo, issue_number)
+            continue
+        if _looks_low_quality_issue(raw_issue):
+            LOGGER.info("Skipping low-quality/non-actionable issue: %s#%d", repo, issue_number)
             continue
         # Skip issues that appear to already be solved in practice
         if is_already_solved(repo, raw_issue, token):

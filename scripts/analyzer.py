@@ -16,6 +16,8 @@ from groq import Groq
 
 from config import (
     APPROVED_TECHNOLOGY_TAGS,
+    MIN_ACCEPTABLE_IMPACT_SCORE,
+    MIN_QUALITY_COMMENTS,
     RECENT_REPO_HISTORY_LIMIT,
     REPO_DIVERSITY_LOOKBACK_DAYS,
 )
@@ -658,6 +660,31 @@ def _candidate_sort_key(
     )
 
 
+def _fails_post_analysis_quality(issue: dict[str, Any], analysis: dict[str, Any]) -> tuple[bool, str]:
+    """
+    Reject low-value candidates even after diversity ranking.
+
+    The analyzer has richer context than the scanner, so a very low impact score
+    is a strong signal that the issue is not worth resurrecting unless the issue
+    still shows meaningful community discussion.
+    """
+    impact_score = _safe_int(analysis.get("impact_score", 0), 0, 10, 0)
+    comments = _safe_int(issue.get("comments", 0), 0, 1_000_000, 0)
+    reactions = _safe_int(issue.get("reactions", 0), 0, 1_000_000, 0)
+
+    if impact_score >= MIN_ACCEPTABLE_IMPACT_SCORE:
+        return False, ""
+
+    if comments >= MIN_QUALITY_COMMENTS:
+        return False, ""
+
+    return (
+        True,
+        f"impact_score={impact_score} below minimum {MIN_ACCEPTABLE_IMPACT_SCORE} "
+        f"with weak discussion (reactions={reactions}, comments={comments})",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Low-level: single API call with retries
 # ---------------------------------------------------------------------------
@@ -1138,7 +1165,12 @@ def analyze() -> str:
         or an empty string if no issue was found to process.
     """
     from config import GRAVEYARD_FOLDER, RESURRECTION_BASE_FOLDER
-    from scanner import is_repo_on_cooldown, mark_repo_used, _load_rotation
+    from scanner import (
+        _load_rotation,
+        is_repo_on_cooldown,
+        mark_quality_rejected,
+        mark_repo_used,
+    )
 
     api_key = os.environ.get("GROQ_API_KEY", "")
     if not api_key:
@@ -1177,6 +1209,8 @@ def analyze() -> str:
             if not isinstance(issue, dict):
                 continue
             if issue.get("already_resurrected"):
+                continue
+            if issue.get("quality_rejected"):
                 continue
 
             repo = str(issue.get("repo", ""))
@@ -1255,6 +1289,16 @@ def analyze() -> str:
             _safe_int(issue.get("reactions", 0), 0, 1_000_000, 0),
         )
         result = analyze_issue(issue, previous_score=previous_score)
+        rejected, rejection_reason = _fails_post_analysis_quality(issue, result["analysis"])
+        if rejected:
+            LOGGER.info(
+                "[Analyzer] Rejecting #%s (%s) after analysis: %s",
+                issue_number,
+                repo,
+                rejection_reason,
+            )
+            mark_quality_rejected(repo, issue_number, rejection_reason)
+            continue
         temp_data = {
             "issue": issue,
             "analysis": result["analysis"],
