@@ -12,7 +12,7 @@
     "html_url": "https://github.com/rust-lang/rust/issues/100000",
     "author_login": "Mathspy",
     "author_profile": "https://github.com/Mathspy",
-    "already_resurrected": false
+    "already_resurrected": true
   },
   {
     "repo": "rust-lang/rust",
