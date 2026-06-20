@@ -15,7 +15,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/1360",
     "author_login": "arraydude",
     "author_profile": "https://github.com/arraydude",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -35,7 +38,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/455",
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -53,7 +59,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/439",
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -71,7 +80,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/3888",
     "author_login": "Tooblippe",
     "author_profile": "https://github.com/Tooblippe",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -91,7 +103,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5009",
     "author_login": "vhoulbreque",
     "author_profile": "https://github.com/vhoulbreque",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -111,7 +126,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/6004",
     "author_login": "MathCatsAnd",
     "author_profile": "https://github.com/MathCatsAnd",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -130,7 +148,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8518",
     "author_login": "sfc-gh-jcarroll",
     "author_profile": "https://github.com/sfc-gh-jcarroll",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -149,7 +170,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/861",
     "author_login": "tconkling",
     "author_profile": "https://github.com/tconkling",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -168,7 +192,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/1019",
     "author_login": "JohnReid",
     "author_profile": "https://github.com/JohnReid",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -187,7 +214,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/727",
     "author_login": "MarcSkovMadsen",
     "author_profile": "https://github.com/MarcSkovMadsen",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -206,7 +236,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5053",
     "author_login": "Vinno97",
     "author_profile": "https://github.com/Vinno97",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -224,7 +257,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/4382",
     "author_login": "vhoulbreque",
     "author_profile": "https://github.com/vhoulbreque",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -243,7 +279,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/10378",
     "author_login": "Panosero",
     "author_profile": "https://github.com/Panosero",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -263,7 +302,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8643",
     "author_login": "lukasmasuch",
     "author_profile": "https://github.com/lukasmasuch",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -282,7 +324,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/4832",
     "author_login": "andreaschiappacasse",
     "author_profile": "https://github.com/andreaschiappacasse",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -300,7 +345,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5908",
     "author_login": "lesser-panda",
     "author_profile": "https://github.com/lesser-panda",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -321,7 +369,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/1301",
     "author_login": "arraydude",
     "author_profile": "https://github.com/arraydude",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -339,7 +390,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/233",
     "author_login": "ines",
     "author_profile": "https://github.com/ines",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -358,7 +412,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7538",
     "author_login": "makhai88",
     "author_profile": "https://github.com/makhai88",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -377,7 +434,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8112",
     "author_login": "akeeman",
     "author_profile": "https://github.com/akeeman",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -396,7 +456,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/6787",
     "author_login": "ibnesayeed",
     "author_profile": "https://github.com/ibnesayeed",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -416,7 +479,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/1799",
     "author_login": "mohak79",
     "author_profile": "https://github.com/mohak79",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -434,7 +500,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7166",
     "author_login": "frankyzha",
     "author_profile": "https://github.com/frankyzha",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -453,7 +522,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/641",
     "author_login": "dJOKERdUMMY",
     "author_profile": "https://github.com/dJOKERdUMMY",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -473,7 +545,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/2169",
     "author_login": "durandg12",
     "author_profile": "https://github.com/durandg12",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -493,7 +568,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7078",
     "author_login": "ViniciusgCaetano",
     "author_profile": "https://github.com/ViniciusgCaetano",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -513,7 +591,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/6089",
     "author_login": "Pydetect",
     "author_profile": "https://github.com/Pydetect",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -532,7 +613,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/2399",
     "author_login": "LeoTafti",
     "author_profile": "https://github.com/LeoTafti",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -550,7 +634,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5088",
     "author_login": "LukeA2023",
     "author_profile": "https://github.com/LukeA2023",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -569,7 +656,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5437",
     "author_login": "daveycope",
     "author_profile": "https://github.com/daveycope",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -588,7 +678,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5858",
     "author_login": "rafa-guedes",
     "author_profile": "https://github.com/rafa-guedes",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -607,7 +700,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/10543",
     "author_login": "Riezebos",
     "author_profile": "https://github.com/Riezebos",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -626,7 +722,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/6781",
     "author_login": "xareelee",
     "author_profile": "https://github.com/xareelee",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -644,7 +743,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7409",
     "author_login": "yuanjie-ai",
     "author_profile": "https://github.com/yuanjie-ai",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -662,7 +764,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/688",
     "author_login": "timforr",
     "author_profile": "https://github.com/timforr",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -680,7 +785,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5215",
     "author_login": "iemg",
     "author_profile": "https://github.com/iemg",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -700,7 +808,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8832",
     "author_login": "darkb1u3",
     "author_profile": "https://github.com/darkb1u3",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -718,7 +829,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8102",
     "author_login": "MaxvandenBoom",
     "author_profile": "https://github.com/MaxvandenBoom",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -737,7 +851,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8239",
     "author_login": "mayagbarnes",
     "author_profile": "https://github.com/mayagbarnes",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -755,7 +872,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/3790",
     "author_login": "tconkling",
     "author_profile": "https://github.com/tconkling",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -774,7 +894,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8507",
     "author_login": "sfc-gh-pkommini",
     "author_profile": "https://github.com/sfc-gh-pkommini",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -792,7 +915,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/602",
     "author_login": "nthmost",
     "author_profile": "https://github.com/nthmost",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -813,7 +939,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/395",
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -831,7 +960,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7111",
     "author_login": "blackary",
     "author_profile": "https://github.com/blackary",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -849,7 +981,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/371",
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -868,7 +1003,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7300",
     "author_login": "shakamoushie",
     "author_profile": "https://github.com/shakamoushie",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -886,7 +1024,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5234",
     "author_login": "AndreLobato",
     "author_profile": "https://github.com/AndreLobato",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -906,7 +1047,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/2446",
     "author_login": "mesmith027",
     "author_profile": "https://github.com/mesmith027",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -924,7 +1068,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/868",
     "author_login": "tconkling",
     "author_profile": "https://github.com/tconkling",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -943,7 +1090,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5626",
     "author_login": "rencryptofish",
     "author_profile": "https://github.com/rencryptofish",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -962,7 +1112,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5386",
     "author_login": "keyuchen21",
     "author_profile": "https://github.com/keyuchen21",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -981,7 +1134,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/10895",
     "author_login": "sfc-gh-jrieke",
     "author_profile": "https://github.com/sfc-gh-jrieke",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -999,7 +1155,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7250",
     "author_login": "Awyshw",
     "author_profile": "https://github.com/Awyshw",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1018,7 +1177,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/9137",
     "author_login": "makerofmaps1",
     "author_profile": "https://github.com/makerofmaps1",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1035,7 +1197,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/400",
     "author_login": "anhhd",
     "author_profile": "https://github.com/anhhd",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1052,7 +1217,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/120",
     "author_login": "treuille",
     "author_profile": "https://github.com/treuille",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1070,7 +1238,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/10128",
     "author_login": "StarDustEins",
     "author_profile": "https://github.com/StarDustEins",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1088,7 +1259,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8265",
     "author_login": "sfc-gh-bhess",
     "author_profile": "https://github.com/sfc-gh-bhess",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1107,7 +1281,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8161",
     "author_login": "evertoncolling",
     "author_profile": "https://github.com/evertoncolling",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1127,7 +1304,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7266",
     "author_login": "Ozziko",
     "author_profile": "https://github.com/Ozziko",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1146,7 +1326,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/2263",
     "author_login": "domoritz",
     "author_profile": "https://github.com/domoritz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1164,7 +1347,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/949",
     "author_login": "pietz",
     "author_profile": "https://github.com/pietz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1183,7 +1369,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/585",
     "author_login": "tc87",
     "author_profile": "https://github.com/tc87",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1201,7 +1390,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8388",
     "author_login": "sfc-gh-jcarroll",
     "author_profile": "https://github.com/sfc-gh-jcarroll",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1220,7 +1412,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/1291",
     "author_login": "jrouquie",
     "author_profile": "https://github.com/jrouquie",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1238,7 +1433,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/969",
     "author_login": "nthmost",
     "author_profile": "https://github.com/nthmost",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1257,7 +1455,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7533",
     "author_login": "lukasmasuch",
     "author_profile": "https://github.com/lukasmasuch",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1275,7 +1476,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/6795",
     "author_login": "robingie",
     "author_profile": "https://github.com/robingie",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1295,7 +1499,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8844",
     "author_login": "lukasmasuch",
     "author_profile": "https://github.com/lukasmasuch",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1313,7 +1520,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/8840",
     "author_login": "mayagbarnes",
     "author_profile": "https://github.com/mayagbarnes",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1333,7 +1543,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7082",
     "author_login": "JesusGarSan",
     "author_profile": "https://github.com/JesusGarSan",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1351,7 +1564,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/6805",
     "author_login": "xareelee",
     "author_profile": "https://github.com/xareelee",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1372,7 +1588,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7702",
     "author_login": "heitormarcal",
     "author_profile": "https://github.com/heitormarcal",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1389,7 +1608,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/7839",
     "author_login": "mkleinbort-ic",
     "author_profile": "https://github.com/mkleinbort-ic",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1408,7 +1630,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/726",
     "author_login": "MarcSkovMadsen",
     "author_profile": "https://github.com/MarcSkovMadsen",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1426,7 +1651,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/4866",
     "author_login": "PaleNeutron",
     "author_profile": "https://github.com/PaleNeutron",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1445,7 +1673,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5348",
     "author_login": "CHerSun",
     "author_profile": "https://github.com/CHerSun",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1463,7 +1694,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5284",
     "author_login": "jrieke",
     "author_profile": "https://github.com/jrieke",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1482,7 +1716,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/241",
     "author_login": "treuille",
     "author_profile": "https://github.com/treuille",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1501,7 +1738,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/2447",
     "author_login": "mesmith027",
     "author_profile": "https://github.com/mesmith027",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1519,7 +1759,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5353",
     "author_login": "quantoid",
     "author_profile": "https://github.com/quantoid",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1537,7 +1780,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/309",
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1556,7 +1802,10 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/5552",
     "author_login": "blipk",
     "author_profile": "https://github.com/blipk",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "streamlit/streamlit",
@@ -1576,6 +1825,9 @@
     "html_url": "https://github.com/streamlit/streamlit/issues/4109",
     "author_login": "kaydotdev",
     "author_profile": "https://github.com/kaydotdev",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]

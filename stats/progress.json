@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-20T07:33:13",
-  "total_resurrections": 93,
-  "total_repos_covered": 30,
+  "last_updated": "2026-06-20T11:53:40",
+  "total_resurrections": 94,
+  "total_repos_covered": 31,
   "average_impact_score": 6.38,
-  "average_effort_hours": 74.51,
-  "total_with_poc": 71,
-  "total_with_rfc": 80,
+  "average_effort_hours": 74.56,
+  "total_with_poc": 72,
+  "total_with_rfc": 81,
   "comment_stats": {
-    "attempted": 0,
+    "attempted": 1,
     "posted": 0,
-    "failed": 0
+    "failed": 1
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -73,22 +73,27 @@
   ],
   "last_resurrection": {
     "date": "2026-06-20",
-    "repo": "microsoft/vscode",
-    "issue_number": 43806,
-    "title": "Allow custom setting/control of workbench tab titles",
-    "reactions": 102,
-    "abandoned_date": "2024-07-19T23:24:29Z",
-    "one_line_why": "The recent improvements in VSCode's extensibility and TypeScript support make it feasible to implement custom tab title control.",
-    "impact_score": 6,
-    "effort_hours": 40.0,
+    "repo": "streamlit/streamlit",
+    "issue_number": 1360,
+    "title": "Modal/pop-up widget",
+    "reactions": 417,
+    "abandoned_date": "2024-05-02T14:22:27Z",
+    "one_line_why": "Recent advancements in Python GUI libraries and Streamlit's UI components make this feature feasible now.",
+    "impact_score": 7,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "vscode",
-      "typescript",
-      "workbench"
+      "streamlit",
+      "python",
+      "gui"
     ],
-    "original_url": "https://github.com/microsoft/vscode/issues/43806"
+    "original_url": "https://github.com/streamlit/streamlit/issues/1360",
+    "resurrection_slug": "2026-06-20_streamlit-streamlit_1360",
+    "comment_posted": false,
+    "comment_status": "forbidden_or_locked",
+    "comment_url": "",
+    "commented_at": "2026-06-20T11:53:40+00:00"
   }
 }
