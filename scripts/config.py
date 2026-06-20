@@ -83,7 +83,7 @@ MONTHS_STALE_THRESHOLD = 12  # raised from 6: 12 months is a safer "abandoned" s
 MIN_QUALITY_REACTIONS = 6
 MIN_QUALITY_COMMENTS = 3
 MIN_QUALITY_BODY_CHARS = 80
-MIN_ACCEPTABLE_IMPACT_SCORE = 3
+MIN_ACCEPTABLE_IMPACT_SCORE = 4  # raised from 3: cuts junk/test issues with low impact
 
 # ---------------------------------------------------------------------------
 # Pagination — single source of truth
@@ -115,7 +115,9 @@ REPO_DIVERSITY_LOOKBACK_DAYS = 21
 
 # Cap the recent-history sample used for diversity calculations so one
 # historically prolific repo does not dominate selection forever.
-RECENT_REPO_HISTORY_LIMIT = 12
+# Raised from 12 → 30 so the diversity window sees more history and
+# avoids re-selecting repos like docker/ansible that already appeared many times.
+RECENT_REPO_HISTORY_LIMIT = 30
 
 APPROVED_TECHNOLOGY_TAGS = [
     "WebAssembly",
