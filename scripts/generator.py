@@ -71,7 +71,7 @@ def get_issue_folder(base: Path, issue: dict[str, Any]) -> Path:
     return base / folder_name
 
 
-def build_meta(issue: dict[str, Any], analysis: dict[str, Any], today: str) -> dict[str, Any]:
+def build_meta(issue: dict[str, Any], analysis: dict[str, Any], today: str, folder_name: str) -> dict[str, Any]:
     meta = {
         "date": today,
         "repo": str(issue.get("repo", "")),
@@ -87,6 +87,10 @@ def build_meta(issue: dict[str, Any], analysis: dict[str, Any], today: str) -> d
         "poc_language": str(analysis.get("poc_language", "")),
         "technology_tags": list(analysis.get("technology_tags", [])),
         "original_url": str(issue.get("html_url", "")),
+        "resurrection_slug": folder_name,
+        "comment_posted": False,
+        "comment_status": "not_attempted",
+        "comment_url": "",
     }
     return _sanitize(meta)
 
@@ -238,7 +242,7 @@ def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Pa
     write_analysis_md(folder, issue, analysis)
     write_poc_files(folder, analysis, issue_title)
     write_rfc_md(folder, analysis, issue_title)
-    meta = build_meta(issue, analysis, today)
+    meta = build_meta(issue, analysis, today, folder.name)
     write_meta_json(folder, meta)
     LOGGER.info("Resurrection folder ready: %s", folder)
     return folder

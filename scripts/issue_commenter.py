@@ -68,6 +68,18 @@ def _impact_bar(score: int) -> str:
     return "🟩" * filled + "⬜" * (10 - filled)
 
 
+def _resurrection_url(meta: dict[str, Any]) -> str:
+    slug = str(meta.get("resurrection_slug", "")).strip()
+    if slug:
+        return f"{LAB_URL}/tree/main/resurrections/{slug}"
+    date = str(meta.get("date", "")).strip()
+    repo = str(meta.get("repo", "")).strip().replace("/", "-").replace(".", "-")
+    issue_number = int(meta.get("issue_number", 0))
+    if date and repo and issue_number:
+        return f"{LAB_URL}/tree/main/resurrections/{date}_{repo}_{issue_number}"
+    return LAB_URL
+
+
 def _build_comment(meta: dict[str, Any]) -> str:
     impact_score = int(meta.get("impact_score", 0))
     effort_hours = meta.get("effort_hours", "?")
@@ -79,7 +91,7 @@ def _build_comment(meta: dict[str, Any]) -> str:
     reactions = int(meta.get("reactions", 0))
 
     poc_row = f"| 🔬 Proof of Concept | Working `{poc_language}` code included |" if has_poc else "| 🔬 Proof of Concept | Not included yet |"
-    resurrection_url = f"{LAB_URL}/tree/main/resurrections/day-{date}" if date else LAB_URL
+    resurrection_url = _resurrection_url(meta)
 
     return f"""{BOT_COMMENT_MARKER}
 
@@ -105,28 +117,48 @@ An AI system analyzed why it failed, what changed in the ecosystem since then, a
 """
 
 
-def post_resurrection_comment(meta: dict[str, Any], token: str, dry_run: bool = False) -> bool:
+def post_resurrection_comment(meta: dict[str, Any], token: str, dry_run: bool = False) -> dict[str, Any]:
     from config import POST_ORIGINAL_ISSUE_COMMENT
 
     if not POST_ORIGINAL_ISSUE_COMMENT:
         LOGGER.info("[Commenter] Disabled via config. Skipping.")
-        return False
+        return {
+            "attempted": False,
+            "posted": False,
+            "status": "disabled",
+            "comment_url": "",
+        }
 
     repo = str(meta.get("repo", ""))
     issue_number = int(meta.get("issue_number", 0))
     if not repo or not issue_number:
         LOGGER.warning("[Commenter] Missing repo or issue_number in meta. Skipping.")
-        return False
+        return {
+            "attempted": False,
+            "posted": False,
+            "status": "missing_meta",
+            "comment_url": "",
+        }
 
     existing_comments = _get_existing_comments(repo, issue_number, token)
     if _already_commented(existing_comments):
         LOGGER.info("[Commenter] Already commented on %s#%d. Skipping.", repo, issue_number)
-        return False
+        return {
+            "attempted": True,
+            "posted": False,
+            "status": "already_commented",
+            "comment_url": "",
+        }
 
     comment_body = _build_comment(meta)
     if dry_run:
         LOGGER.info("[Commenter] DRY RUN — would post:\n%s", comment_body)
-        return True
+        return {
+            "attempted": True,
+            "posted": True,
+            "status": "dry_run",
+            "comment_url": "",
+        }
 
     url = f"https://api.github.com/repos/{repo}/issues/{issue_number}/comments"
     headers = _github_headers(token)
@@ -134,17 +166,41 @@ def post_resurrection_comment(meta: dict[str, Any], token: str, dry_run: bool = 
     response = requests.post(url, headers=headers, json={"body": comment_body}, timeout=20)
 
     if response.status_code == 201:
+        try:
+            payload = response.json()
+        except ValueError:
+            payload = {}
         LOGGER.info("[Commenter] ✅ Comment posted on %s#%d", repo, issue_number)
-        return True
+        return {
+            "attempted": True,
+            "posted": True,
+            "status": "posted",
+            "comment_url": str(payload.get("html_url", "")),
+        }
     if response.status_code == 403:
         LOGGER.warning("[Commenter] ⚠️ Cannot comment on %s#%d: permission denied or locked issue.", repo, issue_number)
-        return False
+        return {
+            "attempted": True,
+            "posted": False,
+            "status": "forbidden_or_locked",
+            "comment_url": "",
+        }
     if response.status_code == 404:
         LOGGER.warning("[Commenter] Issue %s#%d not found or no access.", repo, issue_number)
-        return False
+        return {
+            "attempted": True,
+            "posted": False,
+            "status": "not_found",
+            "comment_url": "",
+        }
 
     LOGGER.error(
         "[Commenter] ❌ Failed to post comment on %s#%d: HTTP %s — %s",
         repo, issue_number, response.status_code, response.text[:300],
     )
-    return False
+    return {
+        "attempted": True,
+        "posted": False,
+        "status": f"http_{response.status_code}",
+        "comment_url": "",
+    }

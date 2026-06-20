@@ -219,6 +219,11 @@ def build_stats_section(progress: dict[str, Any]) -> str:
     total_repos_covered = int(progress.get("total_repos_covered", 0))
     average_impact_score = float(progress.get("average_impact_score", 0.0))
     average_effort_hours = float(progress.get("average_effort_hours", 0.0))
+    total_with_poc = int(progress.get("total_with_poc", 0))
+    total_with_rfc = int(progress.get("total_with_rfc", 0))
+    comment_stats = progress.get("comment_stats", {})
+    comments_posted = int(comment_stats.get("posted", 0)) if isinstance(comment_stats, dict) else 0
+    comments_attempted = int(comment_stats.get("attempted", 0)) if isinstance(comment_stats, dict) else 0
     last_updated = _sanitize(progress.get("last_updated", ""))
     return (
         "## \U0001f4ca Live Stats\n\n"
@@ -236,6 +241,9 @@ def build_stats_section(progress: dict[str, Any]) -> str:
         f"    <td align=\"center\"><code>~{average_effort_hours}h</code></td>\n"
         "  </tr>\n"
         "</table>\n\n"
+        f"<sub>\U0001f4ac Comments posted: {comments_posted}/{comments_attempted or total_resurrections} "
+        f"&nbsp;&#183;&nbsp; \U0001f52c PoC coverage: {total_with_poc}/{total_resurrections} "
+        f"&nbsp;&#183;&nbsp; \U0001f4dc RFC coverage: {total_with_rfc}/{total_resurrections}</sub><br/>\n"
         f"<sub>\U0001f550 Last updated: {last_updated}</sub>\n"
     )
 
