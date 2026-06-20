@@ -17,6 +17,7 @@ from groq import Groq
 from config import (
     APPROVED_TECHNOLOGY_TAGS,
     MIN_ACCEPTABLE_IMPACT_SCORE,
+    MIN_QUALITY_BODY_CHARS,
     MIN_QUALITY_COMMENTS,
     RECENT_REPO_HISTORY_LIMIT,
     REPO_DIVERSITY_LOOKBACK_DAYS,
@@ -138,6 +139,64 @@ _BY_DESIGN_LABELS: frozenset[str] = frozenset({
     "intentional", "rejected", "invalid",
     "as designed", "as-designed",
 })
+
+# ---------------------------------------------------------------------------
+# Junk / empty issue filter — GATE 0, zero LLM tokens spent
+# ---------------------------------------------------------------------------
+
+_JUNK_TITLE_PATTERNS = re.compile(
+    r"^(test\s*issue|hello\s*world|testing\s*\d*|foo|bar|asdf|draft|wip|temp|todo|fixme|untitled)\s*$",
+    re.IGNORECASE,
+)
+
+
+def _is_junk_issue(issue: dict[str, Any]) -> tuple[bool, str]:
+    """
+    Return (True, reason) for issues that are clearly junk/empty before any LLM call.
+    Checks title patterns, body length, and total word count.
+    Uses MIN_QUALITY_BODY_CHARS from config as the body length threshold.
+    """
+    title = str(issue.get("title", "")).strip()
+    body = str(issue.get("body") or "").strip()
+
+    if _JUNK_TITLE_PATTERNS.match(title):
+        return True, f"Junk title: '{title}'"
+
+    if len(body) < MIN_QUALITY_BODY_CHARS:
+        return True, f"Body too short ({len(body)} chars, min {MIN_QUALITY_BODY_CHARS}) — not a real proposal"
+
+    total_words = len((title + " " + body).split())
+    if total_words < 30:
+        return True, f"Too sparse ({total_words} total words)"
+
+    return False, ""
+
+
+# ---------------------------------------------------------------------------
+# Generic filler detector — used in validate_analysis()
+# ---------------------------------------------------------------------------
+
+_GENERIC_PHRASES = re.compile(
+    r"\b(ecosystem maturity|increased interest|user demand|community has grown|"
+    r"modern tooling|recent years|growing adoption|significant progress|"
+    r"things have changed|the landscape|has evolved)\b",
+    re.IGNORECASE,
+)
+
+_SPECIFIC_REFS = re.compile(
+    r"\b(Python \d+\.\d+|Rust \d+|Go \d+\.\d+|PEP \d+|RFC \d+|"
+    r"tokio|asyncio|pydantic|zod|esbuild|bun|deno|v8|llvm|wasm|tauri|"
+    r"turborepo|vite|swc|oxc|biome|ruff|uv|pixi)\b",
+    re.IGNORECASE,
+)
+
+
+def _has_generic_filler(text: str) -> bool:
+    """Return True if text has > 2 generic phrases and < 2 specific tool references."""
+    generic_count = len(_GENERIC_PHRASES.findall(text))
+    specific_count = len(_SPECIFIC_REFS.findall(text))
+    return generic_count > 2 and specific_count < 2
+
 
 # ---------------------------------------------------------------------------
 # Manifest fetching — grabs real dependencies so the LLM can't hallucinate imports
@@ -333,6 +392,14 @@ RULE 7 — technology_tags:
   Return 3–6 lowercase tags. The first tag must be the name of the repo's primary
   technology (e.g. "vscode", "ripgrep", "deno"). No generic tags like "software"
   or "feature".
+
+RULE 8 — FACTUAL CONSISTENCY (mandatory):
+  The why_2026_changes_it field must only reference technologies that are
+  DIRECTLY relevant to the issue's topic. If the issue is about string
+  interpolation, do NOT mention generics, WASM, or async — even if they
+  are real language features. Stay strictly on-topic.
+  Ask yourself: 'Does X actually enable this specific feature?' If not, omit it.
+  Every technology you name must have a direct causal link to the issue's proposal.
 
 ═══════════════════════════════════════════════════════
 OUTPUT FORMAT
@@ -1023,6 +1090,15 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
         if len(value) < MIN_ANALYSIS_TEXT_LENGTH:
             errors.append(f"{field} too short ({len(value)} chars, min {MIN_ANALYSIS_TEXT_LENGTH})")
 
+    # Check why_2026_changes_it for generic filler phrases
+    why_2026 = str(data.get("why_2026_changes_it", "")).strip()
+    if _has_generic_filler(why_2026):
+        errors.append(
+            "why_2026_changes_it is too generic — must name specific tools/versions "
+            "(e.g. 'Rust 1.75 async traits', 'PEP 696', 'Deno 2.0 FFI') instead of "
+            "phrases like 'ecosystem maturity' or 'user demand'"
+        )
+
     for field in ("one_line_summary", "one_line_why"):
         value = re.sub(r"\s+", " ", str(data.get(field, "")).strip())
         words = value.split()
@@ -1252,6 +1328,17 @@ def analyze() -> str:
         issue = candidate["issue"]
         repo = str(issue.get("repo", ""))
         issue_number = int(issue.get("issue_number", 0))
+
+        # GATE 0 — Junk/empty issue filter (zero LLM tokens spent).
+        # Catches test issues, empty bodies, and nonsense titles before anything else.
+        is_junk, junk_reason = _is_junk_issue(issue)
+        if is_junk:
+            LOGGER.info(
+                "[Analyzer] Skipping #%d (%s) — junk: %s",
+                issue_number, repo, junk_reason,
+            )
+            mark_quality_rejected(repo, issue_number, junk_reason)
+            continue
 
         # GATE 1 — Label / state_reason pre-filter (zero LLM tokens spent).
         # Issues explicitly rejected by maintainers (wontfix, not_planned, etc.)
