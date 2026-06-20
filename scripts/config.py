@@ -79,6 +79,12 @@ REPOS_TO_SCAN = [
 MIN_UPVOTES = 5              # lowered from 20: cast a wider net
 MONTHS_STALE_THRESHOLD = 12  # raised from 6: 12 months is a safer "abandoned" signal
 
+# Minimum quality gates to keep joke / non-actionable issues out of the pipeline.
+MIN_QUALITY_REACTIONS = 6
+MIN_QUALITY_COMMENTS = 3
+MIN_QUALITY_BODY_CHARS = 80
+MIN_ACCEPTABLE_IMPACT_SCORE = 3
+
 # ---------------------------------------------------------------------------
 # Pagination — single source of truth
 # ---------------------------------------------------------------------------
