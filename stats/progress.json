@@ -1,28 +1,20 @@
 {
-  "last_updated": "2026-06-20T11:18:40",
-  "total_resurrections": 120,
-  "total_repos_covered": 36,
-  "average_impact_score": 6.31,
-  "average_effort_hours": 72.55,
-  "total_with_poc": 93,
-  "total_with_rfc": 104,
+  "last_updated": "2026-06-20T07:33:13",
+  "total_resurrections": 93,
+  "total_repos_covered": 30,
+  "average_impact_score": 6.38,
+  "average_effort_hours": 74.51,
+  "total_with_poc": 71,
+  "total_with_rfc": 80,
   "comment_stats": {
-    "attempted": 1,
+    "attempted": 0,
     "posted": 0,
-    "failed": 1
+    "failed": 0
   },
   "repo_diversity": {
     "top_repeated_repos": [
       {
         "repo": "comfyanonymous/ComfyUI",
-        "count": 6
-      },
-      {
-        "repo": "docker/compose",
-        "count": 6
-      },
-      {
-        "repo": "langchain-ai/langchain",
         "count": 6
       },
       {
@@ -32,6 +24,14 @@
       {
         "repo": "hashicorp/terraform",
         "count": 6
+      },
+      {
+        "repo": "microsoft/TypeScript",
+        "count": 5
+      },
+      {
+        "repo": "microsoft/vscode",
+        "count": 5
       }
     ]
   },
@@ -73,25 +73,22 @@
   ],
   "last_resurrection": {
     "date": "2026-06-20",
-    "repo": "rust-lang/rust",
-    "issue_number": 100000,
-    "title": "Rust is Beautiful",
-    "reactions": 2774,
-    "abandoned_date": "2024-01-14T22:16:41Z",
-    "one_line_why": "The issue was abandoned because it was not a technical issue requiring action or resolution.",
-    "impact_score": 1,
-    "effort_hours": 1.0,
+    "repo": "microsoft/vscode",
+    "issue_number": 43806,
+    "title": "Allow custom setting/control of workbench tab titles",
+    "reactions": 102,
+    "abandoned_date": "2024-07-19T23:24:29Z",
+    "one_line_why": "The recent improvements in VSCode's extensibility and TypeScript support make it feasible to implement custom tab title control.",
+    "impact_score": 6,
+    "effort_hours": 40.0,
     "has_poc": true,
-    "has_rfc": false,
-    "poc_language": "rust",
+    "has_rfc": true,
+    "poc_language": "typescript",
     "technology_tags": [
-      "rust"
+      "vscode",
+      "typescript",
+      "workbench"
     ],
-    "original_url": "https://github.com/rust-lang/rust/issues/100000",
-    "resurrection_slug": "2026-06-20_rust-lang-rust_100000",
-    "comment_posted": false,
-    "comment_status": "forbidden_or_locked",
-    "comment_url": "",
-    "commented_at": "2026-06-20T11:18:40+00:00"
+    "original_url": "https://github.com/microsoft/vscode/issues/43806"
   }
 }
