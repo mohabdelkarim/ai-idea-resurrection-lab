@@ -2,9 +2,9 @@ name: Daily Resurrection
 
 on:
   schedule:
-    - cron: "0 13 * * *"   # 09:00 US Eastern (ET) - morning run
-    - cron: "0 16 * * *"   # 12:00 US Eastern (ET) - midday run
-    - cron: "0 0 * * *"    # 20:00 US Eastern (ET) - evening run
+    - cron: "0 13 * * 1-5"   # 09:00 US Eastern (ET), Monday-Friday - morning run
+    - cron: "0 16 * * 1-5"   # 12:00 US Eastern (ET), Monday-Friday - midday run
+    - cron: "0 0 * * 1-5"    # 20:00 US Eastern (ET), Monday-Friday - evening run
   workflow_dispatch:
 
 permissions:
