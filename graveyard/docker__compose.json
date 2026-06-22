@@ -1,0 +1,206 @@
+[
+  {
+    "repo": "docker/compose",
+    "issue_number": 7853,
+    "title": "Please expose current user and group ID as new variables for use inside docker-compose.yml",
+    "body": "**Is your feature request related to a problem? Please describe.**\r\nHi, docker-compose rocks, keep up the good work! :pray: \r\nI had cases where the container should be running with the same user and group ID as the docker-compose process, e.g. so that files created inside the container will start out with the right owner without any need for initial root permissions (which is not cool for security) or `chown`'ing files et cetera.\r\n\r\nAs of today, inside `docker-compose.yml` a service definition can already ask for a specific user by means of syntax `user: \"<user_id>:<group_id>\"` but there are no predefined variables to effectively achieve something *like* `user: \"$(id -u):$(id -g)\"` from inside the YAML file with convenice. The list of [Compose file and CLI variables](https://docs.docker.com/compose/env-file/#compose-file-and-cli-variables) does not document any variables like that.\r\n\r\nHere's a few documented examples for other people trying to achieve the same, and they all need to resort to means *outside* the `docker-compose.yml` file: [[1]](https://stackoverflow.com/questions/55916455/export-current-user-id-in-makefile-for-docker-compose) [[2]](https://medium.com/faun/set-current-host-user-for-docker-container-4e521cef9ffc#b470) [[3]](https://jtreminio.com/blog/running-docker-containers-as-current-host-user/) [[4]](https://gist.github.com/prog/48341108404cae266d72ed4a470c1bc3) [[5]](https://stackoverflow.com/questions/56844746/how-to-set-uid-and-gid-in-docker-compose/56844765) [[6]](https://dev.to/acro5piano/specifying-user-and-group-in-docker-i2e).\r\n\r\n**Describe the solution you'd like**\r\nIt would be great to have two more predefined variables:\r\n- `COMPOSE_USER_ID` predefined with the effective user ID, as return by `$(id -u)`\r\n- `COMPOSE_GROUP_ID` predefined with the effective group ID, as return by `$(id -g)`\r\n\r\nWith those two variables, a docker-compose.yml file could now use syntax `user: \"${COMPOSE_USER_ID?}:${COMPOSE_GROUP_ID?}\"` to conveniently have a container running as the same user as the one calling docker-compose. Wouldn't that be nice! :smiley: \r\n\r\nFeature request #3849 seems to be rooted in a similar need, but my impression was that the door to arbitrary code execution has been kept shut for security reasons so far and adding two variables should work without questioning the current threat model.\r\n\r\n**Describe alternatives you've considered**\r\nYou could define `COMPOSE_USER_ID` and `COMPOSE_GROUP_ID` *outside* of `docker-compose.yml` e.g.\r\n```\r\nCOMPOSE_USER_ID=\"$(id -u)\" COMPOSE_GROUP_ID=\"$(id -g)\" docker-compose run ...\r\n```\r\nbut it's not very convenient, does not work out of the box, and it's not standardized.\r\n\r\n**Additional context**\r\n```console\r\n# cat docker-compose.yml \r\nversion: \"3\"\r\n\r\nservices:\r\n  debian:\r\n    image: debian:sid\r\n    user: \"${COMPOSE_USER_ID?}:${COMPOSE_GROUP_ID?}\"\r\n\r\n# COMPOSE_USER_ID=\"$(id -u)\" COMPOSE_GROUP_ID=\"$(id -g)\" docker-compose run debian sh -c id  # unpatched\r\nCreating tmpyvecgpc8mx_debian_ru",
+    "reactions": 61,
+    "created_at": "2020-10-07T17:49:29Z",
+    "updated_at": "2025-11-07T08:34:04Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/7853",
+    "html_url": "https://github.com/docker/compose/issues/7853",
+    "author_login": "hartwork",
+    "author_profile": "https://github.com/hartwork",
+    "comments": 29,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 9858,
+    "title": "Setting container hostname to `service_name-xx` instead of container-id",
+    "body": "For this sample compose file\r\n```yaml\r\nservices:\r\n  my-app:\r\n    image: my-image:0.1\r\n\r\n  his-app:\r\n    image: his-image:0.1\r\n```\r\n\r\nCompose creates my-app-1 container for my-app with host-name as container-id say `rndmcntrid`\r\n\r\nThis container is reachable from other services like `his-app-1` with `my-app`, `my-app-1` or `rndmcntrid`.\r\n\r\nCan we have compose set container hostname as `service-1`? e.g. in case of my-app above, hostname be set to `my-app-1` instead of `rndmcntrid`\r\n```\r\nDocker Compose version v2.10.2\r\n```",
+    "reactions": 44,
+    "created_at": "2022-09-19T04:03:57Z",
+    "updated_at": "2025-04-29T18:41:02Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/9858",
+    "html_url": "https://github.com/docker/compose/issues/9858",
+    "author_login": "sapvs",
+    "author_profile": "https://github.com/sapvs",
+    "comments": 33,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 4579,
+    "title": "Using scale number to adjust mounted volumes?",
+    "body": "I have a situation where I need to create many instances of a docker container, and they should have mounts that enable them to persist their data to different locations, so they aren't all running into each other. The containers are all worker agents for some non-docker-controlled server.\r\n\r\nEssentially I need to be able to do something like this:\r\n    \r\n    services:\r\n        agent:\r\n            volumes:\r\n                - /mnt/dat/agent_${DOCKER_SCALE_NUM}:/data/agent\r\n\r\nI found a few references when googling around to something like this, but all of them seemed to have a resolution along the lines of \"you don't really want to do this\" or \"here's some other way to solve your problem that doesn't involve doing this\".\r\n\r\nI doesn't need to be a sequential number or anything like that - I just need some way to get unique mount points for each one.\r\n\r\nIs there an existing way to do this? If not, is anything planned?\r\n\r\nThanks!",
+    "reactions": 38,
+    "created_at": "2017-03-06T22:57:51Z",
+    "updated_at": "2025-03-04T16:11:49Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/4579",
+    "html_url": "https://github.com/docker/compose/issues/4579",
+    "author_login": "Sushisource",
+    "author_profile": "https://github.com/Sushisource",
+    "comments": 20,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 2545,
+    "title": "Proposal: support for args_file",
+    "body": "#### Motivation for this proposal\n- build args have been introduced in Docker 1.9.0.\n- #2163 proposes a new `build:` section in your Compose service\n- builds args can be used to provide secret tokens (ssh key to clone a repository, github token...) during the build phase. These tokens should however not appear in your `docker-compose.yml` file but rather in a separate file.\n#### Proposal\n\nIntroduce a `args_file:` section working the same way that `env_file:` works - but in the build phase.\n#### Proposed documentation\n##### args_file\n\nAdd build arguments from a file. Can be a single value or a list.\n\nIf you have specified a Compose file with `docker-compose -f FILE`, paths in `args_file` are relative to the directory that file is in.\n\nEnvironment variables specified in `args` override these values.\n\n``` yaml\nbuild:\n args_file: .args\n\nbuild:\n  args_file:\n    - ./common.env\n    - ./apps/web.env\n    - /opt/secrets.env\n```\n\nCompose expects each line in an env file to be in `VAR=VAL` format. Lines beginning with `#` (i.e. comments) are ignored, as are blank lines.\n\n``` ini\n# Set the secret token necessary to clone the dependencies\nSECRET_TOKEN=yNxbjX\n```\n",
+    "reactions": 26,
+    "created_at": "2015-12-14T09:14:44Z",
+    "updated_at": "2023-05-09T14:45:29Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/2545",
+    "html_url": "https://github.com/docker/compose/issues/2545",
+    "author_login": "mbontemps",
+    "author_profile": "https://github.com/mbontemps",
+    "comments": 26,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 9954,
+    "title": "add `--build-arg` for `docker compose up --build`",
+    "body": "### Description\r\n\r\nI know I should run `docker compose build --build-arg ... && docker compose up`, but I also would like to use `--build-arg` option for `docker compose up --build`.",
+    "reactions": 24,
+    "created_at": "2022-10-26T06:05:07Z",
+    "updated_at": "2023-05-12T11:01:56Z",
+    "labels": [
+      "kind/feature",
+      "status/0-triage"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/9954",
+    "html_url": "https://github.com/docker/compose/issues/9954",
+    "author_login": "eggplants",
+    "author_profile": "https://github.com/eggplants",
+    "comments": 1,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 7188,
+    "title": "Port conflict with multiple \"host:<port range>:port\" services",
+    "body": "<!--\r\nWelcome to the docker-compose issue tracker! Before creating an issue, please heed the following:\r\n\r\n1. This tracker should only be used to report bugs and request features / enhancements to docker-compose\r\n    - For questions and general support, use https://forums.docker.com\r\n    - For documentation issues, use https://github.com/docker/docker.github.io\r\n    - For issues with the `docker stack` commands and the version 3 of the Compose file, use\r\n      https://github.com/docker/cli\r\n2. Use the search function before creating a new issue. Duplicates will be closed and directed to\r\n   the original discussion.\r\n3. When making a bug report, make sure you provide all required information. The easier it is for\r\n   maintainers to reproduce, the faster it'll be fixed.\r\n-->\r\n\r\n## Description of the issue\r\n\r\nIf a compose file defines multiple services that share an overlapping port range, a port conflict occurs when `docker-compose up` is executed. This behavior started to happen for me when upgrading to Docker Desktop 2.2.0 (Stable) for Mac. The version I was previously running (I believe 2.1.5) was able to select distinct ports for the two services without conflicting. Here is a POC Docker Compose file:\r\n\r\n```\r\nversion: '2.1'\r\nservices:\r\n  postgres-foo:\r\n    image: postgres\r\n    ports:\r\n      - \"127.0.0.1:32768-61000:5432\"\r\n\r\n  postgres-bar:\r\n    image: postgres\r\n    ports:\r\n      - \"127.0.0.1:32768-61000:5432\"\r\n```\r\n\r\n## Context information (for bug reports)\r\n\r\n**Output of `docker-compose version`**\r\n\r\n```\r\ndocker-compose version 1.25.2, build 698e2846\r\ndocker-py version: 4.1.0\r\nCPython version: 3.7.5\r\nOpenSSL version: OpenSSL 1.1.1d  10 Sep 2019\r\n```\r\n\r\n**Output of `docker version`**\r\n```\r\nClient: Docker Engine - Community\r\n Version:           19.03.5\r\n API version:       1.40\r\n Go version:        go1.12.12\r\n Git commit:        633a0ea\r\n Built:             Wed Nov 13 07:22:34 2019\r\n OS/Arch:           darwin/amd64\r\n Experimental:      false\r\n\r\nServer: Docker Engine - Community\r\n Engine:\r\n  Version:          19.03.5\r\n  API version:      1.40 (minimum version 1.12)\r\n  Go version:       go1.12.12\r\n  Git commit:       633a0ea\r\n  Built:            Wed Nov 13 07:29:19 2019\r\n  OS/Arch:          linux/amd64\r\n  Experimental:     false\r\n containerd:\r\n  Version:          v1.2.10\r\n  GitCommit:        b34a5c8af56e510852c35414db4c1f4fa6172339\r\n runc:\r\n  Version:          1.0.0-rc8+dev\r\n  GitCommit:        3e425f80a8c931f88e6d94a8c831b9d5aa481657\r\n docker-init:\r\n  Version:          0.18.0\r\n  GitCommit:        fec3683\r\n```\r\n\r\n**Output of `docker-compose config`**\r\n(Make sure to add the relevant `-f` and other flags)\r\n```\r\nservices:\r\n  postgres-bar:\r\n    image: postgres\r\n    ports:\r\n    - 127.0.0.1:32768-61000:5432/tcp\r\n  postgres-foo:\r\n    image: postgres\r\n    ports:\r\n    - 127.0.0.1:32768-61000:5432/tcp\r\nversion: '2.1'\r\n```\r\n\r\n\r\n## Steps to reproduce the issue\r\n\r\n1. `docker-compose up`\r\n\r\n### Observed result\r\n\r\nServices fail to start and a port conflict error",
+    "reactions": 19,
+    "created_at": "2020-01-26T22:59:15Z",
+    "updated_at": "2025-04-16T00:16:13Z",
+    "labels": [
+      "kind/bug",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/7188",
+    "html_url": "https://github.com/docker/compose/issues/7188",
+    "author_login": "andrei-m",
+    "author_profile": "https://github.com/andrei-m",
+    "comments": 37,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 9586,
+    "title": "\"Custom build outputs\" support",
+    "body": "Are there any plans to support Docker's [custom build outputs](https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs), either via a flag to `docker-compose build` or in the Compose file? Thanks!",
+    "reactions": 15,
+    "created_at": "2022-06-22T19:44:25Z",
+    "updated_at": "2025-11-13T13:18:51Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/9586",
+    "html_url": "https://github.com/docker/compose/issues/9586",
+    "author_login": "tpict",
+    "author_profile": "https://github.com/tpict",
+    "comments": 9,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 12934,
+    "title": "Support for Apple Containers",
+    "body": "### Description\n\nApple released a tool to run Linux containers, optimized for Apple Silicon: [https://github.com/apple/container](https://github.com/apple/container).\n\nIs there any plan for docker-compose to support this engine ?",
+    "reactions": 12,
+    "created_at": "2025-06-11T14:19:51Z",
+    "updated_at": "2025-06-12T05:49:05Z",
+    "labels": [
+      "kind/feature",
+      "status/0-triage"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/12934",
+    "html_url": "https://github.com/docker/compose/issues/12934",
+    "author_login": "koi-tattoo",
+    "author_profile": "https://github.com/koi-tattoo",
+    "comments": 2,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 13073,
+    "title": "Add `build.depends_on` for build-time dependencies",
+    "body": "### Description\n\nHey folks,\n\nI’d like to bring up a long-standing feature request, originally from issue #6093, which dates back over five years. Since then, development practices have advanced, including enabling services to interact with each other during the `docker-compose build` step.\n\nThe problem is still a major pain point: it's impossible for a service's build process to depend on other services in the same Compose file being up and running (unless you start them one by one).\n\n### The Proposal: `build.depends_on`\n\nLet's add a `depends_on` key inside the `build` block. It's declarative, simple, and fits right into the existing Compose structure IMO.\n\n```yaml\nservices:\n  frontend:\n    build:\n      context: ./frontend\n      # THIS IS THE NEW PART\n      depends_on:\n        - database\n    # This is the existing runtime dependency\n    depends_on:\n      - database\n\n  database:\n    image: mongo:latest\n    # ...\n```\n\n**How it would work:**\n\n1.  You run `docker-compose build frontend`.\n2.  Compose sees `build.depends_on: [database]`.\n3.  It spins up the `database` service first.\n4.  It then runs the `frontend` build. The build container can now successfully fetch data from `http://database:27017`.\n5.  When the build finishes (success or fail), Compose automatically tears down the `database` service.\n\nNo more `build.sh` wrappers or makefiles. It's all self-contained in the `compose.yml`.\n\n### Why this is a huge deal\n\nThis isn't an edge case anymore; it's central to many modern workflows.\n\n*   **Static Site Generators (Next.js, Gatsby, Astro):** You need to build your static site by pulling content from a headless CMS (like PayloadCMS or a custom API) running in another container. Right now, this is impossible without a wrapper script or makefile.\n\n*   **API Client Generation:** Your `frontend` build needs to generate a TypeScript client by hitting the `/openapi.json` endpoint of your `backend` service. The build fails because the backend isn't running.\n\n*   **Database-driven builds:** You want to bake something into your image that requires a live DB connection, like generating models from a schema or pre-populating a search index.\n\n### The Bottom Line\n\nAdding `build.depends_on` would be a massive quality-of-life improvement. It solves a real, common problem. It makes Compose a more complete tool for modern webdevelopment.\n\nWould love to get this on the roadmap. What do you all think?",
+    "reactions": 11,
+    "created_at": "2025-07-19T19:52:29Z",
+    "updated_at": "2025-08-26T10:10:26Z",
+    "labels": [
+      "kind/feature"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/13073",
+    "html_url": "https://github.com/docker/compose/issues/13073",
+    "author_login": "Copystrike",
+    "author_profile": "https://github.com/Copystrike",
+    "comments": 2,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "docker/compose",
+    "issue_number": 10579,
+    "title": "DOCKER_FALLBACK_PLATFORM environment variable",
+    "body": "### Description\n\nLots of people started using Mac with M1/M2 chips for development work. When using Docker to run various containers (via docker-compose) you often have to modify the docker-compose.yml file to specify platform: linux/amd64 (and make sure the docker-compose.yml's version is at least 2.4).\r\n\r\nHere is an example of the type of error message I frequently see:\r\n\r\n```\r\nError response from daemon: image with reference phpmyadmin/phpmyadmin:5 was found but does not match the specified platform: wanted linux/arm64, actual: linux/amd64\r\n```\r\n\r\nIs there a way to have Docker / Docker Compose (on a Mac) try to use the linux/arm64 version, but if it's not available, automatically fall back to the linux/amd64 image?\r\n\r\nOriginal question on stackoverflow: https://stackoverflow.com/questions/76220506/is-there-a-way-to-have-docker-on-mac-fallback-to-linux-amd64-when-a-linux-arm64\r\n\r\nI don't use Macs but I have a similar issue with my Raptor CS Talos 2 ppc64le (IBM Power 9) workstation. Whenever available I want to use native ppc64le images but I'd like to automatically fallback to amd64 (which gets translated via qemu-user) when none is available. The env variable could be placed into `.bashrc` and forgot about and everything would automagically work.",
+    "reactions": 11,
+    "created_at": "2023-05-18T10:58:57Z",
+    "updated_at": "2024-11-12T07:46:32Z",
+    "labels": [
+      "kind/feature",
+      "needs-engine-feature"
+    ],
+    "url": "https://api.github.com/repos/docker/compose/issues/10579",
+    "html_url": "https://github.com/docker/compose/issues/10579",
+    "author_login": "darkbasic",
+    "author_profile": "https://github.com/darkbasic",
+    "comments": 17,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  }
+]
