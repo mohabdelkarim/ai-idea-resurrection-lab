@@ -14,7 +14,10 @@
     "html_url": "https://github.com/starship/starship/issues/498",
     "author_login": "ubolonton",
     "author_profile": "https://github.com/ubolonton",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "starship/starship",
@@ -32,6 +35,9 @@
     "html_url": "https://github.com/starship/starship/issues/528",
     "author_login": "pinage404",
     "author_profile": "https://github.com/pinage404",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]

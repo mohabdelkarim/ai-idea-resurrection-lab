@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-22",
+  "repo": "starship/starship",
+  "issue_number": 498,
+  "title": "Support for right-aligned modules before line_break",
+  "reactions": 72,
+  "abandoned_date": "2021-10-17T15:07:40Z",
+  "one_line_why": "Rust async/await stabilization and growing demand for customizable Starship prompts.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "technology_tags": [
+    "starship",
+    "rust",
+    "prompt"
+  ],
+  "original_url": "https://github.com/starship/starship/issues/498",
+  "resurrection_slug": "2026-06-22_starship-starship_498",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-22T19:23:10+00:00"
+}
