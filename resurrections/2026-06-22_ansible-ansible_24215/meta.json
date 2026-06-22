@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-22",
+  "repo": "ansible/ansible",
+  "issue_number": 24215,
+  "title": "Increase verbosity on a per task basis",
+  "reactions": 164,
+  "abandoned_date": "2025-02-05T14:00:02Z",
+  "one_line_why": "Ansible's modular design and flexible logging mechanisms now enable per-task verbosity control.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "ansible",
+    "ansible-playbook",
+    "verbosity"
+  ],
+  "original_url": "https://github.com/ansible/ansible/issues/24215",
+  "resurrection_slug": "2026-06-22_ansible-ansible_24215",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-22T03:48:05+00:00"
+}
