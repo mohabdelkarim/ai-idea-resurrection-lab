@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-22T19:23:10",
-  "total_resurrections": 97,
-  "total_repos_covered": 34,
+  "last_updated": "2026-06-23T02:51:51",
+  "total_resurrections": 98,
+  "total_repos_covered": 35,
   "average_impact_score": 6.38,
-  "average_effort_hours": 74.32,
-  "total_with_poc": 75,
-  "total_with_rfc": 84,
+  "average_effort_hours": 73.97,
+  "total_with_poc": 76,
+  "total_with_rfc": 85,
   "comment_stats": {
-    "attempted": 4,
+    "attempted": 5,
     "posted": 0,
-    "failed": 4
+    "failed": 5
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,28 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-22",
-    "repo": "sveltejs/svelte",
-    "issue_number": 9241,
-    "title": "Add a (singular) `$prop` rune",
-    "reactions": 140,
-    "abandoned_date": "2024-08-22T10:46:27Z",
-    "one_line_why": "The evolution of TypeScript and Svelte's ecosystem makes the `$prop` rune feasible and beneficial for improving developer experience.",
+    "date": "2026-06-23",
+    "repo": "docker/compose",
+    "issue_number": 7853,
+    "title": "Please expose current user and group ID as new variables for use inside docker-compose.yml",
+    "reactions": 61,
+    "abandoned_date": "2025-11-07T08:34:04Z",
+    "one_line_why": "Recent Docker advancements and growing adoption of Docker Compose v2 enable secure implementation of user and group ID variables.",
     "impact_score": 6,
     "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "go",
     "technology_tags": [
-      "svelte",
-      "typescript",
-      "rune"
+      "docker",
+      "docker-compose",
+      "go"
     ],
-    "original_url": "https://github.com/sveltejs/svelte/issues/9241",
-    "resurrection_slug": "2026-06-22_sveltejs-svelte_9241",
+    "original_url": "https://github.com/docker/compose/issues/7853",
+    "resurrection_slug": "2026-06-23_docker-compose_7853",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-06-22T17:32:44+00:00"
+    "commented_at": "2026-06-23T02:51:51+00:00"
   }
 }
