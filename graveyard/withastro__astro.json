@@ -14,7 +14,10 @@
     "html_url": "https://github.com/withastro/astro/issues/4432",
     "author_login": "mayank99",
     "author_profile": "https://github.com/mayank99",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "withastro/astro",
@@ -29,7 +32,10 @@
     "html_url": "https://github.com/withastro/astro/issues/80",
     "author_login": "FredKSchott",
     "author_profile": "https://github.com/FredKSchott",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "withastro/astro",
@@ -48,7 +54,10 @@
     "html_url": "https://github.com/withastro/astro/issues/12824",
     "author_login": "ethanniser",
     "author_profile": "https://github.com/ethanniser",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "withastro/astro",
@@ -66,7 +75,10 @@
     "html_url": "https://github.com/withastro/astro/issues/13789",
     "author_login": "sgalcheung",
     "author_profile": "https://github.com/sgalcheung",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "withastro/astro",
@@ -85,7 +97,10 @@
     "html_url": "https://github.com/withastro/astro/issues/13060",
     "author_login": "andrewflbarnes",
     "author_profile": "https://github.com/andrewflbarnes",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "withastro/astro",
@@ -104,7 +119,10 @@
     "html_url": "https://github.com/withastro/astro/issues/9328",
     "author_login": "ffxsam",
     "author_profile": "https://github.com/ffxsam",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "withastro/astro",
@@ -123,6 +141,9 @@
     "html_url": "https://github.com/withastro/astro/issues/9110",
     "author_login": "izmttk",
     "author_profile": "https://github.com/izmttk",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
