@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-23",
+  "repo": "vercel/next.js",
+  "issue_number": 21498,
+  "title": "URL resolution case sensitivity is inconsistent",
+  "reactions": 54,
+  "abandoned_date": "2025-10-16T00:05:16Z",
+  "one_line_why": "Next.js 14's improved internationalized routing enables case-insensitive URL resolution with redirects.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "nextjs",
+    "typescript",
+    "middleware"
+  ],
+  "original_url": "https://github.com/vercel/next.js/issues/21498",
+  "resurrection_slug": "2026-06-23_vercel-next-js_21498",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-23T17:47:56+00:00"
+}

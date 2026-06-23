@@ -16,7 +16,10 @@
     "html_url": "https://github.com/vercel/next.js/issues/21498",
     "author_login": "nbouvrette",
     "author_profile": "https://github.com/nbouvrette",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "vercel/next.js",
@@ -37,7 +40,10 @@
     "html_url": "https://github.com/vercel/next.js/issues/39375",
     "author_login": "Pagebakers",
     "author_profile": "https://github.com/Pagebakers",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "vercel/next.js",
@@ -57,7 +63,10 @@
     "html_url": "https://github.com/vercel/next.js/issues/44764",
     "author_login": "myl7",
     "author_profile": "https://github.com/myl7",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "vercel/next.js",
@@ -76,7 +85,10 @@
     "html_url": "https://github.com/vercel/next.js/issues/37945",
     "author_login": "pekarja5",
     "author_profile": "https://github.com/pekarja5",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "vercel/next.js",
@@ -95,6 +107,9 @@
     "html_url": "https://github.com/vercel/next.js/issues/42346",
     "author_login": "krsteve",
     "author_profile": "https://github.com/krsteve",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
