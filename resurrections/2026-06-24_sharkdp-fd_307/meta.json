@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-24",
+  "repo": "sharkdp/fd",
+  "issue_number": 307,
+  "title": "Finding by owner username/group/uid/gid",
+  "reactions": 20,
+  "abandoned_date": "2020-05-19T17:02:36Z",
+  "one_line_why": "Rust's users and gid crates now provide a straightforward way to implement this feature.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "technology_tags": [
+    "fd",
+    "rust",
+    "filesystem"
+  ],
+  "original_url": "https://github.com/sharkdp/fd/issues/307",
+  "resurrection_slug": "2026-06-24_sharkdp-fd_307",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-24T17:51:25+00:00"
+}
