@@ -15,6 +15,9 @@
     "html_url": "https://github.com/vitejs/vite/issues/3873",
     "author_login": "oscartbeaumont",
     "author_profile": "https://github.com/oscartbeaumont",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
