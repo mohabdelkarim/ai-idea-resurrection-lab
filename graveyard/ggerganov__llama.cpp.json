@@ -15,7 +15,10 @@
     "html_url": "https://github.com/ggml-org/llama.cpp/issues/16186",
     "author_login": "teee9",
     "author_profile": "https://github.com/teee9",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ggerganov/llama.cpp",
@@ -33,7 +36,10 @@
     "html_url": "https://github.com/ggml-org/llama.cpp/issues/16331",
     "author_login": "createthis",
     "author_profile": "https://github.com/createthis",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ggerganov/llama.cpp",
@@ -51,7 +57,30 @@
     "html_url": "https://github.com/ggml-org/llama.cpp/issues/17509",
     "author_login": "AbdullahMPrograms",
     "author_profile": "https://github.com/AbdullahMPrograms",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 22469,
+    "title": "Model request: MiMo V2.5 Series",
+    "body": "The [MiMo-V2.5 series](https://huggingface.co/collections/XiaomiMiMo/mimo-v25) introduces two open-source Mixture-of-Experts (MoE) language models MiMo-V2.5-Pro with 1.02T parameters (42B activated) and MiMo-V2.5 with 310B parameters (15B activated) both featuring a context window of one million tokens. It would be great to run MiMo V2.5 with llama.cpp!",
+    "reactions": 18,
+    "created_at": "2026-04-28T11:23:51Z",
+    "updated_at": "2026-06-21T01:39:36Z",
+    "labels": [
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/22469",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/22469",
+    "author_login": "rodrigomatta",
+    "author_profile": "https://github.com/rodrigomatta",
+    "comments": 10,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ggerganov/llama.cpp",
@@ -69,7 +98,10 @@
     "html_url": "https://github.com/ggml-org/llama.cpp/issues/18189",
     "author_login": "sammcj",
     "author_profile": "https://github.com/sammcj",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ggerganov/llama.cpp",
@@ -87,6 +119,9 @@
     "html_url": "https://github.com/ggml-org/llama.cpp/issues/17280",
     "author_login": "sxch775-work",
     "author_profile": "https://github.com/sxch775-work",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
