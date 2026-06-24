@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-24T15:37:10",
-  "total_resurrections": 102,
-  "total_repos_covered": 39,
+  "last_updated": "2026-06-24T17:51:25",
+  "total_resurrections": 103,
+  "total_repos_covered": 40,
   "average_impact_score": 6.37,
-  "average_effort_hours": 73.81,
-  "total_with_poc": 80,
-  "total_with_rfc": 89,
+  "average_effort_hours": 73.87,
+  "total_with_poc": 81,
+  "total_with_rfc": 90,
   "comment_stats": {
-    "attempted": 9,
+    "attempted": 10,
     "posted": 0,
-    "failed": 9
+    "failed": 10
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -38,8 +38,8 @@
   "top_tags": [
     "typescript",
     "go",
-    "python",
     "rust",
+    "python",
     "ai"
   ],
   "hall_of_fame": [
