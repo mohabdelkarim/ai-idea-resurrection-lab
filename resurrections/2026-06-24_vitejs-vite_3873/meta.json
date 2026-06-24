@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-24",
+  "repo": "vitejs/vite",
+  "issue_number": 3873,
+  "title": "vite build --watch HMR",
+  "reactions": 54,
+  "abandoned_date": "2023-08-05T00:23:28Z",
+  "one_line_why": "Vite's HMR protocol and plugin API advancements make this feature feasible now.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "vite",
+    "hmr",
+    "typescript"
+  ],
+  "original_url": "https://github.com/vitejs/vite/issues/3873",
+  "resurrection_slug": "2026-06-24_vitejs-vite_3873",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-24T02:52:32+00:00"
+}
