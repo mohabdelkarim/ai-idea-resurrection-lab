@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-25",
+  "repo": "grafana/grafana",
+  "issue_number": 7121,
+  "title": "[Feature request] Email templating in Alert engine",
+  "reactions": 92,
+  "abandoned_date": "2024-05-27T01:49:02Z",
+  "one_line_why": "The Go templating library advancements enable a robust email templating engine for Grafana's alerting feature.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "grafana",
+    "go",
+    "templating",
+    "alerting",
+    "notifications"
+  ],
+  "original_url": "https://github.com/grafana/grafana/issues/7121",
+  "resurrection_slug": "2026-06-25_grafana-grafana_7121",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-25T15:43:34+00:00"
+}

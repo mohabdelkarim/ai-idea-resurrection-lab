@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-25T02:52:11",
-  "total_resurrections": 104,
-  "total_repos_covered": 41,
+  "last_updated": "2026-06-25T15:43:34",
+  "total_resurrections": 105,
+  "total_repos_covered": 42,
   "average_impact_score": 6.37,
-  "average_effort_hours": 73.93,
+  "average_effort_hours": 74.37,
   "total_with_poc": 82,
-  "total_with_rfc": 91,
+  "total_with_rfc": 92,
   "comment_stats": {
-    "attempted": 11,
+    "attempted": 12,
     "posted": 0,
-    "failed": 11
+    "failed": 12
   },
   "repo_diversity": {
     "top_repeated_repos": [
