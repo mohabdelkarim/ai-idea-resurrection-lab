@@ -16,7 +16,10 @@
     "html_url": "https://github.com/facebook/react/issues/13525",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -31,7 +34,10 @@
     "html_url": "https://github.com/facebook/react/issues/10294",
     "author_login": "bvaughn",
     "author_profile": "https://github.com/bvaughn",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -46,7 +52,10 @@
     "html_url": "https://github.com/facebook/react/issues/10191",
     "author_login": "wohali",
     "author_profile": "https://github.com/wohali",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -63,7 +72,10 @@
     "html_url": "https://github.com/facebook/react/issues/8854",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -81,7 +93,10 @@
     "html_url": "https://github.com/facebook/react/issues/12014",
     "author_login": "dominikwilkowski",
     "author_profile": "https://github.com/dominikwilkowski",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -96,7 +111,10 @@
     "html_url": "https://github.com/facebook/react/issues/8663",
     "author_login": "gabegreenberg",
     "author_profile": "https://github.com/gabegreenberg",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -113,7 +131,10 @@
     "html_url": "https://github.com/facebook/react/issues/29898",
     "author_login": "ehellman",
     "author_profile": "https://github.com/ehellman",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -132,7 +153,10 @@
     "html_url": "https://github.com/facebook/react/issues/7942",
     "author_login": "sebmarkbage",
     "author_profile": "https://github.com/sebmarkbage",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -149,7 +173,10 @@
     "html_url": "https://github.com/facebook/react/issues/28313",
     "author_login": "JoshuaKGoldberg",
     "author_profile": "https://github.com/JoshuaKGoldberg",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -168,7 +195,10 @@
     "html_url": "https://github.com/facebook/react/issues/16437",
     "author_login": "k3flo",
     "author_profile": "https://github.com/k3flo",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -185,7 +215,10 @@
     "html_url": "https://github.com/facebook/react/issues/11940",
     "author_login": "gabegreenberg",
     "author_profile": "https://github.com/gabegreenberg",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -203,7 +236,10 @@
     "html_url": "https://github.com/facebook/react/issues/11538",
     "author_login": "fritz-c",
     "author_profile": "https://github.com/fritz-c",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -221,7 +257,10 @@
     "html_url": "https://github.com/facebook/react/issues/14099",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -241,7 +280,10 @@
     "html_url": "https://github.com/facebook/react/issues/16474",
     "author_login": "bvaughn",
     "author_profile": "https://github.com/bvaughn",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -256,7 +298,10 @@
     "html_url": "https://github.com/facebook/react/issues/9851",
     "author_login": "lei-clearsky",
     "author_profile": "https://github.com/lei-clearsky",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -271,7 +316,10 @@
     "html_url": "https://github.com/facebook/react/issues/2127",
     "author_login": "AdamKyle",
     "author_profile": "https://github.com/AdamKyle",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -286,7 +334,10 @@
     "html_url": "https://github.com/facebook/react/issues/6322",
     "author_login": "amized",
     "author_profile": "https://github.com/amized",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -305,7 +356,10 @@
     "html_url": "https://github.com/facebook/react/issues/6410",
     "author_login": "sophiebits",
     "author_profile": "https://github.com/sophiebits",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -320,7 +374,10 @@
     "html_url": "https://github.com/facebook/react/issues/25573",
     "author_login": "artalar",
     "author_profile": "https://github.com/artalar",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -335,7 +392,10 @@
     "html_url": "https://github.com/facebook/react/issues/15257",
     "author_login": "necolas",
     "author_profile": "https://github.com/necolas",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -352,7 +412,10 @@
     "html_url": "https://github.com/facebook/react/issues/14110",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -367,7 +430,10 @@
     "html_url": "https://github.com/facebook/react/issues/15156",
     "author_login": "pumanitro",
     "author_profile": "https://github.com/pumanitro",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -385,7 +451,10 @@
     "html_url": "https://github.com/facebook/react/issues/15275",
     "author_login": "bdwain",
     "author_profile": "https://github.com/bdwain",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -402,7 +471,10 @@
     "html_url": "https://github.com/facebook/react/issues/11527",
     "author_login": "mweststrate",
     "author_profile": "https://github.com/mweststrate",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -420,7 +492,10 @@
     "html_url": "https://github.com/facebook/react/issues/14463",
     "author_login": "rlesniak",
     "author_profile": "https://github.com/rlesniak",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -437,7 +512,10 @@
     "html_url": "https://github.com/facebook/react/issues/14769",
     "author_login": "ncphillips",
     "author_profile": "https://github.com/ncphillips",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -455,7 +533,10 @@
     "html_url": "https://github.com/facebook/react/issues/14476",
     "author_login": "kpaxqin",
     "author_profile": "https://github.com/kpaxqin",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -472,7 +553,10 @@
     "html_url": "https://github.com/facebook/react/issues/6170",
     "author_login": "sebmarkbage",
     "author_profile": "https://github.com/sebmarkbage",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -490,7 +574,10 @@
     "html_url": "https://github.com/facebook/react/issues/10879",
     "author_login": "TimoRuetten",
     "author_profile": "https://github.com/TimoRuetten",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -508,7 +595,10 @@
     "html_url": "https://github.com/facebook/react/issues/2517",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -525,7 +615,10 @@
     "html_url": "https://github.com/facebook/react/issues/2461",
     "author_login": "longlho",
     "author_profile": "https://github.com/longlho",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -540,7 +633,10 @@
     "html_url": "https://github.com/facebook/react/issues/14208",
     "author_login": "imsobear",
     "author_profile": "https://github.com/imsobear",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -555,7 +651,10 @@
     "html_url": "https://github.com/facebook/react/issues/7925",
     "author_login": "sebmarkbage",
     "author_profile": "https://github.com/sebmarkbage",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -570,7 +669,10 @@
     "html_url": "https://github.com/facebook/react/issues/5677",
     "author_login": "slorber",
     "author_profile": "https://github.com/slorber",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -587,7 +689,10 @@
     "html_url": "https://github.com/facebook/react/issues/15315",
     "author_login": "sethandleah",
     "author_profile": "https://github.com/sethandleah",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -604,7 +709,10 @@
     "html_url": "https://github.com/facebook/react/issues/1118",
     "author_login": "mattmccray",
     "author_profile": "https://github.com/mattmccray",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -622,7 +730,10 @@
     "html_url": "https://github.com/facebook/react/issues/14920",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -637,7 +748,10 @@
     "html_url": "https://github.com/facebook/react/issues/6420",
     "author_login": "aickin",
     "author_profile": "https://github.com/aickin",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -652,7 +766,10 @@
     "html_url": "https://github.com/facebook/react/issues/3163",
     "author_login": "TrySpace",
     "author_profile": "https://github.com/TrySpace",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -670,7 +787,10 @@
     "html_url": "https://github.com/facebook/react/issues/2642",
     "author_login": "ghost",
     "author_profile": "https://github.com/ghost",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -688,7 +808,10 @@
     "html_url": "https://github.com/facebook/react/issues/7671",
     "author_login": "sebmarkbage",
     "author_profile": "https://github.com/sebmarkbage",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -705,7 +828,10 @@
     "html_url": "https://github.com/facebook/react/issues/15176",
     "author_login": "k15a",
     "author_profile": "https://github.com/k15a",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -723,7 +849,10 @@
     "html_url": "https://github.com/facebook/react/issues/21856",
     "author_login": "bvaughn",
     "author_profile": "https://github.com/bvaughn",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -742,7 +871,10 @@
     "html_url": "https://github.com/facebook/react/issues/13560",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -762,7 +894,10 @@
     "html_url": "https://github.com/facebook/react/issues/11098",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -780,7 +915,10 @@
     "html_url": "https://github.com/facebook/react/issues/14347",
     "author_login": "debel",
     "author_profile": "https://github.com/debel",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -795,7 +933,10 @@
     "html_url": "https://github.com/facebook/react/issues/14066",
     "author_login": "evolutionxbox",
     "author_profile": "https://github.com/evolutionxbox",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -812,7 +953,10 @@
     "html_url": "https://github.com/facebook/react/issues/27862",
     "author_login": "vcarl",
     "author_profile": "https://github.com/vcarl",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -830,7 +974,10 @@
     "html_url": "https://github.com/facebook/react/issues/19308",
     "author_login": "eiamei",
     "author_profile": "https://github.com/eiamei",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -845,7 +992,10 @@
     "html_url": "https://github.com/facebook/react/issues/16009",
     "author_login": "trueadm",
     "author_profile": "https://github.com/trueadm",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -864,7 +1014,10 @@
     "html_url": "https://github.com/facebook/react/issues/19002",
     "author_login": "bengry",
     "author_profile": "https://github.com/bengry",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -882,7 +1035,10 @@
     "html_url": "https://github.com/facebook/react/issues/6411",
     "author_login": "henrikhelmers",
     "author_profile": "https://github.com/henrikhelmers",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -897,7 +1053,10 @@
     "html_url": "https://github.com/facebook/react/issues/1587",
     "author_login": "jameslong",
     "author_profile": "https://github.com/jameslong",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -912,7 +1071,10 @@
     "html_url": "https://github.com/facebook/react/issues/9395",
     "author_login": "bvaughn",
     "author_profile": "https://github.com/bvaughn",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -929,7 +1091,10 @@
     "html_url": "https://github.com/facebook/react/issues/30119",
     "author_login": "JstnMcBrd",
     "author_profile": "https://github.com/JstnMcBrd",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -948,7 +1113,10 @@
     "html_url": "https://github.com/facebook/react/issues/12051",
     "author_login": "sebmarkbage",
     "author_profile": "https://github.com/sebmarkbage",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -963,7 +1131,10 @@
     "html_url": "https://github.com/facebook/react/issues/6335",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -978,7 +1149,10 @@
     "html_url": "https://github.com/facebook/react/issues/9245",
     "author_login": "gaearon",
     "author_profile": "https://github.com/gaearon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -996,7 +1170,10 @@
     "html_url": "https://github.com/facebook/react/issues/22545",
     "author_login": "pkelly-rh",
     "author_profile": "https://github.com/pkelly-rh",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "facebook/react",
@@ -1014,6 +1191,9 @@
     "html_url": "https://github.com/facebook/react/issues/18945",
     "author_login": "dmail",
     "author_profile": "https://github.com/dmail",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
