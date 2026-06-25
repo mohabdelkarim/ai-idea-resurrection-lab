@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-24T17:51:25",
-  "total_resurrections": 103,
-  "total_repos_covered": 40,
+  "last_updated": "2026-06-25T02:52:11",
+  "total_resurrections": 104,
+  "total_repos_covered": 41,
   "average_impact_score": 6.37,
-  "average_effort_hours": 73.87,
-  "total_with_poc": 81,
-  "total_with_rfc": 90,
+  "average_effort_hours": 73.93,
+  "total_with_poc": 82,
+  "total_with_rfc": 91,
   "comment_stats": {
-    "attempted": 10,
+    "attempted": 11,
     "posted": 0,
-    "failed": 10
+    "failed": 11
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,28 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-24",
-    "repo": "vitejs/vite",
-    "issue_number": 3873,
-    "title": "vite build --watch HMR",
-    "reactions": 54,
-    "abandoned_date": "2023-08-05T00:23:28Z",
-    "one_line_why": "Vite's HMR protocol and plugin API advancements make this feature feasible now.",
-    "impact_score": 7,
+    "date": "2026-06-25",
+    "repo": "tauri-apps/tauri",
+    "issue_number": 8588,
+    "title": "[feat] upstream nix requirements to nixpkgs",
+    "reactions": 6,
+    "abandoned_date": "2025-09-03T12:13:49Z",
+    "one_line_why": "Nixpkgs now supports more complex derivations and the Tauri team can dedicate resources to it.",
+    "impact_score": 6,
     "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "rust",
     "technology_tags": [
-      "vite",
-      "hmr",
-      "typescript"
+      "tauri",
+      "nix",
+      "nixpkgs"
     ],
-    "original_url": "https://github.com/vitejs/vite/issues/3873",
-    "resurrection_slug": "2026-06-24_vitejs-vite_3873",
+    "original_url": "https://github.com/tauri-apps/tauri/issues/8588",
+    "resurrection_slug": "2026-06-25_tauri-apps-tauri_8588",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-06-24T02:52:32+00:00"
+    "commented_at": "2026-06-25T02:52:11+00:00"
   }
 }

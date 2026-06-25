@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-25",
+  "repo": "tauri-apps/tauri",
+  "issue_number": 8588,
+  "title": "[feat] upstream nix requirements to nixpkgs",
+  "reactions": 6,
+  "abandoned_date": "2025-09-03T12:13:49Z",
+  "one_line_why": "Nixpkgs now supports more complex derivations and the Tauri team can dedicate resources to it.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "technology_tags": [
+    "tauri",
+    "nix",
+    "nixpkgs"
+  ],
+  "original_url": "https://github.com/tauri-apps/tauri/issues/8588",
+  "resurrection_slug": "2026-06-25_tauri-apps-tauri_8588",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-25T02:52:11+00:00"
+}
