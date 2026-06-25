@@ -16,6 +16,9 @@
     "html_url": "https://github.com/tauri-apps/tauri/issues/8588",
     "author_login": "thedavidmeister",
     "author_profile": "https://github.com/thedavidmeister",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
