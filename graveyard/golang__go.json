@@ -17,7 +17,10 @@
     "html_url": "https://github.com/golang/go/issues/34174",
     "author_login": "sirkon",
     "author_profile": "https://github.com/sirkon",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -38,7 +41,10 @@
     "html_url": "https://github.com/golang/go/issues/21291",
     "author_login": "earthboundkid",
     "author_profile": "https://github.com/earthboundkid",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -56,7 +62,10 @@
     "html_url": "https://github.com/golang/go/issues/22885",
     "author_login": "rasky",
     "author_profile": "https://github.com/rasky",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -76,7 +85,10 @@
     "html_url": "https://github.com/golang/go/issues/47657",
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -94,7 +106,10 @@
     "html_url": "https://github.com/golang/go/issues/15959",
     "author_login": "prithvi16",
     "author_profile": "https://github.com/prithvi16",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -115,7 +130,10 @@
     "html_url": "https://github.com/golang/go/issues/21670",
     "author_login": "mediocregopher",
     "author_profile": "https://github.com/mediocregopher",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -134,7 +152,10 @@
     "html_url": "https://github.com/golang/go/issues/37739",
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -156,7 +177,10 @@
     "html_url": "https://github.com/golang/go/issues/18605",
     "author_login": "blixt",
     "author_profile": "https://github.com/blixt",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -176,7 +200,30 @@
     "html_url": "https://github.com/golang/go/issues/38812",
     "author_login": "notzippy",
     "author_profile": "https://github.com/notzippy",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 54297,
+    "title": "proposal: must: Do",
+    "body": "I always find it tedious to use `httputil.ReverseProxy` because you usually need a `*url.URL` and you can't make one easily without a few lines of boilerplate.\r\n\r\nProposal: add `url.MustParse` like regexp.MustCompile, template.Must, etc.\r\n\r\n(Alternatively: a generic `must.Do` somewhere in std)\r\n\r\ncc @neild ",
+    "reactions": 87,
+    "created_at": "2022-08-05T16:14:44Z",
+    "updated_at": "2026-06-25T16:14:10Z",
+    "labels": [
+      "Proposal"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/54297",
+    "html_url": "https://github.com/golang/go/issues/54297",
+    "author_login": "bradfitz",
+    "author_profile": "https://github.com/bradfitz",
+    "comments": 81,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -196,7 +243,10 @@
     "html_url": "https://github.com/golang/go/issues/25612",
     "author_login": "sbinet",
     "author_profile": "https://github.com/sbinet",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -216,7 +266,10 @@
     "html_url": "https://github.com/golang/go/issues/21835",
     "author_login": "robpike",
     "author_profile": "https://github.com/robpike",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -233,7 +286,10 @@
     "html_url": "https://github.com/golang/go/issues/54393",
     "author_login": "aaronc",
     "author_profile": "https://github.com/aaronc",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -254,7 +310,10 @@
     "html_url": "https://github.com/golang/go/issues/9097",
     "author_login": "chai2010",
     "author_profile": "https://github.com/chai2010",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -274,7 +333,10 @@
     "html_url": "https://github.com/golang/go/issues/70752",
     "author_login": "paskozdilar",
     "author_profile": "https://github.com/paskozdilar",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -294,7 +356,10 @@
     "html_url": "https://github.com/golang/go/issues/23019",
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -314,7 +379,10 @@
     "html_url": "https://github.com/golang/go/issues/25572",
     "author_login": "akavel",
     "author_profile": "https://github.com/akavel",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -335,7 +403,10 @@
     "html_url": "https://github.com/golang/go/issues/66651",
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -356,7 +427,10 @@
     "html_url": "https://github.com/golang/go/issues/57616",
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -376,7 +450,10 @@
     "html_url": "https://github.com/golang/go/issues/78027",
     "author_login": "jub0bs",
     "author_profile": "https://github.com/jub0bs",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -394,7 +471,10 @@
     "html_url": "https://github.com/golang/go/issues/62487",
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -415,7 +495,10 @@
     "html_url": "https://github.com/golang/go/issues/57825",
     "author_login": "jimsnab",
     "author_profile": "https://github.com/jimsnab",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "golang/go",
@@ -437,6 +520,9 @@
     "html_url": "https://github.com/golang/go/issues/63961",
     "author_login": "xiaokentrl",
     "author_profile": "https://github.com/xiaokentrl",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]

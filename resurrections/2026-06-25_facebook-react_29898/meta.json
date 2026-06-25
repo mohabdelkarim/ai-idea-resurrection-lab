@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-25",
+  "repo": "facebook/react",
+  "issue_number": 29898,
+  "title": "[React 19] Disabling prerendering siblings of suspended components breaking common pattern",
+  "reactions": 261,
+  "abandoned_date": "2025-06-12T17:43:06Z",
+  "one_line_why": "React's concurrent rendering advancements and new Cache API enable a solution.",
+  "impact_score": 9,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "react",
+    "typescript",
+    "performance"
+  ],
+  "original_url": "https://github.com/facebook/react/issues/29898",
+  "resurrection_slug": "2026-06-25_facebook-react_29898",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-25T18:04:58+00:00"
+}

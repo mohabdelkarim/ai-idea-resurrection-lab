@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-25T15:43:34",
-  "total_resurrections": 105,
+  "last_updated": "2026-06-25T18:04:58",
+  "total_resurrections": 106,
   "total_repos_covered": 42,
-  "average_impact_score": 6.37,
-  "average_effort_hours": 74.37,
-  "total_with_poc": 82,
-  "total_with_rfc": 92,
+  "average_impact_score": 6.4,
+  "average_effort_hours": 74.8,
+  "total_with_poc": 83,
+  "total_with_rfc": 93,
   "comment_stats": {
-    "attempted": 12,
+    "attempted": 13,
     "posted": 0,
-    "failed": 12
+    "failed": 13
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -53,6 +53,15 @@
       "original_url": "https://github.com/facebook/react/issues/10191"
     },
     {
+      "date": "2026-06-25",
+      "repo": "facebook/react",
+      "issue_number": 29898,
+      "title": "[React 19] Disabling prerendering siblings of suspended components breaking common pattern",
+      "impact_score": 9,
+      "one_line_why": "React's concurrent rendering advancements and new Cache API enable a solution.",
+      "original_url": "https://github.com/facebook/react/issues/29898"
+    },
+    {
       "date": "2026-05-13",
       "repo": "huggingface/transformers",
       "issue_number": 4658,
@@ -60,15 +69,6 @@
       "impact_score": 8,
       "one_line_why": "GPT-3's massive success and widespread adoption make its integration crucial for the Transformers library.",
       "original_url": "https://github.com/huggingface/transformers/issues/4658"
-    },
-    {
-      "date": "2026-05-27",
-      "repo": "kubernetes/kubernetes",
-      "issue_number": 122753,
-      "title": "DaemonSet dynamic/scaled resources based on node type",
-      "impact_score": 8,
-      "one_line_why": "Dynamic resource allocation for DaemonSets is crucial for efficient utilization of diverse node environments in modern Kubernetes clusters.",
-      "original_url": "https://github.com/kubernetes/kubernetes/issues/122753"
     }
   ],
   "last_resurrection": {
