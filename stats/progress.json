@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-25T18:04:58",
-  "total_resurrections": 106,
+  "last_updated": "2026-06-26T02:58:18",
+  "total_resurrections": 107,
   "total_repos_covered": 42,
-  "average_impact_score": 6.4,
-  "average_effort_hours": 74.8,
-  "total_with_poc": 83,
-  "total_with_rfc": 93,
+  "average_impact_score": 6.39,
+  "average_effort_hours": 74.48,
+  "total_with_poc": 84,
+  "total_with_rfc": 94,
   "comment_stats": {
-    "attempted": 13,
+    "attempted": 14,
     "posted": 0,
-    "failed": 13
+    "failed": 14
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,28 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-25",
-    "repo": "tauri-apps/tauri",
-    "issue_number": 8588,
-    "title": "[feat] upstream nix requirements to nixpkgs",
-    "reactions": 6,
-    "abandoned_date": "2025-09-03T12:13:49Z",
-    "one_line_why": "Nixpkgs now supports more complex derivations and the Tauri team can dedicate resources to it.",
+    "date": "2026-06-26",
+    "repo": "rails/rails",
+    "issue_number": 13971,
+    "title": "ActiveRecord enum: use validation if exists instead of raising ArgumentError",
+    "reactions": 98,
+    "abandoned_date": "2023-09-03T23:42:29Z",
+    "one_line_why": "Rails 7 validation API and Ruby metaprogramming enable conditional enum validation.",
     "impact_score": 6,
-    "effort_hours": 80.0,
+    "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "rust",
+    "poc_language": "python",
     "technology_tags": [
-      "tauri",
-      "nix",
-      "nixpkgs"
+      "rails",
+      "activerecord",
+      "enum"
     ],
-    "original_url": "https://github.com/tauri-apps/tauri/issues/8588",
-    "resurrection_slug": "2026-06-25_tauri-apps-tauri_8588",
+    "original_url": "https://github.com/rails/rails/issues/13971",
+    "resurrection_slug": "2026-06-26_rails-rails_13971",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-06-25T02:52:11+00:00"
+    "commented_at": "2026-06-26T02:58:18+00:00"
   }
 }
