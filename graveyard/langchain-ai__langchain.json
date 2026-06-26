@@ -1,0 +1,105 @@
+[
+  {
+    "repo": "langchain-ai/langchain",
+    "issue_number": 1358,
+    "title": "ValueError: Could not parse LLM output:",
+    "body": "`agent_chain = initialize_agent( tools=tools, llm= HuggingFaceHub(repo_id=\"google/flan-t5-xl\"), agent=\"conversational-react-description\", memory=memory, verbose=False)\r\n\r\nagent_chain.run(\"Hi\")`\r\n\r\n**throws error. This happens with Bloom as well. Agent only with OpenAI is only working well.**\r\n\r\n`_(self, inputs, return_only_outputs)\r\n    140 except (KeyboardInterrupt, Exception) as e:\r\n    141     self.callback_manager.on_chain_error(e, verbose=self.verbose)\r\n--> 142     raise e\r\n    143 self.callback_manager.on_chain_end(outputs, verbose=self.verbose)\r\n...\r\n---> 83     raise ValueError(f\"Could not parse LLM output: \"{llm_output}\")\r\n     84 action = match.group(1)\r\n     85 action_input = match.group(2)\r\n\r\nValueError: Could not parse LLM output: Assistant, how can I help you today?`",
+    "reactions": 123,
+    "created_at": "2023-03-01T08:50:18Z",
+    "updated_at": "2024-06-30T16:02:40Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/1358",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/1358",
+    "author_login": "pradosh-abd",
+    "author_profile": "https://github.com/pradosh-abd",
+    "comments": 82,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "issue_number": 16798,
+    "title": "get_openai_callback not working when using Agent Executor after updating to latest version of Langchain",
+    "body": "### Checked other resources\n\n- [X] I added a very descriptive title to this issue.\n- [X] I searched the LangChain documentation with the integrated search.\n- [X] I used the GitHub search to find a similar question and didn't find it.\n- [X] I am sure that this is a bug in LangChain rather than my code.\n\n### Example Code\n\n```python\r\nclass MyCustomAsyncHandler(AsyncCallbackHandler):\r\n    async def on_llm_end(self, response: LLMResult, **kwargs: Any) -> None:\r\n        \"\"\"Run when chain ends running.\"\"\"\r\n        print(\"RESPONSE: \", response)\r\n        print(\"Hi! I just woke up. Your llm is ending\")\r\n\r\n\r\nasync def ask_assistant(input: str) -> str:\r\n    prompt = PromptTemplate.from_template(prompt_raw)\r\n\r\n    prompt = prompt.partial(\r\n        language=\"Spanish\",\r\n        tools=render_text_description(tools),\r\n        tool_names=\", \".join([t.name for t in tools]),\r\n    )\r\n\r\n    llm = ChatOpenAI(\r\n        temperature=0,\r\n        model_name=\"gpt-4\",\r\n        openai_api_key=os.environ[\"OPENAI_API_KEY\"],\r\n        callbacks=[MyCustomAsyncHandler()],\r\n    )\r\n    llm_with_stop = llm.bind(stop=[\"\\nObservation\"])\r\n\r\n    agent = (\r\n        {\r\n            \"input\": lambda x: x[\"input\"],\r\n            \"agent_scratchpad\": lambda x: format_log_to_str(x[\"intermediate_steps\"]),\r\n            \"chat_history\": lambda x: x[\"chat_history\"],\r\n        }\r\n        | prompt\r\n        | llm_with_stop\r\n        | ReActSingleInputOutputParser()\r\n    )\r\n\r\n    agent_executor = AgentExecutor(\r\n        agent=agent,\r\n        tools=tools,\r\n        verbose=True,\r\n        memory=memory,\r\n        max_execution_time=60,\r\n        handle_parsing_errors=True,\r\n    )\r\n\r\n    with get_openai_callback() as cb:\r\n        clara_ai_resp = await agent_executor.ainvoke({\"input\": input})\r\n        clara_ai_output = clara_ai_resp[\"output\"]\r\n\r\n        print(\"CB: \", cb)\r\n\r\n        return clara_ai_output, input, cb\r\n```\n\n### Error Message and Stack Trace (if applicable)\n\n_No response_\n\n### Description\n\nI'm trying to use the get_openai_callback from langchain_community.callbacks to get the number of token and costs incurred in using the agent but I am getting zero on everything, as you can see here when I print.\r\n\r\n![image](https://github.com/langchain-ai/langchain/assets/46487685/d728843a-6191-4f97-97e5-65431c02f98e)\r\n\r\nI have also set up a custom callback handler to go deep into the issue and what I found is that ChatOpenAI from langchain_openai does not call ainvoke as ChatOpenAI langchain.chat_models did.\r\n\r\nTHank you for your help\r\n\r\n\n\n### System Info\n\npython 3.11.5",
+    "reactions": 22,
+    "created_at": "2024-01-30T18:34:08Z",
+    "updated_at": "2026-01-22T11:26:07Z",
+    "labels": [
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/16798",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/16798",
+    "author_login": "EduardoMM17",
+    "author_profile": "https://github.com/EduardoMM17",
+    "comments": 43,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "issue_number": 34956,
+    "title": "Enable Exporting Select Agent Metrics to Customer-facing Dashboards in Real-Time",
+    "body": "### Checked other resources\n\n- [x] This is a feature request, not a bug report or usage question.\n- [x] I added a clear and descriptive title that summarizes the feature request.\n- [x] I used the GitHub search to find a similar feature request and didn't find it.\n- [x] I checked the LangChain documentation and API reference to see if this feature already exists.\n- [x] This is not related to the langchain-community package.\n\n### Package (Required)\n\n- [x] langchain\n- [ ] langchain-openai\n- [ ] langchain-anthropic\n- [ ] langchain-classic\n- [ ] langchain-core\n- [ ] langchain-model-profiles\n- [ ] langchain-tests\n- [ ] langchain-text-splitters\n- [ ] langchain-chroma\n- [ ] langchain-deepseek\n- [ ] langchain-exa\n- [ ] langchain-fireworks\n- [ ] langchain-groq\n- [ ] langchain-huggingface\n- [ ] langchain-mistralai\n- [ ] langchain-nomic\n- [ ] langchain-ollama\n- [ ] langchain-perplexity\n- [ ] langchain-prompty\n- [ ] langchain-qdrant\n- [ ] langchain-xai\n- [ ] Other / not sure / general\n\n### Feature Description\n\nLangchain needs to enable exporting standard AI agent metrics (e.g., latency, token usage) to customer-facing dashboards for cost visibility, usage monitoring, etc.\n\n### Use Case\n\nReal use case: We have Langchain-based agent. The customer requires adding latency and token usage metrics to their dashboard.\n\nCurrently, these metrics can be found in Langsmith, but the latter isn't designed to be customer-facing and may expose debugging internals that will overhelm the customer.\n\nWe need to enable developers to plug in their own metrics exporter (e.g., Promotheus-based). Simultaneously, the exported metrics must be correlated with Langsmith (and optionally OpenTelemetry) traces to enable end-to-end observability and trace-level drill-downs.\n\n### Proposed Solution\n\nMy proposed solution: https://github.com/langchain-ai/langchain/pull/34947\n\n### Alternatives Considered\n\nDevelopers must pull these metrics from Langsmith, which adds extra hops to the data flow and introduces additional failure points.\n\n### Additional Context\n\n_No response_",
+    "reactions": 9,
+    "created_at": "2026-02-01T10:17:29Z",
+    "updated_at": "2026-06-11T07:31:01Z",
+    "labels": [
+      "langchain",
+      "feature request",
+      "external"
+    ],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/34956",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/34956",
+    "author_login": "f4roukb",
+    "author_profile": "https://github.com/f4roukb",
+    "comments": 2,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "issue_number": 34955,
+    "title": "Enable Messages PII Anonymization through External APIs",
+    "body": "### Checked other resources\n\n- [x] This is a feature request, not a bug report or usage question.\n- [x] I added a clear and descriptive title that summarizes the feature request.\n- [x] I used the GitHub search to find a similar feature request and didn't find it.\n- [x] I checked the LangChain documentation and API reference to see if this feature already exists.\n- [x] This is not related to the langchain-community package.\n\n### Package (Required)\n\n- [x] langchain\n- [ ] langchain-openai\n- [ ] langchain-anthropic\n- [ ] langchain-classic\n- [ ] langchain-core\n- [ ] langchain-model-profiles\n- [ ] langchain-tests\n- [ ] langchain-text-splitters\n- [ ] langchain-chroma\n- [ ] langchain-deepseek\n- [ ] langchain-exa\n- [ ] langchain-fireworks\n- [ ] langchain-groq\n- [ ] langchain-huggingface\n- [ ] langchain-mistralai\n- [ ] langchain-nomic\n- [ ] langchain-ollama\n- [ ] langchain-perplexity\n- [ ] langchain-prompty\n- [ ] langchain-qdrant\n- [ ] langchain-xai\n- [ ] Other / not sure / general\n\n### Feature Description\n\nLangchain needs to enable developers to use their own anonymization solution for anonymizing agent messages, with as minimal overhead as possible. \n\n### Use Case\n\nReal Scenario: We have a Langchain-based agent. For compliance reasons, our business needs to:\n1. Remove PII from the user message, to keep the user anonymous.\n2. Remove PII from the AI message, potentially coming from the tools or from foundational knowledge.\n3. Remove PII from the tool messages, to be shown in a PII-free UI.\n\nCurrently, PIIMiddleware offers limited possibility for anonymization–to use it, one needs a PII detector that is compatible with a specific PII taxonomy (e.g., email address). Many anonymization solutions today serve directly the anonimyzed version of the content, so the PII detection phase is not even exposed and so cannot be used with the PIIMiddleware, let alone that the PII taxonomy may differ.\n\nAn anonymization middleware makes it easier for developers to integrate anonymization APIs (e.g., from cloud services or third-party software) or even custom solutions (e.g., deep learning solutions), into their agent. This bring-your-own-anonymization solution will help us address the compliance challenges that are necessary to continue using Langchain in customer PoCs and production environments. \n\n### Proposed Solution\n\nMy proposed solution: https://github.com/langchain-ai/langchain/pull/34948\n\n### Alternatives Considered\n\nThere seems to be no lightweight alternative here. Please feel free to make suggestions.\n\n### Additional Context\n\n_No response_",
+    "reactions": 8,
+    "created_at": "2026-02-01T09:49:50Z",
+    "updated_at": "2026-06-05T19:45:52Z",
+    "labels": [
+      "langchain",
+      "feature request",
+      "external"
+    ],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/34955",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/34955",
+    "author_login": "f4roukb",
+    "author_profile": "https://github.com/f4roukb",
+    "comments": 4,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "issue_number": 33056,
+    "title": "Richer Interface for Multimodal Data and BaseChat Interaction",
+    "body": "### Checked other resources\n\n- [x] This is a feature request, not a bug report or usage question.\n- [x] I added a clear and descriptive title that summarizes the feature request.\n- [x] I used the GitHub search to find a similar feature request and didn't find it.\n- [x] I checked the LangChain documentation and API reference to see if this feature already exists.\n- [x] This is not related to the langchain-community package.\n\n### Feature Description\n\nBased on my experience with Langchain, I find the `langchain.Document` interface to be too generic—perhaps intentionally so, to support a wide range of use cases. However, as LLMs continue to evolve, especially with growing multimodal capabilities, the need for a richer, more expressive interface for data parsing, storage, retrieval, LLM interaction, and citation becomes increasingly critical.\nCurrently, `Langchain.Document` is not expressive enough to represent complex or structured information beyond plain text. I also explored `Langchain.BaseMedia`, which partially addresses multimodality (e.g., image/audio), but it still lacks the granularity required for representing tables, formulas, and other structured formats. I’m expanding the concept of \"modality\" here to include more sophisticated constructs for representing information.\n\n### Use Case\n\n### Existing Gaps and Observations\nThere are interfaces in other systems that attempt to support richer representations, but many are tightly coupled with specific document parsers. For example:\n* **[Docling](https://docling-project.github.io/docling/concepts/docling_document/#example-document-structures)** provides its own schema for structured outputs from parsed documents (text, tables, images, etc.).\n* Other parser APIs like **LandingAI** or **LlamaParse** also return structured outputs (e.g., in JSON, HTML, Markdown).\n\nThis reveals a broader opportunity: to define a **common interface** in Langchain that can represent different modalities - `TextElement`, `ImageElement`, `TableElement`, `AudioElement`, etc. - as part of a unified `MultimodalDocument`, which could be implemented as something like `List[Element]`.\nSuch a structure could assume vertically stacked elements by default, but it could also support layout-aware metadata (e.g., page number, bounding boxes) if the parser is capable of providing it.\nCurrently, most Langchain chains/runnables (e.g., for Q\\&A) are text-based. They expect retrievers to return a `List[Document]` where the content is textual. These documents are typically concatenated into a prompt string passed to the LLM.\nHowever, in the multimodal setting, this approach doesn’t scale well. You need to interact with the LLM using `HumanMessage` objects that might represent different modalities. The current workaround - dumping everything into `Document.metadata` and reconstructing `HumanMessage` types (text, image, etc.) from there - is hacky, hard to reuse, and error-prone.\n\nThere’s a clear **design gap** here:\n* Langchain expects ret",
+    "reactions": 5,
+    "created_at": "2025-09-23T17:05:46Z",
+    "updated_at": "2026-06-11T07:28:24Z",
+    "labels": [
+      "feature request",
+      "external"
+    ],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/33056",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/33056",
+    "author_login": "mprudra",
+    "author_profile": "https://github.com/mprudra",
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  }
+]
