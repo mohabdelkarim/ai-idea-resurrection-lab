@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-26",
+  "repo": "nodejs/node",
+  "issue_number": 21664,
+  "title": "Ability to replace current Node process with another",
+  "reactions": 24,
+  "abandoned_date": "2025-06-25T07:38:06Z",
+  "one_line_why": "The recent improvements in Node.js's Windows support and the evolution of the child_process module make process replacement feasible.",
+  "impact_score": 7,
+  "effort_hours": 100.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "nodejs",
+    "child_process",
+    "windows_api"
+  ],
+  "original_url": "https://github.com/nodejs/node/issues/21664",
+  "resurrection_slug": "2026-06-26_nodejs-node_21664",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-26T17:32:46+00:00"
+}

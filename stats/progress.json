@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-26T15:30:24",
-  "total_resurrections": 108,
+  "last_updated": "2026-06-26T17:32:46",
+  "total_resurrections": 109,
   "total_repos_covered": 43,
   "average_impact_score": 6.4,
-  "average_effort_hours": 74.16,
+  "average_effort_hours": 74.39,
   "total_with_poc": 85,
-  "total_with_rfc": 94,
+  "total_with_rfc": 95,
   "comment_stats": {
-    "attempted": 15,
+    "attempted": 16,
     "posted": 0,
-    "failed": 15
+    "failed": 16
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -26,11 +26,11 @@
         "count": 6
       },
       {
-        "repo": "microsoft/TypeScript",
-        "count": 5
+        "repo": "nodejs/node",
+        "count": 6
       },
       {
-        "repo": "microsoft/vscode",
+        "repo": "microsoft/TypeScript",
         "count": 5
       }
     ]

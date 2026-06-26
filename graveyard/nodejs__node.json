@@ -14,7 +14,10 @@
     "html_url": "https://github.com/nodejs/node/issues/50963",
     "author_login": "hardfist",
     "author_profile": "https://github.com/hardfist",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "nodejs/node",
@@ -37,7 +40,10 @@
     "html_url": "https://github.com/nodejs/node/issues/34388",
     "author_login": "puzpuzpuz",
     "author_profile": "https://github.com/puzpuzpuz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "nodejs/node",
@@ -56,7 +62,10 @@
     "html_url": "https://github.com/nodejs/node/issues/38823",
     "author_login": "thernstig",
     "author_profile": "https://github.com/thernstig",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "nodejs/node",
@@ -75,7 +84,10 @@
     "html_url": "https://github.com/nodejs/node/issues/51147",
     "author_login": "afonsojramos",
     "author_profile": "https://github.com/afonsojramos",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "nodejs/node",
@@ -92,7 +104,10 @@
     "html_url": "https://github.com/nodejs/node/issues/40054",
     "author_login": "sindresorhus",
     "author_profile": "https://github.com/sindresorhus",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "nodejs/node",
@@ -110,7 +125,10 @@
     "html_url": "https://github.com/nodejs/node/issues/32022",
     "author_login": "gengjiawen",
     "author_profile": "https://github.com/gengjiawen",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "nodejs/node",
@@ -128,7 +146,10 @@
     "html_url": "https://github.com/nodejs/node/issues/38361",
     "author_login": "ronag",
     "author_profile": "https://github.com/ronag",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "Body too short (62 chars, min 80) — not a real proposal"
   },
   {
     "repo": "nodejs/node",
@@ -147,7 +168,10 @@
     "html_url": "https://github.com/nodejs/node/issues/21664",
     "author_login": "dead-claudia",
     "author_profile": "https://github.com/dead-claudia",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "nodejs/node",
@@ -165,7 +189,10 @@
     "html_url": "https://github.com/nodejs/node/issues/56504",
     "author_login": "joyeecheung",
     "author_profile": "https://github.com/joyeecheung",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "nodejs/node",
@@ -185,6 +212,9 @@
     "html_url": "https://github.com/nodejs/node/issues/46074",
     "author_login": "brillout",
     "author_profile": "https://github.com/brillout",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
