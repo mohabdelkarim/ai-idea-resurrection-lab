@@ -17,7 +17,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/483",
     "author_login": "Kryszn0",
     "author_profile": "https://github.com/Kryszn0",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -32,7 +35,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/8706",
     "author_login": "coder543",
     "author_profile": "https://github.com/coder543",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -47,7 +53,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/16935",
     "author_login": "sFritsch09",
     "author_profile": "https://github.com/sFritsch09",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -67,7 +76,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1293",
     "author_login": "zachrattner",
     "author_profile": "https://github.com/zachrattner",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -82,7 +94,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/9488",
     "author_login": "drshliapa",
     "author_profile": "https://github.com/drshliapa",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -97,7 +112,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/6202",
     "author_login": "meetzuber",
     "author_profile": "https://github.com/meetzuber",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -112,7 +130,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/10887",
     "author_login": "peter-ch",
     "author_profile": "https://github.com/peter-ch",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -132,7 +153,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/668",
     "author_login": "this-josh",
     "author_profile": "https://github.com/this-josh",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -151,7 +175,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1437",
     "author_login": "lee-b",
     "author_profile": "https://github.com/lee-b",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -169,7 +196,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/529",
     "author_login": "racso-dev",
     "author_profile": "https://github.com/racso-dev",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -188,7 +218,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/8478",
     "author_login": "GrayXu",
     "author_profile": "https://github.com/GrayXu",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -207,7 +240,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/715",
     "author_login": "jannikstdl",
     "author_profile": "https://github.com/jannikstdl",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -227,7 +263,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/8719",
     "author_login": "hdnh2006",
     "author_profile": "https://github.com/hdnh2006",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -246,7 +285,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/8262",
     "author_login": "tjbck",
     "author_profile": "https://github.com/tjbck",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -266,7 +308,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1331",
     "author_login": "silentoplayz",
     "author_profile": "https://github.com/silentoplayz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -285,7 +330,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/3097",
     "author_login": "oss001",
     "author_profile": "https://github.com/oss001",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -305,7 +353,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/470",
     "author_login": "tjbck",
     "author_profile": "https://github.com/tjbck",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -325,7 +376,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/6378",
     "author_login": "tjbck",
     "author_profile": "https://github.com/tjbck",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -344,7 +398,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/3620",
     "author_login": "vertago1",
     "author_profile": "https://github.com/vertago1",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -362,7 +419,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/521",
     "author_login": "SethBurkart123",
     "author_profile": "https://github.com/SethBurkart123",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -379,7 +439,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/126",
     "author_login": "oliverbob",
     "author_profile": "https://github.com/oliverbob",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -397,7 +460,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/2058",
     "author_login": "tjbck",
     "author_profile": "https://github.com/tjbck",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -414,7 +480,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1398",
     "author_login": "GillesBodart",
     "author_profile": "https://github.com/GillesBodart",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -432,7 +501,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/4158",
     "author_login": "fracergu",
     "author_profile": "https://github.com/fracergu",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -452,7 +524,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1162",
     "author_login": "hahchenchen",
     "author_profile": "https://github.com/hahchenchen",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -469,7 +544,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/10562",
     "author_login": "silentoplayz",
     "author_profile": "https://github.com/silentoplayz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -488,7 +566,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1081",
     "author_login": "tjbck",
     "author_profile": "https://github.com/tjbck",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -506,7 +587,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/5866",
     "author_login": "ramanbuttar-st",
     "author_profile": "https://github.com/ramanbuttar-st",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -526,7 +610,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1397",
     "author_login": "tjbck",
     "author_profile": "https://github.com/tjbck",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -546,7 +633,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/886",
     "author_login": "Gyro0o",
     "author_profile": "https://github.com/Gyro0o",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -564,7 +654,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/596",
     "author_login": "zehDonut",
     "author_profile": "https://github.com/zehDonut",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -582,7 +675,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1360",
     "author_login": "ghost",
     "author_profile": "https://github.com/ghost",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -600,7 +696,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1096",
     "author_login": "silentoplayz",
     "author_profile": "https://github.com/silentoplayz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -618,7 +717,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/7509",
     "author_login": "Pekkari",
     "author_profile": "https://github.com/Pekkari",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -636,7 +738,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/5763",
     "author_login": "hongbo-miao",
     "author_profile": "https://github.com/hongbo-miao",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -653,7 +758,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1725",
     "author_login": "PasserDreamer",
     "author_profile": "https://github.com/PasserDreamer",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -672,7 +780,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/573",
     "author_login": "peperunas",
     "author_profile": "https://github.com/peperunas",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -690,7 +801,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1611",
     "author_login": "almostserious",
     "author_profile": "https://github.com/almostserious",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -707,7 +821,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1392",
     "author_login": "tusing",
     "author_profile": "https://github.com/tusing",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -727,7 +844,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/797",
     "author_login": "7a6ac0",
     "author_profile": "https://github.com/7a6ac0",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -746,7 +866,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/460",
     "author_login": "jukofyork",
     "author_profile": "https://github.com/jukofyork",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -766,7 +889,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/446",
     "author_login": "oliverbob",
     "author_profile": "https://github.com/oliverbob",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -784,7 +910,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/3441",
     "author_login": "bannert1337",
     "author_profile": "https://github.com/bannert1337",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -801,7 +930,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1844",
     "author_login": "FruitTea2015",
     "author_profile": "https://github.com/FruitTea2015",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -820,7 +952,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/665",
     "author_login": "keriati",
     "author_profile": "https://github.com/keriati",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -840,7 +975,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/277",
     "author_login": "jooyoungseo",
     "author_profile": "https://github.com/jooyoungseo",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -858,7 +996,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/3023",
     "author_login": "bannert1337",
     "author_profile": "https://github.com/bannert1337",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -877,7 +1018,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/2134",
     "author_login": "liorkesos",
     "author_profile": "https://github.com/liorkesos",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -896,7 +1040,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/1065",
     "author_login": "silentoplayz",
     "author_profile": "https://github.com/silentoplayz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -914,7 +1061,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/696",
     "author_login": "raphaelmaenle",
     "author_profile": "https://github.com/raphaelmaenle",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -933,7 +1083,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/679",
     "author_login": "peperunas",
     "author_profile": "https://github.com/peperunas",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -951,7 +1104,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/609",
     "author_login": "yeahdongcn",
     "author_profile": "https://github.com/yeahdongcn",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -970,7 +1126,10 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/526",
     "author_login": "hemangjoshi37a",
     "author_profile": "https://github.com/hemangjoshi37a",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "open-webui/open-webui",
@@ -992,6 +1151,9 @@
     "html_url": "https://github.com/open-webui/open-webui/issues/11233",
     "author_login": "lattwood",
     "author_profile": "https://github.com/lattwood",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
