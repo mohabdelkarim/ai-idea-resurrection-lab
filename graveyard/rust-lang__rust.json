@@ -1,6 +1,24 @@
 [
   {
     "repo": "rust-lang/rust",
+    "issue_number": 100000,
+    "title": "Rust is Beautiful",
+    "body": ":heart: :crab: :heart: \r\n\r\n100,000 issues filled with love, compassion and a wholesome community. Thank you, Rust community, for being one of the most, if not straight out the most, welcoming programming communities out there. Thank you, Rust teams, for the tireless hours you spend every day on every aspect of this project. Thank you to the Rust team alumni for the many hours spent growing a plant and the humility of passing it to people you trust to continue taking care of it. Thank you everyone for RFCs, giving voice to the community, being those voices AND listening to each other.\r\n\r\nThis community has been and continue to be one of the best I have ever had the pleasure of being a part of. The language itself has many things to love and appreciate about it, from the humane error messages to giving the people the power to express high performance code without sacrificing readability for the ones to come after us. But nothing, truly nothing, takes the cake as much as the community that's building it, answering questions, helping and loving each other. Every single day.\r\n\r\nCongratulations everyone for 100,000 issues and PRs! And thank you for being you. Because Rust is Beautiful, for having you as part of it.\r\n\r\nTo the times we spent together and the many more to come! :orange_heart:\r\n",
+    "reactions": 2775,
+    "created_at": "2022-07-31T22:01:04Z",
+    "updated_at": "2024-01-14T22:16:41Z",
+    "labels": [],
+    "url": "https://api.github.com/repos/rust-lang/rust/issues/100000",
+    "html_url": "https://github.com/rust-lang/rust/issues/100000",
+    "author_login": "Mathspy",
+    "author_profile": "https://github.com/Mathspy",
+    "comments": 255,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "rust-lang/rust",
     "issue_number": 99999,
     "title": "Happy birthday, issue tracker. :)",
     "body": "Not an issue, just a nice number. :D",
@@ -14,7 +32,10 @@
     "html_url": "https://github.com/rust-lang/rust/issues/99999",
     "author_login": "RalfJung",
     "author_profile": "https://github.com/RalfJung",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "rust-lang/rust",
@@ -34,7 +55,10 @@
     "html_url": "https://github.com/rust-lang/rust/issues/20866",
     "author_login": "akavel",
     "author_profile": "https://github.com/akavel",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "rust-lang/rust",
@@ -55,7 +79,10 @@
     "html_url": "https://github.com/rust-lang/rust/issues/27189",
     "author_login": "SimonSapin",
     "author_profile": "https://github.com/SimonSapin",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "rust-lang/rust",
@@ -73,6 +100,9 @@
     "html_url": "https://github.com/rust-lang/rust/issues/40552",
     "author_login": "mzji",
     "author_profile": "https://github.com/mzji",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
