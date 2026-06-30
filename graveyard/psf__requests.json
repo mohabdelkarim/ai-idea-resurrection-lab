@@ -16,7 +16,10 @@
     "html_url": "https://github.com/psf/requests/issues/2966",
     "author_login": "Lukasa",
     "author_profile": "https://github.com/Lukasa",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "psf/requests",
@@ -31,7 +34,10 @@
     "html_url": "https://github.com/psf/requests/issues/5710",
     "author_login": "naorlivne",
     "author_profile": "https://github.com/naorlivne",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "psf/requests",
@@ -48,7 +54,10 @@
     "html_url": "https://github.com/psf/requests/issues/2766",
     "author_login": "gward",
     "author_profile": "https://github.com/gward",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "psf/requests",
@@ -66,7 +75,10 @@
     "html_url": "https://github.com/psf/requests/issues/3070",
     "author_login": "mlissner",
     "author_profile": "https://github.com/mlissner",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "psf/requests",
@@ -81,7 +93,10 @@
     "html_url": "https://github.com/psf/requests/issues/3556",
     "author_login": "mouuff",
     "author_profile": "https://github.com/mouuff",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "Body too short (12 chars, min 80) — not a real proposal"
   },
   {
     "repo": "psf/requests",
@@ -96,7 +111,10 @@
     "html_url": "https://github.com/psf/requests/issues/6432",
     "author_login": "mdmintz",
     "author_profile": "https://github.com/mdmintz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "psf/requests",
@@ -113,7 +131,10 @@
     "html_url": "https://github.com/psf/requests/issues/1198",
     "author_login": "gabor",
     "author_profile": "https://github.com/gabor",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "psf/requests",
@@ -132,7 +153,10 @@
     "html_url": "https://github.com/psf/requests/issues/3928",
     "author_login": "Lukasa",
     "author_profile": "https://github.com/Lukasa",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "psf/requests",
@@ -149,7 +173,10 @@
     "html_url": "https://github.com/psf/requests/issues/3013",
     "author_login": "EmilStenstrom",
     "author_profile": "https://github.com/EmilStenstrom",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "psf/requests",
@@ -167,6 +194,9 @@
     "html_url": "https://github.com/psf/requests/issues/2899",
     "author_login": "thoger",
     "author_profile": "https://github.com/thoger",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
