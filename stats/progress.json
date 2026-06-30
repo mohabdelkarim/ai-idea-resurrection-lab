@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-29T18:08:26",
-  "total_resurrections": 111,
+  "last_updated": "2026-06-30T02:58:09",
+  "total_resurrections": 112,
   "total_repos_covered": 44,
-  "average_impact_score": 6.35,
-  "average_effort_hours": 73.42,
-  "total_with_poc": 87,
-  "total_with_rfc": 96,
+  "average_impact_score": 6.36,
+  "average_effort_hours": 73.3,
+  "total_with_poc": 88,
+  "total_with_rfc": 97,
   "comment_stats": {
-    "attempted": 18,
+    "attempted": 19,
     "posted": 0,
-    "failed": 18
+    "failed": 19
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -40,7 +40,7 @@
     "go",
     "rust",
     "python",
-    "ai"
+    "kubernetes"
   ],
   "hall_of_fame": [
     {
@@ -72,26 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-29",
-    "repo": "rust-lang/rust",
-    "issue_number": 100000,
-    "title": "Rust is Beautiful",
-    "reactions": 2775,
-    "abandoned_date": "2024-01-14T22:16:41Z",
-    "one_line_why": "The issue remains viable as a sentiment but does not require a technical implementation.",
-    "impact_score": 1,
-    "effort_hours": 1.0,
+    "date": "2026-06-30",
+    "repo": "prometheus/prometheus",
+    "issue_number": 3756,
+    "title": "Support for multiple ports in annotations",
+    "reactions": 132,
+    "abandoned_date": "2024-12-17T23:21:16Z",
+    "one_line_why": "The Kubernetes ecosystem evolution and increased demand for multi-port scraping make this feature viable now.",
+    "impact_score": 7,
+    "effort_hours": 60.0,
     "has_poc": true,
-    "has_rfc": false,
-    "poc_language": "rust",
+    "has_rfc": true,
+    "poc_language": "go",
     "technology_tags": [
-      "rust"
+      "prometheus",
+      "service discovery",
+      "kubernetes"
     ],
-    "original_url": "https://github.com/rust-lang/rust/issues/100000",
-    "resurrection_slug": "2026-06-29_rust-lang-rust_100000",
+    "original_url": "https://github.com/prometheus/prometheus/issues/3756",
+    "resurrection_slug": "2026-06-30_prometheus-prometheus_3756",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-06-29T03:04:47+00:00"
+    "commented_at": "2026-06-30T02:58:09+00:00"
   }
 }

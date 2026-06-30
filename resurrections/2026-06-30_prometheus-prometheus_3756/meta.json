@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-30",
+  "repo": "prometheus/prometheus",
+  "issue_number": 3756,
+  "title": "Support for multiple ports in annotations",
+  "reactions": 132,
+  "abandoned_date": "2024-12-17T23:21:16Z",
+  "one_line_why": "The Kubernetes ecosystem evolution and increased demand for multi-port scraping make this feature viable now.",
+  "impact_score": 7,
+  "effort_hours": 60.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "prometheus",
+    "service discovery",
+    "kubernetes"
+  ],
+  "original_url": "https://github.com/prometheus/prometheus/issues/3756",
+  "resurrection_slug": "2026-06-30_prometheus-prometheus_3756",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-30T02:58:09+00:00"
+}
