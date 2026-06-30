@@ -15,7 +15,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/3756",
     "author_login": "vaijira",
     "author_profile": "https://github.com/vaijira",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -32,7 +35,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/3806",
     "author_login": "free",
     "author_profile": "https://github.com/free",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -51,7 +57,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/535",
     "author_login": "juliusv",
     "author_profile": "https://github.com/juliusv",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -69,7 +78,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/6934",
     "author_login": "erkexzcx",
     "author_profile": "https://github.com/erkexzcx",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -84,7 +96,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/4633",
     "author_login": "martivo",
     "author_profile": "https://github.com/martivo",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -101,7 +116,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/10",
     "author_login": "juliusv",
     "author_profile": "https://github.com/juliusv",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -120,7 +138,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/8543",
     "author_login": "roidelapluie",
     "author_profile": "https://github.com/roidelapluie",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -139,7 +160,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/5469",
     "author_login": "itaysk",
     "author_profile": "https://github.com/itaysk",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -156,7 +180,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/3441",
     "author_login": "jcollie",
     "author_profile": "https://github.com/jcollie",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -171,7 +198,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/3746",
     "author_login": "free",
     "author_profile": "https://github.com/free",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -192,7 +222,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/39",
     "author_login": "juliusv",
     "author_profile": "https://github.com/juliusv",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -211,7 +244,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/9310",
     "author_login": "rakyll",
     "author_profile": "https://github.com/rakyll",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -232,7 +268,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/2747",
     "author_login": "AlekSi",
     "author_profile": "https://github.com/AlekSi",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -250,7 +289,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/5655",
     "author_login": "kustodian",
     "author_profile": "https://github.com/kustodian",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -270,7 +312,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/6139",
     "author_login": "bandesz",
     "author_profile": "https://github.com/bandesz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -288,7 +333,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/4608",
     "author_login": "matthiasr",
     "author_profile": "https://github.com/matthiasr",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -308,7 +356,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/3697",
     "author_login": "rogpeppe",
     "author_profile": "https://github.com/rogpeppe",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -328,7 +379,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/12763",
     "author_login": "gouthamve",
     "author_profile": "https://github.com/gouthamve",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -349,7 +403,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/13625",
     "author_login": "bboreham",
     "author_profile": "https://github.com/bboreham",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -366,7 +423,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/13095",
     "author_login": "ywwg",
     "author_profile": "https://github.com/ywwg",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -386,7 +446,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/8307",
     "author_login": "RichiH",
     "author_profile": "https://github.com/RichiH",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -406,7 +469,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/6178",
     "author_login": "brancz",
     "author_profile": "https://github.com/brancz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -423,7 +489,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/15909",
     "author_login": "ArthurSens",
     "author_profile": "https://github.com/ArthurSens",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -442,7 +511,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/7300",
     "author_login": "lexfrei",
     "author_profile": "https://github.com/lexfrei",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -461,7 +533,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/9115",
     "author_login": "codesome",
     "author_profile": "https://github.com/codesome",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -480,7 +555,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/13616",
     "author_login": "vjsamuel",
     "author_profile": "https://github.com/vjsamuel",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -499,7 +577,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/11995",
     "author_login": "MHeus",
     "author_profile": "https://github.com/MHeus",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -516,7 +597,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/15716",
     "author_login": "Pionerd",
     "author_profile": "https://github.com/Pionerd",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -533,7 +617,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/14592",
     "author_login": "rkubik-hostersi",
     "author_profile": "https://github.com/rkubik-hostersi",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -552,7 +639,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/14321",
     "author_login": "SuperQ",
     "author_profile": "https://github.com/SuperQ",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -572,7 +662,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/11181",
     "author_login": "fpetkovski",
     "author_profile": "https://github.com/fpetkovski",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -590,7 +683,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/8535",
     "author_login": "gouthamve",
     "author_profile": "https://github.com/gouthamve",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -609,7 +705,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/6878",
     "author_login": "bwplotka",
     "author_profile": "https://github.com/bwplotka",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -626,7 +725,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/17823",
     "author_login": "nwanduka",
     "author_profile": "https://github.com/nwanduka",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -644,7 +746,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/13577",
     "author_login": "dimitarvdimitrov",
     "author_profile": "https://github.com/dimitarvdimitrov",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -664,7 +769,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/7397",
     "author_login": "bwplotka",
     "author_profile": "https://github.com/bwplotka",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -682,7 +790,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/11494",
     "author_login": "mblaschke-daimlertruck",
     "author_profile": "https://github.com/mblaschke-daimlertruck",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -701,7 +812,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/10420",
     "author_login": "pracucci",
     "author_profile": "https://github.com/pracucci",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -721,7 +835,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/10287",
     "author_login": "JensErat",
     "author_profile": "https://github.com/JensErat",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -742,7 +859,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/8278",
     "author_login": "ahurtaud",
     "author_profile": "https://github.com/ahurtaud",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -761,7 +881,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/6282",
     "author_login": "dgl",
     "author_profile": "https://github.com/dgl",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -780,7 +903,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/13061",
     "author_login": "rakshith210",
     "author_profile": "https://github.com/rakshith210",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -798,7 +924,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/17384",
     "author_login": "psalaberria002",
     "author_profile": "https://github.com/psalaberria002",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -817,7 +946,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/12616",
     "author_login": "behroozbc",
     "author_profile": "https://github.com/behroozbc",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -837,7 +969,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/10043",
     "author_login": "steve-mt",
     "author_profile": "https://github.com/steve-mt",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -856,7 +991,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/6865",
     "author_login": "bwplotka",
     "author_profile": "https://github.com/bwplotka",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -876,7 +1014,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/5352",
     "author_login": "bosschaert",
     "author_profile": "https://github.com/bosschaert",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -895,7 +1036,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/4517",
     "author_login": "gouthamve",
     "author_profile": "https://github.com/gouthamve",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -913,7 +1057,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/13485",
     "author_login": "krajorama",
     "author_profile": "https://github.com/krajorama",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -933,7 +1080,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/8860",
     "author_login": "sorend",
     "author_profile": "https://github.com/sorend",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -952,7 +1102,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/8534",
     "author_login": "gouthamve",
     "author_profile": "https://github.com/gouthamve",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -972,7 +1125,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/7824",
     "author_login": "roidelapluie",
     "author_profile": "https://github.com/roidelapluie",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -991,7 +1147,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/7735",
     "author_login": "Nexucis",
     "author_profile": "https://github.com/Nexucis",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -1010,7 +1169,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/7406",
     "author_login": "silazare",
     "author_profile": "https://github.com/silazare",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -1031,7 +1193,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/5616",
     "author_login": "sandersaares",
     "author_profile": "https://github.com/sandersaares",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -1050,7 +1215,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/5588",
     "author_login": "dmitsh",
     "author_profile": "https://github.com/dmitsh",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -1068,7 +1236,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/5436",
     "author_login": "gouthamve",
     "author_profile": "https://github.com/gouthamve",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -1090,7 +1261,10 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/13586",
     "author_login": "beorn7",
     "author_profile": "https://github.com/beorn7",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "prometheus/prometheus",
@@ -1110,6 +1284,9 @@
     "html_url": "https://github.com/prometheus/prometheus/issues/9498",
     "author_login": "roidelapluie",
     "author_profile": "https://github.com/roidelapluie",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
