@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-30",
+  "repo": "comfyanonymous/ComfyUI",
+  "issue_number": 11285,
+  "title": "Please support Z-Image-Turbo-Fun-Controlnet-Union-2.0",
+  "reactions": 18,
+  "abandoned_date": "2026-02-19T23:31:48Z",
+  "one_line_why": "Advances in AI model integration tools and libraries now enable support for Z-Image-Turbo-Fun-Controlnet-Union-2.0.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "comfyui",
+    "controlnet",
+    "image-processing"
+  ],
+  "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/11285",
+  "resurrection_slug": "2026-06-30_comfyanonymous-comfyui_11285",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-30T17:50:50+00:00"
+}
