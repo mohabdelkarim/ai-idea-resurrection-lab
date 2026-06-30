@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-30",
+  "repo": "psf/requests",
+  "issue_number": 6432,
+  "title": "The latest version of requests (2.29.0) does not support urllib3 2.0.0",
+  "reactions": 51,
+  "abandoned_date": "2023-08-12T19:30:38Z",
+  "one_line_why": "The urllib3 2.0.0 release and subsequent adoption make this feature viable now.",
+  "impact_score": 6,
+  "effort_hours": 24.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "python",
+  "technology_tags": [
+    "requests",
+    "urllib3",
+    "python"
+  ],
+  "original_url": "https://github.com/psf/requests/issues/6432",
+  "resurrection_slug": "2026-06-30_psf-requests_6432",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-06-30T15:29:28+00:00"
+}

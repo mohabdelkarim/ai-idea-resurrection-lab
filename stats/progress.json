@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-30T02:58:09",
-  "total_resurrections": 112,
+  "last_updated": "2026-06-30T15:29:28",
+  "total_resurrections": 113,
   "total_repos_covered": 44,
-  "average_impact_score": 6.36,
-  "average_effort_hours": 73.3,
-  "total_with_poc": 88,
+  "average_impact_score": 6.35,
+  "average_effort_hours": 72.87,
+  "total_with_poc": 89,
   "total_with_rfc": 97,
   "comment_stats": {
-    "attempted": 19,
+    "attempted": 20,
     "posted": 0,
-    "failed": 19
+    "failed": 20
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -73,27 +73,27 @@
   ],
   "last_resurrection": {
     "date": "2026-06-30",
-    "repo": "prometheus/prometheus",
-    "issue_number": 3756,
-    "title": "Support for multiple ports in annotations",
-    "reactions": 132,
-    "abandoned_date": "2024-12-17T23:21:16Z",
-    "one_line_why": "The Kubernetes ecosystem evolution and increased demand for multi-port scraping make this feature viable now.",
-    "impact_score": 7,
-    "effort_hours": 60.0,
+    "repo": "psf/requests",
+    "issue_number": 6432,
+    "title": "The latest version of requests (2.29.0) does not support urllib3 2.0.0",
+    "reactions": 51,
+    "abandoned_date": "2023-08-12T19:30:38Z",
+    "one_line_why": "The urllib3 2.0.0 release and subsequent adoption make this feature viable now.",
+    "impact_score": 6,
+    "effort_hours": 24.0,
     "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "go",
+    "has_rfc": false,
+    "poc_language": "python",
     "technology_tags": [
-      "prometheus",
-      "service discovery",
-      "kubernetes"
+      "requests",
+      "urllib3",
+      "python"
     ],
-    "original_url": "https://github.com/prometheus/prometheus/issues/3756",
-    "resurrection_slug": "2026-06-30_prometheus-prometheus_3756",
+    "original_url": "https://github.com/psf/requests/issues/6432",
+    "resurrection_slug": "2026-06-30_psf-requests_6432",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-06-30T02:58:09+00:00"
+    "commented_at": "2026-06-30T15:29:28+00:00"
   }
 }
