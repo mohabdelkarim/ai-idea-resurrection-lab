@@ -1,0 +1,26 @@
+{
+  "date": "2026-07-01",
+  "repo": "streamlit/streamlit",
+  "issue_number": 455,
+  "title": "Ability to accept input from Charts, Tables, etc.",
+  "reactions": 283,
+  "abandoned_date": "2024-09-15T12:49:05Z",
+  "one_line_why": "The feasibility of this feature has increased with advancements in WASM and asynchronous programming in Python.",
+  "impact_score": 8,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "streamlit",
+    "python",
+    "wasm",
+    "asyncio"
+  ],
+  "original_url": "https://github.com/streamlit/streamlit/issues/455",
+  "resurrection_slug": "2026-07-01_streamlit-streamlit_455",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-01T03:04:39+00:00"
+}

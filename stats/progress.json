@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-06-30T17:50:50",
-  "total_resurrections": 114,
+  "last_updated": "2026-07-01T03:04:39",
+  "total_resurrections": 115,
   "total_repos_covered": 44,
-  "average_impact_score": 6.35,
-  "average_effort_hours": 72.93,
-  "total_with_poc": 90,
-  "total_with_rfc": 98,
+  "average_impact_score": 6.37,
+  "average_effort_hours": 73.34,
+  "total_with_poc": 91,
+  "total_with_rfc": 99,
   "comment_stats": {
-    "attempted": 21,
+    "attempted": 22,
     "posted": 0,
-    "failed": 21
+    "failed": 22
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -38,8 +38,8 @@
   "top_tags": [
     "typescript",
     "go",
-    "rust",
     "python",
+    "rust",
     "kubernetes"
   ],
   "hall_of_fame": [
@@ -72,28 +72,29 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-06-30",
-    "repo": "psf/requests",
-    "issue_number": 6432,
-    "title": "The latest version of requests (2.29.0) does not support urllib3 2.0.0",
-    "reactions": 51,
-    "abandoned_date": "2023-08-12T19:30:38Z",
-    "one_line_why": "The urllib3 2.0.0 release and subsequent adoption make this feature viable now.",
-    "impact_score": 6,
-    "effort_hours": 24.0,
+    "date": "2026-07-01",
+    "repo": "streamlit/streamlit",
+    "issue_number": 455,
+    "title": "Ability to accept input from Charts, Tables, etc.",
+    "reactions": 283,
+    "abandoned_date": "2024-09-15T12:49:05Z",
+    "one_line_why": "The feasibility of this feature has increased with advancements in WASM and asynchronous programming in Python.",
+    "impact_score": 8,
+    "effort_hours": 120.0,
     "has_poc": true,
-    "has_rfc": false,
+    "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "requests",
-      "urllib3",
-      "python"
+      "streamlit",
+      "python",
+      "wasm",
+      "asyncio"
     ],
-    "original_url": "https://github.com/psf/requests/issues/6432",
-    "resurrection_slug": "2026-06-30_psf-requests_6432",
+    "original_url": "https://github.com/streamlit/streamlit/issues/455",
+    "resurrection_slug": "2026-07-01_streamlit-streamlit_455",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-06-30T15:29:28+00:00"
+    "commented_at": "2026-07-01T03:04:39+00:00"
   }
 }
