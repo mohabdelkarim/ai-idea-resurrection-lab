@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-01T03:04:39",
-  "total_resurrections": 115,
+  "last_updated": "2026-07-01T17:51:09",
+  "total_resurrections": 116,
   "total_repos_covered": 44,
   "average_impact_score": 6.37,
-  "average_effort_hours": 73.34,
-  "total_with_poc": 91,
-  "total_with_rfc": 99,
+  "average_effort_hours": 73.4,
+  "total_with_poc": 92,
+  "total_with_rfc": 100,
   "comment_stats": {
-    "attempted": 22,
+    "attempted": 23,
     "posted": 0,
-    "failed": 22
+    "failed": 23
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -73,28 +73,27 @@
   ],
   "last_resurrection": {
     "date": "2026-07-01",
-    "repo": "streamlit/streamlit",
-    "issue_number": 455,
-    "title": "Ability to accept input from Charts, Tables, etc.",
-    "reactions": 283,
-    "abandoned_date": "2024-09-15T12:49:05Z",
-    "one_line_why": "The feasibility of this feature has increased with advancements in WASM and asynchronous programming in Python.",
-    "impact_score": 8,
-    "effort_hours": 120.0,
+    "repo": "sveltejs/svelte",
+    "issue_number": 5312,
+    "title": "$$slots with conditional/reactive content?",
+    "reactions": 59,
+    "abandoned_date": "2024-10-29T22:28:59Z",
+    "one_line_why": "Svelte 5's new reactivity system and growing adoption make this feature viable now.",
+    "impact_score": 7,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "streamlit",
-      "python",
-      "wasm",
-      "asyncio"
+      "svelte",
+      "compiler",
+      "reactivity"
     ],
-    "original_url": "https://github.com/streamlit/streamlit/issues/455",
-    "resurrection_slug": "2026-07-01_streamlit-streamlit_455",
+    "original_url": "https://github.com/sveltejs/svelte/issues/5312",
+    "resurrection_slug": "2026-07-01_sveltejs-svelte_5312",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-01T03:04:39+00:00"
+    "commented_at": "2026-07-01T17:51:09+00:00"
   }
 }

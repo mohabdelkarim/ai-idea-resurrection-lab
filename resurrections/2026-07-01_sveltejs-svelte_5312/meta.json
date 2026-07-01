@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-01",
+  "repo": "sveltejs/svelte",
+  "issue_number": 5312,
+  "title": "$$slots with conditional/reactive content?",
+  "reactions": 59,
+  "abandoned_date": "2024-10-29T22:28:59Z",
+  "one_line_why": "Svelte 5's new reactivity system and growing adoption make this feature viable now.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "svelte",
+    "compiler",
+    "reactivity"
+  ],
+  "original_url": "https://github.com/sveltejs/svelte/issues/5312",
+  "resurrection_slug": "2026-07-01_sveltejs-svelte_5312",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-01T17:51:09+00:00"
+}
