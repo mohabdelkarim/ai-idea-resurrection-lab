@@ -1,6 +1,26 @@
 [
   {
     "repo": "ollama/ollama",
+    "issue_number": 5725,
+    "title": "Mistral Codestral Mamba 7B",
+    "body": "https://mistral.ai/news/codestral-mamba/\n\nThe latest model from Mistral utilizes the Mamba architecture (vs. Transformers) and targets code generation with strong performance on the leaderboards.",
+    "reactions": 77,
+    "created_at": "2024-07-16T15:32:47Z",
+    "updated_at": "2026-06-30T19:46:28Z",
+    "labels": [
+      "model"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/5725",
+    "html_url": "https://github.com/ollama/ollama/issues/5725",
+    "author_login": "lestan",
+    "author_profile": "https://github.com/lestan",
+    "comments": 21,
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "Too sparse (26 total words)"
+  },
+  {
+    "repo": "ollama/ollama",
     "issue_number": 4499,
     "title": "paligemma2 support",
     "body": "https://huggingface.co/google/paligemma-3b-pt-224",
@@ -14,7 +34,10 @@
     "html_url": "https://github.com/ollama/ollama/issues/4499",
     "author_login": "wwjCMP",
     "author_profile": "https://github.com/wwjCMP",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ollama/ollama",
@@ -31,7 +54,10 @@
     "html_url": "https://github.com/ollama/ollama/issues/1701",
     "author_login": "vtrenton",
     "author_profile": "https://github.com/vtrenton",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ollama/ollama",
@@ -48,6 +74,9 @@
     "html_url": "https://github.com/ollama/ollama/issues/12436",
     "author_login": "dragetd",
     "author_profile": "https://github.com/dragetd",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
