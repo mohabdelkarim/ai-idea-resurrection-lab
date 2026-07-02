@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-02",
+  "repo": "golang/go",
+  "issue_number": 21670,
+  "title": "proposal: Go 2: Have functions auto-implement interfaces with only a single method of that same signature",
+  "reactions": 115,
+  "abandoned_date": "2024-08-22T00:54:24Z",
+  "one_line_why": "The Go language's type system has evolved with the introduction of generics and the 'any' type, making this feature more.",
+  "impact_score": 7,
+  "effort_hours": 120.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "go",
+    "golang",
+    "interface"
+  ],
+  "original_url": "https://github.com/golang/go/issues/21670",
+  "resurrection_slug": "2026-07-02_golang-go_21670",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-02T15:16:42+00:00"
+}
