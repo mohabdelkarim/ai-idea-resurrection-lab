@@ -78,7 +78,7 @@
     "author_login": "rodrigomatta",
     "author_profile": "https://github.com/rodrigomatta",
     "comments": 10,
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },

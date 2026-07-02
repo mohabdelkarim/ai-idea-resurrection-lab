@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-01T17:51:09",
-  "total_resurrections": 116,
+  "last_updated": "2026-07-02T02:53:28",
+  "total_resurrections": 117,
   "total_repos_covered": 44,
-  "average_impact_score": 6.37,
-  "average_effort_hours": 73.4,
+  "average_impact_score": 6.38,
+  "average_effort_hours": 73.79,
   "total_with_poc": 92,
-  "total_with_rfc": 100,
+  "total_with_rfc": 101,
   "comment_stats": {
-    "attempted": 23,
+    "attempted": 24,
     "posted": 0,
-    "failed": 23
+    "failed": 24
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -30,8 +30,8 @@
         "count": 6
       },
       {
-        "repo": "microsoft/TypeScript",
-        "count": 5
+        "repo": "ggerganov/llama.cpp",
+        "count": 6
       }
     ]
   },
@@ -72,28 +72,29 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-07-01",
-    "repo": "sveltejs/svelte",
-    "issue_number": 5312,
-    "title": "$$slots with conditional/reactive content?",
-    "reactions": 59,
-    "abandoned_date": "2024-10-29T22:28:59Z",
-    "one_line_why": "Svelte 5's new reactivity system and growing adoption make this feature viable now.",
+    "date": "2026-07-02",
+    "repo": "ggerganov/llama.cpp",
+    "issue_number": 22469,
+    "title": "Model request: MiMo V2.5 Series",
+    "reactions": 18,
+    "abandoned_date": "2026-06-21T01:39:36Z",
+    "one_line_why": "Advances in model quantization and MoE model adoption make MiMo-V2.5 integration feasible now.",
     "impact_score": 7,
-    "effort_hours": 80.0,
-    "has_poc": true,
+    "effort_hours": 120.0,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "technology_tags": [
-      "svelte",
-      "compiler",
-      "reactivity"
+      "llamacpp",
+      "mimo",
+      "moe",
+      "language-models"
     ],
-    "original_url": "https://github.com/sveltejs/svelte/issues/5312",
-    "resurrection_slug": "2026-07-01_sveltejs-svelte_5312",
+    "original_url": "https://github.com/ggml-org/llama.cpp/issues/22469",
+    "resurrection_slug": "2026-07-02_ggerganov-llama-cpp_22469",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-01T17:51:09+00:00"
+    "commented_at": "2026-07-02T02:53:28+00:00"
   }
 }
