@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-02T15:16:42",
-  "total_resurrections": 118,
+  "last_updated": "2026-07-02T17:30:18",
+  "total_resurrections": 119,
   "total_repos_covered": 44,
-  "average_impact_score": 6.38,
-  "average_effort_hours": 74.19,
-  "total_with_poc": 92,
-  "total_with_rfc": 102,
+  "average_impact_score": 6.36,
+  "average_effort_hours": 73.9,
+  "total_with_poc": 93,
+  "total_with_rfc": 103,
   "comment_stats": {
-    "attempted": 25,
+    "attempted": 26,
     "posted": 0,
-    "failed": 25
+    "failed": 26
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -73,27 +73,27 @@
   ],
   "last_resurrection": {
     "date": "2026-07-02",
-    "repo": "golang/go",
-    "issue_number": 21670,
-    "title": "proposal: Go 2: Have functions auto-implement interfaces with only a single method of that same signature",
-    "reactions": 115,
-    "abandoned_date": "2024-08-22T00:54:24Z",
-    "one_line_why": "The Go language's type system has evolved with the introduction of generics and the 'any' type, making this feature more.",
-    "impact_score": 7,
-    "effort_hours": 120.0,
-    "has_poc": false,
+    "repo": "redis/redis",
+    "issue_number": 5774,
+    "title": "Feature Request: XTRIM option that deletes all messages already acknowledged by all groups",
+    "reactions": 61,
+    "abandoned_date": "2025-07-04T11:02:43Z",
+    "one_line_why": "Redis 7.0's stream optimizations enable efficient XTRIM implementation.",
+    "impact_score": 4,
+    "effort_hours": 40.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "python",
     "technology_tags": [
-      "go",
-      "golang",
-      "interface"
+      "redis",
+      "streams",
+      "consumer-groups"
     ],
-    "original_url": "https://github.com/golang/go/issues/21670",
-    "resurrection_slug": "2026-07-02_golang-go_21670",
+    "original_url": "https://github.com/redis/redis/issues/5774",
+    "resurrection_slug": "2026-07-02_redis-redis_5774",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-02T15:16:42+00:00"
+    "commented_at": "2026-07-02T17:30:18+00:00"
   }
 }

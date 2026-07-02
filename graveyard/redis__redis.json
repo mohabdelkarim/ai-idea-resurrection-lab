@@ -12,7 +12,10 @@
     "html_url": "https://github.com/redis/redis/issues/3909",
     "author_login": "ghost",
     "author_profile": "https://github.com/ghost",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "redis/redis",
@@ -27,7 +30,10 @@
     "html_url": "https://github.com/redis/redis/issues/167",
     "author_login": "max13fr",
     "author_profile": "https://github.com/max13fr",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "redis/redis",
@@ -42,7 +48,10 @@
     "html_url": "https://github.com/redis/redis/issues/1042",
     "author_login": "subnetmarco",
     "author_profile": "https://github.com/subnetmarco",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "redis/redis",
@@ -57,7 +66,10 @@
     "html_url": "https://github.com/redis/redis/issues/5203",
     "author_login": "antirez",
     "author_profile": "https://github.com/antirez",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "redis/redis",
@@ -72,7 +84,10 @@
     "html_url": "https://github.com/redis/redis/issues/5335",
     "author_login": "antirez",
     "author_profile": "https://github.com/antirez",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "redis/redis",
@@ -87,7 +102,10 @@
     "html_url": "https://github.com/redis/redis/issues/5179",
     "author_login": "pyloque",
     "author_profile": "https://github.com/pyloque",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "redis/redis",
@@ -104,7 +122,10 @@
     "html_url": "https://github.com/redis/redis/issues/5774",
     "author_login": "chanks",
     "author_profile": "https://github.com/chanks",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "redis/redis",
@@ -119,6 +140,9 @@
     "html_url": "https://github.com/redis/redis/issues/3185",
     "author_login": "nomicode",
     "author_profile": "https://github.com/nomicode",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
