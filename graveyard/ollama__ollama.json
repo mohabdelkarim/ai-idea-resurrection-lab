@@ -1,6 +1,28 @@
 [
   {
     "repo": "ollama/ollama",
+    "issue_number": 2453,
+    "title": "Add support for older AMD GPU gfx803, gfx802, gfx805 (e.g. Radeon RX 580, FirePro W7100)",
+    "body": "Officially ROCm no longer supports these cards, but it looks like other projects have found workarounds.  Let's explore if that's possible.  Best case, built-in to our binaries.  Fall-back if that's not plausible is document how to build from source with the appropriate older ROCm library and AMD drivers installed on your system and build a local binary that works.",
+    "reactions": 83,
+    "created_at": "2024-02-11T22:15:37Z",
+    "updated_at": "2026-07-02T19:02:14Z",
+    "labels": [
+      "feature request",
+      "amd",
+      "build"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2453",
+    "html_url": "https://github.com/ollama/ollama/issues/2453",
+    "author_login": "dhiltgen",
+    "author_profile": "https://github.com/dhiltgen",
+    "comments": 221,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "ollama/ollama",
     "issue_number": 5725,
     "title": "Mistral Codestral Mamba 7B",
     "body": "https://mistral.ai/news/codestral-mamba/\n\nThe latest model from Mistral utilizes the Mamba architecture (vs. Transformers) and targets code generation with strong performance on the leaderboards.",

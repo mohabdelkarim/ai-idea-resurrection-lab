@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-03",
+  "repo": "ollama/ollama",
+  "issue_number": 2453,
+  "title": "Add support for older AMD GPU gfx803, gfx802, gfx805 (e.g. Radeon RX 580, FirePro W7100)",
+  "reactions": 83,
+  "abandoned_date": "2026-07-02T19:02:14Z",
+  "one_line_why": "Recent ROCm library updates enable potential support for older AMD GPUs.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "ollama",
+    "rocm",
+    "amd"
+  ],
+  "original_url": "https://github.com/ollama/ollama/issues/2453",
+  "resurrection_slug": "2026-07-03_ollama-ollama_2453",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-03T02:36:02+00:00"
+}

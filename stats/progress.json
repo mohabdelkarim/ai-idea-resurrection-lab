@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-02T17:30:18",
-  "total_resurrections": 119,
+  "last_updated": "2026-07-03T02:36:02",
+  "total_resurrections": 120,
   "total_repos_covered": 44,
   "average_impact_score": 6.36,
-  "average_effort_hours": 73.9,
-  "total_with_poc": 93,
-  "total_with_rfc": 103,
+  "average_effort_hours": 73.95,
+  "total_with_poc": 94,
+  "total_with_rfc": 104,
   "comment_stats": {
-    "attempted": 26,
+    "attempted": 27,
     "posted": 0,
-    "failed": 26
+    "failed": 27
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,28 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-07-02",
-    "repo": "redis/redis",
-    "issue_number": 5774,
-    "title": "Feature Request: XTRIM option that deletes all messages already acknowledged by all groups",
-    "reactions": 61,
-    "abandoned_date": "2025-07-04T11:02:43Z",
-    "one_line_why": "Redis 7.0's stream optimizations enable efficient XTRIM implementation.",
-    "impact_score": 4,
-    "effort_hours": 40.0,
+    "date": "2026-07-03",
+    "repo": "ollama/ollama",
+    "issue_number": 2453,
+    "title": "Add support for older AMD GPU gfx803, gfx802, gfx805 (e.g. Radeon RX 580, FirePro W7100)",
+    "reactions": 83,
+    "abandoned_date": "2026-07-02T19:02:14Z",
+    "one_line_why": "Recent ROCm library updates enable potential support for older AMD GPUs.",
+    "impact_score": 6,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "technology_tags": [
-      "redis",
-      "streams",
-      "consumer-groups"
+      "ollama",
+      "rocm",
+      "amd"
     ],
-    "original_url": "https://github.com/redis/redis/issues/5774",
-    "resurrection_slug": "2026-07-02_redis-redis_5774",
+    "original_url": "https://github.com/ollama/ollama/issues/2453",
+    "resurrection_slug": "2026-07-03_ollama-ollama_2453",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-02T17:30:18+00:00"
+    "commented_at": "2026-07-03T02:36:02+00:00"
   }
 }
