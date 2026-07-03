@@ -16,7 +16,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/85963",
     "author_login": "diranged",
     "author_profile": "https://github.com/diranged",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -34,7 +37,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/78761",
     "author_login": "max-rocket-internet",
     "author_profile": "https://github.com/max-rocket-internet",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -53,7 +59,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/64623",
     "author_login": "mitchellmaler",
     "author_profile": "https://github.com/mitchellmaler",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -73,7 +82,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/122753",
     "author_login": "wiardvanrij",
     "author_profile": "https://github.com/wiardvanrij",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -94,7 +106,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/484",
     "author_login": "KyleAMathews",
     "author_profile": "https://github.com/KyleAMathews",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -115,7 +130,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/53248",
     "author_login": "flyer103",
     "author_profile": "https://github.com/flyer103",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -134,7 +152,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/63214",
     "author_login": "jeremywadsack",
     "author_profile": "https://github.com/jeremywadsack",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -154,7 +175,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/62078",
     "author_login": "ghost",
     "author_profile": "https://github.com/ghost",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -174,7 +198,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/49937",
     "author_login": "SEJeff",
     "author_profile": "https://github.com/SEJeff",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -194,7 +221,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/118749",
     "author_login": "dene14",
     "author_profile": "https://github.com/dene14",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -215,7 +245,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/106802",
     "author_login": "collimarco",
     "author_profile": "https://github.com/collimarco",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -237,7 +270,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/51475",
     "author_login": "julianvmodesto",
     "author_profile": "https://github.com/julianvmodesto",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -258,7 +294,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/121178",
     "author_login": "andreclaro",
     "author_profile": "https://github.com/andreclaro",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -278,7 +317,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/79547",
     "author_login": "eddieparker",
     "author_profile": "https://github.com/eddieparker",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -298,7 +340,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/118858",
     "author_login": "geetasg",
     "author_profile": "https://github.com/geetasg",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -319,7 +364,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/127994",
     "author_login": "nrobert13",
     "author_profile": "https://github.com/nrobert13",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -339,7 +387,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/121211",
     "author_login": "sanposhiho",
     "author_profile": "https://github.com/sanposhiho",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -359,7 +410,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/74415",
     "author_login": "skonto",
     "author_profile": "https://github.com/skonto",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -379,7 +433,10 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/114010",
     "author_login": "null-sleep",
     "author_profile": "https://github.com/null-sleep",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "kubernetes/kubernetes",
@@ -399,6 +456,9 @@
     "html_url": "https://github.com/kubernetes/kubernetes/issues/135178",
     "author_login": "Winterflower",
     "author_profile": "https://github.com/Winterflower",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
