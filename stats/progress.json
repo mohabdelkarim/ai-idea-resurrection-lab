@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-03T15:11:52",
-  "total_resurrections": 121,
+  "last_updated": "2026-07-03T17:15:43",
+  "total_resurrections": 122,
   "total_repos_covered": 44,
-  "average_impact_score": 6.36,
-  "average_effort_hours": 73.67,
-  "total_with_poc": 95,
-  "total_with_rfc": 105,
+  "average_impact_score": 6.35,
+  "average_effort_hours": 73.39,
+  "total_with_poc": 96,
+  "total_with_rfc": 106,
   "comment_stats": {
-    "attempted": 28,
+    "attempted": 29,
     "posted": 0,
-    "failed": 28
+    "failed": 29
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -26,11 +26,11 @@
         "count": 6
       },
       {
-        "repo": "nodejs/node",
+        "repo": "microsoft/TypeScript",
         "count": 6
       },
       {
-        "repo": "ggerganov/llama.cpp",
+        "repo": "nodejs/node",
         "count": 6
       }
     ]
