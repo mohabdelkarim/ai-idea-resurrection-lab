@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-03T02:36:02",
-  "total_resurrections": 120,
+  "last_updated": "2026-07-03T15:11:52",
+  "total_resurrections": 121,
   "total_repos_covered": 44,
   "average_impact_score": 6.36,
-  "average_effort_hours": 73.95,
-  "total_with_poc": 94,
-  "total_with_rfc": 104,
+  "average_effort_hours": 73.67,
+  "total_with_poc": 95,
+  "total_with_rfc": 105,
   "comment_stats": {
-    "attempted": 27,
+    "attempted": 28,
     "posted": 0,
-    "failed": 27
+    "failed": 28
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -19,7 +19,7 @@
       },
       {
         "repo": "kubernetes/kubernetes",
-        "count": 6
+        "count": 7
       },
       {
         "repo": "hashicorp/terraform",
