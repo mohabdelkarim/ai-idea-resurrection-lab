@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-06",
+  "repo": "ohmyzsh/ohmyzsh",
+  "issue_number": 7609,
+  "title": "Why don't Ctrl+Backspace and Ctrl+Delete work?",
+  "reactions": 52,
+  "abandoned_date": "2022-11-16T04:48:23Z",
+  "one_line_why": "Modern zsh and terminal emulators support enable standard keybindings.",
+  "impact_score": 6,
+  "effort_hours": 8.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "python",
+  "technology_tags": [
+    "ohmyzsh",
+    "zsh",
+    "key-bindings"
+  ],
+  "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7609",
+  "resurrection_slug": "2026-07-06_ohmyzsh-ohmyzsh_7609",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-06T02:48:35+00:00"
+}
