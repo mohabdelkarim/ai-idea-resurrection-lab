@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-03T17:15:43",
-  "total_resurrections": 122,
+  "last_updated": "2026-07-06T02:48:35",
+  "total_resurrections": 123,
   "total_repos_covered": 44,
   "average_impact_score": 6.35,
-  "average_effort_hours": 73.39,
-  "total_with_poc": 96,
+  "average_effort_hours": 72.86,
+  "total_with_poc": 97,
   "total_with_rfc": 106,
   "comment_stats": {
-    "attempted": 29,
+    "attempted": 30,
     "posted": 0,
-    "failed": 29
+    "failed": 30
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,28 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-07-03",
-    "repo": "ollama/ollama",
-    "issue_number": 2453,
-    "title": "Add support for older AMD GPU gfx803, gfx802, gfx805 (e.g. Radeon RX 580, FirePro W7100)",
-    "reactions": 83,
-    "abandoned_date": "2026-07-02T19:02:14Z",
-    "one_line_why": "Recent ROCm library updates enable potential support for older AMD GPUs.",
+    "date": "2026-07-06",
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 7609,
+    "title": "Why don't Ctrl+Backspace and Ctrl+Delete work?",
+    "reactions": 52,
+    "abandoned_date": "2022-11-16T04:48:23Z",
+    "one_line_why": "Modern zsh and terminal emulators support enable standard keybindings.",
     "impact_score": 6,
-    "effort_hours": 80.0,
+    "effort_hours": 8.0,
     "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "go",
+    "has_rfc": false,
+    "poc_language": "python",
     "technology_tags": [
-      "ollama",
-      "rocm",
-      "amd"
+      "ohmyzsh",
+      "zsh",
+      "key-bindings"
     ],
-    "original_url": "https://github.com/ollama/ollama/issues/2453",
-    "resurrection_slug": "2026-07-03_ollama-ollama_2453",
+    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7609",
+    "resurrection_slug": "2026-07-06_ohmyzsh-ohmyzsh_7609",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-03T02:36:02+00:00"
+    "commented_at": "2026-07-06T02:48:35+00:00"
   }
 }

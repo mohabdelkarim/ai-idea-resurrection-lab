@@ -12,7 +12,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/2537",
     "author_login": "neohunter",
     "author_profile": "https://github.com/neohunter",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -27,7 +30,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/5327",
     "author_login": "SebTM",
     "author_profile": "https://github.com/SebTM",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -42,7 +48,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7688",
     "author_login": "pfdiy",
     "author_profile": "https://github.com/pfdiy",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -59,7 +68,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/4390",
     "author_login": "ahills",
     "author_profile": "https://github.com/ahills",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -76,7 +88,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7609",
     "author_login": "cshaa",
     "author_profile": "https://github.com/cshaa",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -94,7 +109,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9015",
     "author_login": "robbyrussell",
     "author_profile": "https://github.com/robbyrussell",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -113,7 +131,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/10644",
     "author_login": "carlosala",
     "author_profile": "https://github.com/carlosala",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -131,7 +152,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/5642",
     "author_login": "elieteyssedou",
     "author_profile": "https://github.com/elieteyssedou",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -148,7 +172,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/8847",
     "author_login": "jrottenberg",
     "author_profile": "https://github.com/jrottenberg",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -166,7 +193,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9726",
     "author_login": "reggi",
     "author_profile": "https://github.com/reggi",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -185,7 +215,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7332",
     "author_login": "JamesPeiris",
     "author_profile": "https://github.com/JamesPeiris",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -202,7 +235,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9414",
     "author_login": "ghost",
     "author_profile": "https://github.com/ghost",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -220,7 +256,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/5286",
     "author_login": "larvanitis",
     "author_profile": "https://github.com/larvanitis",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -239,7 +278,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6330",
     "author_login": "AlexVPopov",
     "author_profile": "https://github.com/AlexVPopov",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -257,7 +299,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/10912",
     "author_login": "jasonthomasgray",
     "author_profile": "https://github.com/jasonthomasgray",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -274,7 +319,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9367",
     "author_login": "mosheavni",
     "author_profile": "https://github.com/mosheavni",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -292,7 +340,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/3885",
     "author_login": "ivancuric",
     "author_profile": "https://github.com/ivancuric",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -311,7 +362,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9124",
     "author_login": "fkromer",
     "author_profile": "https://github.com/fkromer",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -330,7 +384,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/8302",
     "author_login": "apeluffo",
     "author_profile": "https://github.com/apeluffo",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -350,7 +407,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6060",
     "author_login": "chuckdries",
     "author_profile": "https://github.com/chuckdries",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -368,7 +428,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7642",
     "author_login": "jkulak",
     "author_profile": "https://github.com/jkulak",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -386,7 +449,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/10468",
     "author_login": "AMDmi3",
     "author_profile": "https://github.com/AMDmi3",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -403,7 +469,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9999",
     "author_login": "djcarpe",
     "author_profile": "https://github.com/djcarpe",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -421,7 +490,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9438",
     "author_login": "ivanjonas",
     "author_profile": "https://github.com/ivanjonas",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -441,7 +513,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7328",
     "author_login": "remcohaszing",
     "author_profile": "https://github.com/remcohaszing",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -459,7 +534,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/4116",
     "author_login": "MerliX",
     "author_profile": "https://github.com/MerliX",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -476,7 +554,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/11814",
     "author_login": "coke",
     "author_profile": "https://github.com/coke",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -494,7 +575,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9216",
     "author_login": "ljmf00",
     "author_profile": "https://github.com/ljmf00",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -511,7 +595,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/8779",
     "author_login": "jthegedus",
     "author_profile": "https://github.com/jthegedus",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -530,7 +617,10 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6523",
     "author_login": "Shea690901",
     "author_profile": "https://github.com/Shea690901",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "ohmyzsh/ohmyzsh",
@@ -548,6 +638,9 @@
     "html_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6239",
     "author_login": "jonnyzzz",
     "author_profile": "https://github.com/jonnyzzz",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
