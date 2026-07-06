@@ -34,8 +34,8 @@
     "author_profile": "https://github.com/RalfJung",
     "comments": 0,
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Body too short (36 chars, min 80) — not a real proposal"
   },
   {
     "repo": "rust-lang/rust",
