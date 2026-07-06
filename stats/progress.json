@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-06T02:48:35",
-  "total_resurrections": 123,
+  "last_updated": "2026-07-06T16:21:56",
+  "total_resurrections": 124,
   "total_repos_covered": 44,
   "average_impact_score": 6.35,
-  "average_effort_hours": 72.86,
-  "total_with_poc": 97,
-  "total_with_rfc": 106,
+  "average_effort_hours": 72.92,
+  "total_with_poc": 98,
+  "total_with_rfc": 107,
   "comment_stats": {
-    "attempted": 30,
+    "attempted": 31,
     "posted": 0,
-    "failed": 30
+    "failed": 31
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -30,7 +30,7 @@
         "count": 6
       },
       {
-        "repo": "nodejs/node",
+        "repo": "microsoft/vscode",
         "count": 6
       }
     ]
