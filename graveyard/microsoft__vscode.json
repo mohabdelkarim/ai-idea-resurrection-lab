@@ -12,7 +12,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/118308",
     "author_login": "Milo123459",
     "author_profile": "https://github.com/Milo123459",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -31,7 +34,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/20599",
     "author_login": "blopez2010",
     "author_profile": "https://github.com/blopez2010",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -51,7 +57,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/6560",
     "author_login": "MullenStudio",
     "author_profile": "https://github.com/MullenStudio",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -70,7 +79,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/43806",
     "author_login": "DABH",
     "author_profile": "https://github.com/DABH",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -89,7 +101,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/106132",
     "author_login": "GlenNicholls",
     "author_profile": "https://github.com/GlenNicholls",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -108,7 +123,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/176946",
     "author_login": "0x6e",
     "author_profile": "https://github.com/0x6e",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -127,7 +145,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/142904",
     "author_login": "EvHaus",
     "author_profile": "https://github.com/EvHaus",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -147,7 +168,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/28310",
     "author_login": "attuo",
     "author_profile": "https://github.com/attuo",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -166,7 +190,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/140674",
     "author_login": "Pingear",
     "author_profile": "https://github.com/Pingear",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -186,7 +213,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/43226",
     "author_login": "dece",
     "author_profile": "https://github.com/dece",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -205,7 +235,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/92257",
     "author_login": "Towkin",
     "author_profile": "https://github.com/Towkin",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -224,7 +257,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/141224",
     "author_login": "miliarch",
     "author_profile": "https://github.com/miliarch",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -239,7 +275,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/187175",
     "author_login": "sinke100",
     "author_profile": "https://github.com/sinke100",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -258,7 +297,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/57481",
     "author_login": "muuvmuuv",
     "author_profile": "https://github.com/muuvmuuv",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -278,7 +320,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/1223",
     "author_login": "pcgeek86",
     "author_profile": "https://github.com/pcgeek86",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -296,7 +341,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/249826",
     "author_login": "PeterStaev",
     "author_profile": "https://github.com/PeterStaev",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -314,7 +362,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/249326",
     "author_login": "maxiaogood",
     "author_profile": "https://github.com/maxiaogood",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -334,7 +385,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/112192",
     "author_login": "wchen9",
     "author_profile": "https://github.com/wchen9",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -351,7 +405,10 @@
     "html_url": "https://github.com/microsoft/vscode/issues/202543",
     "author_login": "cygnuson",
     "author_profile": "https://github.com/cygnuson",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "microsoft/vscode",
@@ -370,6 +427,9 @@
     "html_url": "https://github.com/microsoft/vscode/issues/10400",
     "author_login": "dahjelle",
     "author_profile": "https://github.com/dahjelle",
-    "already_resurrected": false
+    "comments": 0,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]

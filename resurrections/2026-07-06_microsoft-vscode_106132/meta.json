@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-06",
+  "repo": "microsoft/vscode",
+  "issue_number": 106132,
+  "title": "Nested snippets",
+  "reactions": 93,
+  "abandoned_date": "2022-12-06T14:12:56Z",
+  "one_line_why": "Recent VSCode extension API advancements enable more flexible snippet management now.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "vscode",
+    "snippets",
+    "typescript"
+  ],
+  "original_url": "https://github.com/microsoft/vscode/issues/106132",
+  "resurrection_slug": "2026-07-06_microsoft-vscode_106132",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-06T16:21:56+00:00"
+}
