@@ -734,6 +734,27 @@
   },
   {
     "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 9826,
+    "title": "Can't import SageAttention: No module named 'sageattention'",
+    "body": "### Custom Node Testing\n\n- [ ] I have tried disabling custom nodes and the issue persists (see [how to disable custom nodes](https://docs.comfy.org/troubleshooting/custom-node-issues#step-1%3A-test-with-all-custom-nodes-disabled) if you need help)\n\n### Your question\n\nCan't import SageAttention: No module named 'sageattention'\n\n### Logs\n\n```powershell\n\n```\n\n### Other\n\n_No response_",
+    "reactions": 6,
+    "created_at": "2025-09-12T14:38:45Z",
+    "updated_at": "2026-07-02T12:12:17Z",
+    "labels": [
+      "User Support",
+      "Stale"
+    ],
+    "url": "https://api.github.com/repos/Comfy-Org/ComfyUI/issues/9826",
+    "html_url": "https://github.com/Comfy-Org/ComfyUI/issues/9826",
+    "author_login": "zhouluoxi",
+    "author_profile": "https://github.com/zhouluoxi",
+    "comments": 12,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "comfyanonymous/ComfyUI",
     "issue_number": 11016,
     "title": "Ovis-Image support?",
     "body": "### Feature Idea\n\nhttps://github.com/AIDC-AI/Ovis-Image\nhttps://huggingface.co/AIDC-AI/Ovis-Image-7B\n\noptimized for complex text render\n\n### Existing Solutions\n\n_No response_\n\n### Other\n\n_No response_",
