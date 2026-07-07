@@ -57,8 +57,8 @@
     "author_profile": "https://github.com/akavel",
     "comments": 0,
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "impact_score=2 below minimum 4 with weak discussion (reactions=116, comments=0)"
   },
   {
     "repo": "rust-lang/rust",
@@ -80,7 +80,7 @@
     "author_login": "SimonSapin",
     "author_profile": "https://github.com/SimonSapin",
     "comments": 0,
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
