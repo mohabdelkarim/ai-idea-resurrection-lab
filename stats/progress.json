@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-06T18:08:20",
-  "total_resurrections": 125,
+  "last_updated": "2026-07-07T02:43:53",
+  "total_resurrections": 126,
   "total_repos_covered": 44,
   "average_impact_score": 6.35,
-  "average_effort_hours": 72.66,
-  "total_with_poc": 99,
-  "total_with_rfc": 108,
+  "average_effort_hours": 72.4,
+  "total_with_poc": 100,
+  "total_with_rfc": 109,
   "comment_stats": {
-    "attempted": 32,
+    "attempted": 33,
     "posted": 0,
-    "failed": 32
+    "failed": 33
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,28 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-07-06",
-    "repo": "ohmyzsh/ohmyzsh",
-    "issue_number": 7609,
-    "title": "Why don't Ctrl+Backspace and Ctrl+Delete work?",
-    "reactions": 52,
-    "abandoned_date": "2022-11-16T04:48:23Z",
-    "one_line_why": "Modern zsh and terminal emulators support enable standard keybindings.",
+    "date": "2026-07-07",
+    "repo": "ansible/ansible",
+    "issue_number": 60215,
+    "title": "Support running ansible-test on collections outside a collection root",
+    "reactions": 54,
+    "abandoned_date": "2024-07-01T13:00:02Z",
+    "one_line_why": "Ansible's testing framework now supports flexible collection handling.",
     "impact_score": 6,
-    "effort_hours": 8.0,
+    "effort_hours": 40.0,
     "has_poc": true,
-    "has_rfc": false,
+    "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "ohmyzsh",
-      "zsh",
-      "key-bindings"
+      "ansible",
+      "ansible-test",
+      "collections"
     ],
-    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/7609",
-    "resurrection_slug": "2026-07-06_ohmyzsh-ohmyzsh_7609",
+    "original_url": "https://github.com/ansible/ansible/issues/60215",
+    "resurrection_slug": "2026-07-07_ansible-ansible_60215",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-06T02:48:35+00:00"
+    "commented_at": "2026-07-07T02:43:53+00:00"
   }
 }
