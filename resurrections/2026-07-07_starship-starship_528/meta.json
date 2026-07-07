@@ -1,0 +1,26 @@
+{
+  "date": "2026-07-07",
+  "repo": "starship/starship",
+  "issue_number": 528,
+  "title": "Powerline prompt",
+  "reactions": 58,
+  "abandoned_date": "2024-07-01T04:06:39Z",
+  "one_line_why": "The Rust ecosystem's maturation and the popularity of Nerd Fonts make PowerLine prompt implementation feasible now.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "technology_tags": [
+    "starship",
+    "powerline",
+    "nerd-fonts",
+    "rust"
+  ],
+  "original_url": "https://github.com/starship/starship/issues/528",
+  "resurrection_slug": "2026-07-07_starship-starship_528",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-07T15:47:17+00:00"
+}
