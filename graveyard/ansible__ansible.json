@@ -44,7 +44,7 @@
     "author_login": "geerlingguy",
     "author_profile": "https://github.com/geerlingguy",
     "comments": 32,
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
