@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-08T02:17:51",
-  "total_resurrections": 129,
+  "last_updated": "2026-07-08T15:20:02",
+  "total_resurrections": 130,
   "total_repos_covered": 44,
-  "average_impact_score": 6.33,
-  "average_effort_hours": 71.95,
-  "total_with_poc": 103,
+  "average_impact_score": 6.35,
+  "average_effort_hours": 72.02,
+  "total_with_poc": 104,
   "total_with_rfc": 112,
   "comment_stats": {
-    "attempted": 36,
+    "attempted": 37,
     "posted": 0,
-    "failed": 36
+    "failed": 37
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -73,27 +73,27 @@
   ],
   "last_resurrection": {
     "date": "2026-07-08",
-    "repo": "docker/compose",
-    "issue_number": 4579,
-    "title": "Using scale number to adjust mounted volumes?",
-    "reactions": 38,
-    "abandoned_date": "2025-03-04T16:11:49Z",
-    "one_line_why": "Templating engines and Kubernetes-like deployments now make dynamic volume mounting feasible.",
-    "impact_score": 5,
-    "effort_hours": 40.0,
+    "repo": "vercel/next.js",
+    "issue_number": 39375,
+    "title": "Nextjs fails to detect ESM modules correctly when using exports in package.json",
+    "reactions": 44,
+    "abandoned_date": "2025-11-05T00:06:30Z",
+    "one_line_why": "Webpack 5+ and Next.js 13+ enable correct ESM detection with 'exports' in package.json.",
+    "impact_score": 8,
+    "effort_hours": 80.0,
     "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "go",
+    "has_rfc": false,
+    "poc_language": "typescript",
     "technology_tags": [
-      "docker",
-      "compose",
-      "volumes"
+      "nextjs",
+      "webpack",
+      "esm"
     ],
-    "original_url": "https://github.com/docker/compose/issues/4579",
-    "resurrection_slug": "2026-07-08_docker-compose_4579",
+    "original_url": "https://github.com/vercel/next.js/issues/39375",
+    "resurrection_slug": "2026-07-08_vercel-next-js_39375",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-08T02:17:51+00:00"
+    "commented_at": "2026-07-08T15:20:02+00:00"
   }
 }

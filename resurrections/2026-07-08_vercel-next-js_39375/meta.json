@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-08",
+  "repo": "vercel/next.js",
+  "issue_number": 39375,
+  "title": "Nextjs fails to detect ESM modules correctly when using exports in package.json",
+  "reactions": 44,
+  "abandoned_date": "2025-11-05T00:06:30Z",
+  "one_line_why": "Webpack 5+ and Next.js 13+ enable correct ESM detection with 'exports' in package.json.",
+  "impact_score": 8,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "nextjs",
+    "webpack",
+    "esm"
+  ],
+  "original_url": "https://github.com/vercel/next.js/issues/39375",
+  "resurrection_slug": "2026-07-08_vercel-next-js_39375",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-08T15:20:02+00:00"
+}
