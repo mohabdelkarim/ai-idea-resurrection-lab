@@ -1,0 +1,26 @@
+{
+  "date": "2026-07-08",
+  "repo": "withastro/astro",
+  "issue_number": 80,
+  "title": "\ud83d\udca1 RFC: SSR",
+  "reactions": 54,
+  "abandoned_date": "2022-07-03T15:43:04Z",
+  "one_line_why": "The maturity of TypeScript and Node.js, along with the success of SSR in Next.js and SvelteKit, now enables this feature.",
+  "impact_score": 8,
+  "effort_hours": 120.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "astro",
+    "typescript",
+    "ssr",
+    "server-side rendering"
+  ],
+  "original_url": "https://github.com/withastro/astro/issues/80",
+  "resurrection_slug": "2026-07-08_withastro-astro_80",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-08T17:21:31+00:00"
+}
