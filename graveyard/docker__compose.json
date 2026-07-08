@@ -55,7 +55,7 @@
     "author_login": "Sushisource",
     "author_profile": "https://github.com/Sushisource",
     "comments": 20,
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },

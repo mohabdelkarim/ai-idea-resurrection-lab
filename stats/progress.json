@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-07T17:54:37",
-  "total_resurrections": 128,
+  "last_updated": "2026-07-08T02:17:51",
+  "total_resurrections": 129,
   "total_repos_covered": 44,
-  "average_impact_score": 6.34,
-  "average_effort_hours": 72.2,
-  "total_with_poc": 102,
-  "total_with_rfc": 111,
+  "average_impact_score": 6.33,
+  "average_effort_hours": 71.95,
+  "total_with_poc": 103,
+  "total_with_rfc": 112,
   "comment_stats": {
-    "attempted": 35,
+    "attempted": 36,
     "posted": 0,
-    "failed": 35
+    "failed": 36
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,29 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-07-07",
-    "repo": "starship/starship",
-    "issue_number": 528,
-    "title": "Powerline prompt",
-    "reactions": 58,
-    "abandoned_date": "2024-07-01T04:06:39Z",
-    "one_line_why": "The Rust ecosystem's maturation and the popularity of Nerd Fonts make PowerLine prompt implementation feasible now.",
-    "impact_score": 7,
-    "effort_hours": 80.0,
+    "date": "2026-07-08",
+    "repo": "docker/compose",
+    "issue_number": 4579,
+    "title": "Using scale number to adjust mounted volumes?",
+    "reactions": 38,
+    "abandoned_date": "2025-03-04T16:11:49Z",
+    "one_line_why": "Templating engines and Kubernetes-like deployments now make dynamic volume mounting feasible.",
+    "impact_score": 5,
+    "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "rust",
+    "poc_language": "go",
     "technology_tags": [
-      "starship",
-      "powerline",
-      "nerd-fonts",
-      "rust"
+      "docker",
+      "compose",
+      "volumes"
     ],
-    "original_url": "https://github.com/starship/starship/issues/528",
-    "resurrection_slug": "2026-07-07_starship-starship_528",
+    "original_url": "https://github.com/docker/compose/issues/4579",
+    "resurrection_slug": "2026-07-08_docker-compose_4579",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-07T15:47:17+00:00"
+    "commented_at": "2026-07-08T02:17:51+00:00"
   }
 }
