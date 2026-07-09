@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-09T02:36:07",
-  "total_resurrections": 132,
+  "last_updated": "2026-07-09T17:50:48",
+  "total_resurrections": 133,
   "total_repos_covered": 44,
   "average_impact_score": 6.35,
-  "average_effort_hours": 72.44,
-  "total_with_poc": 106,
-  "total_with_rfc": 114,
+  "average_effort_hours": 72.5,
+  "total_with_poc": 107,
+  "total_with_rfc": 115,
   "comment_stats": {
-    "attempted": 39,
+    "attempted": 40,
     "posted": 0,
-    "failed": 39
+    "failed": 40
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -37,8 +37,8 @@
   },
   "top_tags": [
     "typescript",
-    "go",
     "rust",
+    "go",
     "python",
     "kubernetes"
   ],
@@ -73,28 +73,28 @@
   ],
   "last_resurrection": {
     "date": "2026-07-09",
-    "repo": "sharkdp/bat",
-    "issue_number": 1746,
-    "title": "Support for different themes based on Terminal color scheme",
-    "reactions": 38,
-    "abandoned_date": "2024-11-13T19:10:52Z",
-    "one_line_why": "The emergence of robust libraries like termenv enables reliable cross-platform terminal color scheme detection.",
-    "impact_score": 5,
+    "repo": "sharkdp/fd",
+    "issue_number": 165,
+    "title": "Search based on file timestamps (atime, ctime, mtime)",
+    "reactions": 17,
+    "abandoned_date": "2025-11-10T09:48:29Z",
+    "one_line_why": "Rust's async/await stabilization and efficient file system APIs now enable high-performance timestamp-based file search.",
+    "impact_score": 7,
     "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
     "poc_language": "rust",
     "technology_tags": [
-      "bat",
+      "fd",
       "rust",
-      "terminal",
-      "theme"
+      "tokio",
+      "async"
     ],
-    "original_url": "https://github.com/sharkdp/bat/issues/1746",
-    "resurrection_slug": "2026-07-09_sharkdp-bat_1746",
+    "original_url": "https://github.com/sharkdp/fd/issues/165",
+    "resurrection_slug": "2026-07-09_sharkdp-fd_165",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-09T02:36:07+00:00"
+    "commented_at": "2026-07-09T17:50:48+00:00"
   }
 }
