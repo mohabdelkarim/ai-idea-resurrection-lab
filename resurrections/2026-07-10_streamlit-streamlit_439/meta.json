@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-10",
+  "repo": "streamlit/streamlit",
+  "issue_number": 439,
+  "title": "Support custom HTTP requests",
+  "reactions": 265,
+  "abandoned_date": "2026-04-10T09:26:12Z",
+  "one_line_why": "Python's async HTTP libraries and modern web frameworks now enable efficient custom HTTP request handling.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "streamlit",
+    "python",
+    "http"
+  ],
+  "original_url": "https://github.com/streamlit/streamlit/issues/439",
+  "resurrection_slug": "2026-07-10_streamlit-streamlit_439",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-10T17:44:39+00:00"
+}

@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-10T15:34:13",
-  "total_resurrections": 135,
+  "last_updated": "2026-07-10T17:44:39",
+  "total_resurrections": 136,
   "total_repos_covered": 44,
   "average_impact_score": 6.38,
-  "average_effort_hours": 72.01,
-  "total_with_poc": 109,
-  "total_with_rfc": 115,
+  "average_effort_hours": 72.07,
+  "total_with_poc": 110,
+  "total_with_rfc": 116,
   "comment_stats": {
-    "attempted": 42,
+    "attempted": 43,
     "posted": 0,
-    "failed": 42
+    "failed": 43
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -73,27 +73,27 @@
   ],
   "last_resurrection": {
     "date": "2026-07-10",
-    "repo": "langchain-ai/langchain",
-    "issue_number": 16798,
-    "title": "get_openai_callback not working when using Agent Executor after updating to latest version of Langchain",
-    "reactions": 22,
-    "abandoned_date": "2026-01-22T11:26:07Z",
-    "one_line_why": "Langchain's recent improvements in callback handling and async support now enable a fix for the get_openai_callback issue with AgentExecutor.",
-    "impact_score": 8,
-    "effort_hours": 40.0,
+    "repo": "streamlit/streamlit",
+    "issue_number": 439,
+    "title": "Support custom HTTP requests",
+    "reactions": 265,
+    "abandoned_date": "2026-04-10T09:26:12Z",
+    "one_line_why": "Python's async HTTP libraries and modern web frameworks now enable efficient custom HTTP request handling.",
+    "impact_score": 7,
+    "effort_hours": 80.0,
     "has_poc": true,
-    "has_rfc": false,
+    "has_rfc": true,
     "poc_language": "python",
     "technology_tags": [
-      "langchain",
-      "langchain_openai",
-      "agent_executor"
+      "streamlit",
+      "python",
+      "http"
     ],
-    "original_url": "https://github.com/langchain-ai/langchain/issues/16798",
-    "resurrection_slug": "2026-07-10_langchain-ai-langchain_16798",
+    "original_url": "https://github.com/streamlit/streamlit/issues/439",
+    "resurrection_slug": "2026-07-10_streamlit-streamlit_439",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-10T02:38:08+00:00"
+    "commented_at": "2026-07-10T17:44:39+00:00"
   }
 }
