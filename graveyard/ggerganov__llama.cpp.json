@@ -84,6 +84,27 @@
   },
   {
     "repo": "ggerganov/llama.cpp",
+    "issue_number": 22947,
+    "title": "Feature Request: Add MTP / speculative decoding support to llama-bench for PR #22673",
+    "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nThe draft MTP PR  #22673  adds speculative decoding / MTP support to:\n\nllama-cli\nllama-server\n\nusing flags such as:\n`--spec-type mtp`\n`--spec-draft-n-max 3`\n`--spec-draft-ngl 99`\n\nThese flags work correctly in:\n\n`llama-cli`\n`llama-server` \n\n(have only tested on these two)\n\nbut are unrecognized in `llama-bench`\nExample:\n\n```\n./build/bin/llama-bench \\\n  -m model.gguf \\\n  --spec-type mtp\n -- spec-draft-n-max 3,4,5\n -- spec-draft-ngl 99,100\n```\nreturns:\n\n> error: invalid parameter for argument: --spec-type\n\n### Motivation\n\nCurrently MTP benchmarking requires custom scripts or `llama-server` setups since speculative decoding flags are unavailable in `llama-bench`.\n\nAdding support directly to `llama-bench` would make it much easier for users to quickly test and compare speculative decoding configurations such as different `n-max` values, context depths, throughput scaling, and VRAM tradeoffs using the built-in benchmarking tooling.\n\n\n### Possible Implementation\n\nI did some digging and it looks like llama-bench currently uses its own parser / benchmark loop instead of the shared common argument infrastructure used by `llama-cli` and `llama-server`, which is likely why the speculative decoding flags are currently unavailable there.",
+    "reactions": 16,
+    "created_at": "2026-05-11T16:06:00Z",
+    "updated_at": "2026-07-14T01:09:58Z",
+    "labels": [
+      "enhancement",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/ggml-org/llama.cpp/issues/22947",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/22947",
+    "author_login": "Ajay9o9",
+    "author_profile": "https://github.com/Ajay9o9",
+    "comments": 2,
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "ggerganov/llama.cpp",
     "issue_number": 18189,
     "title": "Feature Request: Idle model unload timeout (router mode / config.ini)",
     "body": "### Prerequisites\n\n- [x] I am running the latest code. Mention the version if possible as well.\n- [x] I carefully followed the [README.md](https://github.com/ggml-org/llama.cpp/blob/master/README.md).\n- [x] I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).\n- [x] I reviewed the [Discussions](https://github.com/ggml-org/llama.cpp/discussions), and have a new and useful enhancement to share.\n\n### Feature Description\n\nIt would be great if llama-server when run in router mode and/or with a config.ini could unload models that have been idle for a given time.\n\nFor example, you could default it to 300 (seconds) and have models that haven't performed any inference in 5 minutes be unloaded to free up resources.\n\n### Motivation\n\nModels current sit loaded until the max loaded models are met, using up system resources.\n\n[llama-swap provides](https://github.com/mostlygeek/llama-swap#configuration) this as a `ttl` setting.\n\nSomewhat related:\n- https://github.com/ggml-org/llama.cpp/issues/11703\n- https://github.com/ggml-org/llama.cpp/issues/4598\n\n### Possible Implementation\n\n```ini\nunload-idle-seconds = 300\n\n[some-custom-important-model]\nm = /models/custom.gguf\nunload-idle-seconds = 3600\n```\n\n```bash\nllama-server --unload-idle-seconds 300 --models-dir /models\n```\n",
