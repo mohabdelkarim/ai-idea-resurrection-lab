@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-14",
+  "repo": "grafana/grafana",
+  "issue_number": 6106,
+  "title": "Feature Request: add support for error bars in graphs",
+  "reactions": 74,
+  "abandoned_date": "2026-02-22T02:16:55Z",
+  "one_line_why": "The introduction of data transformers and improved data handling in Grafana enables the implementation of error bars.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "grafana",
+    "graphing",
+    "data-visualization"
+  ],
+  "original_url": "https://github.com/grafana/grafana/issues/6106",
+  "resurrection_slug": "2026-07-14_grafana-grafana_6106",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-14T02:07:10+00:00"
+}

@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-13T17:52:44",
-  "total_resurrections": 137,
+  "last_updated": "2026-07-14T02:07:10",
+  "total_resurrections": 138,
   "total_repos_covered": 44,
   "average_impact_score": 6.38,
-  "average_effort_hours": 72.13,
-  "total_with_poc": 111,
-  "total_with_rfc": 117,
+  "average_effort_hours": 72.19,
+  "total_with_poc": 112,
+  "total_with_rfc": 118,
   "comment_stats": {
-    "attempted": 44,
+    "attempted": 45,
     "posted": 0,
-    "failed": 44
+    "failed": 45
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,28 +72,28 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-07-13",
-    "repo": "sveltejs/svelte",
-    "issue_number": 2968,
-    "title": "{#range ...} block",
-    "reactions": 121,
-    "abandoned_date": "2024-12-03T07:37:28Z",
-    "one_line_why": "Svelte's compiler advancements make range blocks viable now.",
-    "impact_score": 6,
+    "date": "2026-07-14",
+    "repo": "grafana/grafana",
+    "issue_number": 6106,
+    "title": "Feature Request: add support for error bars in graphs",
+    "reactions": 74,
+    "abandoned_date": "2026-02-22T02:16:55Z",
+    "one_line_why": "The introduction of data transformers and improved data handling in Grafana enables the implementation of error bars.",
+    "impact_score": 7,
     "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "go",
     "technology_tags": [
-      "svelte",
-      "typescript",
-      "compiler"
+      "grafana",
+      "graphing",
+      "data-visualization"
     ],
-    "original_url": "https://github.com/sveltejs/svelte/issues/2968",
-    "resurrection_slug": "2026-07-13_sveltejs-svelte_2968",
+    "original_url": "https://github.com/grafana/grafana/issues/6106",
+    "resurrection_slug": "2026-07-14_grafana-grafana_6106",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-13T17:52:44+00:00"
+    "commented_at": "2026-07-14T02:07:10+00:00"
   }
 }
