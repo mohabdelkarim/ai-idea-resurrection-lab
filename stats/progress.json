@@ -1,21 +1,21 @@
 {
-  "last_updated": "2026-07-15T14:50:10",
-  "total_resurrections": 142,
+  "last_updated": "2026-07-15T17:08:13",
+  "total_resurrections": 143,
   "total_repos_covered": 44,
-  "average_impact_score": 6.37,
-  "average_effort_hours": 71.56,
-  "total_with_poc": 116,
-  "total_with_rfc": 122,
+  "average_impact_score": 6.36,
+  "average_effort_hours": 71.34,
+  "total_with_poc": 117,
+  "total_with_rfc": 123,
   "comment_stats": {
-    "attempted": 49,
+    "attempted": 50,
     "posted": 0,
-    "failed": 49
+    "failed": 50
   },
   "repo_diversity": {
     "top_repeated_repos": [
       {
         "repo": "comfyanonymous/ComfyUI",
-        "count": 7
+        "count": 8
       },
       {
         "repo": "kubernetes/kubernetes",
