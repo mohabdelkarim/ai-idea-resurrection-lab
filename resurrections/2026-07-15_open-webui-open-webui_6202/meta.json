@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-15",
+  "repo": "open-webui/open-webui",
+  "issue_number": 6202,
+  "title": "feat: Allow to add website URL for RAG in collections",
+  "reactions": 57,
+  "abandoned_date": "2025-12-21T13:17:29Z",
+  "one_line_why": "TypeScript's async/await and modern web APIs enable feasible implementation of URL collections with auth and scheduled scanning.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "open-webui",
+    "typescript",
+    "webui"
+  ],
+  "original_url": "https://github.com/open-webui/open-webui/issues/6202",
+  "resurrection_slug": "2026-07-15_open-webui-open-webui_6202",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-15T02:02:50+00:00"
+}
