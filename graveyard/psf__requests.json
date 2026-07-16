@@ -132,7 +132,7 @@
     "author_login": "gabor",
     "author_profile": "https://github.com/gabor",
     "comments": 0,
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
