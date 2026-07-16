@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-16T02:12:40",
-  "total_resurrections": 144,
+  "last_updated": "2026-07-16T15:01:18",
+  "total_resurrections": 145,
   "total_repos_covered": 44,
-  "average_impact_score": 6.35,
-  "average_effort_hours": 71.12,
-  "total_with_poc": 118,
-  "total_with_rfc": 124,
+  "average_impact_score": 6.34,
+  "average_effort_hours": 70.91,
+  "total_with_poc": 119,
+  "total_with_rfc": 125,
   "comment_stats": {
-    "attempted": 51,
+    "attempted": 52,
     "posted": 0,
-    "failed": 51
+    "failed": 52
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -73,27 +73,27 @@
   ],
   "last_resurrection": {
     "date": "2026-07-16",
-    "repo": "prometheus/prometheus",
-    "issue_number": 5469,
-    "title": "Document memory planning guidelines",
-    "reactions": 59,
-    "abandoned_date": "2024-09-15T23:21:12Z",
-    "one_line_why": "The Prometheus community has grown, and recent advancements in Kubernetes have made it easier to manage resources, making this feature.",
-    "impact_score": 6,
+    "repo": "psf/requests",
+    "issue_number": 1198,
+    "title": "max-retries-exceeded exceptions are confusing",
+    "reactions": 18,
+    "abandoned_date": "2018-12-27T14:25:44Z",
+    "one_line_why": "Tenacity library offers flexible retry mechanisms, improving error handling.",
+    "impact_score": 5,
     "effort_hours": 40.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "python",
     "technology_tags": [
-      "prometheus",
-      "kubernetes",
-      "containerization"
+      "requests",
+      "python",
+      "urllib3"
     ],
-    "original_url": "https://github.com/prometheus/prometheus/issues/5469",
-    "resurrection_slug": "2026-07-16_prometheus-prometheus_5469",
+    "original_url": "https://github.com/psf/requests/issues/1198",
+    "resurrection_slug": "2026-07-16_psf-requests_1198",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-16T02:12:40+00:00"
+    "commented_at": "2026-07-16T15:01:18+00:00"
   }
 }
