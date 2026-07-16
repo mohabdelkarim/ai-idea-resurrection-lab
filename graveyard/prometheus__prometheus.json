@@ -118,8 +118,8 @@
     "author_profile": "https://github.com/juliusv",
     "comments": 0,
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Too sparse (19 total words)"
   },
   {
     "repo": "prometheus/prometheus",
@@ -161,7 +161,7 @@
     "author_login": "itaysk",
     "author_profile": "https://github.com/itaysk",
     "comments": 0,
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
