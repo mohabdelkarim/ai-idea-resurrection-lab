@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-16T15:01:18",
-  "total_resurrections": 145,
+  "last_updated": "2026-07-16T17:06:04",
+  "total_resurrections": 146,
   "total_repos_covered": 44,
-  "average_impact_score": 6.34,
-  "average_effort_hours": 70.91,
-  "total_with_poc": 119,
-  "total_with_rfc": 125,
+  "average_impact_score": 6.35,
+  "average_effort_hours": 70.97,
+  "total_with_poc": 120,
+  "total_with_rfc": 126,
   "comment_stats": {
-    "attempted": 52,
+    "attempted": 53,
     "posted": 0,
-    "failed": 52
+    "failed": 53
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -73,27 +73,27 @@
   ],
   "last_resurrection": {
     "date": "2026-07-16",
-    "repo": "psf/requests",
-    "issue_number": 1198,
-    "title": "max-retries-exceeded exceptions are confusing",
-    "reactions": 18,
-    "abandoned_date": "2018-12-27T14:25:44Z",
-    "one_line_why": "Tenacity library offers flexible retry mechanisms, improving error handling.",
-    "impact_score": 5,
-    "effort_hours": 40.0,
+    "repo": "vercel/next.js",
+    "issue_number": 44764,
+    "title": "Using generateStaticParams with next/headers causes dynamicParams ignored in production",
+    "reactions": 34,
+    "abandoned_date": "2025-09-19T00:05:17Z",
+    "one_line_why": "Recent Next.js server component updates enable better dynamic server usage handling.",
+    "impact_score": 7,
+    "effort_hours": 80.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "technology_tags": [
-      "requests",
-      "python",
-      "urllib3"
+      "nextjs",
+      "server-components",
+      "static-site-generation"
     ],
-    "original_url": "https://github.com/psf/requests/issues/1198",
-    "resurrection_slug": "2026-07-16_psf-requests_1198",
+    "original_url": "https://github.com/vercel/next.js/issues/44764",
+    "resurrection_slug": "2026-07-16_vercel-next-js_44764",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-07-16T15:01:18+00:00"
+    "commented_at": "2026-07-16T17:06:04+00:00"
   }
 }

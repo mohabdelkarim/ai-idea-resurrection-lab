@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-16",
+  "repo": "vercel/next.js",
+  "issue_number": 44764,
+  "title": "Using generateStaticParams with next/headers causes dynamicParams ignored in production",
+  "reactions": 34,
+  "abandoned_date": "2025-09-19T00:05:17Z",
+  "one_line_why": "Recent Next.js server component updates enable better dynamic server usage handling.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "technology_tags": [
+    "nextjs",
+    "server-components",
+    "static-site-generation"
+  ],
+  "original_url": "https://github.com/vercel/next.js/issues/44764",
+  "resurrection_slug": "2026-07-16_vercel-next-js_44764",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-16T17:06:04+00:00"
+}
