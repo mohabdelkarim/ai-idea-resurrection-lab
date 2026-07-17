@@ -1,0 +1,22 @@
+[
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 24272,
+    "title": "Finetuning Whisper with prompts",
+    "body": "### Feature request\n\nTraining code implementation for finetuning Whisper using prompts. \r\n\r\n\r\nHi All,\r\nI’m trying to finetune Whisper by resuming its pre-training task and adding initial prompts as part of the model’s forward pass. I saw this [amazing tutorial](https://huggingface.co/blog/fine-tune-whisper), however, it does not contain a section about using prompts as part of the fine-tuning dataset.\n\n### Motivation\n\nWe witness that Whisper is not acting as expected when transcribing with prompts. Sometimes the output is blank text and on other occasions the output text contains reoccurrence. We want to solve such behaviors by fine-tuning Whisper with prompts. \n\n### Your contribution\n\nOpen for ideas.",
+    "reactions": 7,
+    "created_at": "2023-06-14T10:36:04Z",
+    "updated_at": "2026-07-16T20:29:12Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/24272",
+    "html_url": "https://github.com/huggingface/transformers/issues/24272",
+    "author_login": "AvivSham",
+    "author_profile": "https://github.com/AvivSham",
+    "comments": 41,
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  }
+]

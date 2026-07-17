@@ -17,7 +17,7 @@
   "gradio-app/gradio": "2026-05-12T18:02:55.352772+00:00",
   "grafana/grafana": "2026-07-14T02:07:08.470943+00:00",
   "hashicorp/terraform": "2026-06-18T16:40:08.155379+00:00",
-  "huggingface/transformers": "2026-05-13T15:36:39.200099+00:00",
+  "huggingface/transformers": "2026-07-17T02:16:35.874921+00:00",
   "kubernetes/kubernetes": "2026-07-03T15:11:50.635467+00:00",
   "langchain-ai/langchain": "2026-07-10T02:38:06.631181+00:00",
   "llvm/llvm-project": "2026-05-14T03:42:57.121035+00:00",

@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-17",
+  "repo": "huggingface/transformers",
+  "issue_number": 24272,
+  "title": "Finetuning Whisper with prompts",
+  "reactions": 7,
+  "abandoned_date": "2026-07-16T20:29:12Z",
+  "one_line_why": "The Hugging Face Transformers library now supports more flexible training APIs, making prompt-based fine-tuning for Whisper feasible.",
+  "impact_score": 7,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "technology_tags": [
+    "transformers",
+    "whisper",
+    "fine-tuning"
+  ],
+  "original_url": "https://github.com/huggingface/transformers/issues/24272",
+  "resurrection_slug": "2026-07-17_huggingface-transformers_24272",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-17T02:16:37+00:00"
+}
