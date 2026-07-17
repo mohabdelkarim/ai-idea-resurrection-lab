@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-17",
+  "repo": "golang/go",
+  "issue_number": 37739,
+  "title": "proposal: spec: lazy values",
+  "reactions": 104,
+  "abandoned_date": "2026-04-08T21:30:22Z",
+  "one_line_why": "The introduction of Go 1.22's generics enables simpler implementation of lazy values, making it feasible now.",
+  "impact_score": 6,
+  "effort_hours": 80.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "technology_tags": [
+    "go",
+    "lazy-evaluation",
+    "generics"
+  ],
+  "original_url": "https://github.com/golang/go/issues/37739",
+  "resurrection_slug": "2026-07-17_golang-go_37739",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-07-17T17:02:06+00:00"
+}
