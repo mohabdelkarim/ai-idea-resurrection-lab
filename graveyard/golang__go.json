@@ -153,7 +153,7 @@
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
     "comments": 0,
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },

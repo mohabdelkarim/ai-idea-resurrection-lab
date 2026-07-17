@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-17T14:33:46",
-  "total_resurrections": 148,
+  "last_updated": "2026-07-17T17:02:07",
+  "total_resurrections": 149,
   "total_repos_covered": 44,
   "average_impact_score": 6.35,
-  "average_effort_hours": 70.82,
-  "total_with_poc": 122,
-  "total_with_rfc": 128,
+  "average_effort_hours": 70.89,
+  "total_with_poc": 123,
+  "total_with_rfc": 129,
   "comment_stats": {
-    "attempted": 55,
+    "attempted": 56,
     "posted": 0,
-    "failed": 55
+    "failed": 56
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -30,15 +30,15 @@
         "count": 7
       },
       {
-        "repo": "hashicorp/terraform",
-        "count": 6
+        "repo": "golang/go",
+        "count": 7
       }
     ]
   },
   "top_tags": [
     "typescript",
-    "rust",
     "go",
+    "rust",
     "python",
     "kubernetes"
   ],
