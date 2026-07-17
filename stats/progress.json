@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-17T02:16:37",
-  "total_resurrections": 147,
+  "last_updated": "2026-07-17T14:33:46",
+  "total_resurrections": 148,
   "total_repos_covered": 44,
   "average_impact_score": 6.35,
-  "average_effort_hours": 71.03,
-  "total_with_poc": 121,
-  "total_with_rfc": 127,
+  "average_effort_hours": 70.82,
+  "total_with_poc": 122,
+  "total_with_rfc": 128,
   "comment_stats": {
-    "attempted": 54,
+    "attempted": 55,
     "posted": 0,
-    "failed": 54
+    "failed": 55
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -26,11 +26,11 @@
         "count": 7
       },
       {
-        "repo": "hashicorp/terraform",
-        "count": 6
+        "repo": "ggerganov/llama.cpp",
+        "count": 7
       },
       {
-        "repo": "microsoft/TypeScript",
+        "repo": "hashicorp/terraform",
         "count": 6
       }
     ]
