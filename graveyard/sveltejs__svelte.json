@@ -15,6 +15,8 @@
     "author_login": "aradalvand",
     "author_profile": "https://github.com/aradalvand",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -37,6 +39,8 @@
     "author_login": "Rich-Harris",
     "author_profile": "https://github.com/Rich-Harris",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -58,6 +62,8 @@
     "author_login": "icalvin102",
     "author_profile": "https://github.com/icalvin102",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -81,6 +87,8 @@
     "author_login": "neuronetio",
     "author_profile": "https://github.com/neuronetio",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -101,6 +109,8 @@
     "author_login": "jacwright",
     "author_profile": "https://github.com/jacwright",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -123,6 +133,31 @@
     "author_login": "Rich-Harris",
     "author_profile": "https://github.com/Rich-Harris",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "issue_number": 8112,
+    "title": "Duplicate `head` elements occur when html comments are stripped",
+    "body": "### Describe the bug\r\n\r\nThe [solution](https://github.com/sveltejs/svelte/pull/7745) to the duplicate content `svelte:head` element [bug](https://github.com/sveltejs/svelte/issues/6463) (and also [this one](https://github.com/sveltejs/svelte/issues/6463)) requires HTML comments to be present in order to function correctly. Many [minification tools strip HTML comments](https://github.com/sveltejs/kit/issues/7493#issuecomment-1303218382), and as does CloudFlare by default in many environments.\r\n\r\nDuplicating the `head` element is a fairly insidious bug because it isn't immediately obvious that anything is wrong, but for our project (in SvelteKit) it decreased performance by loading analytics scripts multiple times. We also suspect that it may have broken some web indexing, but couldn't be sure.\r\n\r\nIf there is a better way to solve this than relying on comments, that would be great. I've marked the `Severity` as `annoyance`, but only because we have found a highly unsatisfactory workaround that I would rather not have in place long term.\r\n\r\n### Reproduction\r\n\r\nOne straightforward way to reproduce this would be to use the [reproduction repo](https://github.com/thousandsofraccoons/double-meta) provided in [this issue](https://github.com/sveltejs/kit/issues/7493), which minifies the html response and strips comments: when comments are stripped, the duplicate header bug is present.\r\n\r\n### Logs\r\n\r\n_No response_\r\n\r\n### System Info\r\n\r\n```shell\r\nSystem:\r\n    OS: macOS 12.6\r\n    CPU: (10) arm64 Apple M1 Pro\r\n    Memory: 90.36 MB / 16.00 GB\r\n    Shell: 5.8.1 - /bin/zsh\r\n  Binaries:\r\n    Node: 16.15.1 - ~/.nvm/versions/node/v16.15.1/bin/node\r\n    npm: 8.11.0 - ~/.nvm/versions/node/v16.15.1/bin/npm\r\n  Browsers:\r\n    Chrome: 108.0.5359.98\r\n    Firefox: 105.0.2\r\n    Safari: 16.1\r\n  npmPackages:\r\n    svelte: ^3.55.0 => 3.55.0\r\n```\r\n\r\n\r\n### Severity\r\n\r\nannoyance",
+    "reactions": 7,
+    "created_at": "2022-12-14T22:26:09Z",
+    "updated_at": "2025-02-04T22:14:48Z",
+    "labels": [
+      "feature request",
+      "compiler"
+    ],
+    "url": "https://api.github.com/repos/sveltejs/svelte/issues/8112",
+    "html_url": "https://github.com/sveltejs/svelte/issues/8112",
+    "author_login": "ryans-usafacts",
+    "author_profile": "https://github.com/ryans-usafacts",
+    "comments": 12,
+    "state_reason": "not_planned",
+    "closed_at": "2024-10-25T19:43:43Z",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""

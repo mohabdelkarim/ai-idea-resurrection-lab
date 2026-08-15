@@ -13,9 +13,11 @@
     "author_login": "ghost",
     "author_profile": "https://github.com/ghost",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Body too short (40 chars, min 80) — not a real proposal"
   },
   {
     "repo": "redis/redis",
@@ -31,7 +33,9 @@
     "author_login": "max13fr",
     "author_profile": "https://github.com/max13fr",
     "comments": 0,
-    "already_resurrected": false,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
@@ -49,6 +53,8 @@
     "author_login": "subnetmarco",
     "author_profile": "https://github.com/subnetmarco",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -67,6 +73,8 @@
     "author_login": "antirez",
     "author_profile": "https://github.com/antirez",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -85,6 +93,8 @@
     "author_login": "antirez",
     "author_profile": "https://github.com/antirez",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -103,6 +113,8 @@
     "author_login": "pyloque",
     "author_profile": "https://github.com/pyloque",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -123,6 +135,8 @@
     "author_login": "chanks",
     "author_profile": "https://github.com/chanks",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -141,6 +155,8 @@
     "author_login": "nomicode",
     "author_profile": "https://github.com/nomicode",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""

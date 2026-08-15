@@ -13,6 +13,8 @@
     "author_login": "pradosh-abd",
     "author_profile": "https://github.com/pradosh-abd",
     "comments": 82,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -33,6 +35,8 @@
     "author_login": "EduardoMM17",
     "author_profile": "https://github.com/EduardoMM17",
     "comments": 43,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -55,6 +59,8 @@
     "author_login": "f4roukb",
     "author_profile": "https://github.com/f4roukb",
     "comments": 2,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -77,6 +83,8 @@
     "author_login": "f4roukb",
     "author_profile": "https://github.com/f4roukb",
     "comments": 4,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -98,6 +106,30 @@
     "author_login": "mprudra",
     "author_profile": "https://github.com/mprudra",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "issue_number": 16651,
+    "title": "Start here: Welcome to LangChain!",
+    "body": "Welcome to the LangChain repo!\r\n\r\n## What's in this repo\r\nPlease only open Issues, PRs, and Discussions against this repo for the packages it contains:\r\n- `langchain` python package\r\n- `langchain-core` python package\r\n- `langchain-community` python package\r\n- certain partner python packages, e.g. `langchain-openai`, `langchain-anthropic`, etc.\r\n- LangChain templates\r\n- LangChain Python docs\r\n\r\nThis repo does NOT contain:\r\n- LangChain JS: https://github.com/langchain-ai/langchainjs\r\n- LangServe: https://github.com/langchain-ai/langserve\r\n- LangSmith SDK: https://github.com/langchain-ai/langsmith-sdk\r\n- LangGraph: https://github.com/langchain-ai/langgraph\r\n- LangGraph JS: https://github.com/langchain-ai/langgraphjs\r\n\r\nPlease open issues related to those libraries in their respective repos.\r\n\r\n## Contributing\r\nHere's a quick overview of how to contribute to LangChain:\r\n\r\n### Have a question or a feature request?\r\nIf you have a usage question or a feature request, please open a [Discussion](https://github.com/langchain-ai/langchain/discussions) for it. Questions can go in the Q&A section and feature requests can go in the Ideas section.\r\n\r\n### Found a bug?\r\nPlease open an [Issue](https://github.com/langchain-ai/langchain/issues) using the Bug Report template. Please fully specify the steps to reproduce the bug — it'll greatly speed up our ability to fix it.\r\n\r\n### Want to contribute?\r\n#### For new contributors\r\nIssues with the [good first issue](https://github.com/langchain-ai/langchain/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) tag are a great place to start.\r\n\r\n#### For all contributors\r\nThere are certain things that are always helpful.\r\n* Reviewing docs for mistakes, out-of-date functionality, pages that don't follow the latest conventions (especially applies to [Integrations](https://python.langchain.com/docs/integrations/))\r\n* Improving test coverage\r\n* Improving docstrings to make sure they fully specify Args, Returns, Example, and Raises (following [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html#381-docstrings))\r\n* Reporting bugs, providing feedback, suggesting features\r\n* Fixing bugs and adding features!\r\n\r\n#### For experienced contributors\r\n* Help respond to Discussion items and Issues. Issues with the [help wanted](https://github.com/langchain-ai/langchain/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22+) tag are a great place to start.\r\n* Help review PRs\r\n\r\nFor more on how to contribute, check out the full [Developer's Guide](https://python.langchain.com/docs/contributing).",
+    "reactions": 5,
+    "created_at": "2024-01-26T22:36:52Z",
+    "updated_at": "2024-07-31T21:47:18Z",
+    "labels": [
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/langchain-ai/langchain/issues/16651",
+    "html_url": "https://github.com/langchain-ai/langchain/issues/16651",
+    "author_login": "baskaryan",
+    "author_profile": "https://github.com/baskaryan",
+    "comments": 2,
+    "state_reason": "not_planned",
+    "closed_at": "2024-05-13T16:10:28Z",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""

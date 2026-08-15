@@ -1,6 +1,28 @@
 [
   {
     "repo": "huggingface/transformers",
+    "issue_number": 24392,
+    "title": "Allow `TextClassificationPipeline` to handle input longer than `model_max_length` tokens",
+    "body": "### Problem\r\n\r\nRunning a `TextClassificationPipeline` on a text with more tokens than its model's maximum position embeddings (e.g. 512 for BERT) like so:\r\n\r\n```python\r\nfrom transformers import pipeline\r\nclassifier = pipeline('sentiment-analysis')\r\nclassifier(\"Hello, world! \" * 1000)\r\n```\r\n\r\nwill lead to this error:\r\n\r\n```\r\nRuntimeError: The size of tensor a (4002) must match the size of tensor b (512) at non-singleton dimension 1\r\n```\r\n\r\nNote: the numbers (`4002` and `512`, above) will vary depending on the max length of the model in use and the length (in tokens) of the text that triggered the error.\r\n\r\n(_**If you found this issue through web-searching for the above error or some other means, look at the linked PR for an implemented code fix to this problem, and consider giving a thumbs-up to this comment if you think it should be merged into the main codebase**_)\r\n\r\n### Feature request\r\n\r\nWe should add \"chunking\"/\"sliding window\" functionality to `TextClassificationPipeline`, allowing it to process documents longer than the `model_max_length` of its `.model`. Specifically, this would run an instance of the model on each of several \"sliding window\" views of each input sequence, then take the mean, similar to (but somewhat simpler than) how [`TokenClassificationPipeline`](https://github.com/huggingface/transformers/blob/ad78d9597b224443e9fe65a94acc8c0bc48cd039/src/transformers/pipelines/token_classification.py#L96) does so in part by subclassing from `ChunkPipeline`.\r\n\r\n### Motivation\r\n\r\nIt would be nice to easily do, e.g., sentiment analysis on documents longer than the `model_max_length` of the given model/tokenizer. I have in the past tried to do this in a time-sensitive context and was unable to do so.\r\n\r\n### Your contribution\r\n\r\nI have already opened a draft PR: #24312. I would be happy to finish the missing parts (e.g. documentation) if someone on the Huggingface team (I believe @Narsil is the appropriate person to tag) can confirm that they would accept this feature as I plan to implement it.",
+    "reactions": 15,
+    "created_at": "2023-06-21T03:51:47Z",
+    "updated_at": "2026-07-19T18:23:42Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/24392",
+    "html_url": "https://github.com/huggingface/transformers/issues/24392",
+    "author_login": "boyleconnor",
+    "author_profile": "https://github.com/boyleconnor",
+    "comments": 6,
+    "state_reason": "not_planned",
+    "closed_at": "2026-07-19T18:23:42Z",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "huggingface/transformers",
     "issue_number": 24272,
     "title": "Finetuning Whisper with prompts",
     "body": "### Feature request\n\nTraining code implementation for finetuning Whisper using prompts. \r\n\r\n\r\nHi All,\r\nI’m trying to finetune Whisper by resuming its pre-training task and adding initial prompts as part of the model’s forward pass. I saw this [amazing tutorial](https://huggingface.co/blog/fine-tune-whisper), however, it does not contain a section about using prompts as part of the fine-tuning dataset.\n\n### Motivation\n\nWe witness that Whisper is not acting as expected when transcribing with prompts. Sometimes the output is blank text and on other occasions the output text contains reoccurrence. We want to solve such behaviors by fine-tuning Whisper with prompts. \n\n### Your contribution\n\nOpen for ideas.",
@@ -15,7 +37,32 @@
     "author_login": "AvivSham",
     "author_profile": "https://github.com/AvivSham",
     "comments": 41,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 34737,
+    "title": "RFC: Reducing Download Traffic and Latency with ZipNN Lossless Compression for AI Models",
+    "body": "### Feature request\n\nThis RFC proposes integrating a lossless compression method called ZipNN into Hugging Face Transformers to reduce latency and traffic for downloading models. ZipNN is specifically designed for AI models, offering a model size reduction of 17% to over 50%, depending on the model format and compressibility. Additionally, it significantly reduces time for the user due to its fast decompression speed, allowing compressed models to be ready for use almost immediately without impacting model accuracy.\n\n### Motivation\n\nFrom a [LinkedIn post by Julien Chaumond](https://www.linkedin.com/posts/julienchaumond_i-am-super-excited-to-announce-that-weve-activity-7227305609254113280-zx3H), August 2024, Hugging Face holds 1.3M models, with a cumulative storage space of 12PB. They also serve 1 billion daily requests, amounting to a network bandwidth of around 6 PetaBytes per day!\r\n\r\nDownloading large models from Hugging Face can be time-consuming; for example, downloading a model like Llama-3.1-405B can take nearly a day on a 10 MB/s home connection or nearly 2 hours on a 125 MB/s high-bandwidth connection. ZipNN could reduce this time by up to 33%.\r\n\r\n\r\n## Model Comparison Table\r\n\r\nWe took the 20 most downloaded models in Hugging Face from late OCT 2024:\r\n(Based on 1GB from the middle of the model).\r\n\r\n- **17% Savings: 9 models**\r\n- **33% Savings: 3 models**\r\n- **50% or Greater Savings: 8 models**\r\n\r\n| Model Name | Format | Size | ZipNN Compression Remaining (%) |\r\n|:-----------|:-------|:-----|:--------------------------|\r\n| BAAI/bge-base-en-v1.5 | FP32 | 0.4GB | 42.2% |\r\n| sentence-transformers/all-mpnet-base-v2 | FP32 | 0.4GB  | 83% |\r\n| nesaorg/benchmark_v0 | FP32 | 1.35GB | 82.38% |\r\n| google-bert/bert-base-uncased | FP32 | 0.4GB | 83.17% |\r\n| sentence-transformers/all-MiniLM-L6-v2 | FP32 | 0.09GB | 82.07% |\r\n| Qwen/Qwen2.5-1.5B-Instruct | BF16 | 3GB | 66.86% |\r\n| openai/whisper-large-v2 | FP32 | 6.1GB | 42.8% |\r\n| FacebookAI/xlm-roberta-large | FP32 | 2.2GB | 42.9% |\r\n| 1231czx/llama3_it_ultra_list_and_bold500 | BF16 | 16GB | 66.77% |\r\n| openai/clip-vit-base-patch32 | FP32 | 0.6GB | 43% |\r\n| jonatasgrosman/wav2vec2-large-xlsr-53-english | FP32 | 1.26GB | 82.96% |\r\n| openai/clip-vit-base-patch16 | FP32 | 0.6GB | 51.24% |\r\n| google/vit-base-patch16-224-in21k | FP32 | 0.4GB | 84% |\r\n| FacebookAI/roberta-base | FP32 | 0.5GB | 43.9% |\r\n| nesaorg/fc_8 | FP32 | 0.13GB | 82.52% |\r\n| nesaorg/fc_6 | FP32 | 0.1GB | 82.2% |\r\n| BAAI/bge-small-en-v1.5 | FP32 | 0.13GB | 42.9% |\r\n| openai/clip-vit-large-patch14 | FP32 | 1.71GB | 42.97% |\r\n| timm/resnet50.a1_in1k | FP32 | 0.1GB | 83.51% |\r\n| meta-llama/Llama-3.1-405B | BF16 | 812GB | 66% |\n\n### Your contribution\n\n# ZipNN\r\n\r\nZipNN (The NN stands for Neural Network) is a lossless compression library tailored to neural networks. ZipNN compresses models by targeting the skewed distribution of exponent bits in floating-point parameters, which is highly compressible. By isolating exponents and applying Entrop",
+    "reactions": 5,
+    "created_at": "2024-11-14T20:37:12Z",
+    "updated_at": "2026-07-31T14:19:26Z",
+    "labels": [
+      "Discussion",
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/34737",
+    "html_url": "https://github.com/huggingface/transformers/issues/34737",
+    "author_login": "moshik1",
+    "author_profile": "https://github.com/moshik1",
+    "comments": 4,
+    "state_reason": "not_planned",
+    "closed_at": "2026-07-31T14:19:26Z",
+    "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   }

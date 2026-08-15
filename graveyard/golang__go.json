@@ -18,6 +18,8 @@
     "author_login": "sirkon",
     "author_profile": "https://github.com/sirkon",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -42,6 +44,8 @@
     "author_login": "earthboundkid",
     "author_profile": "https://github.com/earthboundkid",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -63,6 +67,8 @@
     "author_login": "rasky",
     "author_profile": "https://github.com/rasky",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -86,6 +92,8 @@
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -107,6 +115,8 @@
     "author_login": "prithvi16",
     "author_profile": "https://github.com/prithvi16",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -131,6 +141,8 @@
     "author_login": "mediocregopher",
     "author_profile": "https://github.com/mediocregopher",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -153,6 +165,8 @@
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -178,6 +192,8 @@
     "author_login": "blixt",
     "author_profile": "https://github.com/blixt",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -201,6 +217,8 @@
     "author_login": "notzippy",
     "author_profile": "https://github.com/notzippy",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -221,6 +239,8 @@
     "author_login": "bradfitz",
     "author_profile": "https://github.com/bradfitz",
     "comments": 81,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -244,6 +264,8 @@
     "author_login": "sbinet",
     "author_profile": "https://github.com/sbinet",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -267,6 +289,8 @@
     "author_login": "robpike",
     "author_profile": "https://github.com/robpike",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -287,6 +311,8 @@
     "author_login": "aaronc",
     "author_profile": "https://github.com/aaronc",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -311,6 +337,8 @@
     "author_login": "chai2010",
     "author_profile": "https://github.com/chai2010",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -334,6 +362,34 @@
     "author_login": "paskozdilar",
     "author_profile": "https://github.com/paskozdilar",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "golang/go",
+    "issue_number": 78940,
+    "title": "proposal: spec: (if cond then expr else expr) conditional expressions",
+    "body": "### Proposal Details\n\n(Split out from https://github.com/golang/go/issues/78865#issuecomment-4308283951 et seq.)\n\nC-style conditional expressions using `x ? y : z` syntax and other variants have been proposed for Go and rejected many times over; see #78865 for the latest incarnation. No-one questions their utility. Eager functions `cond(x, y, z)` are no substitute. The primary problem with these proposals is the notorious difficulty of reading C-style conditional expressions when they are nested. This is similar to the problem in C of ambiguity in nested if/else statements. Go resolved that ambiguity by making the braces around the \"then\" and \"else\" blocks mandatory even when they consist of a single statement. This proposal takes a similar approach for conditional expressions. \n\nI propose the syntax `(if cond then expr else expr)`, in which the parens are mandatory. Operand order follows C, not Python (`t if cond else f`). This requires adding a new keyword `then`, gated on language version. Alternatively we could use ? and : following C, adding `?` as a new token.  Or we could use `:` to stand for \"then\". Note that the essence of this proposal is the idea that parens are mandatory, not the particular spelling of the tokens.\n\nNesting is then perfectly clear:\n```\n(if cond then expr else expr)\n(if (if cond then expr else expr) then expr else expr)\n(if cond then (if cond then expr else expr) else expr)\n(if cond then expr else (if cond then expr else expr))\n```\n\nUsing the C-like spellings:\n```\n(cond ? expr : expr)\n((cond ? expr : expr) ? expr : expr)\n(cond ? (cond ? expr : expr) : expr)\n(cond ? expr : (cond ? expr : expr))\n```\n\nA conditional expression is addressable iff its last two operands are addressable, so `(cond ? v1 : v2)++` may be a legal statement but `(cond ? v1 : v2+1)++` is not.\n\n\n\n--\nBTW, this seems like a good place to vent about my pet peeve: calling it \"_the_ ternary operator\". Ternary means \"having three operands\", like unary, and binary, but one more. Go already has _a_ ternary operator (s[i:j]), and this proposal would add _another_ ternary operator, the _conditional expression_. So knock it off, y'all. Phew, glad I got that off my chest.",
+    "reactions": 48,
+    "created_at": "2026-04-24T15:21:12Z",
+    "updated_at": "2026-08-12T20:42:17Z",
+    "labels": [
+      "LanguageChange",
+      "Proposal",
+      "Proposal-FinalCommentPeriod",
+      "LanguageChangeReview",
+      "LanguageProposal"
+    ],
+    "url": "https://api.github.com/repos/golang/go/issues/78940",
+    "html_url": "https://github.com/golang/go/issues/78940",
+    "author_login": "adonovan",
+    "author_profile": "https://github.com/adonovan",
+    "comments": 98,
+    "state_reason": "not_planned",
+    "closed_at": "2026-08-12T20:42:17Z",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -357,6 +413,8 @@
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -380,6 +438,8 @@
     "author_login": "akavel",
     "author_profile": "https://github.com/akavel",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -404,6 +464,8 @@
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -428,6 +490,8 @@
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -451,6 +515,8 @@
     "author_login": "jub0bs",
     "author_profile": "https://github.com/jub0bs",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -472,6 +538,8 @@
     "author_login": "ianlancetaylor",
     "author_profile": "https://github.com/ianlancetaylor",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -496,6 +564,8 @@
     "author_login": "jimsnab",
     "author_profile": "https://github.com/jimsnab",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -521,6 +591,8 @@
     "author_login": "xiaokentrl",
     "author_profile": "https://github.com/xiaokentrl",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""

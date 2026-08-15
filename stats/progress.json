@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-08-15T05:58:12",
-  "total_resurrections": 125,
-  "total_repos_covered": 40,
-  "average_impact_score": 6.54,
-  "average_effort_hours": 74.43,
+  "last_updated": "2026-08-15T10:20:00",
+  "total_resurrections": 126,
+  "total_repos_covered": 41,
+  "average_impact_score": 6.55,
+  "average_effort_hours": 75.59,
   "total_with_poc": 99,
-  "total_with_rfc": 112,
+  "total_with_rfc": 113,
   "comment_stats": {
-    "attempted": 49,
-    "posted": 0,
+    "attempted": 50,
+    "posted": 1,
     "failed": 49
   },
   "repo_diversity": {
@@ -72,28 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-07-17",
-    "repo": "huggingface/transformers",
-    "issue_number": 24272,
-    "title": "Finetuning Whisper with prompts",
-    "reactions": 7,
-    "abandoned_date": "2026-07-16T20:29:12Z",
-    "one_line_why": "The Hugging Face Transformers library now supports more flexible training APIs, making prompt-based fine-tuning for Whisper feasible.",
-    "impact_score": 7,
-    "effort_hours": 80.0,
-    "has_poc": true,
+    "date": "2026-08-15",
+    "repo": "redis/redis",
+    "issue_number": 167,
+    "title": "Implement Expire on hash",
+    "reactions": 133,
+    "abandoned_date": "2024-03-31T15:17:41Z",
+    "one_line_why": "Redis Modules API introduced in 2018 enables extending hash behavior with per-field TTL.",
+    "one_line_summary": "Add per-field expiration support to Redis hashes, allowing each hash entry to expire individually.",
+    "impact_score": 8,
+    "effort_hours": 220.0,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "",
+    "poc_validated": false,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "transformers",
-      "whisper",
-      "fine-tuning"
+      "redis"
     ],
-    "original_url": "https://github.com/huggingface/transformers/issues/24272",
-    "resurrection_slug": "2026-07-17_huggingface-transformers_24272",
-    "comment_posted": false,
-    "comment_status": "forbidden_or_locked",
-    "comment_url": "",
-    "commented_at": "2026-07-17T02:16:37+00:00"
+    "original_url": "https://github.com/redis/redis/issues/167",
+    "resurrection_slug": "2026-08-15_redis-redis_167",
+    "comment_posted": true,
+    "comment_status": "posted",
+    "comment_url": "https://github.com/redis/redis/issues/167#issuecomment-5301788832",
+    "commented_at": "2026-08-15T10:20:00+00:00"
   }
 }

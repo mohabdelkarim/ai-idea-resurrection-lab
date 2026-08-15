@@ -17,6 +17,8 @@
     "author_login": "rmsys",
     "author_profile": "https://github.com/rmsys",
     "comments": 19,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -40,6 +42,8 @@
     "author_login": "khenderick",
     "author_profile": "https://github.com/khenderick",
     "comments": 56,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -62,6 +66,8 @@
     "author_login": "ghost",
     "author_profile": "https://github.com/ghost",
     "comments": 28,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": true,
     "quality_rejection_reason": "Too sparse (25 total words)"
@@ -85,6 +91,8 @@
     "author_login": "maciejasembler",
     "author_profile": "https://github.com/maciejasembler",
     "comments": 26,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -107,6 +115,8 @@
     "author_login": "daverodgman",
     "author_profile": "https://github.com/daverodgman",
     "comments": 22,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -128,6 +138,8 @@
     "author_login": "blade1989",
     "author_profile": "https://github.com/blade1989",
     "comments": 36,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -151,6 +163,8 @@
     "author_login": "bobrik",
     "author_profile": "https://github.com/bobrik",
     "comments": 14,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -174,6 +188,8 @@
     "author_login": "bobrik",
     "author_profile": "https://github.com/bobrik",
     "comments": 26,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -196,6 +212,8 @@
     "author_login": "grobie",
     "author_profile": "https://github.com/grobie",
     "comments": 13,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -218,6 +236,8 @@
     "author_login": "pfmd86",
     "author_profile": "https://github.com/pfmd86",
     "comments": 12,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -242,6 +262,8 @@
     "author_login": "torkelo",
     "author_profile": "https://github.com/torkelo",
     "comments": 23,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -265,6 +287,8 @@
     "author_login": "tk3fftk",
     "author_profile": "https://github.com/tk3fftk",
     "comments": 17,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -292,6 +316,8 @@
     "author_login": "3brettb",
     "author_profile": "https://github.com/3brettb",
     "comments": 13,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -314,6 +340,8 @@
     "author_login": "addshore",
     "author_profile": "https://github.com/addshore",
     "comments": 28,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -338,6 +366,8 @@
     "author_login": "brandonchew",
     "author_profile": "https://github.com/brandonchew",
     "comments": 22,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -362,6 +392,8 @@
     "author_login": "szerwi",
     "author_profile": "https://github.com/szerwi",
     "comments": 15,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -384,6 +416,8 @@
     "author_login": "roobert",
     "author_profile": "https://github.com/roobert",
     "comments": 16,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -405,6 +439,8 @@
     "author_login": "BinyaminSchein",
     "author_profile": "https://github.com/BinyaminSchein",
     "comments": 7,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -427,6 +463,8 @@
     "author_login": "robbinfan",
     "author_profile": "https://github.com/robbinfan",
     "comments": 9,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -449,6 +487,8 @@
     "author_login": "shanielh",
     "author_profile": "https://github.com/shanielh",
     "comments": 20,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -472,6 +512,8 @@
     "author_login": "jhoffland",
     "author_profile": "https://github.com/jhoffland",
     "comments": 8,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -495,6 +537,8 @@
     "author_login": "TuringZhu",
     "author_profile": "https://github.com/TuringZhu",
     "comments": 8,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -517,6 +561,8 @@
     "author_login": "nmarrs",
     "author_profile": "https://github.com/nmarrs",
     "comments": 14,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -539,6 +585,8 @@
     "author_login": "ajsmith",
     "author_profile": "https://github.com/ajsmith",
     "comments": 7,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -561,6 +609,8 @@
     "author_login": "xandr2",
     "author_profile": "https://github.com/xandr2",
     "comments": 11,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -584,6 +634,8 @@
     "author_login": "hagen1778",
     "author_profile": "https://github.com/hagen1778",
     "comments": 4,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -605,6 +657,8 @@
     "author_login": "morremeyer",
     "author_profile": "https://github.com/morremeyer",
     "comments": 7,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -627,6 +681,8 @@
     "author_login": "azhiltsov",
     "author_profile": "https://github.com/azhiltsov",
     "comments": 14,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -649,6 +705,8 @@
     "author_login": "zphj1987",
     "author_profile": "https://github.com/zphj1987",
     "comments": 11,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -672,6 +730,8 @@
     "author_login": "gelicia",
     "author_profile": "https://github.com/gelicia",
     "comments": 2,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -696,6 +756,8 @@
     "author_login": "carolynhu",
     "author_profile": "https://github.com/carolynhu",
     "comments": 10,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -718,6 +780,8 @@
     "author_login": "lesovsky",
     "author_profile": "https://github.com/lesovsky",
     "comments": 7,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -740,6 +804,32 @@
     "author_login": "wrouesnel",
     "author_profile": "https://github.com/wrouesnel",
     "comments": 8,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
+    "issue_number": 73911,
+    "title": "Alerting: let users with viewers_can_edit right create silences",
+    "body": "Original issue from @paulojmdias.\r\n\r\n### What happened?\r\n\r\nEven with `viewers_can_edit` with the `True` value, the users can't create silences using Grafana Alerting. We can only achieve that if we give the `Editor` role to the users.\r\n\r\nDiscussion started here: https://community.grafana.com/t/allow-viewers-to-silence-their-own-alert/73955\r\n\r\n### What did you expect to happen?\r\n\r\nUsers with the `Viewer` role and configuration `viewers_can_edit` with the `True` value can create silences. \r\n\r\n### Did this work before?\r\n\r\nNo.\r\n\r\n### How do we reproduce it?\r\n\r\n1. Make the `viewers_can_edit` with the `True` value in the configuration.\r\n2. Create a user with the `Viewer` role.\r\n3. The silence button will not appear in the `Alerting` -> `Silences` panel\r\n\r\n\r\n### Is the bug inside a dashboard panel?\r\n\r\n_No response_\r\n\r\n### Environment (with versions)?\r\n\r\nGrafana: 9.5.7\r\nOS: Ubuntu 22\r\nBrowser: Chrome\r\n\r\n\r\n### Grafana platform?\r\n\r\nDocker\r\n\r\n### Datasource(s)?\r\n\r\n_No response_</div>",
+    "reactions": 22,
+    "created_at": "2023-08-28T11:08:14Z",
+    "updated_at": "2026-08-10T02:15:18Z",
+    "labels": [
+      "type/feature-request",
+      "area/alerting",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/73911",
+    "html_url": "https://github.com/grafana/grafana/issues/73911",
+    "author_login": "armandgrillet",
+    "author_profile": "https://github.com/armandgrillet",
+    "comments": 13,
+    "state_reason": "not_planned",
+    "closed_at": "2026-08-10T02:15:18Z",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -763,6 +853,8 @@
     "author_login": "aalleexxeeii",
     "author_profile": "https://github.com/aalleexxeeii",
     "comments": 19,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -785,6 +877,8 @@
     "author_login": "korishan",
     "author_profile": "https://github.com/korishan",
     "comments": 5,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -807,6 +901,8 @@
     "author_login": "friesoft",
     "author_profile": "https://github.com/friesoft",
     "comments": 21,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -828,6 +924,8 @@
     "author_login": "mjseaman",
     "author_profile": "https://github.com/mjseaman",
     "comments": 2,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -849,6 +947,8 @@
     "author_login": "stanislaw-zambrzycki",
     "author_profile": "https://github.com/stanislaw-zambrzycki",
     "comments": 3,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -871,6 +971,8 @@
     "author_login": "hahnjo",
     "author_profile": "https://github.com/hahnjo",
     "comments": 22,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -895,6 +997,8 @@
     "author_login": "hahnjo",
     "author_profile": "https://github.com/hahnjo",
     "comments": 22,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -918,6 +1022,8 @@
     "author_login": "gelicia",
     "author_profile": "https://github.com/gelicia",
     "comments": 6,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -941,6 +1047,8 @@
     "author_login": "aocenas",
     "author_profile": "https://github.com/aocenas",
     "comments": 10,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -963,6 +1071,8 @@
     "author_login": "fredwangwang",
     "author_profile": "https://github.com/fredwangwang",
     "comments": 4,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -985,6 +1095,8 @@
     "author_login": "Codelica",
     "author_profile": "https://github.com/Codelica",
     "comments": 5,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1006,6 +1118,8 @@
     "author_login": "deni64k",
     "author_profile": "https://github.com/deni64k",
     "comments": 6,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1028,6 +1142,8 @@
     "author_login": "evan-chaney",
     "author_profile": "https://github.com/evan-chaney",
     "comments": 20,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1052,6 +1168,8 @@
     "author_login": "hasso",
     "author_profile": "https://github.com/hasso",
     "comments": 24,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1075,6 +1193,8 @@
     "author_login": "danieldonoghue",
     "author_profile": "https://github.com/danieldonoghue",
     "comments": 2,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1098,6 +1218,8 @@
     "author_login": "sunny19930321",
     "author_profile": "https://github.com/sunny19930321",
     "comments": 19,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1120,6 +1242,8 @@
     "author_login": "jacekn",
     "author_profile": "https://github.com/jacekn",
     "comments": 6,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1142,6 +1266,8 @@
     "author_login": "hryamzik",
     "author_profile": "https://github.com/hryamzik",
     "comments": 4,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1163,6 +1289,8 @@
     "author_login": "dragoangel",
     "author_profile": "https://github.com/dragoangel",
     "comments": 3,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1184,6 +1312,34 @@
     "author_login": "rnovikovP",
     "author_profile": "https://github.com/rnovikovP",
     "comments": 3,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
+    "issue_number": 43933,
+    "title": "Add ability to move library panels to a different folder",
+    "body": "There is no way in the UI to move a library panel into another folder. Once it's created into a folder, it cannot be moved into another folder.\r\n\r\nThis makes it difficult for admins to keep their Grafana instance organised, but also enforce proper permissions models through folders.\r\n\r\n---\r\n\r\n_This following is the original issue description, which is now outdated. Moving a dashboard no longer moves library panels along with it._ \r\n\r\nToday, you cannot move a library panel to a different folder. Here's how it works.\r\n\r\n- Create a dashboard - D1.\r\n- Put it in a folder - F1.\r\n- Create a library panel - L1. \r\n- Library panel L1 will forever live in folder F1. \r\n\r\nExcept - when you:\r\n- Move dashboard D1 to folder F2.\r\n- Library panel L1 also moves to folder F2 without any user action regardless of whether or not it is used in other dashboards in other folders. \r\n\r\nThis exception is odd and unexpected. We should either 1) give users the ability to move library panels to different folders (which opens up a host of potential permissions issues but could be addressed through warnings/messaging) or 2) remove the odd \"workaround\".",
+    "reactions": 16,
+    "created_at": "2022-01-11T22:33:19Z",
+    "updated_at": "2026-07-22T02:17:14Z",
+    "labels": [
+      "type/feature-request",
+      "area/search",
+      "stale",
+      "area/frontend/library-panels",
+      "team/grafana-sharing"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/43933",
+    "html_url": "https://github.com/grafana/grafana/issues/43933",
+    "author_login": "amy-super",
+    "author_profile": "https://github.com/amy-super",
+    "comments": 11,
+    "state_reason": "not_planned",
+    "closed_at": "2026-07-22T02:17:14Z",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1207,6 +1363,135 @@
     "author_login": "gelicia",
     "author_profile": "https://github.com/gelicia",
     "comments": 6,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
+    "issue_number": 7977,
+    "title": "[Feature request] Commit dashboards to git on change",
+    "body": "Sometimes people complain that they want to control who why and when changing their dashboards.\r\n\r\nThat's why we came up with a feature request:\r\nHave an ability to commit dashboards to git on change. So we'll be able to create a dedicated server that will allow people to do the changes and a bunch of real-world production frontends that will be in read-only mode.",
+    "reactions": 15,
+    "created_at": "2017-03-29T08:59:55Z",
+    "updated_at": "2024-02-21T01:46:52Z",
+    "labels": [
+      "type/feature-request",
+      "area/dashboard/history",
+      "area/provisioning",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/7977",
+    "html_url": "https://github.com/grafana/grafana/issues/7977",
+    "author_login": "Civil",
+    "author_profile": "https://github.com/Civil",
+    "comments": 5,
+    "state_reason": "not_planned",
+    "closed_at": "2024-02-21T01:46:51Z",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
+    "issue_number": 7978,
+    "title": "grafana dashboards in git at github.com",
+    "body": "it would be awesome to have all community dashboards (placed at https://grafana.com/dashboards) - sourced for download at official grafana git repository:\r\n\r\n - abilities to improve with other community members\r\n - chance to fix errors in nice but buggy dashboards\r\n - available for fork, commenting, feedback in PRs",
+    "reactions": 15,
+    "created_at": "2017-03-29T09:09:04Z",
+    "updated_at": "2024-02-21T01:46:53Z",
+    "labels": [
+      "type/feature-request",
+      "area/dashboard",
+      "area/provisioning",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/7978",
+    "html_url": "https://github.com/grafana/grafana/issues/7978",
+    "author_login": "lastsky",
+    "author_profile": "https://github.com/lastsky",
+    "comments": 3,
+    "state_reason": "not_planned",
+    "closed_at": "2024-02-21T01:46:52Z",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
+    "issue_number": 8471,
+    "title": "[Feature request] Tool tip for alert heart types in panel titles",
+    "body": "When a panel has an alert present, it gets a a little heart icon: grey, green, or red. The meaning of each of these colors is not immediately clear. It would be nice to have a tool tip when hovering on the heart that explains what it's for, and what it indicates. E.g. \"Alert status: ok\", \"Alert status: alerting\"",
+    "reactions": 15,
+    "created_at": "2017-05-25T23:58:52Z",
+    "updated_at": "2024-02-21T01:47:02Z",
+    "labels": [
+      "type/feature-request",
+      "type/ux",
+      "area/alerting",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/8471",
+    "html_url": "https://github.com/grafana/grafana/issues/8471",
+    "author_login": "jsha",
+    "author_profile": "https://github.com/jsha",
+    "comments": 5,
+    "state_reason": "not_planned",
+    "closed_at": "2024-02-21T01:47:00Z",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
+    "issue_number": 13014,
+    "title": "Support color blind single stat thresholds",
+    "body": "This is not an issue of something that is broken, but rather something I just realized.\r\n\r\nWhen building a singlestat panel the provided colors for thresholds are red, yellow and red. This makes sense to the vast majority of people, and it should stay this way.\r\n\r\nBut, I remember once building in a system that had to provide some form of feedback to people to let them know when things weren't working fine. We used colors, like everybody else does, but then one person in the organization approached to me to explain that he was color blind and that what I was doing was basically useless for him, because he saw no difference between them. I was humbled by this simply because I didn't even consider this to be a thing (the blessings of being in the majority side, I guess).\r\n\r\nI took a look at the issue tracker and community and failed to find anything about color blind support.\r\n\r\nSo, I was thinking that grafana could do something really simple to support this: use stripes, solid, or dots, or whatever it makes sense, but have a way of differentiating thresholds by something else than the color itself.\r\n\r\nSomething as simple as this, with a tick for \"enable color blind\" would include all this people who we (at least I) don't usually consider.",
+    "reactions": 15,
+    "created_at": "2018-08-23T10:25:21Z",
+    "updated_at": "2024-08-19T14:24:20Z",
+    "labels": [
+      "type/feature-request",
+      "area/dashboard",
+      "type/accessibility",
+      "stale",
+      "wcag/1.4.1"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/13014",
+    "html_url": "https://github.com/grafana/grafana/issues/13014",
+    "author_login": "pcarranza",
+    "author_profile": "https://github.com/pcarranza",
+    "comments": 5,
+    "state_reason": "not_planned",
+    "closed_at": "2024-07-07T01:55:06Z",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
+    "issue_number": 55670,
+    "title": "9.1.6 warn - rule declares one or many reserved labels. Those rules labels will be ignored",
+    "body": "**What happened**:\r\nAfter update from Grafana 9.0.5 to 9.1.6 there are many entries in the grafana.log file like this:\r\nlogger=ngalert t=2022-09-23T07:21:00.353596477Z level=warn msg=\"rule declares one or many reserved labels. Those rules labels will be ignored\" labels=\"alertname=test ssl\"\r\n\r\n**What you expected to happen**:\r\nNo warnings like in Grafana 9.0.5\r\n\r\n**How to reproduce it (as minimally and precisely as possible)**:\r\nuse the new alerting: unified_alerting enabled\r\nupdate from Grafana 9.0.5 to 9.1.6\r\n\r\n**Anything else we need to know?**:\r\nGrafana itself added these two labels to all alarms during migration from alerting to unified alerting:\r\n-**alertname**\r\n-rule_uid\r\n\r\nNow it seems that Grafana since version > 9.0.5 will add an entry in the logfile for the **alertname** label.\r\nlogger=ngalert t=2022-09-23T07:21:00.353596477Z level=warn msg=\"rule declares one or many reserved labels. Those rules labels will be ignored\" labels=\"alertname=test ssl\"\r\n\r\n\r\n**Environment**:\r\n- Grafana version: 9.1.6\r\n- Data source type & version:\r\n- OS Grafana is installed on: as Docker image: grafana/grafana:9.1.6\r\n- User OS & Browser: Windows 10, Browser: Chrome\r\n- Grafana plugins:\r\ngrafana-clock-panel/\r\ngrafana-image-renderer/\r\ngrafana-piechart-panel/\r\ngrafana-polystat-panel/\r\ngrafana-simple-json-datasource/\r\ngrafana-singlestat-panel/\r\njdbranham-diagram-panel/\r\nmonitoringartist-monitoringart-datasource/\r\nnatel-plotly-panel/\r\nnovalabs-annotations-panel/\r\nradensolutions-netxms-datasource/\r\nryantxu-ajax-panel/\r\nsavantly-heatmap-panel/\r\nvonage-status-panel/\r\n\r\n\r\n- Others:\r\n\r\nIn the documentation, the only reserverd label for Grafana at this time 23.09.2022 is this label: \r\ngrafana_folder but not \"alertname\".\r\nhttps://grafana.com/docs/grafana/latest/alerting/fundamentals/annotation-label/how-to-use-labels/\r\n\r\nThe (1) ist the label alertname that Grafana added during migration to unified alerting\r\nThe (2) seems to be another, identical internal Grafana label alertname.\r\n![grafana - label alertname](https://user-images.githubusercontent.com/56024424/191947702-67a4eb0b-3180-4822-ba5d-e37e5973a20d.gif)\r\n\r\n\r\n![grafana - label alertname 2](https://user-images.githubusercontent.com/56024424/191948072-0ce4bf3c-b43f-409e-b20e-b1494d76eb83.gif)\r\n\r\nBy the way... what does it meen excactly: Those rules labels will be ignored?\r\nIs the custom label \"alertname\" ignored while the same internal label alertname exists?\r\nIs the result of the rule    alertname=\"SSL Cert Expiry\" in my example? (internal wins)\r\n\r\nWhat is with other additional custom labels like rule_uid? Are they evaluated and an alarm is send even if a log warning is given about alertname?",
+    "reactions": 14,
+    "created_at": "2022-09-23T11:10:09Z",
+    "updated_at": "2024-09-14T14:15:46Z",
+    "labels": [
+      "type/bug",
+      "effort/small",
+      "prio/high",
+      "area/alerting",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/55670",
+    "html_url": "https://github.com/grafana/grafana/issues/55670",
+    "author_login": "mhollstein",
+    "author_profile": "https://github.com/mhollstein",
+    "comments": 23,
+    "state_reason": "not_planned",
+    "closed_at": "2024-04-28T01:48:40Z",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
