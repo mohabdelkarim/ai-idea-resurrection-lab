@@ -49,7 +49,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config user.name "mohabdelkarim"
+          git config user.name "MOHAbdelkarim"
           git config user.email "mohaabdelkarim2@gmail.com"
 
           git pull --rebase --autostash --no-edit origin main
