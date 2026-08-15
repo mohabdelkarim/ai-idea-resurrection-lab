@@ -22,7 +22,7 @@ from analyzer import (  # noqa: E402
     validate_analysis,
 )
 from generator import _safe_format, build_meta  # noqa: E402
-from issue_commenter import _build_comment, _poc_row  # noqa: E402
+from issue_commenter import _build_comment, _poc_note  # noqa: E402
 from poc_validator import validate_poc_code  # noqa: E402
 from scanner import (  # noqa: E402
     _is_closed_as_completed,
@@ -142,8 +142,8 @@ def test_comment_does_not_claim_working_code_without_validation() -> None:
         "has_poc": True,
         "poc_validated": False,
         "poc_language": "python",
-        "one_line_why": "why",
-        "one_line_summary": "summary",
+        "one_line_why": "why it might work now - with better APIs",
+        "one_line_summary": "short summary of the idea",
         "date": "2026-08-15",
         "abandoned_date": "2020-01-01",
         "reactions": 10,
@@ -151,11 +151,24 @@ def test_comment_does_not_claim_working_code_without_validation() -> None:
         "repo": "psf/requests",
         "issue_number": 1,
     }
-    row = _poc_row(meta)
-    assert "Working" not in row
-    assert "Unverified" in row
+    note = _poc_note(meta)
+    assert "Working" not in note
+    assert "notes" in note.lower() or "draft" in note.lower()
     body = _build_comment(meta)
-    assert "Working" not in body or "working code" not in body.lower()
+    assert "Working" not in body
+    assert "automated pipeline" not in body.lower()
+    assert "Resurrection Score" not in body
+    assert "AI Idea Resurrection Lab" not in body
+    assert "Hey," in body
+    assert "analysis" in body.lower()
+    # No separator dashes in the comment prose (URLs may still use hyphens in paths)
+    prose = "\n".join(
+        line for line in body.splitlines()
+        if not line.startswith("<!--") and "http" not in line and "](" not in line
+    )
+    assert " - " not in prose
+    assert "—" not in prose
+    assert "–" not in prose
 
 
 def test_poc_validator_python_ok() -> None:
