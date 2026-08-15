@@ -22,9 +22,14 @@ LOGGER = logging.getLogger(__name__)
 POC_FILE_MAP = {
     "python": "main.py",
     "typescript": "main.ts",
+    "javascript": "main.js",
     "rust": "main.rs",
     "go": "main.go",
 }
+
+
+class GeneratorError(RuntimeError):
+    """Raised when resurrection artifacts cannot be written."""
 
 
 def _sanitize(value: Any) -> Any:
@@ -36,6 +41,14 @@ def _sanitize(value: Any) -> Any:
     if isinstance(value, list):
         return [_sanitize(item) for item in value]
     return value
+
+
+def _safe_format(template: str, **kwargs: Any) -> str:
+    """Replace {name} placeholders without interpreting braces inside values."""
+    result = template
+    for key, value in kwargs.items():
+        result = result.replace("{" + key + "}", str(value))
+    return result
 
 
 def get_poc_extension(language: str) -> str:
@@ -53,17 +66,6 @@ def _slugify(text: str) -> str:
 
 
 def get_issue_folder(base: Path, issue: dict[str, Any]) -> Path:
-    """
-    Build a unique, human-readable folder name per issue:
-      resurrections/<date>_<repo-slug>_<issue-number>
-
-    Example:
-      resurrections/2026-05-02_hashicorp-terraform_4084
-
-    This means:
-    - Multiple runs on the same day each keep their own folder.
-    - The same issue is never written twice (same folder = idempotent update).
-    """
     today = datetime.now().strftime("%Y-%m-%d")
     repo_slug = _slugify(str(issue.get("repo", "unknown")))
     issue_number = int(issue.get("issue_number", 0))
@@ -72,6 +74,12 @@ def get_issue_folder(base: Path, issue: dict[str, Any]) -> Path:
 
 
 def build_meta(issue: dict[str, Any], analysis: dict[str, Any], today: str, folder_name: str) -> dict[str, Any]:
+    has_poc = bool(analysis.get("has_poc", False))
+    poc_validated = bool(analysis.get("poc_validated", False)) and has_poc
+    quality_flags = analysis.get("quality_flags", [])
+    if not isinstance(quality_flags, list):
+        quality_flags = []
+
     meta = {
         "date": today,
         "repo": str(issue.get("repo", "")),
@@ -80,11 +88,15 @@ def build_meta(issue: dict[str, Any], analysis: dict[str, Any], today: str, fold
         "reactions": int(issue.get("reactions", 0)),
         "abandoned_date": str(analysis.get("abandoned_date", "")),
         "one_line_why": str(analysis.get("one_line_why", "")),
+        "one_line_summary": str(analysis.get("one_line_summary", "")),
         "impact_score": int(analysis.get("impact_score", 0)),
         "effort_hours": float(analysis.get("effort_hours", 0)),
-        "has_poc": bool(analysis.get("has_poc", False)),
+        "has_poc": has_poc,
         "has_rfc": bool(analysis.get("rfc_needed", False)),
         "poc_language": str(analysis.get("poc_language", "")),
+        "poc_validated": poc_validated,
+        "poc_validation_error": str(analysis.get("poc_validation_error", "")),
+        "quality_flags": [str(f) for f in quality_flags],
         "technology_tags": list(analysis.get("technology_tags", [])),
         "original_url": str(issue.get("html_url", "")),
         "resurrection_slug": folder_name,
@@ -114,14 +126,16 @@ def _labels_text(issue: dict[str, Any]) -> str:
 
 
 def _load_template(name: str) -> str:
-    """Read a template file from TEMPLATES_FOLDER. Raises FileNotFoundError if missing."""
     path = Path(TEMPLATES_FOLDER) / name
+    if not path.exists():
+        raise GeneratorError(f"Missing template: {path}")
     return path.read_text(encoding="utf-8")
 
 
 def write_issue_md(folder: Path, issue: dict[str, Any]) -> None:
     issue = _sanitize(issue)
-    content = _load_template("issue_template.md").format(
+    content = _safe_format(
+        _load_template("issue_template.md"),
         title=str(issue.get("title", "")),
         repo=str(issue.get("repo", "")),
         repo_html_url=_repo_html_url(issue),
@@ -144,7 +158,8 @@ def write_analysis_md(folder: Path, issue: dict[str, Any], analysis: dict[str, A
     analysis = _sanitize(analysis)
     technology_tags = analysis.get("technology_tags", [])
     tags_text = ", ".join(str(t) for t in technology_tags) if isinstance(technology_tags, list) else ""
-    content = _load_template("analysis_template.md").format(
+    content = _safe_format(
+        _load_template("analysis_template.md"),
         title=str(issue.get("title", "")),
         one_line_summary=str(analysis.get("one_line_summary", "")),
         one_line_why=str(analysis.get("one_line_why", "")),
@@ -164,26 +179,34 @@ def write_analysis_md(folder: Path, issue: dict[str, Any], analysis: dict[str, A
     LOGGER.info("Written: %s", path)
 
 
-def _poc_prerequisites(language: str) -> str:
+def _poc_prerequisites(language: str, has_requirements: bool) -> str:
     key = language.strip().lower()
+    if key == "python":
+        if has_requirements:
+            return "- Python 3.12+\n- `pip install -r requirements.txt`"
+        return "- Python 3.12+ (stdlib only — no requirements file)"
     prerequisites = {
-        "python": "- Python 3.12+, pip install requirements",
-        "typescript": "- Node.js 20+, npm install",
-        "rust": "- Rust 1.75+, cargo",
+        "typescript": "- Node.js 20+\n- Optional: `npm install` if you add a package.json",
+        "javascript": "- Node.js 20+",
+        "rust": "- Rust 1.75+ (`rustc`)",
         "go": "- Go 1.22+",
     }
-    return prerequisites.get(key, prerequisites["python"])
+    return prerequisites.get(key, "- See language toolchain docs")
 
 
-def _poc_run_commands(language: str, file_name: str) -> str:
+def _poc_run_commands(language: str, file_name: str, has_requirements: bool) -> str:
     key = language.strip().lower()
+    if key == "python":
+        if has_requirements:
+            return f"pip install -r requirements.txt\npython {file_name}"
+        return f"python {file_name}"
     commands = {
-        "python": f"pip install -r requirements.txt\npython {file_name}",
-        "typescript": f"npm install\nnpx ts-node {file_name}",
-        "rust": f"rustc {file_name} -o main\n./main",
+        "typescript": f"npx --yes ts-node {file_name}",
+        "javascript": f"node {file_name}",
+        "rust": f"rustc {file_name} -o main && ./main",
         "go": f"go run {file_name}",
     }
-    return commands.get(key, commands["python"])
+    return commands.get(key, f"# open {file_name}")
 
 
 def write_poc_files(folder: Path, analysis: dict[str, Any], issue_title: str) -> None:
@@ -193,6 +216,8 @@ def write_poc_files(folder: Path, analysis: dict[str, Any], issue_title: str) ->
     issue_title = _sanitize(issue_title)
     language = str(analysis.get("poc_language", "python")).strip().lower() or "python"
     poc_code = str(analysis.get("proof_of_concept_code", ""))
+    if not poc_code.strip():
+        raise GeneratorError("has_poc=True but proof_of_concept_code is empty")
     one_line_summary = str(analysis.get("one_line_summary", ""))
     file_name = get_poc_extension(language)
 
@@ -203,11 +228,17 @@ def write_poc_files(folder: Path, analysis: dict[str, Any], issue_title: str) ->
     code_path.write_text(poc_code, encoding="utf-8")
     LOGGER.info("Written: %s", code_path)
 
-    readme_content = _load_template("poc_readme_template.md").format(
+    req_text = str(analysis.get("poc_requirements", "")).strip()
+    has_requirements = bool(req_text)
+    if has_requirements:
+        (poc_folder / "requirements.txt").write_text(req_text + "\n", encoding="utf-8")
+
+    readme_content = _safe_format(
+        _load_template("poc_readme_template.md"),
         issue_title=issue_title,
         language=language,
-        prerequisites=_poc_prerequisites(language),
-        run_commands=_poc_run_commands(language, file_name),
+        prerequisites=_poc_prerequisites(language, has_requirements),
+        run_commands=_poc_run_commands(language, file_name, has_requirements),
         one_line_summary=one_line_summary,
     )
     readme_path = poc_folder / "README.md"
@@ -220,7 +251,8 @@ def write_rfc_md(folder: Path, analysis: dict[str, Any], issue_title: str) -> No
         return
     analysis = _sanitize(analysis)
     issue_title = _sanitize(issue_title)
-    content = _load_template("rfc_template.md").format(
+    content = _safe_format(
+        _load_template("rfc_template.md"),
         issue_title=issue_title,
         rfc_content=str(analysis.get("rfc_content", "")),
         bot_name=BOT_NAME,
@@ -244,50 +276,42 @@ def generate_resurrection(issue: dict[str, Any], analysis: dict[str, Any]) -> Pa
     write_rfc_md(folder, analysis, issue_title)
     meta = build_meta(issue, analysis, today, folder.name)
     write_meta_json(folder, meta)
+
+    if not (folder / "meta.json").exists() or not (folder / "analysis.md").exists():
+        raise GeneratorError(f"Expected artifacts missing under {folder}")
+
     LOGGER.info("Resurrection folder ready: %s", folder)
     return folder
 
 
-def generate(temp_file_path: str = "") -> None:
+def generate(temp_file_path: str = "") -> Path:
     """
     Read the analysis temp file and generate all resurrection output files.
-
-    Args:
-        temp_file_path: Explicit path to the temp JSON file written by analyze().
-                        If empty, falls back to the ANALYSIS_TEMP_PATH env var.
-                        This explicit passing eliminates the shared-global race condition
-                        that occurred when both analyzer and generator imported a module-level UUID.
+    Raises GeneratorError on any failure (no silent returns).
     """
     resolved_path = temp_file_path.strip() if temp_file_path else ""
     if not resolved_path:
         resolved_path = os.environ.get("ANALYSIS_TEMP_PATH", "").strip()
 
     if not resolved_path:
-        LOGGER.warning(
-            "[Generator] No temp file path provided and ANALYSIS_TEMP_PATH env var not set. "
-            "Nothing to generate."
+        raise GeneratorError(
+            "No temp file path provided and ANALYSIS_TEMP_PATH env var not set."
         )
-        return
 
     temp_path = Path(resolved_path)
     if not temp_path.exists():
-        LOGGER.error(
-            "[Generator] Temp file not found: %s — nothing to generate.", resolved_path
-        )
-        return
+        raise GeneratorError(f"Temp file not found: {resolved_path}")
 
     try:
         data = json.loads(temp_path.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError) as e:
-        LOGGER.error("[Generator] Cannot read temp file %s: %s", resolved_path, e)
-        return
+        raise GeneratorError(f"Cannot read temp file {resolved_path}: {e}") from e
 
     issue = data.get("issue", {})
     analysis = data.get("analysis", {})
 
-    if not issue or not analysis:
-        LOGGER.error("[Generator] Temp file missing 'issue' or 'analysis' keys.")
-        return
+    if not isinstance(issue, dict) or not isinstance(analysis, dict) or not issue or not analysis:
+        raise GeneratorError("Temp file missing 'issue' or 'analysis' keys.")
 
     folder = generate_resurrection(issue, analysis)
 
@@ -298,3 +322,4 @@ def generate(temp_file_path: str = "") -> None:
         LOGGER.warning("[Generator] Could not delete temp file %s: %s", resolved_path, e)
 
     LOGGER.info("[Generator] Done. Output: %s", folder)
+    return folder

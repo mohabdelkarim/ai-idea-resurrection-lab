@@ -40,7 +40,7 @@ def replace_section(content: str, section_name: str, new_section: str) -> str:
     """
     Replace a <!-- SECTION:name --> ... <!-- END:name --> block in content.
     If the block is not found, appends the new section at the end.
-    This function is used by vote_manager.py and other scripts.
+    This function is used by the README updater and other scripts.
     """
     start_tag = f"<!-- SECTION:{section_name} -->"
     end_tag = f"<!-- END:{section_name} -->"
@@ -129,19 +129,34 @@ and turning forgotten ideas into actionable engineering.
   <tr>
     <td>\U0001f504 Automation</td>
     <td>GitHub Actions</td>
-    <td>Daily cron job, zero manual intervention required</td>
+    <td>Daily weekday cron (1×) + manual dispatch</td>
   </tr>
   <tr>
     <td>\U0001f4dd Output</td>
     <td>Structured Markdown</td>
-    <td>Technical analysis + working PoC code + impact score per issue</td>
+    <td>Technical analysis + optional syntax-validated PoC + impact score</td>
   </tr>
   <tr>
     <td>\U0001f40d Language</td>
-    <td>Python 3.11</td>
+    <td>Python 3.12</td>
     <td>Clean pipeline: scanner \u2192 analyzer \u2192 generator \u2192 publisher</td>
   </tr>
 </table>
+
+---
+
+## Setup
+
+1. Copy `.env.example` \u2192 `.env` and set `GITHUB_TOKEN`, `GROQ_API_KEY`, and optionally `COMMENT_GITHUB_TOKEN` (PAT for upstream issue comments).
+2. `pip install -r requirements.txt`
+3. `python scripts/runner.py`
+
+**Quality rules:** max 1 resurrection/weekday · `has_poc` only when `poc_validated` · unsupported languages ship analysis/RFC only · see `CONTRIBUTING.md`.
+
+```bash
+pytest -q
+ruff check scripts tests
+```
 
 ---
 
@@ -205,7 +220,8 @@ and turning forgotten ideas into actionable engineering.
 def build_header_section() -> str:
     return (
         "\n> **Every abandoned GitHub issue is a spark that never ignited.**\n"
-        "> This lab finds them, analyses them with AI, and ships a proof-of-concept daily.\n\n"
+        "> This lab finds them, analyses them with Groq, and ships a daily analysis — "
+        "plus a syntax-validated PoC when the language is supported.\n\n"
         "<br/>\n\n"
         "[![updates daily](https://img.shields.io/badge/updates-daily-00D9A5?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/mohabdelkarim/ai-idea-resurrection-lab/actions)\n"
         "[![powered by Groq](https://img.shields.io/badge/Powered%20by-Groq-FF6B35?style=for-the-badge&logoColor=white)](https://groq.com)\n"

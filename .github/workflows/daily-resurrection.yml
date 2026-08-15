@@ -2,18 +2,19 @@ name: Daily Resurrection
 
 on:
   schedule:
-    - cron: "0 13 * * 1-5"   # 09:00 US Eastern (ET), Monday-Friday - morning run
-    - cron: "0 16 * * 1-5"   # 12:00 US Eastern (ET), Monday-Friday - midday run
-    - cron: "0 0 * * 1-5"    # 20:00 US Eastern (ET), Monday-Friday - evening run
+    # 09:00 US Eastern (approx) Monday–Friday — single daily run
+    - cron: "0 13 * * 1-5"
   workflow_dispatch:
 
 permissions:
   contents: write
-  discussions: write
 
 env:
+  # Repo-scoped token for checkout / commit / push and reading public APIs.
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  # PAT with public_repo (or fine-grained Issues: Write) for cross-repo comments.
+  COMMENT_GITHUB_TOKEN: ${{ secrets.COMMENT_GITHUB_TOKEN }}
 
 jobs:
   resurrect:
@@ -34,6 +35,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Install PoC validation toolchains
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq golang-go
+          # rustc via rustup for rustc --crate-type lib checks
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable -c rustc
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+
       - name: Run daily pipeline
         run: python scripts/runner.py
         working-directory: ${{ github.workspace }}
@@ -43,9 +52,6 @@ jobs:
           git config user.name "mohabdelkarim"
           git config user.email "mohaabdelkarim2@gmail.com"
 
-          # Pull latest remote changes BEFORE staging/committing.
-          # This ensures rebase operates on a clean working tree and
-          # avoids conflicts that occur when rebasing after a commit.
           git pull --rebase --autostash --no-edit origin main
 
           git add -A
@@ -55,8 +61,6 @@ jobs:
 
           git diff --cached --quiet || git commit -m "$COMMIT_MSG"
 
-          # Retry push up to 3 times to handle rare races between
-          # the 3 daily cron triggers firing close together.
           for attempt in 1 2 3; do
             git push origin main && break
             echo "Push attempt $attempt failed, pulling and retrying..."

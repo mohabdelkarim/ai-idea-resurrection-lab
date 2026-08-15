@@ -8,6 +8,7 @@ Rules:
 - Only posts once per issue (checks for existing bot comment first).
 - Respects the GitHub API rate limit.
 - Comment is concise, respectful, and adds clear value.
+- Never claims "working code" unless meta.poc_validated is true.
 """
 from __future__ import annotations
 
@@ -80,40 +81,68 @@ def _resurrection_url(meta: dict[str, Any]) -> str:
     return LAB_URL
 
 
+def _poc_row(meta: dict[str, Any]) -> str:
+    has_poc = bool(meta.get("has_poc", False))
+    poc_validated = bool(meta.get("poc_validated", False))
+    poc_language = str(meta.get("poc_language", "")).strip() or "code"
+
+    if has_poc and poc_validated:
+        return (
+            f"| 🔬 Proof of Concept | Syntax-validated `{poc_language}` sketch "
+            f"(experimental — not a production patch) |"
+        )
+    if has_poc:
+        return (
+            f"| 🔬 Proof of Concept | Unverified `{poc_language}` sketch "
+            f"(experimental — treat as design notes) |"
+        )
+    return "| 🔬 Proof of Concept | Analysis / RFC only (no code artifact) |"
+
+
+def _maintainer_bullets(meta: dict[str, Any]) -> str:
+    problem = str(meta.get("one_line_summary", "")).strip() or "See linked analysis."
+    approach = str(meta.get("one_line_why", "")).strip() or "See linked modern design."
+    tags = meta.get("technology_tags", [])
+    if isinstance(tags, list) and tags:
+        apis = ", ".join(str(t) for t in tags[:4])
+    else:
+        apis = "see analysis for suggested APIs / files"
+
+    return (
+        f"- **Problem restatement:** {problem}\n"
+        f"- **Proposed approach:** {approach}\n"
+        f"- **Likely touch points:** {apis}"
+    )
+
+
 def _build_comment(meta: dict[str, Any]) -> str:
     impact_score = int(meta.get("impact_score", 0))
     effort_hours = meta.get("effort_hours", "?")
-    has_poc = bool(meta.get("has_poc", False))
-    poc_language = str(meta.get("poc_language", ""))
-    one_line_why = str(meta.get("one_line_why", ""))
-    date = str(meta.get("date", ""))
     abandoned_date = str(meta.get("abandoned_date", ""))[:10]
     reactions = int(meta.get("reactions", 0))
-
-    poc_row = f"| 🔬 Proof of Concept | Working `{poc_language}` code included |" if has_poc else "| 🔬 Proof of Concept | Not included yet |"
     resurrection_url = _resurrection_url(meta)
 
     return f"""{BOT_COMMENT_MARKER}
 
-### 🧬 This idea was resurrected by [AI Idea Resurrection Lab]({LAB_URL})
+### This idea was analyzed by [AI Idea Resurrection Lab]({LAB_URL})
 
-This issue was abandoned around `{abandoned_date}` but the community never stopped wanting it — **{reactions:,} 👍** speak for themselves.
+This issue went quiet around `{abandoned_date}` while community interest remained (**{reactions:,}** reactions).
 
-An AI system analyzed why it failed, what changed in the ecosystem since then, and how to build it today:
+An automated pipeline produced a technical write-up of why it stalled, what may have changed since, and a possible modern approach:
 
-> *{one_line_why}*
+{_maintainer_bullets(meta)}
 
 **Resurrection Score**
 | Metric | Value |
 |--------|-------|
-| 💥 Impact Score | {_impact_bar(impact_score)} `{impact_score}/10` |
-| ⏱️ Effort Estimate | ~{effort_hours} hours |
-{poc_row}
+| Impact Score | {_impact_bar(impact_score)} `{impact_score}/10` |
+| Effort Estimate | ~{effort_hours} hours |
+{_poc_row(meta)}
 
-🔗 **[Full analysis + working code → View Resurrection]({resurrection_url})**
+**[Full analysis → View Resurrection]({resurrection_url})**
 
 ---
-<sub>Posted by [AI Idea Resurrection Lab]({LAB_URL}) · A bot that brings abandoned GitHub ideas back to life with AI-powered technical analysis and proof-of-concept code. Not affiliated with this repository.</sub>
+<sub>Posted by [AI Idea Resurrection Lab]({LAB_URL}). Experimental / not affiliated with this repository. Artifacts are AI-generated starting points — verify before use.</sub>
 """
 
 
@@ -126,6 +155,18 @@ def post_resurrection_comment(meta: dict[str, Any], token: str, dry_run: bool = 
             "attempted": False,
             "posted": False,
             "status": "disabled",
+            "comment_url": "",
+        }
+
+    if not token.strip():
+        LOGGER.warning(
+            "[Commenter] No COMMENT_GITHUB_TOKEN (or fallback token) set — "
+            "cross-repo comments are disabled."
+        )
+        return {
+            "attempted": False,
+            "posted": False,
+            "status": "missing_token",
             "comment_url": "",
         }
 
@@ -170,7 +211,7 @@ def post_resurrection_comment(meta: dict[str, Any], token: str, dry_run: bool = 
             payload = response.json()
         except ValueError:
             payload = {}
-        LOGGER.info("[Commenter] ✅ Comment posted on %s#%d", repo, issue_number)
+        LOGGER.info("[Commenter] Comment posted on %s#%d", repo, issue_number)
         return {
             "attempted": True,
             "posted": True,
@@ -178,7 +219,10 @@ def post_resurrection_comment(meta: dict[str, Any], token: str, dry_run: bool = 
             "comment_url": str(payload.get("html_url", "")),
         }
     if response.status_code == 403:
-        LOGGER.warning("[Commenter] ⚠️ Cannot comment on %s#%d: permission denied or locked issue.", repo, issue_number)
+        LOGGER.warning(
+            "[Commenter] Cannot comment on %s#%d: permission denied or locked issue.",
+            repo, issue_number,
+        )
         return {
             "attempted": True,
             "posted": False,
@@ -195,7 +239,7 @@ def post_resurrection_comment(meta: dict[str, Any], token: str, dry_run: bool = 
         }
 
     LOGGER.error(
-        "[Commenter] ❌ Failed to post comment on %s#%d: HTTP %s — %s",
+        "[Commenter] Failed to post comment on %s#%d: HTTP %s — %s",
         repo, issue_number, response.status_code, response.text[:300],
     )
     return {

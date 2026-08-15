@@ -1,0 +1,7 @@
+line-length = 120
+target-version = "py312"
+
+[lint]
+# Keep CI focused on real defects; import sorting is optional locally.
+select = ["E", "F"]
+ignore = ["E501"]

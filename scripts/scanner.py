@@ -48,14 +48,15 @@ HIGH_REACTIONS_OVERRIDE = HIGH_DEMAND_UPVOTES_OVERRIDE  # from config
 REPO_ROTATION_FILE = Path(STATS_FOLDER) / "repo_rotation.json"
 
 # Labels that indicate an issue is already resolved / closed-as-done
+# (wontfix / by-design are handled separately as hard skips, not "solved")
 RESOLVED_LABELS = {
     "completed", "done", "duplicate", "fixed", "implemented",
-    "released", "resolved", "wontfix",
+    "released", "resolved",
 }
 
 # GitHub state_reason values that mean the issue was intentionally closed as done.
-# "not_planned" means abandoned/wontfix — we still want those.
-# "completed" means the issue was actually resolved and should be skipped.
+# "not_planned" is a conscious decline — skipped by analyzer by-design gate.
+# "completed" / "duplicate" mean the work already shipped or was merged elsewhere.
 RESOLVED_STATE_REASONS = {"completed", "duplicate"}
 
 # Text patterns that signal the issue is already solved in practice.
@@ -242,6 +243,8 @@ class GraveyardEntry:
     author_login: str
     author_profile: str
     comments: int = 0
+    state_reason: str = ""
+    closed_at: str = ""
     already_resurrected: bool = False
     quality_rejected: bool = False
     quality_rejection_reason: str = ""
@@ -378,7 +381,12 @@ def _request_with_backoff(
 
 
 def get_repo_issues(repo: str, token: str) -> list[dict[str, Any]]:
-    url = f"https://api.github.com/repos/{repo}/issues"
+    """
+    Fetch closed issues for a repo, ranked by reactions via the Search API.
+
+    List Issues does not support sort=reactions; Search Issues does.
+    """
+    url = "https://api.github.com/search/issues"
     headers = {
         "Accept": "application/vnd.github+json",
         "Authorization": f"Bearer {token}",
@@ -388,14 +396,15 @@ def get_repo_issues(repo: str, token: str) -> list[dict[str, Any]]:
     page = 1
     all_issues: list[dict[str, Any]] = []
     per_page = min(100, MAX_ISSUES_PER_REPO)
+    query = f"repo:{repo} is:issue is:closed"
 
     while page <= SCAN_PAGES_PER_REPO and len(all_issues) < MAX_ISSUES_PER_REPO:
         params = {
-            "state": "closed",           # focus on closed issues — abandoned features live here
+            "q": query,
             "per_page": per_page,
             "page": page,
-            "sort": "reactions",         # most-reacted first = highest impact candidates
-            "direction": "desc",         # highest reactions at the top
+            "sort": "reactions",
+            "order": "desc",
         }
         response = _request_with_backoff(url, headers=headers, params=params)
         if response is None:
@@ -406,30 +415,43 @@ def get_repo_issues(repo: str, token: str) -> list[dict[str, Any]]:
             return []
 
         if response.status_code == 403:
-            LOGGER.warning("Rate limit (403) for %s. Waiting 60s.", repo)
+            LOGGER.warning("Search rate limit (403) for %s. Waiting 60s.", repo)
             time.sleep(60)
             response = _request_with_backoff(url, headers=headers, params=params, max_attempts=1)
             if response is None or response.status_code == 403:
-                LOGGER.error("Rate limit retry failed for %s.", repo)
+                LOGGER.error("Search rate limit retry failed for %s.", repo)
                 return all_issues
 
+        if response.status_code == 422:
+            LOGGER.error("Invalid search query for %s: %s", repo, response.text[:300])
+            return all_issues
+
         if response.status_code != 200:
-            LOGGER.error("Failed to fetch issues for %s. HTTP %s", repo, response.status_code)
+            LOGGER.error("Failed to search issues for %s. HTTP %s", repo, response.status_code)
             return all_issues
 
         try:
-            page_issues = response.json()
+            payload = response.json()
         except ValueError:
-            LOGGER.error("Failed to decode JSON for %s page %d.", repo, page)
+            LOGGER.error("Failed to decode search JSON for %s page %d.", repo, page)
             return all_issues
 
+        page_issues = payload.get("items", []) if isinstance(payload, dict) else []
         if not isinstance(page_issues, list) or not page_issues:
             break
 
         remaining = MAX_ISSUES_PER_REPO - len(all_issues)
         all_issues.extend(page_issues[:remaining])
-        LOGGER.info("Fetched %d issues from %s page %d.", len(page_issues), repo, page)
+        LOGGER.info(
+            "Fetched %d issues from %s search page %d (total_count≈%s).",
+            len(page_issues),
+            repo,
+            page,
+            payload.get("total_count", "?") if isinstance(payload, dict) else "?",
+        )
         page += 1
+        # Secondary Search API rate limit is tight — be polite between pages.
+        time.sleep(1.2)
 
     return all_issues[:MAX_ISSUES_PER_REPO]
 
@@ -472,33 +494,6 @@ def _has_resolved_signal(text: str) -> bool:
     return any(pattern.search(compact) for pattern in RESOLVED_TEXT_PATTERNS)
 
 
-def _is_closed_via_pr(issue: dict[str, Any]) -> bool:
-    """
-    Return True if this issue was closed by a linked pull request.
-
-    The GitHub REST API attaches a 'pull_request' key to an issue object
-    when it was closed via a PR. This is the most reliable signal that
-    the feature/bug was actually implemented — no extra API call needed.
-
-    Note: the presence of 'pull_request' alone means a PR was linked.
-    We do NOT require merged_at to be non-null here because:
-    - The issues endpoint returns closed issues (state=closed).
-    - A closed issue with a linked PR almost always means merged.
-    - Checking merged_at would require a separate PR API call per issue.
-    """
-    pr_data = issue.get("pull_request")
-    if not pr_data or not isinstance(pr_data, dict):
-        return False
-    # If merged_at is present in the payload (sometimes it is), use it directly.
-    merged_at = pr_data.get("merged_at")
-    if merged_at is not None:
-        # merged_at is a timestamp string if merged, or null if not
-        return bool(merged_at)
-    # merged_at not present in payload — existence of pull_request key on a
-    # closed issue is a strong enough signal.
-    return True
-
-
 def _is_closed_as_completed(issue: dict[str, Any]) -> bool:
     """
     Return True if GitHub's state_reason for this issue is 'completed' or 'duplicate'.
@@ -518,22 +513,15 @@ def is_already_solved(repo: str, issue: dict[str, Any], token: str) -> bool:
     Return True if the issue appears to be already solved / obsolete.
 
     Checks (in order, cheapest first — no extra API calls for checks 0-2):
-      0. Issue has a linked pull_request field → closed via merged PR → solved.
-      0b. GitHub state_reason is 'completed' or 'duplicate' → solved.
+      0. GitHub state_reason is 'completed' or 'duplicate' → solved.
       1. Label contains a resolved signal.
       2. Title or body contains a resolved text pattern.
       3. Any of the first MAX_COMMENTS_TO_INSPECT comments contains a resolved pattern
          (one API call).
-    """
-    # Check 0: closed via a linked PR (free — data already in issue object)
-    if _is_closed_via_pr(issue):
-        LOGGER.debug(
-            "[SolvedCheck] %s#%s: closed via linked PR — skipping.",
-            repo, issue.get("number"),
-        )
-        return True
 
-    # Check 0b: GitHub state_reason signals completion (free — data already in issue object)
+    Note: a `pull_request` key on a list/search item means the item *is* a PR,
+    not that an issue was closed by a PR. PRs are filtered in is_abandoned().
+    """
     if _is_closed_as_completed(issue):
         LOGGER.debug(
             "[SolvedCheck] %s#%s: state_reason=%s — skipping.",
@@ -541,17 +529,14 @@ def is_already_solved(repo: str, issue: dict[str, Any], token: str) -> bool:
         )
         return True
 
-    # Check 1: resolved label (free — data already in issue object)
     if _has_resolved_label(issue):
         return True
 
-    # Check 2: resolved signal in title or body (free — data already in issue object)
     title = str(issue.get("title", ""))
     body = str(issue.get("body") or "")
     if _has_resolved_signal(title) or _has_resolved_signal(body):
         return True
 
-    # Check 3: scan comments (one API call per issue — only reached if all above pass)
     comments = get_issue_comments(repo, int(issue.get("number", 0)), token)
     for comment in comments:
         comment_body = str(comment.get("body") or "")
@@ -672,6 +657,8 @@ def _entry_from_issue(repo: str, issue: dict[str, Any]) -> GraveyardEntry:
         author_login=author_login,
         author_profile=f"https://github.com/{author_login}",
         comments=int(issue.get("comments", 0) or 0),
+        state_reason=str(issue.get("state_reason") or ""),
+        closed_at=str(issue.get("closed_at") or ""),
         already_resurrected=False,
     )
 

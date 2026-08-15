@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-07-17T17:02:07",
-  "total_resurrections": 149,
-  "total_repos_covered": 44,
-  "average_impact_score": 6.35,
-  "average_effort_hours": 70.89,
-  "total_with_poc": 123,
-  "total_with_rfc": 129,
+  "last_updated": "2026-08-15T05:58:12",
+  "total_resurrections": 125,
+  "total_repos_covered": 40,
+  "average_impact_score": 6.54,
+  "average_effort_hours": 74.43,
+  "total_with_poc": 99,
+  "total_with_rfc": 112,
   "comment_stats": {
-    "attempted": 56,
+    "attempted": 49,
     "posted": 0,
-    "failed": 56
+    "failed": 49
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -26,12 +26,12 @@
         "count": 7
       },
       {
-        "repo": "ggerganov/llama.cpp",
+        "repo": "golang/go",
         "count": 7
       },
       {
-        "repo": "golang/go",
-        "count": 7
+        "repo": "hashicorp/terraform",
+        "count": 6
       }
     ]
   },
@@ -44,15 +44,6 @@
   ],
   "hall_of_fame": [
     {
-      "date": "2026-06-09",
-      "repo": "facebook/react",
-      "issue_number": 10191,
-      "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
-      "impact_score": 9,
-      "one_line_why": "The open-source community's shift towards more permissive licenses like AL v2.0 makes re-licensing feasible.",
-      "original_url": "https://github.com/facebook/react/issues/10191"
-    },
-    {
       "date": "2026-06-25",
       "repo": "facebook/react",
       "issue_number": 29898,
@@ -62,13 +53,22 @@
       "original_url": "https://github.com/facebook/react/issues/29898"
     },
     {
-      "date": "2026-05-13",
-      "repo": "huggingface/transformers",
-      "issue_number": 4658,
-      "title": "Add upcoming GPT-3 model",
+      "date": "2026-05-27",
+      "repo": "kubernetes/kubernetes",
+      "issue_number": 122753,
+      "title": "DaemonSet dynamic/scaled resources based on node type",
       "impact_score": 8,
-      "one_line_why": "GPT-3's massive success and widespread adoption make its integration crucial for the Transformers library.",
-      "original_url": "https://github.com/huggingface/transformers/issues/4658"
+      "one_line_why": "Dynamic resource allocation for DaemonSets is crucial for efficient utilization of diverse node environments in modern Kubernetes clusters.",
+      "original_url": "https://github.com/kubernetes/kubernetes/issues/122753"
+    },
+    {
+      "date": "2026-05-27",
+      "repo": "hashicorp/terraform",
+      "issue_number": 4149,
+      "title": "Partial/Progressive Configuration Changes",
+      "impact_score": 8,
+      "one_line_why": "Partial configuration changes succeed now due to advancements in Terraform's provider protocol and improved planning and apply phases.",
+      "original_url": "https://github.com/hashicorp/terraform/issues/4149"
     }
   ],
   "last_resurrection": {

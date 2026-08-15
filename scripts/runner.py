@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
-from config import RESURRECTION_BASE_FOLDER
+from config import MAX_DAILY_RESURRECTIONS, RESURRECTION_BASE_FOLDER
 
 logging.basicConfig(
     level=logging.INFO,
@@ -24,8 +24,6 @@ REQUIRED_ENV_VARS = (
     "GROQ_API_KEY",
 )
 
-# Steps that MUST succeed for the pipeline to be considered healthy.
-# If any of these fail, the pipeline exits with code 1.
 CRITICAL_STEPS = {
     "GitHub Issue Scanner",
     "AI Analyzer",
@@ -67,19 +65,26 @@ def run_step(step_name: str, fn: Callable[[], None]) -> bool:
     return True
 
 
+def count_todays_resurrections() -> int:
+    """How many resurrection folders were created for today's calendar date."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    base = Path(RESURRECTION_BASE_FOLDER)
+    if not base.exists():
+        return 0
+    count = 0
+    for child in base.iterdir():
+        if child.is_dir() and child.name.startswith(today + "_") and (child / "meta.json").exists():
+            count += 1
+    return count
+
+
 def load_latest_meta() -> dict[str, Any]:
-    """
-    Load the meta.json from the most recently MODIFIED resurrection folder.
-    Uses mtime instead of alphabetical sort so the truly latest run is always returned,
-    even when two resurrections happen on the same calendar day for different repos.
-    """
     base = Path(RESURRECTION_BASE_FOLDER)
     meta_files = list(base.glob("*/meta.json"))
     if not meta_files:
         LOGGER.warning("No resurrection meta.json files found under %s", base)
         return {}
 
-    # Sort by modification time, most recent first
     meta_files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
     latest = meta_files[0]
     LOGGER.info("Loading latest meta from: %s", latest)
@@ -93,12 +98,6 @@ def load_latest_meta() -> dict[str, Any]:
 
 
 def _find_resurrection_folder(meta: dict[str, Any]) -> Path | None:
-    """
-    Locate the resurrection folder for a given meta dict.
-    Folders follow the pattern YYYY-MM-DD_<repo-slug>_<issue_number>.
-    We match by repo + issue_number from the meta, searching all subdirs,
-    so we never depend on a hardcoded pattern that may not exist.
-    """
     base = Path(RESURRECTION_BASE_FOLDER)
     if not base.exists():
         return None
@@ -106,7 +105,6 @@ def _find_resurrection_folder(meta: dict[str, Any]) -> Path | None:
     repo = str(meta.get("repo", ""))
     issue_number = str(meta.get("issue_number", ""))
 
-    # Primary strategy: match meta.json content inside each subdir
     for child in sorted(base.iterdir(), reverse=True):
         if not child.is_dir():
             continue
@@ -123,7 +121,6 @@ def _find_resurrection_folder(meta: dict[str, Any]) -> Path | None:
         except (json.JSONDecodeError, OSError):
             continue
 
-    # Fallback: the most recently modified folder that contains a meta.json
     meta_files = list(base.glob("*/meta.json"))
     if meta_files:
         meta_files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
@@ -183,11 +180,18 @@ def export_commit_vars(meta: dict[str, Any]) -> None:
 
 
 def run_pipeline() -> None:
-    # _temp_file_path holds the path returned by analyze() and is passed
-    # explicitly to generate() — no shared global state between the two.
     _temp_file_path: list[str] = [""]
-
+    _generated_folder: list[str] = [""]
     results: dict[str, bool] = {}
+
+    already_today = count_todays_resurrections()
+    if already_today >= MAX_DAILY_RESURRECTIONS:
+        LOGGER.info(
+            "[Runner] Daily cap reached (%d/%d). Skipping pipeline.",
+            already_today,
+            MAX_DAILY_RESURRECTIONS,
+        )
+        sys.exit(0)
 
     def _scanner_step() -> None:
         from scanner import scan_issues
@@ -206,7 +210,8 @@ def run_pipeline() -> None:
 
     def _generator_step() -> None:
         from generator import generate
-        from scanner import mark_resurrected
+        from scanner import mark_repo_used, mark_resurrected
+
         path = _temp_file_path[0]
         if not path:
             raise RuntimeError(
@@ -219,12 +224,18 @@ def run_pipeline() -> None:
             raise RuntimeError(f"Cannot read analyzer temp file {path}: {error}") from error
 
         issue = temp_data.get("issue", {})
-        generate(temp_file_path=path)
+        folder = generate(temp_file_path=path)
+        _generated_folder[0] = str(folder)
+
+        if not (folder / "meta.json").exists():
+            raise RuntimeError(f"Generator claimed success but meta.json missing at {folder}")
+
         if isinstance(issue, dict):
             repo = str(issue.get("repo", ""))
             issue_number = int(issue.get("issue_number", 0))
             if repo and issue_number:
                 mark_resurrected(repo, issue_number)
+                mark_repo_used(repo)
 
     def _score_card_step() -> None:
         meta = load_latest_meta()
@@ -252,7 +263,15 @@ def run_pipeline() -> None:
     def _commenter_step() -> None:
         from issue_commenter import post_resurrection_comment
         meta = load_latest_meta()
-        token = os.environ.get("GITHUB_TOKEN", "")
+        token = (
+            os.environ.get("COMMENT_GITHUB_TOKEN", "").strip()
+            or os.environ.get("GITHUB_TOKEN", "").strip()
+        )
+        if not os.environ.get("COMMENT_GITHUB_TOKEN", "").strip():
+            LOGGER.warning(
+                "[Commenter] COMMENT_GITHUB_TOKEN not set — "
+                "cross-repo comments will likely fail with the default Actions token."
+            )
         if meta and token:
             result = post_resurrection_comment(meta, token)
             _update_resurrection_meta(
@@ -280,7 +299,6 @@ def run_pipeline() -> None:
     for step_name, step_fn in steps:
         ok = run_step(step_name, step_fn)
         results[step_name] = ok
-        # Abort early if a critical step fails — no point continuing
         if not ok and step_name in CRITICAL_STEPS:
             LOGGER.error(
                 "\u274c Critical step '%s' failed — aborting pipeline.", step_name

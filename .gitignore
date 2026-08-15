@@ -10,6 +10,7 @@ build/
 .DS_Store
 *.log
 stats/pipeline_log.json
+.analysis_temp_*.json
 
 # Common Python tooling caches
 .pytest_cache/

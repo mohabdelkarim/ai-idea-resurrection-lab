@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from config import RESURRECTION_BASE_FOLDER, STATS_FILE, VOTES_FILE
+from config import RESURRECTION_BASE_FOLDER, STATS_FILE
 
 
 logging.basicConfig(
@@ -125,7 +125,6 @@ def load_all_metas() -> list[dict[str, Any]]:
     # Sort ascending by date for hall-of-fame / chronological display
     metas.sort(key=lambda item: str(item.get("date", "")))
     LOGGER.info("Loaded %d unique resurrection meta files.", len(metas))
-    LOGGER.info("Votes file configured: %s", Path(VOTES_FILE))
     return metas
 
 
@@ -219,7 +218,6 @@ def _pick_last_resurrection(metas: list[dict[str, Any]]) -> dict[str, Any] | Non
 
 
 def update_stats() -> dict[str, Any]:
-    existing_progress = load_progress()
     metas = load_all_metas()
 
     total_resurrections = len(metas)

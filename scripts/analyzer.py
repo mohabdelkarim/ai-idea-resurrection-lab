@@ -18,13 +18,21 @@ from config import (
     APPROVED_TECHNOLOGY_TAGS,
     MIN_ACCEPTABLE_IMPACT_SCORE,
     MIN_QUALITY_BODY_CHARS,
-    MIN_QUALITY_COMMENTS,
     RECENT_REPO_HISTORY_LIMIT,
     REPO_DIVERSITY_LOOKBACK_DAYS,
 )
 
 
 LOGGER = logging.getLogger(__name__)
+
+
+class AnalysisRejected(Exception):
+    """Raised when an issue must not be shipped after analysis / validation."""
+
+    def __init__(self, reason: str) -> None:
+        self.reason = reason
+        super().__init__(reason)
+
 
 _TAGS_LOWER = {tag.lower(): tag for tag in APPROVED_TECHNOLOGY_TAGS}
 
@@ -61,10 +69,10 @@ REPO_POC_LANGUAGE: dict[str, str] = {
     "gradio-app/gradio": "python",
     "streamlit/streamlit": "python",
     "run-llama/llama_index": "python",
-    "ggerganov/llama.cpp": "python",
     "comfyanonymous/ComfyUI": "python",
     "ansible/ansible": "python",
     "supabase/supabase": "typescript",
+    "expressjs/express": "typescript",
     # Go ecosystem
     "golang/go": "go",
     "hashicorp/terraform": "go",
@@ -88,17 +96,8 @@ REPO_POC_LANGUAGE: dict[str, str] = {
     "zellij-org/zellij": "rust",
     "tauri-apps/tauri": "rust",
     "nickel-lang/nickel": "rust",
-    # Other
-    # Ruby repos → closest supported PoC language is Python
-    "rails/rails": "python",
-    "ohmyzsh/ohmyzsh": "python",
-    "JetBrains/intellij-community": "python",
-    "expressjs/express": "typescript",
-    "redis/redis": "python",
-    "postgres/postgres": "python",
-    # C++ repos (llama.cpp, linux, llvm) → Python for PoC since C++ is not in ALLOWED_POC_LANGUAGES
-    "torvalds/linux": "python",
-    "llvm/llvm-project": "python",
+    # Unsupported native languages (C/C++/Ruby/Shell/Java) → no PoC mapping.
+    # Analyzer will ship analysis/RFC only for these repos.
 }
 
 # ---------------------------------------------------------------------------
@@ -130,6 +129,9 @@ MAX_RETRIES = 4
 MAX_TOKENS_METADATA = 4096
 MAX_TOKENS_POC = 8192
 MAX_TOKENS_RFC = 6144
+
+# Effort values the model overuses as defaults — require justification or reject.
+CLUSTERED_EFFORT_HOURS = frozenset({40, 80, 120})
 
 # Labels that indicate a maintainer consciously rejected the idea.
 # Issues carrying any of these must be skipped — they are not resurrection candidates.
@@ -181,22 +183,27 @@ def _is_junk_issue(issue: dict[str, Any]) -> tuple[bool, str]:
 _GENERIC_PHRASES = re.compile(
     r"\b(ecosystem maturity|increased interest|user demand|community has grown|"
     r"modern tooling|recent years|growing adoption|significant progress|"
-    r"things have changed|the landscape|has evolved)\b",
+    r"things have changed|the landscape|has evolved|advancements? (?:in|enable)|"
+    r"more flexible|better support|now (?:possible|feasible)|rapid evolution)\b",
     re.IGNORECASE,
 )
 
 _SPECIFIC_REFS = re.compile(
     r"\b(Python \d+\.\d+|Rust \d+|Go \d+\.\d+|PEP \d+|RFC \d+|"
+    r"Node\.?js \d+|TypeScript \d+|React \d+|Next\.js \d+|"
     r"tokio|asyncio|pydantic|zod|esbuild|bun|deno|v8|llvm|wasm|tauri|"
-    r"turborepo|vite|swc|oxc|biome|ruff|uv|pixi)\b",
+    r"turborepo|vite|swc|oxc|biome|ruff|uv|pixi|sync\.OnceValue|"
+    r"App Router|generateStaticParams|WhisperProcessor)\b",
     re.IGNORECASE,
 )
 
 
 def _has_generic_filler(text: str) -> bool:
-    """Return True if text has > 2 generic phrases and < 2 specific tool references."""
+    """Return True if text leans on vague claims without concrete refs."""
     generic_count = len(_GENERIC_PHRASES.findall(text))
     specific_count = len(_SPECIFIC_REFS.findall(text))
+    if generic_count >= 2 and specific_count == 0:
+        return True
     return generic_count > 2 and specific_count < 2
 
 
@@ -486,7 +493,8 @@ Respond with ONLY the JSON object. No markdown fences. No text outside JSON.\
 # ---------------------------------------------------------------------------
 
 def _preferred_poc_language(repo: str) -> str:
-    return REPO_POC_LANGUAGE.get(repo, "python")
+    """Return native PoC language, or empty string when PoCs are not supported."""
+    return REPO_POC_LANGUAGE.get(repo, "")
 
 
 def _safe_int(value: Any, min_val: int, max_val: int, default: int) -> int:
@@ -512,19 +520,28 @@ def _normalize_tags(tags: Any) -> list[str]:
     for tag in tags:
         tag_str = str(tag).strip().lower()
         if tag_str in _TAGS_LOWER:
-            normalized.append(_TAGS_LOWER[tag_str])
-        elif tag_str:
-            normalized.append(tag_str)
+            canonical = _TAGS_LOWER[tag_str]
+            if canonical not in normalized:
+                normalized.append(canonical)
     return normalized[:6]
 
 
+def _rfc_has_required_sections(text: str) -> bool:
+    required = [
+        "Summary",
+        "Motivation",
+        "Detailed Design",
+        "Drawbacks",
+        "Alternatives",
+        "Unresolved Questions",
+    ]
+    lowered = text.lower()
+    return all(section.lower() in lowered for section in required)
+
+
 def _ensure_rfc_sections(text: str) -> str:
-    required = ["Summary", "Motivation", "Detailed Design", "Drawbacks",
-                "Alternatives", "Unresolved Questions"]
-    for section in required:
-        if section.lower() not in text.lower():
-            text += f"\n\n## {section}\n\nTo be defined."
-    return text
+    """Return RFC text unchanged. Hollow padding is no longer injected."""
+    return text.strip()
 
 
 def _sanitize_raw_json(raw: str) -> str:
@@ -732,10 +749,7 @@ def _candidate_sort_key(
 def _fails_post_analysis_quality(issue: dict[str, Any], analysis: dict[str, Any]) -> tuple[bool, str]:
     """
     Reject low-value candidates even after diversity ranking.
-
-    The analyzer has richer context than the scanner, so a very low impact score
-    is a strong signal that the issue is not worth resurrecting unless the issue
-    still shows meaningful community discussion.
+    Impact below MIN_ACCEPTABLE_IMPACT_SCORE always fails — comments do not bypass.
     """
     impact_score = _safe_int(analysis.get("impact_score", 0), 0, 10, 0)
     comments = _safe_int(issue.get("comments", 0), 0, 1_000_000, 0)
@@ -744,13 +758,10 @@ def _fails_post_analysis_quality(issue: dict[str, Any], analysis: dict[str, Any]
     if impact_score >= MIN_ACCEPTABLE_IMPACT_SCORE:
         return False, ""
 
-    if comments >= MIN_QUALITY_COMMENTS:
-        return False, ""
-
     return (
         True,
         f"impact_score={impact_score} below minimum {MIN_ACCEPTABLE_IMPACT_SCORE} "
-        f"with weak discussion (reactions={reactions}, comments={comments})",
+        f"(reactions={reactions}, comments={comments})",
     )
 
 
@@ -817,23 +828,20 @@ def _call_api(
 # Pre-check: ask LLM if the issue is already solved before spending tokens
 # ---------------------------------------------------------------------------
 
-def _is_already_solved_llm(client: Groq, issue: dict[str, Any]) -> bool:
+def _is_already_solved_llm(client: Groq, issue: dict[str, Any]) -> bool | None:
     """
-    Ask the LLM whether this issue is already implemented/solved in the current
-    stable version of the software.
+    Ask the LLM whether this issue is already implemented/solved.
 
-    Returns True only when the LLM answers with high confidence (already_solved=true).
-    On any error or ambiguous answer, returns False so the issue is NOT skipped.
-    This is intentionally conservative: false negatives (letting a solved issue
-    through) are caught later by validate_analysis; false positives (dropping a
-    valid resurrection) would silently kill a good idea.
+    Returns:
+      True  — confidently already solved (skip + persist rejection)
+      False — not solved (proceed)
+      None  — precheck failed / ambiguous (skip this run without persisting)
     """
     repo = str(issue.get("repo", ""))
     title = str(issue.get("title", ""))
-    body = str(issue.get("body") or "")[:1500]  # keep prompt short
+    body = str(issue.get("body") or "")[:1500]
     issue_number = issue.get("issue_number", "?")
 
-    # Collect labels as plain strings for the prompt
     raw_labels = issue.get("labels", [])
     label_strings: list[str] = []
     for lbl in raw_labels:
@@ -874,12 +882,11 @@ def _is_already_solved_llm(client: Groq, issue: dict[str, Any]) -> bool:
             )
         return already_solved
     except Exception as err:
-        # On any failure, be conservative: do NOT skip the issue.
         LOGGER.warning(
-            "[PreCheck] #%s (%s): pre-check failed (%s) — proceeding with analysis.",
+            "[PreCheck] #%s (%s): pre-check failed (%s) — skipping this candidate for the run.",
             issue_number, repo, err,
         )
-        return False
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -926,55 +933,58 @@ def _build_metadata_prompt(issue: dict[str, Any], previous_score: int | None = N
 
 
 def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]:
+    quality_flags: list[str] = []
     parsed["impact_score"] = _safe_int(parsed.get("impact_score"), 1, 10, 5)
     parsed["effort_hours"] = _safe_int(parsed.get("effort_hours"), 1, 10000, 40)
     parsed["death_year"] = _safe_int(parsed.get("death_year"), 2010, 2026, _issue_year(issue))
     parsed["has_poc"] = bool(parsed.get("has_poc", False))
+    parsed["effort_justification"] = str(parsed.get("effort_justification", "")).strip()
 
     effort = parsed.get("effort_hours", 999)
     impact = parsed.get("impact_score", 0)
+    repo = str(issue.get("repo", ""))
+    preferred_lang = _preferred_poc_language(repo)
+    supports_poc = preferred_lang in ALLOWED_POC_LANGUAGES
 
-    # Force PoC path 1: small/medium effort (effort <= threshold)
-    if not parsed["has_poc"] and isinstance(effort, int) and effort <= POC_FORCE_EFFORT_THRESHOLD:
-        LOGGER.info(
-            "[Coerce] Forcing has_poc=True (effort=%dh <= effort_threshold=%dh).",
-            effort, POC_FORCE_EFFORT_THRESHOLD,
-        )
-        parsed["has_poc"] = True
-
-    # Force PoC path 2: high-impact issue (impact >= threshold)
-    # These are the most valuable resurrections — a PoC is essential to
-    # demonstrate feasibility even when implementation is large.
-    if not parsed["has_poc"] and isinstance(impact, int) and impact >= POC_FORCE_IMPACT_THRESHOLD:
-        LOGGER.info(
-            "[Coerce] Forcing has_poc=True (impact_score=%d >= impact_threshold=%d).",
-            impact, POC_FORCE_IMPACT_THRESHOLD,
-        )
-        parsed["has_poc"] = True
+    if not supports_poc:
+        if parsed["has_poc"]:
+            quality_flags.append("poc_disabled_unsupported_language")
+        parsed["has_poc"] = False
+        parsed["poc_language"] = preferred_lang or ""
+    else:
+        if not parsed["has_poc"] and isinstance(effort, int) and effort <= POC_FORCE_EFFORT_THRESHOLD:
+            LOGGER.info(
+                "[Coerce] Forcing has_poc=True (effort=%dh <= effort_threshold=%dh).",
+                effort, POC_FORCE_EFFORT_THRESHOLD,
+            )
+            parsed["has_poc"] = True
+        if not parsed["has_poc"] and isinstance(impact, int) and impact >= POC_FORCE_IMPACT_THRESHOLD:
+            LOGGER.info(
+                "[Coerce] Forcing has_poc=True (impact_score=%d >= impact_threshold=%d).",
+                impact, POC_FORCE_IMPACT_THRESHOLD,
+            )
+            parsed["has_poc"] = True
+        parsed["poc_language"] = preferred_lang
 
     parsed["rfc_needed"] = bool(parsed.get("rfc_needed", False))
     parsed["abandoned_date"] = str(issue.get("updated_at", ""))
     parsed["technology_tags"] = _normalize_tags(parsed.get("technology_tags", []))
     if not parsed["technology_tags"]:
-        parsed["technology_tags"] = ["open-source"]
+        quality_flags.append("tags_empty_after_allowlist")
 
-    # Enforce the repo's known language
-    repo = str(issue.get("repo", ""))
-    preferred_lang = _preferred_poc_language(repo)
-    if preferred_lang in ALLOWED_POC_LANGUAGES:
-        parsed["poc_language"] = preferred_lang
-    else:
-        lang = str(parsed.get("poc_language", "")).strip().lower()
-        parsed["poc_language"] = lang if lang in ALLOWED_POC_LANGUAGES else "python"
+    if (
+        isinstance(effort, int)
+        and effort in CLUSTERED_EFFORT_HOURS
+        and len(parsed["effort_justification"]) < 20
+    ):
+        quality_flags.append("clustered_effort_without_justification")
 
-    # Clean one-liners — ensure complete sentences, no truncation mid-word
     for field in ("one_line_summary", "one_line_why"):
         value = re.sub(r"\s+", " ", str(parsed.get(field, "")).strip())
         value = re.sub(r"\s+(and|or|but|,)\s*$", ".", value, flags=re.IGNORECASE)
         value = re.sub(r"\.{2,}$", ".", value).strip()
         words = value.split()
         if len(words) > ONE_LINE_MAX_WORDS:
-            # Try to cut at the last sentence-ending punctuation within the limit
             candidate = " ".join(words[:ONE_LINE_MAX_WORDS])
             last_punct = max(
                 candidate.rfind(". "),
@@ -992,6 +1002,9 @@ def _coerce_metadata(parsed: dict[str, Any], issue: dict[str, Any]) -> dict[str,
             value += "."
         parsed[field] = value
 
+    parsed["quality_flags"] = quality_flags
+    parsed["poc_validated"] = False
+    parsed["poc_validation_error"] = ""
     return parsed
 
 
@@ -1134,7 +1147,19 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
 
     tags = data.get("technology_tags", [])
     if not isinstance(tags, list) or len(tags) == 0:
-        errors.append("technology_tags must be a non-empty list")
+        errors.append("technology_tags must be a non-empty allowlisted list")
+
+    flags = data.get("quality_flags", [])
+    if isinstance(flags, list) and "clustered_effort_without_justification" in flags:
+        errors.append(
+            "effort_hours is a common default (40/80/120) without effort_justification"
+        )
+    if isinstance(flags, list) and "tags_empty_after_allowlist" in flags:
+        errors.append("technology_tags empty after allowlist filtering")
+
+    if data.get("has_poc") and not data.get("poc_validated"):
+        # Soft note only when validation has not run yet; analyze_issue sets this.
+        pass
 
     return len(errors) == 0, errors
 
@@ -1145,6 +1170,8 @@ def validate_analysis(data: dict[str, Any]) -> tuple[bool, list[str]]:
 
 def analyze_issue(issue: dict[str, Any], previous_score: int | None = None) -> dict[str, Any]:
     from dotenv import load_dotenv
+    from poc_validator import validate_poc_code
+
     load_dotenv()
 
     api_key = os.environ.get("GROQ_API_KEY")
@@ -1154,12 +1181,16 @@ def analyze_issue(issue: dict[str, Any], previous_score: int | None = None) -> d
 
     issue_id = issue.get("issue_number", "?")
 
-    # CALL 1 — metadata
     LOGGER.info("[Analyzer #%s] Call 1/3: metadata", issue_id)
     metadata_prompt = _build_metadata_prompt(issue, previous_score=previous_score)
     metadata_raw = _call_api(
         client, _SYSTEM_METADATA, metadata_prompt, MAX_TOKENS_METADATA, f"#{issue_id} metadata"
     )
+
+    if bool(metadata_raw.get("__skip__")):
+        reason = str(metadata_raw.get("reason", "model requested skip")).strip()
+        raise AnalysisRejected(f"__skip__: {reason}")
+
     metadata = _coerce_metadata(metadata_raw, issue)
     LOGGER.info(
         "[Analyzer #%s] Metadata done — impact=%d effort=%dh poc=%s rfc=%s lang=%s",
@@ -1171,7 +1202,6 @@ def analyze_issue(issue: dict[str, Any], previous_score: int | None = None) -> d
         metadata["poc_language"],
     )
 
-    # CALL 2 — proof-of-concept code (only if has_poc=True)
     if metadata["has_poc"]:
         LOGGER.info("[Analyzer #%s] Call 2/3: proof-of-concept code", issue_id)
         poc_prompt = _build_poc_prompt(issue, metadata)
@@ -1186,45 +1216,69 @@ def analyze_issue(issue: dict[str, Any], previous_score: int | None = None) -> d
             )
             poc_code = ""
             metadata["has_poc"] = False
+            metadata["poc_validated"] = False
+            metadata["poc_validation_error"] = "poc too short"
+            metadata.setdefault("quality_flags", []).append("poc_too_short")
+        else:
+            validation = validate_poc_code(poc_code, str(metadata.get("poc_language", "")))
+            if not validation.ok:
+                LOGGER.warning(
+                    "[Analyzer #%s] PoC failed validation — demoting to analysis/RFC only: %s",
+                    issue_id,
+                    validation.error[:300],
+                )
+                metadata["has_poc"] = False
+                metadata["poc_validated"] = False
+                metadata["poc_validation_error"] = validation.error[:500]
+                metadata.setdefault("quality_flags", []).append("poc_validation_failed")
+                poc_code = ""
+            else:
+                metadata["poc_validated"] = True
+                metadata["poc_validation_error"] = ""
         metadata["proof_of_concept_code"] = poc_code
-        LOGGER.info("[Analyzer #%s] PoC done (%d chars)", issue_id, len(poc_code))
+        LOGGER.info("[Analyzer #%s] PoC done (%d chars, validated=%s)",
+                    issue_id, len(poc_code), metadata.get("poc_validated"))
     else:
         metadata["proof_of_concept_code"] = ""
+        metadata["poc_validated"] = False
         LOGGER.info("[Analyzer #%s] Skipping PoC (has_poc=False)", issue_id)
 
-    # CALL 3 — RFC (only if rfc_needed=True)
     if metadata["rfc_needed"]:
         LOGGER.info("[Analyzer #%s] Call 3/3: RFC", issue_id)
         rfc_prompt = _build_rfc_prompt(issue, metadata)
         rfc_raw = _call_api(
             client, _SYSTEM_RFC, rfc_prompt, MAX_TOKENS_RFC, f"#{issue_id} rfc"
         )
-        rfc_text = str(rfc_raw.get("rfc_content", "")).strip()
-        rfc_text = _ensure_rfc_sections(rfc_text)
-        if len(rfc_text) < MIN_RFC_LENGTH:
+        rfc_text = _ensure_rfc_sections(str(rfc_raw.get("rfc_content", "")).strip())
+        if len(rfc_text) < MIN_RFC_LENGTH or not _rfc_has_required_sections(rfc_text):
             LOGGER.warning(
-                "[Analyzer #%s] RFC too short (%d chars), marking rfc_needed=False",
-                issue_id, len(rfc_text),
+                "[Analyzer #%s] RFC incomplete or too short — dropping RFC",
+                issue_id,
             )
             rfc_text = ""
             metadata["rfc_needed"] = False
+            metadata.setdefault("quality_flags", []).append("rfc_incomplete")
+        if "to be defined." in rfc_text.lower():
+            LOGGER.warning("[Analyzer #%s] RFC contains stub padding — dropping RFC", issue_id)
+            rfc_text = ""
+            metadata["rfc_needed"] = False
+            metadata.setdefault("quality_flags", []).append("rfc_stubbed")
         metadata["rfc_content"] = rfc_text
         LOGGER.info("[Analyzer #%s] RFC done (%d chars)", issue_id, len(rfc_text))
     else:
         metadata["rfc_content"] = ""
         LOGGER.info("[Analyzer #%s] Skipping RFC (rfc_needed=False)", issue_id)
 
-    # Final validation (best-effort — never blocks the pipeline)
     is_valid, field_errors = validate_analysis(metadata)
     if is_valid:
         LOGGER.info("[Analyzer #%s] Validation passed.", issue_id)
     else:
         for err in field_errors:
-            LOGGER.warning("[Analyzer #%s] Validation warning: %s", issue_id, err)
-        LOGGER.warning(
-            "[Analyzer #%s] Returning best-effort result despite %d warning(s).",
-            issue_id, len(field_errors),
-        )
+            LOGGER.warning("[Analyzer #%s] Validation error: %s", issue_id, err)
+        raise AnalysisRejected("; ".join(field_errors))
+
+    if metadata.get("has_poc") and not metadata.get("poc_validated"):
+        raise AnalysisRejected("has_poc=True but poc_validated=False")
 
     return {"analysis": metadata}
 
@@ -1248,7 +1302,6 @@ def analyze() -> str:
         _load_rotation,
         is_repo_on_cooldown,
         mark_quality_rejected,
-        mark_repo_used,
     )
 
     api_key = os.environ.get("GROQ_API_KEY", "")
@@ -1351,16 +1404,24 @@ def analyze() -> str:
                 "[Analyzer] Skipping #%d (%s) — by-design rejected (labels/state_reason).",
                 issue_number, repo,
             )
+            mark_quality_rejected(repo, issue_number, "by-design rejected")
             continue
 
-        # GATE 2 — LLM pre-check: is this already solved in the current stable release?
-        # Only runs if Groq client is available. On failure returns False (conservative).
-        if client is not None and _is_already_solved_llm(client, issue):
-            LOGGER.info(
-                "[Analyzer] Skipping #%d (%s) — LLM pre-check: already solved.",
-                issue_number, repo,
-            )
-            continue
+        if client is not None:
+            precheck = _is_already_solved_llm(client, issue)
+            if precheck is True:
+                LOGGER.info(
+                    "[Analyzer] Skipping #%d (%s) — LLM pre-check: already solved.",
+                    issue_number, repo,
+                )
+                mark_quality_rejected(repo, issue_number, "LLM precheck: already solved")
+                continue
+            if precheck is None:
+                LOGGER.info(
+                    "[Analyzer] Skipping #%d (%s) this run — precheck unavailable.",
+                    issue_number, repo,
+                )
+                continue
 
         previous_score = _get_last_resurrection_score(repo, RESURRECTION_BASE_FOLDER)
         if previous_score is not None:
@@ -1378,7 +1439,18 @@ def analyze() -> str:
             total_counts.get(repo, 0),
             _safe_int(issue.get("reactions", 0), 0, 1_000_000, 0),
         )
-        result = analyze_issue(issue, previous_score=previous_score)
+        try:
+            result = analyze_issue(issue, previous_score=previous_score)
+        except AnalysisRejected as rejected:
+            LOGGER.info(
+                "[Analyzer] Rejecting #%s (%s): %s",
+                issue_number,
+                repo,
+                rejected.reason,
+            )
+            mark_quality_rejected(repo, issue_number, rejected.reason[:500])
+            continue
+
         rejected, rejection_reason = _fails_post_analysis_quality(issue, result["analysis"])
         if rejected:
             LOGGER.info(
@@ -1394,7 +1466,6 @@ def analyze() -> str:
             "analysis": result["analysis"],
         }
 
-        # Generate a fresh UUID for this specific write — isolated per process/run.
         run_id = uuid.uuid4().hex[:12]
         temp_file = f".analysis_temp_{run_id}.json"
         temp_path = Path(temp_file)
@@ -1403,8 +1474,7 @@ def analyze() -> str:
             encoding="utf-8",
         )
         LOGGER.info("[Analyzer] Analysis saved to %s", temp_file)
-        mark_repo_used(repo)
-        # Return the path so runner.py can pass it explicitly to generator
+        # mark_repo_used happens in runner AFTER successful generate
         return str(temp_path.resolve())
 
     LOGGER.warning(

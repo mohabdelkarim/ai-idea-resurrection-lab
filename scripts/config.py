@@ -102,7 +102,6 @@ MAX_ISSUES_PER_REPO = 500
 SCAN_PAGES_PER_REPO: int = math.ceil(MAX_ISSUES_PER_REPO / ISSUES_PER_PAGE)
 
 MAX_DAILY_RESURRECTIONS = 1
-SCAN_INTERVAL_DAYS = 3
 
 # How many days before a repo can be picked again by the scanner.
 # After mark_repo_used() is called, the repo is skipped for this many days.
@@ -190,29 +189,23 @@ RESURRECTION_BASE_FOLDER = "resurrections"
 GRAVEYARD_FOLDER = "graveyard"
 STATS_FOLDER = "stats"
 STATS_FILE = "stats/progress.json"
-VOTES_FILE = "stats/votes.json"
-DIGEST_LOG_FILE = "stats/digest_log.json"
-PIPELINE_LOG_FILE = "stats/pipeline_log.json"
 TEMPLATES_FOLDER = "templates"
 
 BOT_NAME = "Resurrection Bot 🧬"
-BOT_EMAIL = "bot@resurrection-lab.dev"
 
 # Single source of truth for abandoned labels — imported by scanner.py
 # NOTE: 'enhancement' and 'feature' removed — they are too broad and exist
 # on virtually every repo, causing too many false-positive "abandoned" matches.
+# Labels that mean "stale / deferred feature interest" — NOT maintainer rejection.
+# By-design / wontfix / not-planned are intentionally excluded; those are hard-skipped
+# later by the analyzer so we do not treat conscious declines as resurrection fuel.
 ABANDONED_LABELS: frozenset[str] = frozenset({
-    # Standard wontfix variants
-    "wontfix",
-    "wont fix",
-    "won't fix",
-    "wont-fix",
     # Stale / inactive
     "stale",
     "staled",
     "inactive",
     "no-activity",
-    # Feature requests (specific closed/declined variants only)
+    # Feature requests
     "feature-request",
     "feature request",
     "type: feature",
@@ -225,11 +218,8 @@ ABANDONED_LABELS: frozenset[str] = frozenset({
     "future",
     "icebox",
     "backlog",
-    # Declined/deferred
-    "declined",
+    # Deferred (not rejected)
     "deferred",
-    "not planned",
-    "not-planned",
     "on hold",
     "on-hold",
     # Discussion/proposal (closed without resolution)
@@ -246,16 +236,7 @@ ABANDONED_LABELS: frozenset[str] = frozenset({
     "awaiting more feedback",
     "needs-more-info",
     "more-information-needed",
-    # Status: closed as design / by-design
-    "by design",
-    "by-design",
-    "as designed",
-    "closed-as-design",
-    # Repo-specific common patterns
-    "resolution: by design",
-    "resolution: wont fix",
     "status: abandoned",
-    "status: declined",
 })
 
 HIGH_DEMAND_UPVOTES_OVERRIDE = 50  # lowered from 100: 50 reactions = bypass label check
