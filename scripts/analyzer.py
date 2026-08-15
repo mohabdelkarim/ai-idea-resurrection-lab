@@ -121,13 +121,15 @@ POC_FORCE_IMPACT_THRESHOLD = 8
 MIN_RFC_LENGTH = 300
 ONE_LINE_MIN_WORDS = 10
 ONE_LINE_MAX_WORDS = 20
-MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
+MODEL_NAME = "openai/gpt-oss-120b"
 ANALYZER_TEMPERATURE = 0.55
+# Keep reasoning low so CoT does not exhaust max_completion_tokens before JSON content.
+REASONING_EFFORT = "low"
 MAX_RETRIES = 4
-# Each individual call is small now — 2048 is plenty per call.
-MAX_TOKENS_METADATA = 2048
-MAX_TOKENS_POC = 4096
-MAX_TOKENS_RFC = 3072
+# gpt-oss spends some completion budget on reasoning — leave headroom for JSON output.
+MAX_TOKENS_METADATA = 4096
+MAX_TOKENS_POC = 8192
+MAX_TOKENS_RFC = 6144
 
 # Labels that indicate a maintainer consciously rejected the idea.
 # Issues carrying any of these must be skipped — they are not resurrection candidates.
@@ -777,7 +779,8 @@ def _call_api(
                     {"role": "user", "content": user_prompt},
                 ],
                 temperature=ANALYZER_TEMPERATURE,
-                max_tokens=max_tokens,
+                max_completion_tokens=max_tokens,
+                reasoning_effort=REASONING_EFFORT,
             )
             raw_text = response.choices[0].message.content or ""
 
