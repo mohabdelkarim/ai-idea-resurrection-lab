@@ -17,7 +17,12 @@
     "html_url": "https://github.com/python/cpython/issues/108219",
     "author_login": "colesbury",
     "author_profile": "https://github.com/colesbury",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "LLM precheck: already solved"
   },
   {
     "repo": "python/cpython",
@@ -34,7 +39,12 @@
     "html_url": "https://github.com/python/cpython/issues/91420",
     "author_login": "ezio-melotti",
     "author_profile": "https://github.com/ezio-melotti",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "python/cpython",
@@ -52,6 +62,11 @@
     "html_url": "https://github.com/python/cpython/issues/89083",
     "author_login": "9e093cb0-2321-4a2b-92c2-fa8b1591a982",
     "author_profile": "https://github.com/9e093cb0-2321-4a2b-92c2-fa8b1591a982",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
