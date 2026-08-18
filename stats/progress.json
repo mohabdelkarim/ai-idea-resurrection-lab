@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-08-17T14:01:00",
-  "total_resurrections": 127,
+  "last_updated": "2026-08-18T13:59:38",
+  "total_resurrections": 128,
   "total_repos_covered": 42,
   "average_impact_score": 6.55,
-  "average_effort_hours": 75.24,
+  "average_effort_hours": 74.75,
   "total_with_poc": 99,
   "total_with_rfc": 114,
   "comment_stats": {
-    "attempted": 51,
-    "posted": 2,
+    "attempted": 52,
+    "posted": 3,
     "failed": 49
   },
   "repo_diversity": {
@@ -72,30 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-08-17",
-    "repo": "rails/rails",
-    "issue_number": 21948,
-    "title": "CSRF protection prevents some webkit users from submitting forms",
-    "reactions": 105,
-    "abandoned_date": "2022-12-22T16:55:42Z",
-    "one_line_why": "Safari's WebKit cache restoration behavior was standardized with iOS 12 and iPadOS 13.",
-    "one_line_summary": "Rails' CSRF protection currently fails when Safari restores cached pages after session cookie clearance.",
-    "impact_score": 7,
-    "effort_hours": 32.0,
+    "date": "2026-08-18",
+    "repo": "ohmyzsh/ohmyzsh",
+    "issue_number": 6330,
+    "title": "Add zsh-docker-aliases to the plugins",
+    "reactions": 18,
+    "abandoned_date": "2019-04-07T21:24:30Z",
+    "one_line_why": "Docker Desktop 4.0 introduced native shell integration, enabling richer alias plugins.",
+    "one_line_summary": "Add the zsh-docker-aliases plugin to Oh My Zsh for convenient Docker command shortcuts.",
+    "impact_score": 6,
+    "effort_hours": 12.0,
     "has_poc": false,
-    "has_rfc": true,
+    "has_rfc": false,
     "poc_language": "",
     "poc_validated": false,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "security"
+      "docker"
     ],
-    "original_url": "https://github.com/rails/rails/issues/21948",
-    "resurrection_slug": "2026-08-17_rails-rails_21948",
+    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6330",
+    "resurrection_slug": "2026-08-18_ohmyzsh-ohmyzsh_6330",
     "comment_posted": true,
     "comment_status": "posted",
-    "comment_url": "https://github.com/rails/rails/issues/21948#issuecomment-5316913902",
-    "commented_at": "2026-08-17T14:01:00+00:00"
+    "comment_url": "https://github.com/ohmyzsh/ohmyzsh/issues/6330#issuecomment-5329250323",
+    "commented_at": "2026-08-18T13:59:38+00:00"
   }
 }

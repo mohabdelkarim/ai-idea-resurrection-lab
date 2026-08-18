@@ -43,8 +43,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Junk title: 'Test issue'"
   },
   {
     "repo": "python/cpython",
@@ -66,7 +66,7 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "LLM precheck: already solved"
   }
 ]
