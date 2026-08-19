@@ -15,7 +15,12 @@
     "html_url": "https://github.com/denoland/deno/issues/13616",
     "author_login": "Conaclos",
     "author_profile": "https://github.com/Conaclos",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "denoland/deno",
@@ -32,7 +37,12 @@
     "html_url": "https://github.com/denoland/deno/issues/18390",
     "author_login": "Conaclos",
     "author_profile": "https://github.com/Conaclos",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   },
   {
     "repo": "denoland/deno",
@@ -50,6 +60,11 @@
     "html_url": "https://github.com/denoland/deno/issues/20455",
     "author_login": "nayeemrmn",
     "author_profile": "https://github.com/nayeemrmn",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   }
 ]

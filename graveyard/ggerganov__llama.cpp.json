@@ -16,9 +16,11 @@
     "author_login": "teee9",
     "author_profile": "https://github.com/teee9",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "ggerganov/llama.cpp",
@@ -37,6 +39,8 @@
     "author_login": "createthis",
     "author_profile": "https://github.com/createthis",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -58,9 +62,11 @@
     "author_login": "AbdullahMPrograms",
     "author_profile": "https://github.com/AbdullahMPrograms",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "ggerganov/llama.cpp",
@@ -78,6 +84,8 @@
     "author_login": "rodrigomatta",
     "author_profile": "https://github.com/rodrigomatta",
     "comments": 10,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -99,6 +107,8 @@
     "author_login": "Ajay9o9",
     "author_profile": "https://github.com/Ajay9o9",
     "comments": 2,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -120,9 +130,11 @@
     "author_login": "sammcj",
     "author_profile": "https://github.com/sammcj",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "ggerganov/llama.cpp",
@@ -141,8 +153,10 @@
     "author_login": "sxch775-work",
     "author_profile": "https://github.com/sxch775-work",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   }
 ]

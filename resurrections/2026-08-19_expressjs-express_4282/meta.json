@@ -1,0 +1,27 @@
+{
+  "date": "2026-08-19",
+  "repo": "expressjs/express",
+  "issue_number": 4282,
+  "title": "Dependencies (5.0)",
+  "reactions": 57,
+  "abandoned_date": "2025-01-11T18:01:33Z",
+  "one_line_why": "Node.js 14 LTS unified core APIs enable removal of external packages in Express5.",
+  "one_line_summary": "Express 5.0 will eliminate legacy dependencies by leveraging built\u2011in Node.js APIs.",
+  "impact_score": 8,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "typescript"
+  ],
+  "original_url": "https://github.com/expressjs/express/issues/4282",
+  "resurrection_slug": "2026-08-19_expressjs-express_4282",
+  "comment_posted": true,
+  "comment_status": "posted",
+  "comment_url": "https://github.com/expressjs/express/issues/4282#issuecomment-5343234183",
+  "commented_at": "2026-08-19T14:02:45+00:00"
+}

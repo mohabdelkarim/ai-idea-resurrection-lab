@@ -14,7 +14,12 @@
     "html_url": "https://github.com/expressjs/express/issues/4282",
     "author_login": "vansergen",
     "author_profile": "https://github.com/vansergen",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "expressjs/express",
@@ -33,7 +38,12 @@
     "html_url": "https://github.com/expressjs/express/issues/2259",
     "author_login": "jonathanong",
     "author_profile": "https://github.com/jonathanong",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "expressjs/express",
@@ -50,7 +60,12 @@
     "html_url": "https://github.com/expressjs/express/issues/2761",
     "author_login": "jabrena",
     "author_profile": "https://github.com/jabrena",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "expressjs/express",
@@ -67,7 +82,12 @@
     "html_url": "https://github.com/expressjs/express/issues/4535",
     "author_login": "thernstig",
     "author_profile": "https://github.com/thernstig",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "expressjs/express",
@@ -85,7 +105,12 @@
     "html_url": "https://github.com/expressjs/express/issues/4453",
     "author_login": "brandon-leapyear",
     "author_profile": "https://github.com/brandon-leapyear",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "expressjs/express",
@@ -102,7 +127,12 @@
     "html_url": "https://github.com/expressjs/express/issues/5275",
     "author_login": "benfosterlitmos",
     "author_profile": "https://github.com/benfosterlitmos",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "expressjs/express",
@@ -120,6 +150,11 @@
     "html_url": "https://github.com/expressjs/express/issues/3197",
     "author_login": "techandsoftware",
     "author_profile": "https://github.com/techandsoftware",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
