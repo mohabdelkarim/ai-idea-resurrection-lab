@@ -125,10 +125,16 @@ ANALYZER_TEMPERATURE = 0.55
 # Keep reasoning low so CoT does not exhaust max_completion_tokens before JSON content.
 REASONING_EFFORT = "low"
 MAX_RETRIES = 4
-# gpt-oss spends some completion budget on reasoning — leave headroom for JSON output.
-MAX_TOKENS_METADATA = 4096
-MAX_TOKENS_POC = 8192
-MAX_TOKENS_RFC = 6144
+# Groq on_demand TPM for this model is 8000. Groq reserves
+# (input_tokens + max_completion_tokens) against that budget per request.
+# Keep completion caps low enough that prompt + completion stays under the limit.
+GROQ_TPM_REQUEST_BUDGET = 7500
+MAX_TOKENS_METADATA = 2048
+MAX_TOKENS_POC = 3072
+MAX_TOKENS_RFC = 3072
+# Prompt-side caps (chars) so input tokens stay predictable under TPM.
+ISSUE_BODY_MAX_CHARS = 1500
+MODERN_DESIGN_MAX_CHARS = 900
 
 # Effort values the model overuses as defaults — require justification or reject.
 CLUSTERED_EFFORT_HOURS = frozenset({40, 80, 120})
@@ -443,7 +449,7 @@ Return ONLY a JSON object:
 
 Requirements for proof_of_concept_code:
 - Real, runnable code — NOT pseudocode or a description.
-- At least 80 lines. Include imports, error handling, comments.
+- At least 40 lines. Include imports, error handling, comments.
 - Directly demonstrates the core idea from the issue.
 - Use the language specified in the user message.
 
@@ -769,6 +775,33 @@ def _fails_post_analysis_quality(issue: dict[str, Any], analysis: dict[str, Any]
 # Low-level: single API call with retries
 # ---------------------------------------------------------------------------
 
+def _estimate_prompt_tokens(system_prompt: str, user_prompt: str) -> int:
+    """Rough token estimate (~4 chars/token) plus message overhead."""
+    return max(1, (len(system_prompt) + len(user_prompt)) // 4) + 64
+
+
+def _fit_max_tokens(system_prompt: str, user_prompt: str, requested: int) -> int:
+    """Clamp completion tokens so input + completion stays under Groq TPM budget."""
+    input_tokens = _estimate_prompt_tokens(system_prompt, user_prompt)
+    room = GROQ_TPM_REQUEST_BUDGET - input_tokens
+    if room < 256:
+        raise ValueError(
+            f"Prompt too large for Groq TPM budget "
+            f"(~{input_tokens} input tokens, budget {GROQ_TPM_REQUEST_BUDGET})"
+        )
+    return max(256, min(requested, room))
+
+
+def _is_tpm_limit_error(err: Exception) -> bool:
+    text = str(err).lower()
+    return (
+        "rate_limit_exceeded" in text
+        or "tokens per minute" in text
+        or "request too large" in text
+        or "error code: 413" in text
+    )
+
+
 def _call_api(
     client: Groq,
     system_prompt: str,
@@ -781,6 +814,7 @@ def _call_api(
     Raises ValueError after all retries are exhausted.
     """
     last_error: Exception = ValueError("No attempts made")
+    completion_budget = _fit_max_tokens(system_prompt, user_prompt, max_tokens)
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             response = client.chat.completions.create(
@@ -790,7 +824,7 @@ def _call_api(
                     {"role": "user", "content": user_prompt},
                 ],
                 temperature=ANALYZER_TEMPERATURE,
-                max_completion_tokens=max_tokens,
+                max_completion_tokens=completion_budget,
                 reasoning_effort=REASONING_EFFORT,
             )
             raw_text = response.choices[0].message.content or ""
@@ -805,7 +839,12 @@ def _call_api(
 
             parsed = json.loads(raw_text)
             if isinstance(parsed, dict):
-                LOGGER.info("[API %s] Attempt %d succeeded.", call_label, attempt)
+                LOGGER.info(
+                    "[API %s] Attempt %d succeeded (max_completion_tokens=%d).",
+                    call_label,
+                    attempt,
+                    completion_budget,
+                )
                 return parsed
 
             raise ValueError(f"Expected dict, got {type(parsed).__name__}")
@@ -818,6 +857,15 @@ def _call_api(
         except Exception as err:
             last_error = err
             LOGGER.error("[API %s] Attempt %d unexpected error: %s", call_label, attempt, err)
+            if _is_tpm_limit_error(err) and attempt < MAX_RETRIES:
+                completion_budget = max(256, completion_budget // 2)
+                LOGGER.warning(
+                    "[API %s] TPM/413 — retrying with max_completion_tokens=%d",
+                    call_label,
+                    completion_budget,
+                )
+                time.sleep(2 ** (attempt - 1))
+                continue
             if attempt < MAX_RETRIES:
                 time.sleep(2 ** (attempt - 1))
 
@@ -922,7 +970,7 @@ def _build_metadata_prompt(issue: dict[str, Any], previous_score: int | None = N
         f"Last activity: {issue.get('updated_at', '')}\n"
         f"Labels: {labels_line}\n"
         f"state_reason: {state_reason}\n\n"
-        f"Original description:\n\"\"\"{issue.get('body', '')[:2500]}\"\"\"\n\n"
+        f"Original description:\n\"\"\"{str(issue.get('body', '') or '')[:ISSUE_BODY_MAX_CHARS]}\"\"\"\n\n"
         f"Preferred poc_language for this repository: {preferred_language}.\n"
         f"{previous_score_hint}\n"
         "Return ONLY the JSON metadata object as described in your system instructions.\n"
@@ -1030,18 +1078,20 @@ def _build_poc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
             "Use ONLY the language stdlib — do NOT import any third-party packages.\n"
         )
 
+    modern_design = str(metadata.get("modern_design", "") or "")[:MODERN_DESIGN_MAX_CHARS]
+    body = str(issue.get("body", "") or "")[:ISSUE_BODY_MAX_CHARS]
     return (
         f"ISSUE: {issue.get('title', '')}\n"
         f"Repository: {repo}\n"
         f"Language to use: {language}\n"
         f"{manifest_section}\n"
-        f"Architecture summary:\n{metadata.get('modern_design', '')}\n\n"
-        f"Original description:\n\"\"\"{issue.get('body', '')[:2500]}\"\"\"\n\n"
+        f"Architecture summary:\n{modern_design}\n\n"
+        f"Original description:\n\"\"\"{body}\"\"\"\n\n"
         f"Write the full proof-of-concept in {language}. "
         "Return ONLY a JSON object with a single key 'proof_of_concept_code' "
         "whose value is the complete runnable code as a single-line JSON string.\n"
         "CRITICAL: escape ALL newlines as \\n, ALL quotes as \\\", ALL backslashes as \\\\\n"
-        "The code must be at least 80 lines and include imports and error handling.\n"
+        "The code must be at least 40 lines and include imports and error handling.\n"
     )
 
 
@@ -1054,9 +1104,9 @@ def _build_rfc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
         f"ISSUE: {issue.get('title', '')}\n"
         f"Repository: {issue.get('repo', '')}\n\n"
         f"One-line summary: {metadata.get('one_line_summary', '')}\n"
-        f"Why it died: {metadata.get('why_it_died', '')}\n"
-        f"Why 2026 changes it: {metadata.get('why_2026_changes_it', '')}\n"
-        f"Modern design: {metadata.get('modern_design', '')}\n\n"
+        f"Why it died: {str(metadata.get('why_it_died', '') or '')[:MODERN_DESIGN_MAX_CHARS]}\n"
+        f"Why 2026 changes it: {str(metadata.get('why_2026_changes_it', '') or '')[:MODERN_DESIGN_MAX_CHARS]}\n"
+        f"Modern design: {str(metadata.get('modern_design', '') or '')[:MODERN_DESIGN_MAX_CHARS]}\n\n"
         "Write a complete RFC with all 6 required sections. "
         "Return ONLY a JSON object with a single key 'rfc_content' "
         "whose value is the full RFC text as a string.\n"
