@@ -220,7 +220,7 @@ _MANIFEST_CANDIDATES: dict[str, list[str]] = {
 }
 
 # Hard cap: we only send the first N chars of the manifest to the LLM
-_MANIFEST_MAX_CHARS = 3000
+_MANIFEST_MAX_CHARS = 1500
 
 
 def _fetch_repo_manifest(repo: str, language: str) -> str:
@@ -922,7 +922,7 @@ def _build_metadata_prompt(issue: dict[str, Any], previous_score: int | None = N
         f"Last activity: {issue.get('updated_at', '')}\n"
         f"Labels: {labels_line}\n"
         f"state_reason: {state_reason}\n\n"
-        f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
+        f"Original description:\n\"\"\"{issue.get('body', '')[:2500]}\"\"\"\n\n"
         f"Preferred poc_language for this repository: {preferred_language}.\n"
         f"{previous_score_hint}\n"
         "Return ONLY the JSON metadata object as described in your system instructions.\n"
@@ -1036,7 +1036,7 @@ def _build_poc_prompt(issue: dict[str, Any], metadata: dict[str, Any]) -> str:
         f"Language to use: {language}\n"
         f"{manifest_section}\n"
         f"Architecture summary:\n{metadata.get('modern_design', '')}\n\n"
-        f"Original description:\n\"\"\"{issue.get('body', '')}\"\"\"\n\n"
+        f"Original description:\n\"\"\"{issue.get('body', '')[:2500]}\"\"\"\n\n"
         f"Write the full proof-of-concept in {language}. "
         "Return ONLY a JSON object with a single key 'proof_of_concept_code' "
         "whose value is the complete runnable code as a single-line JSON string.\n"
