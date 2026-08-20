@@ -1,0 +1,27 @@
+{
+  "date": "2026-08-20",
+  "repo": "hashicorp/terraform",
+  "issue_number": 14403,
+  "title": "Tainted `null_resource` with `destroy provisioner` does not run the destroy command.",
+  "reactions": 83,
+  "abandoned_date": "2022-10-28T02:39:32Z",
+  "one_line_why": "Terraform 0.12's improved provisioner lifecycle and taint handling enable this behavior.",
+  "one_line_summary": "Tainted null_resource destroy provisioner should execute during re-apply after taint.",
+  "impact_score": 7,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "terraform"
+  ],
+  "original_url": "https://github.com/hashicorp/terraform/issues/14403",
+  "resurrection_slug": "2026-08-20_hashicorp-terraform_14403",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-08-20T20:02:39+00:00"
+}

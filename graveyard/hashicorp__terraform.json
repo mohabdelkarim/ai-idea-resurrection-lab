@@ -15,7 +15,12 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/610",
     "author_login": "piavlo",
     "author_profile": "https://github.com/piavlo",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "hashicorp/terraform",
@@ -36,7 +41,12 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/4149",
     "author_login": "apparentlymart",
     "author_profile": "https://github.com/apparentlymart",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "hashicorp/terraform",
@@ -54,7 +64,12 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/12959",
     "author_login": "sysadmiral",
     "author_profile": "https://github.com/sysadmiral",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "hashicorp/terraform",
@@ -72,7 +87,12 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/14403",
     "author_login": "zhaohanweng",
     "author_profile": "https://github.com/zhaohanweng",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": true,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "hashicorp/terraform",
@@ -90,7 +110,12 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/21966",
     "author_login": "scottschreckengaust",
     "author_profile": "https://github.com/scottschreckengaust",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   },
   {
     "repo": "hashicorp/terraform",
@@ -109,6 +134,11 @@
     "html_url": "https://github.com/hashicorp/terraform/issues/23906",
     "author_login": "AnastasiusVivaldus",
     "author_profile": "https://github.com/AnastasiusVivaldus",
-    "already_resurrected": false
+    "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
