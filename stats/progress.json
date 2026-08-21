@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-08-20T20:02:39",
-  "total_resurrections": 130,
+  "last_updated": "2026-08-21T14:01:03",
+  "total_resurrections": 131,
   "total_repos_covered": 42,
-  "average_impact_score": 6.56,
-  "average_effort_hours": 74.09,
+  "average_impact_score": 6.57,
+  "average_effort_hours": 74.06,
   "total_with_poc": 101,
-  "total_with_rfc": 116,
+  "total_with_rfc": 117,
   "comment_stats": {
-    "attempted": 54,
+    "attempted": 55,
     "posted": 4,
-    "failed": 50
+    "failed": 51
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -19,7 +19,7 @@
       },
       {
         "repo": "kubernetes/kubernetes",
-        "count": 7
+        "count": 8
       },
       {
         "repo": "hashicorp/terraform",
@@ -72,30 +72,32 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-08-20",
-    "repo": "hashicorp/terraform",
-    "issue_number": 14403,
-    "title": "Tainted `null_resource` with `destroy provisioner` does not run the destroy command.",
-    "reactions": 83,
-    "abandoned_date": "2022-10-28T02:39:32Z",
-    "one_line_why": "Terraform 0.12's improved provisioner lifecycle and taint handling enable this behavior.",
-    "one_line_summary": "Tainted null_resource destroy provisioner should execute during re-apply after taint.",
-    "impact_score": 7,
-    "effort_hours": 32.0,
-    "has_poc": true,
+    "date": "2026-08-21",
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 62078,
+    "title": "Feature Request: Create a node's automatic node labels on its pods ",
+    "reactions": 34,
+    "abandoned_date": "2024-10-28T17:17:56Z",
+    "one_line_why": "Admission webhook enhancements and CRI v1.2 now enable automatic node\u2011label propagation to pods.",
+    "one_line_summary": "Kubernetes will automatically copy selected node labels onto each pod it schedules.",
+    "impact_score": 8,
+    "effort_hours": 70.0,
+    "has_poc": false,
     "has_rfc": true,
     "poc_language": "go",
-    "poc_validated": true,
-    "poc_validation_error": "",
-    "quality_flags": [],
-    "technology_tags": [
-      "terraform"
+    "poc_validated": false,
+    "poc_validation_error": "# poc\n./main.go:5:5: \"fmt\" imported and not used",
+    "quality_flags": [
+      "poc_validation_failed"
     ],
-    "original_url": "https://github.com/hashicorp/terraform/issues/14403",
-    "resurrection_slug": "2026-08-20_hashicorp-terraform_14403",
+    "technology_tags": [
+      "kubernetes"
+    ],
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/62078",
+    "resurrection_slug": "2026-08-21_kubernetes-kubernetes_62078",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-08-20T20:02:39+00:00"
+    "commented_at": "2026-08-21T14:01:03+00:00"
   }
 }
