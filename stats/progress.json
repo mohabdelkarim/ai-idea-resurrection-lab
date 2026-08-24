@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-08-21T14:01:03",
-  "total_resurrections": 131,
+  "last_updated": "2026-08-24T14:14:49",
+  "total_resurrections": 132,
   "total_repos_covered": 42,
-  "average_impact_score": 6.57,
-  "average_effort_hours": 74.06,
-  "total_with_poc": 101,
-  "total_with_rfc": 117,
+  "average_impact_score": 6.56,
+  "average_effort_hours": 73.74,
+  "total_with_poc": 102,
+  "total_with_rfc": 118,
   "comment_stats": {
-    "attempted": 55,
+    "attempted": 56,
     "posted": 4,
-    "failed": 51
+    "failed": 52
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -26,11 +26,11 @@
         "count": 7
       },
       {
-        "repo": "nodejs/node",
+        "repo": "microsoft/TypeScript",
         "count": 7
       },
       {
-        "repo": "golang/go",
+        "repo": "nodejs/node",
         "count": 7
       }
     ]
@@ -72,32 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-08-21",
-    "repo": "kubernetes/kubernetes",
-    "issue_number": 62078,
-    "title": "Feature Request: Create a node's automatic node labels on its pods ",
-    "reactions": 34,
-    "abandoned_date": "2024-10-28T17:17:56Z",
-    "one_line_why": "Admission webhook enhancements and CRI v1.2 now enable automatic node\u2011label propagation to pods.",
-    "one_line_summary": "Kubernetes will automatically copy selected node labels onto each pod it schedules.",
-    "impact_score": 8,
-    "effort_hours": 70.0,
-    "has_poc": false,
+    "date": "2026-08-24",
+    "repo": "microsoft/TypeScript",
+    "issue_number": 31394,
+    "title": "Add a new `type Awaitable<T> = T | PromiseLike<T>`",
+    "reactions": 72,
+    "abandoned_date": "2024-08-21T15:42:02Z",
+    "one_line_why": "TypeScript 4.5's improved PromiseLike inference enables a clean Awaitable<T> definition without breaking changes.",
+    "one_line_summary": "Introduce a global Awaitable<T> alias to simplify typing of synchronous or promise-returning values.",
+    "impact_score": 5,
+    "effort_hours": 32.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
-    "poc_validated": false,
-    "poc_validation_error": "# poc\n./main.go:5:5: \"fmt\" imported and not used",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "typescript",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "kubernetes"
+      "typescript"
     ],
-    "original_url": "https://github.com/kubernetes/kubernetes/issues/62078",
-    "resurrection_slug": "2026-08-21_kubernetes-kubernetes_62078",
+    "original_url": "https://github.com/microsoft/TypeScript/issues/31394",
+    "resurrection_slug": "2026-08-24_microsoft-typescript_31394",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-08-21T14:01:03+00:00"
+    "commented_at": "2026-08-24T14:14:49+00:00"
   }
 }

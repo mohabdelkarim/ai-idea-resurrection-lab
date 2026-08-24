@@ -1,0 +1,27 @@
+{
+  "date": "2026-08-24",
+  "repo": "microsoft/TypeScript",
+  "issue_number": 31394,
+  "title": "Add a new `type Awaitable<T> = T | PromiseLike<T>`",
+  "reactions": 72,
+  "abandoned_date": "2024-08-21T15:42:02Z",
+  "one_line_why": "TypeScript 4.5's improved PromiseLike inference enables a clean Awaitable<T> definition without breaking changes.",
+  "one_line_summary": "Introduce a global Awaitable<T> alias to simplify typing of synchronous or promise-returning values.",
+  "impact_score": 5,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "typescript"
+  ],
+  "original_url": "https://github.com/microsoft/TypeScript/issues/31394",
+  "resurrection_slug": "2026-08-24_microsoft-typescript_31394",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-08-24T14:14:49+00:00"
+}

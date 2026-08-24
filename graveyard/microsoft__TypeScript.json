@@ -16,6 +16,8 @@
     "author_login": "streamich",
     "author_profile": "https://github.com/streamich",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -37,9 +39,11 @@
     "author_login": "RyanCavanaugh",
     "author_profile": "https://github.com/RyanCavanaugh",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   },
   {
     "repo": "microsoft/TypeScript",
@@ -65,9 +69,11 @@
     "author_login": "deiangi",
     "author_profile": "https://github.com/deiangi",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   },
   {
     "repo": "microsoft/TypeScript",
@@ -86,9 +92,11 @@
     "author_login": "NoelAbrahams",
     "author_profile": "https://github.com/NoelAbrahams",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   },
   {
     "repo": "microsoft/TypeScript",
@@ -107,6 +115,8 @@
     "author_login": "RafaelSalguero",
     "author_profile": "https://github.com/RafaelSalguero",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -127,6 +137,8 @@
     "author_login": "MrTarantula",
     "author_profile": "https://github.com/MrTarantula",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -148,6 +160,8 @@
     "author_login": "niemyjski",
     "author_profile": "https://github.com/niemyjski",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -168,7 +182,9 @@
     "author_login": "remcohaszing",
     "author_profile": "https://github.com/remcohaszing",
     "comments": 0,
-    "already_resurrected": false,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
@@ -189,6 +205,8 @@
     "author_login": "minderov",
     "author_profile": "https://github.com/minderov",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
