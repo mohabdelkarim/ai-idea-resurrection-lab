@@ -18,8 +18,8 @@
     "state_reason": "not_planned",
     "closed_at": "2026-07-19T19:06:54Z",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Too sparse (25 total words)"
   },
   {
     "repo": "ollama/ollama",

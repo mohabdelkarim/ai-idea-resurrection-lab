@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-08-24T14:14:49",
-  "total_resurrections": 132,
+  "last_updated": "2026-08-25T14:06:19",
+  "total_resurrections": 133,
   "total_repos_covered": 42,
   "average_impact_score": 6.56,
-  "average_effort_hours": 73.74,
-  "total_with_poc": 102,
-  "total_with_rfc": 118,
+  "average_effort_hours": 73.71,
+  "total_with_poc": 103,
+  "total_with_rfc": 119,
   "comment_stats": {
-    "attempted": 56,
+    "attempted": 57,
     "posted": 4,
-    "failed": 52
+    "failed": 53
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,30 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-08-24",
-    "repo": "microsoft/TypeScript",
-    "issue_number": 31394,
-    "title": "Add a new `type Awaitable<T> = T | PromiseLike<T>`",
-    "reactions": 72,
-    "abandoned_date": "2024-08-21T15:42:02Z",
-    "one_line_why": "TypeScript 4.5's improved PromiseLike inference enables a clean Awaitable<T> definition without breaking changes.",
-    "one_line_summary": "Introduce a global Awaitable<T> alias to simplify typing of synchronous or promise-returning values.",
-    "impact_score": 5,
-    "effort_hours": 32.0,
+    "date": "2026-08-25",
+    "repo": "rust-lang/rust",
+    "issue_number": 40552,
+    "title": "Enable --remap-path-prefix for absolute paths by default",
+    "reactions": 81,
+    "abandoned_date": "2023-06-16T16:37:48Z",
+    "one_line_why": "Rust 1.54 stabilized the -C remap-path-prefix compiler option and enhanced source\u2011map infrastructure.",
+    "one_line_summary": "Add a rustc flag that remaps absolute source paths to relative crate\u2011based paths by default.",
+    "impact_score": 6,
+    "effort_hours": 70.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "rust",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "typescript"
+      "rust",
+      "compiler"
     ],
-    "original_url": "https://github.com/microsoft/TypeScript/issues/31394",
-    "resurrection_slug": "2026-08-24_microsoft-typescript_31394",
+    "original_url": "https://github.com/rust-lang/rust/issues/40552",
+    "resurrection_slug": "2026-08-25_rust-lang-rust_40552",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-08-24T14:14:49+00:00"
+    "commented_at": "2026-08-25T14:06:19+00:00"
   }
 }

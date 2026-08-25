@@ -1,0 +1,28 @@
+{
+  "date": "2026-08-25",
+  "repo": "rust-lang/rust",
+  "issue_number": 40552,
+  "title": "Enable --remap-path-prefix for absolute paths by default",
+  "reactions": 81,
+  "abandoned_date": "2023-06-16T16:37:48Z",
+  "one_line_why": "Rust 1.54 stabilized the -C remap-path-prefix compiler option and enhanced source\u2011map infrastructure.",
+  "one_line_summary": "Add a rustc flag that remaps absolute source paths to relative crate\u2011based paths by default.",
+  "impact_score": 6,
+  "effort_hours": 70.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "rust",
+    "compiler"
+  ],
+  "original_url": "https://github.com/rust-lang/rust/issues/40552",
+  "resurrection_slug": "2026-08-25_rust-lang-rust_40552",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-08-25T14:06:19+00:00"
+}
