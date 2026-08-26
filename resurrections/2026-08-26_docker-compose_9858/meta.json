@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-26",
+  "repo": "docker/compose",
+  "issue_number": 9858,
+  "title": "Setting container hostname to `service_name-xx` instead of container-id",
+  "reactions": 44,
+  "abandoned_date": "2025-04-29T18:41:02Z",
+  "one_line_why": "Docker Engine 24.0 introduced stable --hostname flag propagation, enabling custom hostname patterns in Compose.",
+  "one_line_summary": "Docker Compose can optionally set each container's hostname to its service name with instance index.",
+  "impact_score": 7,
+  "effort_hours": 32.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": false,
+  "poc_validation_error": "main.go:9:5: no required module provides package github.com/docker/docker/api/types; to add it:\n\tgo get github.com/docker/docker/api/types\nmain.go:10:5: no required module provides package github.com/docker/docker/api/types/container; to add it:\n\tgo get github.com/docker/docker/api/types/container\nmain.go:11:5: no required module provides package github.com/docker/docker/client; to add it:\n\tgo get github.com/docker/docker/client",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "go",
+    "cli"
+  ],
+  "original_url": "https://github.com/docker/compose/issues/9858",
+  "resurrection_slug": "2026-08-26_docker-compose_9858",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-08-26T14:10:10+00:00"
+}
