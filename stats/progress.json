@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-08-26T14:10:10",
-  "total_resurrections": 134,
+  "last_updated": "2026-08-27T23:05:38",
+  "total_resurrections": 135,
   "total_repos_covered": 42,
   "average_impact_score": 6.56,
-  "average_effort_hours": 73.4,
-  "total_with_poc": 103,
-  "total_with_rfc": 120,
+  "average_effort_hours": 73.1,
+  "total_with_poc": 104,
+  "total_with_rfc": 121,
   "comment_stats": {
-    "attempted": 58,
+    "attempted": 59,
     "posted": 4,
-    "failed": 54
+    "failed": 55
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -30,7 +30,7 @@
         "count": 7
       },
       {
-        "repo": "nodejs/node",
+        "repo": "microsoft/vscode",
         "count": 7
       }
     ]
@@ -72,33 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-08-26",
-    "repo": "docker/compose",
-    "issue_number": 9858,
-    "title": "Setting container hostname to `service_name-xx` instead of container-id",
-    "reactions": 44,
-    "abandoned_date": "2025-04-29T18:41:02Z",
-    "one_line_why": "Docker Engine 24.0 introduced stable --hostname flag propagation, enabling custom hostname patterns in Compose.",
-    "one_line_summary": "Docker Compose can optionally set each container's hostname to its service name with instance index.",
-    "impact_score": 7,
+    "date": "2026-08-27",
+    "repo": "microsoft/vscode",
+    "issue_number": 176946,
+    "title": "Exclude files or directories from editor.formatOnSave",
+    "reactions": 91,
+    "abandoned_date": "2025-05-04T18:11:25Z",
+    "one_line_why": "The addition of native glob pattern support in VSCode settings since 2024 enables selective formatOnSave exclusions.",
+    "one_line_summary": "VSCode should allow users to exclude specific files or directories from the editor.formatOnSave operation.",
+    "impact_score": 6,
     "effort_hours": 32.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
-    "poc_validated": false,
-    "poc_validation_error": "main.go:9:5: no required module provides package github.com/docker/docker/api/types; to add it:\n\tgo get github.com/docker/docker/api/types\nmain.go:10:5: no required module provides package github.com/docker/docker/api/types/container; to add it:\n\tgo get github.com/docker/docker/api/types/container\nmain.go:11:5: no required module provides package github.com/docker/docker/client; to add it:\n\tgo get github.com/docker/docker/client",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "typescript",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "go",
-      "cli"
+      "vscode",
+      "typescript"
     ],
-    "original_url": "https://github.com/docker/compose/issues/9858",
-    "resurrection_slug": "2026-08-26_docker-compose_9858",
+    "original_url": "https://github.com/microsoft/vscode/issues/176946",
+    "resurrection_slug": "2026-08-27_microsoft-vscode_176946",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-08-26T14:10:10+00:00"
+    "commented_at": "2026-08-27T23:05:38+00:00"
   }
 }
