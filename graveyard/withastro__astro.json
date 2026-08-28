@@ -15,6 +15,8 @@
     "author_login": "mayank99",
     "author_profile": "https://github.com/mayank99",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -33,6 +35,8 @@
     "author_login": "FredKSchott",
     "author_profile": "https://github.com/FredKSchott",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -55,9 +59,11 @@
     "author_login": "ethanniser",
     "author_profile": "https://github.com/ethanniser",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "LLM precheck: already solved"
   },
   {
     "repo": "withastro/astro",
@@ -76,9 +82,11 @@
     "author_login": "sgalcheung",
     "author_profile": "https://github.com/sgalcheung",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "withastro/astro",
@@ -98,6 +106,8 @@
     "author_login": "andrewflbarnes",
     "author_profile": "https://github.com/andrewflbarnes",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -120,6 +130,8 @@
     "author_login": "ffxsam",
     "author_profile": "https://github.com/ffxsam",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -142,6 +154,8 @@
     "author_login": "izmttk",
     "author_profile": "https://github.com/izmttk",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
