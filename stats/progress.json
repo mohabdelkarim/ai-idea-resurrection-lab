@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-08-28T23:10:21",
-  "total_resurrections": 136,
+  "last_updated": "2026-08-31T19:38:49",
+  "total_resurrections": 137,
   "total_repos_covered": 42,
-  "average_impact_score": 6.55,
-  "average_effort_hours": 72.79,
+  "average_impact_score": 6.53,
+  "average_effort_hours": 72.35,
   "total_with_poc": 105,
-  "total_with_rfc": 121,
+  "total_with_rfc": 122,
   "comment_stats": {
-    "attempted": 60,
+    "attempted": 61,
     "posted": 4,
-    "failed": 56
+    "failed": 57
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,30 +72,32 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-08-28",
-    "repo": "vercel/next.js",
-    "issue_number": 37945,
-    "title": "ISR fails to serve 404 pages once the page gets deleted if experimental isr memory cache size is set to 0",
-    "reactions": 27,
-    "abandoned_date": "2026-01-16T00:06:40Z",
-    "one_line_why": "Next.js 13 introduced Edge Runtime and improved ISR caching, enabling reliable 404 handling.",
-    "one_line_summary": "ISR memory cache disabled leads to stale pages instead of 404 after deletion.",
-    "impact_score": 6,
-    "effort_hours": 32.0,
-    "has_poc": true,
-    "has_rfc": false,
-    "poc_language": "typescript",
-    "poc_validated": true,
-    "poc_validation_error": "",
-    "quality_flags": [],
-    "technology_tags": [
-      "typescript"
+    "date": "2026-08-31",
+    "repo": "sharkdp/bat",
+    "issue_number": 490,
+    "title": "Add a theme that uses terminal colors",
+    "reactions": 26,
+    "abandoned_date": "2019-07-16T19:41:24Z",
+    "one_line_why": "Adoption of truecolor (24\u2011bit) support in modern terminals enables dynamic color\u2011based themes.",
+    "one_line_summary": "Implement a bat theme that directly maps to user-defined terminal color palettes.",
+    "impact_score": 4,
+    "effort_hours": 12.0,
+    "has_poc": false,
+    "has_rfc": true,
+    "poc_language": "rust",
+    "poc_validated": false,
+    "poc_validation_error": "error: unknown start of token: \\\n --> /tmp/poc_rs_ohto6d74/lib.rs:1:31\n  |\n1 | use std::collections::HashMap;\\nuse std::env;\\nuse std::fs;\\nuse std::io::{self, Write};\\n\\n// External crates as per Cargo.toml\\nuse...\n  |                               ^\n\nerror: unknown start of token: \\\n --> /tmp/poc_rs_ohto6d74/lib.rs:1:46\n  |\n1 | use std::collections::HashMap;\\nuse std::env;\\nuse std::fs;\\nuse std::io::{self, Write};\\n\\n// External crates as per Cargo.toml\\nuse...\n  |                            ",
+    "quality_flags": [
+      "poc_validation_failed"
     ],
-    "original_url": "https://github.com/vercel/next.js/issues/37945",
-    "resurrection_slug": "2026-08-28_vercel-next-js_37945",
+    "technology_tags": [
+      "rust"
+    ],
+    "original_url": "https://github.com/sharkdp/bat/issues/490",
+    "resurrection_slug": "2026-08-31_sharkdp-bat_490",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-08-28T23:10:21+00:00"
+    "commented_at": "2026-08-31T19:38:49+00:00"
   }
 }
