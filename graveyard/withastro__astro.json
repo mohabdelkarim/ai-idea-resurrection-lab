@@ -108,7 +108,7 @@
     "comments": 0,
     "state_reason": "",
     "closed_at": "",
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },

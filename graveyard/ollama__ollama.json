@@ -132,5 +132,27 @@
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
+  },
+  {
+    "repo": "ollama/ollama",
+    "issue_number": 2475,
+    "title": "Request to add  leo-hessianai to ollama",
+    "body": "Hi guys, \r\nI tried to use the leo-hessianai-7B model on Ollama. I use the GGUF file (Q4_K_M.gguf from here https://huggingface.co/TheBloke/leo-hessianai-7B-GGUF/tree/main) and followed the instructions from Ollama (https://github.com/ollama/ollama/blob/main/docs/import.md). I already managed to generate answers with the model, but they are extremely wrong and hallucinating (you can say crazy). Unfortunately, I don't know what I'm doing wrong. I assume that the parameters or the template (in the Modelfile you have to create for Ollama) are incorrect.\r\nHope you can help me out 🙂\r\n\r\nI tried the following Modelfiles:\r\n\r\n```\r\nFROM ./leo-hessianai-7b.Q4_K_M.gguf\r\nTEMPLATE \"\"\"{{- if .System }}\r\n<|im_start|>system {{ .System }}<|im_end|>\r\n{{- end }}\r\n<|im_start|>user\r\n{{ .Prompt }}<|im_end|>\r\n<|im_start|>assistant\r\n\"\"\"\r\n\r\nSYSTEM \"\"\"\"\"\"\r\n\r\nPARAMETER stop <|im_start|>\r\nPARAMETER stop <|im_end|>\r\n```\r\n\r\n```\r\nFROM ./leo-hessianai-7b.Q4_K_M.gguf\r\nTEMPLATE \"[INST] {{ .Prompt }} [/INST]\"\r\n```\r\n\r\n(The same problem occurred when I used the safetensors from this repo and used the ollama tools to convert and quantize the model.)\r\n\r\n--> So it would be great if `leo-hessianai-7B`, `leo-hessianai-13B`, and `leo-hessianai-70B` could be added to ollama - find the models at https://huggingface.co/LeoLM",
+    "reactions": 6,
+    "created_at": "2024-02-13T14:50:03Z",
+    "updated_at": "2026-09-01T11:52:33Z",
+    "labels": [
+      "help wanted"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/2475",
+    "html_url": "https://github.com/ollama/ollama/issues/2475",
+    "author_login": "arsenij-ust",
+    "author_profile": "https://github.com/arsenij-ust",
+    "comments": 8,
+    "state_reason": "not_planned",
+    "closed_at": "2026-09-01T10:36:03Z",
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   }
 ]
