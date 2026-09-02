@@ -66,3 +66,32 @@ jobs:
             echo "Push attempt $attempt failed, pulling and retrying..."
             git pull --rebase --autostash --no-edit origin main
           done
+
+      - name: Slack digest on success
+        if: success()
+        env:
+          SLACK_WEBHOOK_AI_PIPELINES: ${{ secrets.SLACK_WEBHOOK_AI_PIPELINES }}
+          ISSUE_TITLE: ${{ env.ISSUE_TITLE }}
+          IMPACT_SCORE: ${{ env.IMPACT_SCORE }}
+          ISSUE_URL: ${{ env.ISSUE_URL }}
+          ISSUE_REPO: ${{ env.ISSUE_REPO }}
+        run: |
+          if [ -z "$SLACK_WEBHOOK_AI_PIPELINES" ]; then exit 0; fi
+          python scripts/slack_notify.py --digest \
+            --title "Resurrection Lab" \
+            --text "*${ISSUE_REPO}* — ${ISSUE_TITLE}\nImpact: ${IMPACT_SCORE}/10\n<${ISSUE_URL}|View issue>" \
+            --webhook-env SLACK_WEBHOOK_AI_PIPELINES
+
+      - name: Notify Slack on failure
+        if: failure()
+        uses: slackapi/slack-github-action@v4.0.0
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_ALERTS }}
+          webhook-type: incoming-webhook
+          payload: |
+            text: "CI failed: ${{ github.repository }} / ${{ github.workflow }}"
+            blocks:
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: "*${{ github.repository }}* — `${{ github.workflow }}` failed\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>"
