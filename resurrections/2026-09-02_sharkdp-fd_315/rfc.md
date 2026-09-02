@@ -1,0 +1,48 @@
+# RFC: Finding multiple patterns
+
+1. Summary
+fd (the fast, user‑friendly alternative to find) will gain native support for multiple search patterns via repeated `-e` / `--regex` flags. Users can now specify any number of regular expressions, and a file path will be considered a match if it satisfies *any* of the supplied patterns. The implementation leverages clap v4's `multiple_occurrences` support and the regex crate's compiled‑regex caching, requiring only modest changes to the argument parsing and matching loops.
+
+2. Motivation
+The original fd accepted a single `-e` flag. Complex searches often required combining several patterns with logical OR, forcing users to craft a single, often unreadable, regex or to pipe results through external tools (e.g., `grep -E`). This added cognitive load and reduced fd's ergonomics. At the time (fd 7.x), clap v2 lacked a clean way to collect repeated flags, and the codebase stored the pattern as a single `String`, making multi‑pattern handling cumbersome. Since then, fd has upgraded to clap v4, Rust 1.70, and the regex crate now offers cheap compilation and caching. These advances eliminate the previous technical blockers, making the feature low‑risk and high‑value. Providing first‑class multi‑pattern support aligns fd with other modern CLI tools (ripgrep, ag) and improves its utility in scripting and interactive use.
+
+3. Detailed Design
+   * **CLI definition**: Extend the `Args` struct with:
+     ```rust
+     #[clap(short = 'e', long = "regex", multiple_occurrences = true, takes_value = true)]
+     patterns: Vec<String>,
+     ```
+     The field defaults to an empty vector; if the user supplies no `-e`, we fall back to the positional `pattern` argument for backward compatibility.
+   * **Parsing**: After `clap::Parser::parse()`, iterate over `patterns` and compile each into a `Regex` using `Regex::new`. Store the compiled regexes in a new `Vec<Regex>` inside the runtime configuration struct. Errors in any pattern abort with a clear message indicating the offending flag index.
+   * **Matching logic**: In the file‑traversal loop, replace the single `regex.is_match(path)` call with:
+     ```rust
+     if compiled_regexes.iter().any(|re| re.is_match(path)) {
+         // accept the entry
+     }
+     ```
+     The `any` iterator short‑circuits on the first match, preserving performance.
+   * **Backward compatibility**: If `patterns` is empty, the existing single‑pattern field (`pattern: String`) is used, ensuring scripts that rely on the old API continue to work unchanged.
+   * **Testing**: Add unit and integration tests covering:
+     - Multiple `-e` flags with disjoint matches.
+     - Overlapping patterns where the first matches.
+     - Invalid regex handling.
+   * **Documentation**: Update the man page, `--help` output, and README examples to show `fd -e "foo" -e "bar"` usage.
+
+4. Drawbacks
+   * **Increased memory footprint**: Storing several compiled `Regex` objects consumes more RAM, though each is typically small (< a few KiB). For extremely large pattern sets (hundreds), this could become noticeable, but such use cases are rare for fd.
+   * **Potential performance regression**: In the worst case where none of the patterns match, fd will test each regex sequentially, adding O(n) overhead where n is the number of patterns. Mitigation: the `any` iterator short‑circuits on success, and typical usage involves only a handful of patterns, so impact is minimal.
+   * **Complexity in error reporting**: Multiple patterns mean multiple possible compile errors; the implementation must map each error to the correct flag instance, adding a small amount of code.
+
+5. Alternatives
+   * **Pattern file**: Accept a file containing one regex per line (`--regex-file`). This would handle many patterns but adds I/O and deviates from the simple flag‑based approach.
+   * **Logical operators**: Introduce a mini‑DSL (`-e "foo|bar"`) to express OR directly. This is already possible with regular expression syntax, but many users find it less readable than separate flags.
+   * **Combine patterns internally**: Concatenate all patterns into a single mega‑regex using `|`. While this reduces the number of compiled objects, it complicates error localization (which sub‑pattern failed) and can degrade performance for very large alternations.
+
+6. Unresolved Questions
+   * **Maximum number of patterns**: Should we enforce a hard limit (e.g., 64) to guard against pathological memory use, or rely on OS limits? A configurable limit could be added in a future iteration.
+   * **Pattern order semantics**: Currently we treat the list as unordered (any match wins). Should we expose an option to require *all* patterns to match (logical AND) for advanced use cases?
+   * **Cache sharing**: Would it be beneficial to share compiled regexes across multiple fd invocations via a process‑wide cache, or is the compile cost negligible enough to ignore?
+
+---
+
+*RFC generated by Resurrection Bot 🧬*
