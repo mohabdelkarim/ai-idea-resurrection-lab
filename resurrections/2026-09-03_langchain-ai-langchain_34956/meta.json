@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-03",
+  "repo": "langchain-ai/langchain",
+  "issue_number": 34956,
+  "title": "Enable Exporting Select Agent Metrics to Customer-facing Dashboards in Real-Time",
+  "reactions": 9,
+  "abandoned_date": "2026-06-11T07:31:01Z",
+  "one_line_why": "The release of OpenTelemetry SDK 1.24 enables standardized real-time metric exporting from LangChain agents.",
+  "one_line_summary": "LangChain should provide real-time export of agent latency and token usage metrics to external dashboards.",
+  "impact_score": 7,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "langchain",
+    "python"
+  ],
+  "original_url": "https://github.com/langchain-ai/langchain/issues/34956",
+  "resurrection_slug": "2026-09-03_langchain-ai-langchain_34956",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-03T17:12:27+00:00"
+}

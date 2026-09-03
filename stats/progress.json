@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-02T17:17:08",
-  "total_resurrections": 139,
+  "last_updated": "2026-09-03T17:12:28",
+  "total_resurrections": 140,
   "total_repos_covered": 42,
-  "average_impact_score": 6.53,
-  "average_effort_hours": 71.77,
-  "total_with_poc": 106,
-  "total_with_rfc": 124,
+  "average_impact_score": 6.54,
+  "average_effort_hours": 71.49,
+  "total_with_poc": 107,
+  "total_with_rfc": 125,
   "comment_stats": {
-    "attempted": 63,
+    "attempted": 64,
     "posted": 4,
-    "failed": 59
+    "failed": 60
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,33 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-02",
-    "repo": "sharkdp/fd",
-    "issue_number": 315,
-    "title": "Finding multiple patterns",
-    "reactions": 16,
-    "abandoned_date": "2022-11-21T20:19:48Z",
-    "one_line_why": "Rust's clap v4 macro improvements enable easy repeated flag parsing for multiple patterns.",
-    "one_line_summary": "fd will accept multiple search patterns via repeated -e flags, simplifying complex queries.",
-    "impact_score": 8,
+    "date": "2026-09-03",
+    "repo": "langchain-ai/langchain",
+    "issue_number": 34956,
+    "title": "Enable Exporting Select Agent Metrics to Customer-facing Dashboards in Real-Time",
+    "reactions": 9,
+    "abandoned_date": "2026-06-11T07:31:01Z",
+    "one_line_why": "The release of OpenTelemetry SDK 1.24 enables standardized real-time metric exporting from LangChain agents.",
+    "one_line_summary": "LangChain should provide real-time export of agent latency and token usage metrics to external dashboards.",
+    "impact_score": 7,
     "effort_hours": 32.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "rust",
-    "poc_validated": false,
-    "poc_validation_error": "error: unknown start of token: \\\n --> /tmp/poc_rs_ovhr6817/lib.rs:1:13\n  |\n1 | use std::fs;\\nuse std::path::PathBuf;\\nuse std::process;\\n\\nuse anyhow::{Context, Result};\\nuse clap::Parser;\\nuse regex::Regex;\\n\\n/...\n  |             ^\n\nerror: unknown start of token: \\\n --> /tmp/poc_rs_ovhr6817/lib.rs:1:38\n  |\n1 | use std::fs;\\nuse std::path::PathBuf;\\nuse std::process;\\n\\nuse anyhow::{Context, Result};\\nuse clap::Parser;\\nuse regex::Regex;\\n\\n/...\n  |                                      ^\n\nerror",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "python",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "rust",
-      "cli"
+      "langchain",
+      "python"
     ],
-    "original_url": "https://github.com/sharkdp/fd/issues/315",
-    "resurrection_slug": "2026-09-02_sharkdp-fd_315",
+    "original_url": "https://github.com/langchain-ai/langchain/issues/34956",
+    "resurrection_slug": "2026-09-03_langchain-ai-langchain_34956",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-02T17:17:08+00:00"
+    "commented_at": "2026-09-03T17:12:27+00:00"
   }
 }
