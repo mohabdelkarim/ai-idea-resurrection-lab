@@ -16,6 +16,8 @@
     "author_login": "arraydude",
     "author_profile": "https://github.com/arraydude",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -39,6 +41,8 @@
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -60,6 +64,8 @@
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -81,7 +87,9 @@
     "author_login": "Tooblippe",
     "author_profile": "https://github.com/Tooblippe",
     "comments": 0,
-    "already_resurrected": false,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
@@ -104,6 +112,8 @@
     "author_login": "vhoulbreque",
     "author_profile": "https://github.com/vhoulbreque",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -127,6 +137,8 @@
     "author_login": "MathCatsAnd",
     "author_profile": "https://github.com/MathCatsAnd",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -149,6 +161,8 @@
     "author_login": "sfc-gh-jcarroll",
     "author_profile": "https://github.com/sfc-gh-jcarroll",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -171,6 +185,8 @@
     "author_login": "tconkling",
     "author_profile": "https://github.com/tconkling",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -193,6 +209,8 @@
     "author_login": "JohnReid",
     "author_profile": "https://github.com/JohnReid",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -215,6 +233,8 @@
     "author_login": "MarcSkovMadsen",
     "author_profile": "https://github.com/MarcSkovMadsen",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -237,6 +257,8 @@
     "author_login": "Vinno97",
     "author_profile": "https://github.com/Vinno97",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -258,6 +280,8 @@
     "author_login": "vhoulbreque",
     "author_profile": "https://github.com/vhoulbreque",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -280,6 +304,8 @@
     "author_login": "Panosero",
     "author_profile": "https://github.com/Panosero",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -303,6 +329,8 @@
     "author_login": "lukasmasuch",
     "author_profile": "https://github.com/lukasmasuch",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -325,6 +353,8 @@
     "author_login": "andreaschiappacasse",
     "author_profile": "https://github.com/andreaschiappacasse",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -346,6 +376,8 @@
     "author_login": "lesser-panda",
     "author_profile": "https://github.com/lesser-panda",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -370,6 +402,8 @@
     "author_login": "arraydude",
     "author_profile": "https://github.com/arraydude",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -391,6 +425,8 @@
     "author_login": "ines",
     "author_profile": "https://github.com/ines",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -413,6 +449,8 @@
     "author_login": "makhai88",
     "author_profile": "https://github.com/makhai88",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -435,6 +473,8 @@
     "author_login": "akeeman",
     "author_profile": "https://github.com/akeeman",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -457,6 +497,8 @@
     "author_login": "ibnesayeed",
     "author_profile": "https://github.com/ibnesayeed",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -480,6 +522,8 @@
     "author_login": "mohak79",
     "author_profile": "https://github.com/mohak79",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -501,6 +545,8 @@
     "author_login": "frankyzha",
     "author_profile": "https://github.com/frankyzha",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -523,6 +569,8 @@
     "author_login": "dJOKERdUMMY",
     "author_profile": "https://github.com/dJOKERdUMMY",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -546,6 +594,8 @@
     "author_login": "durandg12",
     "author_profile": "https://github.com/durandg12",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -569,6 +619,8 @@
     "author_login": "ViniciusgCaetano",
     "author_profile": "https://github.com/ViniciusgCaetano",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -592,6 +644,8 @@
     "author_login": "Pydetect",
     "author_profile": "https://github.com/Pydetect",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -614,6 +668,8 @@
     "author_login": "LeoTafti",
     "author_profile": "https://github.com/LeoTafti",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -635,6 +691,8 @@
     "author_login": "LukeA2023",
     "author_profile": "https://github.com/LukeA2023",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -657,6 +715,8 @@
     "author_login": "daveycope",
     "author_profile": "https://github.com/daveycope",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -679,6 +739,8 @@
     "author_login": "rafa-guedes",
     "author_profile": "https://github.com/rafa-guedes",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -701,6 +763,8 @@
     "author_login": "Riezebos",
     "author_profile": "https://github.com/Riezebos",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -723,6 +787,8 @@
     "author_login": "xareelee",
     "author_profile": "https://github.com/xareelee",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -744,6 +810,8 @@
     "author_login": "yuanjie-ai",
     "author_profile": "https://github.com/yuanjie-ai",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -765,6 +833,8 @@
     "author_login": "timforr",
     "author_profile": "https://github.com/timforr",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -786,6 +856,8 @@
     "author_login": "iemg",
     "author_profile": "https://github.com/iemg",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -809,6 +881,8 @@
     "author_login": "darkb1u3",
     "author_profile": "https://github.com/darkb1u3",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -830,6 +904,8 @@
     "author_login": "MaxvandenBoom",
     "author_profile": "https://github.com/MaxvandenBoom",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -852,6 +928,8 @@
     "author_login": "mayagbarnes",
     "author_profile": "https://github.com/mayagbarnes",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -873,6 +951,8 @@
     "author_login": "tconkling",
     "author_profile": "https://github.com/tconkling",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -895,6 +975,8 @@
     "author_login": "sfc-gh-pkommini",
     "author_profile": "https://github.com/sfc-gh-pkommini",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -916,6 +998,8 @@
     "author_login": "nthmost",
     "author_profile": "https://github.com/nthmost",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -940,6 +1024,8 @@
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -961,6 +1047,8 @@
     "author_login": "blackary",
     "author_profile": "https://github.com/blackary",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -982,6 +1070,8 @@
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1004,6 +1094,8 @@
     "author_login": "shakamoushie",
     "author_profile": "https://github.com/shakamoushie",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1025,6 +1117,8 @@
     "author_login": "AndreLobato",
     "author_profile": "https://github.com/AndreLobato",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1048,6 +1142,8 @@
     "author_login": "mesmith027",
     "author_profile": "https://github.com/mesmith027",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1069,6 +1165,8 @@
     "author_login": "tconkling",
     "author_profile": "https://github.com/tconkling",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1091,6 +1189,8 @@
     "author_login": "rencryptofish",
     "author_profile": "https://github.com/rencryptofish",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1113,6 +1213,8 @@
     "author_login": "keyuchen21",
     "author_profile": "https://github.com/keyuchen21",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1135,6 +1237,8 @@
     "author_login": "sfc-gh-jrieke",
     "author_profile": "https://github.com/sfc-gh-jrieke",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1156,6 +1260,8 @@
     "author_login": "Awyshw",
     "author_profile": "https://github.com/Awyshw",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1178,6 +1284,8 @@
     "author_login": "makerofmaps1",
     "author_profile": "https://github.com/makerofmaps1",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1198,6 +1306,8 @@
     "author_login": "anhhd",
     "author_profile": "https://github.com/anhhd",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1218,6 +1328,8 @@
     "author_login": "treuille",
     "author_profile": "https://github.com/treuille",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1239,6 +1351,8 @@
     "author_login": "StarDustEins",
     "author_profile": "https://github.com/StarDustEins",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1260,6 +1374,8 @@
     "author_login": "sfc-gh-bhess",
     "author_profile": "https://github.com/sfc-gh-bhess",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1282,6 +1398,8 @@
     "author_login": "evertoncolling",
     "author_profile": "https://github.com/evertoncolling",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1305,6 +1423,8 @@
     "author_login": "Ozziko",
     "author_profile": "https://github.com/Ozziko",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1327,6 +1447,8 @@
     "author_login": "domoritz",
     "author_profile": "https://github.com/domoritz",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1348,6 +1470,8 @@
     "author_login": "pietz",
     "author_profile": "https://github.com/pietz",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1370,6 +1494,8 @@
     "author_login": "tc87",
     "author_profile": "https://github.com/tc87",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1391,6 +1517,8 @@
     "author_login": "sfc-gh-jcarroll",
     "author_profile": "https://github.com/sfc-gh-jcarroll",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1413,6 +1541,8 @@
     "author_login": "jrouquie",
     "author_profile": "https://github.com/jrouquie",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1434,6 +1564,8 @@
     "author_login": "nthmost",
     "author_profile": "https://github.com/nthmost",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1456,6 +1588,8 @@
     "author_login": "lukasmasuch",
     "author_profile": "https://github.com/lukasmasuch",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1477,6 +1611,8 @@
     "author_login": "robingie",
     "author_profile": "https://github.com/robingie",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1500,6 +1636,8 @@
     "author_login": "lukasmasuch",
     "author_profile": "https://github.com/lukasmasuch",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1521,6 +1659,8 @@
     "author_login": "mayagbarnes",
     "author_profile": "https://github.com/mayagbarnes",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1544,6 +1684,8 @@
     "author_login": "JesusGarSan",
     "author_profile": "https://github.com/JesusGarSan",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1565,6 +1707,8 @@
     "author_login": "xareelee",
     "author_profile": "https://github.com/xareelee",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1589,6 +1733,8 @@
     "author_login": "heitormarcal",
     "author_profile": "https://github.com/heitormarcal",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1609,6 +1755,8 @@
     "author_login": "mkleinbort-ic",
     "author_profile": "https://github.com/mkleinbort-ic",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1631,6 +1779,8 @@
     "author_login": "MarcSkovMadsen",
     "author_profile": "https://github.com/MarcSkovMadsen",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1652,6 +1802,8 @@
     "author_login": "PaleNeutron",
     "author_profile": "https://github.com/PaleNeutron",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1674,6 +1826,8 @@
     "author_login": "CHerSun",
     "author_profile": "https://github.com/CHerSun",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1695,6 +1849,8 @@
     "author_login": "jrieke",
     "author_profile": "https://github.com/jrieke",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1717,6 +1873,8 @@
     "author_login": "treuille",
     "author_profile": "https://github.com/treuille",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1739,6 +1897,8 @@
     "author_login": "mesmith027",
     "author_profile": "https://github.com/mesmith027",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1760,6 +1920,8 @@
     "author_login": "quantoid",
     "author_profile": "https://github.com/quantoid",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1781,6 +1943,8 @@
     "author_login": "tvst",
     "author_profile": "https://github.com/tvst",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1803,6 +1967,8 @@
     "author_login": "blipk",
     "author_profile": "https://github.com/blipk",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -1826,6 +1992,8 @@
     "author_login": "kaydotdev",
     "author_profile": "https://github.com/kaydotdev",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""

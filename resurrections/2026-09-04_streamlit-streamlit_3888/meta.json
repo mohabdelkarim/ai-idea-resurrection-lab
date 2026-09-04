@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-04",
+  "repo": "streamlit/streamlit",
+  "issue_number": 3888,
+  "title": "Give each element a unique HTML `id` or `class`",
+  "reactions": 260,
+  "abandoned_date": "2024-09-04T21:32:18Z",
+  "one_line_why": "The introduction of Streamlit\u2019s component API v2 and improved React\u2011based rendering enables unique IDs.",
+  "one_line_summary": "Streamlit should assign a unique HTML id or class to each rendered element for easier targeting.",
+  "impact_score": 6,
+  "effort_hours": 70.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "python",
+  "poc_validated": false,
+  "poc_validation_error": "  File \"/tmp/poc_py_5ivhufar/main.py\", line 1\n    import uuid\\nimport threading\\nimport json\\nimport sys\\nimport traceback\\n\\n# Simple thread\u2011safe counter for deterministic ids in tests\\nclass Counter:\\n    def __init__(self):\\n        self._lock = threading.Lock()\\n        self._value = 0\\n    def next(self):\\n        with self._lock:\\n            self._value += 1\\n            return self._value\\n\\n_counter = Counter()\\n\\nclass ElementIdentifier:\\n    \"\"\"Generate a unique identifier for a Strea",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "react",
+    "css"
+  ],
+  "original_url": "https://github.com/streamlit/streamlit/issues/3888",
+  "resurrection_slug": "2026-09-04_streamlit-streamlit_3888",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-04T17:00:48+00:00"
+}
