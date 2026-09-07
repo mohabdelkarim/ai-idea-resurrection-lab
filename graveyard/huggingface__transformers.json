@@ -65,5 +65,27 @@
     "already_resurrected": false,
     "quality_rejected": true,
     "quality_rejection_reason": "by-design rejected"
+  },
+  {
+    "repo": "huggingface/transformers",
+    "issue_number": 39440,
+    "title": "Add Interactive Multi-Modal Attention Visualization for Vision-Language Models",
+    "body": "### Feature request\n\nImplement a comprehensive attention visualization toolkit specifically designed for multi-modal transformers that can:\n\n- Visualize attention patterns between text tokens and image patches\n- Show hierarchical attention across different transformer layers\n- Support interactive exploration of attention heads\n- Export visualizations for research papers and presentations\n\n### Motivation\n\nWith the growing adoption of multi-modal models (CLIP, DALL-E, Flamingo, BLIP-2), understanding how these models attend to different modalities is crucial for debugging, interpretability, and research. Currently, Transformers library lacks comprehensive tools for visualizing cross-modal attention patterns.\n\n### Your contribution\n\nI would like to submit a PR for this issue.\n\nTechnical Specification\nCore Components:\n\n1. Attention Extraction Module (~250 lines)\n```\nclass MultiModalAttentionExtractor:\n    def __init__(self, model, layer_indices=None):\n        self.model = model\n        self.attention_maps = {}\n        self._register_hooks()\n    \n    def extract_attention(self, text_inputs, image_inputs):\n        # Extract and organize attention patterns\n        pass\n```\n2. Visualization Engine (~400 lines)\n\nInteractive heatmap generation for image-text attention\nToken-level attention flow diagrams\nHead-wise attention pattern comparison\nSupport for different color schemes and normalization methods\n\n\n3. Interactive Dashboard (~300 lines)\n\nWeb-based interface using Gradio/Streamlit integration\nReal-time attention exploration\nExport functionality (PNG, SVG, JSON)\nComparative visualization for multiple inputs\n\n\n4. Model Compatibility Layer (~200 lines)\n\nSupport for CLIP, BLIP, Flamingo, and other vision-language models\nAutomatic attention layer detection\nHandling different attention mechanisms (self, cross, multi-head)\n\n\n\nImplementation Example\n\n```\nfrom transformers import CLIPModel, CLIPProcessor\nfrom transformers.visualization import MultiModalAttentionVisualizer\n\nmodel = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\nprocessor = CLIPProcessor.from_pretrained(\"openai/clip-vit-base-patch32\")\nvisualizer = MultiModalAttentionVisualizer(model)\n\n# Process inputs\ninputs = processor(\n    text=[\"a photo of a cat\"], \n    images=image, \n    return_tensors=\"pt\"\n)\n\n# Generate visualization\nattention_viz = visualizer.visualize(\n    inputs,\n    layer_indices=[6, 11],  # Visualize specific layers\n    attention_type=\"cross\",  # Focus on cross-modal attention\n    interactive=True\n)\n\n# Launch interactive dashboard\nattention_viz.show()\n```\nKey Features\n\nLayer-wise Analysis: Examine how attention patterns evolve through the network\nHead-wise Decomposition: Understand specialized roles of different attention heads\nAttention Statistics: Compute entropy, sparsity, and other metrics\nComparative Mode: Compare attention patterns across different inputs or models\nResearch Export: Generate publication-ready visualizations\n\nUse Cases\n\nResearch: Understanding model behav",
+    "reactions": 5,
+    "created_at": "2025-07-15T23:10:25Z",
+    "updated_at": "2026-09-04T21:13:40Z",
+    "labels": [
+      "Feature request"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/39440",
+    "html_url": "https://github.com/huggingface/transformers/issues/39440",
+    "author_login": "sisird864",
+    "author_profile": "https://github.com/sisird864",
+    "comments": 6,
+    "state_reason": "not_planned",
+    "closed_at": "2026-09-04T21:13:40Z",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
   }
 ]
