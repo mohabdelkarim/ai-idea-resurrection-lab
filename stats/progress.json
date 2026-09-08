@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-07T18:21:01",
-  "total_resurrections": 142,
+  "last_updated": "2026-09-08T17:23:10",
+  "total_resurrections": 143,
   "total_repos_covered": 42,
-  "average_impact_score": 6.53,
-  "average_effort_hours": 71.46,
+  "average_impact_score": 6.52,
+  "average_effort_hours": 71.19,
   "total_with_poc": 107,
-  "total_with_rfc": 127,
+  "total_with_rfc": 128,
   "comment_stats": {
-    "attempted": 66,
+    "attempted": 67,
     "posted": 4,
-    "failed": 62
+    "failed": 63
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,16 +72,16 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-07",
-    "repo": "redis/redis",
-    "issue_number": 1042,
-    "title": "Allow to set an expiration on hash field",
-    "reactions": 96,
-    "abandoned_date": "2024-03-31T16:18:05Z",
-    "one_line_why": "Redis 7.0 introduced modular command extensions and improved keyspace notifications, enabling per-field expirations.",
-    "one_line_summary": "Redis should support setting expiration times directly on individual hash fields.",
+    "date": "2026-09-08",
+    "repo": "rails/rails",
+    "issue_number": 31419,
+    "title": "ActiveStorage: Allow access to backing file from Service API",
+    "reactions": 61,
+    "abandoned_date": "2020-03-31T03:47:40Z",
+    "one_line_why": "Rails 6.1 added DiskService#path and signed_id features, enabling direct file access implementation.",
+    "one_line_summary": "Add a `download_blob` method to ActiveStorage services to return raw file streams for flexible handling.",
     "impact_score": 6,
-    "effort_hours": 70.0,
+    "effort_hours": 32.0,
     "has_poc": false,
     "has_rfc": true,
     "poc_language": "",
@@ -89,13 +89,13 @@
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "redis"
+      "api"
     ],
-    "original_url": "https://github.com/redis/redis/issues/1042",
-    "resurrection_slug": "2026-09-07_redis-redis_1042",
+    "original_url": "https://github.com/rails/rails/issues/31419",
+    "resurrection_slug": "2026-09-08_rails-rails_31419",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-07T18:21:01+00:00"
+    "commented_at": "2026-09-08T17:23:10+00:00"
   }
 }
