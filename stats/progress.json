@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-08T17:23:10",
-  "total_resurrections": 143,
+  "last_updated": "2026-09-09T17:17:57",
+  "total_resurrections": 144,
   "total_repos_covered": 42,
-  "average_impact_score": 6.52,
-  "average_effort_hours": 71.19,
-  "total_with_poc": 107,
-  "total_with_rfc": 128,
+  "average_impact_score": 6.54,
+  "average_effort_hours": 70.81,
+  "total_with_poc": 108,
+  "total_with_rfc": 129,
   "comment_stats": {
-    "attempted": 67,
+    "attempted": 68,
     "posted": 4,
-    "failed": 63
+    "failed": 64
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -53,6 +53,15 @@
       "original_url": "https://github.com/facebook/react/issues/29898"
     },
     {
+      "date": "2026-09-09",
+      "repo": "facebook/react",
+      "issue_number": 10191,
+      "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
+      "impact_score": 9,
+      "one_line_why": "RocksDB re\u2011licensing to Apache\u20112.0/GPL\u20112 demonstrates feasibility for React and reflects broader open\u2011source license harmonization trends.",
+      "original_url": "https://github.com/facebook/react/issues/10191"
+    },
+    {
       "date": "2026-05-27",
       "repo": "kubernetes/kubernetes",
       "issue_number": 122753,
@@ -60,42 +69,34 @@
       "impact_score": 8,
       "one_line_why": "Dynamic resource allocation for DaemonSets is crucial for efficient utilization of diverse node environments in modern Kubernetes clusters.",
       "original_url": "https://github.com/kubernetes/kubernetes/issues/122753"
-    },
-    {
-      "date": "2026-05-27",
-      "repo": "hashicorp/terraform",
-      "issue_number": 4149,
-      "title": "Partial/Progressive Configuration Changes",
-      "impact_score": 8,
-      "one_line_why": "Partial configuration changes succeed now due to advancements in Terraform's provider protocol and improved planning and apply phases.",
-      "original_url": "https://github.com/hashicorp/terraform/issues/4149"
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-08",
-    "repo": "rails/rails",
-    "issue_number": 31419,
-    "title": "ActiveStorage: Allow access to backing file from Service API",
-    "reactions": 61,
-    "abandoned_date": "2020-03-31T03:47:40Z",
-    "one_line_why": "Rails 6.1 added DiskService#path and signed_id features, enabling direct file access implementation.",
-    "one_line_summary": "Add a `download_blob` method to ActiveStorage services to return raw file streams for flexible handling.",
-    "impact_score": 6,
-    "effort_hours": 32.0,
-    "has_poc": false,
+    "date": "2026-09-09",
+    "repo": "facebook/react",
+    "issue_number": 10191,
+    "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
+    "reactions": 846,
+    "abandoned_date": "2018-02-17T17:10:18Z",
+    "one_line_why": "RocksDB re\u2011licensing to Apache\u20112.0/GPL\u20112 demonstrates feasibility for React and reflects broader open\u2011source license harmonization trends.",
+    "one_line_summary": "React should adopt a dual Apache\u20112.0/GPL\u20112 license to align with ASF licensing policies.",
+    "impact_score": 9,
+    "effort_hours": 16.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "",
-    "poc_validated": false,
+    "poc_language": "typescript",
+    "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "api"
+      "react",
+      "typescript"
     ],
-    "original_url": "https://github.com/rails/rails/issues/31419",
-    "resurrection_slug": "2026-09-08_rails-rails_31419",
+    "original_url": "https://github.com/facebook/react/issues/10191",
+    "resurrection_slug": "2026-09-09_facebook-react_10191",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-08T17:23:10+00:00"
+    "commented_at": "2026-09-09T17:17:57+00:00"
   }
 }

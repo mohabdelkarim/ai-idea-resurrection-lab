@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-09",
+  "repo": "facebook/react",
+  "issue_number": 10191,
+  "title": "Consider re-licensing to AL v2.0, as RocksDB has just done",
+  "reactions": 846,
+  "abandoned_date": "2018-02-17T17:10:18Z",
+  "one_line_why": "RocksDB re\u2011licensing to Apache\u20112.0/GPL\u20112 demonstrates feasibility for React and reflects broader open\u2011source license harmonization trends.",
+  "one_line_summary": "React should adopt a dual Apache\u20112.0/GPL\u20112 license to align with ASF licensing policies.",
+  "impact_score": 9,
+  "effort_hours": 16.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "react",
+    "typescript"
+  ],
+  "original_url": "https://github.com/facebook/react/issues/10191",
+  "resurrection_slug": "2026-09-09_facebook-react_10191",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-09T17:17:57+00:00"
+}
