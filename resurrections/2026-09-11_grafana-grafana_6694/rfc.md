@@ -1,0 +1,41 @@
+# RFC: [Feature request] Google Analytics integration
+
+1. Summary
+Add a first‑class Google Analytics (GA) datasource plugin to Grafana. The plugin will expose GA Reporting API v4 metrics as time‑series data, support OAuth2 authentication via Grafana's datasource configuration, and integrate with Grafana's query cache, health checks, and UI query editor. This enables Grafana operators to monitor real‑time user traffic, acquisition channels, and custom event dimensions alongside existing observability data.
+
+2. Motivation
+Historically, Grafana lacked a stable plugin SDK for backend datasources, and the Go GA client was immature, causing the original GA datasource request to stall. Since Grafana 10, the Plugin SDK v2 provides a backend datasource framework with built‑in OAuth2 hooks, and the official google-analytics-data-go library now offers type‑safe request/response structs and automatic token refresh. Organizations increasingly rely on GA for product usage analytics; integrating it directly into Grafana dashboards eliminates the need for separate reporting tools, reduces context switching, and allows correlation of infrastructure metrics with user behavior. Providing an official plugin also standardises security practices and lowers the barrier for community contributions.
+
+3. Detailed Design
+* **Plugin Architecture**: Implement a backend datasource plugin (`pkg/plugins/datasource/googleanalytics`). It will satisfy `backend.DataSource` and register a query handler.
+* **Configuration UI**: Add a Grafana datasource configuration page with fields: View ID, OAuth2 client ID/secret (or use Grafana's OAuth2 provider), optional default date range, and pagination limit.
+* **Authentication**: Leverage Grafana's OAuth2 datasource support. Tokens are stored encrypted in Grafana's secret store; the plugin uses `golang.org/x/oauth2` to obtain and refresh access tokens automatically.
+* **Query Model**: Define a JSON schema for Grafana queries (`gaQuery`) containing dimensions, metrics, filters, and date range. The UI editor will provide dropdowns populated via the GA Metadata API.
+* **Service Layer**: A thin wrapper (`service/ga_client.go`) around `google.golang.org/api/analyticsdata/v1beta` that translates `gaQuery` into `RunReportRequest`, handles pagination, respects `quotaUser` and implements exponential back‑off on 429 responses.
+* **Result Normalisation**: Convert GA rows into Grafana's `TimeSeries` format. Each metric becomes a series; dimensions become series labels. Timestamps are derived from the `date` dimension or `eventTimestamp`.
+* **Caching**: Use Grafana's built‑in query cache (`backend.NewQueryCache`) with a configurable TTL (default 5 minutes) to reduce API calls.
+* **Health Check**: Implement `/health` endpoint that performs a lightweight `RunReport` request for the last hour and returns status OK/FAIL.
+* **Testing**: Unit tests for query translation, authentication flow (mock OAuth2 server), and result mapping using Grafana's plugin SDK testing utilities. CI will run `go test ./...` and lint with `golangci-lint`.
+* **Documentation**: Provide a README, UI walkthrough, and example dashboards in the `docs/` folder.
+
+4. Drawbacks
+* **API Quotas**: GA Reporting API enforces per‑property quotas; heavy dashboard polling could exhaust limits, requiring careful cache TTL configuration.
+* **Latency**: GA queries are not real‑time; typical response latency is 1‑2 seconds, which may affect dashboard refresh rates.
+* **Complexity**: OAuth2 setup adds configuration steps for administrators, potentially increasing support burden.
+* **Maintenance**: The GA API version may deprecate; the plugin will need updates to stay compatible.
+
+5. Alternatives
+* **Export GA data to Prometheus**: Use a separate exporter to pull GA metrics into Prometheus and then query via the existing Prometheus datasource. This adds an extra component and duplication of storage.
+* **Use third‑party ETL tools**: Tools like Airbyte can sync GA to a SQL database, but this incurs operational overhead and loses the direct, on‑demand nature of the proposed plugin.
+* **Custom script per dashboard**: Users could write ad‑hoc scripts to fetch GA data and push to a Grafana SimpleJSON datasource, but this lacks standardisation and security.
+
+6. Unresolved Questions
+* **Rate‑limit back‑off strategy**: What should be the default max retries and back‑off multiplier to balance responsiveness and quota safety?
+* **Multi‑property support**: Should the plugin allow a single datasource to query multiple GA view IDs, or enforce one view per datasource instance?
+* **Granular permission scopes**: Which OAuth2 scopes provide the minimal required access while complying with GDPR and other privacy regulations?
+* **Dashboard refresh defaults**: What is the recommended auto‑refresh interval for GA panels to avoid excessive API usage?
+* **Future API versions**: How will the plugin detect and migrate to GA4 Reporting API v5 when released?
+
+---
+
+*RFC generated by Resurrection Bot 🧬*

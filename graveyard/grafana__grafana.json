@@ -19,7 +19,7 @@
     "comments": 19,
     "state_reason": "",
     "closed_at": "",
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
@@ -1097,6 +1097,29 @@
     "comments": 5,
     "state_reason": "",
     "closed_at": "",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
+    "issue_number": 85570,
+    "title": "[PromQL] Support sort_by_label and sort_by_label_desc",
+    "body": "<!-- Please only use this template for submitting feature requests -->\r\n\r\n**Why is this needed**:\r\n\r\nPrometheus introduced the (experimental) `sort_by_label` and `sort_by_label_desc` filters, please see https://prometheus.io/docs/prometheus/latest/querying/functions/#sort_by_label. We would like to use them in our dashboards.\r\n\r\n",
+    "reactions": 18,
+    "created_at": "2024-04-04T09:00:09Z",
+    "updated_at": "2026-09-11T01:43:32Z",
+    "labels": [
+      "type/feature-request",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/85570",
+    "html_url": "https://github.com/grafana/grafana/issues/85570",
+    "author_login": "Pionerd",
+    "author_profile": "https://github.com/Pionerd",
+    "comments": 7,
+    "state_reason": "not_planned",
+    "closed_at": "2026-09-11T01:43:32Z",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""

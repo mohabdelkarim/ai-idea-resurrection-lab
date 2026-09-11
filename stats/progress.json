@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-10T17:12:32",
-  "total_resurrections": 145,
+  "last_updated": "2026-09-11T17:10:43",
+  "total_resurrections": 146,
   "total_repos_covered": 42,
   "average_impact_score": 6.54,
-  "average_effort_hours": 70.4,
+  "average_effort_hours": 70.14,
   "total_with_poc": 108,
-  "total_with_rfc": 129,
+  "total_with_rfc": 130,
   "comment_stats": {
-    "attempted": 69,
+    "attempted": 70,
     "posted": 4,
-    "failed": 65
+    "failed": 66
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -37,8 +37,8 @@
   },
   "top_tags": [
     "typescript",
-    "rust",
     "go",
+    "rust",
     "python",
     "kubernetes"
   ],
@@ -72,30 +72,32 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-10",
-    "repo": "ohmyzsh/ohmyzsh",
-    "issue_number": 9438,
-    "title": "Git plugin: \"gl\" should be short for \"git log\", not \"git push\"",
-    "reactions": 6,
-    "abandoned_date": "2026-01-18T20:48:26Z",
-    "one_line_why": "zsh 5.9 introduced associative arrays enabling clearer alias definitions for plugins.",
-    "one_line_summary": "The Git plugin should map the short alias \u201cgl\u201d to \u201cgit log\u201d instead of \u201cgit push\u201d.",
-    "impact_score": 7,
-    "effort_hours": 12.0,
+    "date": "2026-09-11",
+    "repo": "grafana/grafana",
+    "issue_number": 6694,
+    "title": "[Feature request] Google Analytics integration",
+    "reactions": 148,
+    "abandoned_date": "2024-02-20T01:46:58Z",
+    "one_line_why": "Grafana's plugin SDK v2 and OAuth2 support enable secure Google Analytics API integration.",
+    "one_line_summary": "Add a Google Analytics datasource to Grafana for real\u2011time user and traffic metrics.",
+    "impact_score": 6,
+    "effort_hours": 32.0,
     "has_poc": false,
-    "has_rfc": false,
-    "poc_language": "",
+    "has_rfc": true,
+    "poc_language": "go",
     "poc_validated": false,
-    "poc_validation_error": "",
-    "quality_flags": [],
-    "technology_tags": [
-      "git"
+    "poc_validation_error": "# poc\n./main.go:75:5: jsonData declared and not used\n./main.go:85:189: invalid composite literal type interface{}",
+    "quality_flags": [
+      "poc_validation_failed"
     ],
-    "original_url": "https://github.com/ohmyzsh/ohmyzsh/issues/9438",
-    "resurrection_slug": "2026-09-10_ohmyzsh-ohmyzsh_9438",
+    "technology_tags": [
+      "go"
+    ],
+    "original_url": "https://github.com/grafana/grafana/issues/6694",
+    "resurrection_slug": "2026-09-11_grafana-grafana_6694",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-10T17:12:32+00:00"
+    "commented_at": "2026-09-11T17:10:42+00:00"
   }
 }
