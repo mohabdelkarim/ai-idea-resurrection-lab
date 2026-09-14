@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-14",
+  "repo": "sveltejs/svelte",
+  "issue_number": 1518,
+  "title": "Better error checking and messages for beginners",
+  "reactions": 11,
+  "abandoned_date": "2024-09-23T00:56:27Z",
+  "one_line_why": "Svelte 5's compile-time diagnostics API now enables detailed template\u2011level error reporting.",
+  "one_line_summary": "Introduce structured compile-time diagnostics to provide clearer, context\u2011rich error messages for Svelte beginners.",
+  "impact_score": 7,
+  "effort_hours": 70.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "typescript",
+    "compiler"
+  ],
+  "original_url": "https://github.com/sveltejs/svelte/issues/1518",
+  "resurrection_slug": "2026-09-14_sveltejs-svelte_1518",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-14T18:37:06+00:00"
+}

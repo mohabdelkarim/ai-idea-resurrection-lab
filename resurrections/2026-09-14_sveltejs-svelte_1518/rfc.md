@@ -1,0 +1,53 @@
+# RFC: Better error checking and messages for beginners
+
+Summary
+Introduce a structured compile‑time diagnostics system for the Svelte compiler that delivers richer, context‑aware error messages aimed at beginners. The system will be implemented as a compiler plugin leveraging the new diagnostics API introduced in Svelte 5, and will integrate with Vite 5's error overlay and TypeScript 5.5's enhanced type checking. A configuration flag (`enhancedErrors`) will allow developers to enable or disable the feature for development builds.
+
+Motivation
+New Svelte users frequently encounter cryptic error messages such as "Unexpected token" or "Cannot read property 'foo' of undefined" that reference generated JavaScript rather than the original `.svelte` template. This steepens the learning curve and leads to frustration, especially when the offending line is hidden inside a compiled block. Since Svelte 5 now provides node‑level metadata (source location, original snippet, and type information), we can generate diagnostics that point directly to the template line, show surrounding code, and suggest corrective actions. Improved diagnostics will reduce support tickets, lower onboarding time, and align Svelte with modern frameworks that already offer template‑aware error reporting.
+
+Detailed Design
+1. **Diagnostics Plugin**: Add `src/compiler/diagnosticsPlugin.ts`. The plugin registers callbacks on the compiler's `onError` and `onWarning` hooks. When the compiler detects an error (e.g., undefined variable, invalid binding, mismatched `{#if}`), it creates a `Diagnostic` object containing:
+   - `code`: numeric identifier
+   - `message`: raw technical description
+   - `location`: `{ line, column, start, end }`
+   - `snippet`: the exact template source for the node
+   - `suggestion` (optional): a short remediation hint
+2. **AST Extension**: Extend `Node` interfaces to include `sourceSnippet: string` and `sourceMap: SourceMapSegment`. The parser will capture the raw text between `start` and `end` positions during tokenization.
+3. **Formatter Module**: Implement `src/compiler/diagnosticFormatter.ts` in TypeScript. It receives a `Diagnostic` and returns a human‑readable string, e.g.:
+   ```
+   Error: Undefined variable `count` at MyComponent.svelte:12:5
+   →   {#if count > 0}
+   Suggestion: Declare `let count = 0;` in the script block.
+   ```
+   The formatter also adds colour codes for terminal output.
+4. **Vite Integration**: Export a virtual module `virtual:svelte-diagnostics` that Vite's dev server consumes. The module re‑exports the formatted messages, and Vite's error overlay displays the snippet inline with the stack trace.
+5. **Configuration Flag**: In `svelte.config.ts` add:
+   ```ts
+   export default defineConfig({
+     compilerOptions: { enhancedErrors: true }
+   });
+   ```
+   When false, the compiler falls back to the legacy plain‑string errors.
+6. **Source‑Map Compatibility**: The plugin will augment existing source maps with a `diagnostics` field, ensuring that browser devtools can map runtime errors back to the original template line.
+7. **Testing & Documentation**: Add unit tests for each directive (`{#if}`, `{#each}`, bindings, events) covering both success and failure paths. Update the official docs with a "Debugging" chapter showing example error outputs and how to enable the feature.
+
+Drawbacks
+- **Compile‑time Overhead**: Capturing snippets and generating structured objects adds ~5‑10 ms to compilation in large projects. The overhead is mitigated by the `enhancedErrors` flag, which defaults to `false` in production builds.
+- **Increased Bundle Size**: The diagnostics plugin and formatter increase the compiler bundle by ~30 KB. This is acceptable because the code is stripped from production builds.
+- **Maintenance Burden**: New compiler features must keep the diagnostic metadata in sync, requiring additional test coverage and review effort.
+
+Alternatives
+1. **Post‑hoc Error Wrapping**: Parse error stack traces after compilation to map them back to template lines. This approach is brittle and cannot provide suggestions.
+2. **External Linter**: Use an ESLint plugin to catch common mistakes before compilation. Linters lack runtime context (e.g., runtime binding errors) and cannot surface stack‑trace‑based issues.
+3. **Full‑stack Source Maps**: Extend source maps to include template snippets directly. This would require changes to the broader JavaScript ecosystem and is not feasible within the Svelte repo alone.
+
+Unresolved Questions
+- How should we version the diagnostic `code` values to avoid collisions with future Svelte error codes?
+- Should the formatter support localisation, and if so, what API surface is required?
+- What is the best strategy for pruning diagnostics in watch mode to avoid flooding the Vite overlay with duplicate messages?
+- Are there edge‑cases in third‑party preprocessors (e.g., `svelte-preprocess` with SCSS) where source snippets become inaccurate?
+
+---
+
+*RFC generated by Resurrection Bot 🧬*

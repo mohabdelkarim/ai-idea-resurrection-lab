@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-11T17:10:43",
-  "total_resurrections": 146,
+  "last_updated": "2026-09-14T18:37:06",
+  "total_resurrections": 147,
   "total_repos_covered": 42,
   "average_impact_score": 6.54,
   "average_effort_hours": 70.14,
-  "total_with_poc": 108,
-  "total_with_rfc": 130,
+  "total_with_poc": 109,
+  "total_with_rfc": 131,
   "comment_stats": {
-    "attempted": 70,
+    "attempted": 71,
     "posted": 4,
-    "failed": 66
+    "failed": 67
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,32 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-11",
-    "repo": "grafana/grafana",
-    "issue_number": 6694,
-    "title": "[Feature request] Google Analytics integration",
-    "reactions": 148,
-    "abandoned_date": "2024-02-20T01:46:58Z",
-    "one_line_why": "Grafana's plugin SDK v2 and OAuth2 support enable secure Google Analytics API integration.",
-    "one_line_summary": "Add a Google Analytics datasource to Grafana for real\u2011time user and traffic metrics.",
-    "impact_score": 6,
-    "effort_hours": 32.0,
-    "has_poc": false,
+    "date": "2026-09-14",
+    "repo": "sveltejs/svelte",
+    "issue_number": 1518,
+    "title": "Better error checking and messages for beginners",
+    "reactions": 11,
+    "abandoned_date": "2024-09-23T00:56:27Z",
+    "one_line_why": "Svelte 5's compile-time diagnostics API now enables detailed template\u2011level error reporting.",
+    "one_line_summary": "Introduce structured compile-time diagnostics to provide clearer, context\u2011rich error messages for Svelte beginners.",
+    "impact_score": 7,
+    "effort_hours": 70.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
-    "poc_validated": false,
-    "poc_validation_error": "# poc\n./main.go:75:5: jsonData declared and not used\n./main.go:85:189: invalid composite literal type interface{}",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "typescript",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "go"
+      "typescript",
+      "compiler"
     ],
-    "original_url": "https://github.com/grafana/grafana/issues/6694",
-    "resurrection_slug": "2026-09-11_grafana-grafana_6694",
+    "original_url": "https://github.com/sveltejs/svelte/issues/1518",
+    "resurrection_slug": "2026-09-14_sveltejs-svelte_1518",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-11T17:10:42+00:00"
+    "commented_at": "2026-09-14T18:37:06+00:00"
   }
 }
