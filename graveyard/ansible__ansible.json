@@ -20,6 +20,8 @@
     "author_login": "rgdacosta",
     "author_profile": "https://github.com/rgdacosta",
     "comments": 43,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -44,6 +46,8 @@
     "author_login": "geerlingguy",
     "author_profile": "https://github.com/geerlingguy",
     "comments": 32,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -67,6 +71,8 @@
     "author_login": "Spitfire1900",
     "author_profile": "https://github.com/Spitfire1900",
     "comments": 33,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -92,7 +98,9 @@
     "author_login": "hloeffler",
     "author_profile": "https://github.com/hloeffler",
     "comments": 8,
-    "already_resurrected": false,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   }

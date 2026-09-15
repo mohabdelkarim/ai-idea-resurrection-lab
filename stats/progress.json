@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-14T18:37:06",
-  "total_resurrections": 147,
+  "last_updated": "2026-09-15T17:44:39",
+  "total_resurrections": 148,
   "total_repos_covered": 42,
   "average_impact_score": 6.54,
   "average_effort_hours": 70.14,
   "total_with_poc": 109,
-  "total_with_rfc": 131,
+  "total_with_rfc": 132,
   "comment_stats": {
-    "attempted": 71,
+    "attempted": 72,
     "posted": 4,
-    "failed": 67
+    "failed": 68
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,31 +72,32 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-14",
-    "repo": "sveltejs/svelte",
-    "issue_number": 1518,
-    "title": "Better error checking and messages for beginners",
-    "reactions": 11,
-    "abandoned_date": "2024-09-23T00:56:27Z",
-    "one_line_why": "Svelte 5's compile-time diagnostics API now enables detailed template\u2011level error reporting.",
-    "one_line_summary": "Introduce structured compile-time diagnostics to provide clearer, context\u2011rich error messages for Svelte beginners.",
-    "impact_score": 7,
+    "date": "2026-09-15",
+    "repo": "ansible/ansible",
+    "issue_number": 22286,
+    "title": "Feature Idea: add meta: end_role",
+    "reactions": 50,
+    "abandoned_date": "2024-03-19T13:00:01Z",
+    "one_line_why": "Ansible 2.12 introduced collection-based execution model enabling granular role control.",
+    "one_line_summary": "Introduce a meta directive that terminates role execution early, mirroring the end_play behavior.",
+    "impact_score": 6,
     "effort_hours": 70.0,
-    "has_poc": true,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "typescript",
-    "poc_validated": true,
-    "poc_validation_error": "",
-    "quality_flags": [],
-    "technology_tags": [
-      "typescript",
-      "compiler"
+    "poc_language": "python",
+    "poc_validated": false,
+    "poc_validation_error": "  File \"/tmp/poc_py_5_qm4i8_/main.py\", line 1\n    import sys\\nimport traceback\\nfrom typing import List, Dict, Any\\n\\n# Simple base classes to simulate Ansible's plugin architecture\\nclass MetaBase:\\n    \"\"\"Base class for meta plugins.\"\"\"\\n    name = \"base\"\\n    def run(self, task: Dict[str, Any]):\\n        raise NotImplementedError\\n\\nclass RoleTerminator(Exception):\\n    \"\"\"Exception used to signal early termination of a role.\"\"\"\\n    pass\\n\\n# Our new meta plugin implementing end_role\\nclass ",
+    "quality_flags": [
+      "poc_validation_failed"
     ],
-    "original_url": "https://github.com/sveltejs/svelte/issues/1518",
-    "resurrection_slug": "2026-09-14_sveltejs-svelte_1518",
+    "technology_tags": [
+      "ansible"
+    ],
+    "original_url": "https://github.com/ansible/ansible/issues/22286",
+    "resurrection_slug": "2026-09-15_ansible-ansible_22286",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-14T18:37:06+00:00"
+    "commented_at": "2026-09-15T17:44:39+00:00"
   }
 }
