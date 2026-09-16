@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-15T17:44:39",
-  "total_resurrections": 148,
+  "last_updated": "2026-09-16T17:45:48",
+  "total_resurrections": 149,
   "total_repos_covered": 42,
   "average_impact_score": 6.54,
-  "average_effort_hours": 70.14,
-  "total_with_poc": 109,
-  "total_with_rfc": 132,
+  "average_effort_hours": 69.88,
+  "total_with_poc": 110,
+  "total_with_rfc": 133,
   "comment_stats": {
-    "attempted": 72,
+    "attempted": 73,
     "posted": 4,
-    "failed": 68
+    "failed": 69
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,32 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-15",
-    "repo": "ansible/ansible",
-    "issue_number": 22286,
-    "title": "Feature Idea: add meta: end_role",
-    "reactions": 50,
-    "abandoned_date": "2024-03-19T13:00:01Z",
-    "one_line_why": "Ansible 2.12 introduced collection-based execution model enabling granular role control.",
-    "one_line_summary": "Introduce a meta directive that terminates role execution early, mirroring the end_play behavior.",
+    "date": "2026-09-16",
+    "repo": "docker/compose",
+    "issue_number": 2545,
+    "title": "Proposal: support for args_file",
+    "reactions": 26,
+    "abandoned_date": "2023-05-09T14:45:29Z",
+    "one_line_why": "Docker BuildKit and secret management APIs introduced in Docker 18.09 enable secure args_file handling.",
+    "one_line_summary": "Docker Compose should support an args_file option to load build arguments from external files.",
     "impact_score": 6,
-    "effort_hours": 70.0,
-    "has_poc": false,
+    "effort_hours": 32.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
-    "poc_validated": false,
-    "poc_validation_error": "  File \"/tmp/poc_py_5_qm4i8_/main.py\", line 1\n    import sys\\nimport traceback\\nfrom typing import List, Dict, Any\\n\\n# Simple base classes to simulate Ansible's plugin architecture\\nclass MetaBase:\\n    \"\"\"Base class for meta plugins.\"\"\"\\n    name = \"base\"\\n    def run(self, task: Dict[str, Any]):\\n        raise NotImplementedError\\n\\nclass RoleTerminator(Exception):\\n    \"\"\"Exception used to signal early termination of a role.\"\"\"\\n    pass\\n\\n# Our new meta plugin implementing end_role\\nclass ",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "go",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "ansible"
+      "go"
     ],
-    "original_url": "https://github.com/ansible/ansible/issues/22286",
-    "resurrection_slug": "2026-09-15_ansible-ansible_22286",
+    "original_url": "https://github.com/docker/compose/issues/2545",
+    "resurrection_slug": "2026-09-16_docker-compose_2545",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-15T17:44:39+00:00"
+    "commented_at": "2026-09-16T17:45:48+00:00"
   }
 }

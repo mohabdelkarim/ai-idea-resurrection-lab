@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-16",
+  "repo": "docker/compose",
+  "issue_number": 2545,
+  "title": "Proposal: support for args_file",
+  "reactions": 26,
+  "abandoned_date": "2023-05-09T14:45:29Z",
+  "one_line_why": "Docker BuildKit and secret management APIs introduced in Docker 18.09 enable secure args_file handling.",
+  "one_line_summary": "Docker Compose should support an args_file option to load build arguments from external files.",
+  "impact_score": 6,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "go"
+  ],
+  "original_url": "https://github.com/docker/compose/issues/2545",
+  "resurrection_slug": "2026-09-16_docker-compose_2545",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-16T17:45:48+00:00"
+}
