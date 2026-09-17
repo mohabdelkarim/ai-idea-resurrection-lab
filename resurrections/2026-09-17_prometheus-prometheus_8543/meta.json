@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-17",
+  "repo": "prometheus/prometheus",
+  "issue_number": 8543,
+  "title": "Load scrape configs from multiple files",
+  "reactions": 59,
+  "abandoned_date": "2023-09-16T23:18:35Z",
+  "one_line_why": "Go 1.21's improved embed.FS and filesystem APIs enable dynamic config file loading.",
+  "one_line_summary": "Prometheus can now load scrape configurations from multiple separate files using a glob pattern.",
+  "impact_score": 7,
+  "effort_hours": 70.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": false,
+  "poc_validation_error": "# poc\n./main.go:5:5: \"errors\" imported and not used",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "go"
+  ],
+  "original_url": "https://github.com/prometheus/prometheus/issues/8543",
+  "resurrection_slug": "2026-09-17_prometheus-prometheus_8543",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-17T17:45:32+00:00"
+}
