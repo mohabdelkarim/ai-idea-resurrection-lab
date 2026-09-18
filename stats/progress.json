@@ -1,21 +1,21 @@
 {
-  "last_updated": "2026-09-17T17:45:32",
-  "total_resurrections": 150,
+  "last_updated": "2026-09-18T17:11:00",
+  "total_resurrections": 151,
   "total_repos_covered": 42,
   "average_impact_score": 6.54,
-  "average_effort_hours": 69.88,
-  "total_with_poc": 110,
-  "total_with_rfc": 134,
+  "average_effort_hours": 69.63,
+  "total_with_poc": 111,
+  "total_with_rfc": 135,
   "comment_stats": {
-    "attempted": 74,
+    "attempted": 75,
     "posted": 4,
-    "failed": 70
+    "failed": 71
   },
   "repo_diversity": {
     "top_repeated_repos": [
       {
         "repo": "comfyanonymous/ComfyUI",
-        "count": 8
+        "count": 9
       },
       {
         "repo": "kubernetes/kubernetes",
@@ -72,32 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-17",
-    "repo": "prometheus/prometheus",
-    "issue_number": 8543,
-    "title": "Load scrape configs from multiple files",
-    "reactions": 59,
-    "abandoned_date": "2023-09-16T23:18:35Z",
-    "one_line_why": "Go 1.21's improved embed.FS and filesystem APIs enable dynamic config file loading.",
-    "one_line_summary": "Prometheus can now load scrape configurations from multiple separate files using a glob pattern.",
-    "impact_score": 7,
-    "effort_hours": 70.0,
-    "has_poc": false,
+    "date": "2026-09-18",
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 3734,
+    "title": "[Feature] Support for SD3 ControlNet",
+    "reactions": 16,
+    "abandoned_date": "2024-06-29T09:06:19Z",
+    "one_line_why": "Diffusers 0.23 released a stable SD3 ControlNet API enabling direct pipeline usage.",
+    "one_line_summary": "Add a ControlNet node to ComfyUI that leverages diffusers' SD3 ControlNet pipeline integration.",
+    "impact_score": 6,
+    "effort_hours": 32.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
-    "poc_validated": false,
-    "poc_validation_error": "# poc\n./main.go:5:5: \"errors\" imported and not used",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "python",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "go"
+      "python"
     ],
-    "original_url": "https://github.com/prometheus/prometheus/issues/8543",
-    "resurrection_slug": "2026-09-17_prometheus-prometheus_8543",
+    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/3734",
+    "resurrection_slug": "2026-09-18_comfyanonymous-comfyui_3734",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-17T17:45:32+00:00"
+    "commented_at": "2026-09-18T17:11:00+00:00"
   }
 }
