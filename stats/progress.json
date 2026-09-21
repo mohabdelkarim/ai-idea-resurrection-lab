@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-18T17:11:00",
-  "total_resurrections": 151,
+  "last_updated": "2026-09-21T18:44:26",
+  "total_resurrections": 152,
   "total_repos_covered": 42,
-  "average_impact_score": 6.54,
-  "average_effort_hours": 69.63,
-  "total_with_poc": 111,
-  "total_with_rfc": 135,
+  "average_impact_score": 6.52,
+  "average_effort_hours": 69.38,
+  "total_with_poc": 112,
+  "total_with_rfc": 136,
   "comment_stats": {
-    "attempted": 75,
+    "attempted": 76,
     "posted": 4,
-    "failed": 71
+    "failed": 72
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,30 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-18",
-    "repo": "comfyanonymous/ComfyUI",
-    "issue_number": 3734,
-    "title": "[Feature] Support for SD3 ControlNet",
-    "reactions": 16,
-    "abandoned_date": "2024-06-29T09:06:19Z",
-    "one_line_why": "Diffusers 0.23 released a stable SD3 ControlNet API enabling direct pipeline usage.",
-    "one_line_summary": "Add a ControlNet node to ComfyUI that leverages diffusers' SD3 ControlNet pipeline integration.",
-    "impact_score": 6,
+    "date": "2026-09-21",
+    "repo": "open-webui/open-webui",
+    "issue_number": 668,
+    "title": "feat: LDAP User management",
+    "reactions": 48,
+    "abandoned_date": "2024-12-09T02:12:28Z",
+    "one_line_why": "WASM-based LDAP client libraries matured in 2025 enabling browser\u2011side directory queries.",
+    "one_line_summary": "Add LDAP authentication and user management to Open WebUI for enterprise directory integration.",
+    "impact_score": 4,
     "effort_hours": 32.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "typescript",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "python"
+      "typescript"
     ],
-    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/3734",
-    "resurrection_slug": "2026-09-18_comfyanonymous-comfyui_3734",
+    "original_url": "https://github.com/open-webui/open-webui/issues/668",
+    "resurrection_slug": "2026-09-21_open-webui-open-webui_668",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-18T17:11:00+00:00"
+    "commented_at": "2026-09-21T18:44:26+00:00"
   }
 }

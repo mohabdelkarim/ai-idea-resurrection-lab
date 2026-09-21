@@ -324,6 +324,32 @@
   },
   {
     "repo": "grafana/grafana",
+    "issue_number": 11409,
+    "title": "Installing & enabling plugins through provisioning",
+    "body": "It's currently possible to [provision](http://docs.grafana.org/administration/provisioning/) datasources and dashboards but not plugins. When using the Docker container this is solved to some extent by being able to provision/install plugins using an env variable. \r\n\r\nThis leaves app plugins without provisioning as they need to be enabled after they have been installed. It also leaves installs without docker without provisioning support for plugins.\r\n\r\n### Proposal:\r\n- extend provisioning to support plugins\r\n- extend provisioning to support app plugins\r\n\r\nRelated to grafana/grafana-docker#133",
+    "reactions": 46,
+    "created_at": "2018-03-28T09:09:13Z",
+    "updated_at": "2026-09-16T01:45:45Z",
+    "labels": [
+      "type/feature-request",
+      "prio/medium",
+      "area/backend/plugins",
+      "area/provisioning",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/grafana/grafana/issues/11409",
+    "html_url": "https://github.com/grafana/grafana/issues/11409",
+    "author_login": "xlson",
+    "author_profile": "https://github.com/xlson",
+    "comments": 32,
+    "state_reason": "not_planned",
+    "closed_at": "2026-09-16T01:45:45Z",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "grafana/grafana",
     "issue_number": 3305,
     "title": "Generic HTTP CSV / TSV datasource plugin",
     "body": "Timesires data is often stored in TSV or CSV files that slowly get appended to in cases where databases are not setup.\n\nIt would be great to be able to pull data such as this into grafana.\n\nI started working on a datasource plugin for such a case https://github.com/addshore/grafana-tsv-datasource\n\nThis currently allows you to specify a TSV file over HTTP and load it into grafana.\nIt supports different column layouts so long as there is a date that can be parsed by JavaScript and a value in the mix.\nIt also supports files with and without data headings.\n\nI open this for general tracking and to let people know there is some code that can kind of do this now!\n",

@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-21",
+  "repo": "open-webui/open-webui",
+  "issue_number": 668,
+  "title": "feat: LDAP User management",
+  "reactions": 48,
+  "abandoned_date": "2024-12-09T02:12:28Z",
+  "one_line_why": "WASM-based LDAP client libraries matured in 2025 enabling browser\u2011side directory queries.",
+  "one_line_summary": "Add LDAP authentication and user management to Open WebUI for enterprise directory integration.",
+  "impact_score": 4,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "typescript"
+  ],
+  "original_url": "https://github.com/open-webui/open-webui/issues/668",
+  "resurrection_slug": "2026-09-21_open-webui-open-webui_668",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-21T18:44:26+00:00"
+}
