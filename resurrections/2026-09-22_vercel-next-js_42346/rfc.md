@@ -1,0 +1,43 @@
+# RFC: Next 13: router.push with different searchParams does not trigger suspense fallback
+
+Summary
+The proposal introduces a first‑class integration between Next.js App Router navigation (router.push) and React Suspense when the URL search parameters change. By detecting searchParam updates via the new useSearchParams hook and automatically triggering a server‑side revalidation, the framework will suspend the current UI and render a defined Suspense fallback (e.g., a skeleton) until the server component finishes fetching fresh data. This behavior aligns with React 18.3 concurrent rendering guarantees and resolves the long‑standing issue where router.push with different query strings silently updates the UI without a fallback.
+
+Motivation
+Developers building data‑heavy pages in the app directory rely on Suspense to provide graceful loading states. Currently, a navigation that only alters search parameters (e.g., ?page=2) updates the route client‑side but does not cause the server component to re‑fetch, nor does it trigger a Suspense fallback. The result is a flash of stale content or a jarring UI change. With React 18.3’s refined suspense semantics and Next.js 13.5’s server actions and fetch caching, we have the primitives needed to make search‑param‑driven navigation behave like a full page transition. Providing a reliable fallback improves perceived performance, reduces UI bugs, and encourages developers to adopt the app router for complex data flows.
+
+Detailed Design
+1. **API Surface**
+   - Extend the existing `router.push(url, options?)` to accept an optional flag `options.suspendOnSearchChange?: boolean` (default true).
+   - Introduce `useSearchParams()` that returns a mutable `URLSearchParams` object and subscribes to changes via the router’s internal event bus.
+2. **Client‑side Hook**
+   - A new `useSearchParamSuspense()` hook internally calls `useSearchParams()` and registers a `useEffect` that, on any change, invokes `router.push` with the updated query string and `suspendOnSearchChange: true`.
+3. **Server‑side Revalidation**
+   - When `router.push` is called with the flag, Next.js marks the route as “stale” and triggers a server action `revalidatePath(path)` automatically. This action clears the fetch cache for that route, forcing all `fetch()` calls inside server components to re‑run.
+4. **Suspense Boundary**
+   - Developers wrap the top‑level server component (or any subtree) in `<React.Suspense fallback={<Skeleton/>}>`. The fetch inside the server component must use `fetch(url, { cache: 'force-no-store' })` or rely on the default cache‑busting behavior introduced in 13.5.
+5. **Streaming SSR**
+   - While the server component is pending, Next.js streams the fallback HTML to the client. Once the data resolves, the new HTML is streamed and replaces the fallback without a full page reload.
+6. **Backward Compatibility**
+   - Existing `router.push` calls without the flag retain current behavior (no automatic suspension). The flag can be opt‑in per navigation or globally via a config in `next.config.js`.
+
+Drawbacks
+- **Increased Server Load**: Automatic revalidation on every searchParam change can cause a higher number of server renders, especially for high‑frequency filters (e.g., live search). Developers must manually opt‑out or debounce updates.
+- **Complexity in Caching**: The new cache‑busting semantics may interfere with custom fetch caching strategies, requiring developers to audit their data fetching code.
+- **Potential Flash of Fallback**: If the fallback UI is heavy, users may perceive a longer loading state compared to the previous instant UI update.
+
+Alternatives
+1. **Manual Revalidation**: Keep the current API and require developers to call `router.refresh()` or a custom server action after each `router.push`. This puts the burden on the app but avoids automatic revalidation.
+2. **Client‑only Data Fetching**: Use SWR or React Query on the client to refetch data on searchParam changes, sidestepping server‑side Suspense. This loses the streaming SSR benefits.
+3. **Full Page Reload**: Force a full navigation (`router.replace` with `forceOptimisticNavigation: false`) which naturally triggers a fresh server render, but at the cost of losing SPA experience.
+
+Unresolved Questions
+- How should debounce logic be exposed? Should we provide a `router.pushDebounced` helper or leave it to the application layer?
+- What is the optimal default cache policy for fetches triggered by searchParam changes? Should we default to `no-store` or respect existing `revalidate` settings?
+- How will this interact with edge middleware that rewrites URLs based on query strings? Will the automatic revalidation bypass middleware caches?
+- Are there any edge‑case interactions with parallel routes or intercepting routes that also depend on search parameters?
+- Should we emit a new telemetry event (`searchParamSuspense`) to help the team monitor adoption and performance impact?
+
+---
+
+*RFC generated by Resurrection Bot 🧬*

@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-22",
+  "repo": "vercel/next.js",
+  "issue_number": 42346,
+  "title": "Next 13: router.push with different searchParams does not trigger suspense fallback",
+  "reactions": 24,
+  "abandoned_date": "2025-11-04T00:05:42Z",
+  "one_line_why": "React 18.3 concurrent features and Next.js 13.5 server actions enable proper suspense handling.",
+  "one_line_summary": "router.push with new searchParams should trigger Suspense fallback in Next.js app directory.",
+  "impact_score": 8,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "react",
+    "typescript"
+  ],
+  "original_url": "https://github.com/vercel/next.js/issues/42346",
+  "resurrection_slug": "2026-09-22_vercel-next-js_42346",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-22T17:47:17+00:00"
+}
