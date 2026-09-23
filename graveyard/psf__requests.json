@@ -17,6 +17,8 @@
     "author_login": "Lukasa",
     "author_profile": "https://github.com/Lukasa",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -35,6 +37,8 @@
     "author_login": "naorlivne",
     "author_profile": "https://github.com/naorlivne",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -55,6 +59,8 @@
     "author_login": "gward",
     "author_profile": "https://github.com/gward",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -76,6 +82,8 @@
     "author_login": "mlissner",
     "author_profile": "https://github.com/mlissner",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -94,6 +102,8 @@
     "author_login": "mouuff",
     "author_profile": "https://github.com/mouuff",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": true,
     "quality_rejection_reason": "Body too short (12 chars, min 80) — not a real proposal"
@@ -112,6 +122,8 @@
     "author_login": "mdmintz",
     "author_profile": "https://github.com/mdmintz",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -132,6 +144,8 @@
     "author_login": "gabor",
     "author_profile": "https://github.com/gabor",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
@@ -154,9 +168,11 @@
     "author_login": "Lukasa",
     "author_profile": "https://github.com/Lukasa",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Too sparse (24 total words)"
   },
   {
     "repo": "psf/requests",
@@ -174,7 +190,9 @@
     "author_login": "EmilStenstrom",
     "author_profile": "https://github.com/EmilStenstrom",
     "comments": 0,
-    "already_resurrected": false,
+    "state_reason": "",
+    "closed_at": "",
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
@@ -195,6 +213,8 @@
     "author_login": "thoger",
     "author_profile": "https://github.com/thoger",
     "comments": 0,
+    "state_reason": "",
+    "closed_at": "",
     "already_resurrected": false,
     "quality_rejected": false,
     "quality_rejection_reason": ""

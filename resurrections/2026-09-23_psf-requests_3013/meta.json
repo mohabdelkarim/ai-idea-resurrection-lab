@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-23",
+  "repo": "psf/requests",
+  "issue_number": 3013,
+  "title": "Easy printing of Requests and Responses, two new utils?",
+  "reactions": 9,
+  "abandoned_date": "2021-09-08T18:00:54Z",
+  "one_line_why": "Rich console output libraries like Rich (2020) enable formatted HTTP message printing.",
+  "one_line_summary": "Add utility functions to pretty\u2011print Request and Response objects for debugging directly to the console without affecting existing behaviour.",
+  "impact_score": 6,
+  "effort_hours": 32.0,
+  "has_poc": false,
+  "has_rfc": false,
+  "poc_language": "python",
+  "poc_validated": false,
+  "poc_validation_error": "  File \"/tmp/poc_py_53x2_rep/main.py\", line 1\n    import sys\\nimport json\\nimport unittest\\nfrom dataclasses import dataclass, asdict\\nfrom typing import Optional, Dict, Any\\n\\n# Minimal stub of requests objects for demonstration\\nclass PreparedRequest:\\n    def __init__(self, method: str, url: str, headers: Dict[str, str], body: Optional[bytes] = None):\\n        self.method = method\\n        self.url = url\\n        self.headers = headers\\n        self.body = body\\n\\nclass Response:\\n    def __i",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "http",
+    "cli",
+    "python"
+  ],
+  "original_url": "https://github.com/psf/requests/issues/3013",
+  "resurrection_slug": "2026-09-23_psf-requests_3013",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-23T17:59:31+00:00"
+}

@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-22T17:47:17",
-  "total_resurrections": 153,
+  "last_updated": "2026-09-23T17:59:31",
+  "total_resurrections": 154,
   "total_repos_covered": 42,
   "average_impact_score": 6.53,
-  "average_effort_hours": 69.14,
+  "average_effort_hours": 68.9,
   "total_with_poc": 113,
   "total_with_rfc": 137,
   "comment_stats": {
-    "attempted": 77,
+    "attempted": 78,
     "posted": 4,
-    "failed": 73
+    "failed": 74
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,31 +72,34 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-22",
-    "repo": "vercel/next.js",
-    "issue_number": 42346,
-    "title": "Next 13: router.push with different searchParams does not trigger suspense fallback",
-    "reactions": 24,
-    "abandoned_date": "2025-11-04T00:05:42Z",
-    "one_line_why": "React 18.3 concurrent features and Next.js 13.5 server actions enable proper suspense handling.",
-    "one_line_summary": "router.push with new searchParams should trigger Suspense fallback in Next.js app directory.",
-    "impact_score": 8,
+    "date": "2026-09-23",
+    "repo": "psf/requests",
+    "issue_number": 3013,
+    "title": "Easy printing of Requests and Responses, two new utils?",
+    "reactions": 9,
+    "abandoned_date": "2021-09-08T18:00:54Z",
+    "one_line_why": "Rich console output libraries like Rich (2020) enable formatted HTTP message printing.",
+    "one_line_summary": "Add utility functions to pretty\u2011print Request and Response objects for debugging directly to the console without affecting existing behaviour.",
+    "impact_score": 6,
     "effort_hours": 32.0,
-    "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "typescript",
-    "poc_validated": true,
-    "poc_validation_error": "",
-    "quality_flags": [],
-    "technology_tags": [
-      "react",
-      "typescript"
+    "has_poc": false,
+    "has_rfc": false,
+    "poc_language": "python",
+    "poc_validated": false,
+    "poc_validation_error": "  File \"/tmp/poc_py_53x2_rep/main.py\", line 1\n    import sys\\nimport json\\nimport unittest\\nfrom dataclasses import dataclass, asdict\\nfrom typing import Optional, Dict, Any\\n\\n# Minimal stub of requests objects for demonstration\\nclass PreparedRequest:\\n    def __init__(self, method: str, url: str, headers: Dict[str, str], body: Optional[bytes] = None):\\n        self.method = method\\n        self.url = url\\n        self.headers = headers\\n        self.body = body\\n\\nclass Response:\\n    def __i",
+    "quality_flags": [
+      "poc_validation_failed"
     ],
-    "original_url": "https://github.com/vercel/next.js/issues/42346",
-    "resurrection_slug": "2026-09-22_vercel-next-js_42346",
+    "technology_tags": [
+      "http",
+      "cli",
+      "python"
+    ],
+    "original_url": "https://github.com/psf/requests/issues/3013",
+    "resurrection_slug": "2026-09-23_psf-requests_3013",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-22T17:47:17+00:00"
+    "commented_at": "2026-09-23T17:59:31+00:00"
   }
 }
