@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-24T17:59:47",
-  "total_resurrections": 155,
+  "last_updated": "2026-09-25T18:02:28",
+  "total_resurrections": 156,
   "total_repos_covered": 42,
-  "average_impact_score": 6.54,
-  "average_effort_hours": 68.92,
-  "total_with_poc": 113,
-  "total_with_rfc": 138,
+  "average_impact_score": 6.53,
+  "average_effort_hours": 68.68,
+  "total_with_poc": 114,
+  "total_with_rfc": 139,
   "comment_stats": {
-    "attempted": 79,
+    "attempted": 80,
     "posted": 4,
-    "failed": 75
+    "failed": 76
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,34 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-24",
-    "repo": "golang/go",
-    "issue_number": 18605,
-    "title": "proposal: spec: allow x, y..., z in list for variadic function argument",
-    "reactions": 92,
-    "abandoned_date": "2024-08-22T18:13:46Z",
-    "one_line_why": "Go 1.18 generics and enhanced go/ast tooling now enable safe implementation of variadic splicing.",
-    "one_line_summary": "Allow mixing explicit arguments with a spliced slice in variadic function calls using ellipsis syntax.",
-    "impact_score": 8,
-    "effort_hours": 72.0,
-    "has_poc": false,
+    "date": "2026-09-25",
+    "repo": "sharkdp/bat",
+    "issue_number": 2751,
+    "title": "wrapping by word would be awesome",
+    "reactions": 18,
+    "abandoned_date": "2026-03-03T03:18:51Z",
+    "one_line_why": "Rust's stable Unicode\u2011segmentation crate 1.10 enables accurate word boundaries for text.",
+    "one_line_summary": "Add a word\u2011aware wrapping mode to bat to prevent splitting words across lines.",
+    "impact_score": 5,
+    "effort_hours": 32.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
-    "poc_validated": false,
-    "poc_validation_error": "# poc\n./main.go:1:13: invalid character U+005C '\\'\n./main.go:1:14: syntax error: unexpected n, expected semicolon or newline",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "rust",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "go",
-      "compiler",
-      "generics"
+      "rust",
+      "cli"
     ],
-    "original_url": "https://github.com/golang/go/issues/18605",
-    "resurrection_slug": "2026-09-24_golang-go_18605",
+    "original_url": "https://github.com/sharkdp/bat/issues/2751",
+    "resurrection_slug": "2026-09-25_sharkdp-bat_2751",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-24T17:59:47+00:00"
+    "commented_at": "2026-09-25T18:02:28+00:00"
   }
 }
