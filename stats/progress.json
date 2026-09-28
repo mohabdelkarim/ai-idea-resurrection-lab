@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-09-25T18:02:28",
-  "total_resurrections": 156,
+  "last_updated": "2026-09-28T20:15:25",
+  "total_resurrections": 157,
   "total_repos_covered": 42,
   "average_impact_score": 6.53,
-  "average_effort_hours": 68.68,
+  "average_effort_hours": 68.69,
   "total_with_poc": 114,
-  "total_with_rfc": 139,
+  "total_with_rfc": 140,
   "comment_stats": {
-    "attempted": 80,
+    "attempted": 81,
     "posted": 4,
-    "failed": 76
+    "failed": 77
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,31 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-09-25",
-    "repo": "sharkdp/bat",
-    "issue_number": 2751,
-    "title": "wrapping by word would be awesome",
-    "reactions": 18,
-    "abandoned_date": "2026-03-03T03:18:51Z",
-    "one_line_why": "Rust's stable Unicode\u2011segmentation crate 1.10 enables accurate word boundaries for text.",
-    "one_line_summary": "Add a word\u2011aware wrapping mode to bat to prevent splitting words across lines.",
-    "impact_score": 5,
-    "effort_hours": 32.0,
-    "has_poc": true,
+    "date": "2026-09-28",
+    "repo": "redis/redis",
+    "issue_number": 5179,
+    "title": "maybe an optimizable point for zadd operation",
+    "reactions": 62,
+    "abandoned_date": "2022-06-13T09:06:37Z",
+    "one_line_why": "Redis 7 introduced modules API and improved skiplist internals enabling efficient in\u2011place score updates.",
+    "one_line_summary": "Redis can skip node removal in ZADD when score delta does not alter element rank.",
+    "impact_score": 7,
+    "effort_hours": 70.0,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "rust",
-    "poc_validated": true,
+    "poc_language": "",
+    "poc_validated": false,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "rust",
-      "cli"
+      "redis",
+      "performance"
     ],
-    "original_url": "https://github.com/sharkdp/bat/issues/2751",
-    "resurrection_slug": "2026-09-25_sharkdp-bat_2751",
+    "original_url": "https://github.com/redis/redis/issues/5179",
+    "resurrection_slug": "2026-09-28_redis-redis_5179",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-09-25T18:02:28+00:00"
+    "commented_at": "2026-09-28T20:15:25+00:00"
   }
 }
