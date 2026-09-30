@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-30",
+  "repo": "sharkdp/fd",
+  "issue_number": 406,
+  "title": "Support multiple --exec <cmd> instances",
+  "reactions": 14,
+  "abandoned_date": "2022-03-21T14:51:26Z",
+  "one_line_why": "Rust's stable std::process::Command enhancements in 2023 enable richer exec handling.",
+  "one_line_summary": "Add an option to fd that prints each matched path alongside each executed command.",
+  "impact_score": 4,
+  "effort_hours": 32.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "poc_validated": false,
+  "poc_validation_error": "error[E0432]: unresolved import `anyhow`\n --> /tmp/poc_rs_i5f3_6s4/lib.rs:5:5\n  |\n5 | use anyhow::{Context, Result};\n  |     ^^^^^^ use of unresolved module or unlinked crate `anyhow`\n  |\n  = help: you might be missing a crate named `anyhow`\n\nerror[E0432]: unresolved import `clap`\n --> /tmp/poc_rs_i5f3_6s4/lib.rs:6:5\n  |\n6 | use clap::{Parser, ArgAction};\n  |     ^^^^ use of unresolved module or unlinked crate `clap`\n  |\n  = help: you might be missing a crate named `clap`\n\nerror: cannot find att",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "rust",
+    "cli"
+  ],
+  "original_url": "https://github.com/sharkdp/fd/issues/406",
+  "resurrection_slug": "2026-09-30_sharkdp-fd_406",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-09-30T18:33:06+00:00"
+}
