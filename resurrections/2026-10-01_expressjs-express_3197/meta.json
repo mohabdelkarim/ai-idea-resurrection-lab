@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-01",
+  "repo": "expressjs/express",
+  "issue_number": 3197,
+  "title": "express.static - add support for cache-control: immutable",
+  "reactions": 8,
+  "abandoned_date": "2017-09-28T17:46:31Z",
+  "one_line_why": "Browser support for Cache-Control: immutable became widespread after Chrome 54 and Firefox 49.",
+  "one_line_summary": "Add an immutable cache-control option to express.static for versioned static assets.",
+  "impact_score": 7,
+  "effort_hours": 12.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "typescript"
+  ],
+  "original_url": "https://github.com/expressjs/express/issues/3197",
+  "resurrection_slug": "2026-10-01_expressjs-express_3197",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-01T19:03:52+00:00"
+}
