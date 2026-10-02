@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-02",
+  "repo": "langchain-ai/langchain",
+  "issue_number": 34955,
+  "title": "Enable Messages PII Anonymization through External APIs",
+  "reactions": 8,
+  "abandoned_date": "2026-06-05T19:45:52Z",
+  "one_line_why": "The rise of OpenAI\u2019s new PII\u2011filtering endpoint and LangChain\u2019s unified callback system enables this.",
+  "one_line_summary": "LangChain should allow developers to anonymize messages via external APIs with minimal overhead.",
+  "impact_score": 5,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "langchain"
+  ],
+  "original_url": "https://github.com/langchain-ai/langchain/issues/34955",
+  "resurrection_slug": "2026-10-02_langchain-ai-langchain_34955",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-02T18:27:58+00:00"
+}

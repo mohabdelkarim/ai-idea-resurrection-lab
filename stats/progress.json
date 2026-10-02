@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-01T19:03:52",
-  "total_resurrections": 160,
+  "last_updated": "2026-10-02T18:27:58",
+  "total_resurrections": 161,
   "total_repos_covered": 42,
-  "average_impact_score": 6.52,
-  "average_effort_hours": 68.11,
-  "total_with_poc": 115,
-  "total_with_rfc": 142,
+  "average_impact_score": 6.51,
+  "average_effort_hours": 67.89,
+  "total_with_poc": 116,
+  "total_with_rfc": 143,
   "comment_stats": {
-    "attempted": 84,
+    "attempted": 85,
     "posted": 4,
-    "failed": 80
+    "failed": 81
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,30 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-01",
-    "repo": "expressjs/express",
-    "issue_number": 3197,
-    "title": "express.static - add support for cache-control: immutable",
+    "date": "2026-10-02",
+    "repo": "langchain-ai/langchain",
+    "issue_number": 34955,
+    "title": "Enable Messages PII Anonymization through External APIs",
     "reactions": 8,
-    "abandoned_date": "2017-09-28T17:46:31Z",
-    "one_line_why": "Browser support for Cache-Control: immutable became widespread after Chrome 54 and Firefox 49.",
-    "one_line_summary": "Add an immutable cache-control option to express.static for versioned static assets.",
-    "impact_score": 7,
-    "effort_hours": 12.0,
+    "abandoned_date": "2026-06-05T19:45:52Z",
+    "one_line_why": "The rise of OpenAI\u2019s new PII\u2011filtering endpoint and LangChain\u2019s unified callback system enables this.",
+    "one_line_summary": "LangChain should allow developers to anonymize messages via external APIs with minimal overhead.",
+    "impact_score": 5,
+    "effort_hours": 32.0,
     "has_poc": true,
-    "has_rfc": false,
-    "poc_language": "typescript",
+    "has_rfc": true,
+    "poc_language": "python",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "typescript"
+      "langchain"
     ],
-    "original_url": "https://github.com/expressjs/express/issues/3197",
-    "resurrection_slug": "2026-10-01_expressjs-express_3197",
+    "original_url": "https://github.com/langchain-ai/langchain/issues/34955",
+    "resurrection_slug": "2026-10-02_langchain-ai-langchain_34955",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-01T19:03:52+00:00"
+    "commented_at": "2026-10-02T18:27:58+00:00"
   }
 }
