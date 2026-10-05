@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-05",
+  "repo": "kubernetes/kubernetes",
+  "issue_number": 63214,
+  "title": "kubectl run from a manifest file",
+  "reactions": 34,
+  "abandoned_date": "2022-11-06T10:57:34Z",
+  "one_line_why": "Kubectl now includes the client-go v0.26 library with server-side apply enhancements.",
+  "one_line_summary": "Add support for loading a pod manifest file and overriding fields via kubectl run command.",
+  "impact_score": 7,
+  "effort_hours": 70.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "kubernetes",
+    "cli"
+  ],
+  "original_url": "https://github.com/kubernetes/kubernetes/issues/63214",
+  "resurrection_slug": "2026-10-05_kubernetes-kubernetes_63214",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-05T21:15:01+00:00"
+}

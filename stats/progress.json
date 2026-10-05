@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-02T18:27:58",
-  "total_resurrections": 161,
+  "last_updated": "2026-10-05T21:15:01",
+  "total_resurrections": 162,
   "total_repos_covered": 42,
   "average_impact_score": 6.51,
-  "average_effort_hours": 67.89,
-  "total_with_poc": 116,
-  "total_with_rfc": 143,
+  "average_effort_hours": 67.9,
+  "total_with_poc": 117,
+  "total_with_rfc": 144,
   "comment_stats": {
-    "attempted": 85,
+    "attempted": 86,
     "posted": 4,
-    "failed": 81
+    "failed": 82
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -19,7 +19,7 @@
       },
       {
         "repo": "kubernetes/kubernetes",
-        "count": 8
+        "count": 9
       },
       {
         "repo": "golang/go",
@@ -72,30 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-02",
-    "repo": "langchain-ai/langchain",
-    "issue_number": 34955,
-    "title": "Enable Messages PII Anonymization through External APIs",
-    "reactions": 8,
-    "abandoned_date": "2026-06-05T19:45:52Z",
-    "one_line_why": "The rise of OpenAI\u2019s new PII\u2011filtering endpoint and LangChain\u2019s unified callback system enables this.",
-    "one_line_summary": "LangChain should allow developers to anonymize messages via external APIs with minimal overhead.",
-    "impact_score": 5,
-    "effort_hours": 32.0,
+    "date": "2026-10-05",
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 63214,
+    "title": "kubectl run from a manifest file",
+    "reactions": 34,
+    "abandoned_date": "2022-11-06T10:57:34Z",
+    "one_line_why": "Kubectl now includes the client-go v0.26 library with server-side apply enhancements.",
+    "one_line_summary": "Add support for loading a pod manifest file and overriding fields via kubectl run command.",
+    "impact_score": 7,
+    "effort_hours": 70.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "langchain"
+      "kubernetes",
+      "cli"
     ],
-    "original_url": "https://github.com/langchain-ai/langchain/issues/34955",
-    "resurrection_slug": "2026-10-02_langchain-ai-langchain_34955",
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/63214",
+    "resurrection_slug": "2026-10-05_kubernetes-kubernetes_63214",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-02T18:27:58+00:00"
+    "commented_at": "2026-10-05T21:15:01+00:00"
   }
 }
