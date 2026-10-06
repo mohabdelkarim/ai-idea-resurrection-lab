@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-06",
+  "repo": "withastro/astro",
+  "issue_number": 9110,
+  "title": "Cannot destructure react component props",
+  "reactions": 5,
+  "abandoned_date": "2025-01-03T13:45:54Z",
+  "one_line_why": "Astro 3.6 introduced improved component prop forwarding, enabling reliable destructuring of React props.",
+  "one_line_summary": "Fix destructuring error when mapping undefined React component props within Astro's React integration.",
+  "impact_score": 6,
+  "effort_hours": 12.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "react",
+    "typescript"
+  ],
+  "original_url": "https://github.com/withastro/astro/issues/9110",
+  "resurrection_slug": "2026-10-06_withastro-astro_9110",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-06T19:06:16+00:00"
+}

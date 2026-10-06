@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-05T21:15:01",
-  "total_resurrections": 162,
+  "last_updated": "2026-10-06T19:06:16",
+  "total_resurrections": 163,
   "total_repos_covered": 42,
   "average_impact_score": 6.51,
-  "average_effort_hours": 67.9,
-  "total_with_poc": 117,
-  "total_with_rfc": 144,
+  "average_effort_hours": 67.56,
+  "total_with_poc": 118,
+  "total_with_rfc": 145,
   "comment_stats": {
-    "attempted": 86,
+    "attempted": 87,
     "posted": 4,
-    "failed": 82
+    "failed": 83
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,31 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-05",
-    "repo": "kubernetes/kubernetes",
-    "issue_number": 63214,
-    "title": "kubectl run from a manifest file",
-    "reactions": 34,
-    "abandoned_date": "2022-11-06T10:57:34Z",
-    "one_line_why": "Kubectl now includes the client-go v0.26 library with server-side apply enhancements.",
-    "one_line_summary": "Add support for loading a pod manifest file and overriding fields via kubectl run command.",
-    "impact_score": 7,
-    "effort_hours": 70.0,
+    "date": "2026-10-06",
+    "repo": "withastro/astro",
+    "issue_number": 9110,
+    "title": "Cannot destructure react component props",
+    "reactions": 5,
+    "abandoned_date": "2025-01-03T13:45:54Z",
+    "one_line_why": "Astro 3.6 introduced improved component prop forwarding, enabling reliable destructuring of React props.",
+    "one_line_summary": "Fix destructuring error when mapping undefined React component props within Astro's React integration.",
+    "impact_score": 6,
+    "effort_hours": 12.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "typescript",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "kubernetes",
-      "cli"
+      "react",
+      "typescript"
     ],
-    "original_url": "https://github.com/kubernetes/kubernetes/issues/63214",
-    "resurrection_slug": "2026-10-05_kubernetes-kubernetes_63214",
+    "original_url": "https://github.com/withastro/astro/issues/9110",
+    "resurrection_slug": "2026-10-06_withastro-astro_9110",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-05T21:15:01+00:00"
+    "commented_at": "2026-10-06T19:06:16+00:00"
   }
 }
