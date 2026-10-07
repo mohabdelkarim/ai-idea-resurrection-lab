@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-06T19:06:16",
-  "total_resurrections": 163,
+  "last_updated": "2026-10-07T19:32:06",
+  "total_resurrections": 164,
   "total_repos_covered": 42,
   "average_impact_score": 6.51,
-  "average_effort_hours": 67.56,
-  "total_with_poc": 118,
-  "total_with_rfc": 145,
+  "average_effort_hours": 67.57,
+  "total_with_poc": 119,
+  "total_with_rfc": 146,
   "comment_stats": {
-    "attempted": 87,
+    "attempted": 88,
     "posted": 4,
-    "failed": 83
+    "failed": 84
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,31 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-06",
-    "repo": "withastro/astro",
-    "issue_number": 9110,
-    "title": "Cannot destructure react component props",
-    "reactions": 5,
-    "abandoned_date": "2025-01-03T13:45:54Z",
-    "one_line_why": "Astro 3.6 introduced improved component prop forwarding, enabling reliable destructuring of React props.",
-    "one_line_summary": "Fix destructuring error when mapping undefined React component props within Astro's React integration.",
-    "impact_score": 6,
-    "effort_hours": 12.0,
+    "date": "2026-10-07",
+    "repo": "streamlit/streamlit",
+    "issue_number": 6004,
+    "title": "st.tabs: know and control state",
+    "reactions": 244,
+    "abandoned_date": "2026-03-12T15:26:59Z",
+    "one_line_why": "Streamlit introduced session state API enhancements in 2024 enabling backend-controlled UI components.",
+    "one_line_summary": "Add controllable state to Streamlit tabs so the backend can read and set the selected tab.",
+    "impact_score": 7,
+    "effort_hours": 70.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "python",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "react",
-      "typescript"
+      "python",
+      "ui"
     ],
-    "original_url": "https://github.com/withastro/astro/issues/9110",
-    "resurrection_slug": "2026-10-06_withastro-astro_9110",
+    "original_url": "https://github.com/streamlit/streamlit/issues/6004",
+    "resurrection_slug": "2026-10-07_streamlit-streamlit_6004",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-06T19:06:16+00:00"
+    "commented_at": "2026-10-07T19:32:06+00:00"
   }
 }
