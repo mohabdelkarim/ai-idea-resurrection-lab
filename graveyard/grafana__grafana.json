@@ -141,8 +141,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Too sparse (26 total words)"
   },
   {
     "repo": "grafana/grafana",
@@ -165,7 +165,7 @@
     "comments": 14,
     "state_reason": "",
     "closed_at": "",
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
