@@ -144,8 +144,8 @@
     "state_reason": "not_planned",
     "closed_at": "2025-03-31T23:41:53Z",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   },
   {
     "repo": "vercel/next.js",
@@ -170,8 +170,8 @@
     "state_reason": "not_planned",
     "closed_at": "2025-12-23T23:43:51Z",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   },
   {
     "repo": "vercel/next.js",
@@ -194,7 +194,7 @@
     "state_reason": "not_planned",
     "closed_at": "2025-09-28T23:41:37Z",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   }
 ]

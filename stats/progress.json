@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-12T21:49:40",
-  "total_resurrections": 167,
+  "last_updated": "2026-10-13T20:01:51",
+  "total_resurrections": 168,
   "total_repos_covered": 42,
-  "average_impact_score": 6.52,
-  "average_effort_hours": 67.16,
-  "total_with_poc": 122,
-  "total_with_rfc": 149,
+  "average_impact_score": 6.53,
+  "average_effort_hours": 67.18,
+  "total_with_poc": 123,
+  "total_with_rfc": 150,
   "comment_stats": {
-    "attempted": 91,
+    "attempted": 92,
     "posted": 4,
-    "failed": 87
+    "failed": 88
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,31 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-12",
-    "repo": "docker/compose",
-    "issue_number": 9954,
-    "title": "add `--build-arg` for `docker compose up --build`",
-    "reactions": 24,
-    "abandoned_date": "2023-05-12T11:01:56Z",
-    "one_line_why": "Docker Engine 24.0 introduced CLI flag propagation allowing build-arg forwarding in compose up.",
-    "one_line_summary": "Docker Compose now accepts build arguments directly when invoking up with the build flag.",
-    "impact_score": 7,
-    "effort_hours": 32.0,
+    "date": "2026-10-13",
+    "repo": "sveltejs/svelte",
+    "issue_number": 646,
+    "title": "Optimising at the AST level",
+    "reactions": 10,
+    "abandoned_date": "2024-09-23T00:54:36Z",
+    "one_line_why": "Svelte 4's new compiler plugin API enables custom AST passes for such optimizations.",
+    "one_line_summary": "Implement AST-level transformations to replace conditional blocks with inline ternary expressions in Svelte.",
+    "impact_score": 8,
+    "effort_hours": 70.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "typescript",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "cli",
-      "go"
+      "compiler",
+      "typescript"
     ],
-    "original_url": "https://github.com/docker/compose/issues/9954",
-    "resurrection_slug": "2026-10-12_docker-compose_9954",
+    "original_url": "https://github.com/sveltejs/svelte/issues/646",
+    "resurrection_slug": "2026-10-13_sveltejs-svelte_646",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-12T21:49:40+00:00"
+    "commented_at": "2026-10-13T20:01:51+00:00"
   }
 }

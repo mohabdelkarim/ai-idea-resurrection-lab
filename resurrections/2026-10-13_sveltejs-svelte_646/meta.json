@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-13",
+  "repo": "sveltejs/svelte",
+  "issue_number": 646,
+  "title": "Optimising at the AST level",
+  "reactions": 10,
+  "abandoned_date": "2024-09-23T00:54:36Z",
+  "one_line_why": "Svelte 4's new compiler plugin API enables custom AST passes for such optimizations.",
+  "one_line_summary": "Implement AST-level transformations to replace conditional blocks with inline ternary expressions in Svelte.",
+  "impact_score": 8,
+  "effort_hours": 70.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "compiler",
+    "typescript"
+  ],
+  "original_url": "https://github.com/sveltejs/svelte/issues/646",
+  "resurrection_slug": "2026-10-13_sveltejs-svelte_646",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-13T20:01:51+00:00"
+}
