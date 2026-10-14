@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-13T20:01:51",
-  "total_resurrections": 168,
+  "last_updated": "2026-10-14T18:05:48",
+  "total_resurrections": 169,
   "total_repos_covered": 42,
-  "average_impact_score": 6.53,
-  "average_effort_hours": 67.18,
-  "total_with_poc": 123,
-  "total_with_rfc": 150,
+  "average_impact_score": 6.52,
+  "average_effort_hours": 66.97,
+  "total_with_poc": 124,
+  "total_with_rfc": 151,
   "comment_stats": {
-    "attempted": 92,
+    "attempted": 93,
     "posted": 4,
-    "failed": 88
+    "failed": 89
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,16 +72,16 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-13",
-    "repo": "sveltejs/svelte",
-    "issue_number": 646,
-    "title": "Optimising at the AST level",
-    "reactions": 10,
-    "abandoned_date": "2024-09-23T00:54:36Z",
-    "one_line_why": "Svelte 4's new compiler plugin API enables custom AST passes for such optimizations.",
-    "one_line_summary": "Implement AST-level transformations to replace conditional blocks with inline ternary expressions in Svelte.",
-    "impact_score": 8,
-    "effort_hours": 70.0,
+    "date": "2026-10-14",
+    "repo": "facebook/react",
+    "issue_number": 7942,
+    "title": "Fiber Principles: Contributing To Fiber",
+    "reactions": 241,
+    "abandoned_date": "2021-10-31T15:36:22Z",
+    "one_line_why": "The introduction of React 18 concurrent features and the new Scheduler API enable clearer Fiber documentation.",
+    "one_line_summary": "This issue proposes documenting internal Fiber design patterns for future contributors.",
+    "impact_score": 5,
+    "effort_hours": 32.0,
     "has_poc": true,
     "has_rfc": true,
     "poc_language": "typescript",
@@ -89,14 +89,14 @@
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "compiler",
+      "react",
       "typescript"
     ],
-    "original_url": "https://github.com/sveltejs/svelte/issues/646",
-    "resurrection_slug": "2026-10-13_sveltejs-svelte_646",
+    "original_url": "https://github.com/facebook/react/issues/7942",
+    "resurrection_slug": "2026-10-14_facebook-react_7942",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-13T20:01:51+00:00"
+    "commented_at": "2026-10-14T18:05:48+00:00"
   }
 }
