@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-15",
+  "repo": "prometheus/prometheus",
+  "issue_number": 3441,
+  "title": "Prometheus docker container shouldn't run as user nobody",
+  "reactions": 53,
+  "abandoned_date": "2025-09-03T23:21:02Z",
+  "one_line_why": "Docker now supports the USER directive with dynamic UID/GID via build\u2011time ARG and runtime env variables.",
+  "one_line_summary": "Allow the Prometheus Docker image to run with a configurable non\u2011root user ID.",
+  "impact_score": 6,
+  "effort_hours": 12.0,
+  "has_poc": true,
+  "has_rfc": false,
+  "poc_language": "go",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "docker",
+    "go"
+  ],
+  "original_url": "https://github.com/prometheus/prometheus/issues/3441",
+  "resurrection_slug": "2026-10-15_prometheus-prometheus_3441",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-15T17:54:46+00:00"
+}

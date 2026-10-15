@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-14T18:05:48",
-  "total_resurrections": 169,
+  "last_updated": "2026-10-15T17:54:46",
+  "total_resurrections": 170,
   "total_repos_covered": 42,
   "average_impact_score": 6.52,
-  "average_effort_hours": 66.97,
-  "total_with_poc": 124,
+  "average_effort_hours": 66.65,
+  "total_with_poc": 125,
   "total_with_rfc": 151,
   "comment_stats": {
-    "attempted": 93,
+    "attempted": 94,
     "posted": 4,
-    "failed": 89
+    "failed": 90
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -26,12 +26,12 @@
         "count": 8
       },
       {
-        "repo": "golang/go",
+        "repo": "prometheus/prometheus",
         "count": 8
       },
       {
-        "repo": "hashicorp/terraform",
-        "count": 7
+        "repo": "golang/go",
+        "count": 8
       }
     ]
   },
@@ -72,31 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-14",
-    "repo": "facebook/react",
-    "issue_number": 7942,
-    "title": "Fiber Principles: Contributing To Fiber",
-    "reactions": 241,
-    "abandoned_date": "2021-10-31T15:36:22Z",
-    "one_line_why": "The introduction of React 18 concurrent features and the new Scheduler API enable clearer Fiber documentation.",
-    "one_line_summary": "This issue proposes documenting internal Fiber design patterns for future contributors.",
-    "impact_score": 5,
-    "effort_hours": 32.0,
+    "date": "2026-10-15",
+    "repo": "prometheus/prometheus",
+    "issue_number": 3441,
+    "title": "Prometheus docker container shouldn't run as user nobody",
+    "reactions": 53,
+    "abandoned_date": "2025-09-03T23:21:02Z",
+    "one_line_why": "Docker now supports the USER directive with dynamic UID/GID via build\u2011time ARG and runtime env variables.",
+    "one_line_summary": "Allow the Prometheus Docker image to run with a configurable non\u2011root user ID.",
+    "impact_score": 6,
+    "effort_hours": 12.0,
     "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "typescript",
+    "has_rfc": false,
+    "poc_language": "go",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "react",
-      "typescript"
+      "docker",
+      "go"
     ],
-    "original_url": "https://github.com/facebook/react/issues/7942",
-    "resurrection_slug": "2026-10-14_facebook-react_7942",
+    "original_url": "https://github.com/prometheus/prometheus/issues/3441",
+    "resurrection_slug": "2026-10-15_prometheus-prometheus_3441",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-14T18:05:48+00:00"
+    "commented_at": "2026-10-15T17:54:46+00:00"
   }
 }
