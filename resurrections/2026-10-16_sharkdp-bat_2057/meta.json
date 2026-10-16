@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-16",
+  "repo": "sharkdp/bat",
+  "issue_number": 2057,
+  "title": "output shell completion script by `bat --completion <shell>` command",
+  "reactions": 15,
+  "abandoned_date": "2025-01-08T01:05:12Z",
+  "one_line_why": "Rust clap v4 now provides built\u2011in generation of shell completions, enabling this feature.",
+  "one_line_summary": "bat can now generate shell completion scripts via a dedicated --completion option.",
+  "impact_score": 4,
+  "effort_hours": 12.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "rust",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "rust",
+    "cli"
+  ],
+  "original_url": "https://github.com/sharkdp/bat/issues/2057",
+  "resurrection_slug": "2026-10-16_sharkdp-bat_2057",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-16T17:26:49+00:00"
+}
