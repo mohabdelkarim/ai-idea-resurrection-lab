@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-16T17:26:49",
-  "total_resurrections": 171,
+  "last_updated": "2026-10-19T19:22:33",
+  "total_resurrections": 172,
   "total_repos_covered": 42,
-  "average_impact_score": 6.5,
-  "average_effort_hours": 66.33,
-  "total_with_poc": 126,
-  "total_with_rfc": 152,
+  "average_impact_score": 6.49,
+  "average_effort_hours": 66.13,
+  "total_with_poc": 127,
+  "total_with_rfc": 153,
   "comment_stats": {
-    "attempted": 95,
+    "attempted": 96,
     "posted": 4,
-    "failed": 91
+    "failed": 92
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -30,7 +30,7 @@
         "count": 8
       },
       {
-        "repo": "golang/go",
+        "repo": "open-webui/open-webui",
         "count": 8
       }
     ]
@@ -72,31 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-16",
-    "repo": "sharkdp/bat",
-    "issue_number": 2057,
-    "title": "output shell completion script by `bat --completion <shell>` command",
-    "reactions": 15,
-    "abandoned_date": "2025-01-08T01:05:12Z",
-    "one_line_why": "Rust clap v4 now provides built\u2011in generation of shell completions, enabling this feature.",
-    "one_line_summary": "bat can now generate shell completion scripts via a dedicated --completion option.",
-    "impact_score": 4,
-    "effort_hours": 12.0,
+    "date": "2026-10-19",
+    "repo": "open-webui/open-webui",
+    "issue_number": 529,
+    "title": "feat: collections/docs for modelfiles with models",
+    "reactions": 36,
+    "abandoned_date": "2024-10-13T20:18:35Z",
+    "one_line_why": "LangChain 0.2's unified RAG loader API now allows seamless document integration in model definitions.",
+    "one_line_summary": "Add native RAG configuration to model definitions, enabling automatic document ingestion during model creation.",
+    "impact_score": 5,
+    "effort_hours": 32.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "rust",
+    "poc_language": "typescript",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "rust",
-      "cli"
+      "rag",
+      "typescript"
     ],
-    "original_url": "https://github.com/sharkdp/bat/issues/2057",
-    "resurrection_slug": "2026-10-16_sharkdp-bat_2057",
+    "original_url": "https://github.com/open-webui/open-webui/issues/529",
+    "resurrection_slug": "2026-10-19_open-webui-open-webui_529",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-16T17:26:49+00:00"
+    "commented_at": "2026-10-19T19:22:33+00:00"
   }
 }

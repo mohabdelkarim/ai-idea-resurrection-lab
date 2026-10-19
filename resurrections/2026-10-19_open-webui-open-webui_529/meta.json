@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-19",
+  "repo": "open-webui/open-webui",
+  "issue_number": 529,
+  "title": "feat: collections/docs for modelfiles with models",
+  "reactions": 36,
+  "abandoned_date": "2024-10-13T20:18:35Z",
+  "one_line_why": "LangChain 0.2's unified RAG loader API now allows seamless document integration in model definitions.",
+  "one_line_summary": "Add native RAG configuration to model definitions, enabling automatic document ingestion during model creation.",
+  "impact_score": 5,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "rag",
+    "typescript"
+  ],
+  "original_url": "https://github.com/open-webui/open-webui/issues/529",
+  "resurrection_slug": "2026-10-19_open-webui-open-webui_529",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-19T19:22:33+00:00"
+}
