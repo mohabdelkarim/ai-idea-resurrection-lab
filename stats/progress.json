@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-19T19:22:33",
-  "total_resurrections": 172,
+  "last_updated": "2026-10-20T18:05:45",
+  "total_resurrections": 173,
   "total_repos_covered": 42,
-  "average_impact_score": 6.49,
-  "average_effort_hours": 66.13,
+  "average_impact_score": 6.5,
+  "average_effort_hours": 66.15,
   "total_with_poc": 127,
   "total_with_rfc": 153,
   "comment_stats": {
-    "attempted": 96,
+    "attempted": 97,
     "posted": 4,
-    "failed": 92
+    "failed": 93
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,31 +72,32 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-19",
-    "repo": "open-webui/open-webui",
-    "issue_number": 529,
-    "title": "feat: collections/docs for modelfiles with models",
-    "reactions": 36,
-    "abandoned_date": "2024-10-13T20:18:35Z",
-    "one_line_why": "LangChain 0.2's unified RAG loader API now allows seamless document integration in model definitions.",
-    "one_line_summary": "Add native RAG configuration to model definitions, enabling automatic document ingestion during model creation.",
-    "impact_score": 5,
-    "effort_hours": 32.0,
-    "has_poc": true,
-    "has_rfc": true,
-    "poc_language": "typescript",
-    "poc_validated": true,
+    "date": "2026-10-20",
+    "repo": "redis/redis",
+    "issue_number": 3185,
+    "title": "Replace \"master\" and \"slave\" terms in Redis",
+    "reactions": 56,
+    "abandoned_date": "2020-08-19T15:06:01Z",
+    "one_line_why": "The introduction of Redis 6's ACL and module system enables safe deprecation of master/slave terminology.",
+    "one_line_summary": "Redis should replace the terms \u201cmaster\u201d and \u201cslave\u201d with neutral alternatives across the codebase.",
+    "impact_score": 8,
+    "effort_hours": 70.0,
+    "has_poc": false,
+    "has_rfc": false,
+    "poc_language": "",
+    "poc_validated": false,
     "poc_validation_error": "",
-    "quality_flags": [],
-    "technology_tags": [
-      "rag",
-      "typescript"
+    "quality_flags": [
+      "rfc_stubbed"
     ],
-    "original_url": "https://github.com/open-webui/open-webui/issues/529",
-    "resurrection_slug": "2026-10-19_open-webui-open-webui_529",
+    "technology_tags": [
+      "redis"
+    ],
+    "original_url": "https://github.com/redis/redis/issues/3185",
+    "resurrection_slug": "2026-10-20_redis-redis_3185",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-19T19:22:33+00:00"
+    "commented_at": "2026-10-20T18:05:45+00:00"
   }
 }

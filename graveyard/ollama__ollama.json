@@ -1,6 +1,28 @@
 [
   {
     "repo": "ollama/ollama",
+    "issue_number": 15051,
+    "title": "native ollama-go-engine: TurboQuant+RotorQuant implementation",
+    "body": "@rick-github @jessegross jfyi https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/ + https://arxiv.org/pdf/2504.19874\n\n",
+    "reactions": 262,
+    "created_at": "2026-03-25T05:10:29Z",
+    "updated_at": "2026-10-20T07:15:16Z",
+    "labels": [
+      "feature request"
+    ],
+    "url": "https://api.github.com/repos/ollama/ollama/issues/15051",
+    "html_url": "https://github.com/ollama/ollama/issues/15051",
+    "author_login": "grepin",
+    "author_profile": "https://github.com/grepin",
+    "comments": 69,
+    "state_reason": "not_planned",
+    "closed_at": "2026-10-20T07:15:15Z",
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "Too sparse (10 total words)"
+  },
+  {
+    "repo": "ollama/ollama",
     "issue_number": 6958,
     "title": "molmo by allen ai support ",
     "body": "![GYVKif8XoAAFLAw](https://github.com/user-attachments/assets/74dead10-7370-4360-a326-41e40446f5b0)\r\nhttps://huggingface.co/allenai/Molmo-7B-D-0924\r\nhttps://huggingface.co/allenai/Molmo-72B-0924\r\nThis models are really good and have potential and fully open-source please give support for them.\r\n\r\nthanks.",
