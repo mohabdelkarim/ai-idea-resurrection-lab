@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-20T18:05:45",
-  "total_resurrections": 173,
+  "last_updated": "2026-10-21T18:17:58",
+  "total_resurrections": 174,
   "total_repos_covered": 42,
   "average_impact_score": 6.5,
-  "average_effort_hours": 66.15,
+  "average_effort_hours": 65.95,
   "total_with_poc": 127,
-  "total_with_rfc": 153,
+  "total_with_rfc": 154,
   "comment_stats": {
-    "attempted": 97,
+    "attempted": 98,
     "posted": 4,
-    "failed": 93
+    "failed": 94
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,32 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-20",
-    "repo": "redis/redis",
-    "issue_number": 3185,
-    "title": "Replace \"master\" and \"slave\" terms in Redis",
-    "reactions": 56,
-    "abandoned_date": "2020-08-19T15:06:01Z",
-    "one_line_why": "The introduction of Redis 6's ACL and module system enables safe deprecation of master/slave terminology.",
-    "one_line_summary": "Redis should replace the terms \u201cmaster\u201d and \u201cslave\u201d with neutral alternatives across the codebase.",
-    "impact_score": 8,
-    "effort_hours": 70.0,
+    "date": "2026-10-21",
+    "repo": "rails/rails",
+    "issue_number": 35501,
+    "title": "Actioncable Webpacker compilation issues with Rails 6 in production",
+    "reactions": 21,
+    "abandoned_date": "2020-12-11T16:41:48Z",
+    "one_line_why": "Webpacker 6 upgrade and Rails 7 import\u2011map support now resolve the production compilation conflict.",
+    "one_line_summary": "Fix ActionCable asset compilation in production by updating the Webpacker integration for Rails 6 apps.",
+    "impact_score": 6,
+    "effort_hours": 32.0,
     "has_poc": false,
-    "has_rfc": false,
+    "has_rfc": true,
     "poc_language": "",
     "poc_validated": false,
     "poc_validation_error": "",
-    "quality_flags": [
-      "rfc_stubbed"
-    ],
+    "quality_flags": [],
     "technology_tags": [
-      "redis"
+      "javascript"
     ],
-    "original_url": "https://github.com/redis/redis/issues/3185",
-    "resurrection_slug": "2026-10-20_redis-redis_3185",
+    "original_url": "https://github.com/rails/rails/issues/35501",
+    "resurrection_slug": "2026-10-21_rails-rails_35501",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-20T18:05:45+00:00"
+    "commented_at": "2026-10-21T18:17:58+00:00"
   }
 }

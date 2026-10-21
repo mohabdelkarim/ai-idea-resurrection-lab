@@ -574,8 +574,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "LLM precheck: already solved"
   },
   {
     "repo": "rails/rails",
@@ -597,8 +597,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "rails/rails",
@@ -619,8 +619,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "rails/rails",
@@ -642,8 +642,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "rails/rails",
@@ -664,8 +664,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "one_line_why too short (9 words, min 10); technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "rails/rails",
@@ -686,8 +686,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; technology_tags empty after allowlist filtering"
   },
   {
     "repo": "rails/rails",
@@ -729,7 +729,7 @@
     "comments": 0,
     "state_reason": "",
     "closed_at": "",
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
