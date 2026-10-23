@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-22T18:11:33",
-  "total_resurrections": 175,
+  "last_updated": "2026-10-23T17:59:28",
+  "total_resurrections": 176,
   "total_repos_covered": 42,
   "average_impact_score": 6.49,
-  "average_effort_hours": 65.65,
-  "total_with_poc": 127,
-  "total_with_rfc": 155,
+  "average_effort_hours": 65.45,
+  "total_with_poc": 128,
+  "total_with_rfc": 156,
   "comment_stats": {
-    "attempted": 99,
+    "attempted": 100,
     "posted": 4,
-    "failed": 95
+    "failed": 96
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,33 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-22",
-    "repo": "sharkdp/fd",
-    "issue_number": 1457,
-    "title": "New .git Handling has no opt out",
-    "reactions": 9,
-    "abandoned_date": "2024-04-29T02:33:05Z",
-    "one_line_why": "Rust 1.70's improved filesystem APIs enable selective VCS ignore handling.",
-    "one_line_summary": "Add a CLI flag to disable the new .git handling while preserving other VCS ignore behavior.",
-    "impact_score": 5,
-    "effort_hours": 12.0,
-    "has_poc": false,
+    "date": "2026-10-23",
+    "repo": "langchain-ai/langchain",
+    "issue_number": 33056,
+    "title": "Richer Interface for Multimodal Data and BaseChat Interaction",
+    "reactions": 5,
+    "abandoned_date": "2026-06-11T07:28:24Z",
+    "one_line_why": "The rise of multimodal LLMs like GPT-4V and Claude 3 Vision enables richer document models.",
+    "one_line_summary": "Add a richer multimodal Document interface to LangChain for structured data handling.",
+    "impact_score": 6,
+    "effort_hours": 32.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "rust",
-    "poc_validated": false,
-    "poc_validation_error": "error: unknown start of token: \\\n --> /tmp/poc_rs_ao_mkczj/lib.rs:1:24\n  |\n1 | use std::path::PathBuf;\\n\\nuse anyhow::Result;\\nuse clap::{Parser, ArgAction};\\nuse ignore::WalkBuilder;\\n\\n/// Command line configur...\n  |                        ^\n\nerror: unknown start of token: \\\n --> /tmp/poc_rs_ao_mkczj/lib.rs:1:26\n  |\n1 | use std::path::PathBuf;\\n\\nuse anyhow::Result;\\nuse clap::{Parser, ArgAction};\\nuse ignore::WalkBuilder;\\n\\n/// Command line configur...\n  |                          ^\n\nerror:",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "python",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "rust",
-      "cli"
+      "langchain",
+      "python"
     ],
-    "original_url": "https://github.com/sharkdp/fd/issues/1457",
-    "resurrection_slug": "2026-10-22_sharkdp-fd_1457",
+    "original_url": "https://github.com/langchain-ai/langchain/issues/33056",
+    "resurrection_slug": "2026-10-23_langchain-ai-langchain_33056",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-22T18:11:33+00:00"
+    "commented_at": "2026-10-23T17:59:28+00:00"
   }
 }
