@@ -568,5 +568,29 @@
     "already_resurrected": false,
     "quality_rejected": true,
     "quality_rejection_reason": "technology_tags must be a non-empty allowlisted list; effort_hours is a common default (40/80/120) without effort_justification; technology_tags empty after allowlist filtering"
+  },
+  {
+    "repo": "nodejs/node",
+    "issue_number": 39063,
+    "title": "Running a process with DevTools debugger attached leaks memory",
+    "body": "- Version: 14.0+ (reproduced on `v14.0.0`, `v14.17.0` and `v16.1.0`)\r\n- Platform: Linux\r\n- Tested process: https://github.com/Supinic/supibot\r\n- Valgrind tests by: https://github.com/Leppunen\r\n\r\nWhile the Chromium DevTools debugger is attached, RSS memory usage of a Node process keeps increasing without being collected. Once the debugger is detached, the memory usage flattens, however the memory is never released. When the debugger is not attached to the process in its runtime, memory allocation occurs as expected. It is entirely possible that this might not be related to Node (v8, perhaps) - however, this issue might be a good place to start a discussion.\r\n\r\nInspecting `htop` on a Raspberry Pi 3B machine:\r\n- Process after running for ~24 hours without a debugger attached: stable at around ~180MB RSS:\r\n![no debugger](https://user-images.githubusercontent.com/7684273/122430908-471b1a00-cf94-11eb-8151-834cd70a91a3.png)\r\n\r\n- The same process, after attaching the debugger for ~15 minutes (with no actual user debugging active nor any logs being displayed): RSS at around ~245MB and rising:\r\n![debugger](https://user-images.githubusercontent.com/7684273/122431004-59955380-cf94-11eb-96cf-38628766048e.png)\r\n\r\n- After disconnecting the debugger (removing the connection, closing and re-opening the debugger window), RSS stabilizes at around ~260MB. After ~30 minutes of further activity, the RSS usage seems stable; however, the memory is not freed:\r\n![after](https://user-images.githubusercontent.com/7684273/122435067-f4436180-cf97-11eb-805f-0f2f8b737565.png)\r\n\r\nAfter running valgrind for various amounts of time on a different Linux machine, there seems to be an excessive amount of `v8_inspector::AsyncStackTrace::capture` calls. Using the `Disable async stack traces` option in `DevTools > Settings > Debugger` seems to reduce the leak somewhat, however, this wasn't reproducible across machines. Furthermore, testing the same process on Windows 10 in the same environment leads to no memory leaks.\r\n\r\nAttached are valgrind dumps for various tested nodejs versions. Note that each dump was created with the process running for differing amounts, hence the total memory leaked will not be as relevant.\r\n\r\n[valgrind.zip](https://github.com/nodejs/node/files/6626943/valgrind.zip)\r\n\r\n### What steps will reproduce the bug?\r\n1. Set up a Node process, possibly with asynchronous stack activity\r\n2. Attach a Chrome DevTools debugger instance\r\n3. Observe a memory leak as long as the debugger is attached\r\n\r\n### How often does it reproduce? Is there a required condition?\r\n- Only seems to reproduce on Linux, not Windows\r\n- Might be related to async stack traces\r\n- At first, seemed to be related to the `mariadb` NPM module - but upon further testing with the module inactive, the memory leak kept occuring\r\n\r\n### What is the expected behavior?\r\nNo memory leak should occur as the debugger is being used.\r\n\r\n### What do you see instead?\r\nDepending on the process being run, upwards of hundre",
+    "reactions": 7,
+    "created_at": "2021-06-17T16:37:44Z",
+    "updated_at": "2026-10-26T01:31:57Z",
+    "labels": [
+      "memory",
+      "inspector",
+      "stale"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/39063",
+    "html_url": "https://github.com/nodejs/node/issues/39063",
+    "author_login": "Supinic",
+    "author_profile": "https://github.com/Supinic",
+    "comments": 6,
+    "state_reason": "not_planned",
+    "closed_at": "2026-10-26T01:31:57Z",
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   }
 ]
