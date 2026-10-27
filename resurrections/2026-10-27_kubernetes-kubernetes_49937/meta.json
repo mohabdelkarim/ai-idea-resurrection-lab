@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-27",
+  "repo": "kubernetes/kubernetes",
+  "issue_number": 49937,
+  "title": "Support httpHead for pod livenessProbe",
+  "reactions": 33,
+  "abandoned_date": "2025-06-27T11:29:55Z",
+  "one_line_why": "Kubernetes 1.24 introduced the ProbeHandler API that permits custom HTTP methods like HEAD.",
+  "one_line_summary": "Add support for HTTP HEAD method in Kubernetes pod liveness probe configuration.",
+  "impact_score": 5,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "kubernetes",
+    "http",
+    "go"
+  ],
+  "original_url": "https://github.com/kubernetes/kubernetes/issues/49937",
+  "resurrection_slug": "2026-10-27_kubernetes-kubernetes_49937",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-27T18:53:07+00:00"
+}

@@ -1,24 +1,24 @@
 {
-  "last_updated": "2026-10-26T19:38:38",
-  "total_resurrections": 177,
+  "last_updated": "2026-10-27T18:53:07",
+  "total_resurrections": 178,
   "total_repos_covered": 42,
-  "average_impact_score": 6.5,
-  "average_effort_hours": 65.27,
-  "total_with_poc": 128,
-  "total_with_rfc": 157,
+  "average_impact_score": 6.49,
+  "average_effort_hours": 65.08,
+  "total_with_poc": 129,
+  "total_with_rfc": 158,
   "comment_stats": {
-    "attempted": 101,
+    "attempted": 102,
     "posted": 4,
-    "failed": 97
+    "failed": 98
   },
   "repo_diversity": {
     "top_repeated_repos": [
       {
-        "repo": "comfyanonymous/ComfyUI",
-        "count": 9
+        "repo": "kubernetes/kubernetes",
+        "count": 10
       },
       {
-        "repo": "kubernetes/kubernetes",
+        "repo": "comfyanonymous/ComfyUI",
         "count": 9
       },
       {
@@ -40,7 +40,7 @@
     "go",
     "rust",
     "python",
-    "cli"
+    "kubernetes"
   ],
   "hall_of_fame": [
     {
@@ -72,32 +72,32 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-26",
-    "repo": "golang/go",
-    "issue_number": 38812,
-    "title": "cmd/go: \"package \u2026 is not in GOROOT\" is confusing in module mode when the package would exist in GOPATH mode",
-    "reactions": 88,
-    "abandoned_date": "2026-03-26T15:20:53Z",
-    "one_line_why": "Go modules became the default build system in Go 1.16, changing module vs GOPATH behavior.",
-    "one_line_summary": "The go command should indicate when a go.mod file overrides GOPATH in its error messages.",
-    "impact_score": 9,
+    "date": "2026-10-27",
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 49937,
+    "title": "Support httpHead for pod livenessProbe",
+    "reactions": 33,
+    "abandoned_date": "2025-06-27T11:29:55Z",
+    "one_line_why": "Kubernetes 1.24 introduced the ProbeHandler API that permits custom HTTP methods like HEAD.",
+    "one_line_summary": "Add support for HTTP HEAD method in Kubernetes pod liveness probe configuration.",
+    "impact_score": 5,
     "effort_hours": 32.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
     "poc_language": "go",
-    "poc_validated": false,
-    "poc_validation_error": "# poc\n./main.go:5:5: \"bufio\" imported and not used",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
+      "kubernetes",
+      "http",
       "go"
     ],
-    "original_url": "https://github.com/golang/go/issues/38812",
-    "resurrection_slug": "2026-10-26_golang-go_38812",
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/49937",
+    "resurrection_slug": "2026-10-27_kubernetes-kubernetes_49937",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-26T19:38:38+00:00"
+    "commented_at": "2026-10-27T18:53:07+00:00"
   }
 }
