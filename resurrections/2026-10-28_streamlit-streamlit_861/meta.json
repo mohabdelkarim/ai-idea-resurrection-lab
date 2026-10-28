@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-28",
+  "repo": "streamlit/streamlit",
+  "issue_number": 861,
+  "title": "Ability to write cookies",
+  "reactions": 205,
+  "abandoned_date": "2026-04-11T14:31:21Z",
+  "one_line_why": "The introduction of the Streamlit SessionState API and HTTP\u2011only cookie support in browsers enables this feature.",
+  "one_line_summary": "Streamlit should provide built\u2011in cookie management to persist user authentication across sessions.",
+  "impact_score": 6,
+  "effort_hours": 32.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "python",
+  "poc_validated": false,
+  "poc_validation_error": "  File \"/tmp/poc_py_ya9mte29/main.py\", line 1\n    import http.cookies\\nimport json\\nimport threading\\nimport uuid\\nfrom http import HTTPStatus\\n\\n# Simple in\u2011memory session store (thread\u2011safe)\\nclass SessionStore:\\n    def __init__(self):\\n        self._store = {}\\n        self._lock = threading.Lock()\\n    def get(self, session_id):\\n        with self._lock:\\n            return self._store.setdefault(session_id, {})\\n    def set(self, session_id, data):\\n        with self._lock:\\n            se",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "python"
+  ],
+  "original_url": "https://github.com/streamlit/streamlit/issues/861",
+  "resurrection_slug": "2026-10-28_streamlit-streamlit_861",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-28T18:56:19+00:00"
+}

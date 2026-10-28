@@ -1,6 +1,28 @@
 [
   {
     "repo": "huggingface/transformers",
+    "issue_number": 12807,
+    "title": "Model Request: Blenderbot 2.0",
+    "body": "# 🌟 New model addition\r\n\r\n## Model description\r\n\r\nFacebook released Blenderbot 2.0, a chatbot that builds on RAG and Blenderbot 1.0. It can save interactions for later reference and use web search to find information on the web.\r\n\r\nhttps://parl.ai/projects/blenderbot2/\r\n\r\n## Open source status\r\n\r\n* [x] the model implementation is available: in Parl.ai\r\n* [x] the model weights are available: https://parl.ai/docs/zoo.html#wizard-of-internet-models\r\n* [ ] who are the authors: (mention them, if possible by @gh-username)\r\n",
+    "reactions": 54,
+    "created_at": "2021-07-20T11:21:52Z",
+    "updated_at": "2026-10-27T22:12:14Z",
+    "labels": [
+      "New model"
+    ],
+    "url": "https://api.github.com/repos/huggingface/transformers/issues/12807",
+    "html_url": "https://github.com/huggingface/transformers/issues/12807",
+    "author_login": "Xirider",
+    "author_profile": "https://github.com/Xirider",
+    "comments": 31,
+    "state_reason": "not_planned",
+    "closed_at": "2026-10-27T22:12:14Z",
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
+  },
+  {
+    "repo": "huggingface/transformers",
     "issue_number": 24392,
     "title": "Allow `TextClassificationPipeline` to handle input longer than `model_max_length` tokens",
     "body": "### Problem\r\n\r\nRunning a `TextClassificationPipeline` on a text with more tokens than its model's maximum position embeddings (e.g. 512 for BERT) like so:\r\n\r\n```python\r\nfrom transformers import pipeline\r\nclassifier = pipeline('sentiment-analysis')\r\nclassifier(\"Hello, world! \" * 1000)\r\n```\r\n\r\nwill lead to this error:\r\n\r\n```\r\nRuntimeError: The size of tensor a (4002) must match the size of tensor b (512) at non-singleton dimension 1\r\n```\r\n\r\nNote: the numbers (`4002` and `512`, above) will vary depending on the max length of the model in use and the length (in tokens) of the text that triggered the error.\r\n\r\n(_**If you found this issue through web-searching for the above error or some other means, look at the linked PR for an implemented code fix to this problem, and consider giving a thumbs-up to this comment if you think it should be merged into the main codebase**_)\r\n\r\n### Feature request\r\n\r\nWe should add \"chunking\"/\"sliding window\" functionality to `TextClassificationPipeline`, allowing it to process documents longer than the `model_max_length` of its `.model`. Specifically, this would run an instance of the model on each of several \"sliding window\" views of each input sequence, then take the mean, similar to (but somewhat simpler than) how [`TokenClassificationPipeline`](https://github.com/huggingface/transformers/blob/ad78d9597b224443e9fe65a94acc8c0bc48cd039/src/transformers/pipelines/token_classification.py#L96) does so in part by subclassing from `ChunkPipeline`.\r\n\r\n### Motivation\r\n\r\nIt would be nice to easily do, e.g., sentiment analysis on documents longer than the `model_max_length` of the given model/tokenizer. I have in the past tried to do this in a time-sensitive context and was unable to do so.\r\n\r\n### Your contribution\r\n\r\nI have already opened a draft PR: #24312. I would be happy to finish the missing parts (e.g. documentation) if someone on the Huggingface team (I believe @Narsil is the appropriate person to tag) can confirm that they would accept this feature as I plan to implement it.",
