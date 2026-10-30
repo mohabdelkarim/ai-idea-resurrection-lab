@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-10-29T19:04:06",
-  "total_resurrections": 180,
+  "last_updated": "2026-10-30T18:41:48",
+  "total_resurrections": 181,
   "total_repos_covered": 42,
   "average_impact_score": 6.5,
-  "average_effort_hours": 64.71,
-  "total_with_poc": 129,
-  "total_with_rfc": 160,
+  "average_effort_hours": 64.53,
+  "total_with_poc": 130,
+  "total_with_rfc": 161,
   "comment_stats": {
-    "attempted": 104,
+    "attempted": 105,
     "posted": 4,
-    "failed": 100
+    "failed": 101
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -22,12 +22,12 @@
         "count": 9
       },
       {
-        "repo": "golang/go",
+        "repo": "microsoft/vscode",
         "count": 9
       },
       {
-        "repo": "microsoft/vscode",
-        "count": 8
+        "repo": "golang/go",
+        "count": 9
       },
       {
         "repo": "prometheus/prometheus",
@@ -72,33 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-10-29",
-    "repo": "grafana/grafana",
-    "issue_number": 12372,
-    "title": "Add ability to duplicate row with all panels",
-    "reactions": 51,
-    "abandoned_date": "2025-05-29T12:40:30Z",
-    "one_line_why": "Grafana\u2019s 2022 introduction of the panel library and enhanced dashboard API enables row duplication.",
-    "one_line_summary": "Add a feature that lets users duplicate an entire dashboard row with all its panels.",
-    "impact_score": 8,
+    "date": "2026-10-30",
+    "repo": "microsoft/vscode",
+    "issue_number": 140674,
+    "title": "Allow to place tabs at the bottom",
+    "reactions": 89,
+    "abandoned_date": "2025-07-21T01:52:58Z",
+    "one_line_why": "Electron 30 added native title bar APIs enabling custom tab placement.",
+    "one_line_summary": "VSCode should provide a setting to position editor tabs at the bottom of the workbench.",
+    "impact_score": 6,
     "effort_hours": 32.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
-    "poc_validated": false,
-    "poc_validation_error": "# poc\n./main.go:1:13: invalid character U+005C '\\'\n./main.go:1:14: syntax error: unexpected n, expected semicolon or newline",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "typescript",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "go",
+      "vscode",
       "ui"
     ],
-    "original_url": "https://github.com/grafana/grafana/issues/12372",
-    "resurrection_slug": "2026-10-29_grafana-grafana_12372",
+    "original_url": "https://github.com/microsoft/vscode/issues/140674",
+    "resurrection_slug": "2026-10-30_microsoft-vscode_140674",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-10-29T19:04:06+00:00"
+    "commented_at": "2026-10-30T18:41:48+00:00"
   }
 }

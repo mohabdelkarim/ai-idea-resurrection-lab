@@ -88,8 +88,8 @@
     "state_reason": "not_planned",
     "closed_at": "2026-10-20T18:43:16Z",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   },
   {
     "repo": "microsoft/vscode",
@@ -232,7 +232,7 @@
     "comments": 0,
     "state_reason": "",
     "closed_at": "",
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },

@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-30",
+  "repo": "microsoft/vscode",
+  "issue_number": 140674,
+  "title": "Allow to place tabs at the bottom",
+  "reactions": 89,
+  "abandoned_date": "2025-07-21T01:52:58Z",
+  "one_line_why": "Electron 30 added native title bar APIs enabling custom tab placement.",
+  "one_line_summary": "VSCode should provide a setting to position editor tabs at the bottom of the workbench.",
+  "impact_score": 6,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "vscode",
+    "ui"
+  ],
+  "original_url": "https://github.com/microsoft/vscode/issues/140674",
+  "resurrection_slug": "2026-10-30_microsoft-vscode_140674",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-10-30T18:41:48+00:00"
+}
