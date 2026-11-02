@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-02",
+  "repo": "comfyanonymous/ComfyUI",
+  "issue_number": 13165,
+  "title": "After update today when i run comfyui i got always this error \" A required resource failed to load. Please reload the page\"!?",
+  "reactions": 16,
+  "abandoned_date": "2026-05-20T12:14:55Z",
+  "one_line_why": "WebGPU support in browsers matured, enabling faster UI rendering and exposing new loading bugs.",
+  "one_line_summary": "The update introduced a resource loading failure that prevents ComfyUI from starting properly.",
+  "impact_score": 7,
+  "effort_hours": 12.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "python",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "python"
+  ],
+  "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/13165",
+  "resurrection_slug": "2026-11-02_comfyanonymous-comfyui_13165",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-11-02T22:27:01+00:00"
+}
