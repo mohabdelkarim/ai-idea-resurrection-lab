@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-02T22:27:01",
-  "total_resurrections": 182,
+  "last_updated": "2026-11-03T20:14:44",
+  "total_resurrections": 183,
   "total_repos_covered": 42,
-  "average_impact_score": 6.5,
-  "average_effort_hours": 64.24,
-  "total_with_poc": 131,
-  "total_with_rfc": 162,
+  "average_impact_score": 6.51,
+  "average_effort_hours": 64.07,
+  "total_with_poc": 132,
+  "total_with_rfc": 163,
   "comment_stats": {
-    "attempted": 106,
+    "attempted": 107,
     "posted": 4,
-    "failed": 102
+    "failed": 103
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -40,7 +40,7 @@
     "go",
     "rust",
     "python",
-    "kubernetes"
+    "cli"
   ],
   "hall_of_fame": [
     {
@@ -72,30 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-02",
-    "repo": "comfyanonymous/ComfyUI",
-    "issue_number": 13165,
-    "title": "After update today when i run comfyui i got always this error \" A required resource failed to load. Please reload the page\"!?",
-    "reactions": 16,
-    "abandoned_date": "2026-05-20T12:14:55Z",
-    "one_line_why": "WebGPU support in browsers matured, enabling faster UI rendering and exposing new loading bugs.",
-    "one_line_summary": "The update introduced a resource loading failure that prevents ComfyUI from starting properly.",
-    "impact_score": 7,
-    "effort_hours": 12.0,
+    "date": "2026-11-03",
+    "repo": "docker/compose",
+    "issue_number": 7188,
+    "title": "Port conflict with multiple \"host:<port range>:port\" services",
+    "reactions": 19,
+    "abandoned_date": "2025-04-16T00:16:13Z",
+    "one_line_why": "Docker Desktop 4.0 introduced deterministic port allocation engine that now supports automatic conflict resolution.",
+    "one_line_summary": "Docker Compose should automatically resolve overlapping host port ranges to prevent container startup failures.",
+    "impact_score": 8,
+    "effort_hours": 32.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
+    "poc_language": "go",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "python"
+      "cli"
     ],
-    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/13165",
-    "resurrection_slug": "2026-11-02_comfyanonymous-comfyui_13165",
+    "original_url": "https://github.com/docker/compose/issues/7188",
+    "resurrection_slug": "2026-11-03_docker-compose_7188",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-02T22:27:01+00:00"
+    "commented_at": "2026-11-03T20:14:44+00:00"
   }
 }

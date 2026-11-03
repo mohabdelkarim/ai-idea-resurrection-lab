@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-03",
+  "repo": "docker/compose",
+  "issue_number": 7188,
+  "title": "Port conflict with multiple \"host:<port range>:port\" services",
+  "reactions": 19,
+  "abandoned_date": "2025-04-16T00:16:13Z",
+  "one_line_why": "Docker Desktop 4.0 introduced deterministic port allocation engine that now supports automatic conflict resolution.",
+  "one_line_summary": "Docker Compose should automatically resolve overlapping host port ranges to prevent container startup failures.",
+  "impact_score": 8,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "cli"
+  ],
+  "original_url": "https://github.com/docker/compose/issues/7188",
+  "resurrection_slug": "2026-11-03_docker-compose_7188",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-11-03T20:14:44+00:00"
+}
