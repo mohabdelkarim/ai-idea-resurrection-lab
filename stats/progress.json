@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-03T20:14:44",
-  "total_resurrections": 183,
+  "last_updated": "2026-11-04T20:34:35",
+  "total_resurrections": 184,
   "total_repos_covered": 42,
-  "average_impact_score": 6.51,
-  "average_effort_hours": 64.07,
-  "total_with_poc": 132,
-  "total_with_rfc": 163,
+  "average_impact_score": 6.49,
+  "average_effort_hours": 64.1,
+  "total_with_poc": 133,
+  "total_with_rfc": 164,
   "comment_stats": {
-    "attempted": 107,
+    "attempted": 108,
     "posted": 4,
-    "failed": 103
+    "failed": 104
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,30 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-03",
-    "repo": "docker/compose",
-    "issue_number": 7188,
-    "title": "Port conflict with multiple \"host:<port range>:port\" services",
-    "reactions": 19,
-    "abandoned_date": "2025-04-16T00:16:13Z",
-    "one_line_why": "Docker Desktop 4.0 introduced deterministic port allocation engine that now supports automatic conflict resolution.",
-    "one_line_summary": "Docker Compose should automatically resolve overlapping host port ranges to prevent container startup failures.",
-    "impact_score": 8,
-    "effort_hours": 32.0,
+    "date": "2026-11-04",
+    "repo": "facebook/react",
+    "issue_number": 11538,
+    "title": "Make React resilient to DOM mutations from Google Translate",
+    "reactions": 175,
+    "abandoned_date": "2025-12-26T14:42:06Z",
+    "one_line_why": "The introduction of React 18 concurrent rendering and improved scheduler makes this fix feasible.",
+    "one_line_summary": "React should gracefully handle DOM mutations introduced by Google Translate without throwing errors.",
+    "impact_score": 4,
+    "effort_hours": 70.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "go",
+    "poc_language": "typescript",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "cli"
+      "react",
+      "typescript"
     ],
-    "original_url": "https://github.com/docker/compose/issues/7188",
-    "resurrection_slug": "2026-11-03_docker-compose_7188",
+    "original_url": "https://github.com/facebook/react/issues/11538",
+    "resurrection_slug": "2026-11-04_facebook-react_11538",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-03T20:14:44+00:00"
+    "commented_at": "2026-11-04T20:34:35+00:00"
   }
 }
