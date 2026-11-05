@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-05",
+  "repo": "prometheus/prometheus",
+  "issue_number": 3746,
+  "title": "rate()/increase() extrapolation considered harmful",
+  "reactions": 50,
+  "abandoned_date": "2019-11-25T11:19:32Z",
+  "one_line_why": "Prometheus 2.40's subquery support and Go 1.21 generics now enable precise extrapolation implementation.",
+  "one_line_summary": "Prometheus should replace its current rate and increase extrapolation with a configurable linear estimator for accurate dashboards.",
+  "impact_score": 8,
+  "effort_hours": 70.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": false,
+  "poc_validation_error": "# poc\n./main.go:6:5: \"math\" imported and not used",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "go"
+  ],
+  "original_url": "https://github.com/prometheus/prometheus/issues/3746",
+  "resurrection_slug": "2026-11-05_prometheus-prometheus_3746",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-11-05T20:45:07+00:00"
+}
