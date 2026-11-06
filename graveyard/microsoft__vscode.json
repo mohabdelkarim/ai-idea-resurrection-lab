@@ -238,6 +238,29 @@
   },
   {
     "repo": "microsoft/vscode",
+    "issue_number": 34757,
+    "title": "Delete matching parentheses, brackets, or braces",
+    "body": "- VSCode Version: Code 1.16.1 (27492b6bf3acb0775d82d2f87b25a93490673c6d, 2017-09-14T16:38:23.027Z)\r\n- OS Version: Windows_NT x64 6.3.9600\r\n- Extensions: Extensions are disabled\r\n---\r\n\r\nSteps to Reproduce:\r\n\r\n1. Create a new file.\r\n2. Paste the following code: `var foo = (1 + bar) + baz;`.\r\n3. Position the cursor before the first `(`. It and its matching parenthesis should highlight.\r\n4. Hit the delete key.\r\n5. Only the first parenthesis is deleted.\r\n\r\nIt would be useful if the corresponding parenthesis, brace, or bracket were deleted when the targeted one was.\r\n\r\nI see two ways to accomplish this:\r\n1. Add a shortcut for both backspace and delete that does the operation on the matching character.\r\n2. Automatically do the deletion. This could be an extension of the already-existing \"editor.autoClosingBrackets\" setting or (more likely) a new setting that governs this behavior.\r\n\r\n<!-- Launch with `code --disable-extensions` to check. -->\r\nReproduces without extensions: Yes",
+    "reactions": 89,
+    "created_at": "2017-09-21T14:12:03Z",
+    "updated_at": "2026-11-06T19:11:11Z",
+    "labels": [
+      "feature-request",
+      "editor-core"
+    ],
+    "url": "https://api.github.com/repos/microsoft/vscode/issues/34757",
+    "html_url": "https://github.com/microsoft/vscode/issues/34757",
+    "author_login": "nrabins",
+    "author_profile": "https://github.com/nrabins",
+    "comments": 21,
+    "state_reason": "not_planned",
+    "closed_at": "2026-11-06T19:11:09Z",
+    "already_resurrected": false,
+    "quality_rejected": false,
+    "quality_rejection_reason": ""
+  },
+  {
+    "repo": "microsoft/vscode",
     "issue_number": 43226,
     "title": "Allow local configuration update in the extension API",
     "body": "Hello, I would like to see in VS Code the ability to set configuration options without them automatically being written in the target configuration file, whether it's the global `settings.json` or workspace settings.\r\n\r\nRight now it's not possible to share your global/workspace settings between several machines and adding machine-specific configuration options (e.g. window.zoomLevel, due to different screen DPI) without issues. I'm currently writing [an extension](https://github.com/Shgck/VsCodeLocalSettings) that will allow users to save some settings in a specific file and load it on top on the user settings ; adding several local files and workspace/folder support can come later once this basic feature is working. If I try to write a locally available configuration option in whatever configuration target with `WorkspaceConfiguration.update`, the result is automatically written in the associated settings file, making common settings file sharing problematic: the settings file will always store the merged configuration (global & local) from the last machine used.\r\n\r\nProposal:\r\n\r\n1. Update current settings with `WorkspaceConfiguration.update` and an option, or a different kind of `ConfigurationTarget`, to not write this new configuration setting.\r\n2. Apply the changes only in memory and not on disk : the configuration will be reset next time VS Code is restarted, or when the window reloads.\r\n\r\nA quick search in the issues tells me that it would be an appreciated feature:\r\n\r\n- https://github.com/Microsoft/vscode/issues/17634\r\n- https://github.com/Microsoft/vscode/issues/37519\r\n- https://github.com/Microsoft/vscode/issues/40233\r\n\r\nThank you!",
