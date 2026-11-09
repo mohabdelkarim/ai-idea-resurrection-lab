@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-06T20:07:43",
-  "total_resurrections": 186,
+  "last_updated": "2026-11-09T23:09:26",
+  "total_resurrections": 187,
   "total_repos_covered": 42,
   "average_impact_score": 6.49,
-  "average_effort_hours": 63.95,
-  "total_with_poc": 133,
-  "total_with_rfc": 166,
+  "average_effort_hours": 63.81,
+  "total_with_poc": 134,
+  "total_with_rfc": 167,
   "comment_stats": {
-    "attempted": 110,
+    "attempted": 111,
     "posted": 4,
-    "failed": 106
+    "failed": 107
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -30,7 +30,7 @@
         "count": 9
       },
       {
-        "repo": "golang/go",
+        "repo": "open-webui/open-webui",
         "count": 9
       }
     ]
@@ -72,32 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-06",
-    "repo": "sharkdp/bat",
-    "issue_number": 1104,
-    "title": "Default theme compatible with light/dark terminals",
-    "reactions": 14,
-    "abandoned_date": "2022-09-06T21:13:19Z",
-    "one_line_why": "Widespread adoption of true\u2011color (24\u2011bit) terminal support and dynamic background detection in modern shells.",
-    "one_line_summary": "Add a default bat theme that adapts to both light and dark terminal backgrounds.",
-    "impact_score": 5,
-    "effort_hours": 30.0,
-    "has_poc": false,
+    "date": "2026-11-09",
+    "repo": "open-webui/open-webui",
+    "issue_number": 1437,
+    "title": "feat: Tier 1 support for LocalAI",
+    "reactions": 36,
+    "abandoned_date": "2025-05-24T22:50:54Z",
+    "one_line_why": "LocalAI v0.5 introduced a stable OpenAI\u2011compatible API and official TypeScript SDK.",
+    "one_line_summary": "Open-webui will natively support LocalAI tier\u20111 features, enabling seamless TTS, STT, and image generation.",
+    "impact_score": 6,
+    "effort_hours": 38.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "rust",
-    "poc_validated": false,
-    "poc_validation_error": "error[E0432]: unresolved import `nu_ansi_term`\n --> /tmp/poc_rs_agrcgz_f/lib.rs:4:5\n  |\n4 | use nu_ansi_term::Color;\n  |     ^^^^^^^^^^^^ use of unresolved module or unlinked crate `nu_ansi_term`\n  |\n  = help: you might be missing a crate named `nu_ansi_term`\n\nerror[E0432]: unresolved import `ansi_colours`\n --> /tmp/poc_rs_agrcgz_f/lib.rs:5:5\n  |\n5 | use ansi_colours::Colour;\n  |     ^^^^^^^^^^^^ use of unresolved module or unlinked crate `ansi_colours`\n  |\n  = help: you might be missing a crate",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "typescript",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "rust"
+      "llm",
+      "typescript"
     ],
-    "original_url": "https://github.com/sharkdp/bat/issues/1104",
-    "resurrection_slug": "2026-11-06_sharkdp-bat_1104",
+    "original_url": "https://github.com/open-webui/open-webui/issues/1437",
+    "resurrection_slug": "2026-11-09_open-webui-open-webui_1437",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-06T20:07:43+00:00"
+    "commented_at": "2026-11-09T23:09:26+00:00"
   }
 }

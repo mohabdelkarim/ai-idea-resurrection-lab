@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-09",
+  "repo": "open-webui/open-webui",
+  "issue_number": 1437,
+  "title": "feat: Tier 1 support for LocalAI",
+  "reactions": 36,
+  "abandoned_date": "2025-05-24T22:50:54Z",
+  "one_line_why": "LocalAI v0.5 introduced a stable OpenAI\u2011compatible API and official TypeScript SDK.",
+  "one_line_summary": "Open-webui will natively support LocalAI tier\u20111 features, enabling seamless TTS, STT, and image generation.",
+  "impact_score": 6,
+  "effort_hours": 38.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "llm",
+    "typescript"
+  ],
+  "original_url": "https://github.com/open-webui/open-webui/issues/1437",
+  "resurrection_slug": "2026-11-09_open-webui-open-webui_1437",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-11-09T23:09:26+00:00"
+}
