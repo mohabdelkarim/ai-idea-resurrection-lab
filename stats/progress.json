@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-09T23:09:26",
-  "total_resurrections": 187,
+  "last_updated": "2026-11-10T20:33:28",
+  "total_resurrections": 188,
   "total_repos_covered": 42,
   "average_impact_score": 6.49,
-  "average_effort_hours": 63.81,
-  "total_with_poc": 134,
-  "total_with_rfc": 167,
+  "average_effort_hours": 63.53,
+  "total_with_poc": 135,
+  "total_with_rfc": 168,
   "comment_stats": {
-    "attempted": 111,
+    "attempted": 112,
     "posted": 4,
-    "failed": 107
+    "failed": 108
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -22,15 +22,15 @@
         "count": 10
       },
       {
+        "repo": "golang/go",
+        "count": 10
+      },
+      {
         "repo": "microsoft/vscode",
         "count": 9
       },
       {
         "repo": "prometheus/prometheus",
-        "count": 9
-      },
-      {
-        "repo": "open-webui/open-webui",
         "count": 9
       }
     ]
@@ -72,31 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-09",
-    "repo": "open-webui/open-webui",
-    "issue_number": 1437,
-    "title": "feat: Tier 1 support for LocalAI",
-    "reactions": 36,
-    "abandoned_date": "2025-05-24T22:50:54Z",
-    "one_line_why": "LocalAI v0.5 introduced a stable OpenAI\u2011compatible API and official TypeScript SDK.",
-    "one_line_summary": "Open-webui will natively support LocalAI tier\u20111 features, enabling seamless TTS, STT, and image generation.",
+    "date": "2026-11-10",
+    "repo": "golang/go",
+    "issue_number": 54297,
+    "title": "proposal: must: Do",
+    "reactions": 87,
+    "abandoned_date": "2026-06-25T16:14:10Z",
+    "one_line_why": "Go 1.20\u2019s generics support enables a generic must.Do utility for concise error handling.",
+    "one_line_summary": "Introduce a url.MustParse helper to simplify URL creation without boilerplate in Go programs.",
     "impact_score": 6,
-    "effort_hours": 38.0,
+    "effort_hours": 12.0,
     "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
+    "poc_language": "go",
     "poc_validated": true,
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "llm",
-      "typescript"
+      "go"
     ],
-    "original_url": "https://github.com/open-webui/open-webui/issues/1437",
-    "resurrection_slug": "2026-11-09_open-webui-open-webui_1437",
+    "original_url": "https://github.com/golang/go/issues/54297",
+    "resurrection_slug": "2026-11-10_golang-go_54297",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-09T23:09:26+00:00"
+    "commented_at": "2026-11-10T20:33:28+00:00"
   }
 }
