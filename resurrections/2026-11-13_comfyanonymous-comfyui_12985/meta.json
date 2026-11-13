@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-13",
+  "repo": "comfyanonymous/ComfyUI",
+  "issue_number": 12985,
+  "title": "Feedback on update frequency and stability",
+  "reactions": 13,
+  "abandoned_date": "2026-04-26T11:42:18Z",
+  "one_line_why": "The rise of CI/CD pipelines with GitHub Actions for Python packages enables automated stability testing.",
+  "one_line_summary": "ComfyUI should adopt a stable release channel to reduce breaking changes for active users.",
+  "impact_score": 8,
+  "effort_hours": 70.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "python",
+  "poc_validated": false,
+  "poc_validation_error": "  File \"/tmp/poc_py_zm4j1par/main.py\", line 1\n    import os\\nimport sys\\nimport json\\nimport subprocess\\nimport logging\\nimport hashlib\\nimport time\\nfrom pathlib import Path\\nimport yaml  # from pyyaml\\nimport requests  # from requirements\\n\\nlogging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(levelname)s: %(message)s')\\n\\nMANIFEST_PATH = Path('plugin_manifest.yaml')\\nSTABLE_BRANCH = 'stable'\\nTEST_TIMEOUT = 300  # seconds\\n\\ndef load_manifest(path: Path) -> dict:\\n    \"\"\"Load a YAM",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "python"
+  ],
+  "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/12985",
+  "resurrection_slug": "2026-11-13_comfyanonymous-comfyui_12985",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-11-13T20:37:24+00:00"
+}

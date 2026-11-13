@@ -1,21 +1,21 @@
 {
-  "last_updated": "2026-11-12T20:56:42",
-  "total_resurrections": 190,
+  "last_updated": "2026-11-13T20:37:24",
+  "total_resurrections": 191,
   "total_repos_covered": 42,
-  "average_impact_score": 6.47,
-  "average_effort_hours": 63.07,
+  "average_impact_score": 6.48,
+  "average_effort_hours": 63.11,
   "total_with_poc": 135,
-  "total_with_rfc": 168,
+  "total_with_rfc": 169,
   "comment_stats": {
-    "attempted": 114,
+    "attempted": 115,
     "posted": 4,
-    "failed": 110
+    "failed": 111
   },
   "repo_diversity": {
     "top_repeated_repos": [
       {
         "repo": "comfyanonymous/ComfyUI",
-        "count": 10
+        "count": 11
       },
       {
         "repo": "kubernetes/kubernetes",
@@ -72,34 +72,32 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-12",
-    "repo": "sharkdp/fd",
-    "issue_number": 613,
-    "title": "Discussion: Stabilization phase?",
-    "reactions": 7,
-    "abandoned_date": "2021-08-08T14:08:36Z",
-    "one_line_why": "Rust 2021 edition and async-std improvements enable safer stabilization without breaking changes.",
-    "one_line_summary": "The community proposes entering a stabilization phase for fd to prioritize bugs, docs, and performance.",
-    "impact_score": 4,
-    "effort_hours": 8.0,
+    "date": "2026-11-13",
+    "repo": "comfyanonymous/ComfyUI",
+    "issue_number": 12985,
+    "title": "Feedback on update frequency and stability",
+    "reactions": 13,
+    "abandoned_date": "2026-04-26T11:42:18Z",
+    "one_line_why": "The rise of CI/CD pipelines with GitHub Actions for Python packages enables automated stability testing.",
+    "one_line_summary": "ComfyUI should adopt a stable release channel to reduce breaking changes for active users.",
+    "impact_score": 8,
+    "effort_hours": 70.0,
     "has_poc": false,
-    "has_rfc": false,
-    "poc_language": "rust",
+    "has_rfc": true,
+    "poc_language": "python",
     "poc_validated": false,
-    "poc_validation_error": "error: unknown start of token: \\\n --> /tmp/poc_rs_1goxh4zf/lib.rs:1:14\n  |\n1 | use std::env;\\nuse std::path::PathBuf;\\nuse anyhow::{Context, Result};\\nuse clap::{Arg, Command};\\n\\n/// Core search functionality \u2013 ...\n  |              ^\n\nerror: unknown start of token: \\\n --> /tmp/poc_rs_1goxh4zf/lib.rs:1:39\n  |\n1 | use std::env;\\nuse std::path::PathBuf;\\nuse anyhow::{Context, Result};\\nuse clap::{Arg, Command};\\n\\n/// Core search functionality \u2013 ...\n  |                                       ^\n\nerr",
+    "poc_validation_error": "  File \"/tmp/poc_py_zm4j1par/main.py\", line 1\n    import os\\nimport sys\\nimport json\\nimport subprocess\\nimport logging\\nimport hashlib\\nimport time\\nfrom pathlib import Path\\nimport yaml  # from pyyaml\\nimport requests  # from requirements\\n\\nlogging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(levelname)s: %(message)s')\\n\\nMANIFEST_PATH = Path('plugin_manifest.yaml')\\nSTABLE_BRANCH = 'stable'\\nTEST_TIMEOUT = 300  # seconds\\n\\ndef load_manifest(path: Path) -> dict:\\n    \"\"\"Load a YAM",
     "quality_flags": [
-      "poc_validation_failed",
-      "rfc_stubbed"
+      "poc_validation_failed"
     ],
     "technology_tags": [
-      "rust",
-      "cli"
+      "python"
     ],
-    "original_url": "https://github.com/sharkdp/fd/issues/613",
-    "resurrection_slug": "2026-11-12_sharkdp-fd_613",
+    "original_url": "https://github.com/Comfy-Org/ComfyUI/issues/12985",
+    "resurrection_slug": "2026-11-13_comfyanonymous-comfyui_12985",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-12T20:56:42+00:00"
+    "commented_at": "2026-11-13T20:37:24+00:00"
   }
 }
