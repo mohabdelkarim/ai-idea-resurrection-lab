@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-16T23:00:47",
-  "total_resurrections": 192,
+  "last_updated": "2026-11-17T21:48:01",
+  "total_resurrections": 193,
   "total_repos_covered": 42,
   "average_impact_score": 6.47,
-  "average_effort_hours": 62.95,
-  "total_with_poc": 135,
-  "total_with_rfc": 170,
+  "average_effort_hours": 62.98,
+  "total_with_poc": 136,
+  "total_with_rfc": 171,
   "comment_stats": {
-    "attempted": 116,
+    "attempted": 117,
     "posted": 4,
-    "failed": 112
+    "failed": 113
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -19,7 +19,7 @@
       },
       {
         "repo": "kubernetes/kubernetes",
-        "count": 10
+        "count": 11
       },
       {
         "repo": "golang/go",
@@ -72,33 +72,31 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-16",
-    "repo": "streamlit/streamlit",
-    "issue_number": 1019,
-    "title": "Add directory chooser",
-    "reactions": 191,
-    "abandoned_date": "2025-08-07T02:50:26Z",
-    "one_line_why": "Web browsers now support the HTML input element with webkitdirectory attribute, enabling folder selection.",
-    "one_line_summary": "Streamlit should provide a directory chooser widget to let users select folders directly.",
-    "impact_score": 5,
-    "effort_hours": 32.0,
-    "has_poc": false,
+    "date": "2026-11-17",
+    "repo": "kubernetes/kubernetes",
+    "issue_number": 118749,
+    "title": "topologySpreadConstraint spanning multiple namespaces",
+    "reactions": 32,
+    "abandoned_date": "2025-07-30T14:15:16Z",
+    "one_line_why": "Kubernetes 1.28 introduced scheduler plugins API enabling cross\u2011namespace topology spreading.",
+    "one_line_summary": "Add support for topologySpreadConstraints that span multiple namespaces across the cluster.",
+    "impact_score": 7,
+    "effort_hours": 70.0,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "python",
-    "poc_validated": false,
-    "poc_validation_error": "  File \"/tmp/poc_py_yn2bgil8/main.py\", line 1\n    import os\\nimport pathlib\\nimport asyncio\\nimport sys\\nfrom typing import AsyncGenerator, Callable, List, Optional\\n\\nclass DirectoryChooserError(Exception):\\n    \"\"\"Custom exception for DirectoryChooser errors.\"\"\"\n              ^\nSyntaxError: unexpected character after line continuation character\n",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "go",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "ui",
-      "python"
+      "kubernetes",
+      "go"
     ],
-    "original_url": "https://github.com/streamlit/streamlit/issues/1019",
-    "resurrection_slug": "2026-11-16_streamlit-streamlit_1019",
+    "original_url": "https://github.com/kubernetes/kubernetes/issues/118749",
+    "resurrection_slug": "2026-11-17_kubernetes-kubernetes_118749",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-16T23:00:47+00:00"
+    "commented_at": "2026-11-17T21:48:01+00:00"
   }
 }

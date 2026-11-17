@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-17",
+  "repo": "kubernetes/kubernetes",
+  "issue_number": 118749,
+  "title": "topologySpreadConstraint spanning multiple namespaces",
+  "reactions": 32,
+  "abandoned_date": "2025-07-30T14:15:16Z",
+  "one_line_why": "Kubernetes 1.28 introduced scheduler plugins API enabling cross\u2011namespace topology spreading.",
+  "one_line_summary": "Add support for topologySpreadConstraints that span multiple namespaces across the cluster.",
+  "impact_score": 7,
+  "effort_hours": 70.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "kubernetes",
+    "go"
+  ],
+  "original_url": "https://github.com/kubernetes/kubernetes/issues/118749",
+  "resurrection_slug": "2026-11-17_kubernetes-kubernetes_118749",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-11-17T21:48:01+00:00"
+}
