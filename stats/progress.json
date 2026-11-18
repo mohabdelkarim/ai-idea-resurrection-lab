@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-17T21:48:01",
-  "total_resurrections": 193,
+  "last_updated": "2026-11-18T21:26:43",
+  "total_resurrections": 194,
   "total_repos_covered": 42,
   "average_impact_score": 6.47,
-  "average_effort_hours": 62.98,
-  "total_with_poc": 136,
-  "total_with_rfc": 171,
+  "average_effort_hours": 63.01,
+  "total_with_poc": 137,
+  "total_with_rfc": 172,
   "comment_stats": {
-    "attempted": 117,
+    "attempted": 118,
     "posted": 4,
-    "failed": 113
+    "failed": 114
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,16 +72,16 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-17",
-    "repo": "kubernetes/kubernetes",
-    "issue_number": 118749,
-    "title": "topologySpreadConstraint spanning multiple namespaces",
-    "reactions": 32,
-    "abandoned_date": "2025-07-30T14:15:16Z",
-    "one_line_why": "Kubernetes 1.28 introduced scheduler plugins API enabling cross\u2011namespace topology spreading.",
-    "one_line_summary": "Add support for topologySpreadConstraints that span multiple namespaces across the cluster.",
-    "impact_score": 7,
-    "effort_hours": 70.0,
+    "date": "2026-11-18",
+    "repo": "grafana/grafana",
+    "issue_number": 12607,
+    "title": "Support full page screenshots via chrome dev tools",
+    "reactions": 51,
+    "abandoned_date": "2024-10-18T09:06:03Z",
+    "one_line_why": "Chrome DevTools Protocol now offers stable headless screenshot APIs enabling full\u2011page capture.",
+    "one_line_summary": "Add capability to capture full\u2011page Grafana dashboard screenshots using Chrome DevTools automation.",
+    "impact_score": 6,
+    "effort_hours": 68.0,
     "has_poc": true,
     "has_rfc": true,
     "poc_language": "go",
@@ -89,14 +89,13 @@
     "poc_validation_error": "",
     "quality_flags": [],
     "technology_tags": [
-      "kubernetes",
-      "go"
+      "devtools"
     ],
-    "original_url": "https://github.com/kubernetes/kubernetes/issues/118749",
-    "resurrection_slug": "2026-11-17_kubernetes-kubernetes_118749",
+    "original_url": "https://github.com/grafana/grafana/issues/12607",
+    "resurrection_slug": "2026-11-18_grafana-grafana_12607",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-17T21:48:01+00:00"
+    "commented_at": "2026-11-18T21:26:43+00:00"
   }
 }
