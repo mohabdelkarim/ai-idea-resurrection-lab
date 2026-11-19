@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-18T21:26:43",
-  "total_resurrections": 194,
+  "last_updated": "2026-11-19T21:28:56",
+  "total_resurrections": 195,
   "total_repos_covered": 42,
   "average_impact_score": 6.47,
-  "average_effort_hours": 63.01,
+  "average_effort_hours": 62.75,
   "total_with_poc": 137,
-  "total_with_rfc": 172,
+  "total_with_rfc": 173,
   "comment_stats": {
-    "attempted": 118,
+    "attempted": 119,
     "posted": 4,
-    "failed": 114
+    "failed": 115
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,30 +72,33 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-18",
-    "repo": "grafana/grafana",
-    "issue_number": 12607,
-    "title": "Support full page screenshots via chrome dev tools",
-    "reactions": 51,
-    "abandoned_date": "2024-10-18T09:06:03Z",
-    "one_line_why": "Chrome DevTools Protocol now offers stable headless screenshot APIs enabling full\u2011page capture.",
-    "one_line_summary": "Add capability to capture full\u2011page Grafana dashboard screenshots using Chrome DevTools automation.",
+    "date": "2026-11-19",
+    "repo": "sharkdp/bat",
+    "issue_number": 3082,
+    "title": "Adding Catppuccin Bat Themes",
+    "reactions": 14,
+    "abandoned_date": "2025-05-31T13:51:16Z",
+    "one_line_why": "bat 0.23 introduced built\u2011in theme loading via TOML, enabling easy inclusion of Catppuccin palettes.",
+    "one_line_summary": "Add official Catppuccin color themes to bat's built\u2011in theme collection.",
     "impact_score": 6,
-    "effort_hours": 68.0,
-    "has_poc": true,
+    "effort_hours": 12.0,
+    "has_poc": false,
     "has_rfc": true,
-    "poc_language": "go",
-    "poc_validated": true,
-    "poc_validation_error": "",
-    "quality_flags": [],
-    "technology_tags": [
-      "devtools"
+    "poc_language": "rust",
+    "poc_validated": false,
+    "poc_validation_error": "error: couldn't read `/tmp/poc_rs_rgkmp_nu/../assets/themes/catppuccin-mocha.tmTheme`: No such file or directory (os error 2)\n  --> /tmp/poc_rs_rgkmp_nu/lib.rs:19:32\n   |\n19 | const CATPPUCCIN_MOCHA: &str = include_str!(\"../assets/themes/catppuccin-mocha.tmTheme\");\n   |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nerror: couldn't read `/tmp/poc_rs_rgkmp_nu/../assets/themes/catppuccin-macchiato.tmTheme`: No such file or directory (os error 2)\n  --> /tm",
+    "quality_flags": [
+      "poc_validation_failed"
     ],
-    "original_url": "https://github.com/grafana/grafana/issues/12607",
-    "resurrection_slug": "2026-11-18_grafana-grafana_12607",
+    "technology_tags": [
+      "rust",
+      "cli"
+    ],
+    "original_url": "https://github.com/sharkdp/bat/issues/3082",
+    "resurrection_slug": "2026-11-19_sharkdp-bat_3082",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-18T21:26:43+00:00"
+    "commented_at": "2026-11-19T21:28:56+00:00"
   }
 }
