@@ -594,6 +594,30 @@
   },
   {
     "repo": "nodejs/node",
+    "issue_number": 49148,
+    "title": "`.env` file support issue tracker",
+    "body": "This is a follow-up of [dotenv support pr](https://github.com/nodejs/node/pull/48890) to track the development process, and answer some questions that require a general discussion for making the decision to implement them.\r\n\r\nTodos:\r\n- [x] Precisely define the syntax of `.env` files, and consider a better format not based on ini\r\n- [x] Supporting absolute paths for .env file https://github.com/nodejs/node/pull/51425\r\n- [x] Should we support multiple `--env-file` through the CLI? (cc @GeoffreyBooth) https://github.com/nodejs/node/pull/49542\r\n- [x] Support multi-line values https://github.com/nodejs/node/pull/51289\r\n- [x] Follow up after @tniessen's PR has landed to main https://github.com/nodejs/node/pull/49213\r\n- [x] Should we add a programmatic API? If yes, what would be the use-case? (cc @cjihrig) https://github.com/nodejs/node/pull/51476\r\n\r\nQuestions:\r\n- [x] ~~Should we merge NODE_OPTIONS if both environment variable and .env version exist? Currently, we prefer environment variable over .env configuration.~~ (cc @ljharb) https://github.com/nodejs/node/pull/49217\r\n- [x] Should we throw if `.env` file does not exist? We currently follow the default behavior of `dotenv` package and do not throw. (cc @MoLow)\r\n\r\nPlease feel free to edit this issue in case there are more questions that needs to be answered.\r\n\r\ncc @nodejs/tsc ",
+    "reactions": 12,
+    "created_at": "2023-08-13T19:31:54Z",
+    "updated_at": "2026-11-20T01:12:04Z",
+    "labels": [
+      "discuss",
+      "stale",
+      "dotenv"
+    ],
+    "url": "https://api.github.com/repos/nodejs/node/issues/49148",
+    "html_url": "https://github.com/nodejs/node/issues/49148",
+    "author_login": "anonrig",
+    "author_profile": "https://github.com/anonrig",
+    "comments": 68,
+    "state_reason": "not_planned",
+    "closed_at": "2026-11-20T01:12:04Z",
+    "already_resurrected": false,
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
+  },
+  {
+    "repo": "nodejs/node",
     "issue_number": 46074,
     "title": "Make Node.js more permissive when libraries ship invalid ESM code",
     "body": "### What is the problem this feature will solve?\r\n\r\nI'm the author of [vite-plugin-ssr](https://vite-plugin-ssr.com/) and a *lot* of users are having problems because many libraries ship invalid ESM code, which makes Node.js choke.\r\n\r\n(The reason why many libraries ship erronous ESM code is because frameworks like Next.js bundle the server-side code of libraries. Where Next.js is permissive and is able to process invalid ESM code, Node.js is strict and throws an error upon invalid ESM code.)\r\n\r\nMore information at https://vite-plugin-ssr.com/broken-npm-package#solution.\r\n\r\nThis is a concern not only for vite-plugin-ssr, but also for the whole Vite ecosystem such as Nuxt and SvelteKit (see [SvelteKit FAQ - How do I fix the error I'm getting trying to include a package?](https://kit.svelte.dev/faq#packages) which is, I quote, \"issues most commonly affecting SvelteKit users\").\r\n\r\nThe situation is quite bad and the feedback I get from users is quite vivid, to say the least.\r\n\r\nWhile one could say that it's \"Next.js's fault of being permissive\" (webpack more precisely speaking), the situation is what it is and it's not going to change anytime soon. So I propose following practical solution.\r\n\r\n### What is the feature you are proposing to solve the problem?\r\n\r\nMake Node.js more permissive.\r\n\r\nFor example, a widespread problem is npm packages having invalid ESM imports, e.g. `import './foo'` instead of `import './foo.js'`, which makes Node.js choke. Another example is packages that ship ESM but don't have `type: \"module\"` in their `package.json`. Node.js should be able to execute npm packages that ship invalid code.\r\n\r\nI'd make Node.js permissive only for npm packages (i.e. code living in `node_modules`), while being more strict for the user land.\r\n\r\n### What alternatives have you considered?\r\n\r\n**[Edit]** An alternative is to make npm validate packages before they are published: https://github.com/npm/rfcs/issues/665.",

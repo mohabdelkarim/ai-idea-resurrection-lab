@@ -256,8 +256,8 @@
     "state_reason": "not_planned",
     "closed_at": "2026-11-06T19:11:09Z",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "by-design rejected"
   },
   {
     "repo": "microsoft/vscode",
@@ -281,8 +281,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "__skip__: Label 'out-of-scope' indicates the issue is intentionally not planned, triggering rule 1 rejection."
   },
   {
     "repo": "microsoft/vscode",
@@ -304,7 +304,7 @@
     "comments": 0,
     "state_reason": "",
     "closed_at": "",
-    "already_resurrected": false,
+    "already_resurrected": true,
     "quality_rejected": false,
     "quality_rejection_reason": ""
   },
