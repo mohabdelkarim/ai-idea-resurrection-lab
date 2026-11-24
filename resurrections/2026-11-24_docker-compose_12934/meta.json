@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-24",
+  "repo": "docker/compose",
+  "issue_number": 12934,
+  "title": "Support for Apple Containers",
+  "reactions": 12,
+  "abandoned_date": "2025-06-12T05:49:05Z",
+  "one_line_why": "Apple introduced the containerd\u2011based Apple Container runtime in macOS Ventura 13.5, enabling Linux containers on Apple Silicon.",
+  "one_line_summary": "Docker Compose will add native support for Apple\u2019s Linux container engine on macOS.",
+  "impact_score": 7,
+  "effort_hours": 32.0,
+  "has_poc": true,
+  "has_rfc": true,
+  "poc_language": "go",
+  "poc_validated": true,
+  "poc_validation_error": "",
+  "quality_flags": [],
+  "technology_tags": [
+    "go"
+  ],
+  "original_url": "https://github.com/docker/compose/issues/12934",
+  "resurrection_slug": "2026-11-24_docker-compose_12934",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-11-24T00:56:44+00:00"
+}

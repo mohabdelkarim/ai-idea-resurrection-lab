@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-20T21:18:52",
-  "total_resurrections": 196,
+  "last_updated": "2026-11-24T00:56:44",
+  "total_resurrections": 197,
   "total_repos_covered": 42,
   "average_impact_score": 6.47,
-  "average_effort_hours": 62.59,
-  "total_with_poc": 137,
-  "total_with_rfc": 174,
+  "average_effort_hours": 62.44,
+  "total_with_poc": 138,
+  "total_with_rfc": 175,
   "comment_stats": {
-    "attempted": 120,
+    "attempted": 121,
     "posted": 4,
-    "failed": 116
+    "failed": 117
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -72,32 +72,30 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-20",
-    "repo": "microsoft/vscode",
-    "issue_number": 92257,
-    "title": "Markdown Preview - Navigate back",
-    "reactions": 80,
-    "abandoned_date": "2025-10-17T16:00:15Z",
-    "one_line_why": "Webview API enhancements in VSCode 1.85 enable custom navigation handling.",
-    "one_line_summary": "Add back navigation support within VSCode Markdown preview to return to the previous preview page.",
+    "date": "2026-11-24",
+    "repo": "docker/compose",
+    "issue_number": 12934,
+    "title": "Support for Apple Containers",
+    "reactions": 12,
+    "abandoned_date": "2025-06-12T05:49:05Z",
+    "one_line_why": "Apple introduced the containerd\u2011based Apple Container runtime in macOS Ventura 13.5, enabling Linux containers on Apple Silicon.",
+    "one_line_summary": "Docker Compose will add native support for Apple\u2019s Linux container engine on macOS.",
     "impact_score": 7,
     "effort_hours": 32.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
-    "poc_validated": false,
-    "poc_validation_error": "/tmp/poc_js_2ye4d5n6/main.ts:10\n    private readonly stack: vscode.Uri[] = [];\n            ^^^^^^^^\n\nSyntaxError: Unexpected identifier 'readonly'\n    at checkSyntax (node:internal/main/check_syntax:84:5)\n\nNode.js v24.22.3",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "go",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "vscode"
+      "go"
     ],
-    "original_url": "https://github.com/microsoft/vscode/issues/92257",
-    "resurrection_slug": "2026-11-20_microsoft-vscode_92257",
+    "original_url": "https://github.com/docker/compose/issues/12934",
+    "resurrection_slug": "2026-11-24_docker-compose_12934",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-20T21:18:52+00:00"
+    "commented_at": "2026-11-24T00:56:44+00:00"
   }
 }
