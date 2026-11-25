@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-25",
+  "repo": "facebook/react",
+  "issue_number": 16474,
+  "title": "Named hooks: MVP support",
+  "reactions": 151,
+  "abandoned_date": "2021-10-12T15:48:40Z",
+  "one_line_why": "React 18\u2019s new DevTools hook inspection API enables attaching metadata to hooks.",
+  "one_line_summary": "Introduce a useDebugName hook to provide explicit names for custom React hooks in DevTools.",
+  "impact_score": 5,
+  "effort_hours": 70.0,
+  "has_poc": false,
+  "has_rfc": true,
+  "poc_language": "typescript",
+  "poc_validated": false,
+  "poc_validation_error": "/tmp/poc_js_injm9aru/main.ts:9\ninterface HookDebugInfo {\n^^^^^^^^^\n\nSyntaxError: Unexpected strict mode reserved word\n    at checkSyntax (node:internal/main/check_syntax:84:5)\n\nNode.js v24.22.3",
+  "quality_flags": [
+    "poc_validation_failed"
+  ],
+  "technology_tags": [
+    "react",
+    "devtools",
+    "typescript"
+  ],
+  "original_url": "https://github.com/facebook/react/issues/16474",
+  "resurrection_slug": "2026-11-25_facebook-react_16474",
+  "comment_posted": false,
+  "comment_status": "forbidden_or_locked",
+  "comment_url": "",
+  "commented_at": "2026-11-25T22:26:55+00:00"
+}

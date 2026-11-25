@@ -1,0 +1,55 @@
+# RFC: Named hooks: MVP support
+
+Summary
+---
+Introduce a new no‑op hook `useDebugName(name: string)` that records an explicit, developer‑provided name for a custom hook invocation. The name is stored in a new `HookDebugInfo` map on the current Fiber and surfaced to React DevTools via the existing hook‑inspection channel. An optional Babel plugin can auto‑inject `useDebugName` calls based on the function identifier, but developers may also add the call manually. The feature is gated behind a `enableDebugNames` flag and ships with unit and integration tests.
+
+Motivation
+---
+Custom hooks are a core abstraction in modern React codebases, yet DevTools currently displays them only as anonymous entries or as the generic "useState", "useEffect", etc. This makes debugging complex hook trees difficult, especially when multiple custom hooks are composed together. The React 18 fiber architecture now includes a `HookDebugInfo` field, and the DevTools hook‑inspection API can read arbitrary metadata. Leveraging these additions allows us to provide stable, low‑overhead hook names without sacrificing runtime performance. Clear hook names improve developer ergonomics, reduce time spent tracing state flow, and align React with other ecosystems (e.g., Vue's named composables) that already expose similar debugging information.
+
+Detailed Design
+---
+1. **Fiber Extension**: Add an optional `debugInfo?: Map<number, string>` property to the `Fiber` type. The key is the zero‑based hook index within the component, and the value is the string passed to `useDebugName`.
+2. **Hook Implementation**:
+   ```ts
+   function useDebugName(name: string): void {
+     if (!__DEV__ || !ReactFeatureFlags.enableDebugNames) return;
+     const fiber = ReactCurrentOwner.current?.fiber;
+     if (!fiber) return;
+     const hookIndex = getCurrentHookIndex(); // internal helper used by other hooks
+     if (!fiber.debugInfo) fiber.debugInfo = new Map();
+     fiber.debugInfo.set(hookIndex, name);
+   }
+   ```
+   The hook is a no‑op at runtime; it only records metadata during the render phase.
+3. **DevTools Integration**: Extend the existing `hookInspection` protocol to include an optional `debugInfo` map. When DevTools receives a fiber snapshot, it reads the map and displays the name next to the hook entry in the Components panel.
+4. **Babel Plugin**: Provide `babel-plugin-react-debug-names`. The plugin walks the AST, detects function declarations/expressions that start with `use`, and inserts `useDebugName("<functionName>")` as the first statement of the hook body. It respects a `/* @debugName off */` comment to opt‑out.
+5. **Feature Flag**: The entire path is guarded by `ReactFeatureFlags.enableDebugNames`. The flag defaults to `false` in production builds and can be toggled via the React DevTools settings panel.
+6. **Testing**: Add unit tests for the Fiber `debugInfo` map, integration tests that verify DevTools receives the correct name, and Babel plugin snapshot tests.
+
+Drawbacks
+---
+* **Bundle Size**: Adding a new property to every Fiber marginally increases memory usage, though the map is only allocated when the flag is enabled and a hook calls `useDebugName`.
+* **Build Complexity**: Maintaining the Babel plugin introduces an extra build artifact and requires version synchronization with the React compiler pipeline.
+* **Potential Misuse**: Developers might over‑use `useDebugName` for trivial cases, cluttering the UI. Documentation will need to stress selective usage.
+
+Alternatives
+---
+1. **Source‑Map Inference**: Continue relying on source‑map parsing in DevTools to guess hook names. This approach is brittle, fails with minified code, and adds latency to the DevTools connection.
+2. **Custom Hook Registry**: Expose a global registry where hooks register themselves at module load time. This would require runtime side‑effects and could interfere with tree‑shaking.
+3. **DevTools‑Only Heuristics**: Implement heuristic naming inside DevTools without changes to React core. While zero‑impact on React, it cannot guarantee correctness for dynamically generated hooks.
+Each alternative either sacrifices reliability, performance, or requires invasive runtime changes.
+
+Unresolved Questions
+---
+* **Performance Impact**: What is the exact memory overhead per Fiber when many components use `useDebugName`? Benchmarks need to be run on large applications.
+* **Compatibility with Concurrent Mode**: Ensure that the `debugInfo` map is correctly cloned during fiber reconciliation in concurrent rendering scenarios.
+* **Tooling Adoption**: How will third‑party DevTools extensions handle the new protocol? A migration guide will be required.
+* **Opt‑out Strategy**: Should we provide a per‑component opt‑out flag in addition to the global feature flag?
+* **Internationalization**: Should hook names be localized in DevTools, or remain as developer‑provided strings?
+Addressing these questions will be part of the implementation sprint.
+
+---
+
+*RFC generated by Resurrection Bot 🧬*
