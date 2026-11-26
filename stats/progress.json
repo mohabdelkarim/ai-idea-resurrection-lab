@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-25T22:26:55",
-  "total_resurrections": 198,
+  "last_updated": "2026-11-26T22:26:14",
+  "total_resurrections": 199,
   "total_repos_covered": 42,
   "average_impact_score": 6.46,
-  "average_effort_hours": 62.47,
-  "total_with_poc": 138,
-  "total_with_rfc": 176,
+  "average_effort_hours": 62.51,
+  "total_with_poc": 139,
+  "total_with_rfc": 177,
   "comment_stats": {
-    "attempted": 122,
+    "attempted": 123,
     "posted": 4,
-    "failed": 118
+    "failed": 119
   },
   "repo_diversity": {
     "top_repeated_repos": [
@@ -26,12 +26,12 @@
         "count": 10
       },
       {
-        "repo": "golang/go",
+        "repo": "prometheus/prometheus",
         "count": 10
       },
       {
-        "repo": "prometheus/prometheus",
-        "count": 9
+        "repo": "golang/go",
+        "count": 10
       }
     ]
   },
@@ -72,34 +72,32 @@
     }
   ],
   "last_resurrection": {
-    "date": "2026-11-25",
-    "repo": "facebook/react",
-    "issue_number": 16474,
-    "title": "Named hooks: MVP support",
-    "reactions": 151,
-    "abandoned_date": "2021-10-12T15:48:40Z",
-    "one_line_why": "React 18\u2019s new DevTools hook inspection API enables attaching metadata to hooks.",
-    "one_line_summary": "Introduce a useDebugName hook to provide explicit names for custom React hooks in DevTools.",
+    "date": "2026-11-26",
+    "repo": "prometheus/prometheus",
+    "issue_number": 2747,
+    "title": "Store metrics docstrings and allow to query them",
+    "reactions": 23,
+    "abandoned_date": "2019-03-22T15:09:44Z",
+    "one_line_why": "OpenTelemetry metric metadata standardization (2023) enables unified docstring handling across monitoring tools.",
+    "one_line_summary": "Prometheus should store metric HELP strings and expose them through its query API.",
     "impact_score": 5,
     "effort_hours": 70.0,
-    "has_poc": false,
+    "has_poc": true,
     "has_rfc": true,
-    "poc_language": "typescript",
-    "poc_validated": false,
-    "poc_validation_error": "/tmp/poc_js_injm9aru/main.ts:9\ninterface HookDebugInfo {\n^^^^^^^^^\n\nSyntaxError: Unexpected strict mode reserved word\n    at checkSyntax (node:internal/main/check_syntax:84:5)\n\nNode.js v24.22.3",
-    "quality_flags": [
-      "poc_validation_failed"
-    ],
+    "poc_language": "go",
+    "poc_validated": true,
+    "poc_validation_error": "",
+    "quality_flags": [],
     "technology_tags": [
-      "react",
-      "devtools",
-      "typescript"
+      "go",
+      "api",
+      "ui"
     ],
-    "original_url": "https://github.com/facebook/react/issues/16474",
-    "resurrection_slug": "2026-11-25_facebook-react_16474",
+    "original_url": "https://github.com/prometheus/prometheus/issues/2747",
+    "resurrection_slug": "2026-11-26_prometheus-prometheus_2747",
     "comment_posted": false,
     "comment_status": "forbidden_or_locked",
     "comment_url": "",
-    "commented_at": "2026-11-25T22:26:55+00:00"
+    "commented_at": "2026-11-26T22:26:13+00:00"
   }
 }
