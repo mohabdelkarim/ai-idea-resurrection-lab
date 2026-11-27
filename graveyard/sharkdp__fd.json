@@ -223,8 +223,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "LLM precheck: already solved"
   },
   {
     "repo": "sharkdp/fd",
@@ -245,8 +245,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "impact_score=3 below minimum 4 (reactions=7, comments=0)"
   },
   {
     "repo": "sharkdp/fd",
@@ -291,8 +291,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Body too short (64 chars, min 80) — not a real proposal"
   },
   {
     "repo": "sharkdp/fd",
@@ -314,8 +314,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "LLM precheck: already solved"
   },
   {
     "repo": "sharkdp/fd",
@@ -337,8 +337,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "LLM precheck: already solved"
   },
   {
     "repo": "sharkdp/fd",
@@ -360,8 +360,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "LLM precheck: already solved"
   },
   {
     "repo": "sharkdp/fd",
@@ -383,8 +383,8 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Body too short (59 chars, min 80) — not a real proposal"
   },
   {
     "repo": "sharkdp/fd",
@@ -406,7 +406,7 @@
     "state_reason": "",
     "closed_at": "",
     "already_resurrected": false,
-    "quality_rejected": false,
-    "quality_rejection_reason": ""
+    "quality_rejected": true,
+    "quality_rejection_reason": "Too sparse (25 total words)"
   }
 ]
